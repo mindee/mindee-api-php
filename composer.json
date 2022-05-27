@@ -2,5 +2,7 @@
   "name": "mindee/mindee",
   "type": "library",
   "license": "MIT",
-  "require": {}
+  "require": {
+    "ext-curl": "*"
+  }
 }
