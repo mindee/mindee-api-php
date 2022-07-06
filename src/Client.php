@@ -2,6 +2,8 @@
 
 namespace Mindee\Api;
 
+const VERSION = '0.1.0';
+
 class Client
 {
     public function docFromPath(string $mime_type, string $file_path): \CURLFile
@@ -15,26 +17,9 @@ class Client
         return new \CURLFile($file_b64, $mime_type, 'file.pdf');
     }
 
-    public function predict(string $token, $file_curl): array
+    public function predict(string $apiKey, $file_curl): array
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "Authorization: Token $token",
-        ]);
-
-        curl_setopt($ch, CURLOPT_URL, 'https://api.mindee.net/v1/products/mindee/invoices/v3/predict');
-        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, ['document' => $file_curl]);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-        $resp = Array(
-            'data' => curl_exec($ch),
-            'code' => curl_getinfo($ch,  CURLINFO_HTTP_CODE)
-        );
-        curl_close($ch);
-
-        return $resp;
+        $endpoint = new Endpoint($apiKey);
+        return $endpoint->predict($file_curl);
     }
 }
