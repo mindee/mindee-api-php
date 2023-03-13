@@ -12,7 +12,7 @@ class Endpoint
     function __construct(string $apiKey)
     {
         $this->apiKey = $apiKey;
-        $this->urlRoot = self::MINDEE_API_URL . "/products/mindee/invoices/v3/";
+        $this->urlRoot = self::MINDEE_API_URL . "/products/mindee/invoices/v4/";
     }
 
     public function predict($file_curl): array
