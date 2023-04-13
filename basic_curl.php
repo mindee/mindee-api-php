@@ -1,6 +1,5 @@
 <?php
-// sudo apt install php7.4-cli php7.4-curl
-// https://php.watch/versions/8.1/CURLStringFile
+// sudo apt install php-cli php-curl
 
 $token = 'xxxxxxxxxxxxx';
 $file_path = '/path/to/file.pdf';
