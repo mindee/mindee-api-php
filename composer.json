@@ -1,5 +1,6 @@
 {
   "name": "mindee/mindee",
+  "description": "Mindee Client Library for PHP",
   "type": "library",
   "license": "MIT",
   "require": {

@@ -16,3 +16,6 @@ composer.lock
 # Temp files
 *.swp
 *-swp
+.env
+.env.local
+_test.php
