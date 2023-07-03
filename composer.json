@@ -1,9 +1,13 @@
 {
   "name": "mindee/mindee",
+  "description": "Mindee Client Library for PHP",
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.4",
     "ext-curl": "*"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.20"
   }
 }
