@@ -20,3 +20,4 @@ composer.lock
 .env.local
 _test.php
 .php-cs-fixer.cache
+local_test/
