@@ -7,22 +7,22 @@ use Mindee;
 /**
  * Endpoint management.
  */
-class Endpoint
+class Endpoint extends BaseEndpoint
 {
-    public const MINDEE_API_URL = 'https://api.mindee.net/v1';
-    protected $apiKey;
-    protected $urlRoot;
-    public string $name;
+    public string $urlName;
     public string $owner;
     public string $version;
 
-    public function __construct(string $api_key, string $name, string $owner, string $version)
-    {
-        $this->apiKey = $api_key;
-        $this->name = $name;
+    public function __construct(
+        string $url_name,
+        string $owner,
+        string $version,
+        MindeeApi $settings
+    ) {
+        parent::__construct($settings);
+        $this->urlName = $url_name;
         $this->owner = $owner;
         $this->version = $version;
-        $this->urlRoot = self::MINDEE_API_URL."/products/$this->owner/$this->name/$this->version/";
     }
 
     public function predictRequestPost(
@@ -36,15 +36,22 @@ class Endpoint
             $ch,
             CURLOPT_HTTPHEADER,
             [
-            "Authorization: Token $this->apiKey",
+            'Authorization: Token '.$this->settings->apiKey,
             ]
         );
 
-        curl_setopt($ch, CURLOPT_URL, $this->urlRoot.'/predict');
+        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot.'/predict');
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, ['document' => $file_curl]);
+        $post_fields = ['document' => $file_curl];
+        if ($include_words) {
+            $post_fields['include_mvision'] = 'true';
+        }
+        if ($cropper) {
+            $post_fields['cropper'] = 'true';
+        }
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v'.Mindee\VERSION);
 
@@ -68,15 +75,22 @@ class Endpoint
             $ch,
             CURLOPT_HTTPHEADER,
             [
-            "Authorization: Token $this->apiKey",
+                'Authorization: Token '.$this->settings->apiKey,
             ]
         );
 
-        curl_setopt($ch, CURLOPT_URL, $this->urlRoot.'/predict');
+        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot.'/predict');
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, ['document' => $file_curl]);
+        $post_fields = ['document' => $file_curl];
+        if ($include_words) {
+            $post_fields['include_mvision'] = 'true';
+        }
+        if ($cropper) {
+            $post_fields['cropper'] = 'true';
+        }
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v'.Mindee\VERSION);
 

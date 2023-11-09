@@ -3,11 +3,11 @@
 namespace Mindee;
 
 use Mindee\http\Endpoint;
+use Mindee\http\MindeeApi;
 use Mindee\input\PageOptions;
 use Mindee\parsing\common\Inference;
 use Mindee\parsing\common\PredictReponse;
 
-const VERSION = '1.0.0';
 const DEFAULT_OWNER = 'mindee';
 /**
  * Main entrypoint for Mindee operations.
@@ -64,7 +64,9 @@ class Client
     {
         $endpoint_version = $endpoint_version != null && strlen($endpoint_version) > 0 ? $endpoint_version : '1';
 
-        return new Endpoint($this->apiKey, $endpoint_name, $endpoint_owner, $endpoint_version);
+        $endpoint_settings = new MindeeApi($this->apiKey, $endpoint_name, $endpoint_owner, $endpoint_version);
+
+        return new Endpoint($endpoint_name, $endpoint_owner, $endpoint_version, $endpoint_settings);
     }
 
     private function constructOTSEndpoint($product): Endpoint
