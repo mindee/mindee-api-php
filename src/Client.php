@@ -2,6 +2,8 @@
 
 namespace Mindee;
 
+use function Mindee\error\handle_error;
+use Mindee\error\MindeeApiException;
 use Mindee\http\Endpoint;
 use Mindee\http\MindeeApi;
 use Mindee\input\PageOptions;
@@ -72,7 +74,7 @@ class Client
     private function constructOTSEndpoint($product): Endpoint
     {
         if ($product->endpoint_name == 'custom') {
-            throw new \InvalidArgumentException('Please create an endpoint manually before sending requests to a custom build.');
+            throw new MindeeApiException('Please create an endpoint manually before sending requests to a custom build.');
         }
         $endpoint_owner = DEFAULT_OWNER;
 
@@ -89,7 +91,7 @@ class Client
     ): PredictReponse {
         $response = $endpoint->predictRequestPost($input_doc, $include_words, $close_file, $cropper);
         if (!$response['ok']) {
-            throw new \ErrorException('Response not ok.'); // TODO: implement error handling module.
+            throw handle_error($endpoint->settings->endpointName, $response, $response['status_code']);
         }
 
         return new PredictReponse($prediction_type, $response);

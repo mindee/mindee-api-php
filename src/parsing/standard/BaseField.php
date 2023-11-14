@@ -2,16 +2,32 @@
 
 namespace Mindee\parsing\standard;
 
+use Mindee\geometry\BBox;
+use function Mindee\geometry\createBoundingBoxFrom;
+use Mindee\geometry\Point;
+use Mindee\geometry\Polygon;
+
 trait FieldPositionMixin
 {
-    public $polygon; // TODO: polygon & geometry module
-    public $boundingBox; // TODO: bounding box
+    public Polygon $polygon;
+    public ?BBox $boundingBox;
     public ?int $page_id;
 
     protected function setPosition(array $raw_prediction)
     {
         $this->boundingBox = null;
-        $this->polygon = $raw_prediction['polygon']; // TODO: polygon etc.
+        $this->polygon = new Polygon();
+        if (array_key_exists('polygon', $raw_prediction)) {
+            $points = [];
+            foreach ($raw_prediction as $point) {
+                array_push($points, new Point($point[0], $point[1]));
+            }
+        }
+        if ($this->polygon->getCoordinates()) {
+            $this->boundingBox = createBoundingBoxFrom($this->polygon);
+        } else {
+            $this->boundingBox = null;
+        }
     }
 }
 
