@@ -8,7 +8,7 @@ trait FieldPositionMixin
     public $boundingBox; // TODO: bounding box
     public ?int $page_id;
 
-    public function __construct(array $raw_prediction)
+    protected function setPosition(array $raw_prediction)
     {
         $this->boundingBox = null;
         $this->polygon = $raw_prediction['polygon']; // TODO: polygon etc.
@@ -19,7 +19,7 @@ trait FieldConfidenceMixin
 {
     public float $confidence;
 
-    public function _setConfidence(array $raw_prediction)
+    protected function setConfidence(array $raw_prediction)
     {
         if (array_key_exists('confidence', $raw_prediction) && $raw_prediction['confidence']) {
             $this->confidence = $raw_prediction['confidence'];
@@ -51,7 +51,7 @@ abstract class BaseField
         $this->reconstructed = $reconstructed;
         if (!array_key_exists($value_key, $raw_prediction) && $raw_prediction[$value_key] != 'N/A') {
             $this->value = $raw_prediction[$value_key];
-            $this->_setConfidence($raw_prediction);
+            $this->setConfidence($raw_prediction);
         } else {
             $this->value = null;
         }
