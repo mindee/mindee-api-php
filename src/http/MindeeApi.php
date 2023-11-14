@@ -62,7 +62,7 @@ class MindeeApi
 
     public function __construct(?string $apiKey, string $endpointName, string $accountName, string $version)
     {
-        $this->setApiKey();
+        $this->setApiKey($apiKey);
         if (!$this->apiKey) {
             throw new MindeeException("Missing API key for '$endpointName v$version' (belonging to $accountName), check your Client configuration.
 You can set this using the ".API_KEY_ENV_NAME.' environment variable.');
