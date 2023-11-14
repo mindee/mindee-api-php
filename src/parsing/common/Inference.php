@@ -2,6 +2,8 @@
 
 namespace Mindee\parsing\common;
 
+use Mindee\error\MindeeApiException;
+
 class Inference
 {
     /**
@@ -77,6 +79,6 @@ $pages
                 'version' => self::$endpoint_version,
             ];
         }
-        throw new \ErrorException("Can't get endpoint information for".get_called_class()); // TODO
+        throw new MindeeApiException("Can't get endpoint information for".get_called_class());
     }
 }
