@@ -6,7 +6,12 @@ use function Mindee\error\handle_error;
 use Mindee\error\MindeeApiException;
 use Mindee\http\Endpoint;
 use Mindee\http\MindeeApi;
+use Mindee\input\Base64Input;
+use Mindee\input\BytesInput;
+use Mindee\input\FileInput;
+use Mindee\input\LocalInputSource;
 use Mindee\input\PageOptions;
+use Mindee\input\URLInputSource;
 use Mindee\parsing\common\Inference;
 use Mindee\parsing\common\PredictReponse;
 
@@ -37,29 +42,24 @@ class Client
         return new \CURLFile($file_path, $mime_type, $file_name);
     }
 
-    public function sourceFromBytes(string $file_bytes, string $file_name): \CURLFile
+    public function sourceFromFile($file): LocalInputSource
     {
-        $file_b64 = 'data://application/pdf;base64,'.base64_encode($file_bytes);
-        $file = finfo_open();
-        $mime_type = finfo_buffer($file, base64_decode($file_b64), FILEINFO_MIME_TYPE);
-
-        return new \CURLFile($file_b64, $mime_type, $file_name);
+        return new FileInput($file);
     }
 
-    public function sourceFromb64String(string $file_b64, string $file_name): \CURLFile
+    public function sourceFromBytes(string $file_bytes, string $file_name): BytesInput
     {
-        $file = finfo_open();
-        $mime_type = finfo_buffer($file, base64_decode($file_b64), FILEINFO_MIME_TYPE);
-
-        return new \CURLFile($file_b64, $mime_type, $file_name);
+        return new BytesInput($file_bytes, $file_name);
     }
 
-    public function sourceFromUrl(string $file_b64, string $file_name): \CURLFile
+    public function sourceFromb64String(string $file_b64, string $file_name): Base64Input
     {
-        $file = finfo_open();
-        $mime_type = finfo_buffer($file, base64_decode($file_b64), FILEINFO_MIME_TYPE);
+        return new Base64Input($file_b64, $file_name);
+    }
 
-        return new \CURLFile($file_b64, $mime_type, $file_name);
+    public function sourceFromUrl(string $url): URLInputSource
+    {
+        return new URLInputSource($url);
     }
 
     private function constructEndpoint(string $endpoint_name, string $endpoint_owner, string $endpoint_version): Endpoint
