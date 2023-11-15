@@ -8,6 +8,10 @@ class MindeeException extends RuntimeException
 {
 }
 
+class MindeeMimeTypeException extends MindeeException
+{
+}
+
 class MindeeClientException extends MindeeException
 {
 }

@@ -3,6 +3,7 @@
 namespace Mindee\http;
 
 use Mindee;
+use Mindee\input\URLInputSource;
 
 /**
  * Endpoint management.
@@ -26,7 +27,7 @@ class Endpoint extends BaseEndpoint
     }
 
     public function predictRequestPost(
-        \CURLFile $file_curl,
+        $file_curl,
         bool $include_words,
         bool $close_file,
         bool $cropper
@@ -44,7 +45,11 @@ class Endpoint extends BaseEndpoint
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        $post_fields = ['document' => $file_curl];
+        if ($file_curl instanceof URLInputSource) {
+            $post_fields = ['document' => $file_curl];
+        } else {
+            $post_fields = ['document' => $file_curl->fileObject];
+        }
         if ($include_words) {
             $post_fields['include_mvision'] = 'true';
         }
@@ -65,7 +70,7 @@ class Endpoint extends BaseEndpoint
     }
 
     public function predictAsyncRequestPost(
-        \CURLFile $file_curl,
+        $file_curl,
         bool $include_words,
         bool $close_file,
         bool $cropper
@@ -83,7 +88,11 @@ class Endpoint extends BaseEndpoint
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        $post_fields = ['document' => $file_curl];
+        if ($file_curl instanceof URLInputSource) {
+            $post_fields = ['document' => $file_curl];
+        } else {
+            $post_fields = ['document' => $file_curl->fileObject];
+        }
         if ($include_words) {
             $post_fields['include_mvision'] = 'true';
         }
