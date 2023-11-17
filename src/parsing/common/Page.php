@@ -9,7 +9,7 @@ class Page
     public Prediction $prediction;
     public $extras; // TODO: Extra.
 
-    public function __construct(Prediction $prediction_type, array $raw_prediction)
+    public function __construct($prediction_type, array $raw_prediction)
     {
         $this->id = $raw_prediction['id'];
         if (array_key_exists('orientation', $raw_prediction)) {
