@@ -14,7 +14,7 @@ const ALLOWED_MIME_TYPES = [
     'image/webp',
 ];
 
-class LocalInputSource
+class LocalInputSource extends InputSource
 {
     public \CURLFile $fileObject;
     public string $fileName;

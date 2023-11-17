@@ -4,20 +4,17 @@ namespace Mindee\parsing\common;
 
 use Mindee\error\MindeeApiException;
 
-class Inference
+abstract class Inference
 {
-    /**
-     * Product's name and version info.
-     */
     public Product $product;
     /**
      * Name of the product's endpoint.
      */
-    public ?string $endpoint_name;
+    public static string $endpoint_name;
     /**
      * Version of the product's endpoint.
      */
-    public ?string $endpoint_version;
+    public static string $endpoint_version;
     /**
      * Prediction.
      */
