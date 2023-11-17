@@ -4,11 +4,11 @@ namespace Mindee\input;
 
 use Mindee\error\MindeeSourceException;
 
-class URLInputSource
+class URLInputSource extends InputSource
 {
-    private string $url;
+    protected string $url;
 
-    public function __construct($url)
+    public function __construct(string $url)
     {
         if (!str_starts_with($url, 'https://')) {
             throw new MindeeSourceException('URL must be HTTPS');

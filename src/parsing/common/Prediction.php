@@ -2,7 +2,7 @@
 
 namespace Mindee\parsing\common;
 
-class Prediction
+abstract class Prediction
 {
     public function __toString(): string
     {
