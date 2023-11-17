@@ -2,6 +2,9 @@
 
 namespace Mindee;
 
+use Mindee\error\MindeeClientException;
+use Mindee\input\InputSource;
+use Mindee\input\PathInput;
 use function Mindee\error\handle_error;
 use Mindee\error\MindeeApiException;
 use Mindee\http\Endpoint;
@@ -34,12 +37,10 @@ class Client
     /**
      * @param string $file_path path of the file
      */
-    public function sourceFromPath(string $file_path): \CURLFile
+    public function sourceFromPath(string $file_path): PathInput
     {
-        $file_name = basename($file_path);
-        $mime_type = mime_content_type($file_path);
 
-        return new \CURLFile($file_path, $mime_type, $file_name);
+        return new PathInput($file_path);
     }
 
     public function sourceFromFile($file): LocalInputSource
@@ -71,6 +72,13 @@ class Client
         return new Endpoint($endpoint_name, $endpoint_owner, $endpoint_version, $endpoint_settings);
     }
 
+    private function cleanAccountName(string $account_name):string{
+        if (!$account_name || count(trim($account_name))<1){
+            error_log("No account name provided for custom build. ".DEFAULT_OWNER." will be used by default.");
+            return DEFAULT_OWNER;
+        }
+        return $account_name;
+    }
     private function constructOTSEndpoint($product): Endpoint
     {
         if ($product->endpoint_name == 'custom') {
@@ -81,14 +89,40 @@ class Client
         return $this->constructEndpoint($product->endpoint_name, $endpoint_owner, $product->endpoint_version);
     }
 
+    public function createEndpoint(string $endpoint_name, string $account_name, ?string $version=null): Endpoint
+    {
+        if (count($endpoint_name) == 0){
+            throw new MindeeClientException("Custom endpoint requires a valid 'endpoint_name'.");
+        }
+        $account_name = $this->cleanAccountName($account_name);
+        if (!$version || count($version)<1){
+            error_log("No version provided for a custom build, will attempt to poll version 1 by default.");
+            $version = "1";
+        }
+        return $this->constructEndpoint($endpoint_name, $account_name, $version);
+    }
+    private function cutDocPages(LocalInputSource $input_doc, PageOptions $page_options)
+    {
+
+    }
+
     private function makeParseRequest(
-        Inference $prediction_type,
-        \CURLFile $input_doc,
-        Endpoint $endpoint,
-        bool $include_words,
-        bool $close_file,
-        bool $cropper
-    ): PredictReponse {
+        Inference    $prediction_type,
+        InputSource  $input_doc,
+        Endpoint     $endpoint,
+        bool         $include_words,
+        bool         $close_file,
+        ?PageOptions $page_options,
+        bool         $cropper
+    ): PredictReponse
+    {
+        if ($page_options) {
+            if ($input_doc instanceof LocalInputSource){
+                $this->cutDocPages($input_doc, $page_options);
+            } else {
+                throw new MindeeApiException("Cannot edit non-local input sources.");
+            }
+        }
         $response = $endpoint->predictRequestPost($input_doc, $include_words, $close_file, $cropper);
         if (!$response['ok']) {
             throw handle_error($endpoint->settings->endpointName, $response, $response['status_code']);
@@ -98,20 +132,19 @@ class Client
     }
 
     public function parse(
-        Inference $prediction_type,
-        \CURLFile $input_doc,
-        ?bool $include_words = false,
-        ?bool $close_file = true,
-        ?PageOptions $page_options = null,// TODO: PageOptions initialization
-        ?bool $cropper = false,
-        ?Endpoint $custom_endpoint = null
-    ): PredictReponse {
-        $endpoint = isset($custom_endpoint) ?
-            $custom_endpoint :
-            $this->constructOTSEndpoint(
-                $prediction_type,
-            );
+        Inference    $prediction_type,
+        InputSource  $input_doc,
+        ?bool        $include_words = false,
+        ?bool        $close_file = true,
+        ?PageOptions $page_options = null,
+        ?bool        $cropper = false,
+        ?Endpoint    $custom_endpoint = null
+    ): PredictReponse
+    {
+        $endpoint = $custom_endpoint ?? $this->constructOTSEndpoint(
+            $prediction_type,
+        );
 
-        return $this->makeParseRequest($prediction_type, $input_doc, $endpoint, $include_words, $close_file, $cropper);
+        return $this->makeParseRequest($prediction_type, $input_doc, $endpoint, $include_words, $close_file, $page_options, $cropper);
     }
 }

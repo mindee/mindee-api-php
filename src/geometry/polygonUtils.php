@@ -4,15 +4,7 @@ namespace Mindee\geometry;
 
 use Mindee\error\MindeeGeometryException;
 
-function getFrom(array $polygon)
-{
-    $coordinates = [];
-    foreach ($polygon as $point) {
-        array_push($coordinates, new Point($point->getX(), $point->getY()));
-    }
-}
-
-function getCentroid(array $vertices)
+function getCentroid(array $vertices): Point
 {
     $vertices_sum = count($vertices);
 
@@ -72,6 +64,7 @@ function getMaxYCoordinate(Polygon $polygon): float
 
     return $min;
 }
+
 function getMaxXCoordinate(Polygon $polygon): float
 {
     $min = null;
@@ -109,7 +102,7 @@ function merge(?Polygon $base, ?Polygon $target): Polygon
         return $base;
     }
 
-    return array_unique(array_merge($base->getCoordinates(), $target->getCoordinates()));
+    return new Polygon(array_unique(array_merge($base->getCoordinates(), $target->getCoordinates())));
 }
 
 function createBoundingBoxFrom(?Polygon $base, ?Polygon $target = null): Polygon
@@ -147,7 +140,7 @@ function polygon_from_prediction(array $prediction): Polygon
 {
     $points = [];
     foreach ($prediction as $point) {
-        array_push($points, new Point($point[0], $point[1]));
+        $points[] = new Point($point[0], $point[1]);
     }
 
     return new Polygon($points);

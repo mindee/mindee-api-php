@@ -2,7 +2,7 @@
 
 namespace Mindee\parsing\custom;
 
-class ClassificationFieldV1
+class ClassificationField
 {
     public string $value;
     public float $confidence;
@@ -16,6 +16,6 @@ class ClassificationFieldV1
 
     public function __toString(): string
     {
-        return isset($this->value) ? $this->value : '';
+        return $this->value ?? '';
     }
 }

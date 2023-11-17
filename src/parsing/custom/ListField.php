@@ -2,29 +2,8 @@
 
 namespace Mindee\parsing\custom;
 
-use Mindee\parsing\standard\FieldPositionMixin;
 
-class ListFieldValueV1
-{
-    use FieldPositionMixin;
-    public string $content;
-    public float $confidence;
-
-    public function __construct(
-        array $raw_prediction
-    ) {
-        $this->content = $raw_prediction['content'];
-        $this->confidence = $raw_prediction['confidence'];
-        $this->setPosition($raw_prediction);
-    }
-
-    public function __toString(): string
-    {
-        return strval($this->content);
-    }
-}
-
-class ListFieldV1
+class ListField
 {
     public float $confidence;
     public bool $reconstructed;
@@ -42,13 +21,13 @@ class ListFieldV1
     {
         $arr = [];
         foreach ($this->values as $value) {
-            array_push($arr, $value->content);
+            $arr[] = $value->content;
         }
 
         return $arr;
     }
 
-    public function contents_string(string $separator = ' ')
+    public function contents_string(string $separator = ' '): string
     {
         return implode($separator, $this->contents_list());
     }
