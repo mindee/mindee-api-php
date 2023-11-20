@@ -2,21 +2,21 @@
 
 namespace Mindee;
 
-use Mindee\error\MindeeClientException;
-use Mindee\input\InputSource;
-use Mindee\input\PathInput;
-use function Mindee\error\handle_error;
-use Mindee\error\MindeeApiException;
-use Mindee\http\Endpoint;
-use Mindee\http\MindeeApi;
-use Mindee\input\Base64Input;
-use Mindee\input\BytesInput;
-use Mindee\input\FileInput;
-use Mindee\input\LocalInputSource;
-use Mindee\input\PageOptions;
-use Mindee\input\URLInputSource;
-use Mindee\parsing\common\Inference;
-use Mindee\parsing\common\PredictReponse;
+use Mindee\Error\MindeeClientException;
+use Mindee\Error\MindeeHttpException;
+use Mindee\Input\InputSource;
+use Mindee\Input\PathInput;
+use Mindee\Input\PredictMethodOptions;
+use Mindee\Error\MindeeApiException;
+use Mindee\Http\Endpoint;
+use Mindee\Http\MindeeApi;
+use Mindee\Input\Base64Input;
+use Mindee\Input\BytesInput;
+use Mindee\Input\FileInput;
+use Mindee\Input\LocalInputSource;
+use Mindee\Input\PageOptions;
+use Mindee\Input\URLInputSource;
+use Mindee\Parsing\Common\PredictResponse;
 
 const DEFAULT_OWNER = 'mindee';
 /**
@@ -74,7 +74,7 @@ class Client
 
     private function cleanAccountName(string $account_name): string
     {
-        if (!$account_name || count(trim($account_name)) < 1) {
+        if (!$account_name || strlen(trim($account_name)) < 1) {
             error_log("No account name provided for custom build. " . DEFAULT_OWNER . " will be used by default.");
             return DEFAULT_OWNER;
         }
@@ -83,7 +83,13 @@ class Client
 
     private function constructOTSEndpoint($product): Endpoint
     {
-        if ($product->endpoint_name == 'custom') {
+        try {
+            $reflection = new \ReflectionClass($product);
+            $endpoint_name = $reflection->getStaticPropertyValue("endpoint_name");
+        } catch (\ReflectionException $exception) {
+            throw new MindeeApiException("Unable to create custom product " . $product);
+        }
+        if ($endpoint_name == 'custom') {
             throw new MindeeApiException('Please create an endpoint manually before sending requests to a custom build.');
         }
         $endpoint_owner = DEFAULT_OWNER;
@@ -93,12 +99,12 @@ class Client
 
     public function createEndpoint(string $endpoint_name, string $account_name, ?string $version = null): Endpoint
     {
-        if (count($endpoint_name) == 0) {
+        if (strlen($endpoint_name) == 0) {
             throw new MindeeClientException("Custom endpoint requires a valid 'endpoint_name'.");
         }
         $account_name = $this->cleanAccountName($account_name);
-        if (!$version || count($version) < 1) {
-            error_log("No version provided for a custom build, will attempt to poll version 1 by default.");
+        if (!$version || strlen($version) < 1) {
+            error_log("Notice: no version provided for a custom build, will attempt to poll version 1 by default.");
             $version = "1";
         }
         return $this->constructEndpoint($endpoint_name, $account_name, $version);
@@ -110,44 +116,37 @@ class Client
     }
 
     private function makeParseRequest(
-        string       $prediction_type,
-        InputSource  $input_doc,
-        Endpoint     $endpoint,
-        bool         $include_words,
-        bool         $close_file,
-        ?PageOptions $page_options,
-        bool         $cropper
-    ): PredictReponse
+        string               $prediction_type,
+        InputSource          $input_doc,
+        PredictMethodOptions $options
+    ): PredictResponse
     {
-        if ($page_options) {
+        if ($options->pageOptions) {
             if ($input_doc instanceof LocalInputSource) {
-                $this->cutDocPages($input_doc, $page_options);
+                $this->cutDocPages($input_doc, $options->pageOptions);
             } else {
                 throw new MindeeApiException("Cannot edit non-local input sources.");
             }
         }
-        $response = $endpoint->predictRequestPost($input_doc, $include_words, $close_file, $cropper);
-        if (!$response['ok']) {
-            throw handle_error($endpoint->settings->endpointName, $response, $response['status_code']);
+        $response = $options->customEndpoint->predictRequestPost($input_doc, $options->predictOptions->include_words, $options->closeFile, $options->predictOptions->cropper);
+        $data_response = json_decode($response['data'], true);
+        if (!array_key_exists('api_request', $data_response) || count($data_response["api_request"]["error"]) != 0) {
+            throw MindeeHttpException::handle_error($options->customEndpoint->settings->endpointName, $data_response, $data_response['api_request']['status_code']);
         }
 
-        return new PredictReponse($prediction_type, $response);
+        return new PredictResponse($prediction_type, $data_response);
     }
 
     public function parse(
-        string       $prediction_type,
-        InputSource  $input_doc,
-        ?bool        $include_words = false,
-        ?bool        $close_file = true,
-        ?PageOptions $page_options = null,
-        ?bool        $cropper = false,
-        ?Endpoint    $custom_endpoint = null
-    ): PredictReponse
+        string               $prediction_type,
+        InputSource          $input_doc,
+        PredictMethodOptions $options
+    ): PredictResponse
     {
-        $endpoint = $custom_endpoint ?? $this->constructOTSEndpoint(
+        $options->customEndpoint = $options->customEndpoint ?? $this->constructOTSEndpoint(
             $prediction_type,
         );
 
-        return $this->makeParseRequest($prediction_type, $input_doc, $endpoint, $include_words, $close_file, $page_options, $cropper);
+        return $this->makeParseRequest($prediction_type, $input_doc, $options);
     }
 }
