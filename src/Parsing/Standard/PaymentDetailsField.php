@@ -15,7 +15,7 @@ class PaymentDetailsField extends BaseField
     {
         $value = null;
         if (array_key_exists($key, $raw_prediction) &&
-        is_scalar($raw_prediction[$key])) {
+            is_scalar($raw_prediction[$key])) {
             $value = strval($raw_prediction[$key]);
         } else {
             $value = null;
@@ -28,16 +28,17 @@ class PaymentDetailsField extends BaseField
     }
 
     public function __construct(
-        array $raw_prediction,
+        array  $raw_prediction,
+        ?int   $page_id = null,
+        bool   $reconstructed = false,
         string $value_key = 'iban',
         string $account_number_key = 'account_number',
         string $iban_key = 'iban',
         string $routing_number_key = 'routing_number',
-        string $swift_key = 'swift',
-        bool $reconstructed = false,
-        ?int $page_id = null
-    ) {
-        parent::__construct($raw_prediction, $value_key, $reconstructed, $page_id);
+        string $swift_key = 'swift'
+    )
+    {
+        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
 
         $this->setPosition($raw_prediction);
 
@@ -51,19 +52,19 @@ class PaymentDetailsField extends BaseField
     {
         $out_str = '';
         if (isset($this->value)) {
-            $out_str .= $this->value.'; ';
+            $out_str .= $this->value . '; ';
         }
         if (isset($this->accountNumber)) {
-            $out_str .= $this->accountNumber.'; ';
+            $out_str .= $this->accountNumber . '; ';
         }
         if (isset($this->iban)) {
-            $out_str .= $this->iban.'; ';
+            $out_str .= $this->iban . '; ';
         }
         if (isset($this->routingNumber)) {
-            $out_str .= $this->routingNumber.'; ';
+            $out_str .= $this->routingNumber . '; ';
         }
         if (isset($this->swift)) {
-            $out_str .= $this->swift.'; ';
+            $out_str .= $this->swift . '; ';
         }
 
         return trim($out_str);

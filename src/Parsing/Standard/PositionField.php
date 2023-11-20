@@ -40,11 +40,11 @@ class PositionField extends BaseField
 
     public function __construct(
         array $raw_prediction,
-        string $value_key = 'polygon',
+        ?int $page_id = null,
         bool $reconstructed = false,
-        ?int $page_id = null
+        string $value_key = 'polygon'
     ) {
-        parent::__construct($raw_prediction, $value_key, $reconstructed, $page_id);
+        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
 
         $this->boundingBox = PositionField::getQuadrilateral($raw_prediction, 'bounding_box');
         $this->quadrangle = PositionField::getQuadrilateral($raw_prediction, 'quadrangle');
