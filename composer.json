@@ -6,7 +6,8 @@
   "require": {
     "php": ">=7.4",
     "ext-curl": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.38",
