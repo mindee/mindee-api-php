@@ -21,3 +21,7 @@ composer.lock
 _test.php
 .php-cs-fixer.cache
 local_test/
+LocalTest.php
+.phpunit*
+*.log
+/build
