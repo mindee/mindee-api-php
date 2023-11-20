@@ -21,7 +21,7 @@ class Page
             throw new MindeeApiException("Unable to create custom product " . $prediction_type);
         }
         if (array_key_exists('orientation', $raw_prediction)) {
-            $this->orientation = new OrientationField($raw_prediction['orientation'], 'value', false, $this->id);
+            $this->orientation = new OrientationField($raw_prediction['orientation'], $this->id, false, 'value');
         }
         if (array_key_exists('extras', $raw_prediction) && $raw_prediction['extras']) {
             $this->extras = $raw_prediction['extras']; // TODO: Extra field.

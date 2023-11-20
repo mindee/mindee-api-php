@@ -3,6 +3,7 @@
 namespace Mindee\Parsing\Standard;
 
 use DateTimeImmutable;
+use Mindee\Error\MindeeApiException;
 
 class DateField extends BaseField
 {
@@ -10,20 +11,25 @@ class DateField extends BaseField
     use FieldPositionMixin;
 
     public ?\DateTimeImmutable $dateObject;
-    public string $value;
+    public $value;
 
     public function __construct(
-        array $raw_prediction,
-        string $value_key = 'value',
-        bool $reconstructed = false,
-        ?int $page_id = null
-    ) {
-        parent::__construct($raw_prediction, $value_key, $reconstructed, $page_id);
+        array  $raw_prediction,
+        ?int   $page_id = null,
+        bool   $reconstructed = false,
+        string $value_key = 'value'
+    )
+    {
+        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
         $this->setPosition($raw_prediction);
 
         if (isset($this->value)) {
             if (strtotime($this->value)) {
-                $this->dateObject = new DateTimeImmutable(strtotime($this->value), new \DateTimeZone('UTC'));
+                try {
+                    $this->dateObject = new \DateTimeImmutable($this->value, new \DateTimeZone('UTC'));
+                } catch (\Exception $e) {
+                    throw new MindeeApiException("Couldn't create date field from value '" . $this->value . "'");
+                }
             } else {
                 $this->dateObject = null;
                 $this->confidence = 0.0;

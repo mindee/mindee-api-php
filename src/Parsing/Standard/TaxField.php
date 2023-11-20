@@ -15,11 +15,11 @@ class TaxField extends BaseField
 
     public function __construct(
         array $raw_prediction,
-        string $value_key = 'value',
+        ?int $page_id = null,
         bool $reconstructed = false,
-        ?int $page_id = null
+        string $value_key = 'value'
     ) {
-        parent::__construct($raw_prediction, $value_key, $reconstructed, $page_id);
+        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
         $this->setPosition($raw_prediction);
         if (array_key_exists('value', $raw_prediction) && is_numeric($raw_prediction['value'])) {
             $this->value = floatval($raw_prediction['value']);

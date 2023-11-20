@@ -9,12 +9,13 @@ class CompanyRegistrationField extends BaseField
     public string $type;
 
     public function __construct(
-        array $raw_prediction,
-        string $value_key = 'value',
-        bool $reconstructed = false,
-        ?int $page_id = null
-    ) {
-        parent::__construct($raw_prediction, $value_key, $reconstructed, $page_id);
+        array  $raw_prediction,
+        ?int   $page_id = null,
+        bool   $reconstructed = false,
+        string $value_key = 'value'
+    )
+    {
+        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
         $this->type = $raw_prediction['type'];
         $this->setPosition($raw_prediction);
     }

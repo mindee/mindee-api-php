@@ -86,6 +86,7 @@ class Client
         try {
             $reflection = new \ReflectionClass($product);
             $endpoint_name = $reflection->getStaticPropertyValue("endpoint_name");
+            $endpoint_version = $reflection->getStaticPropertyValue("endpoint_version");
         } catch (\ReflectionException $exception) {
             throw new MindeeApiException("Unable to create custom product " . $product);
         }
@@ -94,7 +95,7 @@ class Client
         }
         $endpoint_owner = DEFAULT_OWNER;
 
-        return $this->constructEndpoint($product->endpoint_name, $endpoint_owner, $product->endpoint_version);
+        return $this->constructEndpoint($endpoint_name, $endpoint_owner, $endpoint_version);
     }
 
     public function createEndpoint(string $endpoint_name, string $account_name, ?string $version = null): Endpoint
@@ -128,22 +129,25 @@ class Client
                 throw new MindeeApiException("Cannot edit non-local input sources.");
             }
         }
-        $response = $options->customEndpoint->predictRequestPost($input_doc, $options->predictOptions->include_words, $options->closeFile, $options->predictOptions->cropper);
+        $response = $options->endpoint->predictRequestPost($input_doc, $options->predictOptions->include_words, $options->closeFile, $options->predictOptions->cropper);
         $data_response = json_decode($response['data'], true);
         if (!array_key_exists('api_request', $data_response) || count($data_response["api_request"]["error"]) != 0) {
-            throw MindeeHttpException::handle_error($options->customEndpoint->settings->endpointName, $data_response, $data_response['api_request']['status_code']);
+            throw MindeeHttpException::handle_error($options->endpoint->settings->endpointName, $data_response, $data_response['api_request']['status_code']);
         }
 
         return new PredictResponse($prediction_type, $data_response);
     }
 
     public function parse(
-        string               $prediction_type,
-        InputSource          $input_doc,
-        PredictMethodOptions $options
+        string                $prediction_type,
+        InputSource           $input_doc,
+        ?PredictMethodOptions $options = null
     ): PredictResponse
     {
-        $options->customEndpoint = $options->customEndpoint ?? $this->constructOTSEndpoint(
+        if ($options==null){
+            $options = new PredictMethodOptions();
+        }
+        $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
             $prediction_type,
         );
 
