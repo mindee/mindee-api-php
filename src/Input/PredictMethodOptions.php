@@ -8,7 +8,7 @@ class PredictMethodOptions
 {
     public PredictOptions $predictOptions;
     public PageOptions $pageOptions;
-    public ?Endpoint $customEndpoint;
+    public ?Endpoint $endpoint;
 
     public bool $closeFile;
 
@@ -17,7 +17,7 @@ class PredictMethodOptions
     {
         $this->predictOptions = new PredictOptions();
         $this->pageOptions = new PageOptions();
-        $this->customEndpoint = null;
+        $this->endpoint = null;
         $this->closeFile = false;
     }
 
@@ -33,9 +33,9 @@ class PredictMethodOptions
         return $this;
     }
 
-    public function setCustomEndpoint(Endpoint $custom_endpoint): PredictMethodOptions
+    public function setEndpoint(Endpoint $custom_endpoint): PredictMethodOptions
     {
-        $this->customEndpoint = $custom_endpoint;
+        $this->endpoint = $custom_endpoint;
         return $this;
     }
 

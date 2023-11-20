@@ -4,7 +4,7 @@ namespace Mindee\Geometry;
 
 class Polygon
 {
-    private array $coordinates;
+    private ?array $coordinates;
 
     public function __construct(?array $coordinates = null)
     {
@@ -13,7 +13,7 @@ class Polygon
 
     public function getCentroid(): Point
     {
-        return getCentroid($this->coordinates);
+        return PolygonUtils::getCentroid($this->coordinates);
     }
 
     public function isEmpty(): bool
