@@ -2,6 +2,8 @@
 
 namespace Mindee\parsing\common;
 
+use Mindee\error\MindeeApiException;
+
 class Document
 {
     public string $filename;
@@ -11,12 +13,17 @@ class Document
     public $extras;
     public $ocr;
 
-    public function __construct(Inference $prediction_type, array $raw_response)
+    public function __construct(string $prediction_type, array $raw_response)
     {
         $this->id = $raw_response['id'];
         $this->n_pages = $raw_response['n_pages'];
         $this->filename = $raw_response['name'];
-        $this->inference = new $prediction_type($raw_response);
+        try {
+            $reflection = new \ReflectionClass($prediction_type);
+            $this->inference = $reflection->newInstance($raw_response);
+        } catch (\ReflectionException $exception) {
+            throw new MindeeApiException("Unable to create custom product " . $prediction_type);
+        }
     }
 
     public function __toString(): string
