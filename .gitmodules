@@ -1,0 +1,3 @@
+[submodule "tests/resources"]
+	path = tests/resources
+	url = git@github.com:mindee/client-lib-test-data.git
