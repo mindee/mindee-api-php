@@ -7,13 +7,16 @@ class ListField
 {
     public float $confidence;
     public bool $reconstructed;
-    public ?int $pageId;
     public array $values;
 
-    public function __construct(array $raw_prediction, bool $reconstructed = false, ?int $page_id = null)
+    public function __construct(array $raw_prediction, bool $reconstructed = false)
     {
         $this->values = [];
         $this->reconstructed = $reconstructed;
+
+        foreach ($raw_prediction['value'] as $value) {
+            $this->values[] = new ListFieldValue($value);
+        }
         $this->confidence = 0.0;
     }
 

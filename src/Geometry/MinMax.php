@@ -13,12 +13,12 @@ class MinMax
         $this->max = $max;
     }
 
-    public function getMin()
+    public function getMin(): float
     {
         return $this->min;
     }
 
-    public function getMax()
+    public function getMax(): float
     {
         return $this->max;
     }
