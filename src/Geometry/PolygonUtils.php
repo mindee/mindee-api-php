@@ -147,4 +147,27 @@ abstract class PolygonUtils
 
         return new Polygon($points);
     }
+
+    public static function is_point_in_x(Point $point, float $min_x, float $max_x): bool
+    {
+        return $point->getX() >= $min_x && $point->getX() <= $max_x;
+    }
+
+    public static function is_point_in_polygon_x(Point $point, Polygon $polygon): bool
+    {
+        $min_x = MinMaxUtils::get_min_max_x($polygon->getCoordinates())->getMin();
+        $max_x = MinMaxUtils::get_min_max_x($polygon->getCoordinates())->getMax();
+        return self::is_point_in_x($point, $min_x, $max_x);
+    }
+    public static function is_point_in_y(Point $point, float $min_y, float $max_y): bool
+    {
+        return $point->getY() >= $min_y && $point->getY() <= $max_y;
+    }
+
+    public static function is_point_in_polygon_y(Point $point, Polygon $polygon): bool
+    {
+        $min_y = MinMaxUtils::get_min_max_y($polygon->getCoordinates())->getMin();
+        $max_y = MinMaxUtils::get_min_max_y($polygon->getCoordinates())->getMax();
+        return self::is_point_in_y($point, $min_y, $max_y);
+    }
 }

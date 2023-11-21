@@ -3,13 +3,14 @@
 namespace Mindee\Parsing\Common;
 
 use Mindee\Error\MindeeApiException;
+use Mindee\Parsing\Common\Extras\Extras;
 
 class Page
 {
     public int $id;
     public OrientationField $orientation;
     public Prediction $prediction;
-    public $extras; // TODO: Extra.
+    public Extras $extras;
 
     public function __construct($prediction_type, array $raw_prediction)
     {
@@ -24,7 +25,7 @@ class Page
             $this->orientation = new OrientationField($raw_prediction['orientation'], $this->id, false, 'value');
         }
         if (array_key_exists('extras', $raw_prediction) && $raw_prediction['extras']) {
-            $this->extras = $raw_prediction['extras']; // TODO: Extra field.
+            $this->extras = new Extras($raw_prediction['extras']);
         }
     }
 

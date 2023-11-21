@@ -10,13 +10,12 @@ class CropperExtra
 
     function __construct(array $raw_prediction, ?int $page_id = null)
     {
-        $croppings = [];
+        $this->croppings = [];
         if (array_key_exists("cropping", $raw_prediction)) {
             foreach ($raw_prediction['cropping'] as $cropping) {
-                $croppings[] = new PositionField($cropping, $page_id);
+                $this->croppings[] = new PositionField($cropping, $page_id);
             }
         }
-        $this->$croppings = $croppings;
     }
 
     public function __toString(): string
