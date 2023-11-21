@@ -14,8 +14,8 @@ class PageOptions
     public function __construct(
         ?array $pageIndexes = null,
         string $operation = KEEP_ONLY,
-        int $onMinPage = 0)
-    {
+        int $onMinPage = 0
+    ) {
         $this->pageIndexes = $pageIndexes;
         $this->operation = $operation;
         $this->onMinPage = $onMinPage;

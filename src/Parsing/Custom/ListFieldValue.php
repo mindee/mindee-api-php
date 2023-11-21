@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mindee\Parsing\Custom;
 
 use Mindee\Parsing\Standard\FieldPositionMixin;
@@ -14,8 +13,7 @@ class ListFieldValue
 
     public function __construct(
         array $raw_prediction
-    )
-    {
+    ) {
         $this->content = $raw_prediction['content'];
         $this->confidence = $raw_prediction['confidence'];
         $this->setPosition($raw_prediction);

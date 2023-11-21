@@ -6,7 +6,7 @@ class MVisionV1
 {
     public array $pages;
 
-    function __construct(array $raw_prediction)
+    public function __construct(array $raw_prediction)
     {
         $this->pages = [];
         foreach ($raw_prediction['pages'] as $page_prediction) {

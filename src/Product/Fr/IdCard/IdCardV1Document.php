@@ -52,7 +52,7 @@ class IdCardV1Document extends Prediction
      */
     public StringField $surname;
 
-    function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $raw_prediction, ?int $page_id = null)
     {
         $this->authority = new StringField($raw_prediction['authority'], $page_id);
         $this->birthDate = new DateField($raw_prediction['birth_date'], $page_id);
@@ -69,7 +69,7 @@ class IdCardV1Document extends Prediction
         $this->surname = new StringField($raw_prediction['surname'], $page_id);
     }
 
-    function __toString():string
+    public function __toString(): string
     {
         $given_names = implode("\n".str_repeat(" ", 15), $this->givenNames);
         $out_str = ":Identity Number: $this->idNumber\n";
@@ -85,4 +85,3 @@ class IdCardV1Document extends Prediction
         return trim($out_str);
     }
 }
-

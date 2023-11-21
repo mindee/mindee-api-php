@@ -1,6 +1,7 @@
 <?php
 
 namespace Mindee\Input;
+
 class Base64Input extends LocalInputSource
 {
     public function __construct($file_b64, $file_name)

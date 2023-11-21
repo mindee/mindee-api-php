@@ -15,7 +15,7 @@ class Extras
         $this->data[$varName] = $value;
     }
 
-    function __construct($raw_prediction)
+    public function __construct($raw_prediction)
     {
         foreach ($raw_prediction as $key => $extra) {
             if ($key != 'cropper') {

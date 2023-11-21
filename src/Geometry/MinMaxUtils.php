@@ -2,7 +2,6 @@
 
 namespace Mindee\Geometry;
 
-
 class MinMaxUtils
 {
     public static function get_min_max_y(array $points): MinMax

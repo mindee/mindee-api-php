@@ -14,7 +14,7 @@ class InvoiceSplitterV1Document extends Prediction
      */
     public array $invoicePageGroups;
 
-    function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $raw_prediction, ?int $page_id = null)
     {
         $this->invoicePageGroups = [];
         if (array_key_exists("invoice_page_groups", $raw_prediction)) {
@@ -24,7 +24,7 @@ class InvoiceSplitterV1Document extends Prediction
         }
     }
 
-    function __toString(): string
+    public function __toString(): string
     {
         $out_str = ":Invoice Page Groups:";
         foreach ($this->invoicePageGroups as $pageGroup) {
@@ -33,4 +33,3 @@ class InvoiceSplitterV1Document extends Prediction
         return trim($out_str);
     }
 }
-

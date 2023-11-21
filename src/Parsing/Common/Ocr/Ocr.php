@@ -6,7 +6,7 @@ class Ocr
 {
     public MVisionV1 $mvision_v1;
 
-    function __construct(array $raw_prediction)
+    public function __construct(array $raw_prediction)
     {
         $this->mvision_v1 = new MVisionV1($raw_prediction['mvision-v1']);
     }

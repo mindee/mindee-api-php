@@ -2,7 +2,6 @@
 
 namespace Mindee\Parsing\Custom;
 
-
 class ListField
 {
     public float $confidence;

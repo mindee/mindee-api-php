@@ -4,6 +4,7 @@ namespace Mindee\Parsing\Custom;
 
 use Mindee\Error\MindeeException;
 use Mindee\Geometry\BBox;
+
 use function Mindee\Geometry\generateBBoxFromPolygon;
 use function Mindee\Geometry\generateBBoxFromPolygons;
 use function Mindee\Geometry\get_min_max_y;
@@ -50,8 +51,7 @@ class CustomLine
         CustomLine $line,
         BBox       $bbox,
         float      $height_line_tolerance
-    ): bool
-    {
+    ): bool {
         if (abs($bbox->getMinY() - $line->bbox->getMinY()) <= $height_line_tolerance) {
             return true;
         }
@@ -155,7 +155,7 @@ class CustomLine
                         $height_line_tolerance &&
                         abs($min_max_y->getMin() - $current_line->bbox->y_min) <=
                         $height_line_tolerance
-                        ) {
+                    ) {
                         $current_line->updateField($field_name, $list_field_value);
                     }
                 }

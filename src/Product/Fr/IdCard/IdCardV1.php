@@ -10,7 +10,7 @@ class IdCardV1 extends Inference
     public static string $endpoint_name = "idcard_fr";
     public static string $endpoint_version = "1";
 
-    function __construct(array $raw_prediction)
+    public function __construct(array $raw_prediction)
     {
         parent::__construct($raw_prediction);
         $this->prediction = new IdCardV1Document($raw_prediction['prediction']);

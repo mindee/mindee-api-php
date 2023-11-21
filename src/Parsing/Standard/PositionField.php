@@ -4,6 +4,7 @@ namespace Mindee\Parsing\Standard;
 
 use Mindee\Error\MindeeGeometryException;
 use Mindee\Geometry\Polygon;
+
 use function Mindee\Geometry\polygon_from_prediction;
 use function Mindee\Geometry\quadrilateral_from_prediction;
 

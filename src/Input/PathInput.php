@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mindee\Input;
 
 class PathInput extends LocalInputSource
@@ -13,7 +12,7 @@ class PathInput extends LocalInputSource
         $file = finfo_open(FILEINFO_MIME_TYPE);
         $mime_type = finfo_file($file, $this->filePath);
         $this->fileMimetype = $mime_type;
-        $this->fileObject = new \CURLFile($this->filePath, $mime_type, $file_path);
+        $this->fileObject = new \CURLFile($this->filePath, $mime_type, $this->fileName);
         finfo_close($file);
         parent::__construct();
     }

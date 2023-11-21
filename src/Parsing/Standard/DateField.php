@@ -18,8 +18,7 @@ class DateField extends BaseField
         ?int   $page_id = null,
         bool   $reconstructed = false,
         string $value_key = 'value'
-    )
-    {
+    ) {
         parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
         $this->setPosition($raw_prediction);
 

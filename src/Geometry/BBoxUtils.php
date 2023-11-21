@@ -18,7 +18,7 @@ abstract class BBoxUtils
         );
     }
 
-    function generateBBoxFromPolygons(array $polygons): ?BBox
+    public function generateBBoxFromPolygons(array $polygons): ?BBox
     {
         if (!$polygons) {
             return null;
