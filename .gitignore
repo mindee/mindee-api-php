@@ -25,3 +25,4 @@ LocalTest.php
 .phpunit*
 *.log
 /build
+.phplint-cache
