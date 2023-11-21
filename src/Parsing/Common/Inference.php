@@ -50,7 +50,7 @@ abstract class Inference
     public function __toString(): string
     {
         $rotation_applied = $this->isRotationApplied ? 'Yes' : 'No';
-        $pages = $this->pages ? "\n" . implode('\n', $this->pages) : '';
+        $pages = $this->pages ? "\n" . implode("\n", $this->pages) : '';
 
         return "Inference
 #########
@@ -60,7 +60,6 @@ abstract class Inference
 Prediction
 ==========
 $this->prediction
-$pages
-";
+$pages";
     }
 }

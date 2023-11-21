@@ -4,6 +4,7 @@ namespace Mindee;
 
 use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeHttpException;
+use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\InputSource;
 use Mindee\Input\PathInput;
 use Mindee\Input\PredictMethodOptions;
@@ -16,6 +17,7 @@ use Mindee\Input\FileInput;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\PageOptions;
 use Mindee\Input\URLInputSource;
+use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\Common\PredictResponse;
 
 const DEFAULT_OWNER = 'mindee';
@@ -116,18 +118,50 @@ class Client
 
     }
 
+    private function makeParseQueuedRequest(
+        string   $prediction_type,
+        string   $queue_id,
+        Endpoint $endpoint
+    ): AsyncPredictResponse
+    {
+        $queued_response = $endpoint->documentQueueReqGet($queue_id);
+        $data_response = json_decode($queued_response['data'], true);
+        if (!array_key_exists('api_request', $data_response) || count($data_response["api_request"]["error"]) != 0) {
+            throw MindeeHttpException::handle_error($endpoint->settings->endpointName, $data_response, $data_response['api_request']['status_code']);
+        }
+        return new AsyncPredictResponse($prediction_type, $data_response);
+    }
+
+    private function makeEnqueueRequest(
+        string               $prediction_type,
+        InputSource          $input_doc,
+        PredictMethodOptions $options
+    ): AsyncPredictResponse
+    {
+        if ($input_doc instanceof LocalInputSource) {
+            $this->cutDocPages($input_doc, $options->pageOptions);
+        } else {
+            throw new MindeeApiException("Cannot edit non-local input sources.");
+        }
+        $response = $options->endpoint->predictAsyncRequestPost($input_doc, $options->predictOptions->include_words, $options->closeFile, $options->predictOptions->cropper);
+        $data_response = json_decode($response['data'], true);
+        if (!array_key_exists('api_request', $data_response) || count($data_response["api_request"]["error"]) != 0) {
+            throw MindeeHttpException::handle_error($options->endpoint->settings->endpointName, $data_response, $data_response['api_request']['status_code']);
+        }
+
+        return new AsyncPredictResponse($prediction_type, $data_response);
+    }
+
     private function makeParseRequest(
         string               $prediction_type,
         InputSource          $input_doc,
         PredictMethodOptions $options
     ): PredictResponse
     {
-        if ($options->pageOptions) {
-            if ($input_doc instanceof LocalInputSource) {
-                $this->cutDocPages($input_doc, $options->pageOptions);
-            } else {
-                throw new MindeeApiException("Cannot edit non-local input sources.");
-            }
+        if ($input_doc instanceof LocalInputSource) {
+            $this->cutDocPages($input_doc, $options->pageOptions);
+        } else {
+            throw new MindeeApiException("Cannot edit non-local input sources.");
         }
         $response = $options->endpoint->predictRequestPost($input_doc, $options->predictOptions->include_words, $options->closeFile, $options->predictOptions->cropper);
         $data_response = json_decode($response['data'], true);
@@ -144,7 +178,7 @@ class Client
         ?PredictMethodOptions $options = null
     ): PredictResponse
     {
-        if ($options==null){
+        if ($options == null) {
             $options = new PredictMethodOptions();
         }
         $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
@@ -152,5 +186,70 @@ class Client
         );
 
         return $this->makeParseRequest($prediction_type, $input_doc, $options);
+    }
+
+    public function enqueueAndParse(
+        string                        $prediction_type,
+        InputSource                   $input_doc,
+        ?PredictMethodOptions         $options = null,
+        ?EnqueueAndParseMethodOptions $async_options = null): AsyncPredictResponse
+    {
+        if ($options == null) {
+            $options = new PredictMethodOptions();
+        }
+        if ($async_options == null) {
+            $async_options = new EnqueueAndParseMethodOptions();
+        }
+
+        $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+            $prediction_type,
+        );
+        $enqueue_response = $this->enqueue($prediction_type, $input_doc, $options);
+        error_log("Successfully enqueued document with job id: " . $enqueue_response->job->id);
+
+        sleep($async_options->initialDelaySec);
+        $retry_counter = 1;
+        $poll_results = $this->parseQueued($prediction_type, $enqueue_response->job->id, $options->endpoint);
+
+        while ($retry_counter < $async_options->maxRetries) {
+            if ($poll_results->job->status == "completed") {
+                break;
+            }
+            error_log("Polling server for parsing result with job id: " . $enqueue_response->job->id);
+            $retry_counter++;
+            sleep($async_options->delaySec);
+            $poll_results = $this->parseQueued($prediction_type, $enqueue_response->job->id);
+        }
+        if ($poll_results->job->status != "completed") {
+            throw new MindeeApiException("Couldn't retrieve document " . $enqueue_response->job->id . " after $retry_counter tries.");
+        }
+        return $poll_results;
+    }
+
+    public
+    function enqueue(
+        string                $prediction_type,
+        InputSource           $input_doc,
+        ?PredictMethodOptions $options = null): AsyncPredictResponse
+    {
+        if ($options == null) {
+            $options = new PredictMethodOptions();
+        }
+        $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+            $prediction_type,
+        );
+        return $this->makeEnqueueRequest($prediction_type, $input_doc, $options);
+    }
+
+    public
+    function parseQueued(
+        string                $prediction_type,
+        string                $queue_id,
+        ?Endpoint $endpoint = null): AsyncPredictResponse
+    {
+        $endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+            $prediction_type,
+        );
+        return $this->makeParseQueuedRequest($prediction_type, $queue_id, $endpoint);
     }
 }

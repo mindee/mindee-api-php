@@ -28,7 +28,7 @@ class Endpoint extends BaseEndpoint
         $this->version = $version;
     }
 
-    private function initCurlSession(InputSource $file_curl, bool $include_words, bool $cropper): array
+    private function initCurlSessionGet(string $queue_id): array
     {
         $ch = curl_init();
         curl_setopt(
@@ -39,7 +39,36 @@ class Endpoint extends BaseEndpoint
             ]
         );
 
-        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . '/predict');
+        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . "/documents/queue/$queue_id");
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . Mindee\VERSION);
+
+        $resp = [
+            'data' => curl_exec($ch),
+            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
+        ];
+        curl_close($ch);
+
+        return $resp;
+    }
+
+    private function initCurlSessionPost(InputSource $file_curl, bool $include_words, bool $cropper, bool $async): array
+    {
+        $ch = curl_init();
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            [
+                'Authorization: Token ' . $this->settings->apiKey,
+            ]
+        );
+
+        $suffix = $async ? '/predict_async' : '/predict';
+        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . $suffix);
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -66,6 +95,12 @@ class Endpoint extends BaseEndpoint
 
         return $resp;
     }
+
+    public function documentQueueReqGet(string $queue_id): array
+    {
+        return $this->initCurlSessionGet($queue_id);
+    }
+
     public function predictRequestPost(
         InputSource $file_curl,
         bool        $include_words,
@@ -73,7 +108,7 @@ class Endpoint extends BaseEndpoint
         bool        $cropper
     ): array
     {
-        return $this->initCurlSession($file_curl, $include_words, $cropper);
+        return $this->initCurlSessionPost($file_curl, $include_words, $cropper, false);
     }
 
     public function predictAsyncRequestPost(
@@ -83,7 +118,7 @@ class Endpoint extends BaseEndpoint
         bool $cropper
     ): array
     {
-        return $this->initCurlSession($file_curl, $include_words, $cropper);
+        return $this->initCurlSessionPost($file_curl, $include_words, $cropper, true);
     }
 
     /**
