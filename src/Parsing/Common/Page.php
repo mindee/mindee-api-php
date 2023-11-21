@@ -36,6 +36,7 @@ class Page
 
         return "$title
 $dashes
-$this->prediction";
+$this->prediction
+";
     }
 }
