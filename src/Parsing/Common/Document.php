@@ -3,6 +3,8 @@
 namespace Mindee\Parsing\Common;
 
 use Mindee\Error\MindeeApiException;
+use Mindee\Parsing\Common\Extras\Extras;
+use Mindee\Parsing\Common\Ocr\Ocr;
 
 class Document
 {
@@ -10,8 +12,8 @@ class Document
     public Inference $inference;
     public string $id;
     public int $n_pages;
-    public $extras;
-    public $ocr;
+    public ?Extras $extras;
+    public ?Ocr $ocr;
 
     public function __construct(string $prediction_type, array $raw_response)
     {
@@ -23,6 +25,12 @@ class Document
             $this->inference = $reflection->newInstance($raw_response['inference']);
         } catch (\ReflectionException $exception) {
             throw new MindeeApiException("Unable to create custom product " . $prediction_type);
+        }
+        if (array_key_exists("ocr", $raw_response) && $raw_response['ocr']) {
+            $this->ocr = new Ocr($raw_response['ocr']);
+        }
+        if (array_key_exists("extras", $raw_response) && $raw_response['extras']) {
+            $this->extras = new Extras($raw_response['extras']);
         }
     }
 
