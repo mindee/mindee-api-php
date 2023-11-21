@@ -10,7 +10,7 @@ class InvoiceSplitterV1 extends Inference
     public static string $endpoint_name = "invoice_splitter";
     public static string $endpoint_version = "1";
 
-    function __construct(array $raw_prediction)
+    public function __construct(array $raw_prediction)
     {
         parent::__construct($raw_prediction);
         $this->prediction = new InvoiceSplitterV1Document($raw_prediction['prediction']);

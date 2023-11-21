@@ -10,7 +10,7 @@ class EnqueueAndParseMethodOptions
     public int $delaySec;
     public int $maxRetries;
 
-    function __construct()
+    public function __construct()
     {
         $this->initialDelaySec = 6;
         $this->delaySec = 3;

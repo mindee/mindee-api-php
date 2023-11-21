@@ -20,8 +20,7 @@ class Endpoint extends BaseEndpoint
         string    $owner,
         string    $version,
         MindeeApi $settings
-    )
-    {
+    ) {
         parent::__construct($settings);
         $this->urlName = $url_name;
         $this->owner = $owner;
@@ -106,8 +105,7 @@ class Endpoint extends BaseEndpoint
         bool        $include_words,
         bool        $close_file,
         bool        $cropper
-    ): array
-    {
+    ): array {
         return $this->initCurlSessionPost($file_curl, $include_words, $cropper, false);
     }
 
@@ -116,8 +114,7 @@ class Endpoint extends BaseEndpoint
         bool $include_words,
         bool $close_file,
         bool $cropper
-    ): array
-    {
+    ): array {
         return $this->initCurlSessionPost($file_curl, $include_words, $cropper, true);
     }
 

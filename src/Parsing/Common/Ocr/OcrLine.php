@@ -6,7 +6,7 @@ class OcrLine
 {
     private array $words;
 
-    function __construct(array $words = [])
+    public function __construct(array $words = [])
     {
         $this->words = $words;
     }

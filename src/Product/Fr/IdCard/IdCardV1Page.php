@@ -8,7 +8,7 @@ class IdCardV1Page extends IdCardV1Document
 {
     public ClassificationField $documentSide;
 
-    function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $raw_prediction, ?int $page_id = null)
     {
         parent::__construct($raw_prediction);
         $this->documentSide = new ClassificationField($raw_prediction, $page_id);

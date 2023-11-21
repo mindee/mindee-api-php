@@ -36,8 +36,7 @@ class PaymentDetailsField extends BaseField
         string $iban_key = 'iban',
         string $routing_number_key = 'routing_number',
         string $swift_key = 'swift'
-    )
-    {
+    ) {
         parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
 
         $this->setPosition($raw_prediction);

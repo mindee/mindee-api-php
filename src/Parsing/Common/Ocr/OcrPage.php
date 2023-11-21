@@ -73,7 +73,7 @@ class OcrPage
         return $this->allWords;
     }
 
-    function __construct($raw_prediction)
+    public function __construct($raw_prediction)
     {
         $this->allWords = [];
         foreach ($raw_prediction['all_words'] as $word_prediction) {

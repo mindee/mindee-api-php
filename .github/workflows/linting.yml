@@ -35,6 +35,10 @@ jobs:
       run: |
         ./vendor/bin/php-cs-fixer check ./src
 
+    - name: Setup Code Sniffer
+      run: |
+        ./vendor/bin/phpcs  --config-set default_standard PSR12
+
     - name: Run Code Sniffer
       run: |
         ./vendor/bin/phpcs -n ./src/

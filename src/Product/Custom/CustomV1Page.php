@@ -9,7 +9,7 @@ class CustomV1Page extends Prediction
 {
     public array $fields;
 
-    function __construct(array $raw_prediction)
+    public function __construct(array $raw_prediction)
     {
         $this->fields = [];
         foreach ($raw_prediction as $field_name => $field_contents) {

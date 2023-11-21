@@ -13,7 +13,7 @@ class PredictMethodOptions
     public bool $closeFile;
 
 
-    function __construct()
+    public function __construct()
     {
         $this->predictOptions = new PredictOptions();
         $this->pageOptions = new PageOptions();

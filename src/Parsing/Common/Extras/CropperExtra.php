@@ -8,7 +8,7 @@ class CropperExtra
 {
     public array $croppings;
 
-    function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $raw_prediction, ?int $page_id = null)
     {
         $this->croppings = [];
         if (array_key_exists("cropping", $raw_prediction)) {

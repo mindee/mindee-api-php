@@ -3,9 +3,10 @@
 namespace Mindee\Parsing\Standard;
 
 use Mindee\Geometry\BBox;
-use function Mindee\Geometry\createBoundingBoxFrom;
 use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
+
+use function Mindee\Geometry\createBoundingBoxFrom;
 
 abstract class BaseField
 {
@@ -20,8 +21,7 @@ abstract class BaseField
         ?int   $page_id = null,
         bool   $reconstructed = false,
         string $value_key = 'value'
-    )
-    {
+    ) {
         if (!isset($page_id) && (array_key_exists('page_id', $raw_prediction) && isset($raw_prediction['page_id']))) {
             $this->pageId = $raw_prediction['page_id'];
         } else {
