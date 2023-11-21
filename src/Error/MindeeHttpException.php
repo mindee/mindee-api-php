@@ -1,14 +1,40 @@
 <?php
+/**
+ * @file
+ * Mindee HTTP Exceptions.
+ */
 
 namespace Mindee\Error;
 
+/**
+ * Exceptions relating to HTTP calls.
+ *
+ * Handles uncaught error codes.
+ */
 class MindeeHttpException extends MindeeException
 {
+    /**
+     * @var int Status code as sent by the server.
+     */
     public int $status_code;
+    /**
+     * @var string|mixed|null API code as sent by the server.
+     */
     public ?string $api_code;
+    /**
+     * @var mixed|null API details field as sent by the server.
+     */
     public $api_details;
+    /**
+     * @var string|mixed|null API message field as sent by the server.
+     */
     public ?string $api_message;
 
+    /**
+     * @param array $http_error Array containing the error data.
+     * @param string $url Remote URL the error was found on.
+     * @param int $code Error code.
+     */
     public function __construct(array $http_error, string $url, int $code)
     {
         $this->status_code = $code;
@@ -28,14 +54,18 @@ class MindeeHttpException extends MindeeException
             $this->api_message = null;
         }
         if (is_array($this->api_details)) {
-            $details = "\n".json_encode($this->api_details, JSON_PRETTY_PRINT)."\n";
+            $details = "\n" . json_encode($this->api_details, JSON_PRETTY_PRINT) . "\n";
         } else {
             $details = strval($this->api_details);
         }
         parent::__construct("$url $this->status_code HTTP error: $details - $this->api_message");
     }
 
-    public static function create_error_obj($response): array
+    /**
+     * @param $response array|string Parsed server response
+     * @return string[]
+     */
+    public static function createErrorObj($response): array
     {
         if (is_string($response)) {
             if (str_contains($response, 'Maximum pdf pages')) {
@@ -84,9 +114,15 @@ class MindeeHttpException extends MindeeException
         throw new MindeeException('Could not build a specific HTTP exception from: ' . json_encode($response, JSON_PRETTY_PRINT));
     }
 
-    public static function handle_error(string $url, array $response, int $code): MindeeHttpException
+    /**
+     * @param string $url Remote URL the error was found on.
+     * @param array $response Raw server response.
+     * @param int $code Error code.
+     * @return MindeeHttpException
+     */
+    public static function handleError(string $url, array $response, int $code): MindeeHttpException
     {
-        $error_obj = MindeeHttpException::create_error_obj($response);
+        $error_obj = MindeeHttpException::createErrorObj($response);
         if ($code >= 400 && $code <= 499) {
             return new MindeeHttpClientException($error_obj, $url, $code);
         }
@@ -97,4 +133,3 @@ class MindeeHttpException extends MindeeException
         return new MindeeHttpException($error_obj, $url, $code);
     }
 }
-

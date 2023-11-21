@@ -7,7 +7,7 @@ class InvoiceSplitterV1PageGroup
     public array $pageIndexes;
     public float $confidence;
 
-    function __construct(array $raw_prediction)
+    public function __construct(array $raw_prediction)
     {
         $this->pageIndexes = [];
         foreach ($raw_prediction['page_indexes'] as $page_index) {

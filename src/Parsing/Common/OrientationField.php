@@ -13,8 +13,7 @@ class OrientationField extends BaseField
         ?int   $page_id = null,
         bool   $reconstructed = false,
         string $value_key = 'value'
-    )
-    {
+    ) {
         parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
         $this->value = 0;
         if (array_key_exists($value_key, $raw_prediction) && is_numeric($raw_prediction[$value_key])) {

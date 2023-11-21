@@ -3,6 +3,7 @@
 namespace Mindee\Http;
 
 use Mindee\Error\MindeeException;
+
 use const Mindee\VERSION;
 
 const API_KEY_ENV_NAME = 'MINDEE_API_KEY';
