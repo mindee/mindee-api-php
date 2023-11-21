@@ -21,7 +21,7 @@ class Polygon
         return count($this->coordinates) == 0;
     }
 
-    public function getCoordinates()
+    public function getCoordinates(): ?array
     {
         return $this->coordinates;
     }
@@ -29,7 +29,7 @@ class Polygon
     public function __toString()
     {
         if (!$this->isEmpty()) {
-            return 'Polygon with '.count($this->getCoordinates()).' points.';
+            return 'Polygon with ' . count($this->getCoordinates()) . ' points.';
         }
 
         return '';
