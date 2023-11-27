@@ -58,20 +58,20 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return '| '.str_pad($printable['basis'], 13, ' ').
-            ' | '.str_pad($printable['code'], 6, ' ').
-            ' | '.str_pad($printable['rate'], 8, ' ').
-            ' | '.str_pad($printable['rate'], 13, ' ').' |';
+        return '| ' . str_pad($printable['basis'], 13, ' ') .
+            ' | ' . str_pad($printable['code'], 6, ' ') .
+            ' | ' . str_pad($printable['rate'], 8, ' ') .
+            ' | ' . str_pad($printable['rate'], 13, ' ') . ' |';
     }
 
     public function __toString(): string
     {
         $printable = $this->printableValues();
 
-        return 'Base: '.$printable['basis'].'. ,'.
-        'Code: '.$printable['code'].', '.
-        'Rate (%): '.$printable['rate'].', '.
-        'Amount: '.$printable['value'].', ';
+        return 'Base: ' . $printable['basis'] . '. ,' .
+        'Code: ' . $printable['code'] . ', ' .
+        'Rate (%): ' . $printable['rate'] . ', ' .
+        'Amount: ' . $printable['value'] . ', ';
     }
 }
 
@@ -89,23 +89,23 @@ class Taxes extends ArrayObject
     private static function lineSeparator(string $char): string
     {
         $out_str = '';
-        $out_str .= '+'.str_repeat($char, 15);
-        $out_str .= '+'.str_repeat($char, 8);
-        $out_str .= '+'.str_repeat($char, 10);
-        $out_str .= '+'.str_repeat($char, 15);
+        $out_str .= '+' . str_repeat($char, 15);
+        $out_str .= '+' . str_repeat($char, 8);
+        $out_str .= '+' . str_repeat($char, 10);
+        $out_str .= '+' . str_repeat($char, 15);
 
-        return $out_str.'+';
+        return $out_str . '+';
     }
 
     public function __toString()
     {
         $out_str = '';
-        $out_str .= "\n".Taxes::lineSeparator('-')."\n";
+        $out_str .= "\n" . Taxes::lineSeparator('-') . "\n";
         $out_str .= "  | Base          | Code   | Rate (%) | Amount        |\n";
         $out_str .= Taxes::lineSeparator('=');
         $arr = [];
         foreach ($this as $entry) {
-            array_push($arr, "\n  ".$entry->toTableLine()."\n".Taxes::lineSeparator('='));
+            array_push($arr, "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('='));
         }
         $out_str .= implode("\n", $arr);
 

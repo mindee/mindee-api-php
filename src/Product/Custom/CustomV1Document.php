@@ -7,11 +7,23 @@ use Mindee\Parsing\Custom\ClassificationField;
 use Mindee\Parsing\Custom\CustomLine;
 use Mindee\Parsing\Custom\ListField;
 
+/**
+ * Custom V1 document prediction results.
+ */
 class CustomV1Document extends Prediction
 {
+    /**
+     * @var array Array of all fields in the document.
+     */
     public array $fields;
+    /**
+     * @var array Array of all classifications in the document.
+     */
     public array $classifications;
 
+    /**
+     * @param array $raw_prediction Array containing the JSON document response.
+     */
     public function __construct(array $raw_prediction)
     {
         $this->fields = [];
@@ -26,6 +38,14 @@ class CustomV1Document extends Prediction
         }
     }
 
+    /**
+     * Order column fields into line items.
+     *
+     * @param array $anchor_names     List of possible anchor fields.
+     * @param array $field_names      List of all column fields.
+     * @param float $height_tolerance Height tolerance to apply to lines.
+     * @return array
+     */
     public function columnsToLineItems(array $anchor_names, array $field_names, float $height_tolerance): array
     {
         return CustomLine::getLineItems(
@@ -36,6 +56,9 @@ class CustomV1Document extends Prediction
         );
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         $out_str = "";

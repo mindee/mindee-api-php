@@ -16,9 +16,9 @@ class Endpoint extends BaseEndpoint
     public string $version;
 
     public function __construct(
-        string    $url_name,
-        string    $owner,
-        string    $version,
+        string $url_name,
+        string $owner,
+        string $version,
         MindeeApi $settings
     ) {
         parent::__construct($settings);
@@ -102,9 +102,9 @@ class Endpoint extends BaseEndpoint
 
     public function predictRequestPost(
         InputSource $file_curl,
-        bool        $include_words,
-        bool        $close_file,
-        bool        $cropper
+        bool $include_words,
+        bool $close_file,
+        bool $cropper
     ): array {
         return $this->initCurlSessionPost($file_curl, $include_words, $cropper, false);
     }

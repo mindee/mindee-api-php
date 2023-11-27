@@ -44,5 +44,4 @@ class PredictMethodOptions
         $this->closeFile = $close_file;
         return $this;
     }
-
 }

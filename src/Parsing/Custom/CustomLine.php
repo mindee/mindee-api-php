@@ -30,7 +30,7 @@ class CustomLine
             $existing_content = $existing_field->content;
             $merged_content = '';
             if (count($existing_content) > 0) {
-                $merged_content .= $existing_content.' ';
+                $merged_content .= $existing_content . ' ';
             }
             $merged_content .= $field_value->content;
             $merged_polygon = generateBBoxFromPolygons([$existing_field->polygon, $field_value->polygon]);
@@ -49,8 +49,8 @@ class CustomLine
 
     public static function isBBoxInLine(
         CustomLine $line,
-        BBox       $bbox,
-        float      $height_line_tolerance
+        BBox $bbox,
+        float $height_line_tolerance
     ): bool {
         if (abs($bbox->getMinY() - $line->bbox->getMinY()) <= $height_line_tolerance) {
             return true;
@@ -79,11 +79,13 @@ class CustomLine
         for ($i = 1; $i < count($anchor_field->values); ++$i) {
             $current_value = $anchor_field->values[$i];
             $current_field_box = generateBBoxFromPolygon($current_value->polygon);
-            if (!CustomLine::isBBoxInLine(
-                $current_line,
-                $current_field_box,
-                $height_line_tolerance
-            )) {
+            if (
+                !CustomLine::isBBoxInLine(
+                    $current_line,
+                    $current_field_box,
+                    $height_line_tolerance
+                )
+            ) {
                 $lines_prepared[] = $current_line;
                 ++$current_line_number;
                 $current_line = new CustomLine($current_line_number);

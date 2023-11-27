@@ -17,9 +17,9 @@ abstract class BaseField
     public ?int $pageId;
 
     public function __construct(
-        array  $raw_prediction,
-        ?int   $page_id = null,
-        bool   $reconstructed = false,
+        array $raw_prediction,
+        ?int $page_id = null,
+        bool $reconstructed = false,
         string $value_key = 'value'
     ) {
         if (!isset($page_id) && (array_key_exists('page_id', $raw_prediction) && isset($raw_prediction['page_id']))) {

@@ -1,0 +1,33 @@
+name: Publish Documentation
+
+on:
+  release:
+    types: [ published ]
+
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  documentation:
+    name: Publish Documentation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ["8.2"]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up php ${{ matrix.php-version }}
+        uses: actions/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Run phpdoc
+        run: |
+          docker run --rm -v $(pwd):/data phpdoc/phpdoc:3 -d ./src -t ./docs/_build/html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_build/html

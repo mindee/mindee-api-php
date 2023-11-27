@@ -58,16 +58,16 @@ class PositionField extends BaseField
     public function __toString(): string
     {
         if ($this->polygon) {
-            return 'Polygon with '.count($this->polygon->getCoordinates()).' points.';
+            return 'Polygon with ' . count($this->polygon->getCoordinates()) . ' points.';
         }
         if ($this->boundingBox) {
-            return 'Polygon with '.count($this->boundingBox->getCoordinates()).' points.';
+            return 'Polygon with ' . count($this->boundingBox->getCoordinates()) . ' points.';
         }
         if ($this->rectangle) {
-            return 'Polygon with '.count($this->rectangle->getCoordinates()).' points.';
+            return 'Polygon with ' . count($this->rectangle->getCoordinates()) . ' points.';
         }
         if ($this->quadrangle) {
-            return 'Polygon with '.count($this->quadrangle->getCoordinates()).' points.';
+            return 'Polygon with ' . count($this->quadrangle->getCoordinates()) . ' points.';
         }
 
         return '';

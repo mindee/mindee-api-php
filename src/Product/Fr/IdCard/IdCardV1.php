@@ -7,7 +7,13 @@ use Mindee\Parsing\Common\Page;
 
 class IdCardV1 extends Inference
 {
+    /**
+     * @var string Name of the endpoint.
+     */
     public static string $endpoint_name = "idcard_fr";
+    /**
+     * @var string Version of the endpoint.
+     */
     public static string $endpoint_version = "1";
 
     public function __construct(array $raw_prediction)

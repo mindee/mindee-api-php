@@ -2,6 +2,8 @@
 
 namespace Mindee\Parsing\Common;
 
+use Mindee\Error\MindeeApiException;
+
 class Job
 {
     /**
@@ -27,11 +29,27 @@ class Job
 
     public function __construct(array $raw_response)
     {
-        $this->issued_at = new \DateTimeImmutable(strtotime($raw_response['issued_at']));
+        try {
+            $this->issued_at = new \DateTimeImmutable($raw_response['issued_at']);
+        } catch (\Exception $e) {
+            try {
+                $this->issued_at = new \DateTimeImmutable(strtotime($raw_response['issued_at']));
+            } catch (\Exception $e2) {
+                throw new MindeeApiException("Could not create date from " . $raw_response['issued_at']);
+            }
+        }
         $this->id = $raw_response['id'];
         $this->status = $raw_response['status'];
         if (array_key_exists('available_at', $raw_response)) {
-            $this->available_at = new \DateTimeImmutable(strtotime($raw_response['available_at']));
+            try {
+                $this->available_at = new \DateTimeImmutable($raw_response['available_at']);
+            } catch (\Exception $e) {
+                try {
+                    $this->available_at = new \DateTimeImmutable(strtotime($raw_response['available_at']));
+                } catch (\Exception $e2) {
+                    throw new MindeeApiException("Could not create date from " . $raw_response['issued_at']);
+                }
+            }
             $ts1 = (int)$this->available_at->format('Uv');
             $ts2 = (int)$this->issued_at->format('Uv');
             $this->millisecs_taken = $ts2 - $ts1;

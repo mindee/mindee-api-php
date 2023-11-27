@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Mindee HTTP Exceptions.
@@ -14,7 +15,7 @@ namespace Mindee\Error;
 class MindeeHttpException extends MindeeException
 {
     /**
-     * @var int Status code as sent by the server.
+     * @var integer Status code as sent by the server.
      */
     public int $status_code;
     /**
@@ -31,9 +32,9 @@ class MindeeHttpException extends MindeeException
     public ?string $api_message;
 
     /**
-     * @param array $http_error Array containing the error data.
-     * @param string $url Remote URL the error was found on.
-     * @param int $code Error code.
+     * @param array   $http_error Array containing the error data.
+     * @param string  $url        Remote URL the error was found on.
+     * @param integer $code       Error code.
      */
     public function __construct(array $http_error, string $url, int $code)
     {
@@ -115,9 +116,9 @@ class MindeeHttpException extends MindeeException
     }
 
     /**
-     * @param string $url Remote URL the error was found on.
-     * @param array $response Raw server response.
-     * @param int $code Error code.
+     * @param string  $url      Remote URL the error was found on.
+     * @param array   $response Raw server response.
+     * @param integer $code     Error code.
      * @return MindeeHttpException
      */
     public static function handleError(string $url, array $response, int $code): MindeeHttpException

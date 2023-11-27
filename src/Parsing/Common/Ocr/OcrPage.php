@@ -25,7 +25,6 @@ class OcrPage
             return 0;
         }
         return $word_1_y < $word_2_y ? -1 : 1;
-
     }
 
     private function toLines(): array
@@ -80,7 +79,6 @@ class OcrPage
             $this->allWords[] = new OcrWord($word_prediction);
         }
         usort($this->allWords, "self::getMinMaxY");
-
     }
 
     public function __toString(): string

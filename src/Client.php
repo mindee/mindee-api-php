@@ -69,7 +69,7 @@ class Client
 
     /**
      * @param string $file_bytes File object in raw bytes.
-     * @param string $file_name File name, mandatory.
+     * @param string $file_name  File name, mandatory.
      * @return BytesInput
      */
     public function sourceFromBytes(string $file_bytes, string $file_name): BytesInput
@@ -78,7 +78,7 @@ class Client
     }
 
     /**
-     * @param string $file_b64 File object in Base64.
+     * @param string $file_b64  File object in Base64.
      * @param string $file_name File name, mandatory.
      * @return Base64Input
      */
@@ -97,8 +97,8 @@ class Client
     }
 
     /**
-     * @param string $endpoint_name URL of the endpoint.
-     * @param string $endpoint_owner Name of the endpoint's owner.
+     * @param string $endpoint_name    URL of the endpoint.
+     * @param string $endpoint_owner   Name of the endpoint's owner.
      * @param string $endpoint_version Version of the endpoint.
      * @return Endpoint
      */
@@ -151,9 +151,9 @@ class Client
     }
 
     /**
-     * @param string $endpoint_name URL of the endpoint.
-     * @param string $account_name Name of the endpoint's owner.
-     * @param string|null $version Version of the endpoint.
+     * @param string      $endpoint_name URL of the endpoint.
+     * @param string      $account_name  Name of the endpoint's owner.
+     * @param string|null $version       Version of the endpoint.
      * @return Endpoint
      */
     public function createEndpoint(string $endpoint_name, string $account_name, ?string $version = null): Endpoint
@@ -170,8 +170,8 @@ class Client
     }
 
     /**
-     * @param LocalInputSource $input_doc Input PDF file.
-     * @param PageOptions $page_options Options to apply to the PDF file.
+     * @param LocalInputSource $input_doc    Input PDF file.
+     * @param PageOptions      $page_options Options to apply to the PDF file.
      * @return void
      */
     private function cutDocPages(LocalInputSource $input_doc, PageOptions $page_options)
@@ -179,9 +179,9 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param string $queue_id ID of the queue.
-     * @param Endpoint $endpoint Endpoint to poll.
+     * @param string   $prediction_type Name of the product's class.
+     * @param string   $queue_id        ID of the queue.
+     * @param Endpoint $endpoint        Endpoint to poll.
      * @return AsyncPredictResponse
      */
     private function makeParseQueuedRequest(
@@ -202,9 +202,9 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions $options Prediction Options.
+     * @param string               $prediction_type Name of the product's class.
+     * @param InputSource          $input_doc       Input file.
+     * @param PredictMethodOptions $options         Prediction Options.
      * @return AsyncPredictResponse
      */
     private function makeEnqueueRequest(
@@ -236,9 +236,9 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions $options Prediction Options.
+     * @param string               $prediction_type Name of the product's class.
+     * @param InputSource          $input_doc       Input file.
+     * @param PredictMethodOptions $options         Prediction Options.
      * @return PredictResponse
      */
     private function makeParseRequest(
@@ -270,9 +270,9 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions|null $options Prediction Options.
+     * @param string                    $prediction_type Name of the product's class.
+     * @param InputSource               $input_doc       Input file.
+     * @param PredictMethodOptions|null $options         Prediction Options.
      * @return PredictResponse
      */
     public function parse(
@@ -291,10 +291,10 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions|null $options Prediction Options.
-     * @param EnqueueAndParseMethodOptions|null $async_options Async Options. Manages timers.
+     * @param string                            $prediction_type Name of the product's class.
+     * @param InputSource                       $input_doc       Input file.
+     * @param PredictMethodOptions|null         $options         Prediction Options.
+     * @param EnqueueAndParseMethodOptions|null $async_options   Async Options. Manages timers.
      * @return AsyncPredictResponse
      */
     public function enqueueAndParse(
@@ -338,9 +338,9 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input File.
-     * @param PredictMethodOptions|null $options Prediction Options.
+     * @param string                    $prediction_type Name of the product's class.
+     * @param InputSource               $input_doc       Input File.
+     * @param PredictMethodOptions|null $options         Prediction Options.
      * @return AsyncPredictResponse
      */
     public function enqueue(
@@ -358,9 +358,9 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param string $queue_id ID of the queue.
-     * @param Endpoint|null $endpoint Endpoint to poll.
+     * @param string        $prediction_type Name of the product's class.
+     * @param string        $queue_id        ID of the queue.
+     * @param Endpoint|null $endpoint        Endpoint to poll.
      * @return AsyncPredictResponse
      */
     public function parseQueued(

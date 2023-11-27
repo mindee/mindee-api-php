@@ -19,8 +19,8 @@ class LocaleField extends BaseField
 
     public function __construct(
         array $raw_prediction,
-        ?int  $page_id = null,
-        bool  $reconstructed = false
+        ?int $page_id = null,
+        bool $reconstructed = false
     ) {
         $value_key = array_key_exists('value', $raw_prediction) ? 'value' : 'language';
         parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);

@@ -71,7 +71,7 @@ class IdCardV1Document extends Prediction
 
     public function __toString(): string
     {
-        $given_names = implode("\n".str_repeat(" ", 15), $this->givenNames);
+        $given_names = implode("\n" . str_repeat(" ", 15), $this->givenNames);
         $out_str = ":Identity Number: $this->idNumber\n";
         $out_str .= ":Given Name(s): $given_names\n";
         $out_str .= ":Surname: $this->surname\n";

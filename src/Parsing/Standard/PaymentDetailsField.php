@@ -14,8 +14,10 @@ class PaymentDetailsField extends BaseField
     private function getValue($raw_prediction, $key): ?string
     {
         $value = null;
-        if (array_key_exists($key, $raw_prediction) &&
-            is_scalar($raw_prediction[$key])) {
+        if (
+            array_key_exists($key, $raw_prediction) &&
+            is_scalar($raw_prediction[$key])
+        ) {
             $value = strval($raw_prediction[$key]);
         } else {
             $value = null;
@@ -28,9 +30,9 @@ class PaymentDetailsField extends BaseField
     }
 
     public function __construct(
-        array  $raw_prediction,
-        ?int   $page_id = null,
-        bool   $reconstructed = false,
+        array $raw_prediction,
+        ?int $page_id = null,
+        bool $reconstructed = false,
         string $value_key = 'iban',
         string $account_number_key = 'account_number',
         string $iban_key = 'iban',
