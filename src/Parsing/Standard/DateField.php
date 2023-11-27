@@ -5,14 +5,32 @@ namespace Mindee\Parsing\Standard;
 use DateTimeImmutable;
 use Mindee\Error\MindeeApiException;
 
+/**
+ * A field containing a date value.
+ */
 class DateField extends BaseField
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
 
+    /**
+     * @var \DateTimeImmutable|null Date as a standard object.
+     */
     public ?\DateTimeImmutable $dateObject;
+
+    /**
+     * @var string|null The raw field value.
+     */
     public $value;
 
+
+    /**
+     * @param array        $raw_prediction Raw prediction array.
+     * @param integer|null $page_id        Page number for multi pages PDF.
+     * @param boolean      $reconstructed  Whether the field was reconstructed.
+     * @param string       $value_key      Key to use for the value.
+     * @throws \Mindee\Error\MindeeApiException Throws if the date can't be created from the given value.
+     */
     public function __construct(
         array $raw_prediction,
         ?int $page_id = null,
@@ -23,11 +41,15 @@ class DateField extends BaseField
         $this->setPosition($raw_prediction);
 
         if (isset($this->value)) {
-            if (strtotime($this->value)) {
+            if ($this->value) {
                 try {
                     $this->dateObject = new \DateTimeImmutable($this->value, new \DateTimeZone('UTC'));
                 } catch (\Exception $e) {
-                    throw new MindeeApiException("Couldn't create date field from value '" . $this->value . "'");
+                    try {
+                        $this->dateObject = new \DateTimeImmutable(strtotime($this->value), new \DateTimeZone('UTC'));
+                    } catch (\Exception $e2) {
+                        throw new MindeeApiException("Couldn't create date field from value '" . $this->value . "'");
+                    }
                 }
             } else {
                 $this->dateObject = null;

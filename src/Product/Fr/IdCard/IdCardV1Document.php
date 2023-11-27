@@ -12,46 +12,50 @@ use Mindee\Parsing\Standard\StringField;
 class IdCardV1Document extends Prediction
 {
     /**
-     *  The name of the issuing authority.
+     * @var \Mindee\Parsing\Standard\StringField The name of the issuing authority.
      */
     public StringField $authority;
     /**
-     *  The date of birth of the card holder.
+     * @var \Mindee\Parsing\Standard\DateField The date of birth of the card holder.
      */
     public DateField $birthDate;
     /**
-     *  The place of birth of the card holder.
+     * @var \Mindee\Parsing\Standard\StringField The place of birth of the card holder.
      */
     public StringField $birthPlace;
     /**
-     *  The place of birth of the card holder.
+     * @var \Mindee\Parsing\Standard\DateField The place of birth of the card holder.
      */
     public DateField $expiryDate;
     /**
-     *  The gender of the card holder.
+     * @var \Mindee\Parsing\Standard\StringField The gender of the card holder.
      */
     public StringField $gender;
     /**
-     *  The given name(s) of the card holder.
+     * @var array The given name(s) of the card holder.
      */
     public array $givenNames;
     /**
-     * The identification card number.
+     * @var \Mindee\Parsing\Standard\StringField The identification card number.
      */
     public StringField $idNumber;
     /**
-     * Machine Readable Zone, first line
+     * @var \Mindee\Parsing\Standard\StringField Machine Readable Zone, first line.
      */
     public StringField $mrz1;
     /**
-     * Machine Readable Zone, second line
+     * @var \Mindee\Parsing\Standard\StringField Machine Readable Zone, second line.
      */
     public StringField $mrz2;
     /**
-     * The surname of the card holder.
+     * @var \Mindee\Parsing\Standard\StringField The surname of the card holder.
      */
     public StringField $surname;
 
+    /**
+     * @param array        $raw_prediction Raw prediction from HTTP response.
+     * @param integer|null $page_id        Page number for multi pages pdf input.
+     */
     public function __construct(array $raw_prediction, ?int $page_id = null)
     {
         $this->authority = new StringField($raw_prediction['authority'], $page_id);
@@ -69,6 +73,9 @@ class IdCardV1Document extends Prediction
         $this->surname = new StringField($raw_prediction['surname'], $page_id);
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         $given_names = implode("\n" . str_repeat(" ", 15), $this->givenNames);

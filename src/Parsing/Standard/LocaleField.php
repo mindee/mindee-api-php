@@ -2,12 +2,29 @@
 
 namespace Mindee\Parsing\Standard;
 
+/**
+ * The locale detected on the document.
+ */
 class LocaleField extends BaseField
 {
+    /**
+     * @var string|null The ISO 639-1 code of the language.
+     */
     public ?string $language;
+    /**
+     * @var string|null The ISO 3166-1 alpha-2 code of the country.
+     */
     public ?string $country;
+    /**
+     * @var string|null The ISO 4217 code of the currency.
+     */
     public ?string $currency;
 
+    /**
+     * @param array  $locale_prediction Raw locale prediction.
+     * @param string $key               Name of the prediction key.
+     * @return string|null
+     */
     private static function getValue(array $locale_prediction, string $key): ?string
     {
         if (!array_key_exists($key, $locale_prediction) || $locale_prediction[$key] == 'N/A') {
@@ -17,6 +34,11 @@ class LocaleField extends BaseField
         return $locale_prediction[$key];
     }
 
+    /**
+     * @param array        $raw_prediction Raw prediction array.
+     * @param integer|null $page_id        Page number for multi pages PDF.
+     * @param boolean      $reconstructed  Whether the field was reconstructed.
+     */
     public function __construct(
         array $raw_prediction,
         ?int $page_id = null,
@@ -29,6 +51,9 @@ class LocaleField extends BaseField
         $this->currency = LocaleField::getValue($raw_prediction, 'currency');
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         $out_str = '';

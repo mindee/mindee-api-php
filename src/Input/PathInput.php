@@ -2,9 +2,15 @@
 
 namespace Mindee\Input;
 
+/**
+ * Local path input.
+ */
 class PathInput extends LocalInputSource
 {
-    public function __construct($file_path)
+    /**
+     * @param string $file_path Path to open.
+     */
+    public function __construct(string $file_path)
     {
         $this->filePath = $file_path;
         $this->fileName = basename($file_path);

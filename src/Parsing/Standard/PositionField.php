@@ -4,33 +4,63 @@ namespace Mindee\Parsing\Standard;
 
 use Mindee\Error\MindeeGeometryException;
 use Mindee\Geometry\Polygon;
+use Mindee\Geometry\PolygonUtils;
 
-use function Mindee\Geometry\polygon_from_prediction;
-use function Mindee\Geometry\quadrilateral_from_prediction;
-
+/**
+ * A field indicating a position or area on the document.
+ */
 class PositionField extends BaseField
 {
-    public ?Polygon $value;
+    /**
+     * @var \Mindee\Geometry\Polygon|null Polygon of cropped area, identical to the `polygon` property.
+     */
+    public $value;
+    /**
+     * @var \Mindee\Geometry\Polygon|null Polygon of cropped area.
+     */
     public ?Polygon $polygon;
+    /**
+     * @var \Mindee\Geometry\Polygon|null Quadrangle of cropped area (does not exceed the canvas).
+     */
     public ?Polygon $quadrangle;
+    /**
+     * @var \Mindee\Geometry\Polygon|null Oriented rectangle of cropped area (may exceed the canvas).
+     */
     public ?Polygon $rectangle;
+    /**
+     * @var \Mindee\Geometry\Polygon|null Straight rectangle of cropped area (does not exceed the canvas).
+     */
     public ?Polygon $boundingBox;
 
+    /**
+     * Retrieves the quadrilateral of a prediction.
+     *
+     * @param array  $raw_prediction Raw prediction array.
+     * @param string $key            Key to use for the value.
+     * @return \Mindee\Geometry\Polygon|null
+     */
     private static function getQuadrilateral(array $raw_prediction, string $key): ?Polygon
     {
         if (array_key_exists($key, $raw_prediction)) {
-            return quadrilateral_from_prediction($raw_prediction[$key]);
+            return PolygonUtils::quadrilateralFromPrediction($raw_prediction[$key]);
         }
 
         return null;
     }
 
+    /**
+     * Retrieves the polygon of a prediction.
+     *
+     * @param array  $raw_prediction Raw prediction array.
+     * @param string $key            Key to use for the value.
+     * @return \Mindee\Geometry\Polygon|null
+     */
     private static function getPolygon(array $raw_prediction, string $key): ?Polygon
     {
         if (array_key_exists($key, $raw_prediction)) {
             $polygon = $raw_prediction[$key];
             try {
-                polygon_from_prediction($polygon);
+                PolygonUtils::polygonFromPrediction($polygon);
             } catch (MindeeGeometryException $exc) {
                 return null;
             }
@@ -39,6 +69,12 @@ class PositionField extends BaseField
         return null;
     }
 
+    /**
+     * @param array        $raw_prediction Raw prediction array.
+     * @param integer|null $page_id        Page id.
+     * @param boolean      $reconstructed  Whether the field was reconstructed.
+     * @param string       $value_key      Key to use for the value.
+     */
     public function __construct(
         array $raw_prediction,
         ?int $page_id = null,
@@ -55,6 +91,9 @@ class PositionField extends BaseField
         $this->value = $this->polygon;
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         if ($this->polygon) {

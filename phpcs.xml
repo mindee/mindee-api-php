@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PSR12" xsi:noNamespaceSchemaLocation="../../../phpcs.xsd">
-    <description>The PSR-12 coding standard.</description>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PSR12"
+         xsi:noNamespaceSchemaLocation="../../../phpcs.xsd">
+    <description>The (mostly) PSR-12 coding standard.</description>
     <arg name="tab-width" value="4"/>
 
     <!-- 2. General -->
 
     <!-- 2.1 Basic Coding Standard -->
 
-    <!-- Code MUST follow all rules outlined in PSR-1. -->
+    <!-- Code MUST follow all rules outlined in PSR-12. -->
     <rule ref="PSR12"/>
 
     <!-- The term 'StudlyCaps' in PSR-1 MUST be interpreted as PascalCase where the first letter of each word is capitalized including the very first letter. -->
@@ -78,7 +79,6 @@
 
     <!-- Short form of type keywords MUST be used i.e. bool instead of boolean, int instead of integer etc. -->
     <!-- checked by PSR12.Keywords.ShortFormTypeKeywords -->
-
     <!-- 3. Declare Statements, Namespace, and Import Statements -->
 
     <!-- The header of a PHP file may consist of a number of different blocks. If present, each of the blocks below MUST be separated by a single blank line, and MUST NOT contain a blank line. Each block MUST be in the order listed below, although blocks that are not relevant may be omitted.
@@ -152,6 +152,9 @@
     <!-- Visibility MUST be declared on all methods. -->
     <rule ref="Squiz.Scope.MethodScope"/>
     <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
+
+    <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
+    <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
 
     <!-- Method names MUST NOT be prefixed with a single underscore to indicate protected or private visibility. That is, an underscore prefix explicitly has no meaning. -->
     <rule ref="PSR2.Methods.MethodDeclaration"/>

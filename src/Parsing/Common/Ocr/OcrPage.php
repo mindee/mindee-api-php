@@ -12,15 +12,15 @@ class OcrPage
 
     private static function areWordsOnSameLine(OcrWord $current_word, OcrWord $next_word): bool
     {
-        $current_in_next = PolygonUtils::is_point_in_polygon_y($current_word->polygon->getCentroid(), $next_word->polygon);
-        $next_in_current = PolygonUtils::is_point_in_polygon_y($next_word->polygon->getCentroid(), $current_word->polygon);
+        $current_in_next = PolygonUtils::isPointInPolygonY($current_word->polygon->getCentroid(), $next_word->polygon);
+        $next_in_current = PolygonUtils::isPointInPolygonY($next_word->polygon->getCentroid(), $current_word->polygon);
         return $current_in_next || $next_in_current;
     }
 
     private static function getMinMaxY(OcrWord $word_1, OcrWord $word_2): int
     {
-        $word_1_y = MinMaxUtils::get_min_max_y($word_1->polygon->getCoordinates())->getMin();
-        $word_2_y = MinMaxUtils::get_min_max_y($word_2->polygon->getCoordinates())->getMin();
+        $word_1_y = MinMaxUtils::getMinMaxY($word_1->polygon->getCoordinates())->getMin();
+        $word_2_y = MinMaxUtils::getMinMaxY($word_2->polygon->getCoordinates())->getMin();
         if ($word_1_y == $word_2_y) {
             return 0;
         }
