@@ -2,10 +2,19 @@
 
 namespace Mindee\Parsing\Common\Ocr;
 
+/**
+ * Mindee Vision V1.
+ */
 class MVisionV1
 {
+    /**
+     * @var array List of pages.
+     */
     public array $pages;
 
+    /**
+     * @param array $raw_prediction Raw prediction array.
+     */
     public function __construct(array $raw_prediction)
     {
         $this->pages = [];
@@ -14,6 +23,9 @@ class MVisionV1
         }
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         $pages_str = [];

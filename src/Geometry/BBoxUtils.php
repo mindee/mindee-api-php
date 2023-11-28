@@ -2,8 +2,17 @@
 
 namespace Mindee\Geometry;
 
+/**
+ * Utility class for BBox.
+ */
 abstract class BBoxUtils
 {
+    /**
+     * Generates a BBox from a polygon. Returns null if no polygon is provided.
+     *
+     * @param \Mindee\Geometry\Polygon|null $polygon Polygon to get the BBox of.
+     * @return \Mindee\Geometry\BBox|null
+     */
     public static function generateBBoxFromPolygon(?Polygon $polygon): ?BBox
     {
         if (!$polygon) {
@@ -18,7 +27,13 @@ abstract class BBoxUtils
         );
     }
 
-    public function generateBBoxFromPolygons(array $polygons): ?BBox
+    /**
+     * Generates a BBox from an array of polygons. Returns null if no polygons are provided.
+     *
+     * @param array $polygons Series of polygons to get the BBox of.
+     * @return \Mindee\Geometry\BBox|null
+     */
+    public static function generateBBoxFromPolygons(array $polygons): ?BBox
     {
         if (!$polygons) {
             return null;
@@ -37,6 +52,12 @@ abstract class BBoxUtils
         );
     }
 
+    /**
+     * Merges an array of bboxes.
+     *
+     * @param array $bboxes BBoxes to merge.
+     * @return \Mindee\Geometry\BBox|null
+     */
     public static function mergeBBoxes(array $bboxes): ?BBox
     {
         if (!$bboxes) {

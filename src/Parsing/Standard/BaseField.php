@@ -8,18 +8,36 @@ use Mindee\Geometry\Polygon;
 
 use function Mindee\Geometry\createBoundingBoxFrom;
 
+/**
+ * Base class for most fields.
+ */
 abstract class BaseField
 {
     use FieldConfidenceMixin;
 
+    /**
+     * @var mixed|null Raw field value.
+     */
     public $value;
+    /**
+     * @var boolean Whether the field was reconstructed from other fields.
+     */
     public bool $reconstructed;
+    /**
+     * @var integer|mixed|null The document page on which the information was found.
+     */
     public ?int $pageId;
 
+    /**
+     * @param array        $raw_prediction Raw prediction array.
+     * @param integer|null $page_id        Page number for multi pages PDF.
+     * @param boolean      $reconstructed  Whether the field was reconstructed.
+     * @param string       $value_key      Key to use for the value.
+     */
     public function __construct(
-        array  $raw_prediction,
-        ?int   $page_id = null,
-        bool   $reconstructed = false,
+        array $raw_prediction,
+        ?int $page_id = null,
+        bool $reconstructed = false,
         string $value_key = 'value'
     ) {
         if (!isset($page_id) && (array_key_exists('page_id', $raw_prediction) && isset($raw_prediction['page_id']))) {
@@ -36,11 +54,20 @@ abstract class BaseField
         }
     }
 
+    /**
+     * Compares with the value of another field.
+     *
+     * @param \Mindee\Parsing\Standard\BaseField $obj Field to compare.
+     * @return boolean
+     */
     public function __compare(BaseField $obj): bool
     {
         return $this->value == $obj->value;
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         return isset($this->value) ? strval($this->value) : '';

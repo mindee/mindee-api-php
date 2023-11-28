@@ -26,3 +26,5 @@ LocalTest.php
 *.log
 /build
 .phplint-cache
+.phpdoc
+docs/_build

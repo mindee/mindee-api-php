@@ -2,9 +2,16 @@
 
 namespace Mindee\Input;
 
+/**
+ * Raw bytes input.
+ */
 class BytesInput extends LocalInputSource
 {
-    public function __construct($file_bytes, $file_name)
+    /**
+     * @param string $file_bytes Raw data as bytes.
+     * @param string $file_name  File name of the input.
+     */
+    public function __construct(string $file_bytes, string $file_name)
     {
         $file_b64 = 'data://application/pdf;base64,' . base64_encode($file_bytes);
         $file = finfo_open();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Mindee Mime Type Exceptions.

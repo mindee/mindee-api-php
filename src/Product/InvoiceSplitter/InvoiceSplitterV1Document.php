@@ -10,11 +10,14 @@ use Mindee\Parsing\Common\Prediction;
 class InvoiceSplitterV1Document extends Prediction
 {
     /**
-     * Page groups linked to an invoice.
+     * @var array Page groups linked to an invoice.
      */
     public array $invoicePageGroups;
 
-    public function __construct(array $raw_prediction, ?int $page_id = null)
+    /**
+     * @param array $raw_prediction Raw prediction from HTTP response.
+     */
+    public function __construct(array $raw_prediction)
     {
         $this->invoicePageGroups = [];
         if (array_key_exists("invoice_page_groups", $raw_prediction)) {
@@ -24,6 +27,9 @@ class InvoiceSplitterV1Document extends Prediction
         }
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         $out_str = ":Invoice Page Groups:";

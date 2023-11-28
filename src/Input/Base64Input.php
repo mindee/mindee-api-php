@@ -2,9 +2,16 @@
 
 namespace Mindee\Input;
 
+/**
+ * Base64-encoded text input.
+ */
 class Base64Input extends LocalInputSource
 {
-    public function __construct($file_b64, $file_name)
+    /**
+     * @param string $file_b64  Raw data as a base64-encoded string.
+     * @param string $file_name File name of the input.
+     */
+    public function __construct(string $file_b64, string $file_name)
     {
         $file = finfo_open();
         $mime_type = finfo_buffer($file, base64_decode($file_b64), FILEINFO_MIME_TYPE);
