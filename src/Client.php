@@ -51,7 +51,10 @@ class Client
     }
 
     /**
+     * Load a document from an absolute path, as a string.
+     *
      * @param string $file_path Path of the file.
+     * @return PathInput
      */
     public function sourceFromPath(string $file_path): PathInput
     {
@@ -59,17 +62,21 @@ class Client
     }
 
     /**
-     * @param $file array File object as created from the file() function.
-     * @return LocalInputSource
+     * Load a document from a normal PHP file object.
+     *
+     * @param array $file File object as created from the file() function.
+     * @return FileInput
      */
-    public function sourceFromFile(array $file): LocalInputSource
+    public function sourceFromFile(array $file): FileInput
     {
         return new FileInput($file);
     }
 
     /**
+     * Load a document from raw bytes.
+     *
      * @param string $file_bytes File object in raw bytes.
-     * @param string $file_name File name, mandatory.
+     * @param string $file_name  File name, mandatory.
      * @return BytesInput
      */
     public function sourceFromBytes(string $file_bytes, string $file_name): BytesInput
@@ -78,7 +85,9 @@ class Client
     }
 
     /**
-     * @param string $file_b64 File object in Base64.
+     * Load a document from a base64 encoded string.
+     *
+     * @param string $file_b64  File object in Base64.
      * @param string $file_name File name, mandatory.
      * @return Base64Input
      */
@@ -88,6 +97,8 @@ class Client
     }
 
     /**
+     * Load a document from an URL.
+     *
      * @param string $url File URL. Must start with "https://".
      * @return URLInputSource
      */
@@ -97,8 +108,10 @@ class Client
     }
 
     /**
-     * @param string $endpoint_name URL of the endpoint.
-     * @param string $endpoint_owner Name of the endpoint's owner.
+     * Builds a custom endpoint.
+     *
+     * @param string $endpoint_name    URL of the endpoint.
+     * @param string $endpoint_owner   Name of the endpoint's owner.
      * @param string $endpoint_version Version of the endpoint.
      * @return Endpoint
      */
@@ -115,6 +128,8 @@ class Client
     }
 
     /**
+     * Cleans the account name.
+     *
      * @param string $account_name Name of the endpoint's owner. Replaced by DEFAULT_OWNER if absent.
      * @return string
      */
@@ -128,8 +143,11 @@ class Client
     }
 
     /**
-     * @param $product string Name of the product's class.
+     * Builds an off-the-shelf endpoint.
+     *
+     * @param string $product Name of the product's class.
      * @return Endpoint
+     * @throws \Mindee\Error\MindeeApiException Throws if the product isn't recognized.
      */
     private function constructOTSEndpoint(string $product): Endpoint
     {
@@ -151,10 +169,13 @@ class Client
     }
 
     /**
-     * @param string $endpoint_name URL of the endpoint.
-     * @param string $account_name Name of the endpoint's owner.
-     * @param string|null $version Version of the endpoint.
+     * Adds a custom endpoint, created using the Mindee API Builder.
+     *
+     * @param string      $endpoint_name URL of the endpoint.
+     * @param string      $account_name  Name of the endpoint's owner.
+     * @param string|null $version       Version of the endpoint.
      * @return Endpoint
+     * @throws \Mindee\Error\MindeeClientException Throws if a custom endpoint name isn't provided.
      */
     public function createEndpoint(string $endpoint_name, string $account_name, ?string $version = null): Endpoint
     {
@@ -170,8 +191,10 @@ class Client
     }
 
     /**
-     * @param LocalInputSource $input_doc Input PDF file.
-     * @param PageOptions $page_options Options to apply to the PDF file.
+     * Cut the pages of a PDF following the detailed operations.
+     *
+     * @param LocalInputSource $input_doc    Input PDF file.
+     * @param PageOptions      $page_options Options to apply to the PDF file.
      * @return void
      */
     private function cutDocPages(LocalInputSource $input_doc, PageOptions $page_options)
@@ -179,10 +202,13 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param string $queue_id ID of the queue.
-     * @param Endpoint $endpoint Endpoint to poll.
+     * Makes the request to retrieve an async document.
+     *
+     * @param string   $prediction_type Name of the product's class.
+     * @param string   $queue_id        ID of the queue.
+     * @param Endpoint $endpoint        Endpoint to poll.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
      */
     private function makeParseQueuedRequest(
         string $prediction_type,
@@ -202,10 +228,14 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions $options Prediction Options.
+     * Makes the request to send a document to an asynchronous endpoint.
+     *
+     * @param string               $prediction_type Name of the product's class.
+     * @param InputSource          $input_doc       Input file.
+     * @param PredictMethodOptions $options         Prediction Options.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
+     * @throws \Mindee\Error\MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeEnqueueRequest(
         string $prediction_type,
@@ -236,10 +266,14 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions $options Prediction Options.
+     * Makes the request to send a document to a synchronous endpoint.
+     *
+     * @param string               $prediction_type Name of the product's class.
+     * @param InputSource          $input_doc       Input file.
+     * @param PredictMethodOptions $options         Prediction Options.
      * @return PredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
+     * @throws \Mindee\Error\MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeParseRequest(
         string $prediction_type,
@@ -270,9 +304,11 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions|null $options Prediction Options.
+     * Call prediction API on the document and parse the results.
+     *
+     * @param string                    $prediction_type Name of the product's class.
+     * @param InputSource               $input_doc       Input file.
+     * @param PredictMethodOptions|null $options         Prediction Options.
      * @return PredictResponse
      */
     public function parse(
@@ -291,11 +327,14 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input file.
-     * @param PredictMethodOptions|null $options Prediction Options.
-     * @param EnqueueAndParseMethodOptions|null $async_options Async Options. Manages timers.
+     * Enqueues a document and automatically polls the response. Asynchronous calls only.
+     *
+     * @param string                            $prediction_type Name of the product's class.
+     * @param InputSource                       $input_doc       Input file.
+     * @param PredictMethodOptions|null         $options         Prediction Options.
+     * @param EnqueueAndParseMethodOptions|null $async_options   Async Options. Manages timers.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeApiException Throws if the document couldn't be retrieved in time.
      */
     public function enqueueAndParse(
         string $prediction_type,
@@ -338,10 +377,13 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param InputSource $input_doc Input File.
-     * @param PredictMethodOptions|null $options Prediction Options.
+     * Enqueue a document to an asynchronous endpoint.
+     *
+     * @param string                    $prediction_type Name of the product's class.
+     * @param InputSource               $input_doc       Input File.
+     * @param PredictMethodOptions|null $options         Prediction Options.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
      */
     public function enqueue(
         string $prediction_type,
@@ -358,9 +400,11 @@ class Client
     }
 
     /**
-     * @param string $prediction_type Name of the product's class.
-     * @param string $queue_id ID of the queue.
-     * @param Endpoint|null $endpoint Endpoint to poll.
+     * Parses a queued document.
+     *
+     * @param string        $prediction_type Name of the product's class.
+     * @param string        $queue_id        ID of the queue.
+     * @param Endpoint|null $endpoint        Endpoint to poll.
      * @return AsyncPredictResponse
      */
     public function parseQueued(

@@ -2,8 +2,14 @@
 
 namespace Mindee\Input;
 
+/**
+ * Binary file input.
+ */
 class FileInput extends LocalInputSource
 {
+    /**
+     * @param mixed $file A file-like object compatible with CURLFile.
+     */
     public function __construct($file)
     {
         $this->filePath = $file->getPathName();

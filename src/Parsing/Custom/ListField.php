@@ -2,12 +2,28 @@
 
 namespace Mindee\Parsing\Custom;
 
+/**
+ * A list of value or words.
+ */
 class ListField
 {
+    /**
+     * @var float Confidence score.
+     */
     public float $confidence;
+    /**
+     * @var boolean Whether the field was reconstructed from other fields.
+     */
     public bool $reconstructed;
+    /**
+     * @var array List of word values.
+     */
     public array $values;
 
+    /**
+     * @param array   $raw_prediction Raw prediction array.
+     * @param boolean $reconstructed  Whether the field has been reconstructed.
+     */
     public function __construct(array $raw_prediction, bool $reconstructed = false)
     {
         $this->values = [];
@@ -19,7 +35,12 @@ class ListField
         $this->confidence = 0.0;
     }
 
-    public function contents_list(): array
+    /**
+     * Returns the contents of the list as an array of values.
+     *
+     * @return array Contents as an array.
+     */
+    public function contentsList(): array
     {
         $arr = [];
         foreach ($this->values as $value) {
@@ -29,13 +50,22 @@ class ListField
         return $arr;
     }
 
-    public function contents_string(string $separator = ' '): string
+    /**
+     * Returns the contents of a list as a concatenated string.
+     *
+     * @param string $separator Separator to repeat and insert between lines.
+     * @return string
+     */
+    public function contentsString(string $separator = ' '): string
     {
-        return implode($separator, $this->contents_list());
+        return implode($separator, $this->contentsList());
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
-        return $this->contents_string();
+        return $this->contentsString();
     }
 }

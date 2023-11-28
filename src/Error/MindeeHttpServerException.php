@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Mindee HTTP Server Exceptions.

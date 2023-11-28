@@ -4,17 +4,30 @@ namespace Mindee\Parsing\Custom;
 
 use Mindee\Error\MindeeException;
 use Mindee\Geometry\BBox;
+use Mindee\Geometry\BBoxUtils;
+use Mindee\Geometry\MinMaxUtils;
 
-use function Mindee\Geometry\generateBBoxFromPolygon;
-use function Mindee\Geometry\generateBBoxFromPolygons;
-use function Mindee\Geometry\get_min_max_y;
-
+/**
+ * Represents a single line.
+ */
 class CustomLine
 {
+    /**
+     * @var integer Index of the row for a given line.
+     */
     public int $row_number;
+    /**
+     * @var array Fields contained in the line.
+     */
     public array $fields;
+    /**
+     * @var \Mindee\Geometry\BBox Simplified bounding box of the line.
+     */
     public BBox $bbox;
 
+    /**
+     * @param integer $row_number Index of the row.
+     */
     public function __construct(
         int $row_number
     ) {
@@ -23,6 +36,13 @@ class CustomLine
         $this->fields = [];
     }
 
+    /**
+     * Updates a field's value.
+     *
+     * @param string                                $field_name  Name of the field.
+     * @param \Mindee\Parsing\Custom\ListFieldValue $field_value Value of the field.
+     * @return void
+     */
     public function updateField(string $field_name, ListFieldValue $field_value)
     {
         if (array_key_exists($field_name, $this->fields)) {
@@ -30,15 +50,15 @@ class CustomLine
             $existing_content = $existing_field->content;
             $merged_content = '';
             if (count($existing_content) > 0) {
-                $merged_content .= $existing_content.' ';
+                $merged_content .= $existing_content . ' ';
             }
             $merged_content .= $field_value->content;
-            $merged_polygon = generateBBoxFromPolygons([$existing_field->polygon, $field_value->polygon]);
+            $merged_polygon = BBoxUtils::generateBBoxFromPolygons([$existing_field->polygon, $field_value->polygon]);
             $merged_confidence = $existing_field->confidence * $field_value->confidence;
         } else {
             $merged_content = $field_value->content;
             $merged_confidence = $field_value->confidence;
-            $merged_polygon = generateBBoxFromPolygon($field_value->polygon);
+            $merged_polygon = BBoxUtils::generateBBoxFromPolygon($field_value->polygon);
         }
         $this->fields[$field_name] = new ListFieldValue([
             'content' => $merged_content,
@@ -47,10 +67,18 @@ class CustomLine
         ]);
     }
 
+    /**
+     * Checks if a BBox is in a given line.
+     *
+     * @param \Mindee\Parsing\Custom\CustomLine $line                  Current line to check.
+     * @param \Mindee\Geometry\BBox             $bbox                  BBox.
+     * @param float                             $height_line_tolerance Height tolerance in pixels.
+     * @return boolean
+     */
     public static function isBBoxInLine(
         CustomLine $line,
-        BBox       $bbox,
-        float      $height_line_tolerance
+        BBox $bbox,
+        float $height_line_tolerance
     ): bool {
         if (abs($bbox->getMinY() - $line->bbox->getMinY()) <= $height_line_tolerance) {
             return true;
@@ -59,6 +87,15 @@ class CustomLine
         return abs($line->bbox->getMinY() - $bbox->getMinY()) <= $height_line_tolerance;
     }
 
+    /**
+     * Prepares the line items before filling them.
+     *
+     * @param string $anchor_name           Name of the anchor.
+     * @param array  $fields                List of fields.
+     * @param float  $height_line_tolerance Height tolerance in pixels.
+     * @return array
+     * @throws \Mindee\Error\MindeeException Throws if no lines have been found.
+     */
     public static function prepare(
         string $anchor_name,
         array $fields,
@@ -78,12 +115,14 @@ class CustomLine
         }
         for ($i = 1; $i < count($anchor_field->values); ++$i) {
             $current_value = $anchor_field->values[$i];
-            $current_field_box = generateBBoxFromPolygon($current_value->polygon);
-            if (!CustomLine::isBBoxInLine(
-                $current_line,
-                $current_field_box,
-                $height_line_tolerance
-            )) {
+            $current_field_box = BBoxUtils::generateBBoxFromPolygon($current_value->polygon);
+            if (
+                !CustomLine::isBBoxInLine(
+                    $current_line,
+                    $current_field_box,
+                    $height_line_tolerance
+                )
+            ) {
                 $lines_prepared[] = $current_line;
                 ++$current_line_number;
                 $current_line = new CustomLine($current_line_number);
@@ -103,6 +142,13 @@ class CustomLine
         return $lines_prepared;
     }
 
+    /**
+     * Finds the best anchor for a given array of fields.
+     *
+     * @param array $anchors Array of potential anchors.
+     * @param array $fields  Array of fields.
+     * @return string
+     */
     private static function findBestAnchor(
         array $anchors,
         array $fields
@@ -120,6 +166,15 @@ class CustomLine
         return $anchor;
     }
 
+    /**
+     * Creates the line items.
+     *
+     * @param array $anchors               List of anchor candidates.
+     * @param array $field_names           List of field names.
+     * @param array $fields                List of all fields.
+     * @param float $height_line_tolerance Height tolerance in pixels.
+     * @return array
+     */
     public static function getLineItems(
         array $anchors,
         array $field_names,
@@ -149,7 +204,7 @@ class CustomLine
         foreach ($lines_prepared as $current_line) {
             foreach ($fields_to_transform as $field_name => $field) {
                 foreach ($field->values as $list_field_value) {
-                    $min_max_y = get_min_max_y($list_field_value->polygon);
+                    $min_max_y = MinMaxUtils::getMinMaxY($list_field_value->polygon);
                     if (
                         abs($min_max_y->getMax() - $current_line->bbox->y_max) <=
                         $height_line_tolerance &&

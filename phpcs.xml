@@ -1,13 +1,15 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PSR12" xsi:noNamespaceSchemaLocation="../../../phpcs.xsd">
-    <description>The PSR-12 coding standard.</description>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PSR12"
+         xsi:noNamespaceSchemaLocation="../../../phpcs.xsd">
+    <description>The (mostly) PSR-12 coding standard.</description>
     <arg name="tab-width" value="4"/>
 
     <!-- 2. General -->
 
     <!-- 2.1 Basic Coding Standard -->
 
-    <!-- Code MUST follow all rules outlined in PSR-1. -->
+    <!-- Code MUST follow all rules outlined in PSR-12. -->
+    <!-- Note: Except PSR12.Keywords.ShortFormTypeKeywords, due to poor compatibility with Squiz & PHPStorm -->
     <rule ref="PSR12"/>
 
     <!-- The term 'StudlyCaps' in PSR-1 MUST be interpreted as PascalCase where the first letter of each word is capitalized including the very first letter. -->
@@ -29,9 +31,7 @@
 
     <!-- 2.3 Lines -->
 
-    <!-- There MUST NOT be a hard limit on line length.
-    The soft limit on line length MUST be 120 characters.
-    Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 80 characters each. -->
+    <!--Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 80 characters each. -->
     <rule ref="Generic.Files.LineLength">
         <properties>
             <property name="lineLimit" value="120"/>
@@ -78,7 +78,6 @@
 
     <!-- Short form of type keywords MUST be used i.e. bool instead of boolean, int instead of integer etc. -->
     <!-- checked by PSR12.Keywords.ShortFormTypeKeywords -->
-
     <!-- 3. Declare Statements, Namespace, and Import Statements -->
 
     <!-- The header of a PHP file may consist of a number of different blocks. If present, each of the blocks below MUST be separated by a single blank line, and MUST NOT contain a blank line. Each block MUST be in the order listed below, although blocks that are not relevant may be omitted.
@@ -152,6 +151,9 @@
     <!-- Visibility MUST be declared on all methods. -->
     <rule ref="Squiz.Scope.MethodScope"/>
     <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
+
+    <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
+    <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
 
     <!-- Method names MUST NOT be prefixed with a single underscore to indicate protected or private visibility. That is, an underscore prefix explicitly has no meaning. -->
     <rule ref="PSR2.Methods.MethodDeclaration"/>
@@ -345,11 +347,14 @@
     <!-- checked by PSR12.Classes.AnonClassDeclaration -->
 
 
-    <!-- Mindee Comments -->
+    <!-- Mindee Tweaks: -->
+    <!-- PEAR norm is too restrictive, and mostly irrelevant to this repo. Squiz provides a passable alternative.-->
+    <!-- Function comments should only have a description, types & variables, return and throws if needed. -->
     <rule ref="Squiz.Commenting.FunctionComment"/>
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
+    <!-- Class comments need not have anything other than a description. -->
     <rule ref="Squiz.Commenting.ClassComment"/>
-    <rule ref="Squiz.Commenting.FileComment"/>
+    <!-- Variable should be typed whenever applicable. -->
     <rule ref="Squiz.Commenting.VariableComment"/>
 
 </ruleset>

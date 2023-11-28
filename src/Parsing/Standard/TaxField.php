@@ -4,15 +4,36 @@ namespace Mindee\Parsing\Standard;
 
 use ArrayObject;
 
+/**
+ * Tax line information.
+ */
 class TaxField extends BaseField
 {
     use FieldPositionMixin;
 
-    public ?float $value;
+    /**
+     * @var float|null The amount of the tax line.
+     */
+    public $value;
+    /**
+     * @var float|null The tax rate.
+     */
     public ?float $rate;
+    /**
+     * @var string|null The tax code (HST, GST... for Canadian; City Tax, State tax for US, etc..)."
+     */
     public ?string $code;
+    /**
+     * @var float|null The tax base.
+     */
     public ?float $basis;
 
+    /**
+     * @param array        $raw_prediction Raw prediction array.
+     * @param integer|null $page_id        Page number for multi pages document.
+     * @param boolean      $reconstructed  Whether the field has been reconstructed.
+     * @param string       $value_key      Key to use for the value.
+     */
     public function __construct(
         array $raw_prediction,
         ?int $page_id = null,
@@ -32,7 +53,11 @@ class TaxField extends BaseField
         } else {
             $this->rate = null;
         }
-        if (array_key_exists('code', $raw_prediction) && is_scalar($raw_prediction['code']) && $raw_prediction['code'] != 'N/A') {
+        if (
+            array_key_exists('code', $raw_prediction) && is_scalar(
+                $raw_prediction['code']
+            ) && $raw_prediction['code'] != 'N/A'
+        ) {
             $this->code = strval($raw_prediction['code']);
         } else {
             $this->code = null;
@@ -44,71 +69,46 @@ class TaxField extends BaseField
         }
     }
 
+    /**
+     * Returns an array of immediately printable values.
+     *
+     * @return array Array of printable values.
+     */
     private function printableValues(): array
     {
         return [
-            'code' => isset($this->code) ? $this->code : '',
+            'code' => $this->code ?? '',
             'basis' => strval($this->basis),
             'rate' => strval($this->rate),
             'value' => strval($this->value),
         ];
     }
 
+    /**
+     * Returns the field as a rst-compliant table line.
+     *
+     * @return string Table line as a string.
+     */
     public function toTableLine(): string
     {
         $printable = $this->printableValues();
 
-        return '| '.str_pad($printable['basis'], 13, ' ').
-            ' | '.str_pad($printable['code'], 6, ' ').
-            ' | '.str_pad($printable['rate'], 8, ' ').
-            ' | '.str_pad($printable['rate'], 13, ' ').' |';
+        return '| ' . str_pad($printable['basis'], 13, ' ') .
+            ' | ' . str_pad($printable['code'], 6, ' ') .
+            ' | ' . str_pad($printable['rate'], 8, ' ') .
+            ' | ' . str_pad($printable['rate'], 13, ' ') . ' |';
     }
 
+    /**
+     * @return string String representation.
+     */
     public function __toString(): string
     {
         $printable = $this->printableValues();
 
-        return 'Base: '.$printable['basis'].'. ,'.
-        'Code: '.$printable['code'].', '.
-        'Rate (%): '.$printable['rate'].', '.
-        'Amount: '.$printable['value'].', ';
-    }
-}
-
-class Taxes extends ArrayObject
-{
-    public function __construct(array $raw_prediction, ?int $page_id)
-    {
-        $entries = [];
-        foreach ($raw_prediction as $entry) {
-            array_push($entries, new TaxField($entry, $page_id = $page_id));
-        }
-        parent::__construct($entries);
-    }
-
-    private static function lineSeparator(string $char): string
-    {
-        $out_str = '';
-        $out_str .= '+'.str_repeat($char, 15);
-        $out_str .= '+'.str_repeat($char, 8);
-        $out_str .= '+'.str_repeat($char, 10);
-        $out_str .= '+'.str_repeat($char, 15);
-
-        return $out_str.'+';
-    }
-
-    public function __toString()
-    {
-        $out_str = '';
-        $out_str .= "\n".Taxes::lineSeparator('-')."\n";
-        $out_str .= "  | Base          | Code   | Rate (%) | Amount        |\n";
-        $out_str .= Taxes::lineSeparator('=');
-        $arr = [];
-        foreach ($this as $entry) {
-            array_push($arr, "\n  ".$entry->toTableLine()."\n".Taxes::lineSeparator('='));
-        }
-        $out_str .= implode("\n", $arr);
-
-        return $out_str;
+        return 'Base: ' . $printable['basis'] . '. ,' .
+            'Code: ' . $printable['code'] . ', ' .
+            'Rate (%): ' . $printable['rate'] . ', ' .
+            'Amount: ' . $printable['value'] . ', ';
     }
 }

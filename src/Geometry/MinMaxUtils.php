@@ -2,9 +2,18 @@
 
 namespace Mindee\Geometry;
 
+/**
+ * Utility class for MinMax.
+ */
 class MinMaxUtils
 {
-    public static function get_min_max_y(array $points): MinMax
+    /**
+     * Retrieves the upper and lower bounds of the y-axis from an array of points.
+     *
+     * @param array $points An array of points.
+     * @return \Mindee\Geometry\MinMax
+     */
+    public static function getMinMaxY(array $points): MinMax
     {
         $y_coords = [];
         foreach ($points as $point) {
@@ -14,7 +23,13 @@ class MinMaxUtils
         return new MinMax(min($y_coords), max($y_coords));
     }
 
-    public static function get_min_max_x(array $points): MinMax
+    /**
+     * Retrieves the upper and lower bounds of the x-axis from an array of points.
+     *
+     * @param array $points An array of points.
+     * @return \Mindee\Geometry\MinMax
+     */
+    public static function getMinMaxX(array $points): MinMax
     {
         $x_coords = [];
         foreach ($points as $point) {
