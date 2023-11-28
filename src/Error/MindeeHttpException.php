@@ -63,8 +63,11 @@ class MindeeHttpException extends MindeeException
     }
 
     /**
-     * @param $response array|string Parsed server response
+     * Builds an appropriate error object from the server reply.
+     *
+     * @param array|string $response Parsed server response.
      * @return string[]
+     * @throws \Mindee\Error\MindeeException Throws if the error itself can't be built.
      */
     public static function createErrorObj($response): array
     {
@@ -112,7 +115,9 @@ class MindeeHttpException extends MindeeException
         if (array_key_exists('api_request', $response) && array_key_exists('error', $response['api_request'])) {
             return $response['api_request']['error'];
         }
-        throw new MindeeException('Could not build a specific HTTP exception from: ' . json_encode($response, JSON_PRETTY_PRINT));
+        throw new MindeeException(
+            'Could not build a specific HTTP exception from: ' . json_encode($response, JSON_PRETTY_PRINT)
+        );
     }
 
     /**

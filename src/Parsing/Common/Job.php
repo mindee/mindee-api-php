@@ -4,29 +4,38 @@ namespace Mindee\Parsing\Common;
 
 use Mindee\Error\MindeeApiException;
 
+/**
+ * Job class for asynchronous requests.
+ *
+ * Will hold information on the queue a document has been submitted to.
+ */
 class Job
 {
     /**
-     * ID of the job sent by the API in response to an enqueue request.
+     * @var string ID of the job sent by the API in response to an enqueue request.
      */
     public string $id;
     /**
-     * Timestamp of the request reception by the API.
+     * @var \DateTimeImmutable Timestamp of the request reception by the API.
      */
     public \DateTimeImmutable $issued_at;
     /**
-     * Timestamp of the request after it has been completed.
+     * @var \DateTimeImmutable Timestamp of the request after it has been completed.
      */
     public \DateTimeImmutable $available_at;
     /**
-     * Status of the request, as seen by the API.
+     * @var string Status of the request, as seen by the API.
      */
     public string $status;
     /**
-     * Time (ms) taken for the request to be processed by the API.
+     * @var integer Time (ms) taken for the request to be processed by the API.
      */
     public int $millisecs_taken;
 
+    /**
+     * @param array $raw_response Raw prediction array.
+     * @throws \Mindee\Error\MindeeApiException Throws if a date is faulty.
+     */
     public function __construct(array $raw_response)
     {
         try {
@@ -56,6 +65,9 @@ class Job
         }
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         $obj_as_json = get_object_vars($this);

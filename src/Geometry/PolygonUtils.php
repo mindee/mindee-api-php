@@ -132,7 +132,7 @@ abstract class PolygonUtils
     }
 
     /**
-     * Compares two polygons on the Y axis, and sends a sort-compliant result (0;-1;1).
+     * Compares two polygons on the Y axis. Returns a sort-compliant result (0;-1;1).
      *
      * @param \Mindee\Geometry\Polygon $polygon1 First polygon to compare.
      * @param \Mindee\Geometry\Polygon $polygon2 Second polygon to compare.

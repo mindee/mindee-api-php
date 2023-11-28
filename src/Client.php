@@ -52,6 +52,7 @@ class Client
 
     /**
      * @param string $file_path Path of the file.
+     * @return PathInput
      */
     public function sourceFromPath(string $file_path): PathInput
     {
@@ -59,10 +60,10 @@ class Client
     }
 
     /**
-     * @param $file array File object as created from the file() function.
-     * @return LocalInputSource
+     * @param array $file File object as created from the file() function.
+     * @return FileInput
      */
-    public function sourceFromFile(array $file): LocalInputSource
+    public function sourceFromFile(array $file): FileInput
     {
         return new FileInput($file);
     }
@@ -128,8 +129,9 @@ class Client
     }
 
     /**
-     * @param $product string Name of the product's class.
+     * @param string $product Name of the product's class.
      * @return Endpoint
+     * @throws \Mindee\Error\MindeeApiException Throws if the product isn't recognized.
      */
     private function constructOTSEndpoint(string $product): Endpoint
     {
@@ -155,6 +157,7 @@ class Client
      * @param string      $account_name  Name of the endpoint's owner.
      * @param string|null $version       Version of the endpoint.
      * @return Endpoint
+     * @throws \Mindee\Error\MindeeClientException Throws if a custom endpoint name isn't provided.
      */
     public function createEndpoint(string $endpoint_name, string $account_name, ?string $version = null): Endpoint
     {
@@ -183,6 +186,7 @@ class Client
      * @param string   $queue_id        ID of the queue.
      * @param Endpoint $endpoint        Endpoint to poll.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
      */
     private function makeParseQueuedRequest(
         string $prediction_type,
@@ -206,6 +210,8 @@ class Client
      * @param InputSource          $input_doc       Input file.
      * @param PredictMethodOptions $options         Prediction Options.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
+     * @throws \Mindee\Error\MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeEnqueueRequest(
         string $prediction_type,
@@ -240,6 +246,8 @@ class Client
      * @param InputSource          $input_doc       Input file.
      * @param PredictMethodOptions $options         Prediction Options.
      * @return PredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
+     * @throws \Mindee\Error\MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeParseRequest(
         string $prediction_type,
@@ -296,6 +304,7 @@ class Client
      * @param PredictMethodOptions|null         $options         Prediction Options.
      * @param EnqueueAndParseMethodOptions|null $async_options   Async Options. Manages timers.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeApiException Throws if the document couldn't be retrieved in time.
      */
     public function enqueueAndParse(
         string $prediction_type,
@@ -342,6 +351,7 @@ class Client
      * @param InputSource               $input_doc       Input File.
      * @param PredictMethodOptions|null $options         Prediction Options.
      * @return AsyncPredictResponse
+     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
      */
     public function enqueue(
         string $prediction_type,
