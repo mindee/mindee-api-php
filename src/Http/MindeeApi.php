@@ -6,6 +6,7 @@
 
 namespace Mindee\Http;
 
+use Mindee\Client;
 use Mindee\Error\MindeeException;
 
 use const Mindee\VERSION;
@@ -138,8 +139,12 @@ class MindeeApi
      * @param string      $version      Version of the endpoint.
      * @throws \Mindee\Error\MindeeException Throws if the API key specified is invalid.
      */
-    public function __construct(?string $apiKey, string $endpointName, string $accountName, string $version)
-    {
+    public function __construct(
+        ?string $apiKey,
+        string $endpointName,
+        ?string $accountName = Client::DEFAULT_OWNER,
+        ?string $version = "1"
+    ) {
         $this->setApiKey($apiKey);
         if (!$this->apiKey) {
             throw new MindeeException(

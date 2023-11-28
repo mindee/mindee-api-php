@@ -1,0 +1,33 @@
+name: Unit tests
+
+on:
+  - push
+
+jobs:
+  phpunit-ubuntu:
+    name: Run Tests
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        os:
+          - "ubuntu-latest"
+          # - "windows-latest" # No composer actions are compatible with windows at the moment.
+        php-version:
+          - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
+          - 8.3
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v2
+      - name: Unit testing with phpunit
+        env:
+          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
+        run: |
+          ./vendor/bin/phpunit -c tests/phpunit.xml

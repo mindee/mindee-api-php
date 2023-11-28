@@ -57,7 +57,7 @@ class BBox
      *
      * @return float
      */
-    public function getMaX(): float
+    public function getMaxX(): float
     {
         return $this->maxX;
     }
