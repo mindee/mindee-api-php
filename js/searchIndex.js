@@ -18,87 +18,87 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromPath\u0028\u0029",
             "name": "sourceFromPath",
-            "summary": "",
+            "summary": "Load\u0020a\u0020document\u0020from\u0020an\u0020absolute\u0020path,\u0020as\u0020a\u0020string.",
             "url": "classes/Mindee-Client.html#method_sourceFromPath"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromFile\u0028\u0029",
             "name": "sourceFromFile",
-            "summary": "",
+            "summary": "Load\u0020a\u0020document\u0020from\u0020a\u0020normal\u0020PHP\u0020file\u0020object.",
             "url": "classes/Mindee-Client.html#method_sourceFromFile"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromBytes\u0028\u0029",
             "name": "sourceFromBytes",
-            "summary": "",
+            "summary": "Load\u0020a\u0020document\u0020from\u0020raw\u0020bytes.",
             "url": "classes/Mindee-Client.html#method_sourceFromBytes"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromb64String\u0028\u0029",
             "name": "sourceFromb64String",
-            "summary": "",
+            "summary": "Load\u0020a\u0020document\u0020from\u0020a\u0020base64\u0020encoded\u0020string.",
             "url": "classes/Mindee-Client.html#method_sourceFromb64String"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromUrl\u0028\u0029",
             "name": "sourceFromUrl",
-            "summary": "",
+            "summary": "Load\u0020a\u0020document\u0020from\u0020an\u0020URL.",
             "url": "classes/Mindee-Client.html#method_sourceFromUrl"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AconstructEndpoint\u0028\u0029",
             "name": "constructEndpoint",
-            "summary": "",
+            "summary": "Builds\u0020a\u0020custom\u0020endpoint.",
             "url": "classes/Mindee-Client.html#method_constructEndpoint"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AcleanAccountName\u0028\u0029",
             "name": "cleanAccountName",
-            "summary": "",
+            "summary": "Cleans\u0020the\u0020account\u0020name.",
             "url": "classes/Mindee-Client.html#method_cleanAccountName"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AconstructOTSEndpoint\u0028\u0029",
             "name": "constructOTSEndpoint",
-            "summary": "",
+            "summary": "Builds\u0020an\u0020off\u002Dthe\u002Dshelf\u0020endpoint.",
             "url": "classes/Mindee-Client.html#method_constructOTSEndpoint"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AcreateEndpoint\u0028\u0029",
             "name": "createEndpoint",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020custom\u0020endpoint,\u0020created\u0020using\u0020the\u0020Mindee\u0020API\u0020Builder.",
             "url": "classes/Mindee-Client.html#method_createEndpoint"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AcutDocPages\u0028\u0029",
             "name": "cutDocPages",
-            "summary": "",
+            "summary": "Cut\u0020the\u0020pages\u0020of\u0020a\u0020PDF\u0020following\u0020the\u0020detailed\u0020operations.",
             "url": "classes/Mindee-Client.html#method_cutDocPages"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AmakeParseQueuedRequest\u0028\u0029",
             "name": "makeParseQueuedRequest",
-            "summary": "",
+            "summary": "Makes\u0020the\u0020request\u0020to\u0020retrieve\u0020an\u0020async\u0020document.",
             "url": "classes/Mindee-Client.html#method_makeParseQueuedRequest"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AmakeEnqueueRequest\u0028\u0029",
             "name": "makeEnqueueRequest",
-            "summary": "",
+            "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020an\u0020asynchronous\u0020endpoint.",
             "url": "classes/Mindee-Client.html#method_makeEnqueueRequest"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AmakeParseRequest\u0028\u0029",
             "name": "makeParseRequest",
-            "summary": "",
+            "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020a\u0020synchronous\u0020endpoint.",
             "url": "classes/Mindee-Client.html#method_makeParseRequest"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003Aparse\u0028\u0029",
             "name": "parse",
-            "summary": "",
+            "summary": "Call\u0020prediction\u0020API\u0020on\u0020the\u0020document\u0020and\u0020parse\u0020the\u0020results.",
             "url": "classes/Mindee-Client.html#method_parse"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AenqueueAndParse\u0028\u0029",
             "name": "enqueueAndParse",
-            "summary": "",
+            "summary": "Enqueues\u0020a\u0020document\u0020and\u0020automatically\u0020polls\u0020the\u0020response.\u0020Asynchronous\u0020calls\u0020only.",
             "url": "classes/Mindee-Client.html#method_enqueueAndParse"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003Aenqueue\u0028\u0029",
             "name": "enqueue",
-            "summary": "",
+            "summary": "Enqueue\u0020a\u0020document\u0020to\u0020an\u0020asynchronous\u0020endpoint.",
             "url": "classes/Mindee-Client.html#method_enqueue"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AparseQueued\u0028\u0029",
             "name": "parseQueued",
-            "summary": "",
+            "summary": "Parses\u0020a\u0020queued\u0020document.",
             "url": "classes/Mindee-Client.html#method_parseQueued"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003A\u0024apiKey",
@@ -201,10 +201,10 @@ Search.appendIndex(
             "summary": "Retrieves\u0020the\u0020minimum\u0020x\u0020coordinate.",
             "url": "classes/Mindee-Geometry-BBox.html#method_getMinX"
         },                {
-            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaX\u0028\u0029",
-            "name": "getMaX",
+            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaxX\u0028\u0029",
+            "name": "getMaxX",
             "summary": "Retrieves\u0020the\u0020maximum\u0020x\u0020coordinate.",
-            "url": "classes/Mindee-Geometry-BBox.html#method_getMaX"
+            "url": "classes/Mindee-Geometry-BBox.html#method_getMaxX"
         },                {
             "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMinY\u0028\u0029",
             "name": "getMinY",
