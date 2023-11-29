@@ -151,25 +151,25 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Error-MindeeHttpException.html#method_handleError"
         },                {
-            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024status_code",
-            "name": "status_code",
+            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024statusCode",
+            "name": "statusCode",
             "summary": "",
-            "url": "classes/Mindee-Error-MindeeHttpException.html#property_status_code"
+            "url": "classes/Mindee-Error-MindeeHttpException.html#property_statusCode"
         },                {
-            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024api_code",
-            "name": "api_code",
+            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024apiCode",
+            "name": "apiCode",
             "summary": "",
-            "url": "classes/Mindee-Error-MindeeHttpException.html#property_api_code"
+            "url": "classes/Mindee-Error-MindeeHttpException.html#property_apiCode"
         },                {
-            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024api_details",
-            "name": "api_details",
+            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024apiDetails",
+            "name": "apiDetails",
             "summary": "",
-            "url": "classes/Mindee-Error-MindeeHttpException.html#property_api_details"
+            "url": "classes/Mindee-Error-MindeeHttpException.html#property_apiDetails"
         },                {
-            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024api_message",
-            "name": "api_message",
+            "fqsen": "\\Mindee\\Error\\MindeeHttpException\u003A\u003A\u0024apiMessage",
+            "name": "apiMessage",
             "summary": "",
-            "url": "classes/Mindee-Error-MindeeHttpException.html#property_api_message"
+            "url": "classes/Mindee-Error-MindeeHttpException.html#property_apiMessage"
         },                {
             "fqsen": "\\Mindee\\Error\\MindeeHttpServerException",
             "name": "MindeeHttpServerException",
@@ -201,10 +201,10 @@ Search.appendIndex(
             "summary": "Retrieves\u0020the\u0020minimum\u0020x\u0020coordinate.",
             "url": "classes/Mindee-Geometry-BBox.html#method_getMinX"
         },                {
-            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaxX\u0028\u0029",
-            "name": "getMaxX",
+            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaX\u0028\u0029",
+            "name": "getMaX",
             "summary": "Retrieves\u0020the\u0020maximum\u0020x\u0020coordinate.",
-            "url": "classes/Mindee-Geometry-BBox.html#method_getMaxX"
+            "url": "classes/Mindee-Geometry-BBox.html#method_getMaX"
         },                {
             "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMinY\u0028\u0029",
             "name": "getMinY",
@@ -861,10 +861,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-PredictOptions.html#method_setCropper"
         },                {
-            "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003A\u0024include_words",
-            "name": "include_words",
+            "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003A\u0024includeWords",
+            "name": "includeWords",
             "summary": "",
-            "url": "classes/Mindee-Input-PredictOptions.html#property_include_words"
+            "url": "classes/Mindee-Input-PredictOptions.html#property_includeWords"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003A\u0024cropper",
             "name": "cropper",
@@ -996,10 +996,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Document.html#property_id"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Document\u003A\u003A\u0024n_pages",
-            "name": "n_pages",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Document\u003A\u003A\u0024nPages",
+            "name": "nPages",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Document.html#property_n_pages"
+            "url": "classes/Mindee-Parsing-Common-Document.html#property_nPages"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Document\u003A\u003A\u0024extras",
             "name": "extras",
@@ -1081,15 +1081,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Inference.html#property_product"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Inference\u003A\u003A\u0024endpoint_name",
-            "name": "endpoint_name",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Inference\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Inference.html#property_endpoint_name"
+            "url": "classes/Mindee-Parsing-Common-Inference.html#property_endpointName"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Inference\u003A\u003A\u0024endpoint_version",
-            "name": "endpoint_version",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Inference\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Inference.html#property_endpoint_version"
+            "url": "classes/Mindee-Parsing-Common-Inference.html#property_endpointVersion"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Inference\u003A\u003A\u0024prediction",
             "name": "prediction",
@@ -1131,25 +1131,25 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Job.html#property_id"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024issued_at",
-            "name": "issued_at",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024issuedAt",
+            "name": "issuedAt",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Job.html#property_issued_at"
+            "url": "classes/Mindee-Parsing-Common-Job.html#property_issuedAt"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024available_at",
-            "name": "available_at",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024availableAt",
+            "name": "availableAt",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Job.html#property_available_at"
+            "url": "classes/Mindee-Parsing-Common-Job.html#property_availableAt"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024status",
             "name": "status",
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Job.html#property_status"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024millisecs_taken",
-            "name": "millisecs_taken",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024millisecsTaken",
+            "name": "millisecsTaken",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Job.html#property_millisecs_taken"
+            "url": "classes/Mindee-Parsing-Common-Job.html#property_millisecsTaken"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\MVisionV1",
             "name": "MVisionV1",
@@ -1186,10 +1186,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Ocr-Ocr.html#method___toString"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\Ocr\u003A\u003A\u0024mvision_v1",
-            "name": "mvision_v1",
+            "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\Ocr\u003A\u003A\u0024mvisionV1",
+            "name": "mvisionV1",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Common-Ocr-Ocr.html#property_mvision_v1"
+            "url": "classes/Mindee-Parsing-Common-Ocr-Ocr.html#property_mvisionV1"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\OcrLine",
             "name": "OcrLine",
@@ -1461,10 +1461,10 @@ Search.appendIndex(
             "summary": "Creates\u0020the\u0020line\u0020items.",
             "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method_getLineItems"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A\u0024row_number",
-            "name": "row_number",
+            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A\u0024rowNumber",
+            "name": "rowNumber",
             "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#property_row_number"
+            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#property_rowNumber"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A\u0024fields",
             "name": "fields",
@@ -1901,15 +1901,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Custom-CustomV1.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A\u0024endpoint_name",
-            "name": "endpoint_name",
+            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
             "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1.html#property_endpoint_name"
+            "url": "classes/Mindee-Product-Custom-CustomV1.html#property_endpointName"
         },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A\u0024endpoint_version",
-            "name": "endpoint_version",
+            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
             "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1.html#property_endpoint_version"
+            "url": "classes/Mindee-Product-Custom-CustomV1.html#property_endpointVersion"
         },                {
             "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document",
             "name": "CustomV1Document",
@@ -1971,15 +1971,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A\u0024endpoint_name",
-            "name": "endpoint_name",
+            "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
             "summary": "",
-            "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1.html#property_endpoint_name"
+            "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1.html#property_endpointName"
         },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A\u0024endpoint_version",
-            "name": "endpoint_version",
+            "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
             "summary": "",
-            "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1.html#property_endpoint_version"
+            "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1.html#property_endpointVersion"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1Document",
             "name": "IdCardV1Document",
@@ -2076,15 +2076,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1\u003A\u003A\u0024endpoint_name",
-            "name": "endpoint_name",
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
             "summary": "",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1.html#property_endpoint_name"
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1.html#property_endpointName"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1\u003A\u003A\u0024endpoint_version",
-            "name": "endpoint_version",
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
             "summary": "",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1.html#property_endpoint_version"
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1.html#property_endpointVersion"
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1Document",
             "name": "InvoiceSplitterV1Document",
