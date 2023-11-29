@@ -29,14 +29,14 @@ class ApiRequest
     public string $url;
 
     /**
-     * @param array $raw_response Raw HTTP response.
+     * @param array $rawResponse Raw HTTP response.
      */
-    public function __construct(array $raw_response)
+    public function __construct(array $rawResponse)
     {
-        $this->url = $raw_response['url'];
-        $this->error = $raw_response['error'];
-        $this->resources = $raw_response['resources'];
-        $this->status = $raw_response['status'];
-        $this->statusCode = $raw_response['status_code'];
+        $this->url = $rawResponse['url'];
+        $this->error = $rawResponse['error'];
+        $this->resources = $rawResponse['resources'];
+        $this->status = $rawResponse['status'];
+        $this->statusCode = $rawResponse['status_code'];
     }
 }

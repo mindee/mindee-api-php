@@ -15,21 +15,21 @@ class OrientationField extends BaseField
     public $value;
 
     /**
-     * @param array        $raw_prediction Raw prediction array.
-     * @param integer|null $page_id        Page number for multi pages PDF.
-     * @param boolean      $reconstructed  Whether the field was reconstructed.
-     * @param string       $value_key      Key to use for the value.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages PDF.
+     * @param boolean      $reconstructed Whether the field was reconstructed.
+     * @param string       $valueKey      Key to use for the value.
      */
     public function __construct(
-        array $raw_prediction,
-        ?int $page_id = null,
+        array $rawPrediction,
+        ?int $pageId = null,
         bool $reconstructed = false,
-        string $value_key = 'value'
+        string $valueKey = 'value'
     ) {
-        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
+        parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->value = 0;
-        if (array_key_exists($value_key, $raw_prediction) && is_numeric($raw_prediction[$value_key])) {
-            $this->value = intval($raw_prediction[$value_key]);
+        if (array_key_exists($valueKey, $rawPrediction) && is_numeric($rawPrediction[$valueKey])) {
+            $this->value = intval($rawPrediction[$valueKey]);
             if (!in_array($this->value, [0, 90, 180, 270])) {
                 $this->value = 0;
             }

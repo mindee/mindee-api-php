@@ -15,13 +15,13 @@ trait FieldConfidenceMixin
     /**
      * Sets the confidence score.
      *
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      * @return void
      */
-    protected function setConfidence(array $raw_prediction)
+    protected function setConfidence(array $rawPrediction)
     {
-        if (array_key_exists('confidence', $raw_prediction) && $raw_prediction['confidence']) {
-            $this->confidence = $raw_prediction['confidence'];
+        if (array_key_exists('confidence', $rawPrediction) && $rawPrediction['confidence']) {
+            $this->confidence = $rawPrediction['confidence'];
         } else {
             $this->confidence = 0.0;
         }

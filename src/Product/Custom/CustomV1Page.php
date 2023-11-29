@@ -16,13 +16,13 @@ class CustomV1Page extends Prediction
     public array $fields;
 
     /**
-     * @param array $raw_prediction Dictionary containing the JSON document response.
+     * @param array $rawPrediction Dictionary containing the JSON document response.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
         $this->fields = [];
-        foreach ($raw_prediction as $field_name => $field_contents) {
-            $this->fields[$field_name] = new ListField($field_contents);
+        foreach ($rawPrediction as $fieldName => $fieldContents) {
+            $this->fields[$fieldName] = new ListField($fieldContents);
         }
     }
 
@@ -31,10 +31,10 @@ class CustomV1Page extends Prediction
      */
     public function __toString(): string
     {
-        $out_str = "";
-        foreach ($this->fields as $field_name => $field_value) {
-            $out_str .= ":$field_name: $field_value\n";
+        $outStr = "";
+        foreach ($this->fields as $fieldName => $fieldValue) {
+            $outStr .= ":$fieldName: $fieldValue\n";
         }
-        return trim($out_str);
+        return trim($outStr);
     }
 }

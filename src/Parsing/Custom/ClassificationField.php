@@ -17,13 +17,13 @@ class ClassificationField
     public float $confidence;
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
     public function __construct(
-        array $raw_prediction
+        array $rawPrediction
     ) {
-        $this->value = $raw_prediction['value'];
-        $this->confidence = $raw_prediction['confidence'];
+        $this->value = $rawPrediction['value'];
+        $this->confidence = $rawPrediction['confidence'];
     }
 
     /**

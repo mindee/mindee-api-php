@@ -29,17 +29,17 @@ class PaymentDetailsField extends BaseField
     /**
      * Gets the value of any given key.
      *
-     * @param array  $raw_prediction Raw prediction array.
-     * @param string $key            Key to get the value of.
+     * @param array  $rawPrediction Raw prediction array.
+     * @param string $key           Key to get the value of.
      * @return string|null
      */
-    private function getValue(array $raw_prediction, string $key): ?string
+    private function getValue(array $rawPrediction, string $key): ?string
     {
         if (
-            array_key_exists($key, $raw_prediction) &&
-            is_scalar($raw_prediction[$key])
+            array_key_exists($key, $rawPrediction) &&
+            is_scalar($rawPrediction[$key])
         ) {
-            $value = strval($raw_prediction[$key]);
+            $value = strval($rawPrediction[$key]);
         } else {
             $value = null;
         }
@@ -51,33 +51,33 @@ class PaymentDetailsField extends BaseField
     }
 
     /**
-     * @param array        $raw_prediction     Raw prediction array.
-     * @param integer|null $page_id            Page number for multi pages PDF.
-     * @param boolean      $reconstructed      Whether the field was reconstructed.
-     * @param string       $value_key          Key to use for the value.
-     * @param string       $account_number_key Key to use for the account number.
-     * @param string       $iban_key           Key to use for the IBAN.
-     * @param string       $routing_number_key Key to use for the routing number.
-     * @param string       $swift_key          Key to use for the SWIFT code.
+     * @param array        $rawPrediction    Raw prediction array.
+     * @param integer|null $pageId           Page number for multi pages PDF.
+     * @param boolean      $reconstructed    Whether the field was reconstructed.
+     * @param string       $valueKey         Key to use for the value.
+     * @param string       $accountNumberKey Key to use for the account number.
+     * @param string       $ibanKey          Key to use for the IBAN.
+     * @param string       $routingNumberKey Key to use for the routing number.
+     * @param string       $swiftKey         Key to use for the SWIFT code.
      */
     public function __construct(
-        array $raw_prediction,
-        ?int $page_id = null,
+        array $rawPrediction,
+        ?int $pageId = null,
         bool $reconstructed = false,
-        string $value_key = 'iban',
-        string $account_number_key = 'account_number',
-        string $iban_key = 'iban',
-        string $routing_number_key = 'routing_number',
-        string $swift_key = 'swift'
+        string $valueKey = 'iban',
+        string $accountNumberKey = 'account_number',
+        string $ibanKey = 'iban',
+        string $routingNumberKey = 'routing_number',
+        string $swiftKey = 'swift'
     ) {
-        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
+        parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
 
-        $this->setPosition($raw_prediction);
+        $this->setPosition($rawPrediction);
 
-        $this->accountNumber = $this->getValue($raw_prediction, $account_number_key);
-        $this->routingNumber = $this->getValue($raw_prediction, $routing_number_key);
-        $this->iban = $this->getValue($raw_prediction, $iban_key);
-        $this->swift = $this->getValue($raw_prediction, $swift_key);
+        $this->accountNumber = $this->getValue($rawPrediction, $accountNumberKey);
+        $this->routingNumber = $this->getValue($rawPrediction, $routingNumberKey);
+        $this->iban = $this->getValue($rawPrediction, $ibanKey);
+        $this->swift = $this->getValue($rawPrediction, $swiftKey);
     }
 
     /**
@@ -85,23 +85,23 @@ class PaymentDetailsField extends BaseField
      */
     public function __toString(): string
     {
-        $out_str = '';
+        $outStr = '';
         if (isset($this->value)) {
-            $out_str .= $this->value . '; ';
+            $outStr .= $this->value . '; ';
         }
         if (isset($this->accountNumber)) {
-            $out_str .= $this->accountNumber . '; ';
+            $outStr .= $this->accountNumber . '; ';
         }
         if (isset($this->iban)) {
-            $out_str .= $this->iban . '; ';
+            $outStr .= $this->iban . '; ';
         }
         if (isset($this->routingNumber)) {
-            $out_str .= $this->routingNumber . '; ';
+            $outStr .= $this->routingNumber . '; ';
         }
         if (isset($this->swift)) {
-            $out_str .= $this->swift . '; ';
+            $outStr .= $this->swift . '; ';
         }
 
-        return trim($out_str);
+        return trim($outStr);
     }
 }

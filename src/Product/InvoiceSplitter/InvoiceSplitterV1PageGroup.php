@@ -17,16 +17,16 @@ class InvoiceSplitterV1PageGroup
     public float $confidence;
 
     /**
-     * @param array $raw_prediction Array containing the JSON document response.
+     * @param array $rawPrediction Array containing the JSON document response.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
         $this->pageIndexes = [];
-        foreach ($raw_prediction['page_indexes'] as $page_index) {
-            $this->pageIndexes[] = $page_index;
+        foreach ($rawPrediction['page_indexes'] as $pageIndex) {
+            $this->pageIndexes[] = $pageIndex;
         }
-        if (in_array('confidence', $raw_prediction) && is_numeric($raw_prediction['confidence'])) {
-            $this->confidence = floatval($raw_prediction['confidence']);
+        if (in_array('confidence', $rawPrediction) && is_numeric($rawPrediction['confidence'])) {
+            $this->confidence = floatval($rawPrediction['confidence']);
         } else {
             $this->confidence = 0.0;
         }
@@ -37,8 +37,8 @@ class InvoiceSplitterV1PageGroup
      */
     public function __toString(): string
     {
-        $out_str = ":Page indexes: ";
-        $out_str .= implode(", ", $this->pageIndexes);
-        return trim($out_str);
+        $outStr = ":Page indexes: ";
+        $outStr .= implode(", ", $this->pageIndexes);
+        return trim($outStr);
     }
 }

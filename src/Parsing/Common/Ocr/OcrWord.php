@@ -23,13 +23,13 @@ class OcrWord
 
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
-        $this->confidence = $raw_prediction['confidence'];
-        $this->text       = $raw_prediction['text'];
-        $this->setPosition($raw_prediction);
+        $this->confidence = $rawPrediction['confidence'];
+        $this->text       = $rawPrediction['text'];
+        $this->setPosition($rawPrediction);
     }
 
 

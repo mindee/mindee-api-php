@@ -56,10 +56,10 @@ class OcrLine
      */
     public function __toString(): string
     {
-        $words_str = [];
+        $wordsStr = [];
         foreach ($this->words as $word) {
-            $words_str[] = $word->text;
+            $wordsStr[] = $word->text;
         }
-        return implode(" ", $words_str);
+        return implode(" ", $wordsStr);
     }
 }

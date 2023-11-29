@@ -15,13 +15,13 @@ class IdCardV1Page extends IdCardV1Document
     public ClassificationField $documentSide;
 
     /**
-     * @param array        $raw_prediction Raw prediction from HTTP response.
-     * @param integer|null $page_id        Page number for multi pages pdf input.
+     * @param array        $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId        Page number for multi pages pdf input.
      */
-    public function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        parent::__construct($raw_prediction);
-        $this->documentSide = new ClassificationField($raw_prediction, $page_id);
+        parent::__construct($rawPrediction);
+        $this->documentSide = new ClassificationField($rawPrediction, $pageId);
     }
 
     /**
@@ -29,8 +29,8 @@ class IdCardV1Page extends IdCardV1Document
      */
     public function __toString(): string
     {
-        $out_str = ":Document Side: $this->documentSide\n";
-        $out_str .= parent::__toString();
-        return trim($out_str);
+        $outStr = ":Document Side: $this->documentSide\n";
+        $outStr .= parent::__toString();
+        return trim($outStr);
     }
 }

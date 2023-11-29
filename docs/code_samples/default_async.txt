@@ -93,9 +93,9 @@ if (
     echo "Document successfully enqueued. Proceeding to fetch the result.\n";
 
     // Get the queue ID
-    $queue_id = $result_post['job']['id'];
+    $queueId = $result_post['job']['id'];
     // Enqueueing URL
-    $url_get = "https://api.mindee.net/v1/products/$ACCOUNT/$ENDPOINT/v$VERSION/documents/queue/$queue_id";
+    $url_get = "https://api.mindee.net/v1/products/$ACCOUNT/$ENDPOINT/v$VERSION/documents/queue/$queueId";
 
     // Create a new handle for the new curl request
     $ch_get = curl_init();
