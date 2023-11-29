@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Invoice;
 
+use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
@@ -71,9 +72,40 @@ class InvoiceV4LineItems
         $this->unitPrice = floatval($raw_prediction["unit_price"]);
     }
 
-    private function printableValues(){
+    /**
+     * Return values for printing as an array.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
         $out_arr = [];
-        $out_arr["description"] =
+        $out_arr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
+        $out_arr["product_code"] = SummaryHelper::formatForDisplay($this->productCode, null);
+        $out_arr["quantity"] = SummaryHelper::formatForDisplay($this->quantity);
+        $out_arr["tax_amount"] = SummaryHelper::formatForDisplay($this->taxAmount);
+        $out_arr["tax_rate"] = SummaryHelper::formatForDisplay($this->taxRate);
+        $out_arr["total_amount"] = SummaryHelper::formatForDisplay($this->totalAmount);
+        $out_arr["unit_price"] = SummaryHelper::formatForDisplay($this->unitPrice);
+        return $out_arr;
+    }
+
+    /**
+     * Output in a format suitable for inclusion in an rST table.
+     *
+     * @return string
+     */
+    private function toTableLines(): string
+    {
+        $printable = $this->printableValues();
+        $out_str = "| " . str_pad($printable["description"], 36) . " | ";
+        $out_str .= str_pad($printable["product_code"], 12);
+        $out_str .= str_pad($printable["quantity"], 8);
+        $out_str .= str_pad($printable["tax_amount"], 10);
+        $out_str .= str_pad($printable["tax_rate"], 12);
+        $out_str .= str_pad($printable["total_amount"], 12);
+        $out_str .= str_pad($printable["unit_price"], 10);
+        return SummaryHelper::cleanOutString($out_str);
     }
 
     /**

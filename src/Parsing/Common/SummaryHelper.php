@@ -23,11 +23,16 @@ class SummaryHelper
         return $out_str;
     }
 
+    public static function cleanOutString(string $input_string): string
+    {
+        return preg_replace('/ *([\n\r])/', "\n", $input_string);
+    }
+
     /**
      * Truncates line-items to the max width of their corresponding column.
      *
-     * @param string|null $input_string String to check.
-     * @param int|null $max_col_size Maximum size for the current column, if it exists.
+     * @param string|null  $input_string String to check.
+     * @param integer|null $max_col_size Maximum size for the current column, if it exists.
      * @return string
      */
     public static function formatForDisplay(?string $input_string = null, ?int $max_col_size = null): string
@@ -38,6 +43,10 @@ class SummaryHelper
         if (!isset($max_col_size)) {
             return $input_string;
         }
-        return count($input_string) < $max_col_size ? $input_string : substr($input_string, 0, $max_col_size - 3) . "...";
+        return count($input_string) < $max_col_size ? $input_string : substr(
+            $input_string,
+            0,
+            $max_col_size - 3
+        ) . "...";
     }
 }
