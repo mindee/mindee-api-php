@@ -1,11 +1,6 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\Mindee\\DEFAULT_OWNER",
-            "name": "DEFAULT_OWNER",
-            "summary": "Default\u0020owner\u0020for\u0020API\u0020products.",
-            "url": "namespaces/mindee.html#constant_DEFAULT_OWNER"
-        },                {
             "fqsen": "\\Mindee\\Client",
             "name": "Client",
             "summary": "Main\u0020entrypoint\u0020for\u0020Mindee\u0020operations.",
@@ -100,6 +95,11 @@ Search.appendIndex(
             "name": "parseQueued",
             "summary": "Parses\u0020a\u0020queued\u0020document.",
             "url": "classes/Mindee-Client.html#method_parseQueued"
+        },                {
+            "fqsen": "\\Mindee\\Client\u003A\u003ADEFAULT_OWNER",
+            "name": "DEFAULT_OWNER",
+            "summary": "Default\u0020owner\u0020for\u0020API\u0020products.",
+            "url": "classes/Mindee-Client.html#constant_DEFAULT_OWNER"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003A\u0024apiKey",
             "name": "apiKey",
@@ -201,10 +201,10 @@ Search.appendIndex(
             "summary": "Retrieves\u0020the\u0020minimum\u0020x\u0020coordinate.",
             "url": "classes/Mindee-Geometry-BBox.html#method_getMinX"
         },                {
-            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaX\u0028\u0029",
-            "name": "getMaX",
+            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaxX\u0028\u0029",
+            "name": "getMaxX",
             "summary": "Retrieves\u0020the\u0020maximum\u0020x\u0020coordinate.",
-            "url": "classes/Mindee-Geometry-BBox.html#method_getMaX"
+            "url": "classes/Mindee-Geometry-BBox.html#method_getMaxX"
         },                {
             "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMinY\u0028\u0029",
             "name": "getMinY",
