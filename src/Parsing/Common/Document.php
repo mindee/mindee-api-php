@@ -26,7 +26,7 @@ class Document
     /**
      * @var integer|mixed Amount of pages in the document
      */
-    public int $n_pages;
+    public int $nPages;
     /**
      * @var \Mindee\Parsing\Common\Extras\Extras|null Potential Extras fields sent back along with the prediction.
      */
@@ -37,26 +37,26 @@ class Document
     public ?Ocr $ocr;
 
     /**
-     * @param string $prediction_type Type of prediction.
-     * @param array  $raw_response    Raw HTTP response.
+     * @param string $predictionType Type of prediction.
+     * @param array  $rawResponse    Raw HTTP response.
      * @throws \Mindee\Error\MindeeApiException Throws if the prediction type isn't recognized.
      */
-    public function __construct(string $prediction_type, array $raw_response)
+    public function __construct(string $predictionType, array $rawResponse)
     {
-        $this->id = $raw_response['id'];
-        $this->n_pages = $raw_response['n_pages'];
-        $this->filename = $raw_response['name'];
+        $this->id = $rawResponse['id'];
+        $this->nPages = $rawResponse['n_pages'];
+        $this->filename = $rawResponse['name'];
         try {
-            $reflection = new \ReflectionClass($prediction_type);
-            $this->inference = $reflection->newInstance($raw_response['inference']);
+            $reflection = new \ReflectionClass($predictionType);
+            $this->inference = $reflection->newInstance($rawResponse['inference']);
         } catch (\ReflectionException $exception) {
-            throw new MindeeApiException("Unable to create custom product " . $prediction_type);
+            throw new MindeeApiException("Unable to create custom product " . $predictionType);
         }
-        if (array_key_exists("ocr", $raw_response) && $raw_response['ocr']) {
-            $this->ocr = new Ocr($raw_response['ocr']);
+        if (array_key_exists("ocr", $rawResponse) && $rawResponse['ocr']) {
+            $this->ocr = new Ocr($rawResponse['ocr']);
         }
-        if (array_key_exists("extras", $raw_response) && $raw_response['extras']) {
-            $this->extras = new Extras($raw_response['extras']);
+        if (array_key_exists("extras", $rawResponse) && $rawResponse['extras']) {
+            $this->extras = new Extras($rawResponse['extras']);
         }
     }
 

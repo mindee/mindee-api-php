@@ -13,13 +13,13 @@ class MVisionV1
     public array $pages;
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
         $this->pages = [];
-        foreach ($raw_prediction['pages'] as $page_prediction) {
-            $this->pages[] = new OcrPage($page_prediction);
+        foreach ($rawPrediction['pages'] as $pagePrediction) {
+            $this->pages[] = new OcrPage($pagePrediction);
         }
     }
 
@@ -28,10 +28,10 @@ class MVisionV1
      */
     public function __toString(): string
     {
-        $pages_str = [];
+        $pagesStr = [];
         foreach ($this->pages as $page) {
-            $pages_str[] = strval($page);
+            $pagesStr[] = strval($page);
         }
-        return implode("\n", $pages_str);
+        return implode("\n", $pagesStr);
     }
 }

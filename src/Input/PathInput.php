@@ -8,17 +8,17 @@ namespace Mindee\Input;
 class PathInput extends LocalInputSource
 {
     /**
-     * @param string $file_path Path to open.
+     * @param string $filePath Path to open.
      */
-    public function __construct(string $file_path)
+    public function __construct(string $filePath)
     {
-        $this->filePath = $file_path;
-        $this->fileName = basename($file_path);
+        $this->filePath = $filePath;
+        $this->fileName = basename($filePath);
 
         $file = finfo_open(FILEINFO_MIME_TYPE);
-        $mime_type = finfo_file($file, $this->filePath);
-        $this->fileMimetype = $mime_type;
-        $this->fileObject = new \CURLFile($this->filePath, $mime_type, $this->fileName);
+        $mimeType = finfo_file($file, $this->filePath);
+        $this->fileMimetype = $mimeType;
+        $this->fileObject = new \CURLFile($this->filePath, $mimeType, $this->fileName);
         finfo_close($file);
         parent::__construct();
     }

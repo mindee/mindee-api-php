@@ -29,26 +29,26 @@ abstract class BaseField
     public ?int $pageId;
 
     /**
-     * @param array        $raw_prediction Raw prediction array.
-     * @param integer|null $page_id        Page number for multi pages PDF.
-     * @param boolean      $reconstructed  Whether the field was reconstructed.
-     * @param string       $value_key      Key to use for the value.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages PDF.
+     * @param boolean      $reconstructed Whether the field was reconstructed.
+     * @param string       $valueKey      Key to use for the value.
      */
     public function __construct(
-        array $raw_prediction,
-        ?int $page_id = null,
+        array $rawPrediction,
+        ?int $pageId = null,
         bool $reconstructed = false,
-        string $value_key = 'value'
+        string $valueKey = 'value'
     ) {
-        if (!isset($page_id) && (array_key_exists('page_id', $raw_prediction) && isset($raw_prediction['page_id']))) {
-            $this->pageId = $raw_prediction['page_id'];
+        if (!isset($pageId) && (array_key_exists('page_id', $rawPrediction) && isset($rawPrediction['page_id']))) {
+            $this->pageId = $rawPrediction['page_id'];
         } else {
-            $this->pageId = $page_id;
+            $this->pageId = $pageId;
         }
         $this->reconstructed = $reconstructed;
-        if (array_key_exists($value_key, $raw_prediction) && $raw_prediction[$value_key] != 'N/A') {
-            $this->value = $raw_prediction[$value_key];
-            $this->setConfidence($raw_prediction);
+        if (array_key_exists($valueKey, $rawPrediction) && $rawPrediction[$valueKey] != 'N/A') {
+            $this->value = $rawPrediction[$valueKey];
+            $this->setConfidence($rawPrediction);
         } else {
             $this->value = null;
         }

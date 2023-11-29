@@ -34,15 +34,15 @@ class Extras
     }
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
-        foreach ($raw_prediction as $key => $extra) {
+        foreach ($rawPrediction as $key => $extra) {
             if ($key != 'cropper') {
                 $this->__set($key, $extra);
             } else {
-                $this->__set('cropper', new CropperExtra($raw_prediction['cropper']));
+                $this->__set('cropper', new CropperExtra($rawPrediction['cropper']));
             }
         }
     }

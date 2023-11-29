@@ -10,14 +10,14 @@ class Ocr
     /**
      * @var \Mindee\Parsing\Common\Ocr\MVisionV1 Mindee Vision v1 results.
      */
-    public MVisionV1 $mvision_v1;
+    public MVisionV1 $mvisionV1;
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
-        $this->mvision_v1 = new MVisionV1($raw_prediction['mvision-v1']);
+        $this->mvisionV1 = new MVisionV1($rawPrediction['mvision-v1']);
     }
 
     /**
@@ -25,6 +25,6 @@ class Ocr
      */
     public function __toString(): string
     {
-        return strval($this->mvision_v1);
+        return strval($this->mvisionV1);
     }
 }

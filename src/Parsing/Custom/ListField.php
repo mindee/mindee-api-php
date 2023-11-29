@@ -21,15 +21,15 @@ class ListField
     public array $values;
 
     /**
-     * @param array   $raw_prediction Raw prediction array.
-     * @param boolean $reconstructed  Whether the field has been reconstructed.
+     * @param array   $rawPrediction Raw prediction array.
+     * @param boolean $reconstructed Whether the field has been reconstructed.
      */
-    public function __construct(array $raw_prediction, bool $reconstructed = false)
+    public function __construct(array $rawPrediction, bool $reconstructed = false)
     {
         $this->values = [];
         $this->reconstructed = $reconstructed;
 
-        foreach ($raw_prediction['value'] as $value) {
+        foreach ($rawPrediction['value'] as $value) {
             $this->values[] = new ListFieldValue($value);
         }
         $this->confidence = 0.0;

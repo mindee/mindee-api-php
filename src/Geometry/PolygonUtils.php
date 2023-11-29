@@ -17,7 +17,7 @@ abstract class PolygonUtils
      */
     public static function getCentroid(array $vertices): Point
     {
-        $vertices_sum = count($vertices);
+        $verticesSum = count($vertices);
 
         $xSum = 0.0;
         $ySum = 0.0;
@@ -28,7 +28,7 @@ abstract class PolygonUtils
             $ySum += $vertex->getY();
         }
 
-        return new Point($xSum / $vertices_sum, $ySum / $vertices_sum);
+        return new Point($xSum / $verticesSum, $ySum / $verticesSum);
     }
 
     /**
@@ -182,16 +182,16 @@ abstract class PolygonUtils
     {
         $merged = PolygonUtils::merge($base, $target);
 
-        $top_left = new Point(self::getMinXCoordinate($merged), self::getMinYCoordinate($merged));
-        $top_right = new Point(self::getMaxXCoordinate($merged), self::getMinYCoordinate($merged));
-        $bottom_right = new Point(self::getMaxXCoordinate($merged), self::getMaxYCoordinate($merged));
-        $bottom_left = new Point(self::getMinXCoordinate($merged), self::getMaxYCoordinate($merged));
+        $topLeft = new Point(self::getMinXCoordinate($merged), self::getMinYCoordinate($merged));
+        $topRight = new Point(self::getMaxXCoordinate($merged), self::getMinYCoordinate($merged));
+        $bottomRight = new Point(self::getMaxXCoordinate($merged), self::getMaxYCoordinate($merged));
+        $bottomLeft = new Point(self::getMinXCoordinate($merged), self::getMaxYCoordinate($merged));
 
         return new Polygon([
-            $top_left,
-            $top_right,
-            $bottom_right,
-            $bottom_left,
+            $topLeft,
+            $topRight,
+            $bottomRight,
+            $bottomLeft,
         ]);
     }
 
@@ -236,13 +236,13 @@ abstract class PolygonUtils
      * Checks whether a point is located within a coordinate range on the x-axis.
      *
      * @param \Mindee\Geometry\Point $point Point to check.
-     * @param float                  $min_x Lower bound.
-     * @param float                  $max_x Upper bound.
+     * @param float                  $minX  Lower bound.
+     * @param float                  $maxX  Upper bound.
      * @return boolean
      */
-    public static function isPointInX(Point $point, float $min_x, float $max_x): bool
+    public static function isPointInX(Point $point, float $minX, float $maxX): bool
     {
-        return $point->getX() >= $min_x && $point->getX() <= $max_x;
+        return $point->getX() >= $minX && $point->getX() <= $maxX;
     }
 
     /**
@@ -254,22 +254,22 @@ abstract class PolygonUtils
      */
     public static function isPointInPolygonX(Point $point, Polygon $polygon): bool
     {
-        $min_x = MinMaxUtils::getMinMaxX($polygon->getCoordinates())->getMin();
-        $max_x = MinMaxUtils::getMinMaxX($polygon->getCoordinates())->getMax();
-        return self::isPointInX($point, $min_x, $max_x);
+        $minX = MinMaxUtils::getMinMaxX($polygon->getCoordinates())->getMin();
+        $maxX = MinMaxUtils::getMinMaxX($polygon->getCoordinates())->getMax();
+        return self::isPointInX($point, $minX, $maxX);
     }
 
     /**
      * Checks whether a point is located within a coordinate range on the y-axis.
      *
      * @param \Mindee\Geometry\Point $point Point to check.
-     * @param float                  $min_y Lower bound.
-     * @param float                  $max_y Upper bound.
+     * @param float                  $minY  Lower bound.
+     * @param float                  $maxY  Upper bound.
      * @return boolean
      */
-    public static function isPointInY(Point $point, float $min_y, float $max_y): bool
+    public static function isPointInY(Point $point, float $minY, float $maxY): bool
     {
-        return $point->getY() >= $min_y && $point->getY() <= $max_y;
+        return $point->getY() >= $minY && $point->getY() <= $maxY;
     }
 
     /**
@@ -281,8 +281,8 @@ abstract class PolygonUtils
      */
     public static function isPointInPolygonY(Point $point, Polygon $polygon): bool
     {
-        $min_y = MinMaxUtils::getMinMaxY($polygon->getCoordinates())->getMin();
-        $max_y = MinMaxUtils::getMinMaxY($polygon->getCoordinates())->getMax();
-        return self::isPointInY($point, $min_y, $max_y);
+        $minY = MinMaxUtils::getMinMaxY($polygon->getCoordinates())->getMin();
+        $maxY = MinMaxUtils::getMinMaxY($polygon->getCoordinates())->getMax();
+        return self::isPointInY($point, $minY, $maxY);
     }
 }

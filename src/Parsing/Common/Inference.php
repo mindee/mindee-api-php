@@ -16,11 +16,11 @@ abstract class Inference
     /**
      * @var string Name of the product's endpoint.
      */
-    public static string $endpoint_name;
+    public static string $endpointName;
     /**
      * @var string Version of the product's endpoint.
      */
-    public static string $endpoint_version;
+    public static string $endpointVersion;
     /**
      * @var \Mindee\Parsing\Common\Prediction A document's top-level Prediction.
      */
@@ -39,18 +39,18 @@ abstract class Inference
     public ?int $pageId;
 
     /**
-     * @param array        $raw_inference Raw inference array.
-     * @param integer|null $page_id       Page number for multi pages PDF.
+     * @param array        $rawInference Raw inference array.
+     * @param integer|null $pageId       Page number for multi pages PDF.
      */
-    public function __construct(array $raw_inference, ?int $page_id = null)
+    public function __construct(array $rawInference, ?int $pageId = null)
     {
         $this->isRotationApplied = null;
-        if (array_key_exists('is_rotation_applied', $raw_inference)) {
-            $this->isRotationApplied = $raw_inference['is_rotation_applied'];
+        if (array_key_exists('is_rotation_applied', $rawInference)) {
+            $this->isRotationApplied = $rawInference['is_rotation_applied'];
         }
-        $this->product = new Product($raw_inference['product']);
-        if (isset($page_id)) {
-            $this->pageId = $page_id;
+        $this->product = new Product($rawInference['product']);
+        if (isset($pageId)) {
+            $this->pageId = $pageId;
         }
     }
 
@@ -60,13 +60,13 @@ abstract class Inference
      */
     public function __toString(): string
     {
-        $rotation_applied = $this->isRotationApplied ? 'Yes' : 'No';
+        $rotationApplied = $this->isRotationApplied ? 'Yes' : 'No';
         $pages = $this->pages ? "\n" . implode("\n", $this->pages) : '';
 
         return "Inference
 #########
 :Product: $this->product
-:Rotation applied: $rotation_applied
+:Rotation applied: $rotationApplied
 
 Prediction
 ==========

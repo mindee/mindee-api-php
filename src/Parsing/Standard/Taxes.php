@@ -8,14 +8,14 @@ namespace Mindee\Parsing\Standard;
 class Taxes extends \ArrayObject
 {
     /**
-     * @param array        $raw_prediction Raw prediction array.
-     * @param integer|null $page_id        Page number for multi pages document.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages document.
      */
-    public function __construct(array $raw_prediction, ?int $page_id)
+    public function __construct(array $rawPrediction, ?int $pageId)
     {
         $entries = [];
-        foreach ($raw_prediction as $entry) {
-            $entries[] = new TaxField($entry, $page_id);
+        foreach ($rawPrediction as $entry) {
+            $entries[] = new TaxField($entry, $pageId);
         }
         parent::__construct($entries);
     }
@@ -28,12 +28,12 @@ class Taxes extends \ArrayObject
      */
     private static function lineSeparator(string $char): string
     {
-        $out_str = '+' . str_repeat($char, 15);
-        $out_str .= '+' . str_repeat($char, 8);
-        $out_str .= '+' . str_repeat($char, 10);
-        $out_str .= '+' . str_repeat($char, 15);
+        $outStr = '+' . str_repeat($char, 15);
+        $outStr .= '+' . str_repeat($char, 8);
+        $outStr .= '+' . str_repeat($char, 10);
+        $outStr .= '+' . str_repeat($char, 15);
 
-        return $out_str . '+';
+        return $outStr . '+';
     }
 
     /**
@@ -41,15 +41,15 @@ class Taxes extends \ArrayObject
      */
     public function __toString()
     {
-        $out_str = "\n" . Taxes::lineSeparator('-') . "\n";
-        $out_str .= "  | Base          | Code   | Rate (%) | Amount        |\n";
-        $out_str .= Taxes::lineSeparator('=');
+        $outStr = "\n" . Taxes::lineSeparator('-') . "\n";
+        $outStr .= "  | Base          | Code   | Rate (%) | Amount        |\n";
+        $outStr .= Taxes::lineSeparator('=');
         $arr = [];
         foreach ($this as $entry) {
             array_push($arr, "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('='));
         }
-        $out_str .= implode("\n", $arr);
+        $outStr .= implode("\n", $arr);
 
-        return $out_str;
+        return $outStr;
     }
 }

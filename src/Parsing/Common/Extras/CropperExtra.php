@@ -15,15 +15,15 @@ class CropperExtra
     public array $croppings;
 
     /**
-     * @param array        $raw_prediction Raw prediction array.
-     * @param integer|null $page_id        Page number for multi pages PDF.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages PDF.
      */
-    public function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $rawPrediction, ?int $pageId = null)
     {
         $this->croppings = [];
-        if (array_key_exists("cropping", $raw_prediction)) {
-            foreach ($raw_prediction['cropping'] as $cropping) {
-                $this->croppings[] = new PositionField($cropping, $page_id);
+        if (array_key_exists("cropping", $rawPrediction)) {
+            foreach ($rawPrediction['cropping'] as $cropping) {
+                $this->croppings[] = new PositionField($cropping, $pageId);
             }
         }
     }
@@ -33,10 +33,10 @@ class CropperExtra
      */
     public function __toString(): string
     {
-        $croppings_str = [];
+        $croppingsStr = [];
         foreach ($this->croppings as $cropping) {
-            $croppings_str[] = strval($cropping);
+            $croppingsStr[] = strval($cropping);
         }
-        return implode("\n           ", $croppings_str);
+        return implode("\n           ", $croppingsStr);
     }
 }

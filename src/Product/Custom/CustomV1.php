@@ -17,21 +17,21 @@ class CustomV1 extends Inference
     /**
      * @var string Name of the endpoint.
      */
-    public static string $endpoint_name = "custom";
+    public static string $endpointName = "custom";
     /**
      * @var string Version of the endpoint.
      */
-    public static string $endpoint_version = "1";
+    public static string $endpointVersion = "1";
 
     /**
-     * @param array $raw_prediction Raw prediction from the HTTP response.
+     * @param array $rawPrediction Raw prediction from the HTTP response.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
-        parent::__construct($raw_prediction);
-        $this->prediction = new CustomV1Document($raw_prediction['prediction']);
+        parent::__construct($rawPrediction);
+        $this->prediction = new CustomV1Document($rawPrediction['prediction']);
         $this->pages = [];
-        foreach ($raw_prediction['pages'] as $page) {
+        foreach ($rawPrediction['pages'] as $page) {
             $this->pages[] = new Page(CustomV1Page::class, $page);
         }
     }

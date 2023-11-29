@@ -11,7 +11,7 @@ class PredictOptions
      * @var boolean Whether to include the full text for each page.
      * This performs a full OCR operation on the server and will increase response time.
      */
-    public bool $include_words;
+    public bool $includeWords;
     /**
      * @var boolean Whether to include cropper results for each page.
      * This performs a cropping operation on the server and will increase response time.
@@ -23,17 +23,17 @@ class PredictOptions
      */
     public function __construct()
     {
-        $this->include_words = false;
+        $this->includeWords = false;
         $this->cropper = false;
     }
 
     /**
-     * @param boolean $include_words Whether to include the full text.
+     * @param boolean $includeWords Whether to include the full text.
      * @return $this
      */
-    public function setIncludeWords(bool $include_words): PredictOptions
+    public function setIncludeWords(bool $includeWords): PredictOptions
     {
-        $this->include_words = $include_words;
+        $this->includeWords = $includeWords;
         return $this;
     }
 

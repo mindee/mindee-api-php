@@ -17,49 +17,49 @@ class MindeeHttpException extends MindeeException
     /**
      * @var integer Status code as sent by the server.
      */
-    public int $status_code;
+    public int $statusCode;
     /**
      * @var string|mixed|null API code as sent by the server.
      */
-    public ?string $api_code;
+    public ?string $apiCode;
     /**
      * @var mixed|null API details field as sent by the server.
      */
-    public $api_details;
+    public $apiDetails;
     /**
      * @var string|mixed|null API message field as sent by the server.
      */
-    public ?string $api_message;
+    public ?string $apiMessage;
 
     /**
-     * @param array   $http_error Array containing the error data.
-     * @param string  $url        Remote URL the error was found on.
-     * @param integer $code       Error code.
+     * @param array   $httpError Array containing the error data.
+     * @param string  $url       Remote URL the error was found on.
+     * @param integer $code      Error code.
      */
-    public function __construct(array $http_error, string $url, int $code)
+    public function __construct(array $httpError, string $url, int $code)
     {
-        $this->status_code = $code;
-        if (array_key_exists('code', $http_error)) {
-            $this->api_code = $http_error['code'];
+        $this->statusCode = $code;
+        if (array_key_exists('code', $httpError)) {
+            $this->apiCode = $httpError['code'];
         } else {
-            $this->api_code = null;
+            $this->apiCode = null;
         }
-        if (array_key_exists('details', $http_error)) {
-            $this->api_details = $http_error['details'];
+        if (array_key_exists('details', $httpError)) {
+            $this->apiDetails = $httpError['details'];
         } else {
-            $this->api_details = null;
+            $this->apiDetails = null;
         }
-        if (array_key_exists('message', $http_error)) {
-            $this->api_message = $http_error['message'];
+        if (array_key_exists('message', $httpError)) {
+            $this->apiMessage = $httpError['message'];
         } else {
-            $this->api_message = null;
+            $this->apiMessage = null;
         }
-        if (is_array($this->api_details)) {
-            $details = "\n" . json_encode($this->api_details, JSON_PRETTY_PRINT) . "\n";
+        if (is_array($this->apiDetails)) {
+            $details = "\n" . json_encode($this->apiDetails, JSON_PRETTY_PRINT) . "\n";
         } else {
-            $details = strval($this->api_details);
+            $details = strval($this->apiDetails);
         }
-        parent::__construct("$url $this->status_code HTTP error: $details - $this->api_message");
+        parent::__construct("$url $this->statusCode HTTP error: $details - $this->apiMessage");
     }
 
     /**
@@ -73,44 +73,44 @@ class MindeeHttpException extends MindeeException
     {
         if (is_string($response)) {
             if (str_contains($response, 'Maximum pdf pages')) {
-                $error_array = [
+                $errorArray = [
                     'code' => 'TooManyPages',
                     'message' => 'Maximum amount of pdf pages reached.',
                     'details' => $response,
                 ];
             } elseif (str_contains($response, 'Max file size is')) {
-                $error_array = [
+                $errorArray = [
                     'code' => 'FileTooLarge',
                     'message' => 'Maximum file size reached.',
                     'details' => $response,
                 ];
             } elseif (str_contains($response, 'Invalid file type')) {
-                $error_array = [
+                $errorArray = [
                     'code' => 'InvalidFiletype',
                     'message' => 'Invalid file type.',
                     'details' => $response,
                 ];
             } elseif (str_contains($response, 'Gateway timeout')) {
-                $error_array = [
+                $errorArray = [
                     'code' => 'RequestTimeout',
                     'message' => 'Request timed out.',
                     'details' => $response,
                 ];
             } elseif (str_contains($response, 'Too Many Requests')) {
-                $error_array = [
+                $errorArray = [
                     'code' => 'TooManyRequests',
                     'message' => 'Too Many Requests.',
                     'details' => $response,
                 ];
             } else {
-                $error_array = [
+                $errorArray = [
                     'code' => 'UnknownError',
                     'message' => 'Server sent back an unexpected reply.',
                     'details' => $response,
                 ];
             }
 
-            return $error_array;
+            return $errorArray;
         }
         if (array_key_exists('api_request', $response) && array_key_exists('error', $response['api_request'])) {
             return $response['api_request']['error'];
@@ -128,14 +128,14 @@ class MindeeHttpException extends MindeeException
      */
     public static function handleError(string $url, array $response, int $code): MindeeHttpException
     {
-        $error_obj = MindeeHttpException::createErrorObj($response);
+        $errorObj = MindeeHttpException::createErrorObj($response);
         if ($code >= 400 && $code <= 499) {
-            return new MindeeHttpClientException($error_obj, $url, $code);
+            return new MindeeHttpClientException($errorObj, $url, $code);
         }
         if ($code >= 500 && $code <= 599) {
-            return new MindeeHttpClientException($error_obj, $url, $code);
+            return new MindeeHttpClientException($errorObj, $url, $code);
         }
 
-        return new MindeeHttpException($error_obj, $url, $code);
+        return new MindeeHttpException($errorObj, $url, $code);
     }
 }

@@ -29,41 +29,41 @@ class TaxField extends BaseField
     public ?float $basis;
 
     /**
-     * @param array        $raw_prediction Raw prediction array.
-     * @param integer|null $page_id        Page number for multi pages document.
-     * @param boolean      $reconstructed  Whether the field has been reconstructed.
-     * @param string       $value_key      Key to use for the value.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages document.
+     * @param boolean      $reconstructed Whether the field has been reconstructed.
+     * @param string       $valueKey      Key to use for the value.
      */
     public function __construct(
-        array $raw_prediction,
-        ?int $page_id = null,
+        array $rawPrediction,
+        ?int $pageId = null,
         bool $reconstructed = false,
-        string $value_key = 'value'
+        string $valueKey = 'value'
     ) {
-        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
-        $this->setPosition($raw_prediction);
-        if (array_key_exists('value', $raw_prediction) && is_numeric($raw_prediction['value'])) {
-            $this->value = floatval($raw_prediction['value']);
+        parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
+        $this->setPosition($rawPrediction);
+        if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
+            $this->value = floatval($rawPrediction['value']);
         } else {
             $this->value = null;
             $this->confidence = 0.0;
         }
-        if (array_key_exists('rate', $raw_prediction) && is_numeric($raw_prediction['rate'])) {
-            $this->rate = floatval($raw_prediction['rate']);
+        if (array_key_exists('rate', $rawPrediction) && is_numeric($rawPrediction['rate'])) {
+            $this->rate = floatval($rawPrediction['rate']);
         } else {
             $this->rate = null;
         }
         if (
-            array_key_exists('code', $raw_prediction) && is_scalar(
-                $raw_prediction['code']
-            ) && $raw_prediction['code'] != 'N/A'
+            array_key_exists('code', $rawPrediction) && is_scalar(
+                $rawPrediction['code']
+            ) && $rawPrediction['code'] != 'N/A'
         ) {
-            $this->code = strval($raw_prediction['code']);
+            $this->code = strval($rawPrediction['code']);
         } else {
             $this->code = null;
         }
-        if (array_key_exists('base', $raw_prediction) && is_numeric($raw_prediction['base'])) {
-            $this->basis = floatval($raw_prediction['base']);
+        if (array_key_exists('base', $rawPrediction) && is_numeric($rawPrediction['base'])) {
+            $this->basis = floatval($rawPrediction['base']);
         } else {
             $this->basis = null;
         }

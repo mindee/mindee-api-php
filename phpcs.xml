@@ -356,5 +356,9 @@
     <rule ref="Squiz.Commenting.ClassComment"/>
     <!-- Variable should be typed whenever applicable. -->
     <rule ref="Squiz.Commenting.VariableComment"/>
-
+    <!-- Variable should be camelCase. -->
+    <!-- Private variables should not be preceded by an underscore. -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
 </ruleset>

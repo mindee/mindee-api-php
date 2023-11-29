@@ -17,12 +17,12 @@ abstract class ApiResponse
     private array $rawHttp;
 
     /**
-     * @param array $raw_response Raw prediction array.
+     * @param array $rawResponse Raw prediction array.
      */
-    public function __construct(array $raw_response)
+    public function __construct(array $rawResponse)
     {
-        $this->apiRequest = new ApiRequest($raw_response['api_request']);
-        $this->rawHttp = $raw_response;
+        $this->apiRequest = new ApiRequest($rawResponse['api_request']);
+        $this->rawHttp = $rawResponse;
     }
 
     /**

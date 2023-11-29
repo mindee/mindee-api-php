@@ -15,7 +15,7 @@ class CustomLine
     /**
      * @var integer Index of the row for a given line.
      */
-    public int $row_number;
+    public int $rowNumber;
     /**
      * @var array Fields contained in the line.
      */
@@ -26,12 +26,12 @@ class CustomLine
     public BBox $bbox;
 
     /**
-     * @param integer $row_number Index of the row.
+     * @param integer $rowNumber Index of the row.
      */
     public function __construct(
-        int $row_number
+        int $rowNumber
     ) {
-        $this->row_number = $row_number;
+        $this->rowNumber = $rowNumber;
         $this->bbox = new BBox(1, 1, 0, 0);
         $this->fields = [];
     }
@@ -39,107 +39,107 @@ class CustomLine
     /**
      * Updates a field's value.
      *
-     * @param string                                $field_name  Name of the field.
-     * @param \Mindee\Parsing\Custom\ListFieldValue $field_value Value of the field.
+     * @param string                                $fieldName  Name of the field.
+     * @param \Mindee\Parsing\Custom\ListFieldValue $fieldValue Value of the field.
      * @return void
      */
-    public function updateField(string $field_name, ListFieldValue $field_value)
+    public function updateField(string $fieldName, ListFieldValue $fieldValue)
     {
-        if (array_key_exists($field_name, $this->fields)) {
-            $existing_field = $this->fields[$field_name];
-            $existing_content = $existing_field->content;
-            $merged_content = '';
-            if (count($existing_content) > 0) {
-                $merged_content .= $existing_content . ' ';
+        if (array_key_exists($fieldName, $this->fields)) {
+            $existingField = $this->fields[$fieldName];
+            $existingContent = $existingField->content;
+            $mergedContent = '';
+            if (count($existingContent) > 0) {
+                $mergedContent .= $existingContent . ' ';
             }
-            $merged_content .= $field_value->content;
-            $merged_polygon = BBoxUtils::generateBBoxFromPolygons([$existing_field->polygon, $field_value->polygon]);
-            $merged_confidence = $existing_field->confidence * $field_value->confidence;
+            $mergedContent .= $fieldValue->content;
+            $mergedPolygon = BBoxUtils::generateBBoxFromPolygons([$existingField->polygon, $fieldValue->polygon]);
+            $mergedConfidence = $existingField->confidence * $fieldValue->confidence;
         } else {
-            $merged_content = $field_value->content;
-            $merged_confidence = $field_value->confidence;
-            $merged_polygon = BBoxUtils::generateBBoxFromPolygon($field_value->polygon);
+            $mergedContent = $fieldValue->content;
+            $mergedConfidence = $fieldValue->confidence;
+            $mergedPolygon = BBoxUtils::generateBBoxFromPolygon($fieldValue->polygon);
         }
-        $this->fields[$field_name] = new ListFieldValue([
-            'content' => $merged_content,
-            'confidence' => $merged_confidence,
-            'polygon' => $merged_polygon,
+        $this->fields[$fieldName] = new ListFieldValue([
+            'content' => $mergedContent,
+            'confidence' => $mergedConfidence,
+            'polygon' => $mergedPolygon,
         ]);
     }
 
     /**
      * Checks if a BBox is in a given line.
      *
-     * @param \Mindee\Parsing\Custom\CustomLine $line                  Current line to check.
-     * @param \Mindee\Geometry\BBox             $bbox                  BBox.
-     * @param float                             $height_line_tolerance Height tolerance in pixels.
+     * @param \Mindee\Parsing\Custom\CustomLine $line                Current line to check.
+     * @param \Mindee\Geometry\BBox             $bbox                BBox.
+     * @param float                             $heightLineTolerance Height tolerance in pixels.
      * @return boolean
      */
     public static function isBBoxInLine(
         CustomLine $line,
         BBox $bbox,
-        float $height_line_tolerance
+        float $heightLineTolerance
     ): bool {
-        if (abs($bbox->getMinY() - $line->bbox->getMinY()) <= $height_line_tolerance) {
+        if (abs($bbox->getMinY() - $line->bbox->getMinY()) <= $heightLineTolerance) {
             return true;
         }
 
-        return abs($line->bbox->getMinY() - $bbox->getMinY()) <= $height_line_tolerance;
+        return abs($line->bbox->getMinY() - $bbox->getMinY()) <= $heightLineTolerance;
     }
 
     /**
      * Prepares the line items before filling them.
      *
-     * @param string $anchor_name           Name of the anchor.
-     * @param array  $fields                List of fields.
-     * @param float  $height_line_tolerance Height tolerance in pixels.
+     * @param string $anchorName          Name of the anchor.
+     * @param array  $fields              List of fields.
+     * @param float  $heightLineTolerance Height tolerance in pixels.
      * @return array
      * @throws \Mindee\Error\MindeeException Throws if no lines have been found.
      */
     public static function prepare(
-        string $anchor_name,
+        string $anchorName,
         array $fields,
-        float $height_line_tolerance
+        float $heightLineTolerance
     ): array {
-        $lines_prepared = [];
-        if (array_key_exists($anchor_name, $fields)) {
-            $anchor_field = $fields[$anchor_name];
+        $linesPrepared = [];
+        if (array_key_exists($anchorName, $fields)) {
+            $anchorField = $fields[$anchorName];
         } else {
             throw new MindeeException('No lines have been detected.');
         }
-        $current_line_number = 1;
-        $current_line = new CustomLine($current_line_number);
-        if ($anchor_field && count($anchor_field->values) > 0) {
-            $current_value = $anchor_field->values[0];
-            $current_line->bbox->extendWith($current_value->polygon);
+        $currentLineNumber = 1;
+        $currentLine = new CustomLine($currentLineNumber);
+        if ($anchorField && count($anchorField->values) > 0) {
+            $currentValue = $anchorField->values[0];
+            $currentLine->bbox->extendWith($currentValue->polygon);
         }
-        for ($i = 1; $i < count($anchor_field->values); ++$i) {
-            $current_value = $anchor_field->values[$i];
-            $current_field_box = BBoxUtils::generateBBoxFromPolygon($current_value->polygon);
+        for ($i = 1; $i < count($anchorField->values); ++$i) {
+            $currentValue = $anchorField->values[$i];
+            $currentFieldBox = BBoxUtils::generateBBoxFromPolygon($currentValue->polygon);
             if (
                 !CustomLine::isBBoxInLine(
-                    $current_line,
-                    $current_field_box,
-                    $height_line_tolerance
+                    $currentLine,
+                    $currentFieldBox,
+                    $heightLineTolerance
                 )
             ) {
-                $lines_prepared[] = $current_line;
-                ++$current_line_number;
-                $current_line = new CustomLine($current_line_number);
-                $current_line->bbox->extendWith($current_value->polygon);
+                $linesPrepared[] = $currentLine;
+                ++$currentLineNumber;
+                $currentLine = new CustomLine($currentLineNumber);
+                $currentLine->bbox->extendWith($currentValue->polygon);
             }
         }
-        $count_valid_lines = 0;
-        foreach ($lines_prepared as $line) {
-            if ($line->row_number == $current_line_number) {
-                ++$count_valid_lines;
+        $countValidLines = 0;
+        foreach ($linesPrepared as $line) {
+            if ($line->rowNumber == $currentLineNumber) {
+                ++$countValidLines;
             }
         }
-        if ($count_valid_lines == 0) {
-            $lines_prepared[] = $current_line;
+        if ($countValidLines == 0) {
+            $linesPrepared[] = $currentLine;
         }
 
-        return $lines_prepared;
+        return $linesPrepared;
     }
 
     /**
@@ -154,12 +154,12 @@ class CustomLine
         array $fields
     ): string {
         $anchor = '';
-        $anchor_rows = 0;
-        foreach ($anchors as $field_anchor) {
-            $values = $fields[$field_anchor]->values;
-            if ($values && count($values) > $anchor_rows) {
-                $anchor_rows = count($values);
-                $anchor = $field_anchor;
+        $fieldAnchor = 0;
+        foreach ($anchors as $fieldAnchor) {
+            $values = $fields[$fieldAnchor]->values;
+            if ($values && count($values) > $fieldAnchor) {
+                $fieldAnchor = count($values);
+                $anchor = $fieldAnchor;
             }
         }
 
@@ -169,54 +169,54 @@ class CustomLine
     /**
      * Creates the line items.
      *
-     * @param array $anchors               List of anchor candidates.
-     * @param array $field_names           List of field names.
-     * @param array $fields                List of all fields.
-     * @param float $height_line_tolerance Height tolerance in pixels.
+     * @param array $anchors             List of anchor candidates.
+     * @param array $fieldNames          List of field names.
+     * @param array $fields              List of all fields.
+     * @param float $heightLineTolerance Height tolerance in pixels.
      * @return array
      */
     public static function getLineItems(
         array $anchors,
-        array $field_names,
+        array $fieldNames,
         array $fields,
-        float $height_line_tolerance = 0.01
+        float $heightLineTolerance = 0.01
     ): array {
-        $line_items = [];
-        $fields_to_transform = [];
-        foreach ($fields as $field_name => $field_value) {
-            if (array_key_exists($field_name, $field_names)) {
-                $fields_to_transform[$field_name] = $field_value;
+        $lineItems = [];
+        $fieldsToTransform = [];
+        foreach ($fields as $fieldName => $fieldValue) {
+            if (array_key_exists($fieldName, $fieldNames)) {
+                $fieldsToTransform[$fieldName] = $fieldValue;
             }
         }
-        $anchor = CustomLine::findBestAnchor($anchors, $fields_to_transform);
+        $anchor = CustomLine::findBestAnchor($anchors, $fieldsToTransform);
         if (!$anchor) {
             error_log('Could not find an anchor!');
 
-            return $line_items;
+            return $lineItems;
         }
 
-        $lines_prepared = CustomLine::prepare(
+        $linesPrepared = CustomLine::prepare(
             $anchor,
-            $fields_to_transform,
-            $height_line_tolerance
+            $fieldsToTransform,
+            $heightLineTolerance
         );
 
-        foreach ($lines_prepared as $current_line) {
-            foreach ($fields_to_transform as $field_name => $field) {
-                foreach ($field->values as $list_field_value) {
-                    $min_max_y = MinMaxUtils::getMinMaxY($list_field_value->polygon);
+        foreach ($linesPrepared as $currentLine) {
+            foreach ($fieldsToTransform as $fieldName => $field) {
+                foreach ($field->values as $listFieldValue) {
+                    $minMaxY = MinMaxUtils::getMinMaxY($listFieldValue->polygon);
                     if (
-                        abs($min_max_y->getMax() - $current_line->bbox->y_max) <=
-                        $height_line_tolerance &&
-                        abs($min_max_y->getMin() - $current_line->bbox->y_min) <=
-                        $height_line_tolerance
+                        abs($minMaxY->getMax() - $currentLine->bbox->y_max) <=
+                        $heightLineTolerance &&
+                        abs($minMaxY->getMin() - $currentLine->bbox->y_min) <=
+                        $heightLineTolerance
                     ) {
-                        $current_line->updateField($field_name, $list_field_value);
+                        $currentLine->updateField($fieldName, $listFieldValue);
                     }
                 }
             }
         }
 
-        return $lines_prepared;
+        return $linesPrepared;
     }
 }

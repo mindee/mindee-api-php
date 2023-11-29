@@ -101,14 +101,14 @@ class MindeeApi
      */
     private function setFromEnv()
     {
-        $env_vars = [
+        $envVars = [
             BASE_URL_ENV_NAME => [$this, 'setBaseUrl'],
             REQUEST_TIMEOUT_ENV_NAME => [$this, 'setTimeout'],
         ];
-        foreach ($env_vars as $key => $func) {
-            $env_val = getenv($key) ? getenv($key) : '';
-            if ($env_val) {
-                call_user_func($func, $env_val);
+        foreach ($envVars as $key => $func) {
+            $envVal = getenv($key) ? getenv($key) : '';
+            if ($envVal) {
+                call_user_func($func, $envVal);
                 error_log('Value ' . $key . ' was set from env.');
             }
         }
