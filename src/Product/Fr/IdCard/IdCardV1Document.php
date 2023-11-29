@@ -53,24 +53,24 @@ class IdCardV1Document extends Prediction
     public StringField $surname;
 
     /**
-     * @param array        $raw_prediction Raw prediction from HTTP response.
-     * @param integer|null $page_id        Page number for multi pages pdf input.
+     * @param array        $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId        Page number for multi pages pdf input.
      */
-    public function __construct(array $raw_prediction, ?int $page_id = null)
+    public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        $this->authority = new StringField($raw_prediction['authority'], $page_id);
-        $this->birthDate = new DateField($raw_prediction['birth_date'], $page_id);
-        $this->birthPlace = new StringField($raw_prediction['birth_place'], $page_id);
-        $this->expiryDate = new DateField($raw_prediction['expiry_date'], $page_id);
-        $this->gender = new StringField($raw_prediction['gender'], $page_id);
+        $this->authority = new StringField($rawPrediction['authority'], $pageId);
+        $this->birthDate = new DateField($rawPrediction['birth_date'], $pageId);
+        $this->birthPlace = new StringField($rawPrediction['birth_place'], $pageId);
+        $this->expiryDate = new DateField($rawPrediction['expiry_date'], $pageId);
+        $this->gender = new StringField($rawPrediction['gender'], $pageId);
         $this->givenNames = [];
-        foreach ($raw_prediction['given_names'] as $prediction) {
-            $this->givenNames[] = new StringField($prediction, $page_id);
+        foreach ($rawPrediction['given_names'] as $prediction) {
+            $this->givenNames[] = new StringField($prediction, $pageId);
         }
-        $this->idNumber = new StringField($raw_prediction['id_number'], $page_id);
-        $this->mrz1 = new StringField($raw_prediction['mrz1'], $page_id);
-        $this->mrz2 = new StringField($raw_prediction['mrz2'], $page_id);
-        $this->surname = new StringField($raw_prediction['surname'], $page_id);
+        $this->idNumber = new StringField($rawPrediction['id_number'], $pageId);
+        $this->mrz1 = new StringField($rawPrediction['mrz1'], $pageId);
+        $this->mrz2 = new StringField($rawPrediction['mrz2'], $pageId);
+        $this->surname = new StringField($rawPrediction['surname'], $pageId);
     }
 
     /**
@@ -78,17 +78,17 @@ class IdCardV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $given_names = implode("\n" . str_repeat(" ", 15), $this->givenNames);
-        $out_str = ":Identity Number: $this->idNumber\n";
-        $out_str .= ":Given Name(s): $given_names\n";
-        $out_str .= ":Surname: $this->surname\n";
-        $out_str .= ":Date of Birth: $this->birthDate\n";
-        $out_str .= ":Place of Birth: $this->birthPlace\n";
-        $out_str .= ":Expiry Date: $this->expiryDate\n";
-        $out_str .= ":Issuing Authority: $this->authority\n";
-        $out_str .= ":Gender: $this->gender\n";
-        $out_str .= ":MRZ Line 1: $this->mrz1\n";
-        $out_str .= ":MRZ Line 2: $this->mrz2\n";
-        return trim($out_str);
+        $givenNames = implode("\n" . str_repeat(" ", 15), $this->givenNames);
+        $outStr = ":Identity Number: $this->idNumber\n";
+        $outStr .= ":Given Name(s): $givenNames\n";
+        $outStr .= ":Surname: $this->surname\n";
+        $outStr .= ":Date of Birth: $this->birthDate\n";
+        $outStr .= ":Place of Birth: $this->birthPlace\n";
+        $outStr .= ":Expiry Date: $this->expiryDate\n";
+        $outStr .= ":Issuing Authority: $this->authority\n";
+        $outStr .= ":Gender: $this->gender\n";
+        $outStr .= ":MRZ Line 1: $this->mrz1\n";
+        $outStr .= ":MRZ Line 2: $this->mrz2\n";
+        return trim($outStr);
     }
 }

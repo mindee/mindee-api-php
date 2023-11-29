@@ -21,34 +21,34 @@ class LocaleField extends BaseField
     public ?string $currency;
 
     /**
-     * @param array  $locale_prediction Raw locale prediction.
-     * @param string $key               Name of the prediction key.
+     * @param array  $localePrediction Raw locale prediction.
+     * @param string $key              Name of the prediction key.
      * @return string|null
      */
-    private static function getValue(array $locale_prediction, string $key): ?string
+    private static function getValue(array $localePrediction, string $key): ?string
     {
-        if (!array_key_exists($key, $locale_prediction) || $locale_prediction[$key] == 'N/A') {
+        if (!array_key_exists($key, $localePrediction) || $localePrediction[$key] == 'N/A') {
             return null;
         }
 
-        return $locale_prediction[$key];
+        return $localePrediction[$key];
     }
 
     /**
-     * @param array        $raw_prediction Raw prediction array.
-     * @param integer|null $page_id        Page number for multi pages PDF.
-     * @param boolean      $reconstructed  Whether the field was reconstructed.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages PDF.
+     * @param boolean      $reconstructed Whether the field was reconstructed.
      */
     public function __construct(
-        array $raw_prediction,
-        ?int $page_id = null,
+        array $rawPrediction,
+        ?int $pageId = null,
         bool $reconstructed = false
     ) {
-        $value_key = array_key_exists('value', $raw_prediction) ? 'value' : 'language';
-        parent::__construct($raw_prediction, $page_id, $reconstructed, $value_key);
-        $this->language = LocaleField::getValue($raw_prediction, 'language');
-        $this->country = LocaleField::getValue($raw_prediction, 'country');
-        $this->currency = LocaleField::getValue($raw_prediction, 'currency');
+        $valueKey = array_key_exists('value', $rawPrediction) ? 'value' : 'language';
+        parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
+        $this->language = LocaleField::getValue($rawPrediction, 'language');
+        $this->country = LocaleField::getValue($rawPrediction, 'country');
+        $this->currency = LocaleField::getValue($rawPrediction, 'currency');
     }
 
     /**
@@ -56,20 +56,20 @@ class LocaleField extends BaseField
      */
     public function __toString(): string
     {
-        $out_str = '';
+        $outStr = '';
         if (isset($this->value)) {
-            $out_str .= $this->value . '; ';
+            $outStr .= $this->value . '; ';
         }
         if (isset($this->language)) {
-            $out_str .= $this->language . '; ';
+            $outStr .= $this->language . '; ';
         }
         if (isset($this->country)) {
-            $out_str .= $this->country . '; ';
+            $outStr .= $this->country . '; ';
         }
         if (isset($this->currency)) {
-            $out_str .= $this->currency . '; ';
+            $outStr .= $this->currency . '; ';
         }
 
-        return trim($out_str);
+        return trim($outStr);
     }
 }

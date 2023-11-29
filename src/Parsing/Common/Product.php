@@ -17,12 +17,12 @@ class Product
     public string $version;
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
-        $this->name = $raw_prediction['name'];
-        $this->version = $raw_prediction['version'];
+        $this->name = $rawPrediction['name'];
+        $this->version = $rawPrediction['version'];
     }
 
     /**

@@ -28,24 +28,24 @@ class Page
     public Extras $extras;
 
     /**
-     * @param string $prediction_type Type of prediction.
-     * @param array  $raw_prediction  Raw prediction array.
+     * @param string $predictionType Type of prediction.
+     * @param array  $rawPrediction  Raw prediction array.
      * @throws \Mindee\Error\MindeeApiException Throws if the prediction type isn't recognized.
      */
-    public function __construct(string $prediction_type, array $raw_prediction)
+    public function __construct(string $predictionType, array $rawPrediction)
     {
-        $this->id = $raw_prediction['id'];
+        $this->id = $rawPrediction['id'];
         try {
-            $reflection = new \ReflectionClass($prediction_type);
-            $this->prediction = $reflection->newInstance($raw_prediction['prediction'], $this->id);
+            $reflection = new \ReflectionClass($predictionType);
+            $this->prediction = $reflection->newInstance($rawPrediction['prediction'], $this->id);
         } catch (\ReflectionException $exception) {
-            throw new MindeeApiException("Unable to create custom product " . $prediction_type);
+            throw new MindeeApiException("Unable to create custom product " . $predictionType);
         }
-        if (array_key_exists('orientation', $raw_prediction)) {
-            $this->orientation = new OrientationField($raw_prediction['orientation'], $this->id, false, 'value');
+        if (array_key_exists('orientation', $rawPrediction)) {
+            $this->orientation = new OrientationField($rawPrediction['orientation'], $this->id, false, 'value');
         }
-        if (array_key_exists('extras', $raw_prediction) && $raw_prediction['extras']) {
-            $this->extras = new Extras($raw_prediction['extras']);
+        if (array_key_exists('extras', $rawPrediction) && $rawPrediction['extras']) {
+            $this->extras = new Extras($rawPrediction['extras']);
         }
     }
 

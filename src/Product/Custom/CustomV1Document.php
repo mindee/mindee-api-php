@@ -22,18 +22,18 @@ class CustomV1Document extends Prediction
     public array $classifications;
 
     /**
-     * @param array $raw_prediction Array containing the JSON document response.
+     * @param array $rawPrediction Array containing the JSON document response.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
         $this->fields = [];
         $this->classifications = [];
 
-        foreach ($raw_prediction as $field_name => $field_contents) {
-            if (array_key_exists("value", $field_contents)) {
-                $this->classifications[$field_name] = new ClassificationField($field_contents);
-            } elseif (array_key_exists("values", $field_contents)) {
-                $this->fields[$field_name] = new ListField($field_contents);
+        foreach ($rawPrediction as $fieldName => $fieldContents) {
+            if (array_key_exists("value", $fieldContents)) {
+                $this->classifications[$fieldName] = new ClassificationField($fieldContents);
+            } elseif (array_key_exists("values", $fieldContents)) {
+                $this->fields[$fieldName] = new ListField($fieldContents);
             }
         }
     }
@@ -41,18 +41,18 @@ class CustomV1Document extends Prediction
     /**
      * Order column fields into line items.
      *
-     * @param array $anchor_names     List of possible anchor fields.
-     * @param array $field_names      List of all column fields.
-     * @param float $height_tolerance Height tolerance to apply to lines.
+     * @param array $anchorNames     List of possible anchor fields.
+     * @param array $fieldNames      List of all column fields.
+     * @param float $heightTolerance Height tolerance to apply to lines.
      * @return array
      */
-    public function columnsToLineItems(array $anchor_names, array $field_names, float $height_tolerance): array
+    public function columnsToLineItems(array $anchorNames, array $fieldNames, float $heightTolerance): array
     {
         return CustomLine::getLineItems(
-            $anchor_names,
-            $field_names,
+            $anchorNames,
+            $fieldNames,
             $this->fields,
-            $height_tolerance
+            $heightTolerance
         );
     }
 
@@ -61,13 +61,13 @@ class CustomV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $out_str = "";
-        foreach ($this->classifications as $classification_name => $classification_value) {
-            $out_str .= ":$classification_name: $classification_value\n";
+        $outStr = "";
+        foreach ($this->classifications as $classificationName => $classificationValue) {
+            $outStr .= ":$classificationName: $classificationValue\n";
         }
-        foreach ($this->fields as $field_name => $field_value) {
-            $out_str .= ":$field_name: $$field_value\n";
+        foreach ($this->fields as $fieldName => $fieldValue) {
+            $outStr .= ":$fieldName: $$fieldValue\n";
         }
-        return trim($out_str);
+        return trim($outStr);
     }
 }

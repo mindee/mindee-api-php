@@ -15,12 +15,12 @@ class PredictResponse extends ApiResponse
     public Document $document;
 
     /**
-     * @param string $prediction_type Type of prediction.
-     * @param array  $raw_response    Raw HTTP response.
+     * @param string $predictionType Type of prediction.
+     * @param array  $rawResponse    Raw HTTP response.
      */
-    public function __construct(string $prediction_type, array $raw_response)
+    public function __construct(string $predictionType, array $rawResponse)
     {
-        parent::__construct($raw_response);
-        $this->document = new Document($prediction_type, $raw_response['document']);
+        parent::__construct($rawResponse);
+        $this->document = new Document($predictionType, $rawResponse['document']);
     }
 }

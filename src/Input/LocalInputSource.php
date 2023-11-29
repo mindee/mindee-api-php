@@ -52,11 +52,11 @@ abstract class LocalInputSource extends InputSource
     private function checkMimeType()
     {
         if (!in_array($this->fileMimetype, ALLOWED_MIME_TYPES)) {
-            $file_types = implode(', ', ALLOWED_MIME_TYPES);
+            $fileTypes = implode(', ', ALLOWED_MIME_TYPES);
             throw new MindeeMimeTypeException(
                 "File type " .
                 $this->fileMimetype .
-                " not allowed, must be one of $file_types."
+                " not allowed, must be one of $fileTypes."
             );
         }
     }

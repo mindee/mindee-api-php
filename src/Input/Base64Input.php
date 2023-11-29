@@ -8,16 +8,16 @@ namespace Mindee\Input;
 class Base64Input extends LocalInputSource
 {
     /**
-     * @param string $file_b64  Raw data as a base64-encoded string.
-     * @param string $file_name File name of the input.
+     * @param string $fileB64  Raw data as a base64-encoded string.
+     * @param string $fileName File name of the input.
      */
-    public function __construct(string $file_b64, string $file_name)
+    public function __construct(string $fileB64, string $fileName)
     {
         $file = finfo_open();
-        $mime_type = finfo_buffer($file, base64_decode($file_b64), FILEINFO_MIME_TYPE);
+        $mimeType = finfo_buffer($file, base64_decode($fileB64), FILEINFO_MIME_TYPE);
         $tmpfname = tempnam(sys_get_temp_dir(), 'b64_');
-        file_put_contents($tmpfname, $file_b64);
-        $this->fileObject = new \CURLFile($file_b64, $mime_type, $file_name);
+        file_put_contents($tmpfname, $fileB64);
+        $this->fileObject = new \CURLFile($fileB64, $mimeType, $fileName);
         unlink($tmpfname);
         parent::__construct();
     }

@@ -25,19 +25,19 @@ class Endpoint extends BaseEndpoint
     public string $version;
 
     /**
-     * @param string                 $url_name Url (name) of the endpoint.
+     * @param string                 $urlName  Url (name) of the endpoint.
      * @param string                 $owner    Name of the endpoint's owner.
      * @param string                 $version  Version of the endpoint.
      * @param \Mindee\Http\MindeeApi $settings Settings for the endpoint.
      */
     public function __construct(
-        string $url_name,
+        string $urlName,
         string $owner,
         string $version,
         MindeeApi $settings
     ) {
         parent::__construct($settings);
-        $this->urlName = $url_name;
+        $this->urlName = $urlName;
         $this->owner = $owner;
         $this->version = $version;
     }
@@ -45,10 +45,10 @@ class Endpoint extends BaseEndpoint
     /**
      * Starts a CURL session, using GET.
      *
-     * @param string $queue_id ID of the queue to poll.
+     * @param string $queueId ID of the queue to poll.
      * @return array
      */
-    private function initCurlSessionGet(string $queue_id): array
+    private function initCurlSessionGet(string $queueId): array
     {
         $ch = curl_init();
         curl_setopt(
@@ -59,7 +59,7 @@ class Endpoint extends BaseEndpoint
             ]
         );
 
-        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . "/documents/queue/$queue_id");
+        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . "/documents/queue/$queueId");
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -80,15 +80,15 @@ class Endpoint extends BaseEndpoint
     /**
      * Starts a CURL session, using POST.
      *
-     * @param \Mindee\Input\InputSource $file_curl     File to upload.
-     * @param boolean                   $include_words Whether to include the full text for each page.
+     * @param \Mindee\Input\InputSource $fileCurl     File to upload.
+     * @param boolean                   $includeWords Whether to include the full text for each page.
      *                      This performs a full OCR operation on the server and will increase response time.
-     * @param boolean                   $cropper       Whether to include cropper results for each page.
-     *                            This performs a cropping operation on the server and will increase response time.
-     * @param boolean                   $async         Whether the query is in async mode.
+     * @param boolean                   $cropper      Whether to include cropper results for each page.
+     *                           This performs a cropping operation on the server and will increase response time.
+     * @param boolean                   $async        Whether the query is in async mode.
      * @return array
      */
-    private function initCurlSessionPost(InputSource $file_curl, bool $include_words, bool $cropper, bool $async): array
+    private function initCurlSessionPost(InputSource $fileCurl, bool $includeWords, bool $cropper, bool $async): array
     {
         $ch = curl_init();
         curl_setopt(
@@ -105,18 +105,18 @@ class Endpoint extends BaseEndpoint
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        if ($file_curl instanceof URLInputSource) {
-            $post_fields = ['document' => $file_curl];
+        if ($fileCurl instanceof URLInputSource) {
+            $postFields = ['document' => $fileCurl];
         } else {
-            $post_fields = ['document' => $file_curl->fileObject];
+            $postFields = ['document' => $fileCurl->fileObject];
         }
-        if ($include_words) {
-            $post_fields['include_mvision'] = 'true';
+        if ($includeWords) {
+            $postFields['include_mvision'] = 'true';
         }
         if ($cropper) {
-            $post_fields['cropper'] = 'true';
+            $postFields['cropper'] = 'true';
         }
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . Mindee\VERSION);
 
@@ -132,58 +132,58 @@ class Endpoint extends BaseEndpoint
     /**
      * Retrieves a document from its queue ID.
      *
-     * @param string $queue_id ID of the queue to poll.
+     * @param string $queueId ID of the queue to poll.
      * @return array
      */
-    public function documentQueueReqGet(string $queue_id): array
+    public function documentQueueReqGet(string $queueId): array
     {
-        return $this->initCurlSessionGet($queue_id);
+        return $this->initCurlSessionGet($queueId);
     }
 
     /**
      * Sends a document for asynchronous enqueuing.
      *
-     * @param \Mindee\Input\InputSource $file_curl     File to upload.
-     * @param boolean                   $include_words Whether to include the full text for each page.
+     * @param \Mindee\Input\InputSource $fileCurl     File to upload.
+     * @param boolean                   $includeWords Whether to include the full text for each page.
      *                      This performs a full OCR operation on the server and will increase response time.
-     * @param boolean                   $close_file    Whether to close the file after parsing it.
+     * @param boolean                   $closeFile    Whether to close the file after parsing it.
      * Not in use at the moment.
-     * @param boolean                   $cropper       Whether to include cropper results for each page.
-     *                            This performs a cropping operation on the server and will increase response time.
+     * @param boolean                   $cropper      Whether to include cropper results for each page.
+     *                           This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictRequestPost(
-        InputSource $file_curl,
-        bool $include_words,
-        bool $close_file,
+        InputSource $fileCurl,
+        bool $includeWords,
+        bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($file_curl, $include_words, $cropper, false);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, false);
     }
 
     /**
      * Sends a document for synchronous enqueuing.
      *
-     * @param InputSource $file_curl     File to upload.
-     * @param boolean     $include_words Whether to include the full text for each page.
+     * @param InputSource $fileCurl     File to upload.
+     * @param boolean     $includeWords Whether to include the full text for each page.
      *         This performs a full OCR operation on the server and will increase response time.
-     * @param boolean     $close_file    Whether to close the file after parsing it. Not in use at the moment.
-     * @param boolean     $cropper       Whether to include cropper results for each page.
-     *               This performs a cropping operation on the server and will increase response time.
+     * @param boolean     $closeFile    Whether to close the file after parsing it. Not in use at the moment.
+     * @param boolean     $cropper      Whether to include cropper results for each page.
+     *              This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictAsyncRequestPost(
-        InputSource $file_curl,
-        bool $include_words,
-        bool $close_file,
+        InputSource $fileCurl,
+        bool $includeWords,
+        bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($file_curl, $include_words, $cropper, true);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, true);
     }
 
     /**
-     * @param InputSource $file_curl
-     * @param bool $include_words
+     * @param InputSource $fileCurl
+     * @param bool $includeWords
      * @param bool $cropper
      * @return array
      */

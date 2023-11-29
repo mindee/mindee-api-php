@@ -23,16 +23,16 @@ trait FieldPositionMixin
     /**
      * Sets the position of a field.
      *
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      * @return void
      */
-    protected function setPosition(array $raw_prediction)
+    protected function setPosition(array $rawPrediction)
     {
         $this->boundingBox = null;
         $this->polygon = new Polygon();
-        if (array_key_exists('polygon', $raw_prediction)) {
+        if (array_key_exists('polygon', $rawPrediction)) {
             $points = [];
-            foreach ($raw_prediction['polygon'] as $point) {
+            foreach ($rawPrediction['polygon'] as $point) {
                 $points[] = new Point($point[0], $point[1]);
             }
             $this->polygon = new Polygon($points);

@@ -22,32 +22,32 @@ class OcrPage
     /**
      * Checks whether the words are on the same line.
      *
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $current_word Reference word to compare.
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $next_word    Next word to compare.
+     * @param \Mindee\Parsing\Common\Ocr\OcrWord $currentWord Reference word to compare.
+     * @param \Mindee\Parsing\Common\Ocr\OcrWord $nextWord    Next word to compare.
      * @return boolean
      */
-    private static function areWordsOnSameLine(OcrWord $current_word, OcrWord $next_word): bool
+    private static function areWordsOnSameLine(OcrWord $currentWord, OcrWord $nextWord): bool
     {
-        $current_in_next = PolygonUtils::isPointInPolygonY($current_word->polygon->getCentroid(), $next_word->polygon);
-        $next_in_current = PolygonUtils::isPointInPolygonY($next_word->polygon->getCentroid(), $current_word->polygon);
-        return $current_in_next || $next_in_current;
+        $currentInNext = PolygonUtils::isPointInPolygonY($currentWord->polygon->getCentroid(), $nextWord->polygon);
+        $nextInCurrent = PolygonUtils::isPointInPolygonY($nextWord->polygon->getCentroid(), $currentWord->polygon);
+        return $currentInNext || $nextInCurrent;
     }
 
     /**
      * Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).
      *
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word_1 First word.
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word_2 Second word.
+     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word1 First word.
+     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word2 Second word.
      * @return integer
      */
-    private static function getMinMaxY(OcrWord $word_1, OcrWord $word_2): int
+    private static function getMinMaxY(OcrWord $word1, OcrWord $word2): int
     {
-        $word_1_y = MinMaxUtils::getMinMaxY($word_1->polygon->getCoordinates())->getMin();
-        $word_2_y = MinMaxUtils::getMinMaxY($word_2->polygon->getCoordinates())->getMin();
-        if ($word_1_y == $word_2_y) {
+        $word1Y = MinMaxUtils::getMinMaxY($word1->polygon->getCoordinates())->getMin();
+        $word2Y = MinMaxUtils::getMinMaxY($word2->polygon->getCoordinates())->getMin();
+        if ($word1Y == $word2Y) {
             return 0;
         }
-        return $word_1_y < $word_2_y ? -1 : 1;
+        return $word1Y < $word2Y ? -1 : 1;
     }
 
     /**
@@ -60,7 +60,7 @@ class OcrPage
         $current = null;
         $indexes = [];
         $lines = [];
-        foreach ($this->allWords as $_) {
+        foreach ($this->allWords as $w) {
             $line = new OcrLine();
             for ($idx = 0; $idx < count($this->allWords); $idx++) {
                 $word = $this->allWords[$idx];
@@ -111,13 +111,13 @@ class OcrPage
     }
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
         $this->allWords = [];
-        foreach ($raw_prediction['all_words'] as $word_prediction) {
-            $this->allWords[] = new OcrWord($word_prediction);
+        foreach ($rawPrediction['all_words'] as $wordPrediction) {
+            $this->allWords[] = new OcrWord($wordPrediction);
         }
         usort($this->allWords, "self::getMinMaxY");
     }
@@ -127,10 +127,10 @@ class OcrPage
      */
     public function __toString(): string
     {
-        $lines_str = [];
+        $linesStr = [];
         foreach ($this->getAllLines() as $line) {
-            $lines_str[] = strval($line);
+            $linesStr[] = strval($line);
         }
-        return implode("\n", $lines_str) . "\n";
+        return implode("\n", $linesStr) . "\n";
     }
 }

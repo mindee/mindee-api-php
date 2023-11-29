@@ -3,16 +3,16 @@
 // sudo apt install php-cli php-curl
 
 $token = 'xxxxxxxxxxxxx';
-$file_path = '/path/to/file.pdf';
-$mime_type = 'application/pdf';
+$filePath = '/path/to/file.pdf';
+$mimeType = 'application/pdf';
 $document_type = 'to_be_implemented';
 
 $mindeeClient = new Mindee\Client($token);
 
 // file from memory
-$file_bytes = file_get_contents($file_path); // using this to simulate behavior
-$file_curl = $mindeeClient->sourceFromBytes($file_bytes, 'file-name.pdf');
-$response = $mindeeClient->parse($file_curl, $file_curl);
+$fileBytes = file_get_contents($filePath); // using this to simulate behavior
+$fileCurl = $mindeeClient->sourceFromBytes($fileBytes, 'file-name.pdf');
+$response = $mindeeClient->parse($fileCurl, $fileCurl);
 
 echo "\n";
 echo $response['code'];

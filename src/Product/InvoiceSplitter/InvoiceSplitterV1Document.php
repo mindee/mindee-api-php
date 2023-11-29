@@ -15,13 +15,13 @@ class InvoiceSplitterV1Document extends Prediction
     public array $invoicePageGroups;
 
     /**
-     * @param array $raw_prediction Raw prediction from HTTP response.
+     * @param array $rawPrediction Raw prediction from HTTP response.
      */
-    public function __construct(array $raw_prediction)
+    public function __construct(array $rawPrediction)
     {
         $this->invoicePageGroups = [];
-        if (array_key_exists("invoice_page_groups", $raw_prediction)) {
-            foreach ($raw_prediction['invoice_page_groups'] as $prediction) {
+        if (array_key_exists("invoice_page_groups", $rawPrediction)) {
+            foreach ($rawPrediction['invoice_page_groups'] as $prediction) {
                 $this->invoicePageGroups[] = new InvoiceSplitterV1PageGroup($prediction);
             }
         }
@@ -32,10 +32,10 @@ class InvoiceSplitterV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $out_str = ":Invoice Page Groups:";
+        $outStr = ":Invoice Page Groups:";
         foreach ($this->invoicePageGroups as $pageGroup) {
-            $out_str .= "\n  $pageGroup";
+            $outStr .= "\n  $pageGroup";
         }
-        return trim($out_str);
+        return trim($outStr);
     }
 }

@@ -40,42 +40,42 @@ class PredictMethodOptions
     }
 
     /**
-     * @param \Mindee\Input\PredictOptions $predict_options Prediction Options.
+     * @param \Mindee\Input\PredictOptions $predictOptions Prediction Options.
      * @return $this
      */
-    public function setPredictOptions(PredictOptions $predict_options): PredictMethodOptions
+    public function setPredictOptions(PredictOptions $predictOptions): PredictMethodOptions
     {
-        $this->predictOptions = $predict_options;
+        $this->predictOptions = $predictOptions;
         return $this;
     }
 
     /**
-     * @param \Mindee\Input\PageOptions $page_options Page Options.
+     * @param \Mindee\Input\PageOptions $pageOptions Page Options.
      * @return $this
      */
-    public function setPageOptions(PageOptions $page_options): PredictMethodOptions
+    public function setPageOptions(PageOptions $pageOptions): PredictMethodOptions
     {
-        $this->pageOptions = $page_options;
+        $this->pageOptions = $pageOptions;
         return $this;
     }
 
     /**
-     * @param \Mindee\Http\Endpoint $custom_endpoint Endpoint.
+     * @param \Mindee\Http\Endpoint $customEndpoint Endpoint.
      * @return $this
      */
-    public function setEndpoint(Endpoint $custom_endpoint): PredictMethodOptions
+    public function setEndpoint(Endpoint $customEndpoint): PredictMethodOptions
     {
-        $this->endpoint = $custom_endpoint;
+        $this->endpoint = $customEndpoint;
         return $this;
     }
 
     /**
-     * @param boolean $close_file Close file.
+     * @param boolean $closeFile Close file.
      * @return $this
      */
-    public function setCloseFile(bool $close_file): PredictMethodOptions
+    public function setCloseFile(bool $closeFile): PredictMethodOptions
     {
-        $this->closeFile = $close_file;
+        $this->closeFile = $closeFile;
         return $this;
     }
 }

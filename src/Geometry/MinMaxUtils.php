@@ -15,12 +15,12 @@ class MinMaxUtils
      */
     public static function getMinMaxY(array $points): MinMax
     {
-        $y_coords = [];
+        $yCoords = [];
         foreach ($points as $point) {
-            $y_coords[] = $point->y;
+            $yCoords[] = $point->y;
         }
 
-        return new MinMax(min($y_coords), max($y_coords));
+        return new MinMax(min($yCoords), max($yCoords));
     }
 
     /**
@@ -31,11 +31,11 @@ class MinMaxUtils
      */
     public static function getMinMaxX(array $points): MinMax
     {
-        $x_coords = [];
+        $xCoords = [];
         foreach ($points as $point) {
-            $x_coords[] = $point->x;
+            $xCoords[] = $point->x;
         }
 
-        return new MinMax(min($x_coords), max($x_coords));
+        return new MinMax(min($xCoords), max($xCoords));
     }
 }

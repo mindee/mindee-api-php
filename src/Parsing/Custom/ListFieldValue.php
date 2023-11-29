@@ -23,14 +23,14 @@ class ListFieldValue
 
 
     /**
-     * @param array $raw_prediction Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      */
     public function __construct(
-        array $raw_prediction
+        array $rawPrediction
     ) {
-        $this->content    = $raw_prediction['content'];
-        $this->confidence = $raw_prediction['confidence'];
-        $this->setPosition($raw_prediction);
+        $this->content    = $rawPrediction['content'];
+        $this->confidence = $rawPrediction['confidence'];
+        $this->setPosition($rawPrediction);
     }
 
 
