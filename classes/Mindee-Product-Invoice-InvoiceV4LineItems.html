@@ -120,6 +120,9 @@
         <h2 class="phpdocumentor-content__title">
     InvoiceV4LineItems
 
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\ArrayObject">ArrayObject</abbr>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -129,9 +132,6 @@
         </div>
     
     
-            <span class="phpdocumentor-element__extends">
-            Uses
-                            <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html"><abbr title="\Mindee\Parsing\Standard\FieldPositionMixin">FieldPositionMixin</abbr></a>,                             <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html"><abbr title="\Mindee\Parsing\Standard\FieldConfidenceMixin">FieldConfidenceMixin</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -142,11 +142,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">List of line item details.</p>
+            <p class="phpdocumentor-summary">List of line items for InvoiceV4.</p>
 
 
 
@@ -167,79 +167,6 @@
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#property_boundingBox">$boundingBox</a>
-    <span>
-                        &nbsp;: <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#property_confidence">$confidence</a>
-    <span>
-                        &nbsp;: float            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_description">$description</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_pageN">$pageN</a>
-    <span>
-                        &nbsp;: int            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#property_polygon">$polygon</a>
-    <span>
-                        &nbsp;: <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_productCode">$productCode</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_quantity">$quantity</a>
-    <span>
-                        &nbsp;: float|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxAmount">$taxAmount</a>
-    <span>
-                        &nbsp;: float|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxRate">$taxRate</a>
-    <span>
-                        &nbsp;: float|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_totalAmount">$totalAmount</a>
-    <span>
-                        &nbsp;: float|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_unitPrice">$unitPrice</a>
-    <span>
-                        &nbsp;: float|null            </span>
-</dt>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
@@ -254,38 +181,18 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___toString">__toString()</a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsSeparator">lineItemsSeparator()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Creates a line of rST table-compliant string separators.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_toTableLine">toTableLine()</a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsToStr">lineItemsToStr()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Output in a format suitable for inclusion in an rST table.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Sets the confidence score.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#method_setPosition">setPosition()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Sets the position of a field.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_printableValues">printableValues()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Return values for printing as an array.</dd>
+<dd>String representation for line items.</dd>
 
     </dl>
 
@@ -295,398 +202,6 @@
         
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_boundingBox">
-        $boundingBox
-        <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#property_boundingBox" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/FieldPositionMixin.php"><a href="files/src-parsing-standard-fieldpositionmixin.html"><abbr title="src/Parsing/Standard/FieldPositionMixin.php">FieldPositionMixin.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">21</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|null</span>
-    <span class="phpdocumentor-signature__name">$boundingBox</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>A right rectangle containing the word in the document.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_confidence">
-        $confidence
-        <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#property_confidence" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/FieldConfidenceMixin.php"><a href="files/src-parsing-standard-fieldconfidencemixin.html"><abbr title="src/Parsing/Standard/FieldConfidenceMixin.php">FieldConfidenceMixin.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">13</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float</span>
-    <span class="phpdocumentor-signature__name">$confidence</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The confidence score.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_description">
-        $description
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_description" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$description</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The item description.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_pageN">
-        $pageN
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_pageN" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">48</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$pageN</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The document page on which the information was found..</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_polygon">
-        $polygon
-        <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#property_polygon" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/FieldPositionMixin.php"><a href="files/src-parsing-standard-fieldpositionmixin.html"><abbr title="src/Parsing/Standard/FieldPositionMixin.php">FieldPositionMixin.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">17</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$polygon</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>A polygon containing the word in the document.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_productCode">
-        $productCode
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_productCode" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">24</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$productCode</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The product code referring to the item.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_quantity">
-        $quantity
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_quantity" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">28</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
-    <span class="phpdocumentor-signature__name">$quantity</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The item quantity.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_taxAmount">
-        $taxAmount
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxAmount" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">32</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
-    <span class="phpdocumentor-signature__name">$taxAmount</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The item tax amount.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_taxRate">
-        $taxRate
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxRate" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">36</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
-    <span class="phpdocumentor-signature__name">$taxRate</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The item tax rate in percentage.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_totalAmount">
-        $totalAmount
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_totalAmount" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">40</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
-    <span class="phpdocumentor-signature__name">$totalAmount</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The item total amount.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_unitPrice">
-        $unitPrice
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_unitPrice" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">44</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
-    <span class="phpdocumentor-signature__name">$unitPrice</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>The item unit price.</p>
-</section>
-
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -708,14 +223,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageId</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -727,14 +242,14 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Array containing the JSON document response.</p>
+                    <section class="phpdocumentor-description"><p>Raw prediction array.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$pageId</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
-                            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Page number for multi pages PDF.</p>
 </section>
@@ -750,38 +265,47 @@
         class="phpdocumentor-element
             -method
             -public
-                                                        "
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method___toString">
-        __toString()
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_lineItemsSeparator">
+        lineItemsSeparator()
+        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsSeparator" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Creates a line of rST table-compliant string separators.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">lineItemsSeparator</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$char</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$char</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Character to use as a separator.</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>String representation.</p>
-</section>
-
             </section>
 
 </article>
@@ -791,23 +315,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_toTableLine">
-        toTableLine()
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_toTableLine" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_lineItemsToStr">
+        lineItemsToStr()
+        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsToStr" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Output in a format suitable for inclusion in an rST table.</p>
+        <p class="phpdocumentor-summary">String representation for line items.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toTableLine</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">lineItemsToStr</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -818,130 +342,6 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setConfidence">
-        setConfidence()
-        <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/FieldConfidenceMixin.php"><a href="files/src-parsing-standard-fieldconfidencemixin.html"><abbr title="src/Parsing/Standard/FieldConfidenceMixin.php">FieldConfidenceMixin.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">21</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Sets the confidence score.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">setConfidence</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$rawPrediction</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw prediction array.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setPosition">
-        setPosition()
-        <a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#method_setPosition" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/FieldPositionMixin.php"><a href="files/src-parsing-standard-fieldpositionmixin.html"><abbr title="src/Parsing/Standard/FieldPositionMixin.php">FieldPositionMixin.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">29</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Sets the position of a field.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">setPosition</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$rawPrediction</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw prediction array.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_printableValues">
-        printableValues()
-        <a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_printableValues" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4LineItems.php"><a href="files/src-product-invoice-invoicev4lineitems.html"><abbr title="src/Product/Invoice/InvoiceV4LineItems.php">InvoiceV4LineItems.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">80</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Return values for printing as an array.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">printableValues</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -1050,37 +450,17 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#property_boundingBox">$boundingBox<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#property_confidence">$confidence<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_description">$description<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_pageN">$pageN<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#property_polygon">$polygon<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_productCode">$productCode<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_quantity">$quantity<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxAmount">$taxAmount<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxRate">$taxRate<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_totalAmount">$totalAmount<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_unitPrice">$unitPrice<a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"></li>
-                                            </ul>
-                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___toString">__toString()</a></li>
-                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_toTableLine">toTableLine()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#method_setPosition">setPosition()</a></li>
-                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_printableValues">printableValues()</a></li>
+                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsSeparator">lineItemsSeparator()</a></li>
+                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsToStr">lineItemsToStr()</a></li>
                                     </ul>
             </li>
                     </ul>
