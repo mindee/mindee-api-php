@@ -2,32 +2,29 @@
 
 namespace Parsing\Common;
 
-use Mindee\Input\PathInput;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
 
-const ASYNC_DIR = "./tests/resources/async";
-
-const FILE_PATH_POST_SUCCESS = ASYNC_DIR . "/post_success.json";
-const FILE_PATH_POST_FAIL = ASYNC_DIR . "/post_fail_forbidden.json";
-const FILE_PATH_GET_PROCESSING = ASYNC_DIR . "/get_processing.json";
-const FILE_PATH_GET_COMPLETED = ASYNC_DIR . "/get_completed.json";
-
-
 class AsyncPredictResponseTest extends TestCase
 {
-    public PathInput $fileInput;
+    private string $filePathPostSuccess;
+    private string $filePathPostFail;
+    private string $filePathGetProcessing;
+    private string $filePathGetCompleted;
 
-    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    protected function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
-        $this->fileInput = new PathInput("./tests/resources/products/invoice_splitter/default_sample.pdf");
+        $asyncDir = (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/async";
+        $this->filePathPostSuccess = $asyncDir . "/post_success.json";
+        $this->filePathPostFail = $asyncDir . "/post_fail_forbidden.json";
+        $this->filePathGetProcessing = $asyncDir . "/get_processing.json";
+        $this->filePathGetCompleted = $asyncDir . "/get_completed.json";
     }
 
     public function testAsyncResponsePOSTSuccess()
     {
-        $json = file_get_contents(FILE_PATH_POST_SUCCESS);
+        $json = file_get_contents($this->filePathPostSuccess);
         $response = json_decode($json, true);
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);
@@ -43,7 +40,7 @@ class AsyncPredictResponseTest extends TestCase
 
     public function testAsyncResponsePOSTFail()
     {
-        $json = file_get_contents(FILE_PATH_POST_FAIL);
+        $json = file_get_contents($this->filePathPostFail);
         $response = json_decode($json, true);
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);
@@ -60,7 +57,7 @@ class AsyncPredictResponseTest extends TestCase
 
     public function testAsyncResponseGETProcessing()
     {
-        $json = file_get_contents(FILE_PATH_GET_PROCESSING);
+        $json = file_get_contents($this->filePathGetProcessing);
         $response = json_decode($json, true);
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);
@@ -76,7 +73,7 @@ class AsyncPredictResponseTest extends TestCase
 
     public function testAsyncResponseGETCompleted()
     {
-        $json = file_get_contents(FILE_PATH_GET_COMPLETED);
+        $json = file_get_contents($this->filePathGetCompleted);
         $response = json_decode($json, true);
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);

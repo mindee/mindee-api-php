@@ -20,7 +20,9 @@ jobs:
           - 8.3
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
