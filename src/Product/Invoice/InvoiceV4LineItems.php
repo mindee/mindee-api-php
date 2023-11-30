@@ -48,28 +48,28 @@ class InvoiceV4LineItems
     public ?int $pageN;
 
     /**
-     * @param array        $raw_prediction Array containing the JSON document response.
-     * @param integer|null $page_id        Page number for multi pages PDF.
+     * @param array        $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId        Page number for multi pages PDF.
      */
-    public function __construct(array $raw_prediction, ?int $page_id)
+    public function __construct(array $rawPrediction, ?int $pageId)
     {
-        $this->setConfidence($raw_prediction);
-        $this->setPosition($raw_prediction);
+        $this->setConfidence($rawPrediction);
+        $this->setPosition($rawPrediction);
 
-        if (!isset($page_id)) {
-            if (array_key_exists("page_id", $raw_prediction)) {
-                $page_id = $raw_prediction["page_id"];
+        if (!isset($pageId)) {
+            if (array_key_exists("page_id", $rawPrediction)) {
+                $pageId = $rawPrediction["page_id"];
             }
         }
-        $this->pageN = $page_id;
+        $this->pageN = $pageId;
 
-        $this->description = $raw_prediction["description"];
-        $this->productCode = $raw_prediction["product_code"];
-        $this->quantity = floatval($raw_prediction["quantity"]);
-        $this->taxAmount = floatval($raw_prediction["tax_amount"]);
-        $this->taxRate = floatval($raw_prediction["tax_rate"]);
-        $this->totalAmount = floatval($raw_prediction["total_amount"]);
-        $this->unitPrice = floatval($raw_prediction["unit_price"]);
+        $this->description = $rawPrediction["description"];
+        $this->productCode = $rawPrediction["product_code"];
+        $this->quantity = floatval($rawPrediction["quantity"]);
+        $this->taxAmount = floatval($rawPrediction["tax_amount"]);
+        $this->taxRate = floatval($rawPrediction["tax_rate"]);
+        $this->totalAmount = floatval($rawPrediction["total_amount"]);
+        $this->unitPrice = floatval($rawPrediction["unit_price"]);
     }
 
     /**
@@ -79,15 +79,15 @@ class InvoiceV4LineItems
      */
     private function printableValues(): array
     {
-        $out_arr = [];
-        $out_arr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
-        $out_arr["product_code"] = SummaryHelper::formatForDisplay($this->productCode, null);
-        $out_arr["quantity"] = SummaryHelper::formatForDisplay($this->quantity);
-        $out_arr["tax_amount"] = SummaryHelper::formatForDisplay($this->taxAmount);
-        $out_arr["tax_rate"] = SummaryHelper::formatForDisplay($this->taxRate);
-        $out_arr["total_amount"] = SummaryHelper::formatForDisplay($this->totalAmount);
-        $out_arr["unit_price"] = SummaryHelper::formatForDisplay($this->unitPrice);
-        return $out_arr;
+        $outArr = [];
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
+        $outArr["productCode"] = SummaryHelper::formatForDisplay($this->productCode, null);
+        $outArr["quantity"] = SummaryHelper::formatForDisplay($this->quantity);
+        $outArr["taxAmount"] = SummaryHelper::formatForDisplay($this->taxAmount);
+        $outArr["taxRate"] = SummaryHelper::formatForDisplay($this->taxRate);
+        $outArr["totalAmount"] = SummaryHelper::formatForDisplay($this->totalAmount);
+        $outArr["unitPrice"] = SummaryHelper::formatForDisplay($this->unitPrice);
+        return $outArr;
     }
 
     /**
@@ -95,17 +95,17 @@ class InvoiceV4LineItems
      *
      * @return string
      */
-    private function toTableLines(): string
+    public function toTableLine(): string
     {
         $printable = $this->printableValues();
-        $out_str = "| " . str_pad($printable["description"], 36) . " | ";
-        $out_str .= str_pad($printable["product_code"], 12);
-        $out_str .= str_pad($printable["quantity"], 8);
-        $out_str .= str_pad($printable["tax_amount"], 10);
-        $out_str .= str_pad($printable["tax_rate"], 12);
-        $out_str .= str_pad($printable["total_amount"], 12);
-        $out_str .= str_pad($printable["unit_price"], 10);
-        return SummaryHelper::cleanOutString($out_str);
+        $outStr = "| " . str_pad($printable["description"], 36) . " | ";
+        $outStr .= str_pad($printable["productCode"], 12);
+        $outStr .= str_pad($printable["quantity"], 8);
+        $outStr .= str_pad($printable["taxAmount"], 10);
+        $outStr .= str_pad($printable["taxRate"], 12);
+        $outStr .= str_pad($printable["totalAmount"], 12);
+        $outStr .= str_pad($printable["unitPrice"], 10);
+        return SummaryHelper::cleanOutString($outStr);
     }
 
     /**
@@ -113,8 +113,14 @@ class InvoiceV4LineItems
      */
     public function __toString(): string
     {
-        $out_str = ":Page indexes: ";
-        $out_str .= implode(", ", $this->pageIndexes);
-        return trim($out_str);
+        $printable = $this->printableValues();
+        $outStr = "Description: " . $printable["description"] . ", \n";
+        $outStr .= "Product code: " . $printable["productCode"] . ", \n";
+        $outStr .= "Quantity: " . $printable["quantity"] . ", \n";
+        $outStr .= "Tax Amount: " . $printable["taxAmount"] . ", \n";
+        $outStr .= "Tax Rate (%): " . $printable["taxRate"] . ", \n";
+        $outStr .= "Total Amount: " . $printable["totalAmount"] . ", \n";
+        $outStr .= "Unit Price: " . $printable["unitPrice"] . ", \n";
+        return SummaryHelper::cleanOutString($outStr);
     }
 }

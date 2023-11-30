@@ -153,8 +153,8 @@ class Client
     {
         try {
             $reflection = new \ReflectionClass($product);
-            $endpointName = $reflection->getStaticPropertyValue("endpoint_name");
-            $endpointVersion = $reflection->getStaticPropertyValue("endpoint_version");
+            $endpointName = $reflection->getStaticPropertyValue("endpointName");
+            $endpointVersion = $reflection->getStaticPropertyValue("endpointVersion");
         } catch (\ReflectionException $exception) {
             throw new MindeeApiException("Unable to create custom product " . $product);
         }
