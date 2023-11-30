@@ -7,13 +7,14 @@ namespace Mindee\Parsing\Standard;
  */
 class ClassificationField extends BaseField
 {
-    use FieldConfidenceMixin;
-
     /**
-     * @var string The value as a string
+     * @var string|mixed|null The classification value.
      */
     public $value;
-
+    /**
+     * @var float|mixed The confidence score.
+     */
+    public float $confidence;
 
     /**
      * @param array        $rawPrediction Raw prediction array.

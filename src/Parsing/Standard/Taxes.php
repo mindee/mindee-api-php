@@ -45,8 +45,11 @@ class Taxes extends \ArrayObject
         $outStr .= "  | Base          | Code   | Rate (%) | Amount        |\n";
         $outStr .= Taxes::lineSeparator('=');
         $arr = [];
-        foreach ($this as $entry) {
-            array_push($arr, "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('='));
+        $iterator = $this->getIterator();
+        while ($iterator->valid()) {
+            $entry = $iterator->current();
+            $arr[] = "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('=');
+            $iterator->next();
         }
         $outStr .= implode("\n", $arr);
 
