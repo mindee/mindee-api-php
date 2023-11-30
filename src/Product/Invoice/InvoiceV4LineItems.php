@@ -14,7 +14,7 @@ class InvoiceV4LineItems extends \ArrayObject
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
         $entries = [];
-        foreach ($rawPrediction["line_items"] as $entry) {
+        foreach ($rawPrediction as $entry) {
             $entries[] = new InvoiceV4LineItem($entry, $pageId);
         }
         parent::__construct($entries);
