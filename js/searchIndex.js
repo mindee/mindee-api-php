@@ -1,6 +1,11 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Mindee\\DEFAULT_OWNER",
+            "name": "DEFAULT_OWNER",
+            "summary": "Default\u0020owner\u0020for\u0020API\u0020products.",
+            "url": "namespaces/mindee.html#constant_DEFAULT_OWNER"
+        },                {
             "fqsen": "\\Mindee\\Client",
             "name": "Client",
             "summary": "Main\u0020entrypoint\u0020for\u0020Mindee\u0020operations.",
@@ -95,11 +100,6 @@ Search.appendIndex(
             "name": "parseQueued",
             "summary": "Parses\u0020a\u0020queued\u0020document.",
             "url": "classes/Mindee-Client.html#method_parseQueued"
-        },                {
-            "fqsen": "\\Mindee\\Client\u003A\u003ADEFAULT_OWNER",
-            "name": "DEFAULT_OWNER",
-            "summary": "Default\u0020owner\u0020for\u0020API\u0020products.",
-            "url": "classes/Mindee-Client.html#constant_DEFAULT_OWNER"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003A\u0024apiKey",
             "name": "apiKey",
@@ -201,10 +201,10 @@ Search.appendIndex(
             "summary": "Retrieves\u0020the\u0020minimum\u0020x\u0020coordinate.",
             "url": "classes/Mindee-Geometry-BBox.html#method_getMinX"
         },                {
-            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaxX\u0028\u0029",
-            "name": "getMaxX",
+            "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMaX\u0028\u0029",
+            "name": "getMaX",
             "summary": "Retrieves\u0020the\u0020maximum\u0020x\u0020coordinate.",
-            "url": "classes/Mindee-Geometry-BBox.html#method_getMaxX"
+            "url": "classes/Mindee-Geometry-BBox.html#method_getMaX"
         },                {
             "fqsen": "\\Mindee\\Geometry\\BBox\u003A\u003AgetMinY\u0028\u0029",
             "name": "getMinY",
@@ -1401,6 +1401,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Product.html#property_version"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\SummaryHelper",
+            "name": "SummaryHelper",
+            "summary": "Utility\u0020class\u0020to\u0020handle\u0020information\u0020display.",
+            "url": "classes/Mindee-Parsing-Common-SummaryHelper.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\SummaryHelper\u003A\u003AlineSeparator\u0028\u0029",
+            "name": "lineSeparator",
+            "summary": "Adds\u0020custom\u0020separators\u0020for\u0020console\u0020display\u0020in\u0020line\u002Ditems\u002Dlike\u0020fields.",
+            "url": "classes/Mindee-Parsing-Common-SummaryHelper.html#method_lineSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\SummaryHelper\u003A\u003AcleanOutString\u0028\u0029",
+            "name": "cleanOutString",
+            "summary": "Properly\u0020formats\u0020carriage\u0020returns\u0020in\u0020a\u0020string\u0020and\u0020remove\u0020leading\u0020spaces\u0020before\u0020them.",
+            "url": "classes/Mindee-Parsing-Common-SummaryHelper.html#method_cleanOutString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\SummaryHelper\u003A\u003AformatForDisplay\u0028\u0029",
+            "name": "formatForDisplay",
+            "summary": "Truncates\u0020line\u002Ditems\u0020to\u0020the\u0020max\u0020width\u0020of\u0020their\u0020corresponding\u0020column.",
+            "url": "classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatForDisplay"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField",
             "name": "ClassificationField",
             "summary": "A\u0020classification\u0020field.",
@@ -1610,6 +1630,11 @@ Search.appendIndex(
             "name": "value",
             "summary": "",
             "url": "classes/Mindee-Parsing-Standard-ClassificationField.html#property_value"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\ClassificationField\u003A\u003A\u0024confidence",
+            "name": "confidence",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-ClassificationField.html#property_confidence"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\CompanyRegistrationField",
             "name": "CompanyRegistrationField",
@@ -2066,6 +2091,201 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1Page.html#property_documentSide"
         },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4",
+            "name": "InvoiceV4",
+            "summary": "Inference\u0020prediction\u0020for\u0020Invoice,\u0020API\u0020version\u00204.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
+            "name": "InvoiceV4Document",
+            "summary": "Document\u0020data\u0020for\u0020Invoice,\u0020API\u0020version\u00204.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003AlineItemsSeparator\u0028\u0029",
+            "name": "lineItemsSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method_lineItemsSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003AlineItemsToStr\u0028\u0029",
+            "name": "lineItemsToStr",
+            "summary": "String\u0020representation\u0020for\u0020line\u0020items.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method_lineItemsToStr"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerAddress",
+            "name": "customerAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_customerAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerCompanyRegistrations",
+            "name": "customerCompanyRegistrations",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_customerCompanyRegistrations"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerName",
+            "name": "customerName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_customerName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024date",
+            "name": "date",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_date"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024documentType",
+            "name": "documentType",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024dueDate",
+            "name": "dueDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_dueDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024invoiceNumber",
+            "name": "invoiceNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_invoiceNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024lineItems",
+            "name": "lineItems",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_lineItems"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024locale",
+            "name": "locale",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_locale"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024referenceNumbers",
+            "name": "referenceNumbers",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_referenceNumbers"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierAddress",
+            "name": "supplierAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierCompanyRegistrations",
+            "name": "supplierCompanyRegistrations",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierCompanyRegistrations"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierName",
+            "name": "supplierName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierPaymentDetails",
+            "name": "supplierPaymentDetails",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierPaymentDetails"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024taxes",
+            "name": "taxes",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_taxes"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024totalAmount",
+            "name": "totalAmount",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_totalAmount"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024totalNet",
+            "name": "totalNet",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_totalNet"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems",
+            "name": "InvoiceV4LineItems",
+            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024description",
+            "name": "description",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_description"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024productCode",
+            "name": "productCode",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_productCode"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024quantity",
+            "name": "quantity",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_quantity"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024taxAmount",
+            "name": "taxAmount",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxAmount"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024taxRate",
+            "name": "taxRate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_taxRate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024totalAmount",
+            "name": "totalAmount",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_totalAmount"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024unitPrice",
+            "name": "unitPrice",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_unitPrice"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A\u0024pageN",
+            "name": "pageN",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#property_pageN"
+        },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1",
             "name": "InvoiceSplitterV1",
             "summary": "Inference\u0020prediction\u0020for\u0020Invoice\u0020Splitter,\u0020API\u0020version\u00201.",
@@ -2215,6 +2435,11 @@ Search.appendIndex(
             "name": "Fr",
             "summary": "",
             "url": "namespaces/mindee-product-fr.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice",
+            "name": "Invoice",
+            "summary": "",
+            "url": "namespaces/mindee-product-invoice.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter",
             "name": "InvoiceSplitter",

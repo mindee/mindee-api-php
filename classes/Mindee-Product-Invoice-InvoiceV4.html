@@ -112,16 +112,16 @@
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee.html">Mindee</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-parsing.html">Parsing</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-parsing-standard.html">Standard</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-product.html">Product</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-product-invoice.html">Invoice</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ClassificationField
+    InvoiceV4
 
         <span class="phpdocumentor-element__extends">
-        extends <a href="classes/Mindee-Parsing-Standard-BaseField.html"><abbr title="\Mindee\Parsing\Standard\BaseField">BaseField</abbr></a>
+        extends <a href="classes/Mindee-Parsing-Common-Inference.html"><abbr title="\Mindee\Parsing\Common\Inference">Inference</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -140,13 +140,13 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/ClassificationField.php"><a href="files/src-parsing-standard-classificationfield.html"><abbr title="src/Parsing/Standard/ClassificationField.php">ClassificationField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4.php"><a href="files/src-product-invoice-invoicev4.html"><abbr title="src/Product/Invoice/InvoiceV4.php">InvoiceV4.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Represents a classifier value.</p>
+            <p class="phpdocumentor-summary">Inference prediction for Invoice, API version 4.</p>
 
 
 
@@ -155,7 +155,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -169,67 +169,71 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#property_confidence">$confidence</a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointName">$endpointName</a>
     <span>
-                        &nbsp;: float|mixed            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-BaseField.html#property_pageId">$pageId</a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointVersion">$endpointVersion</a>
     <span>
-                        &nbsp;: int|mixed|null            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-BaseField.html#property_reconstructed">$reconstructed</a>
+    <a href="classes/Mindee-Parsing-Common-Inference.html#property_isRotationApplied">$isRotationApplied</a>
     <span>
-                        &nbsp;: bool            </span>
+                        &nbsp;: bool|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#property_value">$value</a>
+    <a href="classes/Mindee-Parsing-Common-Inference.html#property_pageId">$pageId</a>
     <span>
-                        &nbsp;: string|mixed|null            </span>
+                        &nbsp;: int|null            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Mindee-Parsing-Common-Inference.html#property_pages">$pages</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Mindee-Parsing-Common-Inference.html#property_prediction">$prediction</a>
+    <span>
+                        &nbsp;: <a href="classes/Mindee-Parsing-Common-Prediction.html"><abbr title="\Mindee\Parsing\Common\Prediction">Prediction</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Mindee-Parsing-Common-Inference.html#property_product">$product</a>
+    <span>
+                        &nbsp;: <a href="classes/Mindee-Parsing-Common-Product.html"><abbr title="\Mindee\Parsing\Common\Product">Product</abbr></a>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Parsing-Standard-BaseField.html#method___compare">__compare()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Compares with the value of another field.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#method___construct">__construct()</a>
+    <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Parsing-Standard-BaseField.html#method___toString">__toString()</a>
+    <a href="classes/Mindee-Parsing-Common-Inference.html#method___toString">__toString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Sets the confidence score.</dd>
 
     </dl>
 
@@ -242,7 +246,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -250,31 +254,101 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+            -static                                            "
 >
-    <h4 class="phpdocumentor-element__name" id="property_confidence">
-        $confidence
-        <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#property_confidence" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_endpointName">
+        $endpointName
+        <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointName" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/ClassificationField.php"><a href="files/src-parsing-standard-classificationfield.html"><abbr title="src/Parsing/Standard/ClassificationField.php">ClassificationField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4.php"><a href="files/src-product-invoice-invoicev4.html"><abbr title="src/Product/Invoice/InvoiceV4.php">InvoiceV4.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|mixed</span>
-    <span class="phpdocumentor-signature__name">$confidence</span>
+    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$endpointName</span>
+     = <span class="phpdocumentor-signature__default-value">&quot;invoices&quot;</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Name of the endpoint.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+            -static                                            "
+>
+    <h4 class="phpdocumentor-element__name" id="property_endpointVersion">
+        $endpointVersion
+        <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointVersion" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4.php"><a href="files/src-product-invoice-invoicev4.html"><abbr title="src/Product/Invoice/InvoiceV4.php">InvoiceV4.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$endpointVersion</span>
+     = <span class="phpdocumentor-signature__default-value">&quot;4&quot;</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Version of the endpoint.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_isRotationApplied">
+        $isRotationApplied
+        <a href="classes/Mindee-Parsing-Common-Inference.html#property_isRotationApplied" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Inference.php"><a href="files/src-parsing-common-inference.html"><abbr title="src/Parsing/Common/Inference.php">Inference.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">bool|null</span>
+    <span class="phpdocumentor-signature__name">$isRotationApplied</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>The confidence score.</p>
+        <section class="phpdocumentor-description"><p>Whether the document has had any rotation applied to it.</p>
 </section>
 
     
@@ -289,27 +363,27 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_pageId">
         $pageId
-        <a href="classes/Mindee-Parsing-Standard-BaseField.html#property_pageId" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-Common-Inference.html#property_pageId" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/BaseField.php"><a href="files/src-parsing-standard-basefield.html"><abbr title="src/Parsing/Standard/BaseField.php">BaseField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Inference.php"><a href="files/src-parsing-common-inference.html"><abbr title="src/Parsing/Common/Inference.php">Inference.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|mixed|null</span>
+        <span class="phpdocumentor-signature__type">int|null</span>
     <span class="phpdocumentor-signature__name">$pageId</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>The document page on which the information was found.</p>
+        <section class="phpdocumentor-description"><p>Optional page id for page-level predictions.</p>
 </section>
 
     
@@ -322,29 +396,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_reconstructed">
-        $reconstructed
-        <a href="classes/Mindee-Parsing-Standard-BaseField.html#property_reconstructed" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_pages">
+        $pages
+        <a href="classes/Mindee-Parsing-Common-Inference.html#property_pages" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/BaseField.php"><a href="files/src-parsing-standard-basefield.html"><abbr title="src/Parsing/Standard/BaseField.php">BaseField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Inference.php"><a href="files/src-parsing-common-inference.html"><abbr title="src/Parsing/Common/Inference.php">Inference.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$reconstructed</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$pages</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the field was reconstructed from other fields.</p>
+        <section class="phpdocumentor-description"><p>A document's pages.</p>
 </section>
 
     
@@ -357,29 +431,64 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_value">
-        $value
-        <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#property_value" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_prediction">
+        $prediction
+        <a href="classes/Mindee-Parsing-Common-Inference.html#property_prediction" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/ClassificationField.php"><a href="files/src-parsing-standard-classificationfield.html"><abbr title="src/Parsing/Standard/ClassificationField.php">ClassificationField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Inference.php"><a href="files/src-parsing-common-inference.html"><abbr title="src/Parsing/Common/Inference.php">Inference.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|mixed|null</span>
-    <span class="phpdocumentor-signature__name">$value</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Common-Prediction.html"><abbr title="\Mindee\Parsing\Common\Prediction">Prediction</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$prediction</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>The classification value.</p>
+        <section class="phpdocumentor-description"><p>A document's top-level Prediction.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_product">
+        $product
+        <a href="classes/Mindee-Parsing-Common-Inference.html#property_product" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Inference.php"><a href="files/src-parsing-common-inference.html"><abbr title="src/Parsing/Common/Inference.php">Inference.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Common-Product.html"><abbr title="\Mindee\Parsing\Common\Product">Product</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$product</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Name and version of a given product, as sent back by the API.</p>
 </section>
 
     
@@ -390,7 +499,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -399,70 +508,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___compare">
-        __compare()
-        <a href="classes/Mindee-Parsing-Standard-BaseField.html#method___compare" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/BaseField.php"><a href="files/src-parsing-standard-basefield.html"><abbr title="src/Parsing/Standard/BaseField.php">BaseField.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">63</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Compares with the value of another field.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__compare</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Standard-BaseField.html"><abbr title="\Mindee\Parsing\Standard\BaseField">BaseField</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$obj</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$obj</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Standard-BaseField.html"><abbr title="\Mindee\Parsing\Standard\BaseField">BaseField</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Field to compare.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/ClassificationField.php"><a href="files/src-parsing-standard-classificationfield.html"><abbr title="src/Parsing/Standard/ClassificationField.php">ClassificationField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Invoice/InvoiceV4.php"><a href="files/src-product-invoice-invoicev4.html"><abbr title="src/Product/Invoice/InvoiceV4.php">InvoiceV4.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageId</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reconstructed</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$valueKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;value&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -474,34 +535,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw prediction array.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$pageId</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Page number for multi pages PDF.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$reconstructed</span>
-                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Whether the field was reconstructed.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$valueKey</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;value&#039;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Key to use for the value.</p>
+                    <section class="phpdocumentor-description"><p>Raw prediction from the HTTP response.</p>
 </section>
 
             </dd>
@@ -519,13 +553,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
-        <a href="classes/Mindee-Parsing-Standard-BaseField.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-Common-Inference.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/BaseField.php"><a href="files/src-parsing-standard-basefield.html"><abbr title="src/Parsing/Standard/BaseField.php">BaseField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Inference.php"><a href="files/src-parsing-common-inference.html"><abbr title="src/Parsing/Common/Inference.php">Inference.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -550,57 +584,13 @@
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setConfidence">
-        setConfidence()
-        <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/FieldConfidenceMixin.php"><a href="files/src-parsing-standard-fieldconfidencemixin.html"><abbr title="src/Parsing/Standard/FieldConfidenceMixin.php">FieldConfidenceMixin.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">21</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Sets the confidence score.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">setConfidence</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$rawPrediction</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw prediction array.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsing/Standard/ClassificationField.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Product/Invoice/InvoiceV4.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -699,28 +689,29 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-Parsing-Standard-ClassificationField.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-Parsing-Standard-ClassificationField.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/Mindee-Parsing-Standard-ClassificationField.html#property_confidence">$confidence<a href="classes/Mindee-Parsing-Standard-ClassificationField.html"></li>
-                                                    <li><a href="classes/Mindee-Parsing-Standard-BaseField.html#property_pageId">$pageId<a href="classes/Mindee-Parsing-Standard-ClassificationField.html"></li>
-                                                    <li><a href="classes/Mindee-Parsing-Standard-BaseField.html#property_reconstructed">$reconstructed<a href="classes/Mindee-Parsing-Standard-ClassificationField.html"></li>
-                                                    <li><a href="classes/Mindee-Parsing-Standard-ClassificationField.html#property_value">$value<a href="classes/Mindee-Parsing-Standard-ClassificationField.html"></li>
+                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointName">$endpointName<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
+                                                    <li><a href="classes/Mindee-Product-Invoice-InvoiceV4.html#property_endpointVersion">$endpointVersion<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
+                                                    <li><a href="classes/Mindee-Parsing-Common-Inference.html#property_isRotationApplied">$isRotationApplied<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
+                                                    <li><a href="classes/Mindee-Parsing-Common-Inference.html#property_pageId">$pageId<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
+                                                    <li><a href="classes/Mindee-Parsing-Common-Inference.html#property_pages">$pages<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
+                                                    <li><a href="classes/Mindee-Parsing-Common-Inference.html#property_prediction">$prediction<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
+                                                    <li><a href="classes/Mindee-Parsing-Common-Inference.html#property_product">$product<a href="classes/Mindee-Product-Invoice-InvoiceV4.html"></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li><a href="classes/Mindee-Parsing-Standard-BaseField.html#method___compare">__compare()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-ClassificationField.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-BaseField.html#method___toString">__toString()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a></li>
+                                            <li><a href="classes/Mindee-Product-Invoice-InvoiceV4.html#method___construct">__construct()</a></li>
+                                            <li><a href="classes/Mindee-Parsing-Common-Inference.html#method___toString">__toString()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -740,7 +731,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Mindee-Parsing-Standard-ClassificationField.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Mindee-Product-Invoice-InvoiceV4.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
