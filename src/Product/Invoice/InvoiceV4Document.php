@@ -96,7 +96,7 @@ class InvoiceV4Document extends Prediction
     {
         $this->customerAddress = new StringField($rawPrediction["customer_address"], $pageId);
         $this->customerCompanyRegistrations = array_map(
-            fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
+            fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["customer_company_registrations"]
         );
         $this->customerName = new StringField($rawPrediction["customer_name"], $pageId);
@@ -105,17 +105,17 @@ class InvoiceV4Document extends Prediction
         $this->dueDate = new DateField($rawPrediction["due_date"], $pageId);
         $this->invoiceNumber = new StringField($rawPrediction["invoice_number"], $pageId);
         $this->lineItems = array_map(
-            fn($prediction) => new InvoiceV4LineItems($prediction, $pageId),
+            fn ($prediction) => new InvoiceV4LineItems($prediction, $pageId),
             $rawPrediction["line_items"]
         );
         $this->locale = new LocaleField($rawPrediction["locale"], $pageId);
         $this->supplierCompanyRegistrations = array_map(
-            fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
+            fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );
         $this->supplierName = new StringField($rawPrediction["supplier_name"], $pageId);
         $this->supplierPaymentDetails = array_map(
-            fn($prediction) => new PaymentDetailsField($prediction, $pageId),
+            fn ($prediction) => new PaymentDetailsField($prediction, $pageId),
             $rawPrediction["supplier_payment_details"]
         );
         $this->taxes = new Taxes($rawPrediction['taxes'], $pageId);
@@ -154,7 +154,7 @@ class InvoiceV4Document extends Prediction
         }
         $lines = "\n" . self::lineItemsSeparator('-') . implode(
             "\n  ",
-            array_map(fn($item) => $item->toTableLine(), $this->lineItems)
+            array_map(fn ($item) => $item->toTableLine(), $this->lineItems)
         );
         $outStr = "\n" . self::lineItemsSeparator('-') . "\n ";
         $outStr .= " | Description                         ";
@@ -177,19 +177,19 @@ class InvoiceV4Document extends Prediction
     {
         $customerCompanyRegistrations = "\n " . implode(
             str_repeat(" ", 32),
-            array_map(fn($item) => strval($item), $this->customerCompanyRegistrations)
+            array_map(fn ($item) => strval($item), $this->customerCompanyRegistrations)
         );
         $referenceNumbers = "\n " . implode(
             str_repeat(" ", 19),
-            array_map(fn($item) => strval($item), $this->referenceNumbers)
+            array_map(fn ($item) => strval($item), $this->referenceNumbers)
         );
         $supplierCompanyRegistrations = "\n " . implode(
             str_repeat(" ", 32),
-            array_map(fn($item) => strval($item), $this->supplierCompanyRegistrations)
+            array_map(fn ($item) => strval($item), $this->supplierCompanyRegistrations)
         );
         $supplierPaymentDetails = "\n " . implode(
             str_repeat(" ", 26),
-            array_map(fn($item) => strval($item), $this->supplierPaymentDetails)
+            array_map(fn ($item) => strval($item), $this->supplierPaymentDetails)
         );
         $outStr = ":Locale: " . $this->locale . "\n";
         $outStr .= ":InvoiceNumber: " . $this->invoiceNumber . "\n";
