@@ -48,9 +48,9 @@ class InvoiceV4Document extends Prediction
      */
     public StringField $invoiceNumber;
     /**
-     * @var InvoiceV4LineItems[]
+     * @var InvoiceV4LineItems
      */
-    public array $lineItems;
+    public InvoiceV4LineItems $lineItems;
     /**
      * @var LocaleField
      */
@@ -87,7 +87,6 @@ class InvoiceV4Document extends Prediction
      * @var AmountField
      */
     public AmountField $totalNet;
-
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages PDF.
@@ -104,10 +103,7 @@ class InvoiceV4Document extends Prediction
         $this->documentType = new ClassificationField($rawPrediction["document_type"], $pageId);
         $this->dueDate = new DateField($rawPrediction["due_date"], $pageId);
         $this->invoiceNumber = new StringField($rawPrediction["invoice_number"], $pageId);
-        $this->lineItems = array_map(
-            fn ($prediction) => new InvoiceV4LineItems($prediction, $pageId),
-            $rawPrediction["line_items"]
-        );
+        $this->lineItems = new InvoiceV4LineItems($rawPrediction["line_items"], $pageId);
         $this->locale = new LocaleField($rawPrediction["locale"], $pageId);
         $this->supplierCompanyRegistrations = array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
@@ -131,15 +127,7 @@ class InvoiceV4Document extends Prediction
      */
     private static function lineItemsSeparator(string $char): string
     {
-        $outStr = "  ";
-        $outStr .= "+" . str_repeat($char, 38);
-        $outStr .= "+" . str_repeat($char, 14);
-        $outStr .= "+" . str_repeat($char, 10);
-        $outStr .= "+" . str_repeat($char, 12);
-        $outStr .= "+" . str_repeat($char, 14);
-        $outStr .= "+" . str_repeat($char, 14);
-        $outStr .= "+" . str_repeat($char, 12);
-        return $outStr . "+";
+        return InvoiceV4LineItems::lineItemsSeparator($char);
     }
 
     /**
@@ -149,25 +137,7 @@ class InvoiceV4Document extends Prediction
      */
     private function lineItemsToStr(): string
     {
-        if (!$this->lineItems || count($this->lineItems) == 0) {
-            return "";
-        }
-        $lines = "\n" . self::lineItemsSeparator('-') . implode(
-            "\n  ",
-            array_map(fn ($item) => $item->toTableLine(), $this->lineItems)
-        );
-        $outStr = "\n" . self::lineItemsSeparator('-') . "\n ";
-        $outStr .= " | Description                         ";
-        $outStr .= " | Product code";
-        $outStr .= " | Quantity";
-        $outStr .= " | Tax Amount";
-        $outStr .= " | Tax Rate (%)";
-        $outStr .= " | Total Amount";
-        $outStr .= " | Unit Price";
-        $outStr .= " |\n" . self::lineItemsSeparator("=");
-        $outStr .= "\n  $lines";
-        $outStr .= " |\n" . self::lineItemsSeparator("-");
-        return $outStr;
+        return $this->lineItems->lineItemsToStr();
     }
 
     /**

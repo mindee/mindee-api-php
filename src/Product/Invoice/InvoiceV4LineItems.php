@@ -2,125 +2,72 @@
 
 namespace Mindee\Product\Invoice;
 
-use Mindee\Parsing\Common\SummaryHelper;
-use Mindee\Parsing\Standard\FieldConfidenceMixin;
-use Mindee\Parsing\Standard\FieldPositionMixin;
-
 /**
- * List of line item details.
+* List of line items for InvoiceV4.
  */
-class InvoiceV4LineItems
+class InvoiceV4LineItems extends \ArrayObject
 {
-    use FieldPositionMixin;
-    use FieldConfidenceMixin;
-
     /**
-     * @var string|null The item description.
-     */
-    public ?string $description;
-    /**
-     * @var string|null The product code referring to the item.
-     */
-    public ?string $productCode;
-    /**
-     * @var float|null The item quantity.
-     */
-    public ?float $quantity;
-    /**
-     * @var float|null The item tax amount.
-     */
-    public ?float $taxAmount;
-    /**
-     * @var float|null The item tax rate in percentage.
-     */
-    public ?float $taxRate;
-    /**
-     * @var float|null The item total amount.
-     */
-    public ?float $totalAmount;
-    /**
-     * @var float|null The item unit price.
-     */
-    public ?float $unitPrice;
-    /**
-     * @var integer The document page on which the information was found..
-     */
-    public ?int $pageN;
-
-    /**
-     * @param array        $rawPrediction Array containing the JSON document response.
+     * @param array        $rawPrediction Raw prediction array.
      * @param integer|null $pageId        Page number for multi pages PDF.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        $this->setConfidence($rawPrediction);
-        $this->setPosition($rawPrediction);
-
-        if (!isset($pageId)) {
-            if (array_key_exists("page_id", $rawPrediction)) {
-                $pageId = $rawPrediction["page_id"];
-            }
+        $entries = [];
+        foreach ($rawPrediction["line_items"] as $entry) {
+            $entries[] = new InvoiceV4LineItem($entry, $pageId);
         }
-        $this->pageN = $pageId;
-
-        $this->description = $rawPrediction["description"];
-        $this->productCode = $rawPrediction["product_code"];
-        $this->quantity = floatval($rawPrediction["quantity"]);
-        $this->taxAmount = floatval($rawPrediction["tax_amount"]);
-        $this->taxRate = floatval($rawPrediction["tax_rate"]);
-        $this->totalAmount = floatval($rawPrediction["total_amount"]);
-        $this->unitPrice = floatval($rawPrediction["unit_price"]);
+        parent::__construct($entries);
     }
 
     /**
-     * Return values for printing as an array.
+     * Creates a line of rST table-compliant string separators.
      *
-     * @return array
+     * @param string $char Character to use as a separator.
+     * @return string
      */
-    private function printableValues(): array
+    public static function lineItemsSeparator(string $char): string
     {
-        $outArr = [];
-        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
-        $outArr["productCode"] = SummaryHelper::formatForDisplay($this->productCode, null);
-        $outArr["quantity"] = SummaryHelper::formatForDisplay($this->quantity);
-        $outArr["taxAmount"] = SummaryHelper::formatForDisplay($this->taxAmount);
-        $outArr["taxRate"] = SummaryHelper::formatForDisplay($this->taxRate);
-        $outArr["totalAmount"] = SummaryHelper::formatForDisplay($this->totalAmount);
-        $outArr["unitPrice"] = SummaryHelper::formatForDisplay($this->unitPrice);
-        return $outArr;
+        $outStr = "  ";
+        $outStr .= "+" . str_repeat($char, 38);
+        $outStr .= "+" . str_repeat($char, 14);
+        $outStr .= "+" . str_repeat($char, 10);
+        $outStr .= "+" . str_repeat($char, 12);
+        $outStr .= "+" . str_repeat($char, 14);
+        $outStr .= "+" . str_repeat($char, 14);
+        $outStr .= "+" . str_repeat($char, 12);
+        return $outStr . "+";
     }
 
     /**
-     * Output in a format suitable for inclusion in an rST table.
+     * String representation for line items.
      *
      * @return string
      */
-    public function toTableLine(): string
+    public function lineItemsToStr(): string
     {
-        $printable = $this->printableValues();
-        $outStr = "| " . str_pad($printable["description"], 36) . " | ";
-        $outStr .= str_pad($printable["productCode"], 12);
-        $outStr .= str_pad($printable["quantity"], 8);
-        $outStr .= str_pad($printable["taxAmount"], 10);
-        $outStr .= str_pad($printable["taxRate"], 12);
-        $outStr .= str_pad($printable["totalAmount"], 12);
-        $outStr .= str_pad($printable["unitPrice"], 10);
-        return SummaryHelper::cleanOutString($outStr);
-    }
+        if (!$this->invoiceV4Document->lineItems || count($this->invoiceV4Document->lineItems) == 0) {
+            return "";
+        }
 
-    /**
-     * @return string String representation.
-     */
-    public function __toString(): string
-    {
-        $printable = $this->printableValues();
-        $outStr = "Description: " . $printable["description"] . ", \n";
-        $outStr .= "Product code: " . $printable["productCode"] . ", \n";
-        $outStr .= "Quantity: " . $printable["quantity"] . ", \n";
-        $outStr .= "Tax Amount: " . $printable["taxAmount"] . ", \n";
-        $outStr .= "Tax Rate (%): " . $printable["taxRate"] . ", \n";
-        $outStr .= "Total Amount: " . $printable["totalAmount"] . ", \n";
-        $outStr .= "Unit Price: " . $printable["unitPrice"] . ", \n";
-        return SummaryHelper::cleanOutString($outStr);
+        $lines = "";
+        $iterator = $this->getIterator();
+        while ($iterator->valid()) {
+            $entry = $iterator->current();
+            $lines .= "\n  " . $entry->toTableLine() . "\n" . self::lineItemsSeparator('-');
+            $iterator->next();
+        }
+        $outStr = "\n" . self::lineItemsSeparator('-') . "\n ";
+        $outStr .= " | Description                         ";
+        $outStr .= " | Product code";
+        $outStr .= " | Quantity";
+        $outStr .= " | Tax Amount";
+        $outStr .= " | Tax Rate (%)";
+        $outStr .= " | Total Amount";
+        $outStr .= " | Unit Price";
+        $outStr .= " |\n" . self::lineItemsSeparator("=");
+        $outStr .= "\n  $lines";
+        $outStr .= " |\n" . self::lineItemsSeparator("-");
+        return $outStr;
     }
 }
