@@ -217,19 +217,26 @@
 </dt>
 <dd>Retrieves all words on the page.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxX">getMinMaxX()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Compares word positions on the X axis. Returns a sort-compliant result (0;-1;1).</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxY">getMinMaxY()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_areWordsOnSameLine">areWordsOnSameLine()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Checks whether the words are on the same line.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxY">getMinMaxY()</a>
-    <span>
-                                &nbsp;: int    </span>
-</dt>
-<dd>Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_toLines">toLines()</a>
@@ -344,7 +351,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">116</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
@@ -387,7 +394,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
@@ -426,7 +433,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">112</span>
 
     </aside>
 
@@ -462,7 +469,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -481,6 +488,120 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getMinMaxX">
+        getMinMaxX()
+        <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxX" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">43</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Compares word positions on the X axis. Returns a sort-compliant result (0;-1;1).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getMinMaxX</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$word1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$word2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$word1</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>First word.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$word2</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Second word.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getMinMaxY">
+        getMinMaxY()
+        <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxY" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getMinMaxY</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$word1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$word2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$word1</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>First word.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$word2</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Second word.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -545,63 +666,6 @@
         class="phpdocumentor-element
             -method
             -private
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_getMinMaxY">
-        getMinMaxY()
-        <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxY" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">43</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getMinMaxY</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$word1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$word2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$word1</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>First word.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$word2</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Parsing-Common-Ocr-OcrWord.html"><abbr title="\Mindee\Parsing\Common\Ocr\OcrWord">OcrWord</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Second word.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_toLines">
@@ -612,7 +676,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -759,8 +823,9 @@
                                             <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method___toString">__toString()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getAllLines">getAllLines()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getAllWords">getAllWords()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_areWordsOnSameLine">areWordsOnSameLine()</a></li>
+                                            <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxX">getMinMaxX()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxY">getMinMaxY()</a></li>
+                                            <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_areWordsOnSameLine">areWordsOnSameLine()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_toLines">toLines()</a></li>
                                     </ul>
             </li>

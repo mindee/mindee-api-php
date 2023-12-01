@@ -1236,6 +1236,11 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020the\u0020words\u0020are\u0020on\u0020the\u0020same\u0020line.",
             "url": "classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_areWordsOnSameLine"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\OcrPage\u003A\u003AgetMinMaxX\u0028\u0029",
+            "name": "getMinMaxX",
+            "summary": "Compares\u0020word\u0020positions\u0020on\u0020the\u0020X\u0020axis.\u0020Returns\u0020a\u0020sort\u002Dcompliant\u0020result\u0020\u00280\u003B\u002D1\u003B1\u0029.",
+            "url": "classes/Mindee-Parsing-Common-Ocr-OcrPage.html#method_getMinMaxX"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\OcrPage\u003A\u003AgetMinMaxY\u0028\u0029",
             "name": "getMinMaxY",
             "summary": "Compares\u0020word\u0020positions\u0020on\u0020the\u0020Y\u0020axis.\u0020Returns\u0020a\u0020sort\u002Dcompliant\u0020result\u0020\u00280\u003B\u002D1\u003B1\u0029.",
