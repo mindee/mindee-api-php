@@ -30,7 +30,7 @@ trait FieldPositionMixin
     {
         $this->boundingBox = null;
         $this->polygon = new Polygon();
-        if (array_key_exists('polygon', $rawPrediction)) {
+        if (array_key_exists('polygon', $rawPrediction) and isset($rawPrediction['polygon'])) {
             $points = [];
             foreach ($rawPrediction['polygon'] as $point) {
                 $points[] = new Point($point[0], $point[1]);

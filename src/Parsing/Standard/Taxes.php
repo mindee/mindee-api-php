@@ -53,6 +53,6 @@ class Taxes extends \ArrayObject
         }
         $outStr .= implode("\n", $arr);
 
-        return $outStr;
+        return rtrim($outStr);
     }
 }

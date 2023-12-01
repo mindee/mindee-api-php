@@ -27,7 +27,7 @@ class AmountField extends BaseField
         bool $reconstructed = false
     ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, 'value');
-        if (array_key_exists('value', $rawPrediction) && is_float($rawPrediction['value'])) {
+        if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
             $this->value = round(floatval($rawPrediction['value']), 3);
         } else {
             $this->value = null;
