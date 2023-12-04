@@ -44,10 +44,12 @@ class Client
 
     /**
      * Mindee Client.
+     *
+     * @param string|null $apiKey Optional API key. Will fall back to environment variable if not provided.
      */
-    public function __construct()
+    public function __construct(?string $apiKey = null)
     {
-        $this->apiKey = getenv('MINDEE_API_KEY');
+        $this->apiKey = $apiKey ?: getenv('MINDEE_API_KEY');
     }
 
     /**
