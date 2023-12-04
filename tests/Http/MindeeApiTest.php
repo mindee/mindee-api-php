@@ -33,6 +33,6 @@ class MindeeApiTest extends TestCase
     {
         $this->expectException(MindeeException::class);
         putenv(API_KEY_ENV_NAME . '=');
-        $settings = new MindeeApi(null, InvoiceSplitterV1::$endpointName);
+        new MindeeApi(null, InvoiceSplitterV1::$endpointName);
     }
 }
