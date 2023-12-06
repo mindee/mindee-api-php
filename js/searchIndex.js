@@ -726,6 +726,11 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020the\u0020contents\u0020of\u0020a\u0020PDF\u0020are\u0020empty.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_isPDFEmpty"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AreadContents\u0028\u0029",
+            "name": "readContents",
+            "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_readContents"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024fileObject",
             "name": "fileObject",
             "summary": "",
@@ -1565,6 +1570,11 @@ Search.appendIndex(
             "name": "confidence",
             "summary": "",
             "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_confidence"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue\u003A\u003A\u0024pageId",
+            "name": "pageId",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_pageId"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\AmountField",
             "name": "AmountField",

@@ -121,7 +121,7 @@
     CustomV1Page
 
         <span class="phpdocumentor-element__extends">
-        extends <a href="classes/Mindee-Parsing-Common-Prediction.html"><abbr title="\Mindee\Parsing\Common\Prediction">Prediction</abbr></a>
+        extends <a href="classes/Mindee-Product-Custom-CustomV1Document.html"><abbr title="\Mindee\Product\Custom\CustomV1Document">CustomV1Document</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -142,7 +142,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Custom/CustomV1Page.php"><a href="files/src-product-custom-customv1page.html"><abbr title="src/Product/Custom/CustomV1Page.php">CustomV1Page.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -174,6 +174,12 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Mindee-Product-Custom-CustomV1Document.html#property_classifications">$classifications</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Mindee-Product-Custom-CustomV1Page.html#property_fields">$fields</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
@@ -199,6 +205,13 @@
                                 &nbsp;: string    </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Mindee-Product-Custom-CustomV1Document.html#method_columnsToLineItems">columnsToLineItems()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Order column fields into line items.</dd>
+
     </dl>
 
 
@@ -220,6 +233,41 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_classifications">
+        $classifications
+        <a href="classes/Mindee-Product-Custom-CustomV1Document.html#property_classifications" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Custom/CustomV1Document.php"><a href="files/src-product-custom-customv1document.html"><abbr title="src/Product/Custom/CustomV1Document.php">CustomV1Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$classifications</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Array of all classifications in the document.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_fields">
         $fields
         <a href="classes/Mindee-Product-Custom-CustomV1Page.html#property_fields" class="headerlink"><i class="fas fa-link"></i></a>
@@ -230,7 +278,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Custom/CustomV1Page.php"><a href="files/src-product-custom-customv1page.html"><abbr title="src/Product/Custom/CustomV1Page.php">CustomV1Page.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -270,14 +318,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Custom/CustomV1Page.php"><a href="files/src-product-custom-customv1page.html"><abbr title="src/Product/Custom/CustomV1Page.php">CustomV1Page.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageId</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -290,6 +338,15 @@
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Dictionary containing the JSON document response.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$pageId</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Page number for multi pages document.</p>
 </section>
 
             </dd>
@@ -313,7 +370,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Custom/CustomV1Page.php"><a href="files/src-product-custom-customv1page.html"><abbr title="src/Product/Custom/CustomV1Page.php">CustomV1Page.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -335,6 +392,72 @@
                 <section class="phpdocumentor-description"><p>String representation.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_columnsToLineItems">
+        columnsToLineItems()
+        <a href="classes/Mindee-Product-Custom-CustomV1Document.html#method_columnsToLineItems" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Custom/CustomV1Document.php"><a href="files/src-product-custom-customv1document.html"><abbr title="src/Product/Custom/CustomV1Document.php">CustomV1Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Order column fields into line items.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">columnsToLineItems</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$anchorNames</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fieldNames</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$heightTolerance</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$anchorNames</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>List of possible anchor fields.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$fieldNames</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>List of all column fields.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$heightTolerance</span>
+                : <span class="phpdocumentor-signature__argument__return-type">float</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Height tolerance to apply to lines.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
@@ -451,6 +574,7 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li><a href="classes/Mindee-Product-Custom-CustomV1Document.html#property_classifications">$classifications<a href="classes/Mindee-Product-Custom-CustomV1Page.html"></li>
                                                     <li><a href="classes/Mindee-Product-Custom-CustomV1Page.html#property_fields">$fields<a href="classes/Mindee-Product-Custom-CustomV1Page.html"></li>
                                             </ul>
                 </li>
@@ -460,6 +584,7 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Mindee-Product-Custom-CustomV1Page.html#method___construct">__construct()</a></li>
                                             <li><a href="classes/Mindee-Product-Custom-CustomV1Page.html#method___toString">__toString()</a></li>
+                                            <li><a href="classes/Mindee-Product-Custom-CustomV1Document.html#method_columnsToLineItems">columnsToLineItems()</a></li>
                                     </ul>
             </li>
                     </ul>
