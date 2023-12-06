@@ -23,7 +23,7 @@ jobs:
       - name: Install and run phpdocumentor
         run: |
           wget https://phpdoc.org/phpDocumentor.phar
-          php phpDocumentor.phar run -d ./src -t ./docs/_build --ignore ./tests
+          php phpDocumentor.phar run -d ./src -t ./docs/_build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
