@@ -122,6 +122,7 @@ abstract class LocalInputSource extends InputSource
     /**
      * Reads the contents of the file.
      *
+     * @param boolean $closeFile Whether to close the file after parsing it.
      * @return array
      */
     public function readContents(bool $closeFile = true): array

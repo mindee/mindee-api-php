@@ -17,10 +17,10 @@ class CustomV1Page extends CustomV1Document
     public array $fields;
 
     /**
-     * @param array $rawPrediction Dictionary containing the JSON document response.
-     * @param integer|null $pageId Page number for multi pages document.
+     * @param array        $rawPrediction Dictionary containing the JSON document response.
+     * @param integer|null $pageId        Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId=null)
+    public function __construct(array $rawPrediction, ?int $pageId = null)
     {
         parent::__construct($rawPrediction, $pageId);
         $this->fields = [];

@@ -21,8 +21,9 @@ class ListField
     public array $values;
 
     /**
-     * @param array   $rawPrediction Raw prediction array.
-     * @param boolean $reconstructed Whether the field has been reconstructed.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param boolean      $reconstructed Whether the field has been reconstructed.
+     * @param integer|null $pageId        Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, bool $reconstructed = false, ?int $pageId = null)
     {
@@ -31,7 +32,7 @@ class ListField
 
         if (array_key_exists("values", $rawPrediction)) {
             foreach ($rawPrediction['values'] as $value) {
-                if (array_key_exists("page_id", $value)){
+                if (array_key_exists("page_id", $value)) {
                     $pageId = $value["page_id"];
                 }
                 $this->values[] = new ListFieldValue($value, $pageId);

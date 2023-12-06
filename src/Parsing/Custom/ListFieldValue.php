@@ -21,7 +21,7 @@ class ListFieldValue
      */
     public float $confidence;
     /**
-     * @var int|null Page number for multi pages document.
+     * @var integer|null Page number for multi pages document.
      */
     private ?int $pageId;
 
