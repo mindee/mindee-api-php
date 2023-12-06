@@ -22,7 +22,6 @@ jobs:
 
       - name: Install and run phpdocumentor
         run: |
-          sudo apt remove php-psr
           wget https://phpdoc.org/phpDocumentor.phar
           php phpDocumentor.phar run -d ./src -t ./docs/_build --ignore ./tests
 
