@@ -36,7 +36,7 @@ class LocaleField extends BaseField
 
     /**
      * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages PDF.
+     * @param integer|null $pageId        Page number for multi pages document.
      * @param boolean      $reconstructed Whether the field was reconstructed.
      */
     public function __construct(

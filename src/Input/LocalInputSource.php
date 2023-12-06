@@ -118,4 +118,19 @@ abstract class LocalInputSource extends InputSource
     public function isPDFEmpty() // TODO: add PDF lib
     {
     }
+
+    /**
+     * Reads the contents of the file.
+     *
+     * @return array
+     */
+    public function readContents(bool $closeFile = true): array
+    {
+        $fileHandle = fopen($this->fileObject->getFilename(), 'rb');
+        $strContents = fread($fileHandle, filesize($this->fileObject->getFilename()));
+        if ($closeFile) {
+            fclose($fileHandle);
+        }
+        return [basename($this->fileObject->getFilename()), $strContents];
+    }
 }

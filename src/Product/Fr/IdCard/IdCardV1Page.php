@@ -16,7 +16,7 @@ class IdCardV1Page extends IdCardV1Document
 
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages pdf input.
+     * @param integer|null $pageId        Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
