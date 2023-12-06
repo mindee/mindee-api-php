@@ -23,6 +23,7 @@ jobs:
 
       - name: Install and run phpdocumentor
         run: |
+          rm phpDocumentor.phar
           wget https://phpdoc.org/phpDocumentor.phar
           php phpDocumentor.phar run -d ./src -t ./docs/_build
 
