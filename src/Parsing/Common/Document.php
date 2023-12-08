@@ -68,7 +68,7 @@ class Document
         return "########
 Document
 ########
-Mindee ID: $this->id
+:Mindee ID: $this->id
 :Filename: $this->filename
 
 $this->inference";

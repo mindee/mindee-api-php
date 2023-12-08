@@ -15,7 +15,7 @@ abstract class BBoxUtils
      */
     public static function generateBBoxFromPolygon(?Polygon $polygon): ?BBox
     {
-        if (!$polygon) {
+        if (!$polygon || !$polygon->getCoordinates()) {
             return null;
         }
 
@@ -41,7 +41,9 @@ abstract class BBoxUtils
 
         $merged = $polygons[0];
         foreach ($polygons as $polygon) {
-            $merged = PolygonUtils::merge($merged, $polygon);
+            if ($merged !== $polygon) {
+                $merged = PolygonUtils::merge($merged, $polygon);
+            }
         }
 
         return new BBox(
@@ -68,17 +70,17 @@ abstract class BBoxUtils
         $minY = null;
         $maxY = null;
         foreach ($bboxes as $bbox) {
-            if (!$minX || $minX > $bbox->minX) {
-                $minX = $bbox->minX;
+            if (!$minX || $minX > $bbox->getMinX()) {
+                $minX = $bbox->getMinX();
             }
-            if (!$minY || $minY > $bbox->minY) {
-                $minY = $bbox->minY;
+            if (!$minY || $minY > $bbox->getMinY()) {
+                $minY = $bbox->getMinY();
             }
-            if (!$maxX || $maxX > $bbox->maxX) {
-                $maxX = $bbox->maxX;
+            if (!$maxX || $maxX < $bbox->getMaxX()) {
+                $maxX = $bbox->getMaxX();
             }
-            if (!$maxY || $maxY > $bbox->maxY) {
-                $maxY = $bbox->maxY;
+            if (!$maxY || $maxY < $bbox->getMaxY()) {
+                $maxY = $bbox->getMaxY();
             }
         }
 

@@ -27,16 +27,16 @@ use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\Common\PredictResponse;
 
 /**
- * Default owner for API products.
- *
- * Do not change unless you know what you are doing.
- */
-const DEFAULT_OWNER = 'mindee';
-/**
  * Main entrypoint for Mindee operations.
  */
 class Client
 {
+    /**
+     * Default owner for API products.
+     *
+     * Do not change unless you know what you are doing.
+     */
+    public const DEFAULT_OWNER = 'mindee';
     /**
      * @var string API key for a given client.
      */
@@ -44,10 +44,12 @@ class Client
 
     /**
      * Mindee Client.
+     *
+     * @param string|null $apiKey Optional API key. Will fall back to environment variable if not provided.
      */
-    public function __construct()
+    public function __construct(?string $apiKey = null)
     {
-        $this->apiKey = getenv('MINDEE_API_KEY');
+        $this->apiKey = $apiKey ?: getenv('MINDEE_API_KEY');
     }
 
     /**
@@ -130,14 +132,16 @@ class Client
     /**
      * Cleans the account name.
      *
-     * @param string $accountName Name of the endpoint's owner. Replaced by DEFAULT_OWNER if absent.
+     * @param string $accountName Name of the endpoint's owner. Replaced by self::DEFAULT_OWNER if absent.
      * @return string
      */
     private function cleanAccountName(string $accountName): string
     {
         if (!$accountName || strlen(trim($accountName)) < 1) {
-            error_log("No account name provided for custom build. " . DEFAULT_OWNER . " will be used by default.");
-            return DEFAULT_OWNER;
+            error_log(
+                "No account name provided for custom build. " . self::DEFAULT_OWNER . " will be used by default."
+            );
+            return self::DEFAULT_OWNER;
         }
         return $accountName;
     }
@@ -163,7 +167,7 @@ class Client
                 'Please create an endpoint manually before sending requests to a custom build.'
             );
         }
-        $endpointOwner = DEFAULT_OWNER;
+        $endpointOwner = self::DEFAULT_OWNER;
 
         return $this->constructEndpoint($endpointName, $endpointOwner, $endpointVersion);
     }

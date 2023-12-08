@@ -58,12 +58,7 @@ class PositionField extends BaseField
     private static function getPolygon(array $rawPrediction, string $key): ?Polygon
     {
         if (array_key_exists($key, $rawPrediction)) {
-            $polygon = $rawPrediction[$key];
-            try {
-                PolygonUtils::polygonFromPrediction($polygon);
-            } catch (MindeeGeometryException $exc) {
-                return null;
-            }
+            return PolygonUtils::polygonFromPrediction($rawPrediction[$key]);
         }
 
         return null;

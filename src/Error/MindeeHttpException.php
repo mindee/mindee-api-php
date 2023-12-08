@@ -121,12 +121,12 @@ class MindeeHttpException extends MindeeException
     }
 
     /**
-     * @param string  $url      Remote URL the error was found on.
-     * @param array   $response Raw server response.
-     * @param integer $code     Error code.
+     * @param string       $url      Remote URL the error was found on.
+     * @param array|string $response Raw server response.
+     * @param integer      $code     Error code.
      * @return MindeeHttpException
      */
-    public static function handleError(string $url, array $response, int $code): MindeeHttpException
+    public static function handleError(string $url, $response, int $code): MindeeHttpException
     {
         $errorObj = MindeeHttpException::createErrorObj($response);
         if ($code >= 400 && $code <= 499) {

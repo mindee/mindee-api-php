@@ -32,7 +32,7 @@ class CustomLine
         int $rowNumber
     ) {
         $this->rowNumber = $rowNumber;
-        $this->bbox = new BBox(1, 1, 0, 0);
+        $this->bbox = new BBox(1, 0, 1, 0);
         $this->fields = [];
     }
 
@@ -49,7 +49,7 @@ class CustomLine
             $existingField = $this->fields[$fieldName];
             $existingContent = $existingField->content;
             $mergedContent = '';
-            if (count($existingContent) > 0) {
+            if (strlen($existingContent) > 0) {
                 $mergedContent .= $existingContent . ' ';
             }
             $mergedContent .= $fieldValue->content;
@@ -154,12 +154,12 @@ class CustomLine
         array $fields
     ): string {
         $anchor = '';
-        $fieldAnchor = 0;
-        foreach ($anchors as $fieldAnchor) {
-            $values = $fields[$fieldAnchor]->values;
-            if ($values && count($values) > $fieldAnchor) {
-                $fieldAnchor = count($values);
-                $anchor = $fieldAnchor;
+        $anchorRows = 0;
+        foreach ($anchors as $field) {
+            $values = $fields[$field]->values;
+            if ($values && count($values) > $anchorRows) {
+                $anchorRows = count($values);
+                $anchor = $field;
             }
         }
 
@@ -184,7 +184,7 @@ class CustomLine
         $lineItems = [];
         $fieldsToTransform = [];
         foreach ($fields as $fieldName => $fieldValue) {
-            if (array_key_exists($fieldName, $fieldNames)) {
+            if (in_array($fieldName, $fieldNames)) {
                 $fieldsToTransform[$fieldName] = $fieldValue;
             }
         }
@@ -204,12 +204,12 @@ class CustomLine
         foreach ($linesPrepared as $currentLine) {
             foreach ($fieldsToTransform as $fieldName => $field) {
                 foreach ($field->values as $listFieldValue) {
-                    $minMaxY = MinMaxUtils::getMinMaxY($listFieldValue->polygon);
+                    $minMaxY = MinMaxUtils::getMinMaxY($listFieldValue->polygon->getCoordinates());
                     if (
-                        abs($minMaxY->getMax() - $currentLine->bbox->y_max) <=
-                        $heightLineTolerance &&
-                        abs($minMaxY->getMin() - $currentLine->bbox->y_min) <=
-                        $heightLineTolerance
+                        (abs($minMaxY->getMax() - $currentLine->bbox->getMaxY()) <=
+                            $heightLineTolerance) &&
+                        (abs($minMaxY->getMin() - $currentLine->bbox->getMinY()) <=
+                            $heightLineTolerance)
                     ) {
                         $currentLine->updateField($fieldName, $listFieldValue);
                     }

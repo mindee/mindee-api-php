@@ -12,25 +12,25 @@ use Mindee\Error\MindeeApiException;
 class Job
 {
     /**
-     * @var string ID of the job sent by the API in response to an enqueue request.
+     * @var string|null ID of the job sent by the API in response to an enqueue request.
      */
-    public string $id;
+    public ?string $id;
     /**
-     * @var \DateTimeImmutable Timestamp of the request reception by the API.
+     * @var \DateTimeImmutable|null Timestamp of the request reception by the API.
      */
-    public \DateTimeImmutable $issuedAt;
+    public ?\DateTimeImmutable $issuedAt;
     /**
-     * @var \DateTimeImmutable Timestamp of the request after it has been completed.
+     * @var \DateTimeImmutable|null Timestamp of the request after it has been completed.
      */
-    public \DateTimeImmutable $availableAt;
+    public ?\DateTimeImmutable $availableAt;
     /**
-     * @var string Status of the request, as seen by the API.
+     * @var string|null Status of the request, as seen by the API.
      */
-    public string $status;
+    public ?string $status;
     /**
-     * @var integer Time (ms) taken for the request to be processed by the API.
+     * @var integer|null Time (ms) taken for the request to be processed by the API.
      */
-    public int $millisecsTaken;
+    public ?int $millisecsTaken;
 
     /**
      * @param array $rawResponse Raw prediction array.
@@ -49,19 +49,22 @@ class Job
         }
         $this->id = $rawResponse['id'];
         $this->status = $rawResponse['status'];
-        if (array_key_exists('available_at', $rawResponse)) {
+        if (array_key_exists('available_at', $rawResponse) && strtotime($rawResponse['available_at'])) {
             try {
                 $this->availableAt = new \DateTimeImmutable($rawResponse['available_at']);
             } catch (\Exception $e) {
                 try {
                     $this->availableAt = new \DateTimeImmutable(strtotime($rawResponse['available_at']));
                 } catch (\Exception $e2) {
-                    throw new MindeeApiException("Could not create date from " . $rawResponse['issued_at']);
+                    throw new MindeeApiException("Could not create date from " . $rawResponse['available_at']);
                 }
             }
             $ts1 = (int)$this->availableAt->format('Uv');
             $ts2 = (int)$this->issuedAt->format('Uv');
             $this->millisecsTaken = $ts2 - $ts1;
+        } else {
+            $this->availableAt = null;
+            $this->millisecsTaken = null;
         }
     }
 

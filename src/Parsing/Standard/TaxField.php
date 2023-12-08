@@ -78,9 +78,9 @@ class TaxField extends BaseField
     {
         return [
             'code' => $this->code ?? '',
-            'basis' => strval($this->basis),
-            'rate' => strval($this->rate),
-            'value' => strval($this->value),
+            'basis' => isset($this->basis) ? number_format((float)$this->basis, 2, ".", "") : null,
+            'rate' => isset($this->rate) ? number_format((float)$this->rate, 2, ".", "") : null,
+            'value' => isset($this->value) ? number_format((float)$this->value, 2, ".", "") : null,
         ];
     }
 
@@ -106,9 +106,11 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return 'Base: ' . $printable['basis'] . '. ,' .
+        return rtrim(
+            'Base: ' . $printable['basis'] . ', ' .
             'Code: ' . $printable['code'] . ', ' .
             'Rate (%): ' . $printable['rate'] . ', ' .
-            'Amount: ' . $printable['value'] . ', ';
+            'Amount: ' . $printable['value']
+        );
     }
 }

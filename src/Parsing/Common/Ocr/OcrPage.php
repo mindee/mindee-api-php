@@ -34,13 +34,30 @@ class OcrPage
     }
 
     /**
+     * Compares word positions on the X axis. Returns a sort-compliant result (0;-1;1).
+     *
+     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word1 First word.
+     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word2 Second word.
+     * @return integer
+     */
+    public static function getMinMaxX(OcrWord $word1, OcrWord $word2): int
+    {
+        $word1X = MinMaxUtils::getMinMaxX($word1->polygon->getCoordinates())->getMin();
+        $word2X = MinMaxUtils::getMinMaxX($word2->polygon->getCoordinates())->getMin();
+        if ($word1X == $word2X) {
+            return 0;
+        }
+        return $word1X < $word2X ? -1 : 1;
+    }
+
+    /**
      * Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).
      *
      * @param \Mindee\Parsing\Common\Ocr\OcrWord $word1 First word.
      * @param \Mindee\Parsing\Common\Ocr\OcrWord $word2 Second word.
      * @return integer
      */
-    private static function getMinMaxY(OcrWord $word1, OcrWord $word2): int
+    public static function getMinMaxY(OcrWord $word1, OcrWord $word2): int
     {
         $word1Y = MinMaxUtils::getMinMaxY($word1->polygon->getCoordinates())->getMin();
         $word2Y = MinMaxUtils::getMinMaxY($word2->polygon->getCoordinates())->getMin();
@@ -94,7 +111,7 @@ class OcrPage
      */
     public function getAllLines(): array
     {
-        if (!$this->lines) {
+        if (!isset($this->lines)) {
             $this->lines = $this->toLines();
         }
         return $this->lines;
