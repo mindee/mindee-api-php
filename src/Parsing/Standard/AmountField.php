@@ -18,7 +18,7 @@ class AmountField extends BaseField
 
     /**
      * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages PDF.
+     * @param integer|null $pageId        Page number for multi pages document.
      * @param boolean      $reconstructed Whether the field was reconstructed.
      */
     public function __construct(
@@ -27,7 +27,7 @@ class AmountField extends BaseField
         bool $reconstructed = false
     ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, 'value');
-        if (array_key_exists('value', $rawPrediction) && is_float($rawPrediction['value'])) {
+        if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
             $this->value = round(floatval($rawPrediction['value']), 3);
         } else {
             $this->value = null;

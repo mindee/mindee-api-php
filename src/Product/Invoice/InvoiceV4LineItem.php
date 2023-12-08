@@ -49,7 +49,7 @@ class InvoiceV4LineItem
 
     /**
      * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages PDF.
+     * @param integer|null $pageId        Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {

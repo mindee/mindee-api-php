@@ -40,7 +40,7 @@ abstract class Inference
 
     /**
      * @param array        $rawInference Raw inference array.
-     * @param integer|null $pageId       Page number for multi pages PDF.
+     * @param integer|null $pageId       Page number for multi pages document.
      */
     public function __construct(array $rawInference, ?int $pageId = null)
     {
@@ -62,6 +62,13 @@ abstract class Inference
     {
         $rotationApplied = $this->isRotationApplied ? 'Yes' : 'No';
         $pages = $this->pages ? "\n" . implode("\n", $this->pages) : '';
+        $pagesStr = "";
+        if (count($this->pages)) {
+            $pagesStr = "\nPage Predictions\n================\n\n" . implode(
+                "\n",
+                array_map(fn ($page) => strval($page), $this->pages)
+            );
+        }
 
         return "Inference
 #########
@@ -70,7 +77,6 @@ abstract class Inference
 
 Prediction
 ==========
-$this->prediction
-$pages";
+$this->prediction$pagesStr";
     }
 }

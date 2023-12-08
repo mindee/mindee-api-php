@@ -27,7 +27,7 @@ class OcrLine
      */
     public function sortOnX()
     {
-        usort($this->words, "Mindee\\Parsing\\Common\\Ocr\\OcrPage::getMinMaxY");
+        usort($this->words, "Mindee\\Parsing\\Common\\Ocr\\OcrPage::getMinMaxX");
     }
 
     /**

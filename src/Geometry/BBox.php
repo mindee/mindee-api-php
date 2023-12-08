@@ -57,7 +57,7 @@ class BBox
      *
      * @return float
      */
-    public function getMaX(): float
+    public function getMaxX(): float
     {
         return $this->maxX;
     }
@@ -96,17 +96,17 @@ class BBox
             $sequence = $points;
         }
         foreach ($sequence as $point) {
-            if ($this->minX > $point->x) {
-                $this->minX = $point->x;
+            if ($this->minX > $point->getX()) {
+                $this->minX = $point->getX();
             }
-            if ($this->minY > $point->y) {
-                $this->minY = $point->y;
+            if ($this->minY > $point->getY()) {
+                $this->minY = $point->getY();
             }
-            if ($this->maxX < $point->x) {
-                $this->maxX = $point->x;
+            if ($this->maxX < $point->getX()) {
+                $this->maxX = $point->getX();
             }
-            if ($this->maxY < $point->y) {
-                $this->maxY = $point->y;
+            if ($this->maxY < $point->getY()) {
+                $this->maxY = $point->getY();
             }
         }
     }

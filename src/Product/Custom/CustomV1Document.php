@@ -3,6 +3,7 @@
 namespace Mindee\Product\Custom;
 
 use Mindee\Parsing\Common\Prediction;
+use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Custom\ClassificationField;
 use Mindee\Parsing\Custom\CustomLine;
 use Mindee\Parsing\Custom\ListField;
@@ -66,8 +67,8 @@ class CustomV1Document extends Prediction
             $outStr .= ":$classificationName: $classificationValue\n";
         }
         foreach ($this->fields as $fieldName => $fieldValue) {
-            $outStr .= ":$fieldName: $$fieldValue\n";
+            $outStr .= ":$fieldName: $fieldValue\n";
         }
-        return trim($outStr);
+        return SummaryHelper::cleanOutString($outStr);
     }
 }

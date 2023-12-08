@@ -158,17 +158,17 @@ abstract class PolygonUtils
      */
     public static function merge(?Polygon $base, ?Polygon $target): Polygon
     {
-        if (!$base && !$target) {
+        if ((!$base || !$base->getCoordinates()) && (!$target || !$target->getCoordinates())) {
             throw new MindeeGeometryException('Cannot merge two empty polygons.');
         }
-        if (!$base) {
+        if (!$base || !$base->getCoordinates()) {
             return $target;
         }
-        if (!$target) {
+        if (!$target || !$target->getCoordinates()) {
             return $base;
         }
 
-        return new Polygon(array_unique(array_merge($base->getCoordinates(), $target->getCoordinates())));
+        return new Polygon(array_unique(array_merge($base->getCoordinates(), $target->getCoordinates()), SORT_REGULAR));
     }
 
     /**

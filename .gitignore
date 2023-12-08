@@ -28,3 +28,4 @@ LocalTest.php
 .phplint-cache
 .phpdoc
 docs/_build
+tests/LocalTestNotUnit.php

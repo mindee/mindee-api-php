@@ -20,16 +20,23 @@ class ListFieldValue
      * @var float|mixed Confidence score.
      */
     public float $confidence;
+    /**
+     * @var integer|null Page number for multi pages document.
+     */
+    private ?int $pageId;
 
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages document.
      */
     public function __construct(
-        array $rawPrediction
+        array $rawPrediction,
+        ?int $pageId = null
     ) {
-        $this->content    = $rawPrediction['content'];
+        $this->content = $rawPrediction['content'];
         $this->confidence = $rawPrediction['confidence'];
+        $this->pageId = $pageId;
         $this->setPosition($rawPrediction);
     }
 

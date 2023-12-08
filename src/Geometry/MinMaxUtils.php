@@ -17,7 +17,7 @@ class MinMaxUtils
     {
         $yCoords = [];
         foreach ($points as $point) {
-            $yCoords[] = $point->y;
+            $yCoords[] = $point->getY();
         }
 
         return new MinMax(min($yCoords), max($yCoords));
@@ -33,7 +33,7 @@ class MinMaxUtils
     {
         $xCoords = [];
         foreach ($points as $point) {
-            $xCoords[] = $point->x;
+            $xCoords[] = $point->getX();
         }
 
         return new MinMax(min($xCoords), max($xCoords));
