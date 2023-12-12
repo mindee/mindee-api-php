@@ -2136,11 +2136,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003AlineItemsSeparator\u0028\u0029",
-            "name": "lineItemsSeparator",
-            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
-            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method_lineItemsSeparator"
-        },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003AlineItemsToStr\u0028\u0029",
             "name": "lineItemsToStr",
             "summary": "String\u0020representation\u0020for\u0020line\u0020items.",
@@ -2386,6 +2381,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1PageGroup.html#property_confidence"
         },                {
+            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5",
+            "name": "ReceiptV5",
+            "summary": "Inference\u0020prediction\u0020for\u0020Expense\u0020Receipt,\u0020API\u0020version\u00205.",
+            "url": "classes/Mindee-Product-Receipt-ReceiptV5.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Receipt-ReceiptV5.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Receipt-ReceiptV5.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Receipt-ReceiptV5.html#property_endpointVersion"
+        },                {
             "fqsen": "\\Mindee\\VERSION",
             "name": "VERSION",
             "summary": "",
@@ -2480,5 +2495,10 @@ Search.appendIndex(
             "name": "InvoiceSplitter",
             "summary": "",
             "url": "namespaces/mindee-product-invoicesplitter.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Receipt",
+            "name": "Receipt",
+            "summary": "",
+            "url": "namespaces/mindee-product-receipt.html"
         }            ]
 );
