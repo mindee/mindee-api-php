@@ -48,7 +48,7 @@ class InvoiceV4LineItems extends \ArrayObject
     {
         $lines = "";
         $iterator = $this->getIterator();
-        if (!$iterator->valid()){
+        if (!$iterator->valid()) {
             return "";
         }
         while ($iterator->valid()) {
