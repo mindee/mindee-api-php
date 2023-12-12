@@ -28,7 +28,7 @@ class Taxes extends \ArrayObject
      */
     private static function lineSeparator(string $char): string
     {
-        $outStr = '+' . str_repeat($char, 15);
+        $outStr = '  +' . str_repeat($char, 15);
         $outStr .= '+' . str_repeat($char, 8);
         $outStr .= '+' . str_repeat($char, 10);
         $outStr .= '+' . str_repeat($char, 15);

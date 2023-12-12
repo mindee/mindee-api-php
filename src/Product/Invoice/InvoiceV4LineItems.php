@@ -46,12 +46,11 @@ class InvoiceV4LineItems extends \ArrayObject
      */
     public function lineItemsToStr(): string
     {
-        if (!$this->invoiceV4Document->lineItems || count($this->invoiceV4Document->lineItems) == 0) {
-            return "";
-        }
-
         $lines = "";
         $iterator = $this->getIterator();
+        if (!$iterator->valid()) {
+            return "";
+        }
         while ($iterator->valid()) {
             $entry = $iterator->current();
             $lines .= "\n  " . $entry->toTableLine() . "\n" . self::lineItemsSeparator('-');

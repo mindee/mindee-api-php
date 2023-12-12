@@ -87,6 +87,7 @@ class InvoiceV4Document extends Prediction
      * @var AmountField
      */
     public AmountField $totalNet;
+
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
@@ -105,6 +106,11 @@ class InvoiceV4Document extends Prediction
         $this->invoiceNumber = new StringField($rawPrediction["invoice_number"], $pageId);
         $this->lineItems = new InvoiceV4LineItems($rawPrediction["line_items"], $pageId);
         $this->locale = new LocaleField($rawPrediction["locale"], $pageId);
+        $this->referenceNumbers = array_map(
+            fn ($prediction) => new StringField($prediction, $pageId),
+            $rawPrediction["reference_numbers"]
+        );
+        $this->supplierAddress = new StringField($rawPrediction["supplier_address"], $pageId);
         $this->supplierCompanyRegistrations = array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
@@ -145,38 +151,38 @@ class InvoiceV4Document extends Prediction
      */
     public function __toString(): string
     {
-        $customerCompanyRegistrations = "\n " . implode(
-            str_repeat(" ", 32),
+        $customerCompanyRegistrations = implode(
+            "\n " . str_repeat(" ", 32),
             array_map(fn ($item) => strval($item), $this->customerCompanyRegistrations)
         );
-        $referenceNumbers = "\n " . implode(
-            str_repeat(" ", 19),
+        $referenceNumbers = implode(
+            "\n " . str_repeat(" ", 19),
             array_map(fn ($item) => strval($item), $this->referenceNumbers)
         );
-        $supplierCompanyRegistrations = "\n " . implode(
-            str_repeat(" ", 32),
+        $supplierCompanyRegistrations = implode(
+            "\n " . str_repeat(" ", 32),
             array_map(fn ($item) => strval($item), $this->supplierCompanyRegistrations)
         );
-        $supplierPaymentDetails = "\n " . implode(
-            str_repeat(" ", 26),
+        $supplierPaymentDetails = implode(
+            "\n " . str_repeat(" ", 26),
             array_map(fn ($item) => strval($item), $this->supplierPaymentDetails)
         );
         $outStr = ":Locale: " . $this->locale . "\n";
-        $outStr .= ":InvoiceNumber: " . $this->invoiceNumber . "\n";
-        $outStr .= ":ReferenceNumbers: " . $referenceNumbers . "\n";
-        $outStr .= ":PurchaseDate: " . $this->date . "\n";
-        $outStr .= ":DueDate: " . $this->dueDate . "\n";
-        $outStr .= ":TotalNet: " . $this->totalNet . "\n";
-        $outStr .= ":TotalAmount: " . $this->totalAmount . "\n";
+        $outStr .= ":Invoice Number: " . $this->invoiceNumber . "\n";
+        $outStr .= ":Reference Numbers: " . $referenceNumbers . "\n";
+        $outStr .= ":Purchase Date: " . $this->date . "\n";
+        $outStr .= ":Due Date: " . $this->dueDate . "\n";
+        $outStr .= ":Total Net: " . $this->totalNet . "\n";
+        $outStr .= ":Total Amount: " . $this->totalAmount . "\n";
         $outStr .= ":Taxes: " . $this->taxes . "\n";
-        $outStr .= ":SupplierPaymentDetails: " . $supplierPaymentDetails . "\n";
-        $outStr .= ":SupplierName: " . $this->supplierName . "\n";
-        $outStr .= ":SupplierCompanyRegistrations: " . $supplierCompanyRegistrations . "\n";
-        $outStr .= ":SupplierAddress: " . $this->supplierAddress . "\n";
-        $outStr .= ":CustomerName: " . $this->customerName . "\n";
-        $outStr .= ":CustomerCompanyRegistrations: " . $customerCompanyRegistrations . "\n";
-        $outStr .= ":CustomerAddress: " . $this->customerAddress . "\n";
-        $outStr .= ":DocumentType: " . $this->documentType . "\n";
+        $outStr .= ":Supplier Payment Details: " . $supplierPaymentDetails . "\n";
+        $outStr .= ":Supplier Name: " . $this->supplierName . "\n";
+        $outStr .= ":Supplier Company Registrations: " . $supplierCompanyRegistrations . "\n";
+        $outStr .= ":Supplier Address: " . $this->supplierAddress . "\n";
+        $outStr .= ":Customer Name: " . $this->customerName . "\n";
+        $outStr .= ":Customer Company Registrations: " . $customerCompanyRegistrations . "\n";
+        $outStr .= ":Customer Address: " . $this->customerAddress . "\n";
+        $outStr .= ":Document Type: " . $this->documentType . "\n";
         $outStr .= ":Line Items: " . $this->lineItemsToStr() . "\n";
 
         return SummaryHelper::cleanOutString($outStr);
