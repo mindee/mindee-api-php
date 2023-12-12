@@ -126,17 +126,6 @@ class InvoiceV4Document extends Prediction
     }
 
     /**
-     * Creates a line of rST table-compliant string separators.
-     *
-     * @param string $char Character to use as a separator.
-     * @return string
-     */
-    private static function lineItemsSeparator(string $char): string
-    {
-        return InvoiceV4LineItems::lineItemsSeparator($char);
-    }
-
-    /**
      * String representation for line items.
      *
      * @return string

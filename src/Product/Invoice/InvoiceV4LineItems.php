@@ -65,8 +65,7 @@ class InvoiceV4LineItems extends \ArrayObject
         $outStr .= " | Total Amount";
         $outStr .= " | Unit Price";
         $outStr .= " |\n" . self::lineItemsSeparator("=");
-        $outStr .= "\n  $lines";
-        $outStr .= " |\n" . self::lineItemsSeparator("-");
+        $outStr .= "  $lines";
         return $outStr;
     }
 }

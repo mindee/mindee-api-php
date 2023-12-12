@@ -99,12 +99,12 @@ class InvoiceV4LineItem
     {
         $printable = $this->printableValues();
         $outStr = "| " . str_pad($printable["description"], 36) . " | ";
-        $outStr .= str_pad($printable["productCode"], 12);
-        $outStr .= str_pad($printable["quantity"], 8);
-        $outStr .= str_pad($printable["taxAmount"], 10);
-        $outStr .= str_pad($printable["taxRate"], 12);
-        $outStr .= str_pad($printable["totalAmount"], 12);
-        $outStr .= str_pad($printable["unitPrice"], 10);
+        $outStr .= str_pad($printable["productCode"], 12)." | ";
+        $outStr .= str_pad($printable["quantity"], 8)." | ";
+        $outStr .= str_pad($printable["taxAmount"], 10)." | ";
+        $outStr .= str_pad($printable["taxRate"], 12)." | ";
+        $outStr .= str_pad($printable["totalAmount"], 12)." | ";
+        $outStr .= str_pad($printable["unitPrice"], 10)." |";
         return SummaryHelper::cleanOutString($outStr);
     }
 
@@ -113,14 +113,6 @@ class InvoiceV4LineItem
      */
     public function __toString(): string
     {
-        $printable = $this->printableValues();
-        $outStr = "Description: " . $printable["description"] . ", \n";
-        $outStr .= "Product code: " . $printable["productCode"] . ", \n";
-        $outStr .= "Quantity: " . $printable["quantity"] . ", \n";
-        $outStr .= "Tax Amount: " . $printable["taxAmount"] . ", \n";
-        $outStr .= "Tax Rate (%): " . $printable["taxRate"] . ", \n";
-        $outStr .= "Total Amount: " . $printable["totalAmount"] . ", \n";
-        $outStr .= "Unit Price: " . $printable["unitPrice"] . ", \n";
-        return SummaryHelper::cleanOutString($outStr);
+        return SummaryHelper::cleanOutString($this->toTableLine());
     }
 }
