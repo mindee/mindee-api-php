@@ -1,6 +1,6 @@
 <?php
 
-/** Expense Receipt V5 */
+/** Expense Receipt V5. */
 
 namespace Mindee\Product\Receipt;
 

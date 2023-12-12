@@ -33,6 +33,7 @@ cd -
 
 for f in $(find docs/code_samples -maxdepth 1 -name "*.txt" | sort -h)
 do
+  echo ""
   echo "###############################################"
   echo "${f}"
   echo "###############################################"
@@ -62,5 +63,5 @@ do
     fi
 
   sleep 0.6  # avoid too many request errors
-  php $OUTPUT_FILE
+  php -d auto_prepend_file=vendor/autoload.php $OUTPUT_FILE
 done
