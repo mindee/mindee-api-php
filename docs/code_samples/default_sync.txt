@@ -5,7 +5,7 @@ if (!function_exists('curl_init')) {
     exit("cURL isn't installed for " . phpversion());
 }
 $API_KEY = 'my-api-key';
-$FILE_PATH = '/path/to/my/file.pdf';
+$FILE_PATH = '/path/to/the/file.ext';
 $MIME_TYPE = 'application/pdf'; // change according to the file type
 $ACCOUNT = 'my-account';
 $VERSION = 'my-version';
