@@ -46,9 +46,9 @@ class ReceiptV5LineItem
             }
         }
         $this->description = $rawPrediction["description"];
-        $this->quantity = isset($rawPrediction["quantity"]) ? floatval($rawPrediction["quantity"]) : null;
-        $this->totalAmount = isset($rawPrediction["total_amount"]) ? floatval($rawPrediction["total_amount"]) : null;
-        $this->unitPrice = isset($rawPrediction["unit_price"]) ? floatval($rawPrediction["unit_price"]) : null;
+        $this->quantity = isset($rawPrediction["quantity"]) ? number_format(floatval($rawPrediction["quantity"]), 2, ".", "") : null;
+        $this->totalAmount = isset($rawPrediction["total_amount"]) ? number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") : null;
+        $this->unitPrice = isset($rawPrediction["unit_price"]) ? number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") : null;
     }
 
     /**
@@ -60,9 +60,9 @@ class ReceiptV5LineItem
     {
         $outArr = [];
         $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 25);
-        $outArr["quantity"] = SummaryHelper::formatForDisplay($this->quantity);
-        $outArr["totalAmount"] = SummaryHelper::formatForDisplay($this->totalAmount);
-        $outArr["unitPrice"] = SummaryHelper::formatForDisplay($this->unitPrice);
+        $outArr["quantity"] = $this->quantity == null ? "" : number_format($this->quantity, 2, ".", "");
+        $outArr["totalAmount"] = $this->totalAmount == null ? "" : number_format($this->totalAmount, 2, ".", "");
+        $outArr["unitPrice"] = $this->unitPrice == null ? "" : number_format($this->unitPrice, 2, ".", "");
         return $outArr;
     }
 
@@ -75,10 +75,10 @@ class ReceiptV5LineItem
     {
         $printable = $this->printableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["description"], 25) . " | ";
-        $outStr .= str_pad($printable["quantity"], 0) . " | ";
-        $outStr .= str_pad($printable["totalAmount"], 0) . " | ";
-        $outStr .= str_pad($printable["unitPrice"], 0) . " | ";
+        $outStr .= str_pad($printable["description"], 36) . " | ";
+        $outStr .= str_pad($printable["quantity"], 8) . " | ";
+        $outStr .= str_pad($printable["totalAmount"], 12) . " | ";
+        $outStr .= str_pad($printable["unitPrice"], 10) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

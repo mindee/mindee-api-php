@@ -116,8 +116,8 @@ class ReceiptV5Document extends Prediction
             $pageId
         );
         $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
-            fn ($prediction) => new CompanyRegistrationField($prediction["supplier_company_registrations"], $pageId),
-            $rawPrediction
+            fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
+            $rawPrediction["supplier_company_registrations"]
         );
         $this->supplierName = new StringField(
             $rawPrediction["supplier_name"],
@@ -163,6 +163,7 @@ class ReceiptV5Document extends Prediction
             $this->supplierCompanyRegistrations
         );
         $lineItemsSummary = $this->lineItems->lineItemsToStr();
+
         $outStr = ":Expense Locale: $this->locale
 :Purchase Category: $this->category
 :Purchase Subcategory: $this->subcategory

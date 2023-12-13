@@ -28,7 +28,7 @@ class AmountField extends BaseField
     ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, 'value');
         if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
-            $this->value = round(floatval($rawPrediction['value']), 3);
+            $this->value = number_format(floatval($rawPrediction['value']), 2, ".", "");
         } else {
             $this->value = null;
             $this->confidence = 0.0;

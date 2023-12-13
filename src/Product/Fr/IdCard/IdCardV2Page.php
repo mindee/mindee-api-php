@@ -6,14 +6,18 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\ClassificationField;
 
 /**
- * Page data for Carte Nationale d'Identité, API version 1.
+ * Page data for Carte Nationale d'Identité, API version 2.
  */
-class IdCardV1Page extends IdCardV1Document
+class IdCardV2Page extends IdCardV2Document
 {
     /**
-    * @var ClassificationField|null The side of the document which is visible.
+    * @var ClassificationField|null The sides of the document which are visible.
     */
     public ?ClassificationField $documentSide;
+    /**
+    * @var ClassificationField|null The document type or format.
+    */
+    public ?ClassificationField $documentType;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
@@ -25,6 +29,10 @@ class IdCardV1Page extends IdCardV1Document
             $rawPrediction["document_side"],
             $pageId
         );
+        $this->documentType = new ClassificationField(
+            $rawPrediction["document_type"],
+            $pageId
+        );
     }
 
     /**
@@ -33,7 +41,8 @@ class IdCardV1Page extends IdCardV1Document
     public function __toString(): string
     {
 
-        $outStr = ":Document Side: $this->documentSide
+        $outStr = ":Document Type: $this->documentType
+:Document Sides: $this->documentSide
 ";
         $outStr .= parent::__toString();
         return SummaryHelper::cleanOutString($outStr);

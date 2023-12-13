@@ -29,10 +29,10 @@ class ReceiptV5LineItems extends \ArrayObject
     public static function lineItemsSeparator(string $char): string
     {
         $outStr = "  ";
-        $outStr .= "+" . str_repeat($char, 25);
-        $outStr .= "+" . str_repeat($char, 0);
-        $outStr .= "+" . str_repeat($char, 0);
-        $outStr .= "+" . str_repeat($char, 0);
+        $outStr .= "+" . str_repeat($char, 38);
+        $outStr .= "+" . str_repeat($char, 10);
+        $outStr .= "+" . str_repeat($char, 14);
+        $outStr .= "+" . str_repeat($char, 12);
         return $outStr . "+";
     }
 
@@ -59,7 +59,8 @@ class ReceiptV5LineItems extends \ArrayObject
         $outStr .= " | Quantity";
         $outStr .= " | Total Amount";
         $outStr .= " | Unit Price";
-        $outStr .= "  $lines";
+        $outStr .= " |\n" . self::lineItemsSeparator('=');
+        $outStr .= $lines;
         return $outStr;
     }
 }

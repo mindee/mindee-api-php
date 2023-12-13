@@ -51,7 +51,7 @@ class Taxes extends \ArrayObject
         }
         while ($iterator->valid()) {
             $entry = $iterator->current();
-            $arr[] = "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('=');
+            $arr[] = "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('-');
             $iterator->next();
         }
         $outStr .= implode("\n", $arr);
