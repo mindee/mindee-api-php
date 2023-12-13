@@ -5,7 +5,6 @@ namespace Mindee\Product\Receipt;
 /**
  * List of line item details.
  */
-
 class ReceiptV5LineItems extends \ArrayObject
 {
     /**

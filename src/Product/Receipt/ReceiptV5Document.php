@@ -4,7 +4,6 @@ namespace Mindee\Product\Receipt;
 
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
-
 use Mindee\Parsing\Standard\AmountField;
 use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\CompanyRegistrationField;
@@ -12,7 +11,6 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\LocaleField;
 use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
-
 
 /**
  * Document data for Expense Receipt, API version 5.
@@ -160,12 +158,12 @@ class ReceiptV5Document extends Prediction
      */
     public function __toString(): string
     {
-    $supplierCompanyRegistrations = implode(
-        "\n                                 ",
-        $this->supplierCompanyRegistrations
-    );
-    $lineItemsSummary = $this->lineItems->lineItemsToStr();
-    $outStr = ":Expense Locale: $this->locale
+        $supplierCompanyRegistrations = implode(
+            "\n                                 ",
+            $this->supplierCompanyRegistrations
+        );
+        $lineItemsSummary = $this->lineItems->lineItemsToStr();
+        $outStr = ":Expense Locale: $this->locale
 :Purchase Category: $this->category
 :Purchase Subcategory: $this->subcategory
 :Document Type: $this->documentType

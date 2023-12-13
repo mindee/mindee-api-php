@@ -9,17 +9,15 @@ use Mindee\Parsing\Standard\FieldPositionMixin;
 /**
  * List of line item details.
  */
-
 class ReceiptV5LineItem
 {
     use FieldPositionMixin;
     use FieldConfidenceMixin;
 
-
     /**
-    * @var String|null The item description.
+    * @var string|null The item description.
     */
-    public ?String $description;
+    public ?string $description;
     /**
     * @var float|null The item quantity.
     */

@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Fr\IdCard;
 
+use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\ClassificationField;
 
 /**
@@ -10,18 +11,20 @@ use Mindee\Parsing\Standard\ClassificationField;
 class IdCardV1Page extends IdCardV1Document
 {
     /**
-     * @var \Mindee\Parsing\Standard\ClassificationField The side of the document which is visible.
-     */
-    public ClassificationField $documentSide;
-
+    * @var ClassificationField|null The side of the document which is visible.
+    */
+    public ?ClassificationField $documentSide;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        parent::__construct($rawPrediction);
-        $this->documentSide = new ClassificationField($rawPrediction, $pageId);
+        parent::__construct($rawPrediction, $pageId);
+        $this->documentSide = new ClassificationField(
+            $rawPrediction["document_side"],
+            $pageId
+        );
     }
 
     /**
@@ -29,8 +32,8 @@ class IdCardV1Page extends IdCardV1Document
      */
     public function __toString(): string
     {
-        $outStr = ":Document Side: $this->documentSide\n";
-        $outStr .= parent::__toString();
-        return trim($outStr);
+        $outStr = ":Document Side: $this->documentSide
+";
+        return SummaryHelper::cleanOutString($outStr);
     }
 }

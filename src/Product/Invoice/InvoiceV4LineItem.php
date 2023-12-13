@@ -100,12 +100,12 @@ class InvoiceV4LineItem
         $printable = $this->printableValues();
         $outStr = "| ";
         $outStr .= str_pad($printable["description"], 36) . " | ";
-        $outStr .= str_pad($printable["productCode"], 12)." | ";
-        $outStr .= str_pad($printable["quantity"], 8)." | ";
-        $outStr .= str_pad($printable["taxAmount"], 10)." | ";
-        $outStr .= str_pad($printable["taxRate"], 12)." | ";
-        $outStr .= str_pad($printable["totalAmount"], 12)." | ";
-        $outStr .= str_pad($printable["unitPrice"], 10)." | ";
+        $outStr .= str_pad($printable["productCode"], 12) . " | ";
+        $outStr .= str_pad($printable["quantity"], 8) . " | ";
+        $outStr .= str_pad($printable["taxAmount"], 10) . " | ";
+        $outStr .= str_pad($printable["taxRate"], 12) . " | ";
+        $outStr .= str_pad($printable["totalAmount"], 12) . " | ";
+        $outStr .= str_pad($printable["unitPrice"], 10) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 
