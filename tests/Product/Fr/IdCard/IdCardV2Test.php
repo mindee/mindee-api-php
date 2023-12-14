@@ -38,33 +38,19 @@ class IdCardV2Test extends TestCase
     {
         $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->nationality->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->cardAccessNumber->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->documentNumber->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertEquals(0, count($prediction->givenNames));
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->surname->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->alternateName->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->birthDate->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->birthPlace->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->gender->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->expiryDate->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->mrz1->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->mrz2->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->mrz3->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->issueDate->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->authority->value);
     }
     public function testCompletePage0()

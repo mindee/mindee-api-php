@@ -86,9 +86,6 @@ class PaymentDetailsField extends BaseField
     public function __toString(): string
     {
         $outStr = '';
-        if (isset($this->value)) {
-            $outStr .= $this->value . '; ';
-        }
         if (isset($this->accountNumber)) {
             $outStr .= $this->accountNumber . '; ';
         }

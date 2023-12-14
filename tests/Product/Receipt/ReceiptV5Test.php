@@ -38,32 +38,17 @@ class ReceiptV5Test extends TestCase
     {
         $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->locale->value);
-        $prediction = $this->emptyDoc->inference->prediction;
-        $prediction = $this->emptyDoc->inference->prediction;
-        $prediction = $this->emptyDoc->inference->prediction;
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->date->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->time->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->totalAmount->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->totalNet->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->totalTax->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->tip->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertEquals(0, count($prediction->taxes));
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->supplierName->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertEquals(0, count($prediction->supplierCompanyRegistrations));
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->supplierAddress->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->supplierPhoneNumber->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertEquals(0, count($prediction->lineItems));
     }
 }

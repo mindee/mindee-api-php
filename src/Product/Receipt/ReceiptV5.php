@@ -1,6 +1,6 @@
 <?php
 
-/** Expense Receipt V5. */
+/** Receipt V5. */
 
 namespace Mindee\Product\Receipt;
 
@@ -8,7 +8,7 @@ use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
 
 /**
- * Inference prediction for Expense Receipt, API version 5.
+ * Inference prediction for Receipt, API version 5.
  */
 class ReceiptV5 extends Inference
 {

@@ -46,9 +46,15 @@ class ReceiptV5LineItem
             }
         }
         $this->description = $rawPrediction["description"];
-        $this->quantity = isset($rawPrediction["quantity"]) ? number_format(floatval($rawPrediction["quantity"]), 2, ".", "") : null;
-        $this->totalAmount = isset($rawPrediction["total_amount"]) ? number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") : null;
-        $this->unitPrice = isset($rawPrediction["unit_price"]) ? number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") : null;
+        $this->quantity = isset($rawPrediction["quantity"]) ?
+            number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
+            null;
+        $this->totalAmount = isset($rawPrediction["total_amount"]) ?
+            number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
+            null;
+        $this->unitPrice = isset($rawPrediction["unit_price"]) ?
+            number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
+            null;
     }
 
     /**
@@ -59,13 +65,12 @@ class ReceiptV5LineItem
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 25);
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
         $outArr["quantity"] = $this->quantity == null ? "" : number_format($this->quantity, 2, ".", "");
         $outArr["totalAmount"] = $this->totalAmount == null ? "" : number_format($this->totalAmount, 2, ".", "");
         $outArr["unitPrice"] = $this->unitPrice == null ? "" : number_format($this->unitPrice, 2, ".", "");
         return $outArr;
     }
-
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
@@ -87,6 +92,6 @@ class ReceiptV5LineItem
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toTableLine());
+        return SummaryHelper::cleanOutString($this->toFieldList());
     }
 }

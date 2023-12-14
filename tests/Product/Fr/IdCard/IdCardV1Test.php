@@ -38,23 +38,14 @@ class IdCardV1Test extends TestCase
     {
         $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->idNumber->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertEquals(0, count($prediction->givenNames));
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->surname->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->birthDate->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->birthPlace->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->expiryDate->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->authority->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->gender->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->mrz1->value);
-        $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->mrz2->value);
     }
     public function testCompletePage0()

@@ -1,0 +1,15 @@
+<?php
+
+use Mindee\Client;
+use Mindee\Product\BarcodeReader\BarcodeReaderV1;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file
+$apiResponse = $mindeeClient->parse(BarcodeReaderV1::class, $inputSource);
+
+echo strval($apiResponse->document);

@@ -15,37 +15,33 @@ class InvoiceV4LineItem
     use FieldConfidenceMixin;
 
     /**
-     * @var string|null The item description.
-     */
+    * @var string|null The item description.
+    */
     public ?string $description;
     /**
-     * @var string|null The product code referring to the item.
-     */
+    * @var string|null The product code referring to the item.
+    */
     public ?string $productCode;
     /**
-     * @var float|null The item quantity.
-     */
+    * @var float|null The item quantity
+    */
     public ?float $quantity;
     /**
-     * @var float|null The item tax amount.
-     */
+    * @var float|null The item tax amount.
+    */
     public ?float $taxAmount;
     /**
-     * @var float|null The item tax rate in percentage.
-     */
+    * @var float|null The item tax rate in percentage.
+    */
     public ?float $taxRate;
     /**
-     * @var float|null The item total amount.
-     */
+    * @var float|null The item total amount.
+    */
     public ?float $totalAmount;
     /**
-     * @var float|null The item unit price.
-     */
+    * @var float|null The item unit price.
+    */
     public ?float $unitPrice;
-    /**
-     * @var integer The document page on which the information was found.
-     */
-    public ?int $pageN;
 
     /**
      * @param array        $rawPrediction Array containing the JSON document response.
@@ -61,15 +57,23 @@ class InvoiceV4LineItem
                 $pageId = $rawPrediction["page_id"];
             }
         }
-        $this->pageN = $pageId;
-
         $this->description = $rawPrediction["description"];
         $this->productCode = $rawPrediction["product_code"];
-        $this->quantity = floatval($rawPrediction["quantity"]);
-        $this->taxAmount = floatval($rawPrediction["tax_amount"]);
-        $this->taxRate = floatval($rawPrediction["tax_rate"]);
-        $this->totalAmount = floatval($rawPrediction["total_amount"]);
-        $this->unitPrice = floatval($rawPrediction["unit_price"]);
+        $this->quantity = isset($rawPrediction["quantity"]) ?
+            number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
+            null;
+        $this->taxAmount = isset($rawPrediction["tax_amount"]) ?
+            number_format(floatval($rawPrediction["tax_amount"]), 2, ".", "") :
+            null;
+        $this->taxRate = isset($rawPrediction["tax_rate"]) ?
+            number_format(floatval($rawPrediction["tax_rate"]), 2, ".", "") :
+            null;
+        $this->totalAmount = isset($rawPrediction["total_amount"]) ?
+            number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
+            null;
+        $this->unitPrice = isset($rawPrediction["unit_price"]) ?
+            number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
+            null;
     }
 
     /**
@@ -81,15 +85,14 @@ class InvoiceV4LineItem
     {
         $outArr = [];
         $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
-        $outArr["productCode"] = SummaryHelper::formatForDisplay($this->productCode, null);
-        $outArr["quantity"] = SummaryHelper::formatForDisplay($this->quantity);
-        $outArr["taxAmount"] = SummaryHelper::formatForDisplay($this->taxAmount);
-        $outArr["taxRate"] = SummaryHelper::formatForDisplay($this->taxRate);
-        $outArr["totalAmount"] = SummaryHelper::formatForDisplay($this->totalAmount);
-        $outArr["unitPrice"] = SummaryHelper::formatForDisplay($this->unitPrice);
+        $outArr["productCode"] = SummaryHelper::formatForDisplay($this->productCode);
+        $outArr["quantity"] = $this->quantity == null ? "" : number_format($this->quantity, 2, ".", "");
+        $outArr["taxAmount"] = $this->taxAmount == null ? "" : number_format($this->taxAmount, 2, ".", "");
+        $outArr["taxRate"] = $this->taxRate == null ? "" : number_format($this->taxRate, 2, ".", "");
+        $outArr["totalAmount"] = $this->totalAmount == null ? "" : number_format($this->totalAmount, 2, ".", "");
+        $outArr["unitPrice"] = $this->unitPrice == null ? "" : number_format($this->unitPrice, 2, ".", "");
         return $outArr;
     }
-
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
@@ -114,6 +117,6 @@ class InvoiceV4LineItem
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toTableLine());
+        return SummaryHelper::cleanOutString($this->toFieldList());
     }
 }

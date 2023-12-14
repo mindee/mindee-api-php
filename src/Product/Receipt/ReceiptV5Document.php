@@ -13,7 +13,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Document data for Expense Receipt, API version 5.
+ * Document data for Receipt, API version 5.
  */
 class ReceiptV5Document extends Prediction
 {
