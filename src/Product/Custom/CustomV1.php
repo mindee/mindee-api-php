@@ -28,7 +28,7 @@ class CustomV1 extends Inference
      */
     public function __construct(array $rawPrediction)
     {
-        parent::__construct($rawPrediction);
+        parent::__construct($rawPrediction);;
         $this->prediction = new CustomV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {

@@ -101,8 +101,8 @@ The following fields are extracted for W9 V1:
 [📄](#page-level-fields "This field is only present on individual pages.")**address** : The street address (number, street, and apt. or suite no.) of the applicant.
 
 ```php
-foreach($result->document->address => $addressElem){
-    echo addressElem;
+foreach($result->document->address as $addressElem){
+    echo $addressElem;
 }->value;
 ```
 
@@ -110,8 +110,8 @@ foreach($result->document->address => $addressElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**businessName** : The business name or disregarded entity name, if different from Name.
 
 ```php
-foreach($result->document->businessName => $businessNameElem){
-    echo businessNameElem;
+foreach($result->document->businessName as $businessNameElem){
+    echo $businessNameElem;
 }->value;
 ```
 
@@ -119,8 +119,8 @@ foreach($result->document->businessName => $businessNameElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**cityStateZip** : The city, state, and ZIP code of the applicant.
 
 ```php
-foreach($result->document->cityStateZip => $cityStateZipElem){
-    echo cityStateZipElem;
+foreach($result->document->cityStateZip as $cityStateZipElem){
+    echo $cityStateZipElem;
 }->value;
 ```
 
@@ -128,8 +128,8 @@ foreach($result->document->cityStateZip => $cityStateZipElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**ein** : The employer identification number.
 
 ```php
-foreach($result->document->ein => $einElem){
-    echo einElem;
+foreach($result->document->ein as $einElem){
+    echo $einElem;
 }->value;
 ```
 
@@ -137,8 +137,8 @@ foreach($result->document->ein => $einElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**name** : Name as shown on the applicant's income tax return.
 
 ```php
-foreach($result->document->name => $nameElem){
-    echo nameElem;
+foreach($result->document->name as $nameElem){
+    echo $nameElem;
 }->value;
 ```
 
@@ -146,8 +146,8 @@ foreach($result->document->name => $nameElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**signatureDatePosition** : Position of the signature date on the document.
 
 ```php
-foreach($result->document->signatureDatePosition => $signatureDatePositionElem){
-    echo signatureDatePositionElem;
+foreach($result->document->signatureDatePosition as $signatureDatePositionElem){
+    echo $signatureDatePositionElem;
 }->polygon->getCoordinates();
 ```
 
@@ -155,8 +155,8 @@ foreach($result->document->signatureDatePosition => $signatureDatePositionElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**signaturePosition** : Position of the signature on the document.
 
 ```php
-foreach($result->document->signaturePosition => $signaturePositionElem){
-    echo signaturePositionElem;
+foreach($result->document->signaturePosition as $signaturePositionElem){
+    echo $signaturePositionElem;
 }->polygon->getCoordinates();
 ```
 
@@ -164,8 +164,8 @@ foreach($result->document->signaturePosition => $signaturePositionElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**ssn** : The applicant's social security number.
 
 ```php
-foreach($result->document->ssn => $ssnElem){
-    echo ssnElem;
+foreach($result->document->ssn as $ssnElem){
+    echo $ssnElem;
 }->value;
 ```
 
@@ -173,8 +173,8 @@ foreach($result->document->ssn => $ssnElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**taxClassification** : The federal tax classification, which can vary depending on the revision date.
 
 ```php
-foreach($result->document->taxClassification => $taxClassificationElem){
-    echo taxClassificationElem;
+foreach($result->document->taxClassification as $taxClassificationElem){
+    echo $taxClassificationElem;
 }->value;
 ```
 
@@ -182,8 +182,8 @@ foreach($result->document->taxClassification => $taxClassificationElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**taxClassificationLlc** : Depending on revision year, among S, C, P or D for Limited Liability Company Classification.
 
 ```php
-foreach($result->document->taxClassificationLlc => $taxClassificationLlcElem){
-    echo taxClassificationLlcElem;
+foreach($result->document->taxClassificationLlc as $taxClassificationLlcElem){
+    echo $taxClassificationLlcElem;
 }->value;
 ```
 
@@ -191,8 +191,8 @@ foreach($result->document->taxClassificationLlc => $taxClassificationLlcElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**taxClassificationOtherDetails** : Tax Classification Other Details.
 
 ```php
-foreach($result->document->taxClassificationOtherDetails => $taxClassificationOtherDetailsElem){
-    echo taxClassificationOtherDetailsElem;
+foreach($result->document->taxClassificationOtherDetails as $taxClassificationOtherDetailsElem){
+    echo $taxClassificationOtherDetailsElem;
 }->value;
 ```
 
@@ -200,8 +200,8 @@ foreach($result->document->taxClassificationOtherDetails => $taxClassificationOt
 [📄](#page-level-fields "This field is only present on individual pages.")**w9RevisionDate** : The Revision month and year of the W9 form.
 
 ```php
-foreach($result->document->w9RevisionDate => $w9RevisionDateElem){
-    echo w9RevisionDateElem;
+foreach($result->document->w9RevisionDate as $w9RevisionDateElem){
+    echo $w9RevisionDateElem;
 }->value;
 ```
 

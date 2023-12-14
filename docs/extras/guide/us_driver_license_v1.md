@@ -221,8 +221,8 @@ echo $result->document->inference->prediction->lastName->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**photo** : Has a photo of the US driver license holder
 
 ```php
-foreach($result->document->photo => $photoElem){
-    echo photoElem;
+foreach($result->document->photo as $photoElem){
+    echo $photoElem;
 }->polygon->getCoordinates();
 ```
 
@@ -244,8 +244,8 @@ echo $result->document->inference->prediction->sex->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**signature** : Has a signature of the US driver license holder
 
 ```php
-foreach($result->document->signature => $signatureElem){
-    echo signatureElem;
+foreach($result->document->signature as $signatureElem){
+    echo $signatureElem;
 }->polygon->getCoordinates();
 ```
 

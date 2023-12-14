@@ -169,8 +169,8 @@ echo $result->document->inference->prediction->documentNumber->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**documentSide** : The sides of the document which are visible.
 
 ```php
-foreach($result->document->documentSide => $documentSideElem){
-    echo documentSideElem;
+foreach($result->document->documentSide as $documentSideElem){
+    echo $documentSideElem;
 }->value;
 ```
 
@@ -178,8 +178,8 @@ foreach($result->document->documentSide => $documentSideElem){
 [📄](#page-level-fields "This field is only present on individual pages.")**documentType** : The document type or format.
 
 ```php
-foreach($result->document->documentType => $documentTypeElem){
-    echo documentTypeElem;
+foreach($result->document->documentType as $documentTypeElem){
+    echo $documentTypeElem;
 }->value;
 ```
 
@@ -201,9 +201,9 @@ echo $result->document->inference->prediction->gender->value;
 **givenNames** : The given name(s) of the card holder.
 
 ```php
-foreach ($result->document->inference->prediction->givenNames => givenNamesElem)
+foreach ($result->document->inference->prediction->givenNames as $givenNamesElem)
 {
-    echo givenNamesElem->value;
+    echo $givenNamesElem->value;
 }
 ```
 

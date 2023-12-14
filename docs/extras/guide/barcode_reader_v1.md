@@ -85,9 +85,9 @@ The following fields are extracted for Barcode Reader V1:
 **codes1D** : List of decoded 1D barcodes.
 
 ```php
-foreach ($result->document->inference->prediction->codes1D => codes1DElem)
+foreach ($result->document->inference->prediction->codes1D as $codes1DElem)
 {
-    echo codes1DElem->value;
+    echo $codes1DElem->value;
 }
 ```
 
@@ -95,9 +95,9 @@ foreach ($result->document->inference->prediction->codes1D => codes1DElem)
 **codes2D** : List of decoded 2D barcodes.
 
 ```php
-foreach ($result->document->inference->prediction->codes2D => codes2DElem)
+foreach ($result->document->inference->prediction->codes2D as $codes2DElem)
 {
-    echo codes2DElem->value;
+    echo $codes2DElem->value;
 }
 ```
 

@@ -95,12 +95,12 @@ The following fields are extracted for Multi Receipts Detector V1:
 **receipts** : Positions of the receipts on the document.
 
 ```php
-foreach ($result->document->inference->prediction->receipts => receiptsElem)
+foreach ($result->document->inference->prediction->receipts as $receiptsElem)
 {
-    echo receiptsElem->polygon;
-    echo receiptsElem->quadrangle;
-    echo receiptsElem->rectangle;
-    echo receiptsElem->boundingBox;
+    echo $receiptsElem->polygon;
+    echo $receiptsElem->quadrangle;
+    echo $receiptsElem->rectangle;
+    echo $receiptsElem->boundingBox;
 }
 ```
 

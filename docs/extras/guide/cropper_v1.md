@@ -88,19 +88,19 @@ The following fields are extracted for Cropper V1:
 [📄](#page-level-fields "This field is only present on individual pages.")**cropping** : List of documents found in the image.
 
 ```php
-foreach ($result->document->inference->pages => $page)
+foreach ($result->document->inference->pages as $page)
 {
-    foreach ($page->prediction->cropping => croppingElem)
+    foreach ($page->prediction->cropping as $croppingElem)
     {
-        echo croppingElem->polygon;
-        echo croppingElem->quadrangle;
-        echo croppingElem->rectangle;
-        echo croppingElem->boundingBox;
+        echo $croppingElem->polygon;
+        echo $croppingElem->quadrangle;
+        echo $croppingElem->rectangle;
+        echo $croppingElem->boundingBox;
     }
 }->polygon;
-    echo croppingElem->quadrangle;
-    echo croppingElem->rectangle;
-    echo croppingElem->boundingBox;
+    echo $croppingElem->quadrangle;
+    echo $croppingElem->rectangle;
+    echo $croppingElem->boundingBox;
 }
 ```
 

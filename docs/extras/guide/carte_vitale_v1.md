@@ -92,9 +92,9 @@ The following fields are extracted for Carte Vitale V1:
 **givenNames** : The given name(s) of the card holder.
 
 ```php
-foreach ($result->document->inference->prediction->givenNames => givenNamesElem)
+foreach ($result->document->inference->prediction->givenNames as $givenNamesElem)
 {
-    echo givenNamesElem->value;
+    echo $givenNamesElem->value;
 }
 ```
 

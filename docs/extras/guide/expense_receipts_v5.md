@@ -208,9 +208,9 @@ echo $result->document->inference->prediction->documentType->value;
 **lineItems** (List[[ReceiptV5LineItem](#line-items-field)]): List of line item details.
 
 ```php
-foreach ($result->document->inference->prediction->lineItems => lineItemsElem)
+foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 {
-    echo lineItemsElem->value;
+    echo $lineItemsElem->value;
 }
 ```
 
@@ -239,9 +239,9 @@ echo $result->document->inference->prediction->supplierAddress->value;
 **supplierCompanyRegistrations** : List of company registrations associated to the supplier.
 
 ```php
-foreach ($result->document->inference->prediction->supplierCompanyRegistrations => supplierCompanyRegistrationsElem)
+foreach ($result->document->inference->prediction->supplierCompanyRegistrations as $supplierCompanyRegistrationsElem)
 {
-    echo supplierCompanyRegistrationsElem->value;
+    echo $supplierCompanyRegistrationsElem->value;
 }
 ```
 
@@ -263,9 +263,9 @@ echo $result->document->inference->prediction->supplierPhoneNumber->value;
 **taxes** : List of tax lines information.
 
 ```php
-foreach ($result->document->inference->prediction->taxes => taxesElem)
+foreach ($result->document->inference->prediction->taxes as $taxesElem)
 {
-    echo taxesElem->value;
+    echo $taxesElem->value;
 }
 ```
 

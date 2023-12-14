@@ -224,9 +224,9 @@ echo $result->document->inference->prediction->customerAddress->value;
 **customerCompanyRegistrations** : List of company registrations associated to the customer.
 
 ```php
-foreach ($result->document->inference->prediction->customerCompanyRegistrations => customerCompanyRegistrationsElem)
+foreach ($result->document->inference->prediction->customerCompanyRegistrations as $customerCompanyRegistrationsElem)
 {
-    echo customerCompanyRegistrationsElem->value;
+    echo $customerCompanyRegistrationsElem->value;
 }
 ```
 
@@ -269,9 +269,9 @@ echo $result->document->inference->prediction->invoiceNumber->value;
 **lineItems** (List[[FinancialDocumentV1LineItem](#line-items-field)]): List of line item details.
 
 ```php
-foreach ($result->document->inference->prediction->lineItems => lineItemsElem)
+foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 {
-    echo lineItemsElem->value;
+    echo $lineItemsElem->value;
 }
 ```
 
@@ -286,9 +286,9 @@ echo $result->document->inference->prediction->locale->value;
 **referenceNumbers** : List of Reference numbers, including PO number.
 
 ```php
-foreach ($result->document->inference->prediction->referenceNumbers => referenceNumbersElem)
+foreach ($result->document->inference->prediction->referenceNumbers as $referenceNumbersElem)
 {
-    echo referenceNumbersElem->value;
+    echo $referenceNumbersElem->value;
 }
 ```
 
@@ -310,9 +310,9 @@ echo $result->document->inference->prediction->supplierAddress->value;
 **supplierCompanyRegistrations** : List of company registrations associated to the supplier.
 
 ```php
-foreach ($result->document->inference->prediction->supplierCompanyRegistrations => supplierCompanyRegistrationsElem)
+foreach ($result->document->inference->prediction->supplierCompanyRegistrations as $supplierCompanyRegistrationsElem)
 {
-    echo supplierCompanyRegistrationsElem->value;
+    echo $supplierCompanyRegistrationsElem->value;
 }
 ```
 
@@ -327,13 +327,13 @@ echo $result->document->inference->prediction->supplierName->value;
 **supplierPaymentDetails** : List of payment details associated to the supplier.
 
 ```php
-foreach ($result->document->inference->prediction->supplierPaymentDetails => supplierPaymentDetailsElem)
+foreach ($result->document->inference->prediction->supplierPaymentDetails as $supplierPaymentDetailsElem)
 {
-    echo supplierPaymentDetailsElem
+    echo $supplierPaymentDetailsElem
 ->value;
-    echo supplierPaymentDetailsElem->rate;
-    echo supplierPaymentDetailsElem->code;
-    echo supplierPaymentDetailsElem->basis;
+    echo $supplierPaymentDetailsElem->rate;
+    echo $supplierPaymentDetailsElem->code;
+    echo $supplierPaymentDetailsElem->basis;
 }
 ```
 
@@ -348,9 +348,9 @@ echo $result->document->inference->prediction->supplierPhoneNumber->value;
 **taxes** : List of tax lines information.
 
 ```php
-foreach ($result->document->inference->prediction->taxes => taxesElem)
+foreach ($result->document->inference->prediction->taxes as $taxesElem)
 {
-    echo taxesElem->value;
+    echo $taxesElem->value;
 }
 ```
 

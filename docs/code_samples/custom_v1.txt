@@ -1,0 +1,27 @@
+<?php
+
+use Mindee\Client;
+use Mindee\Product\Custom\CustomV1;
+use Mindee\Input\PredictMethodOptions;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Create a custom endpoint
+$customEndpoint = $mindeeClient->createEndpoint(
+    "my-endpoint",
+    "my-account",
+//  "my-version" // Optional
+);
+
+// Add the custom endpoint to the prediction options.
+$predictOptions = new PredictMethodOptions();
+$predictOptions->setEndpoint($customEndpoint);
+
+// Parse the file
+$apiResponse = $mindeeClient->parse(CustomV1::class, $inputSource, $predictOptions);
+
+echo strval($apiResponse->document);

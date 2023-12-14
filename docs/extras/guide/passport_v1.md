@@ -141,9 +141,9 @@ echo $result->document->inference->prediction->gender->value;
 **givenNames** : The given name(s) of the passport holder.
 
 ```php
-foreach ($result->document->inference->prediction->givenNames => givenNamesElem)
+foreach ($result->document->inference->prediction->givenNames as $givenNamesElem)
 {
-    echo givenNamesElem->value;
+    echo $givenNamesElem->value;
 }
 ```
 

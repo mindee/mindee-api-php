@@ -135,8 +135,8 @@ echo $result->document->inference->prediction->checkNumber->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**checkPosition** : The position of the check on the document.
 
 ```php
-foreach($result->document->checkPosition => $checkPositionElem){
-    echo checkPositionElem;
+foreach($result->document->checkPosition as $checkPositionElem){
+    echo $checkPositionElem;
 }->polygon->getCoordinates();
 ```
 
@@ -151,9 +151,9 @@ echo $result->document->inference->prediction->date->value;
 **payees** : List of the check's payees (recipients).
 
 ```php
-foreach ($result->document->inference->prediction->payees => payeesElem)
+foreach ($result->document->inference->prediction->payees as $payeesElem)
 {
-    echo payeesElem->value;
+    echo $payeesElem->value;
 }
 ```
 
@@ -168,19 +168,19 @@ echo $result->document->inference->prediction->routingNumber->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**signaturesPositions** : List of signature positions
 
 ```php
-foreach ($result->document->inference->pages => $page)
+foreach ($result->document->inference->pages as $page)
 {
-    foreach ($page->prediction->signaturesPositions => signaturesPositionsElem)
+    foreach ($page->prediction->signaturesPositions as $signaturesPositionsElem)
     {
-        echo signaturesPositionsElem->polygon;
-        echo signaturesPositionsElem->quadrangle;
-        echo signaturesPositionsElem->rectangle;
-        echo signaturesPositionsElem->boundingBox;
+        echo $signaturesPositionsElem->polygon;
+        echo $signaturesPositionsElem->quadrangle;
+        echo $signaturesPositionsElem->rectangle;
+        echo $signaturesPositionsElem->boundingBox;
     }
 }->polygon;
-    echo signaturesPositionsElem->quadrangle;
-    echo signaturesPositionsElem->rectangle;
-    echo signaturesPositionsElem->boundingBox;
+    echo $signaturesPositionsElem->quadrangle;
+    echo $signaturesPositionsElem->rectangle;
+    echo $signaturesPositionsElem->boundingBox;
 }
 ```
 

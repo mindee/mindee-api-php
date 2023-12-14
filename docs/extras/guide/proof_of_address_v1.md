@@ -144,9 +144,9 @@ echo $result->document->inference->prediction->date->value;
 **dates** : List of dates found on the document.
 
 ```php
-foreach ($result->document->inference->prediction->dates => datesElem)
+foreach ($result->document->inference->prediction->dates as $datesElem)
 {
-    echo datesElem->value;
+    echo $datesElem->value;
 }
 ```
 
@@ -161,9 +161,9 @@ echo $result->document->inference->prediction->issuerAddress->value;
 **issuerCompanyRegistration** : List of company registrations found for the issuer.
 
 ```php
-foreach ($result->document->inference->prediction->issuerCompanyRegistration => issuerCompanyRegistrationElem)
+foreach ($result->document->inference->prediction->issuerCompanyRegistration as $issuerCompanyRegistrationElem)
 {
-    echo issuerCompanyRegistrationElem->value;
+    echo $issuerCompanyRegistrationElem->value;
 }
 ```
 
@@ -192,9 +192,9 @@ echo $result->document->inference->prediction->recipientAddress->value;
 **recipientCompanyRegistration** : List of company registrations found for the recipient.
 
 ```php
-foreach ($result->document->inference->prediction->recipientCompanyRegistration => recipientCompanyRegistrationElem)
+foreach ($result->document->inference->prediction->recipientCompanyRegistration as $recipientCompanyRegistrationElem)
 {
-    echo recipientCompanyRegistrationElem->value;
+    echo $recipientCompanyRegistrationElem->value;
 }
 ```
 

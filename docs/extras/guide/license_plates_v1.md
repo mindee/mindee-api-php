@@ -81,9 +81,9 @@ The following fields are extracted for License Plate V1:
 **licensePlates** : List of all license plates found in the image.
 
 ```php
-foreach ($result->document->inference->prediction->licensePlates => licensePlatesElem)
+foreach ($result->document->inference->prediction->licensePlates as $licensePlatesElem)
 {
-    echo licensePlatesElem->value;
+    echo $licensePlatesElem->value;
 }
 ```
 
