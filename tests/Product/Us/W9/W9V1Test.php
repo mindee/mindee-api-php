@@ -50,9 +50,11 @@ class W9V1Test extends TestCase
         $this->assertNull($prediction->signatureDatePosition->polygon);
         $this->assertNull($prediction->taxClassificationLlc->value);
     }
+
     public function testCompletePage0()
     {
         $this->assertEquals(0, $this->completePage0->id);
         $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
     }
+
 }
