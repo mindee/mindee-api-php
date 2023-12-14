@@ -111,6 +111,6 @@ class InvoiceV4LineItem
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toTableLine());
+        return SummaryHelper::cleanOutString($this->toFieldList());
     }
 }
