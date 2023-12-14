@@ -183,7 +183,7 @@ class InvoiceV4Document extends Prediction
             "\n                                 ",
             $this->customerCompanyRegistrations
         );
-        $lineItemsSummary = $this->lineItems->lineItemsToStr();
+        $lineItemsSummary = strval($this->lineItems);
 
         $outStr = ":Locale: $this->locale
 :Invoice Number: $this->invoiceNumber

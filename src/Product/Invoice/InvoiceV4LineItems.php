@@ -45,7 +45,7 @@ class InvoiceV4LineItems extends \ArrayObject
      *
      * @return string
      */
-    public function lineItemsToStr(): string
+    public function __toString(): string
     {
         $lines = "";
         $iterator = $this->getIterator();

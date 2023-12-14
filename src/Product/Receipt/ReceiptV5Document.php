@@ -162,7 +162,7 @@ class ReceiptV5Document extends Prediction
             "\n                                 ",
             $this->supplierCompanyRegistrations
         );
-        $lineItemsSummary = $this->lineItems->lineItemsToStr();
+        $lineItemsSummary = strval($this->lineItems);
 
         $outStr = ":Expense Locale: $this->locale
 :Purchase Category: $this->category
