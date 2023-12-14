@@ -2361,10 +2361,10 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItems.html#method_lineItemsSeparator"
         },                {
-            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItems\u003A\u003AlineItemsToStr\u0028\u0029",
-            "name": "lineItemsToStr",
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItems\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
             "summary": "String\u0020representation.",
-            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItems.html#method_lineItemsToStr"
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItems.html#method___toString"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1",
             "name": "BankAccountDetailsV1",
@@ -3246,10 +3246,10 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsSeparator"
         },                {
-            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003AlineItemsToStr\u0028\u0029",
-            "name": "lineItemsToStr",
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
             "summary": "String\u0020representation.",
-            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method_lineItemsToStr"
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html#method___toString"
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1",
             "name": "InvoiceSplitterV1",
@@ -3701,10 +3701,10 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5LineItems.html#method_lineItemsSeparator"
         },                {
-            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5LineItems\u003A\u003AlineItemsToStr\u0028\u0029",
-            "name": "lineItemsToStr",
+            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5LineItems\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
             "summary": "String\u0020representation.",
-            "url": "classes/Mindee-Product-Receipt-ReceiptV5LineItems.html#method_lineItemsToStr"
+            "url": "classes/Mindee-Product-Receipt-ReceiptV5LineItems.html#method___toString"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1",
             "name": "BankCheckV1",
