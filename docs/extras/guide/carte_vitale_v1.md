@@ -80,7 +80,7 @@ Aside from the previous attributes, all basic fields have access to a custom `__
 ### DateField
 Aside from the basic `BaseField` attributes, the date field `DateField` also implements the following: 
 
-* **dateObject** (`date`): an accessible representation of the value as a python object. Can be `null`.
+* **dateObject** (`date`): an accessible representation of the value as a php object. Can be `null`.
 
 ### StringField
 The text field `StringField` only has one constraint: its **value** is an optional `?string`.

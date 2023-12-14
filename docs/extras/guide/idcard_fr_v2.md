@@ -112,7 +112,7 @@ The classification field `ClassificationField` does not implement all the basic 
 ### DateField
 Aside from the basic `BaseField` attributes, the date field `DateField` also implements the following: 
 
-* **dateObject** (`date`): an accessible representation of the value as a python object. Can be `null`.
+* **dateObject** (`date`): an accessible representation of the value as a php object. Can be `null`.
 
 ### StringField
 The text field `StringField` only has one constraint: its **value** is an optional `?string`.

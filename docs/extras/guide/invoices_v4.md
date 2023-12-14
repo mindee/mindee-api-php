@@ -150,7 +150,7 @@ Aside from the basic `BaseField` attributes, the company registration field `Com
 ### DateField
 Aside from the basic `BaseField` attributes, the date field `DateField` also implements the following: 
 
-* **dateObject** (`date`): an accessible representation of the value as a python object. Can be `null`.
+* **dateObject** (`date`): an accessible representation of the value as a php object. Can be `null`.
 
 ### LocaleField
 The locale field `LocaleField` only implements the **value**, **confidence** and **pageId** base `BaseField` attributes, but it comes with its own:
