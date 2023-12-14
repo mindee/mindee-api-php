@@ -1,0 +1,29 @@
+{
+  "name": "mindee/mindee-cli",
+  "description": "Mindee CLI tool",
+  "type": "project",
+  "require": {
+    "ext-curl": "*",
+    "ext-fileinfo": "*",
+    "ext-json": "*",
+    "php": ">=7.4",
+    "mindee/mindee": "dev-main"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Mindee\\MindeeCli\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "mindee"
+    }
+  ],
+  "repositories": {
+    "mindee/mindee": {
+      "type": "path",
+      "url": "../"
+    }
+  }
+}
