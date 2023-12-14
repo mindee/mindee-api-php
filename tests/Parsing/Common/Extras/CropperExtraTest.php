@@ -40,5 +40,8 @@ class CropperExtraTest extends TestCase
         $this->assertEquals(1.0, $this->completeDoc->inference->pages[0]->extras->cropper->croppings[0]->boundingBox->getCoordinates()[2]->getY());
         $this->assertEquals(0.057, $this->completeDoc->inference->pages[0]->extras->cropper->croppings[0]->boundingBox->getCoordinates()[3]->getX());
         $this->assertEquals(1.0, $this->completeDoc->inference->pages[0]->extras->cropper->croppings[0]->boundingBox->getCoordinates()[3]->getY());
+        $this->assertEquals(24, count($this->completeDoc->inference->pages[0]->extras->cropper->croppings[0]->polygon->getCoordinates()));
+        $this->assertEquals(4, count($this->completeDoc->inference->pages[0]->extras->cropper->croppings[0]->quadrangle->getCoordinates()));
+        $this->assertEquals(4, count($this->completeDoc->inference->pages[0]->extras->cropper->croppings[0]->rectangle->getCoordinates()));
     }
 }
