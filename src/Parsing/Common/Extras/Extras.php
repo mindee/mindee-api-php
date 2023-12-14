@@ -25,7 +25,7 @@ class Extras
      * Sets a field.
      *
      * @param mixed $varName Name of the field to set.
-     * @param mixed $value   Value to set the field with.
+     * @param mixed $value Value to set the field with.
      * @return void
      */
     public function __set($varName, $value)
