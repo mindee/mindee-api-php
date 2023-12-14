@@ -80,6 +80,6 @@ class BankAccountDetailsV2Bban
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toFieldList());
+        return SummaryHelper::cleanOutString($this->toTableLine());
     }
 }

@@ -111,6 +111,6 @@ class FinancialDocumentV1LineItem
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toFieldList());
+        return SummaryHelper::cleanOutString($this->toTableLine());
     }
 }
