@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PHP_BINARY=""
+
+# Check if PHP exists in /usr/bin/php
+if command -v /usr/bin/php &> /dev/null; then
+    PHP_BINARY="/usr/bin/php"
+# Check if PHP exists in /bin/php
+elif command -v /bin/php &> /dev/null; then
+    PHP_BINARY="/bin/php"
+else
+    echo "PHP not found. Please install PHP."
+    exit 1
+fi
+
+"$PHP_BINARY" -d="bin" "bin/mindee.php" "$@"

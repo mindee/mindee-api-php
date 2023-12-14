@@ -4,7 +4,7 @@
 namespace Mindee\CLI;
 
 require __DIR__ . '/../vendor/autoload.php';
-require './CustomArg.php';
+require __DIR__ . '/CustomArg.php';
 
 use Mindee\Product;
 
@@ -214,4 +214,8 @@ foreach ($options as $opt => $value) {
     if (isset($descriptors[$opt])) {
         echo "Description: " . $descriptors[$opt] . "\n";
     }
+}
+foreach (array_slice($argv, 1) as $arg => $value) {
+    echo "Option '$arg' value: ";
+    var_dump($value);
 }
