@@ -36,4 +36,11 @@ class BarcodeReaderV1Test extends TestCase
         $this->assertEquals(0, count($prediction->codes1D));
         $this->assertEquals(0, count($prediction->codes2D));
     }
+
+    public function testCompletePage0()
+    {
+        $this->assertEquals(0, $this->completePage0->id);
+        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
+    }
+
 }

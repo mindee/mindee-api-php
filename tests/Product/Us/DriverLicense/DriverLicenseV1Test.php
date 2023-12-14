@@ -55,9 +55,11 @@ class DriverLicenseV1Test extends TestCase
         $this->assertNull($prediction->eyeColor->value);
         $this->assertNull($prediction->ddNumber->value);
     }
+
     public function testCompletePage0()
     {
         $this->assertEquals(0, $this->completePage0->id);
         $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
     }
+
 }

@@ -41,4 +41,11 @@ class BankAccountDetailsV2Test extends TestCase
         $this->assertNull($prediction->iban->value);
         $this->assertNull($prediction->swiftCode->value);
     }
+
+    public function testCompletePage0()
+    {
+        $this->assertEquals(0, $this->completePage0->id);
+        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
+    }
+
 }

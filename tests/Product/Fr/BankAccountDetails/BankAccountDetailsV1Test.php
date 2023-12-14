@@ -37,4 +37,11 @@ class BankAccountDetailsV1Test extends TestCase
         $this->assertNull($prediction->accountHolderName->value);
         $this->assertNull($prediction->swift->value);
     }
+
+    public function testCompletePage0()
+    {
+        $this->assertEquals(0, $this->completePage0->id);
+        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
+    }
+
 }

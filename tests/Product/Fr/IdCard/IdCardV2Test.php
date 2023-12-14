@@ -53,9 +53,11 @@ class IdCardV2Test extends TestCase
         $this->assertNull($prediction->issueDate->value);
         $this->assertNull($prediction->authority->value);
     }
+
     public function testCompletePage0()
     {
         $this->assertEquals(0, $this->completePage0->id);
         $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
     }
+
 }

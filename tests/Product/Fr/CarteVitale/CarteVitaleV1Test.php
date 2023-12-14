@@ -38,4 +38,11 @@ class CarteVitaleV1Test extends TestCase
         $this->assertNull($prediction->socialSecurity->value);
         $this->assertNull($prediction->issuanceDate->value);
     }
+
+    public function testCompletePage0()
+    {
+        $this->assertEquals(0, $this->completePage0->id);
+        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
+    }
+
 }
