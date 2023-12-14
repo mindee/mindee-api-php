@@ -15,41 +15,41 @@ use Mindee\Parsing\Standard\StringField;
 class ProofOfAddressV1Document extends Prediction
 {
     /**
-    * @var DateField|null The date the document was issued.
+    * @var DateField The date the document was issued.
     */
-    public ?DateField $date;
+    public DateField $date;
     /**
-    * @var DateField[]|null List of dates found on the document.
+    * @var DateField[] List of dates found on the document.
     */
-    public ?array $dates;
+    public array $dates;
     /**
-    * @var StringField|null The address of the document's issuer.
+    * @var StringField The address of the document's issuer.
     */
-    public ?StringField $issuerAddress;
+    public StringField $issuerAddress;
     /**
-    * @var CompanyRegistrationField[]|null List of company registrations found for the issuer.
+    * @var CompanyRegistrationField[] List of company registrations found for the issuer.
     */
-    public ?array $issuerCompanyRegistration;
+    public array $issuerCompanyRegistration;
     /**
-    * @var StringField|null The name of the person or company issuing the document.
+    * @var StringField The name of the person or company issuing the document.
     */
-    public ?StringField $issuerName;
+    public StringField $issuerName;
     /**
-    * @var LocaleField|null The locale detected on the document.
+    * @var LocaleField The locale detected on the document.
     */
-    public ?LocaleField $locale;
+    public LocaleField $locale;
     /**
-    * @var StringField|null The address of the recipient.
+    * @var StringField The address of the recipient.
     */
-    public ?StringField $recipientAddress;
+    public StringField $recipientAddress;
     /**
-    * @var CompanyRegistrationField[]|null List of company registrations found for the recipient.
+    * @var CompanyRegistrationField[] List of company registrations found for the recipient.
     */
-    public ?array $recipientCompanyRegistration;
+    public array $recipientCompanyRegistration;
     /**
-    * @var StringField|null The name of the person or company receiving the document.
+    * @var StringField The name of the person or company receiving the document.
     */
-    public ?StringField $recipientName;
+    public StringField $recipientName;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

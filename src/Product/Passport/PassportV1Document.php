@@ -13,49 +13,49 @@ use Mindee\Parsing\Standard\StringField;
 class PassportV1Document extends Prediction
 {
     /**
-    * @var DateField|null The date of birth of the passport holder.
+    * @var DateField The date of birth of the passport holder.
     */
-    public ?DateField $birthDate;
+    public DateField $birthDate;
     /**
-    * @var StringField|null The place of birth of the passport holder.
+    * @var StringField The place of birth of the passport holder.
     */
-    public ?StringField $birthPlace;
+    public StringField $birthPlace;
     /**
-    * @var StringField|null The country's 3 letter code (ISO 3166-1 alpha-3).
+    * @var StringField The country's 3 letter code (ISO 3166-1 alpha-3).
     */
-    public ?StringField $country;
+    public StringField $country;
     /**
-    * @var DateField|null The expiry date of the passport.
+    * @var DateField The expiry date of the passport.
     */
-    public ?DateField $expiryDate;
+    public DateField $expiryDate;
     /**
-    * @var StringField|null The gender of the passport holder.
+    * @var StringField The gender of the passport holder.
     */
-    public ?StringField $gender;
+    public StringField $gender;
     /**
-    * @var StringField[]|null The given name(s) of the passport holder.
+    * @var StringField[] The given name(s) of the passport holder.
     */
-    public ?array $givenNames;
+    public array $givenNames;
     /**
-    * @var StringField|null The passport's identification number.
+    * @var StringField The passport's identification number.
     */
-    public ?StringField $idNumber;
+    public StringField $idNumber;
     /**
-    * @var DateField|null The date the passport was issued.
+    * @var DateField The date the passport was issued.
     */
-    public ?DateField $issuanceDate;
+    public DateField $issuanceDate;
     /**
-    * @var StringField|null Machine Readable Zone, first line
+    * @var StringField Machine Readable Zone, first line
     */
-    public ?StringField $mrz1;
+    public StringField $mrz1;
     /**
-    * @var StringField|null Machine Readable Zone, second line
+    * @var StringField Machine Readable Zone, second line
     */
-    public ?StringField $mrz2;
+    public StringField $mrz2;
     /**
-    * @var StringField|null The surname of the passport holder.
+    * @var StringField The surname of the passport holder.
     */
-    public ?StringField $surname;
+    public StringField $surname;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

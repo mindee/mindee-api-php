@@ -12,9 +12,9 @@ use Mindee\Parsing\Standard\StringField;
 class LicensePlateV1Document extends Prediction
 {
     /**
-    * @var StringField[]|null List of all license plates found in the image.
+    * @var StringField[] List of all license plates found in the image.
     */
-    public ?array $licensePlates;
+    public array $licensePlates;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

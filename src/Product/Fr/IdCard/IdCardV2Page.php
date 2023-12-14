@@ -11,13 +11,13 @@ use Mindee\Parsing\Standard\ClassificationField;
 class IdCardV2Page extends IdCardV2Document
 {
     /**
-    * @var ClassificationField|null The sides of the document which are visible.
+    * @var ClassificationField The sides of the document which are visible.
     */
-    public ?ClassificationField $documentSide;
+    public ClassificationField $documentSide;
     /**
-    * @var ClassificationField|null The document type or format.
+    * @var ClassificationField The document type or format.
     */
-    public ?ClassificationField $documentType;
+    public ClassificationField $documentType;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

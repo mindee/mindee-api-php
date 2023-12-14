@@ -19,97 +19,97 @@ use Mindee\Parsing\Standard\Taxes;
 class FinancialDocumentV1Document extends Prediction
 {
     /**
-    * @var ClassificationField|null The purchase category among predefined classes.
+    * @var ClassificationField The purchase category among predefined classes.
     */
-    public ?ClassificationField $category;
+    public ClassificationField $category;
     /**
-    * @var StringField|null The address of the customer.
+    * @var StringField The address of the customer.
     */
-    public ?StringField $customerAddress;
+    public StringField $customerAddress;
     /**
-    * @var CompanyRegistrationField[]|null List of company registrations associated to the customer.
+    * @var CompanyRegistrationField[] List of company registrations associated to the customer.
     */
-    public ?array $customerCompanyRegistrations;
+    public array $customerCompanyRegistrations;
     /**
-    * @var StringField|null The name of the customer.
+    * @var StringField The name of the customer.
     */
-    public ?StringField $customerName;
+    public StringField $customerName;
     /**
-    * @var DateField|null The date the purchase was made.
+    * @var DateField The date the purchase was made.
     */
-    public ?DateField $date;
+    public DateField $date;
     /**
-    * @var ClassificationField|null One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+    * @var ClassificationField One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
     */
-    public ?ClassificationField $documentType;
+    public ClassificationField $documentType;
     /**
-    * @var DateField|null The date on which the payment is due.
+    * @var DateField The date on which the payment is due.
     */
-    public ?DateField $dueDate;
+    public DateField $dueDate;
     /**
-    * @var StringField|null The invoice number or identifier.
+    * @var StringField The invoice number or identifier.
     */
-    public ?StringField $invoiceNumber;
+    public StringField $invoiceNumber;
     /**
     * @var FinancialDocumentV1LineItems List of line item details.
     */
     public FinancialDocumentV1LineItems $lineItems;
     /**
-    * @var LocaleField|null The locale detected on the document.
+    * @var LocaleField The locale detected on the document.
     */
-    public ?LocaleField $locale;
+    public LocaleField $locale;
     /**
-    * @var StringField[]|null List of Reference numbers, including PO number.
+    * @var StringField[] List of Reference numbers, including PO number.
     */
-    public ?array $referenceNumbers;
+    public array $referenceNumbers;
     /**
-    * @var ClassificationField|null The purchase subcategory among predefined classes for transport and food.
+    * @var ClassificationField The purchase subcategory among predefined classes for transport and food.
     */
-    public ?ClassificationField $subcategory;
+    public ClassificationField $subcategory;
     /**
-    * @var StringField|null The address of the supplier or merchant.
+    * @var StringField The address of the supplier or merchant.
     */
-    public ?StringField $supplierAddress;
+    public StringField $supplierAddress;
     /**
-    * @var CompanyRegistrationField[]|null List of company registrations associated to the supplier.
+    * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
     */
-    public ?array $supplierCompanyRegistrations;
+    public array $supplierCompanyRegistrations;
     /**
-    * @var StringField|null The name of the supplier or merchant.
+    * @var StringField The name of the supplier or merchant.
     */
-    public ?StringField $supplierName;
+    public StringField $supplierName;
     /**
-    * @var PaymentDetailsField[]|null List of payment details associated to the supplier.
+    * @var PaymentDetailsField[] List of payment details associated to the supplier.
     */
-    public ?array $supplierPaymentDetails;
+    public array $supplierPaymentDetails;
     /**
-    * @var StringField|null The phone number of the supplier or merchant.
+    * @var StringField The phone number of the supplier or merchant.
     */
-    public ?StringField $supplierPhoneNumber;
+    public StringField $supplierPhoneNumber;
     /**
     * @var Taxes List of tax lines information.
     */
     public Taxes $taxes;
     /**
-    * @var StringField|null The time the purchase was made.
+    * @var StringField The time the purchase was made.
     */
-    public ?StringField $time;
+    public StringField $time;
     /**
-    * @var AmountField|null The total amount of tip and gratuity
+    * @var AmountField The total amount of tip and gratuity
     */
-    public ?AmountField $tip;
+    public AmountField $tip;
     /**
-    * @var AmountField|null The total amount paid: includes taxes, tips, fees, and other charges.
+    * @var AmountField The total amount paid: includes taxes, tips, fees, and other charges.
     */
-    public ?AmountField $totalAmount;
+    public AmountField $totalAmount;
     /**
-    * @var AmountField|null The net amount paid: does not include taxes, fees, and discounts.
+    * @var AmountField The net amount paid: does not include taxes, fees, and discounts.
     */
-    public ?AmountField $totalNet;
+    public AmountField $totalNet;
     /**
-    * @var AmountField|null The total amount of taxes.
+    * @var AmountField The total amount of taxes.
     */
-    public ?AmountField $totalTax;
+    public AmountField $totalTax;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

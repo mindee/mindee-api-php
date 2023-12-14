@@ -11,13 +11,13 @@ use Mindee\Parsing\Standard\PositionField;
 class BankCheckV1Page extends BankCheckV1Document
 {
     /**
-    * @var PositionField|null The position of the check on the document.
+    * @var PositionField The position of the check on the document.
     */
-    public ?PositionField $checkPosition;
+    public PositionField $checkPosition;
     /**
-    * @var PositionField[]|null List of signature positions
+    * @var PositionField[] List of signature positions
     */
-    public ?array $signaturesPositions;
+    public array $signaturesPositions;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

@@ -15,19 +15,19 @@ class BankAccountDetailsV2Bban
     use FieldConfidenceMixin;
 
     /**
-    * @var string|null The BBAN bank code outputted as a string.
+    * @var string The BBAN bank code outputted as a string.
     */
     public ?string $bbanBankCode;
     /**
-    * @var string|null The BBAN branch code outputted as a string.
+    * @var string The BBAN branch code outputted as a string.
     */
     public ?string $bbanBranchCode;
     /**
-    * @var string|null The BBAN key outputted as a string.
+    * @var string The BBAN key outputted as a string.
     */
     public ?string $bbanKey;
     /**
-    * @var string|null The BBAN Account number outputted as a string.
+    * @var string The BBAN Account number outputted as a string.
     */
     public ?string $bbanNumber;
 
@@ -39,12 +39,6 @@ class BankAccountDetailsV2Bban
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-
-        if (!isset($pageId)) {
-            if (array_key_exists("page_id", $rawPrediction)) {
-                $pageId = $rawPrediction["page_id"];
-            }
-        }
         $this->bbanBankCode = $rawPrediction["bban_bank_code"];
         $this->bbanBranchCode = $rawPrediction["bban_branch_code"];
         $this->bbanKey = $rawPrediction["bban_key"];

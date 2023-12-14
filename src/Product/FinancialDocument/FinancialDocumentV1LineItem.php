@@ -15,31 +15,31 @@ class FinancialDocumentV1LineItem
     use FieldConfidenceMixin;
 
     /**
-    * @var string|null The item description.
+    * @var string The item description.
     */
     public ?string $description;
     /**
-    * @var string|null The product code referring to the item.
+    * @var string The product code referring to the item.
     */
     public ?string $productCode;
     /**
-    * @var float|null The item quantity
+    * @var float The item quantity
     */
     public ?float $quantity;
     /**
-    * @var float|null The item tax amount.
+    * @var float The item tax amount.
     */
     public ?float $taxAmount;
     /**
-    * @var float|null The item tax rate in percentage.
+    * @var float The item tax rate in percentage.
     */
     public ?float $taxRate;
     /**
-    * @var float|null The item total amount.
+    * @var float The item total amount.
     */
     public ?float $totalAmount;
     /**
-    * @var float|null The item unit price.
+    * @var float The item unit price.
     */
     public ?float $unitPrice;
 
@@ -51,12 +51,6 @@ class FinancialDocumentV1LineItem
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-
-        if (!isset($pageId)) {
-            if (array_key_exists("page_id", $rawPrediction)) {
-                $pageId = $rawPrediction["page_id"];
-            }
-        }
         $this->description = $rawPrediction["description"];
         $this->productCode = $rawPrediction["product_code"];
         $this->quantity = isset($rawPrediction["quantity"]) ?

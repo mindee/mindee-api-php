@@ -13,65 +13,65 @@ use Mindee\Parsing\Standard\StringField;
 class IdCardV2Document extends Prediction
 {
     /**
-    * @var StringField|null The alternate name of the card holder.
+    * @var StringField The alternate name of the card holder.
     */
-    public ?StringField $alternateName;
+    public StringField $alternateName;
     /**
-    * @var StringField|null The name of the issuing authority.
+    * @var StringField The name of the issuing authority.
     */
-    public ?StringField $authority;
+    public StringField $authority;
     /**
-    * @var DateField|null The date of birth of the card holder.
+    * @var DateField The date of birth of the card holder.
     */
-    public ?DateField $birthDate;
+    public DateField $birthDate;
     /**
-    * @var StringField|null The place of birth of the card holder.
+    * @var StringField The place of birth of the card holder.
     */
-    public ?StringField $birthPlace;
+    public StringField $birthPlace;
     /**
-    * @var StringField|null The card access number (CAN).
+    * @var StringField The card access number (CAN).
     */
-    public ?StringField $cardAccessNumber;
+    public StringField $cardAccessNumber;
     /**
-    * @var StringField|null The document number.
+    * @var StringField The document number.
     */
-    public ?StringField $documentNumber;
+    public StringField $documentNumber;
     /**
-    * @var DateField|null The expiry date of the identification card.
+    * @var DateField The expiry date of the identification card.
     */
-    public ?DateField $expiryDate;
+    public DateField $expiryDate;
     /**
-    * @var StringField|null The gender of the card holder.
+    * @var StringField The gender of the card holder.
     */
-    public ?StringField $gender;
+    public StringField $gender;
     /**
-    * @var StringField[]|null The given name(s) of the card holder.
+    * @var StringField[] The given name(s) of the card holder.
     */
-    public ?array $givenNames;
+    public array $givenNames;
     /**
-    * @var DateField|null The date of issue of the identification card.
+    * @var DateField The date of issue of the identification card.
     */
-    public ?DateField $issueDate;
+    public DateField $issueDate;
     /**
-    * @var StringField|null The Machine Readable Zone, first line.
+    * @var StringField The Machine Readable Zone, first line.
     */
-    public ?StringField $mrz1;
+    public StringField $mrz1;
     /**
-    * @var StringField|null The Machine Readable Zone, second line.
+    * @var StringField The Machine Readable Zone, second line.
     */
-    public ?StringField $mrz2;
+    public StringField $mrz2;
     /**
-    * @var StringField|null The Machine Readable Zone, third line.
+    * @var StringField The Machine Readable Zone, third line.
     */
-    public ?StringField $mrz3;
+    public StringField $mrz3;
     /**
-    * @var StringField|null The nationality of the card holder.
+    * @var StringField The nationality of the card holder.
     */
-    public ?StringField $nationality;
+    public StringField $nationality;
     /**
-    * @var StringField|null The surname of the card holder.
+    * @var StringField The surname of the card holder.
     */
-    public ?StringField $surname;
+    public StringField $surname;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

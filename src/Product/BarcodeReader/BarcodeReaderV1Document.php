@@ -12,13 +12,13 @@ use Mindee\Parsing\Standard\StringField;
 class BarcodeReaderV1Document extends Prediction
 {
     /**
-    * @var StringField[]|null List of decoded 1D barcodes.
+    * @var StringField[] List of decoded 1D barcodes.
     */
-    public ?array $codes1D;
+    public array $codes1D;
     /**
-    * @var StringField[]|null List of decoded 2D barcodes.
+    * @var StringField[] List of decoded 2D barcodes.
     */
-    public ?array $codes2D;
+    public array $codes2D;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

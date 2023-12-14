@@ -12,53 +12,53 @@ use Mindee\Parsing\Standard\StringField;
 class W9V1Page extends W9V1Document
 {
     /**
-    * @var StringField|null The street address (number, street, and apt. or suite no.) of the applicant.
+    * @var StringField The street address (number, street, and apt. or suite no.) of the applicant.
     */
-    public ?StringField $address;
+    public StringField $address;
     /**
-    * @var StringField|null The business name or disregarded entity name, if different from Name.
+    * @var StringField The business name or disregarded entity name, if different from Name.
     */
-    public ?StringField $businessName;
+    public StringField $businessName;
     /**
-    * @var StringField|null The city, state, and ZIP code of the applicant.
+    * @var StringField The city, state, and ZIP code of the applicant.
     */
-    public ?StringField $cityStateZip;
+    public StringField $cityStateZip;
     /**
-    * @var StringField|null The employer identification number.
+    * @var StringField The employer identification number.
     */
-    public ?StringField $ein;
+    public StringField $ein;
     /**
-    * @var StringField|null Name as shown on the applicant's income tax return.
+    * @var StringField Name as shown on the applicant's income tax return.
     */
-    public ?StringField $name;
+    public StringField $name;
     /**
-    * @var PositionField|null Position of the signature date on the document.
+    * @var PositionField Position of the signature date on the document.
     */
-    public ?PositionField $signatureDatePosition;
+    public PositionField $signatureDatePosition;
     /**
-    * @var PositionField|null Position of the signature on the document.
+    * @var PositionField Position of the signature on the document.
     */
-    public ?PositionField $signaturePosition;
+    public PositionField $signaturePosition;
     /**
-    * @var StringField|null The applicant's social security number.
+    * @var StringField The applicant's social security number.
     */
-    public ?StringField $ssn;
+    public StringField $ssn;
     /**
-    * @var StringField|null The federal tax classification, which can vary depending on the revision date.
+    * @var StringField The federal tax classification, which can vary depending on the revision date.
     */
-    public ?StringField $taxClassification;
+    public StringField $taxClassification;
     /**
-    * @var StringField|null Depending on revision year, among S, C, P or D for Limited Liability Company Classification.
+    * @var StringField Depending on revision year, among S, C, P or D for Limited Liability Company Classification.
     */
-    public ?StringField $taxClassificationLlc;
+    public StringField $taxClassificationLlc;
     /**
-    * @var StringField|null Tax Classification Other Details.
+    * @var StringField Tax Classification Other Details.
     */
-    public ?StringField $taxClassificationOtherDetails;
+    public StringField $taxClassificationOtherDetails;
     /**
-    * @var StringField|null The Revision month and year of the W9 form.
+    * @var StringField The Revision month and year of the W9 form.
     */
-    public ?StringField $w9RevisionDate;
+    public StringField $w9RevisionDate;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

@@ -12,21 +12,21 @@ use Mindee\Parsing\Standard\StringField;
 class BankAccountDetailsV2Document extends Prediction
 {
     /**
-    * @var StringField|null Full extraction of the account holders names.
+    * @var StringField Full extraction of the account holders names.
     */
-    public ?StringField $accountHoldersNames;
+    public StringField $accountHoldersNames;
     /**
-    * @var BankAccountDetailsV2Bban|null Full extraction of BBAN, including: branch code, bank code, account and key.
+    * @var BankAccountDetailsV2Bban Full extraction of BBAN, including: branch code, bank code, account and key.
     */
-    public ?BankAccountDetailsV2Bban $bban;
+    public BankAccountDetailsV2Bban $bban;
     /**
-    * @var StringField|null Full extraction of the IBAN number.
+    * @var StringField Full extraction of the IBAN number.
     */
-    public ?StringField $iban;
+    public StringField $iban;
     /**
-    * @var StringField|null Full extraction of the SWIFT code.
+    * @var StringField Full extraction of the SWIFT code.
     */
-    public ?StringField $swiftCode;
+    public StringField $swiftCode;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

@@ -12,17 +12,17 @@ use Mindee\Parsing\Standard\StringField;
 class BankAccountDetailsV1Document extends Prediction
 {
     /**
-    * @var StringField|null The name of the account holder as seen on the document.
+    * @var StringField The name of the account holder as seen on the document.
     */
-    public ?StringField $accountHolderName;
+    public StringField $accountHolderName;
     /**
-    * @var StringField|null The International Bank Account Number (IBAN).
+    * @var StringField The International Bank Account Number (IBAN).
     */
-    public ?StringField $iban;
+    public StringField $iban;
     /**
-    * @var StringField|null The bank's SWIFT Business Identifier Code (BIC).
+    * @var StringField The bank's SWIFT Business Identifier Code (BIC).
     */
-    public ?StringField $swift;
+    public StringField $swift;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

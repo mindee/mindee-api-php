@@ -13,73 +13,73 @@ use Mindee\Parsing\Standard\StringField;
 class DriverLicenseV1Document extends Prediction
 {
     /**
-    * @var StringField|null US driver license holders address
+    * @var StringField US driver license holders address
     */
-    public ?StringField $address;
+    public StringField $address;
     /**
-    * @var DateField|null US driver license holders date of birth
+    * @var DateField US driver license holders date of birth
     */
-    public ?DateField $dateOfBirth;
+    public DateField $dateOfBirth;
     /**
-    * @var StringField|null Document Discriminator Number of the US Driver License
+    * @var StringField Document Discriminator Number of the US Driver License
     */
-    public ?StringField $ddNumber;
+    public StringField $ddNumber;
     /**
-    * @var StringField|null US driver license holders class
+    * @var StringField US driver license holders class
     */
-    public ?StringField $dlClass;
+    public StringField $dlClass;
     /**
-    * @var StringField|null ID number of the US Driver License.
+    * @var StringField ID number of the US Driver License.
     */
-    public ?StringField $driverLicenseId;
+    public StringField $driverLicenseId;
     /**
-    * @var StringField|null US driver license holders endorsements
+    * @var StringField US driver license holders endorsements
     */
-    public ?StringField $endorsements;
+    public StringField $endorsements;
     /**
-    * @var DateField|null Date on which the documents expires.
+    * @var DateField Date on which the documents expires.
     */
-    public ?DateField $expiryDate;
+    public DateField $expiryDate;
     /**
-    * @var StringField|null US driver license holders eye colour
+    * @var StringField US driver license holders eye colour
     */
-    public ?StringField $eyeColor;
+    public StringField $eyeColor;
     /**
-    * @var StringField|null US driver license holders first name(s)
+    * @var StringField US driver license holders first name(s)
     */
-    public ?StringField $firstName;
+    public StringField $firstName;
     /**
-    * @var StringField|null US driver license holders hair colour
+    * @var StringField US driver license holders hair colour
     */
-    public ?StringField $hairColor;
+    public StringField $hairColor;
     /**
-    * @var StringField|null US driver license holders hight
+    * @var StringField US driver license holders hight
     */
-    public ?StringField $height;
+    public StringField $height;
     /**
-    * @var DateField|null Date on which the documents was issued.
+    * @var DateField Date on which the documents was issued.
     */
-    public ?DateField $issuedDate;
+    public DateField $issuedDate;
     /**
-    * @var StringField|null US driver license holders last name
+    * @var StringField US driver license holders last name
     */
-    public ?StringField $lastName;
+    public StringField $lastName;
     /**
-    * @var StringField|null US driver license holders restrictions
+    * @var StringField US driver license holders restrictions
     */
-    public ?StringField $restrictions;
+    public StringField $restrictions;
     /**
-    * @var StringField|null US driver license holders gender
+    * @var StringField US driver license holders gender
     */
-    public ?StringField $sex;
+    public StringField $sex;
     /**
-    * @var StringField|null US State
+    * @var StringField US State
     */
-    public ?StringField $state;
+    public StringField $state;
     /**
-    * @var StringField|null US driver license holders weight
+    * @var StringField US driver license holders weight
     */
-    public ?StringField $weight;
+    public StringField $weight;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.

@@ -14,29 +14,29 @@ use Mindee\Parsing\Standard\StringField;
 class BankCheckV1Document extends Prediction
 {
     /**
-    * @var StringField|null The check payer's account number.
+    * @var StringField The check payer's account number.
     */
-    public ?StringField $accountNumber;
+    public StringField $accountNumber;
     /**
-    * @var AmountField|null The amount of the check.
+    * @var AmountField The amount of the check.
     */
-    public ?AmountField $amount;
+    public AmountField $amount;
     /**
-    * @var StringField|null The issuer's check number.
+    * @var StringField The issuer's check number.
     */
-    public ?StringField $checkNumber;
+    public StringField $checkNumber;
     /**
-    * @var DateField|null The date the check was issued.
+    * @var DateField The date the check was issued.
     */
-    public ?DateField $date;
+    public DateField $date;
     /**
-    * @var StringField[]|null List of the check's payees (recipients).
+    * @var StringField[] List of the check's payees (recipients).
     */
-    public ?array $payees;
+    public array $payees;
     /**
-    * @var StringField|null The check issuer's routing number.
+    * @var StringField The check issuer's routing number.
     */
-    public ?StringField $routingNumber;
+    public StringField $routingNumber;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
