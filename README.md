@@ -1,11 +1,162 @@
-# Mindee API PHP
+[![License: MIT](https://img.shields.io/github/license/mindee/mindee-api-php)](https://opensource.org/licenses/MIT) [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/mindee/mindee-api-php/test.yml)](https://github.com/mindee/mindee-api-php) [![Packagist Version](https://img.shields.io/packagist/dependency-v/mindee/mindee)](https://packagist.org/packages/mindee/mindee) [![Downloads](https://img.shields.io/packagist/dm/mindee/mindee)](https://packagist.org/packages/mindee/mindee)
 
-**Just some sample code.** No support provided.
+# Mindee API Helper Library for PHP
+Quickly and easily connect to Mindee's API services using PHP.
 
-Version 1.0 of the **real** library is under heavy development and will be published soon.
+## Quick Start
+Here's the TL;DR of getting started.
 
-## cURL requests
+First, get an [API Key](https://developers.mindee.com/docs/create-api-key)
 
-GET & POST Requests are currently handled through cURL.
-Be sure to have [php-curl](https://www.php.net/manual/en/book.curl.php) installed on your current working PHP version.
+If you do not have them, you'll need the following packages on your system:
+* [php-curl](https://www.php.net/manual/en/curl.installation.php)
+* [php-json](https://www.php.net/manual/en/json.installation.php) (not necessary for versions >= 8.0.0)
+* [php-fileinfo](https://www.php.net/manual/en/fileinfo.installation.php)
 
+Then, install this library:
+```shell
+composer require mindee
+```
+
+Finally, PHP away!
+
+### Loading a File and Parsing It
+
+#### Global Documents
+```php
+<?php
+
+use Mindee\Client;
+use Mindee\Product\Invoice\InvoiceV4;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file
+$apiResponse = $mindeeClient->parse(InvoiceV4::class, $inputSource);
+
+// Print a brief summary of the parsed data
+echo strval($apiResponse->document);
+```
+
+**Note:** Files can also be loaded from:
+
+A php `File` compatible file:
+```php
+$input_doc = mindeeClient.sourceFromFile($myFile);
+```
+
+A URL (`HTTPS` only):
+```php
+$input_doc = mindeeClient.sourceFromUrl("https://files.readme.io/a74eaa5-c8e283b-sample_invoice.jpeg");
+```
+
+A base64-encoded string, making sure to specify the extension of the file name:
+```php
+$input_doc = mindeeClient.sourceFromB64($myInputString, "my-file-name.ext");
+```
+
+Raw bytes, making sure to specify the extension of the file name:
+```php
+$input_doc = mindeeClient.sourceFromBytes($myRawBytesSequence, "my-file-name.ext");
+```
+
+#### Region-Specific Documents
+```php
+use Mindee\Client;
+use Mindee\Product\Us\BankCheck\BankCheckV1;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file
+$apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
+
+// Print a brief summary of the parsed data
+echo strval($apiResponse->document);
+```
+
+#### Custom Document (API Builder)
+
+```php
+use Mindee\Client;
+use Mindee\Product\Us\BankCheck\BankCheckV1;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file
+$apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
+
+// Print a brief summary of the parsed data
+echo strval($apiResponse->document);
+```
+
+### Additional Options
+Options to pass when sending a file.
+
+#### Page Options
+Allows sending only certain pages in a PDF.
+
+In this example we only send the first, penultimate and last pages:
+
+```php
+from mindee import Client, product, PageOptions
+
+result = mindee_client.parse(
+    product.InvoiceV4,
+    input_source,
+    page_options=PageOptions(
+        page_indexes=[0, -2, -1],
+        operation=PageOptions.KEEP_ONLY,
+        on_min_pages=2
+    )
+)
+```
+
+## Further Reading
+Complete details on the working of the library are available in the following guides:
+
+* [Getting started](https://developers.mindee.com/docs/php-getting-started)
+* [PHP Command Line Interface (CLI)](https://developers.mindee.com/docs/php-cli)
+* [PHP Custom APIs (API Builder)](https://developers.mindee.com/docs/php-api-builder)
+* [PHP Invoice OCR](https://developers.mindee.com/docs/php-invoice-ocr)
+* [PHP Receipt OCR](https://developers.mindee.com/docs/php-receipt-ocr)
+* [PHP Financial Document OCR](https://developers.mindee.com/docs/php-financial-document-ocr)
+* [PHP Passport OCR](https://developers.mindee.com/docs/php-passport-ocr)
+* [PHP Proof of Address OCR](https://developers.mindee.com/docs/php-proof-of-address-ocr)
+* [PHP EU License Plate OCR](https://developers.mindee.com/docs/php-eu-license-plate-ocr)
+* [PHP FR Bank Account Detail OCR](https://developers.mindee.com/docs/php-fr-bank-account-details-ocr)
+* [PHP FR Carte Grise OCR](https://developers.mindee.com/docs/php-fr-carte-grise-ocr)
+* [PHP FR Carte Vitale OCR](https://developers.mindee.com/docs/php-fr-carte-vitale-ocr)
+* [PHP FR ID Card OCR](https://developers.mindee.com/docs/php-fr-id-card-ocr)
+* [PHP FR Petrol Receipts OCR](https://developers.mindee.com/docs/php-fr-petrol-receipts-ocr)
+* [PHP US Bank Check OCR](https://developers.mindee.com/docs/php-us-bank-checks-ocr)
+* [PHP US W9 OCR](https://developers.mindee.com/docs/php-us-w9-ocr)
+* [PHP US Driver License OCR](https://developers.mindee.com/docs/php-us-driver-license-ocr)
+* [PHP Barcode Reader API](https://developers.mindee.com/docs/php-barcode-reader-api)
+* [PHP Cropper API](https://developers.mindee.com/docs/php-cropper-api)
+* [PHP Invoice Splitter API](https://developers.mindee.com/docs/php-invoice-splitter-api)
+* [PHP Multi Receipts Detector API](https://developers.mindee.com/docs/php-multi-receipts-detector-api)
+
+You can view the source code on [GitHub](https://github.com/mindee/mindee-api-php).
+
+You can also take a look at the
+**[Reference Documentation](https://mindee.github.io/mindee-api-php/)**.
+
+## License
+Copyright © Mindee
+
+Available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Questions?
+[Join our Slack](https://join.slack.com/t/mindee-community/shared_invite/zt-1jv6nawjq-FDgFcF2T5CmMmRpl9LLptw)
