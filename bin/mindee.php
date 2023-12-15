@@ -10,7 +10,9 @@ use Mindee\Product;
 
 
 if ($argc < 2) {
-    echo "Usage: php mindee.php <arg1> <arg2> ...\n";
+    echo "Mindee API.
+Usage: sh mindee <arg1> <arg2> ...
+";
     exit(1);
 }
 
@@ -111,19 +113,6 @@ $documents = [
         Product\Us\W9\W9V1::class,
         true
     ),
-];
-
-$options = getopt("a:b:c", ["arg1:", "arg2:", "help"]);
-
-$shortopts = "";
-$shortopts .= "A";  // Asynchronous parsing (optional)
-$shortopts .= "t"; // Include all words (optional)
-$shortopts .= "o::";   // Output type [<summary>,raw,parsed] (optional)
-$shortopts .= "i::";   // Input type [<path>,file,base64, bytes, url] (optional)
-$longopts = [
-    "arg1:",      // Requires an argument
-    "arg2::",     // Optional argument
-    "help",       // No argument
 ];
 
 $argsCatalog = [
