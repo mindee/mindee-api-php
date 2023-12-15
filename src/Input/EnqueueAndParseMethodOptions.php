@@ -34,16 +34,16 @@ class EnqueueAndParseMethodOptions
 
 
     /**
-     * @param integer $delay Delay between polls.
+     * @param integer $initialDelay Delay between polls.
      * @return $this
      * @throws \Mindee\Error\MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
      */
-    public function setInitialDelaySec(int $delay): EnqueueAndParseMethodOptions
+    public function setInitialDelaySec(int $initialDelay): EnqueueAndParseMethodOptions
     {
-        if ($delay < 2) {
+        if ($initialDelay < 4) {
             throw new MindeeApiException("Cannot set initial parsing delay to less than 4 seconds.");
         }
-        $this->initialDelaySec = $delay;
+        $this->initialDelaySec = $initialDelay;
         return $this;
     }
 
@@ -62,14 +62,14 @@ class EnqueueAndParseMethodOptions
     }
 
     /**
-     * @param integer $maxRetries Maximum allowed retries. Will default to 10 if an invalid number is provided.
+     * @param integer $maxRetries Maximum allowed retries. Will default to 30 if an invalid number is provided.
      * @return $this
      */
     public function setMaxRetries(int $maxRetries): EnqueueAndParseMethodOptions
     {
         if (!$maxRetries || $maxRetries < 0) {
-            $this->maxRetries = 10;
-            error_log("Notice: setting the amount of retries for auto-parsing to 10");
+            $this->maxRetries = 30;
+            error_log("Notice: setting the amount of retries for auto-parsing to 30");
         } else {
             $this->delaySec = $maxRetries;
         }
