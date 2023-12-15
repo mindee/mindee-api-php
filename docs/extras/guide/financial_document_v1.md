@@ -329,8 +329,7 @@ echo $result->document->inference->prediction->supplierName->value;
 ```php
 foreach ($result->document->inference->prediction->supplierPaymentDetails as $supplierPaymentDetailsElem)
 {
-    echo $supplierPaymentDetailsElem
-->value;
+    echo $supplierPaymentDetailsElem->value;
     echo $supplierPaymentDetailsElem->rate;
     echo $supplierPaymentDetailsElem->code;
     echo $supplierPaymentDetailsElem->basis;
