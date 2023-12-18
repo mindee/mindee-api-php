@@ -6,6 +6,7 @@ namespace Mindee\Product\FinancialDocument;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Financial Document, API version 1.
@@ -30,12 +31,10 @@ class FinancialDocumentV1 extends Inference
         $this->prediction = new FinancialDocumentV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $pagePrediction = [];
             try {
-                $pagePrediction = new Page(FinancialDocumentV1Document::class, $page);
-            } catch (\Exception $ignored) {
+                $this->pages[] = new Page(FinancialDocumentV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
             }
-            $this->pages[] = $pagePrediction;
         }
     }
 }

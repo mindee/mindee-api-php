@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Cropper;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 

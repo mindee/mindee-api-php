@@ -6,6 +6,7 @@ namespace Mindee\Product\ProofOfAddress;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Proof of Address, API version 1.
@@ -30,12 +31,10 @@ class ProofOfAddressV1 extends Inference
         $this->prediction = new ProofOfAddressV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $pagePrediction = [];
             try {
-                $pagePrediction = new Page(ProofOfAddressV1Document::class, $page);
-            } catch (\Exception $ignored) {
+                $this->pages[] = new Page(ProofOfAddressV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
             }
-            $this->pages[] = $pagePrediction;
         }
     }
 }

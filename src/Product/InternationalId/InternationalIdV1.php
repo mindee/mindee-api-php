@@ -6,6 +6,7 @@ namespace Mindee\Product\InternationalId;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for International ID, API version 1.
@@ -30,12 +31,10 @@ class InternationalIdV1 extends Inference
         $this->prediction = new InternationalIdV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $pagePrediction = [];
             try {
-                $pagePrediction = new Page(InternationalIdV1Document::class, $page);
-            } catch (\Exception $ignored) {
+                $this->pages[] = new Page(InternationalIdV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
             }
-            $this->pages[] = $pagePrediction;
         }
     }
 }

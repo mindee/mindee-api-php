@@ -6,6 +6,7 @@ namespace Mindee\Product\MultiReceiptsDetector;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Multi Receipts Detector, API version 1.
@@ -30,12 +31,10 @@ class MultiReceiptsDetectorV1 extends Inference
         $this->prediction = new MultiReceiptsDetectorV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $pagePrediction = [];
             try {
-                $pagePrediction = new Page(MultiReceiptsDetectorV1Document::class, $page);
-            } catch (\Exception $ignored) {
+                $this->pages[] = new Page(MultiReceiptsDetectorV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
             }
-            $this->pages[] = $pagePrediction;
         }
     }
 }

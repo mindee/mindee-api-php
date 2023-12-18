@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Us\BankCheck;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\AmountField;
@@ -40,29 +41,48 @@ class BankCheckV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["account_number"])) {
+            throw new MindeeUnsetException();
+        }
         $this->accountNumber = new StringField(
             $rawPrediction["account_number"],
             $pageId
         );
+        if (!isset($rawPrediction["amount"])) {
+            throw new MindeeUnsetException();
+        }
         $this->amount = new AmountField(
             $rawPrediction["amount"],
             $pageId
         );
+        if (!isset($rawPrediction["check_number"])) {
+            throw new MindeeUnsetException();
+        }
         $this->checkNumber = new StringField(
             $rawPrediction["check_number"],
             $pageId
         );
+        if (!isset($rawPrediction["date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->date = new DateField(
             $rawPrediction["date"],
             $pageId
         );
+        if (!isset($rawPrediction["payees"])) {
+            throw new MindeeUnsetException();
+        }
         $this->payees = $rawPrediction["payees"] == null ? [] : array_map(
             fn ($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["payees"]
         );
+        if (!isset($rawPrediction["routing_number"])) {
+            throw new MindeeUnsetException();
+        }
         $this->routingNumber = new StringField(
             $rawPrediction["routing_number"],
             $pageId

@@ -6,6 +6,7 @@ namespace Mindee\Product\Fr\CarteVitale;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Carte Vitale, API version 1.
@@ -30,12 +31,10 @@ class CarteVitaleV1 extends Inference
         $this->prediction = new CarteVitaleV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $pagePrediction = [];
             try {
-                $pagePrediction = new Page(CarteVitaleV1Document::class, $page);
-            } catch (\Exception $ignored) {
+                $this->pages[] = new Page(CarteVitaleV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
             }
-            $this->pages[] = $pagePrediction;
         }
     }
 }

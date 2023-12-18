@@ -6,6 +6,7 @@ namespace Mindee\Product\Fr\CarteGrise;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Carte Grise, API version 1.
@@ -30,12 +31,10 @@ class CarteGriseV1 extends Inference
         $this->prediction = new CarteGriseV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $pagePrediction = [];
             try {
-                $pagePrediction = new Page(CarteGriseV1Document::class, $page);
-            } catch (\Exception $ignored) {
+                $this->pages[] = new Page(CarteGriseV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
             }
-            $this->pages[] = $pagePrediction;
         }
     }
 }

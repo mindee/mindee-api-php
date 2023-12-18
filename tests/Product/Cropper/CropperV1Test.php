@@ -39,11 +39,9 @@ class CropperV1Test extends TestCase
         $prediction = $this->emptyDoc->inference->pages[0]->prediction;
         $this->assertEquals(0, count($prediction->cropping));
     }
-
     public function testCompletePage0()
     {
         $this->assertEquals(0, $this->completePage0->id);
         $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
     }
-
 }

@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\MultiReceiptsDetector;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\PositionField;
@@ -18,9 +19,13 @@ class MultiReceiptsDetectorV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["receipts"])) {
+            throw new MindeeUnsetException();
+        }
         $this->receipts = $rawPrediction["receipts"] == null ? [] : array_map(
             fn ($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["receipts"]
