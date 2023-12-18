@@ -1,9 +1,7 @@
 name: Regression Tests
 
 on:
-  workflow_run:
-    workflows: ["Test Code Samples"]
-    types: [completed]
+  - push
 
 jobs:
   phpunit-ubuntu:
