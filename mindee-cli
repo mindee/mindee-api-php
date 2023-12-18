@@ -13,4 +13,11 @@ else
     exit 1
 fi
 
+if [ -d bin/vendor ]; then
+  if [-d bin/vendor/autoload.php]; then
+  fi
+else
+
+fi
+
 "$PHP_BINARY" -d="bin" "bin/mindee.php" "$@"
