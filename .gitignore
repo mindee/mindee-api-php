@@ -1,4 +1,5 @@
 # Composer
+.editorconfig
 composer.phar
 /vendor/
 bin/vendor/
