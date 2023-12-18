@@ -24,11 +24,12 @@ fi
 
 php composer-setup.php --quiet
 rm composer-setup.php
-composer init --no-interaction --name "mindee/test_code_samples" --description "testing package" --author "mindee" --type "github"
+composer init --no-interaction --name "mindee/test_code_samples" --description "testing package" --author "mindee" --type "project"
 composer install
 composer config repositories.mindee/mindee '{"type": "path", "url":"../mindee-api-php"}'
-composer require mindee/mindee:dev-main
+composer require mindee/mindee @dev
 composer dump-autoload
+chmod -R 777 ./
 cd -
 
 for f in $(find docs/code_samples -maxdepth 1 -name "*.txt" | sort -h)
