@@ -3051,6 +3051,116 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV2Page.html#property_documentType"
         },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1",
+            "name": "InternationalIdV1",
+            "summary": "Inference\u0020prediction\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document",
+            "name": "InternationalIdV1Document",
+            "summary": "Document\u0020data\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024address",
+            "name": "address",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_address"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024birthDate",
+            "name": "birthDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_birthDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024birthPlace",
+            "name": "birthPlace",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_birthPlace"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024countryOfIssue",
+            "name": "countryOfIssue",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_countryOfIssue"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024documentNumber",
+            "name": "documentNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_documentNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024documentType",
+            "name": "documentType",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024expiryDate",
+            "name": "expiryDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_expiryDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024givenNames",
+            "name": "givenNames",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_givenNames"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024issueDate",
+            "name": "issueDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_issueDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024mrz1",
+            "name": "mrz1",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_mrz1"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024mrz2",
+            "name": "mrz2",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_mrz2"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024mrz3",
+            "name": "mrz3",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_mrz3"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024nationality",
+            "name": "nationality",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_nationality"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024sex",
+            "name": "sex",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_sex"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024surnames",
+            "name": "surnames",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_surnames"
+        },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4",
             "name": "InvoiceV4",
             "summary": "Inference\u0020prediction\u0020for\u0020Invoice,\u0020API\u0020version\u00204.",
@@ -4170,6 +4280,11 @@ Search.appendIndex(
             "name": "IdCard",
             "summary": "",
             "url": "namespaces/mindee-product-fr-idcard.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId",
+            "name": "InternationalId",
+            "summary": "",
+            "url": "namespaces/mindee-product-internationalid.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice",
             "name": "Invoice",
