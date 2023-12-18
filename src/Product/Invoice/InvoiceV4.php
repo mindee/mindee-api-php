@@ -1,8 +1,6 @@
 <?php
 
-/**
- * Invoice V4.
- */
+/** Invoice V4. */
 
 namespace Mindee\Product\Invoice;
 

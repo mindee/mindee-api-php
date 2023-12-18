@@ -82,14 +82,20 @@ class Endpoint extends BaseEndpoint
      *
      * @param \Mindee\Input\InputSource $fileCurl     File to upload.
      * @param boolean                   $includeWords Whether to include the full text for each page.
-     *                      This performs a full OCR operation on the server and will increase response time.
+     *        This performs a full OCR operation on the server and will increase response time.
      * @param boolean                   $cropper      Whether to include cropper results for each page.
-     *                           This performs a cropping operation on the server and will increase response time.
+     *        This performs a cropping operation on the server and will increase response time.
      * @param boolean                   $async        Whether the query is in async mode.
+     * @param boolean                   $closeFile    Close file.
      * @return array
      */
-    private function initCurlSessionPost(InputSource $fileCurl, bool $includeWords, bool $cropper, bool $async): array
-    {
+    private function initCurlSessionPost(
+        InputSource $fileCurl,
+        bool $includeWords,
+        bool $cropper,
+        bool $async,
+        bool $closeFile
+    ): array {
         $ch = curl_init();
         curl_setopt(
             $ch,
@@ -108,7 +114,7 @@ class Endpoint extends BaseEndpoint
         if ($fileCurl instanceof URLInputSource) {
             $postFields = ['document' => $fileCurl];
         } else {
-            $postFields = ['document' => $fileCurl->fileObject];
+            $postFields = ['document' => $fileCurl->readContents($closeFile)[1]];
         }
         if ($includeWords) {
             $postFields['include_mvision'] = 'true';
@@ -145,11 +151,10 @@ class Endpoint extends BaseEndpoint
      *
      * @param \Mindee\Input\InputSource $fileCurl     File to upload.
      * @param boolean                   $includeWords Whether to include the full text for each page.
-     *                      This performs a full OCR operation on the server and will increase response time.
+     *        This performs a full OCR operation on the server and will increase response time.
      * @param boolean                   $closeFile    Whether to close the file after parsing it.
-     * Not in use at the moment.
      * @param boolean                   $cropper      Whether to include cropper results for each page.
-     *                           This performs a cropping operation on the server and will increase response time.
+     *        This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictRequestPost(
@@ -158,7 +163,7 @@ class Endpoint extends BaseEndpoint
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, false);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, false, $closeFile);
     }
 
     /**
@@ -166,10 +171,10 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl     File to upload.
      * @param boolean     $includeWords Whether to include the full text for each page.
-     *         This performs a full OCR operation on the server and will increase response time.
-     * @param boolean     $closeFile    Whether to close the file after parsing it. Not in use at the moment.
+     *        This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $closeFile    Whether to close the file after parsing it.
      * @param boolean     $cropper      Whether to include cropper results for each page.
-     *              This performs a cropping operation on the server and will increase response time.
+     *        This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictAsyncRequestPost(
@@ -178,7 +183,7 @@ class Endpoint extends BaseEndpoint
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, true);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, true, $closeFile);
     }
 
     /**

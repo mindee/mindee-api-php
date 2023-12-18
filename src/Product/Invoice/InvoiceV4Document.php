@@ -4,8 +4,8 @@ namespace Mindee\Product\Invoice;
 
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
-use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\AmountField;
+use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\CompanyRegistrationField;
 use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\LocaleField;
@@ -19,131 +19,147 @@ use Mindee\Parsing\Standard\Taxes;
 class InvoiceV4Document extends Prediction
 {
     /**
-     * @var StringField The address of the customer.
-     */
+    * @var StringField The address of the customer.
+    */
     public StringField $customerAddress;
     /**
-     * @var \Mindee\Parsing\Standard\CompanyRegistrationField[] List of company registrations associated to the
-     * customer.
-     */
+    * @var CompanyRegistrationField[] List of company registrations associated to the customer.
+    */
     public array $customerCompanyRegistrations;
     /**
-     * @var StringField
-     */
+    * @var StringField The name of the customer or client.
+    */
     public StringField $customerName;
     /**
-     * @var DateField
-     */
+    * @var DateField The date the purchase was made.
+    */
     public DateField $date;
     /**
-     * @var ClassificationField
-     */
+    * @var ClassificationField One of: 'INVOICE', 'CREDIT NOTE'.
+    */
     public ClassificationField $documentType;
     /**
-     * @var DateField
-     */
+    * @var DateField The date on which the payment is due.
+    */
     public DateField $dueDate;
     /**
-     * @var StringField
-     */
+    * @var StringField The invoice number or identifier.
+    */
     public StringField $invoiceNumber;
     /**
-     * @var InvoiceV4LineItems
-     */
+    * @var InvoiceV4LineItems List of line item details.
+    */
     public InvoiceV4LineItems $lineItems;
     /**
-     * @var LocaleField
-     */
+    * @var LocaleField The locale detected on the document.
+    */
     public LocaleField $locale;
     /**
-     * @var StringField[]
-     */
+    * @var StringField[] List of Reference numbers, including PO number.
+    */
     public array $referenceNumbers;
     /**
-     * @var StringField
-     */
+    * @var StringField The address of the supplier or merchant.
+    */
     public StringField $supplierAddress;
     /**
-     * @var \Mindee\Parsing\Standard\CompanyRegistrationField[]
-     */
+    * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
+    */
     public array $supplierCompanyRegistrations;
     /**
-     * @var StringField
-     */
+    * @var StringField The name of the supplier or merchant.
+    */
     public StringField $supplierName;
     /**
-     * @var \Mindee\Parsing\Standard\PaymentDetailsField[]
-     */
+    * @var PaymentDetailsField[] List of payment details associated to the supplier.
+    */
     public array $supplierPaymentDetails;
     /**
-     * @var \Mindee\Parsing\Standard\Taxes
-     */
+    * @var Taxes List of tax line details.
+    */
     public Taxes $taxes;
     /**
-     * @var AmountField
-     */
+    * @var AmountField The total amount paid: includes taxes, tips, fees, and other charges.
+    */
     public AmountField $totalAmount;
     /**
-     * @var AmountField
-     */
+    * @var AmountField The net amount paid: does not include taxes, fees, and discounts.
+    */
     public AmountField $totalNet;
-
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        $this->customerAddress = new StringField($rawPrediction["customer_address"], $pageId);
-        $this->customerCompanyRegistrations = array_map(
+        $this->customerAddress = new StringField(
+            $rawPrediction["customer_address"],
+            $pageId
+        );
+        $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] == null ? [] : array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["customer_company_registrations"]
         );
-        $this->customerName = new StringField($rawPrediction["customer_name"], $pageId);
-        $this->date = new DateField($rawPrediction["date"], $pageId);
-        $this->documentType = new ClassificationField($rawPrediction["document_type"], $pageId);
-        $this->dueDate = new DateField($rawPrediction["due_date"], $pageId);
-        $this->invoiceNumber = new StringField($rawPrediction["invoice_number"], $pageId);
-        $this->lineItems = new InvoiceV4LineItems($rawPrediction["line_items"], $pageId);
-        $this->locale = new LocaleField($rawPrediction["locale"], $pageId);
-        $this->referenceNumbers = array_map(
+        $this->customerName = new StringField(
+            $rawPrediction["customer_name"],
+            $pageId
+        );
+        $this->date = new DateField(
+            $rawPrediction["date"],
+            $pageId
+        );
+        $this->documentType = new ClassificationField(
+            $rawPrediction["document_type"],
+            $pageId
+        );
+        $this->dueDate = new DateField(
+            $rawPrediction["due_date"],
+            $pageId
+        );
+        $this->invoiceNumber = new StringField(
+            $rawPrediction["invoice_number"],
+            $pageId
+        );
+        $this->lineItems = new InvoiceV4LineItems(
+            $rawPrediction["line_items"],
+            $pageId
+        );
+        $this->locale = new LocaleField(
+            $rawPrediction["locale"],
+            $pageId
+        );
+        $this->referenceNumbers = $rawPrediction["reference_numbers"] == null ? [] : array_map(
             fn ($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["reference_numbers"]
         );
-        $this->supplierAddress = new StringField($rawPrediction["supplier_address"], $pageId);
-        $this->supplierCompanyRegistrations = array_map(
+        $this->supplierAddress = new StringField(
+            $rawPrediction["supplier_address"],
+            $pageId
+        );
+        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );
-        $this->supplierName = new StringField($rawPrediction["supplier_name"], $pageId);
-        $this->supplierPaymentDetails = array_map(
+        $this->supplierName = new StringField(
+            $rawPrediction["supplier_name"],
+            $pageId
+        );
+        $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] == null ? [] : array_map(
             fn ($prediction) => new PaymentDetailsField($prediction, $pageId),
             $rawPrediction["supplier_payment_details"]
         );
-        $this->taxes = new Taxes($rawPrediction['taxes'], $pageId);
-        $this->totalAmount = new AmountField($rawPrediction['total_amount'], $pageId);
-        $this->totalNet = new AmountField($rawPrediction['total_net'], $pageId);
-    }
-
-    /**
-     * Creates a line of rST table-compliant string separators.
-     *
-     * @param string $char Character to use as a separator.
-     * @return string
-     */
-    private static function lineItemsSeparator(string $char): string
-    {
-        return InvoiceV4LineItems::lineItemsSeparator($char);
-    }
-
-    /**
-     * String representation for line items.
-     *
-     * @return string
-     */
-    private function lineItemsToStr(): string
-    {
-        return $this->lineItems->lineItemsToStr();
+        $this->taxes = new Taxes(
+            $rawPrediction["taxes"],
+            $pageId
+        );
+        $this->totalAmount = new AmountField(
+            $rawPrediction["total_amount"],
+            $pageId
+        );
+        $this->totalNet = new AmountField(
+            $rawPrediction["total_net"],
+            $pageId
+        );
     }
 
     /**
@@ -151,40 +167,42 @@ class InvoiceV4Document extends Prediction
      */
     public function __toString(): string
     {
-        $customerCompanyRegistrations = implode(
-            "\n " . str_repeat(" ", 32),
-            array_map(fn ($item) => strval($item), $this->customerCompanyRegistrations)
-        );
         $referenceNumbers = implode(
-            "\n " . str_repeat(" ", 19),
-            array_map(fn ($item) => strval($item), $this->referenceNumbers)
-        );
-        $supplierCompanyRegistrations = implode(
-            "\n " . str_repeat(" ", 32),
-            array_map(fn ($item) => strval($item), $this->supplierCompanyRegistrations)
+            "\n                    ",
+            $this->referenceNumbers
         );
         $supplierPaymentDetails = implode(
-            "\n " . str_repeat(" ", 26),
-            array_map(fn ($item) => strval($item), $this->supplierPaymentDetails)
+            "\n                           ",
+            $this->supplierPaymentDetails
         );
-        $outStr = ":Locale: " . $this->locale . "\n";
-        $outStr .= ":Invoice Number: " . $this->invoiceNumber . "\n";
-        $outStr .= ":Reference Numbers: " . $referenceNumbers . "\n";
-        $outStr .= ":Purchase Date: " . $this->date . "\n";
-        $outStr .= ":Due Date: " . $this->dueDate . "\n";
-        $outStr .= ":Total Net: " . $this->totalNet . "\n";
-        $outStr .= ":Total Amount: " . $this->totalAmount . "\n";
-        $outStr .= ":Taxes: " . $this->taxes . "\n";
-        $outStr .= ":Supplier Payment Details: " . $supplierPaymentDetails . "\n";
-        $outStr .= ":Supplier Name: " . $this->supplierName . "\n";
-        $outStr .= ":Supplier Company Registrations: " . $supplierCompanyRegistrations . "\n";
-        $outStr .= ":Supplier Address: " . $this->supplierAddress . "\n";
-        $outStr .= ":Customer Name: " . $this->customerName . "\n";
-        $outStr .= ":Customer Company Registrations: " . $customerCompanyRegistrations . "\n";
-        $outStr .= ":Customer Address: " . $this->customerAddress . "\n";
-        $outStr .= ":Document Type: " . $this->documentType . "\n";
-        $outStr .= ":Line Items: " . $this->lineItemsToStr() . "\n";
+        $supplierCompanyRegistrations = implode(
+            "\n                                 ",
+            $this->supplierCompanyRegistrations
+        );
+        $customerCompanyRegistrations = implode(
+            "\n                                 ",
+            $this->customerCompanyRegistrations
+        );
+        $lineItemsSummary = strval($this->lineItems);
 
+        $outStr = ":Locale: $this->locale
+:Invoice Number: $this->invoiceNumber
+:Reference Numbers: $referenceNumbers
+:Purchase Date: $this->date
+:Due Date: $this->dueDate
+:Total Net: $this->totalNet
+:Total Amount: $this->totalAmount
+:Taxes: $this->taxes
+:Supplier Payment Details: $supplierPaymentDetails
+:Supplier Name: $this->supplierName
+:Supplier Company Registrations: $supplierCompanyRegistrations
+:Supplier Address: $this->supplierAddress
+:Customer Name: $this->customerName
+:Customer Company Registrations: $customerCompanyRegistrations
+:Customer Address: $this->customerAddress
+:Document Type: $this->documentType
+:Line Items: $lineItemsSummary
+";
         return SummaryHelper::cleanOutString($outStr);
     }
 }

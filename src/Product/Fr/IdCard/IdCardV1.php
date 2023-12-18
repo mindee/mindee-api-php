@@ -1,5 +1,7 @@
 <?php
 
+/** Carte Nationale d'Identité V1. */
+
 namespace Mindee\Product\Fr\IdCard;
 
 use Mindee\Parsing\Common\Inference;

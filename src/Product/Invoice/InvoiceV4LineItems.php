@@ -3,7 +3,7 @@
 namespace Mindee\Product\Invoice;
 
 /**
-* List of line items for InvoiceV4.
+ * List of line item details.
  */
 class InvoiceV4LineItems extends \ArrayObject
 {
@@ -39,12 +39,13 @@ class InvoiceV4LineItems extends \ArrayObject
         return $outStr . "+";
     }
 
+
     /**
-     * String representation for line items.
+     * String representation.
      *
      * @return string
      */
-    public function lineItemsToStr(): string
+    public function __toString(): string
     {
         $lines = "";
         $iterator = $this->getIterator();
@@ -64,9 +65,8 @@ class InvoiceV4LineItems extends \ArrayObject
         $outStr .= " | Tax Rate (%)";
         $outStr .= " | Total Amount";
         $outStr .= " | Unit Price";
-        $outStr .= " |\n" . self::lineItemsSeparator("=");
-        $outStr .= "\n  $lines";
-        $outStr .= " |\n" . self::lineItemsSeparator("-");
+        $outStr .= " |\n" . self::lineItemsSeparator('=');
+        $outStr .= $lines;
         return $outStr;
     }
 }
