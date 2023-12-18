@@ -65,7 +65,7 @@ abstract class Inference
         if (count($this->pages)) {
             $pagesStr = "\nPage Predictions\n================\n\n" . implode(
                 "\n",
-                array_map(fn($page) => strval($page), $this->pages)
+                array_map(fn ($page) => strval($page), $this->pages)
             );
         }
 
