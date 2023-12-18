@@ -44,7 +44,7 @@ echo strval($apiResponse->document);
 
 **Note:** Files can also be loaded from:
 
-A php `File` compatible file:
+A PHP `File` compatible file:
 ```php
 $input_doc = mindeeClient.sourceFromFile($myFile);
 ```
