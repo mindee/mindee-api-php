@@ -186,6 +186,11 @@ Search.appendIndex(
             "summary": "Exceptions\u0020relating\u0020to\u0020sources\u0020\u0028documents\u0029\u0020handling.",
             "url": "classes/Mindee-Error-MindeeSourceException.html"
         },                {
+            "fqsen": "\\Mindee\\Error\\MindeeUnsetException",
+            "name": "MindeeUnsetException",
+            "summary": "Exceptions\u0020relating\u0020to\u0020products\u0020containing\u0020unset\u0020fields.",
+            "url": "classes/Mindee-Error-MindeeUnsetException.html"
+        },                {
             "fqsen": "\\Mindee\\Geometry\\BBox",
             "name": "BBox",
             "summary": "Bounding\u0020box\u0020represented\u0020as\u0020a\u0020set\u0020of\u0020minimum\u0020and\u0020maximum\u0020values\u0020for\u0020the\u0020x\u0020and\u0020y\u0020axes.",
