@@ -30,7 +30,12 @@ class BankCheckV1 extends Inference
         $this->prediction = new BankCheckV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(BankCheckV1Page::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(BankCheckV1Page::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

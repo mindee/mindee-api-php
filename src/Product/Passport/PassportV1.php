@@ -30,7 +30,12 @@ class PassportV1 extends Inference
         $this->prediction = new PassportV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(PassportV1Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(PassportV1Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

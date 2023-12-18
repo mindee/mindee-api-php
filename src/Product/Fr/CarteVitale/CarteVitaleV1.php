@@ -30,7 +30,12 @@ class CarteVitaleV1 extends Inference
         $this->prediction = new CarteVitaleV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(CarteVitaleV1Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(CarteVitaleV1Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

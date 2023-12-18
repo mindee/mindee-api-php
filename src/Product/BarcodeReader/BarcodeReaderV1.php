@@ -30,7 +30,12 @@ class BarcodeReaderV1 extends Inference
         $this->prediction = new BarcodeReaderV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(BarcodeReaderV1Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(BarcodeReaderV1Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

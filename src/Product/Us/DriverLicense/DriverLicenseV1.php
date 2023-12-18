@@ -30,7 +30,12 @@ class DriverLicenseV1 extends Inference
         $this->prediction = new DriverLicenseV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(DriverLicenseV1Page::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(DriverLicenseV1Page::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

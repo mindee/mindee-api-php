@@ -30,7 +30,12 @@ class IdCardV1 extends Inference
         $this->prediction = new IdCardV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(IdCardV1Page::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(IdCardV1Page::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

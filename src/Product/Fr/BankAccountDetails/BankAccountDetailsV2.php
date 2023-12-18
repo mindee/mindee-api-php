@@ -30,7 +30,12 @@ class BankAccountDetailsV2 extends Inference
         $this->prediction = new BankAccountDetailsV2Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(BankAccountDetailsV2Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(BankAccountDetailsV2Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

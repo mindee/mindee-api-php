@@ -30,7 +30,12 @@ class InternationalIdV1 extends Inference
         $this->prediction = new InternationalIdV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(InternationalIdV1Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(InternationalIdV1Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

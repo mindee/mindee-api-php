@@ -30,7 +30,12 @@ class InvoiceV4 extends Inference
         $this->prediction = new InvoiceV4Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(InvoiceV4Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(InvoiceV4Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

@@ -30,7 +30,12 @@ class W9V1 extends Inference
         $this->prediction = new W9V1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(W9V1Page::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(W9V1Page::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

@@ -30,7 +30,12 @@ class ReceiptV5 extends Inference
         $this->prediction = new ReceiptV5Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(ReceiptV5Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(ReceiptV5Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

@@ -30,7 +30,12 @@ class LicensePlateV1 extends Inference
         $this->prediction = new LicensePlateV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(LicensePlateV1Document::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(LicensePlateV1Document::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }

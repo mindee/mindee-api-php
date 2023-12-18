@@ -30,7 +30,12 @@ class CropperV1 extends Inference
         $this->prediction = new CropperV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(CropperV1Page::class, $page);
+            $pagePrediction = [];
+            try {
+                $pagePrediction = new Page(CropperV1Page::class, $page);
+            } catch (\Exception $ignored) {
+            }
+            $this->pages[] = $pagePrediction;
         }
     }
 }
