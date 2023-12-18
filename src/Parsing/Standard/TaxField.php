@@ -96,7 +96,7 @@ class TaxField extends BaseField
         return '| ' . str_pad($printable['basis'], 13, ' ') .
             ' | ' . str_pad($printable['code'], 6, ' ') .
             ' | ' . str_pad($printable['rate'], 8, ' ') .
-            ' | ' . str_pad($printable['rate'], 13, ' ') . ' |';
+            ' | ' . str_pad($printable['value'], 13, ' ') . ' |';
     }
 
     /**

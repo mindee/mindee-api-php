@@ -42,7 +42,7 @@ class Extras
             if ($key != 'cropper') {
                 $this->__set($key, $extra);
             } else {
-                $this->__set('cropper', new CropperExtra($rawPrediction['cropper']));
+                $this->cropper = new CropperExtra($rawPrediction['cropper']);
             }
         }
     }
