@@ -46,22 +46,22 @@ echo strval($apiResponse->document);
 
 A PHP `File` compatible file:
 ```php
-$input_doc = mindeeClient.sourceFromFile($myFile);
+$inputDoc = $mindeeClient->sourceFromFile($myFile);
 ```
 
 A URL (`HTTPS` only):
 ```php
-$input_doc = mindeeClient.sourceFromUrl("https://files.readme.io/a74eaa5-c8e283b-sample_invoice.jpeg");
+$inputDoc = $mindeeClient->sourceFromUrl("https://files.readme.io/a74eaa5-c8e283b-sample_invoice.jpeg");
 ```
 
 A base64-encoded string, making sure to specify the extension of the file name:
 ```php
-$input_doc = mindeeClient.sourceFromB64($myInputString, "my-file-name.ext");
+$inputDoc = $mindeeClient->sourceFromB64($myInputString, "my-file-name.ext");
 ```
 
 Raw bytes, making sure to specify the extension of the file name:
 ```php
-$input_doc = mindeeClient.sourceFromBytes($myRawBytesSequence, "my-file-name.ext");
+$inputDoc = $mindeeClient->sourceFromBytes($myRawBytesSequence, "my-file-name.ext");
 ```
 
 #### Region-Specific Documents
@@ -104,24 +104,6 @@ echo strval($apiResponse->document);
 ### Additional Options
 Options to pass when sending a file.
 
-#### Page Options
-Allows sending only certain pages in a PDF.
-
-In this example we only send the first, penultimate and last pages:
-
-```php
-from mindee import Client, product, PageOptions
-
-result = mindee_client.parse(
-    product.InvoiceV4,
-    input_source,
-    page_options=PageOptions(
-        page_indexes=[0, -2, -1],
-        operation=PageOptions.KEEP_ONLY,
-        on_min_pages=2
-    )
-)
-```
 
 ## Further Reading
 Complete details on the working of the library are available in the following guides:
