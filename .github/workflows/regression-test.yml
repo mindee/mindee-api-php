@@ -1,7 +1,9 @@
 name: Regression Tests
 
 on:
-  - push
+  push:
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   phpunit-ubuntu:
@@ -30,4 +32,4 @@ jobs:
         env:
           MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
         run: |
-          ./vendor/bin/phpunit -c tests/phpunitRegressions.xml
+          ./vendor/bin/phpunit -c tests/regressions.xml
