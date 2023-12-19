@@ -15,7 +15,7 @@ If you do not have them, you'll need the following packages on your system:
 
 Then, install this library:
 ```shell
-composer require mindee
+composer require mindee/mindee
 ```
 
 Finally, PHP away!
