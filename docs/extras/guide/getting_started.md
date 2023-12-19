@@ -14,7 +14,7 @@ You can view the source code on [GitHub](https://github.com/mindee/mindee-api-ph
 To quickly get started with the PHP OCR SDK anywhere, the preferred installation method is via `composer`.
 
 ```shell
-composer require mindee
+composer require mindee/mindee
 ```
 
 ### Development Installation
