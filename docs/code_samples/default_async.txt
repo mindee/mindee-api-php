@@ -12,10 +12,10 @@ $VERSION = 'my-version';
 $ENDPOINT = 'my-endpoint';
 
 // Maximum amount of retries to fetch a parsed document
-$MAX_RETRIES = 10;
+$MAX_RETRIES = 30;
 
 // Delay between request
-$DELAY = 6;
+$DELAY = 2;
 
 // Open a cURL session to enqueue the document
 $ch_post = curl_init();
