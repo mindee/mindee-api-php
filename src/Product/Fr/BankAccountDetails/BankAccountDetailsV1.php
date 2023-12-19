@@ -6,6 +6,7 @@ namespace Mindee\Product\Fr\BankAccountDetails;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Bank Account Details, API version 1.
@@ -30,7 +31,10 @@ class BankAccountDetailsV1 extends Inference
         $this->prediction = new BankAccountDetailsV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(BankAccountDetailsV1Document::class, $page);
+            try {
+                $this->pages[] = new Page(BankAccountDetailsV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

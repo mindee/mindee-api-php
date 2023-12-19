@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Passport;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\DateField;
@@ -59,49 +60,83 @@ class PassportV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["birth_date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->birthDate = new DateField(
             $rawPrediction["birth_date"],
             $pageId
         );
+        if (!isset($rawPrediction["birth_place"])) {
+            throw new MindeeUnsetException();
+        }
         $this->birthPlace = new StringField(
             $rawPrediction["birth_place"],
             $pageId
         );
+        if (!isset($rawPrediction["country"])) {
+            throw new MindeeUnsetException();
+        }
         $this->country = new StringField(
             $rawPrediction["country"],
             $pageId
         );
+        if (!isset($rawPrediction["expiry_date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->expiryDate = new DateField(
             $rawPrediction["expiry_date"],
             $pageId
         );
+        if (!isset($rawPrediction["gender"])) {
+            throw new MindeeUnsetException();
+        }
         $this->gender = new StringField(
             $rawPrediction["gender"],
             $pageId
         );
+        if (!isset($rawPrediction["given_names"])) {
+            throw new MindeeUnsetException();
+        }
         $this->givenNames = $rawPrediction["given_names"] == null ? [] : array_map(
             fn ($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["given_names"]
         );
+        if (!isset($rawPrediction["id_number"])) {
+            throw new MindeeUnsetException();
+        }
         $this->idNumber = new StringField(
             $rawPrediction["id_number"],
             $pageId
         );
+        if (!isset($rawPrediction["issuance_date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->issuanceDate = new DateField(
             $rawPrediction["issuance_date"],
             $pageId
         );
+        if (!isset($rawPrediction["mrz1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->mrz1 = new StringField(
             $rawPrediction["mrz1"],
             $pageId
         );
+        if (!isset($rawPrediction["mrz2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->mrz2 = new StringField(
             $rawPrediction["mrz2"],
             $pageId
         );
+        if (!isset($rawPrediction["surname"])) {
+            throw new MindeeUnsetException();
+        }
         $this->surname = new StringField(
             $rawPrediction["surname"],
             $pageId

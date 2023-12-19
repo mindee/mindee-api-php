@@ -6,6 +6,7 @@ namespace Mindee\Product\BarcodeReader;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Barcode Reader, API version 1.
@@ -30,7 +31,10 @@ class BarcodeReaderV1 extends Inference
         $this->prediction = new BarcodeReaderV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(BarcodeReaderV1Document::class, $page);
+            try {
+                $this->pages[] = new Page(BarcodeReaderV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

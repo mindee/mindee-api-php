@@ -6,6 +6,7 @@ namespace Mindee\Product\Cropper;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Cropper, API version 1.
@@ -30,7 +31,10 @@ class CropperV1 extends Inference
         $this->prediction = new CropperV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(CropperV1Page::class, $page);
+            try {
+                $this->pages[] = new Page(CropperV1Page::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

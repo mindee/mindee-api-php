@@ -6,6 +6,7 @@ namespace Mindee\Product\Receipt;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Receipt, API version 5.
@@ -30,7 +31,10 @@ class ReceiptV5 extends Inference
         $this->prediction = new ReceiptV5Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(ReceiptV5Document::class, $page);
+            try {
+                $this->pages[] = new Page(ReceiptV5Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

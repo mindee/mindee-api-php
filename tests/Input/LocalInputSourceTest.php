@@ -29,7 +29,7 @@ class LocalInputSourceTest extends TestCase
 //    {
 //        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
 //        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]); // TODO: processPDF feature
-//        $this->assertInstanceOf(resource, $inputObj->readContents()); TODO: find proper type for this
+//        $this->assertInstanceOf(resource, $inputObj->readContents()); TODO when pdf handling lib is added
 //    }
 
     public function testPDFReadContents()

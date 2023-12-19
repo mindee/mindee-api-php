@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\ProofOfAddress;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\CompanyRegistrationField;
@@ -53,41 +54,69 @@ class ProofOfAddressV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->date = new DateField(
             $rawPrediction["date"],
             $pageId
         );
+        if (!isset($rawPrediction["dates"])) {
+            throw new MindeeUnsetException();
+        }
         $this->dates = $rawPrediction["dates"] == null ? [] : array_map(
             fn ($prediction) => new DateField($prediction, $pageId),
             $rawPrediction["dates"]
         );
+        if (!isset($rawPrediction["issuer_address"])) {
+            throw new MindeeUnsetException();
+        }
         $this->issuerAddress = new StringField(
             $rawPrediction["issuer_address"],
             $pageId
         );
+        if (!isset($rawPrediction["issuer_company_registration"])) {
+            throw new MindeeUnsetException();
+        }
         $this->issuerCompanyRegistration = $rawPrediction["issuer_company_registration"] == null ? [] : array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["issuer_company_registration"]
         );
+        if (!isset($rawPrediction["issuer_name"])) {
+            throw new MindeeUnsetException();
+        }
         $this->issuerName = new StringField(
             $rawPrediction["issuer_name"],
             $pageId
         );
+        if (!isset($rawPrediction["locale"])) {
+            throw new MindeeUnsetException();
+        }
         $this->locale = new LocaleField(
             $rawPrediction["locale"],
             $pageId
         );
+        if (!isset($rawPrediction["recipient_address"])) {
+            throw new MindeeUnsetException();
+        }
         $this->recipientAddress = new StringField(
             $rawPrediction["recipient_address"],
             $pageId
         );
+        if (!isset($rawPrediction["recipient_company_registration"])) {
+            throw new MindeeUnsetException();
+        }
         $this->recipientCompanyRegistration = $rawPrediction["recipient_company_registration"] == null ? [] : array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["recipient_company_registration"]
         );
+        if (!isset($rawPrediction["recipient_name"])) {
+            throw new MindeeUnsetException();
+        }
         $this->recipientName = new StringField(
             $rawPrediction["recipient_name"],
             $pageId

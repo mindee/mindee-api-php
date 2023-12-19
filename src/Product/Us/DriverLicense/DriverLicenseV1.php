@@ -6,6 +6,7 @@ namespace Mindee\Product\Us\DriverLicense;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Driver License, API version 1.
@@ -30,7 +31,10 @@ class DriverLicenseV1 extends Inference
         $this->prediction = new DriverLicenseV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(DriverLicenseV1Page::class, $page);
+            try {
+                $this->pages[] = new Page(DriverLicenseV1Page::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }
