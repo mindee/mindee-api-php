@@ -19,10 +19,14 @@ jobs:
         with:
           php-version: 8.2
 
-      - name: Install and run phpdocumentor
+      - name: Install phpdocumentor
         run: |
           wget https://phpdoc.org/phpDocumentor.phar
+      - name: Build documentation
+        run: |
           php phpDocumentor.phar run -d ./src -t ./docs/_build
+      - name: Move code samples
+        run: |
           cp -r ./docs/code_samples ./docs/_build/
 
       - name: Deploy
