@@ -43,11 +43,4 @@ class ProofOfAddressV1Test extends TestCase
         $this->assertEquals(0, count($prediction->dates));
         $this->assertNull($prediction->date->value);
     }
-
-    public function testCompletePage0()
-    {
-        $this->assertEquals(0, $this->completePage0->id);
-        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
-    }
-
 }

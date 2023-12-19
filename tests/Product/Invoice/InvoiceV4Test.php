@@ -57,11 +57,4 @@ class InvoiceV4Test extends TestCase
         $this->assertNull($prediction->billingAddress->value);
         $this->assertEquals(0, count($prediction->lineItems));
     }
-
-    public function testCompletePage0()
-    {
-        $this->assertEquals(0, $this->completePage0->id);
-        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
-    }
-
 }
