@@ -101,10 +101,6 @@ $apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
 echo strval($apiResponse->document);
 ```
 
-### Additional Options
-Options to pass when sending a file.
-
-
 ## Further Reading
 Complete details on the working of the library are available in the following guides:
 
