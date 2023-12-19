@@ -6,6 +6,7 @@ namespace Mindee\Product\Fr\IdCard;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Carte Nationale d'Identité, API version 2.
@@ -30,7 +31,10 @@ class IdCardV2 extends Inference
         $this->prediction = new IdCardV2Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(IdCardV2Page::class, $page);
+            try {
+                $this->pages[] = new Page(IdCardV2Page::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

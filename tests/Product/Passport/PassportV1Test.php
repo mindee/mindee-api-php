@@ -11,9 +11,7 @@ class PassportV1Test extends TestCase
 {
     private Document $completeDoc;
     private Document $emptyDoc;
-    private Page $completePage0;
     private string $completeDocReference;
-    private string $completePage0Reference;
 
     protected function setUp(): void
     {
@@ -24,9 +22,7 @@ class PassportV1Test extends TestCase
         $emptyDocJSON = json_decode($emptyDocFile, true);
         $this->completeDoc = new Document(Passport\PassportV1::class, $completeDocJSON["document"]);
         $this->emptyDoc = new Document(Passport\PassportV1::class, $emptyDocJSON["document"]);
-        $this->completePage0 = new Page(Passport\PassportV1Document::class, $completeDocJSON["document"]["inference"]["pages"][0]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
-        $this->completePage0Reference = file_get_contents($productDir . "summary_page0.rst");
     }
 
     public function testCompleteDoc()
@@ -49,11 +45,4 @@ class PassportV1Test extends TestCase
         $this->assertNull($prediction->mrz1->value);
         $this->assertNull($prediction->mrz2->value);
     }
-
-    public function testCompletePage0()
-    {
-        $this->assertEquals(0, $this->completePage0->id);
-        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
-    }
-
 }

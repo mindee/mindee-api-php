@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Us\DriverLicense;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\DateField;
@@ -83,73 +84,125 @@ class DriverLicenseV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["address"])) {
+            throw new MindeeUnsetException();
+        }
         $this->address = new StringField(
             $rawPrediction["address"],
             $pageId
         );
+        if (!isset($rawPrediction["date_of_birth"])) {
+            throw new MindeeUnsetException();
+        }
         $this->dateOfBirth = new DateField(
             $rawPrediction["date_of_birth"],
             $pageId
         );
+        if (!isset($rawPrediction["dd_number"])) {
+            throw new MindeeUnsetException();
+        }
         $this->ddNumber = new StringField(
             $rawPrediction["dd_number"],
             $pageId
         );
+        if (!isset($rawPrediction["dl_class"])) {
+            throw new MindeeUnsetException();
+        }
         $this->dlClass = new StringField(
             $rawPrediction["dl_class"],
             $pageId
         );
+        if (!isset($rawPrediction["driver_license_id"])) {
+            throw new MindeeUnsetException();
+        }
         $this->driverLicenseId = new StringField(
             $rawPrediction["driver_license_id"],
             $pageId
         );
+        if (!isset($rawPrediction["endorsements"])) {
+            throw new MindeeUnsetException();
+        }
         $this->endorsements = new StringField(
             $rawPrediction["endorsements"],
             $pageId
         );
+        if (!isset($rawPrediction["expiry_date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->expiryDate = new DateField(
             $rawPrediction["expiry_date"],
             $pageId
         );
+        if (!isset($rawPrediction["eye_color"])) {
+            throw new MindeeUnsetException();
+        }
         $this->eyeColor = new StringField(
             $rawPrediction["eye_color"],
             $pageId
         );
+        if (!isset($rawPrediction["first_name"])) {
+            throw new MindeeUnsetException();
+        }
         $this->firstName = new StringField(
             $rawPrediction["first_name"],
             $pageId
         );
+        if (!isset($rawPrediction["hair_color"])) {
+            throw new MindeeUnsetException();
+        }
         $this->hairColor = new StringField(
             $rawPrediction["hair_color"],
             $pageId
         );
+        if (!isset($rawPrediction["height"])) {
+            throw new MindeeUnsetException();
+        }
         $this->height = new StringField(
             $rawPrediction["height"],
             $pageId
         );
+        if (!isset($rawPrediction["issued_date"])) {
+            throw new MindeeUnsetException();
+        }
         $this->issuedDate = new DateField(
             $rawPrediction["issued_date"],
             $pageId
         );
+        if (!isset($rawPrediction["last_name"])) {
+            throw new MindeeUnsetException();
+        }
         $this->lastName = new StringField(
             $rawPrediction["last_name"],
             $pageId
         );
+        if (!isset($rawPrediction["restrictions"])) {
+            throw new MindeeUnsetException();
+        }
         $this->restrictions = new StringField(
             $rawPrediction["restrictions"],
             $pageId
         );
+        if (!isset($rawPrediction["sex"])) {
+            throw new MindeeUnsetException();
+        }
         $this->sex = new StringField(
             $rawPrediction["sex"],
             $pageId
         );
+        if (!isset($rawPrediction["state"])) {
+            throw new MindeeUnsetException();
+        }
         $this->state = new StringField(
             $rawPrediction["state"],
             $pageId
         );
+        if (!isset($rawPrediction["weight"])) {
+            throw new MindeeUnsetException();
+        }
         $this->weight = new StringField(
             $rawPrediction["weight"],
             $pageId

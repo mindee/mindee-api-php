@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Fr\BankAccountDetails;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\StringField;
@@ -26,17 +27,27 @@ class BankAccountDetailsV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["account_holder_name"])) {
+            throw new MindeeUnsetException();
+        }
         $this->accountHolderName = new StringField(
             $rawPrediction["account_holder_name"],
             $pageId
         );
+        if (!isset($rawPrediction["iban"])) {
+            throw new MindeeUnsetException();
+        }
         $this->iban = new StringField(
             $rawPrediction["iban"],
             $pageId
         );
+        if (!isset($rawPrediction["swift"])) {
+            throw new MindeeUnsetException();
+        }
         $this->swift = new StringField(
             $rawPrediction["swift"],
             $pageId

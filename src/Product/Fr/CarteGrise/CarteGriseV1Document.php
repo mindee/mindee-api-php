@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Fr\CarteGrise;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\DateField;
@@ -179,169 +180,293 @@ class CarteGriseV1Document extends Prediction
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["a"])) {
+            throw new MindeeUnsetException();
+        }
         $this->a = new StringField(
             $rawPrediction["a"],
             $pageId
         );
+        if (!isset($rawPrediction["b"])) {
+            throw new MindeeUnsetException();
+        }
         $this->b = new DateField(
             $rawPrediction["b"],
             $pageId
         );
+        if (!isset($rawPrediction["c1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->c1 = new StringField(
             $rawPrediction["c1"],
             $pageId
         );
+        if (!isset($rawPrediction["c3"])) {
+            throw new MindeeUnsetException();
+        }
         $this->c3 = new StringField(
             $rawPrediction["c3"],
             $pageId
         );
+        if (!isset($rawPrediction["c41"])) {
+            throw new MindeeUnsetException();
+        }
         $this->c41 = new StringField(
             $rawPrediction["c41"],
             $pageId
         );
+        if (!isset($rawPrediction["c4a"])) {
+            throw new MindeeUnsetException();
+        }
         $this->c4A = new StringField(
             $rawPrediction["c4a"],
             $pageId
         );
+        if (!isset($rawPrediction["d1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->d1 = new StringField(
             $rawPrediction["d1"],
             $pageId
         );
+        if (!isset($rawPrediction["d3"])) {
+            throw new MindeeUnsetException();
+        }
         $this->d3 = new StringField(
             $rawPrediction["d3"],
             $pageId
         );
+        if (!isset($rawPrediction["e"])) {
+            throw new MindeeUnsetException();
+        }
         $this->e = new StringField(
             $rawPrediction["e"],
             $pageId
         );
+        if (!isset($rawPrediction["f1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->f1 = new StringField(
             $rawPrediction["f1"],
             $pageId
         );
+        if (!isset($rawPrediction["f2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->f2 = new StringField(
             $rawPrediction["f2"],
             $pageId
         );
+        if (!isset($rawPrediction["f3"])) {
+            throw new MindeeUnsetException();
+        }
         $this->f3 = new StringField(
             $rawPrediction["f3"],
             $pageId
         );
+        if (!isset($rawPrediction["formula_number"])) {
+            throw new MindeeUnsetException();
+        }
         $this->formulaNumber = new StringField(
             $rawPrediction["formula_number"],
             $pageId
         );
+        if (!isset($rawPrediction["g"])) {
+            throw new MindeeUnsetException();
+        }
         $this->g = new StringField(
             $rawPrediction["g"],
             $pageId
         );
+        if (!isset($rawPrediction["g1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->g1 = new StringField(
             $rawPrediction["g1"],
             $pageId
         );
+        if (!isset($rawPrediction["i"])) {
+            throw new MindeeUnsetException();
+        }
         $this->i = new DateField(
             $rawPrediction["i"],
             $pageId
         );
+        if (!isset($rawPrediction["j"])) {
+            throw new MindeeUnsetException();
+        }
         $this->j = new StringField(
             $rawPrediction["j"],
             $pageId
         );
+        if (!isset($rawPrediction["j1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->j1 = new StringField(
             $rawPrediction["j1"],
             $pageId
         );
+        if (!isset($rawPrediction["j2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->j2 = new StringField(
             $rawPrediction["j2"],
             $pageId
         );
+        if (!isset($rawPrediction["j3"])) {
+            throw new MindeeUnsetException();
+        }
         $this->j3 = new StringField(
             $rawPrediction["j3"],
             $pageId
         );
+        if (!isset($rawPrediction["mrz1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->mrz1 = new StringField(
             $rawPrediction["mrz1"],
             $pageId
         );
+        if (!isset($rawPrediction["mrz2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->mrz2 = new StringField(
             $rawPrediction["mrz2"],
             $pageId
         );
+        if (!isset($rawPrediction["owner_first_name"])) {
+            throw new MindeeUnsetException();
+        }
         $this->ownerFirstName = new StringField(
             $rawPrediction["owner_first_name"],
             $pageId
         );
+        if (!isset($rawPrediction["owner_surname"])) {
+            throw new MindeeUnsetException();
+        }
         $this->ownerSurname = new StringField(
             $rawPrediction["owner_surname"],
             $pageId
         );
+        if (!isset($rawPrediction["p1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->p1 = new StringField(
             $rawPrediction["p1"],
             $pageId
         );
+        if (!isset($rawPrediction["p2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->p2 = new StringField(
             $rawPrediction["p2"],
             $pageId
         );
+        if (!isset($rawPrediction["p3"])) {
+            throw new MindeeUnsetException();
+        }
         $this->p3 = new StringField(
             $rawPrediction["p3"],
             $pageId
         );
+        if (!isset($rawPrediction["p6"])) {
+            throw new MindeeUnsetException();
+        }
         $this->p6 = new StringField(
             $rawPrediction["p6"],
             $pageId
         );
+        if (!isset($rawPrediction["q"])) {
+            throw new MindeeUnsetException();
+        }
         $this->q = new StringField(
             $rawPrediction["q"],
             $pageId
         );
+        if (!isset($rawPrediction["s1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->s1 = new StringField(
             $rawPrediction["s1"],
             $pageId
         );
+        if (!isset($rawPrediction["s2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->s2 = new StringField(
             $rawPrediction["s2"],
             $pageId
         );
+        if (!isset($rawPrediction["u1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->u1 = new StringField(
             $rawPrediction["u1"],
             $pageId
         );
+        if (!isset($rawPrediction["u2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->u2 = new StringField(
             $rawPrediction["u2"],
             $pageId
         );
+        if (!isset($rawPrediction["v7"])) {
+            throw new MindeeUnsetException();
+        }
         $this->v7 = new StringField(
             $rawPrediction["v7"],
             $pageId
         );
+        if (!isset($rawPrediction["x1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->x1 = new StringField(
             $rawPrediction["x1"],
             $pageId
         );
+        if (!isset($rawPrediction["y1"])) {
+            throw new MindeeUnsetException();
+        }
         $this->y1 = new StringField(
             $rawPrediction["y1"],
             $pageId
         );
+        if (!isset($rawPrediction["y2"])) {
+            throw new MindeeUnsetException();
+        }
         $this->y2 = new StringField(
             $rawPrediction["y2"],
             $pageId
         );
+        if (!isset($rawPrediction["y3"])) {
+            throw new MindeeUnsetException();
+        }
         $this->y3 = new StringField(
             $rawPrediction["y3"],
             $pageId
         );
+        if (!isset($rawPrediction["y4"])) {
+            throw new MindeeUnsetException();
+        }
         $this->y4 = new StringField(
             $rawPrediction["y4"],
             $pageId
         );
+        if (!isset($rawPrediction["y5"])) {
+            throw new MindeeUnsetException();
+        }
         $this->y5 = new StringField(
             $rawPrediction["y5"],
             $pageId
         );
+        if (!isset($rawPrediction["y6"])) {
+            throw new MindeeUnsetException();
+        }
         $this->y6 = new StringField(
             $rawPrediction["y6"],
             $pageId

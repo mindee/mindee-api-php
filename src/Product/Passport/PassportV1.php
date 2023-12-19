@@ -6,6 +6,7 @@ namespace Mindee\Product\Passport;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Passport, API version 1.
@@ -30,7 +31,10 @@ class PassportV1 extends Inference
         $this->prediction = new PassportV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(PassportV1Document::class, $page);
+            try {
+                $this->pages[] = new Page(PassportV1Document::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

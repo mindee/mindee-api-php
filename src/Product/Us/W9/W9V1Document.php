@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Us\W9;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 

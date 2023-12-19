@@ -6,6 +6,7 @@ namespace Mindee\Product\Us\BankCheck;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
+use Mindee\Error\MindeeUnsetException;
 
 /**
  * Inference prediction for Bank Check, API version 1.
@@ -30,7 +31,10 @@ class BankCheckV1 extends Inference
         $this->prediction = new BankCheckV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(BankCheckV1Page::class, $page);
+            try {
+                $this->pages[] = new Page(BankCheckV1Page::class, $page);
+            } catch (MindeeUnsetException $ignored) {
+            }
         }
     }
 }

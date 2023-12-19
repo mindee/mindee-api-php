@@ -61,7 +61,6 @@ abstract class Inference
     public function __toString(): string
     {
         $rotationApplied = $this->isRotationApplied ? 'Yes' : 'No';
-        $pages = $this->pages ? "\n" . implode("\n", $this->pages) : '';
         $pagesStr = "";
         if (count($this->pages)) {
             $pagesStr = "\nPage Predictions\n================\n\n" . implode(
