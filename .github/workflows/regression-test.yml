@@ -1,7 +1,9 @@
 name: Regression Tests
 
 on:
-  push:
+  pull_request:
+  workflow_run: [Test Code Samples]
+  types: [completed]
   # Allows running this workflow manually from the Actions tab
   workflow_dispatch:
 
