@@ -1,7 +1,9 @@
 name: Regression Tests
 
 on:
-  - push
+  push:
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   phpunit-ubuntu:
