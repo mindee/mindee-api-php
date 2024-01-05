@@ -4,15 +4,16 @@
 namespace Mindee\CLI;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/CommandConfig.php';
 require __DIR__ . '/MindeeCLI.php';
-use Mindee\Product;
 
+use Mindee\Product;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 
 
 $documents = [
-    "barcodeReader" => new CommandConfig(
+    "barcode-reader" => new CommandConfig(
         "Barcode-reader tool",
         Product\BarcodeReader\BarcodeReaderV1::class,
         true
@@ -28,27 +29,27 @@ $documents = [
         true,
         false
     ),
-    "euLicensePlate" => new CommandConfig(
+    "eu-license-plate" => new CommandConfig(
         "EU License Plate",
         Product\Eu\LicensePlate\LicensePlateV1::class,
         true
     ),
-    "financialDocument" => new CommandConfig(
+    "financial-document" => new CommandConfig(
         "Financial Document (receipt or invoice)",
         Product\FinancialDocument\FinancialDocumentV1::class,
         true
     ),
-    "frBankAccountDetails" => new CommandConfig(
+    "fr-bank-account-details" => new CommandConfig(
         "FR Bank Account Details",
         Product\Fr\BankAccountDetails\BankAccountDetailsV2::class,
         true
     ),
-    "frCarteGrise" => new CommandConfig(
+    "fr-carte-grise" => new CommandConfig(
         "FR Carte Grise",
         Product\Fr\CarteGrise\CarteGriseV1::class,
         true
     ),
-    "frIdCard" => new CommandConfig(
+    "fr-id-card" => new CommandConfig(
         "FR ID Card",
         Product\Fr\IdCard\IdCardV2::class,
         true
@@ -58,13 +59,13 @@ $documents = [
         Product\Invoice\InvoiceV4::class,
         true
     ),
-    "invoiceSplitter" => new CommandConfig(
+    "invoice-splitter" => new CommandConfig(
         "Invoice Splitter",
         Product\InvoiceSplitter\InvoiceSplitterV1::class,
         false,
         true
     ),
-    "multiReceipts" => new CommandConfig(
+    "multi-receipts" => new CommandConfig(
         "Multi-receipts detector",
         Product\MultiReceiptsDetector\MultiReceiptsDetectorV1::class,
         true
@@ -74,7 +75,7 @@ $documents = [
         Product\Passport\PassportV1::class,
         true
     ),
-    "proofOfAddress" => new CommandConfig(
+    "proof-of-address" => new CommandConfig(
         "Proof of Address",
         Product\ProofOfAddress\ProofOfAddressV1::class,
         true
@@ -84,23 +85,47 @@ $documents = [
         Product\Receipt\ReceiptV5::class,
         true
     ),
-    "usBankCheck" => new CommandConfig(
+    "us-bank-check" => new CommandConfig(
         "US Bank Check",
         Product\Us\BankCheck\BankCheckV1::class,
         true
     ),
-    "usDriverLicense" => new CommandConfig(
+    "us-driver-license" => new CommandConfig(
         "US Driver License",
         Product\Us\DriverLicense\DriverLicenseV1::class,
         true
     ),
-    "usW9" => new CommandConfig(
+    "us-w9" => new CommandConfig(
         "US W9",
         Product\Us\W9\W9V1::class,
         true
     ),
 ];
 
+// Create a new instance of the Application and add your MindeeCLI command
+$cli = new Application();
+$cli->add(new MindeeCLI($documents));
 
-$cli = new MindeeCLI($documents);
-$cli->run();
+$argv = $_SERVER['argv'];
+function removeWhitespaceArguments($arg): bool
+{
+    return trim($arg) !== ''; // Keep non-empty arguments after trimming whitespace
+}
+
+$base['command'] = 'mindee'; // Skips the need to specify "mindee" to symfony's CLI tool.
+array_shift($argv);
+if (sizeof($argv) > 0) {
+    // Filter the arguments to remove elements containing only whitespace;
+    foreach ($argv as $arg) {
+        if (strlen(trim($arg)) > 0) {
+            $base[] = trim($arg);
+        }
+    }
+}
+
+try {
+    $cli->run(new ArrayInput($base));
+} catch (\Exception $e) {
+    error_log("Could not start the Mindee CLI, an exception was raised:");
+    error_log($e->getMessage());
+}
