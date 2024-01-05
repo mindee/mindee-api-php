@@ -21,6 +21,6 @@
     }
   },
   "bin": [
-    "bin/console"
+    "bin/cli"
   ]
 }
