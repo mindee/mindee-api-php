@@ -25,18 +25,22 @@ class MindeeCLI extends Command
         parent::__construct();
         $this->apiKey = null;
         $this->documentList = $documentList;
-        $this->setHelp($this->formatHelp());
+        // $this->setHelp($this->formatHelp());
     }
 
-    protected function formatHelp()
+    protected function formatHelp($product = null)
     {
-        $helpCondensed = "Mindee Command-Line interface.
+        if (!$product) {
+            $helpCondensed = "Mindee Command-Line interface.
 Usage:
   mindee product [options]
 
-Arguments:";
-        foreach ($this->documentList as $documentName => $document) {
-            $helpCondensed .= "\n  " . str_pad($documentName, 65 - strlen($document->help)) . $document->help;
+Available Products:";
+            foreach ($this->documentList as $documentName => $document) {
+                $helpCondensed .= "\n  " . str_pad($documentName, 65 - strlen($document->help)) . $document->help;
+            }
+        } else {
+
         }
         return $helpCondensed;
     }
@@ -55,7 +59,7 @@ Arguments:";
     private function configureMainOptions()
     {
         $this
-            ->addArgument('input_type', InputArgument::OPTIONAL, 'Specify how to handle the input.')
+            ->addArgument('product', InputArgument::IS_ARRAY, 'Specify which product to use')
             ->addOption('cut_doc', 'c', InputOption::VALUE_REQUIRED, 'Cuts to apply to document')
             ->addOption('pages_keep', 'p', InputOption::VALUE_REQUIRED, 'Pages to keep, default: 5')
             ->addOption('key', 'k', InputOption::VALUE_OPTIONAL, 'API key for the account. Is retrieved from environment if not provided.');
@@ -73,25 +77,19 @@ Arguments:";
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $version = $input->getOption('version');
-        // Check if no arguments are provided
-        if (!isset($input->getArguments()["input_type"]) || is_null($input->getArguments()["input_type"])) {
-            $output->writeln($this->getApplication()->find('mindee')->getHelp());
-            return Command::SUCCESS;
-        } else {
-            foreach ($input->getArguments() as $ipt) {
-                $output->writeln($ipt);
-            }
-            $output->writeln(sizeof($input->getArguments()));
 
-        }
         if ($version) {
             $output->writeln(VERSION);
         } else {
-            $key = $input->getOption('key');
-            $cutDoc = $input->getOption('cut_doc');
+            $key = $input->getOption('key') !== false;
+            $cutDoc = $input->getOption('cut_doc') !== false;
+            $accountName = $input->getOption('account_name') !== false;
+            $endpointName = $input->getOption('endpoint_name') !== false;
+            $endpointVersion = $input->getOption('endpoint_version') !== false;
+
+            echo $key;
             // Handle other options similarly
 
-            $output->writeln('This is the output of the command');
             // Your logic goes here based on the input options
             return Command::SUCCESS;
         }

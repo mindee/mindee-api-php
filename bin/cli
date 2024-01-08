@@ -104,7 +104,8 @@ $documents = [
 
 // Create a new instance of the Application and add your MindeeCLI command
 $cli = new Application();
-$cli->add(new MindeeCLI($documents));
+$mindeeCommand = new MindeeCLI($documents);
+$cli->add($mindeeCommand);
 
 $argv = $_SERVER['argv'];
 function removeWhitespaceArguments($arg): bool
@@ -124,7 +125,8 @@ if (sizeof($argv) > 0) {
 }
 
 try {
-    $cli->run(new ArrayInput($base));
+    $cli->setDefaultCommand($mindeeCommand->getName());
+    $cli->run();
 } catch (\Exception $e) {
     error_log("Could not start the Mindee CLI, an exception was raised:");
     error_log($e->getMessage());
