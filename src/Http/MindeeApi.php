@@ -35,7 +35,7 @@ const REQUEST_TIMEOUT_ENV_NAME = 'MINDEE_REQUEST_TIMEOUT';
  */
 const TIMEOUT_DEFAULT = 120;
 // phpcs:disable
-include_once('src/version.php');
+include_once(dirname(__DIR__) . '/version.php');
 // phpcs:enable
 const USER_AGENT = 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . PHP_OS;
 
