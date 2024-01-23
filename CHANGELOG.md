@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.0.1 - 2024-01-23
+### Fixes
+* :bug: fix Fatal error including API version string in a namespaced project (Co-authored-by: superwave1999)
+
+
 ## v1.0.0 - 2024-01-08
 * :tada: First official release!
 
