@@ -40,6 +40,7 @@ class InvoiceV4Test extends TestCase
         $this->assertNull($prediction->dueDate->value);
         $this->assertNull($prediction->totalNet->value);
         $this->assertNull($prediction->totalAmount->value);
+        $this->assertNull($prediction->totalTax->value);
         $this->assertEquals(0, count($prediction->taxes));
         $this->assertEquals(0, count($prediction->supplierPaymentDetails));
         $this->assertNull($prediction->supplierName->value);
