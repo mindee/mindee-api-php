@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+## v1.1.0 - 2024-01-30
+### Changes
+* :arrow_up: update invoices to v4.4
+* :sparkles: add support for `raw_value` in string fields
+
+
 ## v1.0.1 - 2024-01-23
 ### Fixes
 * :bug: fix Fatal error including API version string in a namespaced project (Co-authored-by: superwave1999)
