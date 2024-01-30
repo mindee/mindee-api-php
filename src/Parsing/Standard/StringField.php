@@ -11,9 +11,13 @@ class StringField extends BaseField
     use FieldConfidenceMixin;
 
     /**
-     * @var string|null The value.
+     * @var string|null Value as string.
      */
     public $value;
+    /**
+     * @var string|null Raw value.
+     */
+    public $rawValue;
 
 
     /**
@@ -30,5 +34,6 @@ class StringField extends BaseField
     ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->setPosition($rawPrediction);
+        $this->rawValue = array_key_exists('raw_value', $rawPrediction) ? $rawPrediction['raw_value'] : null;
     }
 }

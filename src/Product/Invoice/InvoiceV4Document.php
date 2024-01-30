@@ -88,6 +88,10 @@ class InvoiceV4Document extends Prediction
     */
     public AmountField $totalNet;
     /**
+    * @var AmountField The total tax: includes all the taxes paid for this invoice.
+    */
+    public AmountField $totalTax;
+    /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId        Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
@@ -213,6 +217,13 @@ class InvoiceV4Document extends Prediction
             $rawPrediction["total_net"],
             $pageId
         );
+        if (!isset($rawPrediction["total_tax"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->totalTax = new AmountField(
+            $rawPrediction["total_tax"],
+            $pageId
+        );
     }
 
     /**
@@ -245,6 +256,7 @@ class InvoiceV4Document extends Prediction
 :Due Date: $this->dueDate
 :Total Net: $this->totalNet
 :Total Amount: $this->totalAmount
+:Total Tax: $this->totalTax
 :Taxes: $this->taxes
 :Supplier Payment Details: $supplierPaymentDetails
 :Supplier Name: $this->supplierName
