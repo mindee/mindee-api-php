@@ -66,10 +66,10 @@ class Client
     /**
      * Load a document from a normal PHP file object.
      *
-     * @param array $file File object as created from the file() function.
+     * @param mixed $file File object as created from the file() function.
      * @return FileInput
      */
-    public function sourceFromFile(array $file): FileInput
+    public function sourceFromFile($file): FileInput
     {
         return new FileInput($file);
     }
