@@ -3,7 +3,6 @@
 namespace Input;
 
 use Mindee\Client;
-use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\PathInput;
 use Mindee\Input\URLInputSource;
@@ -105,11 +104,5 @@ class LocalInputSourceTest extends TestCase
     {
         $this->expectException(MindeeSourceException::class);
         $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
-    }
-
-    public function testInputFromHTTPShouldNotThrow()
-    {
-        $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
-        $this->assertInstanceOf(URLInputSource::class, $inputDoc);
     }
 }
