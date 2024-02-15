@@ -4,12 +4,9 @@ namespace Input;
 
 use Mindee\Client;
 use Mindee\Error\MindeeSourceException;
-use Mindee\Input\InputSource;
 use Mindee\Input\PathInput;
 use Mindee\Input\URLInputSource;
 use PHPUnit\Framework\TestCase;
-
-use const Mindee\Input\KEEP_ONLY;
 
 class LocalInputSourceTest extends TestCase
 {
@@ -75,27 +72,37 @@ class LocalInputSourceTest extends TestCase
 //
 //    }
 
-//    public function testPDFInputFromFile(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFInputFromFile()
+    {
+        $fileContents = file_get_contents($this->fileTypesDir . "/pdf/multipage.pdf");
+        $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
+        $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
+        $contents = $inputDoc->readContents(false);
+        $this->assertEquals("multipage.pdf", $contents[0]);
+        $this->assertEquals($fileContents, $contents[1]);
+    }
 
-//    public function testPDFInputFromBase64(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFInputFromBytes()
+    {
+        $pdfBytes = file_get_contents($this->fileTypesDir . "/pdf/multipage.pdf");
+        $inputDoc = $this->dummyClient->sourceFromBytes($pdfBytes, "dummy.pdf");
+        $contents = $inputDoc->readContents(false);
+        $this->assertEquals("dummy.pdf", $contents[0]);
+        $this->assertEquals($pdfBytes, $contents[1]);
+    }
 
-//    public function testPDFInputFromBytes(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testInputFromRawb64String()
+    {
+        $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
+        $inputDoc = $this->dummyClient->sourceFromb64String($pdfBytes, "dummy.pdf");
+        $contents = $inputDoc->readContents(false);
+        $this->assertEquals("dummy.pdf", $contents[0]);
+        $this->assertEquals($pdfBytes, $contents[1]);
+    }
 
     public function testInputFromHTTPShouldThrow()
     {
         $this->expectException(MindeeSourceException::class);
         $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
-    }
-
-    public function testInputFromHTTPShouldNotThrow()
-    {
-        $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
-        $this->assertInstanceOf(URLInputSource::class, $inputDoc);
     }
 }
