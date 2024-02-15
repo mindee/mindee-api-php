@@ -221,7 +221,10 @@ class Client
     ): AsyncPredictResponse {
         $queuedResponse = $endpoint->documentQueueReqGet($queueId);
         $dataResponse = json_decode($queuedResponse['data'], true);
-        if (!array_key_exists('api_request', $dataResponse) || count($dataResponse["api_request"]["error"]) != 0) {
+        if (
+            !$dataResponse || !array_key_exists('api_request', $dataResponse) ||
+            count($dataResponse["api_request"]["error"]) != 0
+        ) {
             throw MindeeHttpException::handleError(
                 $endpoint->settings->endpointName,
                 $dataResponse,
@@ -258,7 +261,10 @@ class Client
             $options->predictOptions->cropper
         );
         $dataResponse = json_decode($response['data'], true);
-        if (!array_key_exists('api_request', $dataResponse) || count($dataResponse["api_request"]["error"]) != 0) {
+        if (
+            !$dataResponse || !array_key_exists('api_request', $dataResponse) ||
+            count($dataResponse["api_request"]["error"]) != 0
+        ) {
             throw MindeeHttpException::handleError(
                 $options->endpoint->settings->endpointName,
                 $dataResponse,
