@@ -1871,6 +1871,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Standard-StringField.html#property_value"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\StringField\u003A\u003A\u0024rawValue",
+            "name": "rawValue",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-StringField.html#property_rawValue"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\Taxes",
             "name": "Taxes",
             "summary": "List\u0020of\u0020tax\u0020lines\u0020information.",
@@ -3285,6 +3290,11 @@ Search.appendIndex(
             "name": "totalNet",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_totalNet"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024totalTax",
+            "name": "totalTax",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_totalTax"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItem",
             "name": "InvoiceV4LineItem",
