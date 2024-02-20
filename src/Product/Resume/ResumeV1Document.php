@@ -30,9 +30,9 @@ class ResumeV1Document extends Prediction
      */
     public StringField $documentType;
     /**
-     * @var ResumeV1Education The list of values that represent the educational background of an individual.
+     * @var ResumeV1Educations The list of values that represent the educational background of an individual.
      */
-    public ResumeV1Education $education;
+    public ResumeV1Educations $education;
     /**
      * @var StringField The email address of the candidate.
      */
@@ -122,7 +122,7 @@ class ResumeV1Document extends Prediction
         if (!isset($rawPrediction["education"])) {
             throw new MindeeUnsetException();
         }
-        $this->education = new ResumeV1Education(
+        $this->education = new ResumeV1Educations(
             $rawPrediction["education"],
             $pageId
         );

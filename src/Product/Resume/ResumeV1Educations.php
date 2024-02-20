@@ -5,7 +5,7 @@ namespace Mindee\Product\Resume;
 /**
  * The list of values that represent the educational background of an individual.
  */
-class ResumeV1Education extends \ArrayObject
+class ResumeV1Educations extends \ArrayObject
 {
     /**
      * @param array        $rawPrediction Raw prediction array.

@@ -49,7 +49,7 @@ class SummaryHelper
         if (!isset($maxColSize)) {
             return $inputString;
         }
-        return strlen($inputString) < $maxColSize ? $inputString : substr(
+        return strlen($inputString) <= $maxColSize ? $inputString : substr(
             $inputString,
             0,
             $maxColSize - 3
