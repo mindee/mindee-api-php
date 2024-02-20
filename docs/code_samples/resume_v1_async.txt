@@ -9,7 +9,7 @@ $mindeeClient = new Client("my-api-key");
 // Load a file from disk
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
-// Parse the file
-$apiResponse = $mindeeClient->parse(ResumeV1::class, $inputSource);
+// Parse the file asynchronously
+$apiResponse = $mindeeClient->enqueueAndParse(ResumeV1::class, $inputSource);
 
 echo strval($apiResponse->document);
