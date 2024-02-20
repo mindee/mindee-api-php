@@ -20,76 +20,76 @@ use Mindee\Parsing\Standard\Taxes;
 class InvoiceV4Document extends Prediction
 {
     /**
-    * @var StringField The address of the customer.
-    */
+     * @var StringField The address of the customer.
+     */
     public StringField $customerAddress;
     /**
-    * @var CompanyRegistrationField[] List of company registrations associated to the customer.
-    */
+     * @var CompanyRegistrationField[] List of company registrations associated to the customer.
+     */
     public array $customerCompanyRegistrations;
     /**
-    * @var StringField The name of the customer or client.
-    */
+     * @var StringField The name of the customer or client.
+     */
     public StringField $customerName;
     /**
-    * @var DateField The date the purchase was made.
-    */
+     * @var DateField The date the purchase was made.
+     */
     public DateField $date;
     /**
-    * @var ClassificationField One of: 'INVOICE', 'CREDIT NOTE'.
-    */
+     * @var ClassificationField One of: 'INVOICE', 'CREDIT NOTE'.
+     */
     public ClassificationField $documentType;
     /**
-    * @var DateField The date on which the payment is due.
-    */
+     * @var DateField The date on which the payment is due.
+     */
     public DateField $dueDate;
     /**
-    * @var StringField The invoice number or identifier.
-    */
+     * @var StringField The invoice number or identifier.
+     */
     public StringField $invoiceNumber;
     /**
-    * @var InvoiceV4LineItems List of line item details.
-    */
+     * @var InvoiceV4LineItems List of line item details.
+     */
     public InvoiceV4LineItems $lineItems;
     /**
-    * @var LocaleField The locale detected on the document.
-    */
+     * @var LocaleField The locale detected on the document.
+     */
     public LocaleField $locale;
     /**
-    * @var StringField[] List of Reference numbers, including PO number.
-    */
+     * @var StringField[] List of Reference numbers, including PO number.
+     */
     public array $referenceNumbers;
     /**
-    * @var StringField The address of the supplier or merchant.
-    */
+     * @var StringField The address of the supplier or merchant.
+     */
     public StringField $supplierAddress;
     /**
-    * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
-    */
+     * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
+     */
     public array $supplierCompanyRegistrations;
     /**
-    * @var StringField The name of the supplier or merchant.
-    */
+     * @var StringField The name of the supplier or merchant.
+     */
     public StringField $supplierName;
     /**
-    * @var PaymentDetailsField[] List of payment details associated to the supplier.
-    */
+     * @var PaymentDetailsField[] List of payment details associated to the supplier.
+     */
     public array $supplierPaymentDetails;
     /**
-    * @var Taxes List of tax line details.
-    */
+     * @var Taxes List of tax line details.
+     */
     public Taxes $taxes;
     /**
-    * @var AmountField The total amount paid: includes taxes, tips, fees, and other charges.
-    */
+     * @var AmountField The total amount paid: includes taxes, tips, fees, and other charges.
+     */
     public AmountField $totalAmount;
     /**
-    * @var AmountField The net amount paid: does not include taxes, fees, and discounts.
-    */
+     * @var AmountField The net amount paid: does not include taxes, fees, and discounts.
+     */
     public AmountField $totalNet;
     /**
-    * @var AmountField The total tax: includes all the taxes paid for this invoice.
-    */
+     * @var AmountField The total tax: includes all the taxes paid for this invoice.
+     */
     public AmountField $totalTax;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

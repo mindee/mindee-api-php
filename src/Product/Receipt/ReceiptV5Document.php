@@ -19,68 +19,68 @@ use Mindee\Parsing\Standard\Taxes;
 class ReceiptV5Document extends Prediction
 {
     /**
-    * @var ClassificationField The purchase category among predefined classes.
-    */
+     * @var ClassificationField The purchase category among predefined classes.
+     */
     public ClassificationField $category;
     /**
-    * @var DateField The date the purchase was made.
-    */
+     * @var DateField The date the purchase was made.
+     */
     public DateField $date;
     /**
-    * @var ClassificationField One of: 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
-    */
+     * @var ClassificationField One of: 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+     */
     public ClassificationField $documentType;
     /**
-    * @var ReceiptV5LineItems List of line item details.
-    */
+     * @var ReceiptV5LineItems List of line item details.
+     */
     public ReceiptV5LineItems $lineItems;
     /**
-    * @var LocaleField The locale detected on the document.
-    */
+     * @var LocaleField The locale detected on the document.
+     */
     public LocaleField $locale;
     /**
-    * @var ClassificationField The purchase subcategory among predefined classes for transport and food.
-    */
+     * @var ClassificationField The purchase subcategory among predefined classes for transport and food.
+     */
     public ClassificationField $subcategory;
     /**
-    * @var StringField The address of the supplier or merchant.
-    */
+     * @var StringField The address of the supplier or merchant.
+     */
     public StringField $supplierAddress;
     /**
-    * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
-    */
+     * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
+     */
     public array $supplierCompanyRegistrations;
     /**
-    * @var StringField The name of the supplier or merchant.
-    */
+     * @var StringField The name of the supplier or merchant.
+     */
     public StringField $supplierName;
     /**
-    * @var StringField The phone number of the supplier or merchant.
-    */
+     * @var StringField The phone number of the supplier or merchant.
+     */
     public StringField $supplierPhoneNumber;
     /**
-    * @var Taxes List of tax lines information.
-    */
+     * @var Taxes List of tax lines information.
+     */
     public Taxes $taxes;
     /**
-    * @var StringField The time the purchase was made.
-    */
+     * @var StringField The time the purchase was made.
+     */
     public StringField $time;
     /**
-    * @var AmountField The total amount of tip and gratuity.
-    */
+     * @var AmountField The total amount of tip and gratuity.
+     */
     public AmountField $tip;
     /**
-    * @var AmountField The total amount paid: includes taxes, discounts, fees, tips, and gratuity.
-    */
+     * @var AmountField The total amount paid: includes taxes, discounts, fees, tips, and gratuity.
+     */
     public AmountField $totalAmount;
     /**
-    * @var AmountField The net amount paid: does not include taxes, fees, and discounts.
-    */
+     * @var AmountField The net amount paid: does not include taxes, fees, and discounts.
+     */
     public AmountField $totalNet;
     /**
-    * @var AmountField The total amount of taxes.
-    */
+     * @var AmountField The total amount of taxes.
+     */
     public AmountField $totalTax;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

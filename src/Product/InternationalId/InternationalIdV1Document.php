@@ -6,6 +6,7 @@ use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\ClassificationField;
+use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
@@ -14,64 +15,64 @@ use Mindee\Parsing\Standard\StringField;
 class InternationalIdV1Document extends Prediction
 {
     /**
-    * @var StringField The physical location of the document holder's residence.
-    */
+     * @var StringField The physical location of the document holder's residence.
+     */
     public StringField $address;
     /**
-    * @var StringField The date of birth of the document holder.
-    */
-    public StringField $birthDate;
+     * @var DateField The date of birth of the document holder.
+     */
+    public DateField $birthDate;
     /**
-    * @var StringField The location where the document holder was born.
-    */
+     * @var StringField The location where the document holder was born.
+     */
     public StringField $birthPlace;
     /**
-    * @var StringField The country that issued the identification document.
-    */
+     * @var StringField The country that issued the identification document.
+     */
     public StringField $countryOfIssue;
     /**
-    * @var StringField The unique identifier assigned to the identification document.
-    */
+     * @var StringField The unique identifier assigned to the identification document.
+     */
     public StringField $documentNumber;
     /**
-    * @var ClassificationField The type of identification document being used.
-    */
+     * @var ClassificationField The type of identification document being used.
+     */
     public ClassificationField $documentType;
     /**
-    * @var StringField The date when the document will no longer be valid for use.
-    */
-    public StringField $expiryDate;
+     * @var DateField The date when the document will no longer be valid for use.
+     */
+    public DateField $expiryDate;
     /**
-    * @var StringField[] The first names or given names of the document holder.
-    */
+     * @var StringField[] The first names or given names of the document holder.
+     */
     public array $givenNames;
     /**
-    * @var StringField The date when the document was issued.
-    */
-    public StringField $issueDate;
+     * @var DateField The date when the document was issued.
+     */
+    public DateField $issueDate;
     /**
-    * @var StringField First line of information in a standardized format for easy machine reading and processing.
-    */
+     * @var StringField First line of information in a standardized format for easy machine reading and processing.
+     */
     public StringField $mrz1;
     /**
-    * @var StringField Second line of information in a standardized format for easy machine reading and processing.
-    */
+     * @var StringField Second line of information in a standardized format for easy machine reading and processing.
+     */
     public StringField $mrz2;
     /**
-    * @var StringField Third line of information in a standardized format for easy machine reading and processing.
-    */
+     * @var StringField Third line of information in a standardized format for easy machine reading and processing.
+     */
     public StringField $mrz3;
     /**
-    * @var StringField Indicates the country of citizenship or nationality of the document holder.
-    */
+     * @var StringField Indicates the country of citizenship or nationality of the document holder.
+     */
     public StringField $nationality;
     /**
-    * @var StringField The document holder's biological sex, such as male or female.
-    */
+     * @var StringField The document holder's biological sex, such as male or female.
+     */
     public StringField $sex;
     /**
-    * @var StringField[] The surnames of the document holder.
-    */
+     * @var StringField[] The surnames of the document holder.
+     */
     public array $surnames;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
@@ -90,7 +91,7 @@ class InternationalIdV1Document extends Prediction
         if (!isset($rawPrediction["birth_date"])) {
             throw new MindeeUnsetException();
         }
-        $this->birthDate = new StringField(
+        $this->birthDate = new DateField(
             $rawPrediction["birth_date"],
             $pageId
         );
@@ -125,7 +126,7 @@ class InternationalIdV1Document extends Prediction
         if (!isset($rawPrediction["expiry_date"])) {
             throw new MindeeUnsetException();
         }
-        $this->expiryDate = new StringField(
+        $this->expiryDate = new DateField(
             $rawPrediction["expiry_date"],
             $pageId
         );
@@ -139,7 +140,7 @@ class InternationalIdV1Document extends Prediction
         if (!isset($rawPrediction["issue_date"])) {
             throw new MindeeUnsetException();
         }
-        $this->issueDate = new StringField(
+        $this->issueDate = new DateField(
             $rawPrediction["issue_date"],
             $pageId
         );

@@ -14,168 +14,168 @@ use Mindee\Parsing\Standard\StringField;
 class CarteGriseV1Document extends Prediction
 {
     /**
-    * @var StringField The vehicle's license plate number.
-    */
+     * @var StringField The vehicle's license plate number.
+     */
     public StringField $a;
     /**
-    * @var DateField The vehicle's first release date.
-    */
+     * @var DateField The vehicle's first release date.
+     */
     public DateField $b;
     /**
-    * @var StringField The vehicle owner's full name including maiden name.
-    */
+     * @var StringField The vehicle owner's full name including maiden name.
+     */
     public StringField $c1;
     /**
-    * @var StringField The vehicle owner's address.
-    */
+     * @var StringField The vehicle owner's address.
+     */
     public StringField $c3;
     /**
-    * @var StringField Number of owners of the license certificate.
-    */
+     * @var StringField Number of owners of the license certificate.
+     */
     public StringField $c41;
     /**
-    * @var StringField Mentions about the ownership of the vehicle.
-    */
+     * @var StringField Mentions about the ownership of the vehicle.
+     */
     public StringField $c4A;
     /**
-    * @var StringField The vehicle's brand.
-    */
+     * @var StringField The vehicle's brand.
+     */
     public StringField $d1;
     /**
-    * @var StringField The vehicle's commercial name.
-    */
+     * @var StringField The vehicle's commercial name.
+     */
     public StringField $d3;
     /**
-    * @var StringField The Vehicle Identification Number (VIN).
-    */
+     * @var StringField The Vehicle Identification Number (VIN).
+     */
     public StringField $e;
     /**
-    * @var StringField The vehicle's maximum admissible weight.
-    */
+     * @var StringField The vehicle's maximum admissible weight.
+     */
     public StringField $f1;
     /**
-    * @var StringField The vehicle's maximum admissible weight within the license's state.
-    */
+     * @var StringField The vehicle's maximum admissible weight within the license's state.
+     */
     public StringField $f2;
     /**
-    * @var StringField The vehicle's maximum authorized weight with coupling.
-    */
+     * @var StringField The vehicle's maximum authorized weight with coupling.
+     */
     public StringField $f3;
     /**
-    * @var StringField The document's formula number.
-    */
+     * @var StringField The document's formula number.
+     */
     public StringField $formulaNumber;
     /**
-    * @var StringField The vehicle's weight with coupling if tractor different than category M1.
-    */
+     * @var StringField The vehicle's weight with coupling if tractor different than category M1.
+     */
     public StringField $g;
     /**
-    * @var StringField The vehicle's national empty weight.
-    */
+     * @var StringField The vehicle's national empty weight.
+     */
     public StringField $g1;
     /**
-    * @var DateField The car registration date of the given certificate.
-    */
+     * @var DateField The car registration date of the given certificate.
+     */
     public DateField $i;
     /**
-    * @var StringField The vehicle's category.
-    */
+     * @var StringField The vehicle's category.
+     */
     public StringField $j;
     /**
-    * @var StringField The vehicle's national type.
-    */
+     * @var StringField The vehicle's national type.
+     */
     public StringField $j1;
     /**
-    * @var StringField The vehicle's body type (CE).
-    */
+     * @var StringField The vehicle's body type (CE).
+     */
     public StringField $j2;
     /**
-    * @var StringField The vehicle's body type (National designation).
-    */
+     * @var StringField The vehicle's body type (National designation).
+     */
     public StringField $j3;
     /**
-    * @var StringField Machine Readable Zone, first line.
-    */
+     * @var StringField Machine Readable Zone, first line.
+     */
     public StringField $mrz1;
     /**
-    * @var StringField Machine Readable Zone, second line.
-    */
+     * @var StringField Machine Readable Zone, second line.
+     */
     public StringField $mrz2;
     /**
-    * @var StringField The vehicle's owner first name.
-    */
+     * @var StringField The vehicle's owner first name.
+     */
     public StringField $ownerFirstName;
     /**
-    * @var StringField The vehicle's owner surname.
-    */
+     * @var StringField The vehicle's owner surname.
+     */
     public StringField $ownerSurname;
     /**
-    * @var StringField The vehicle engine's displacement (cm3).
-    */
+     * @var StringField The vehicle engine's displacement (cm3).
+     */
     public StringField $p1;
     /**
-    * @var StringField The vehicle's maximum net power (kW).
-    */
+     * @var StringField The vehicle's maximum net power (kW).
+     */
     public StringField $p2;
     /**
-    * @var StringField The vehicle's fuel type or energy source.
-    */
+     * @var StringField The vehicle's fuel type or energy source.
+     */
     public StringField $p3;
     /**
-    * @var StringField The vehicle's administrative power (fiscal horsepower).
-    */
+     * @var StringField The vehicle's administrative power (fiscal horsepower).
+     */
     public StringField $p6;
     /**
-    * @var StringField The vehicle's power to weight ratio.
-    */
+     * @var StringField The vehicle's power to weight ratio.
+     */
     public StringField $q;
     /**
-    * @var StringField The vehicle's number of seats.
-    */
+     * @var StringField The vehicle's number of seats.
+     */
     public StringField $s1;
     /**
-    * @var StringField The vehicle's number of standing rooms (person).
-    */
+     * @var StringField The vehicle's number of standing rooms (person).
+     */
     public StringField $s2;
     /**
-    * @var StringField The vehicle's sound level (dB).
-    */
+     * @var StringField The vehicle's sound level (dB).
+     */
     public StringField $u1;
     /**
-    * @var StringField The vehicle engine's rotation speed (RPM).
-    */
+     * @var StringField The vehicle engine's rotation speed (RPM).
+     */
     public StringField $u2;
     /**
-    * @var StringField The vehicle's CO2 emission (g/km).
-    */
+     * @var StringField The vehicle's CO2 emission (g/km).
+     */
     public StringField $v7;
     /**
-    * @var StringField Next technical control date.
-    */
+     * @var StringField Next technical control date.
+     */
     public StringField $x1;
     /**
-    * @var StringField Amount of the regional proportional tax of the registration (in euros).
-    */
+     * @var StringField Amount of the regional proportional tax of the registration (in euros).
+     */
     public StringField $y1;
     /**
-    * @var StringField Amount of the additional parafiscal tax of the registration (in euros).
-    */
+     * @var StringField Amount of the additional parafiscal tax of the registration (in euros).
+     */
     public StringField $y2;
     /**
-    * @var StringField Amount of the additional CO2 tax of the registration (in euros).
-    */
+     * @var StringField Amount of the additional CO2 tax of the registration (in euros).
+     */
     public StringField $y3;
     /**
-    * @var StringField Amount of the fee for managing the registration (in euros).
-    */
+     * @var StringField Amount of the fee for managing the registration (in euros).
+     */
     public StringField $y4;
     /**
-    * @var StringField Amount of the fee for delivery of the registration certificate in euros.
-    */
+     * @var StringField Amount of the fee for delivery of the registration certificate in euros.
+     */
     public StringField $y5;
     /**
-    * @var StringField Total amount of registration fee to be paid in euros.
-    */
+     * @var StringField Total amount of registration fee to be paid in euros.
+     */
     public StringField $y6;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

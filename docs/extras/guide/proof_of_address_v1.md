@@ -43,7 +43,7 @@ Prediction
 :Locale: en; en; USD;
 :Issuer Name: PPL ELECTRIC UTILITIES
 :Issuer Company Registrations:
-:Issuer Address: 2 NORTH STH STREET CPC-GENN1 ALLENTOWN.PA 18101-1175
+:Issuer Address: 2 NORTH 9TH STREET CPC-GENN1 ALLENTOWN.PA 18101-1175
 :Recipient Name:
 :Recipient Company Registrations:
 :Recipient Address: 123 MAIN ST ANYTOWN,PA 18062
@@ -69,7 +69,7 @@ Page 0
 :Locale: en; en; USD;
 :Issuer Name: PPL ELECTRIC UTILITIES
 :Issuer Company Registrations:
-:Issuer Address: 2 NORTH STH STREET CPC-GENN1 ALLENTOWN.PA 18101-1175
+:Issuer Address: 2 NORTH 9TH STREET CPC-GENN1 ALLENTOWN.PA 18101-1175
 :Recipient Name:
 :Recipient Company Registrations:
 :Recipient Address: 123 MAIN ST ANYTOWN,PA 18062

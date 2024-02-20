@@ -14,44 +14,44 @@ use Mindee\Parsing\Standard\StringField;
 class IdCardV1Document extends Prediction
 {
     /**
-    * @var StringField The name of the issuing authority.
-    */
+     * @var StringField The name of the issuing authority.
+     */
     public StringField $authority;
     /**
-    * @var DateField The date of birth of the card holder.
-    */
+     * @var DateField The date of birth of the card holder.
+     */
     public DateField $birthDate;
     /**
-    * @var StringField The place of birth of the card holder.
-    */
+     * @var StringField The place of birth of the card holder.
+     */
     public StringField $birthPlace;
     /**
-    * @var DateField The expiry date of the identification card.
-    */
+     * @var DateField The expiry date of the identification card.
+     */
     public DateField $expiryDate;
     /**
-    * @var StringField The gender of the card holder.
-    */
+     * @var StringField The gender of the card holder.
+     */
     public StringField $gender;
     /**
-    * @var StringField[] The given name(s) of the card holder.
-    */
+     * @var StringField[] The given name(s) of the card holder.
+     */
     public array $givenNames;
     /**
-    * @var StringField The identification card number.
-    */
+     * @var StringField The identification card number.
+     */
     public StringField $idNumber;
     /**
-    * @var StringField Machine Readable Zone, first line
-    */
+     * @var StringField Machine Readable Zone, first line
+     */
     public StringField $mrz1;
     /**
-    * @var StringField Machine Readable Zone, second line
-    */
+     * @var StringField Machine Readable Zone, second line
+     */
     public StringField $mrz2;
     /**
-    * @var StringField The surname of the card holder.
-    */
+     * @var StringField The surname of the card holder.
+     */
     public StringField $surname;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
