@@ -1,5 +1,20 @@
 # Mindee PHP API Library Changelog
 
+## v1.2.0 - 2024-02-21
+### Changes
+* :sparkles: add support for International ID V2
+* :sparkles: add support for Resume V1
+* :sparkles: add support for EU Driver License
+
+### Fixes
+* :bug: fix display issue for rst columns that were exactly the length of a cell
+* :recycle: properly parse bytes, base64 & file inputs (see #23 )
+* :recycle: removed base64 coercion on most input types
+* :bug: fix mimetype being improperly assigned for most input types
+* :bug: fix an issue that prevented some errors from being displayed properly
+* :memo: update documentation
+
+
 ## v1.1.0 - 2024-01-30
 ### Changes
 * :arrow_up: update invoices to v4.4

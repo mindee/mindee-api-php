@@ -120,7 +120,6 @@ Complete details on the working of the library are available in the following gu
 * [PHP FR Carte Grise OCR](https://developers.mindee.com/docs/php-fr-carte-grise-ocr)
 * [PHP FR Carte Vitale OCR](https://developers.mindee.com/docs/php-fr-carte-vitale-ocr)
 * [PHP FR ID Card OCR](https://developers.mindee.com/docs/php-fr-id-card-ocr)
-* [PHP FR Petrol Receipts OCR](https://developers.mindee.com/docs/php-fr-petrol-receipts-ocr)
 * [PHP US Bank Check OCR](https://developers.mindee.com/docs/php-us-bank-checks-ocr)
 * [PHP US W9 OCR](https://developers.mindee.com/docs/php-us-w9-ocr)
 * [PHP US Driver License OCR](https://developers.mindee.com/docs/php-us-driver-license-ocr)
