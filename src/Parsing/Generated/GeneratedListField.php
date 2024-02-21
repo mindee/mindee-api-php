@@ -35,7 +35,7 @@ class GeneratedListField
             } else {
                 $valueStr = $value;
                 if (isset($valueStr['value'])) {
-                    $valueStr['value'] = (string) $valueStr['value'];
+                    $valueStr['value'] = strval($value['value']);
                 }
                 $this->values[] = new StringField($valueStr, $this->pageId);
             }

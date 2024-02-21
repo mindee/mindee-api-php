@@ -422,7 +422,7 @@ class Client
         string $queueId,
         ?Endpoint $endpoint = null
     ): AsyncPredictResponse {
-        $endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+        $endpoint = $endpoint ?? $this->constructOTSEndpoint(
             $predictionType,
         );
         return $this->makeParseQueuedRequest($predictionType, $queueId, $endpoint);

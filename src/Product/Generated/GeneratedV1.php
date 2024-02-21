@@ -33,7 +33,9 @@ class GeneratedV1 extends Inference
         $this->prediction = new GeneratedV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
-            $this->pages[] = new Page(GeneratedV1Page::class, $page);
+            if ($page['prediction']) {
+                $this->pages[] = new Page(GeneratedV1Page::class, $page);
+            }
         }
     }
 }
