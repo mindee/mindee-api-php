@@ -10,10 +10,10 @@ use Mindee\Parsing\Standard\PositionField;
 class GeneratedObjectField
 {
     /** @var integer|null Id of the page the object was found on */
-    private ?int $pageId;
+    public ?int $pageId;
 
     /** @var float|null Confidence with which the value was assessed */
-    private ?float $confidence;
+    public ?float $confidence;
 
     /** @var string|null Raw unprocessed value, as it was sent by the server */
     private ?string $rawValue;
@@ -68,7 +68,7 @@ class GeneratedObjectField
      * @param integer $level Level of indentation (times 2 spaces).
      * @return string ReSTructured-compliant string representation.
      */
-    private function strLevel(int $level = 0): string
+    public function strLevel(int $level = 0): string
     {
         $indent = "  " . str_repeat("  ", $level);
         $outStr = "";

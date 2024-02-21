@@ -10,10 +10,10 @@ use Mindee\Parsing\Standard\StringField;
 class GeneratedListField
 {
     /** @var integer|null Id of the page the object was found on */
-    private ?int $pageId;
+    public ?int $pageId;
 
     /** @var array List of values */
-    private array $values = [];
+    public array $values = [];
 
     /**
      * Constructor.
