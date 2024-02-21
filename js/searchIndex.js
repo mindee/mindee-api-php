@@ -621,6 +621,16 @@ Search.appendIndex(
             "summary": "Base\u0020constructor,\u0020mostly\u0020used\u0020for\u0020Mime\u0020type\u0020checking.",
             "url": "classes/Mindee-Input-Base64Input.html#method___construct"
         },                {
+            "fqsen": "\\Mindee\\Input\\Base64Input\u003A\u003AreadContents\u0028\u0029",
+            "name": "readContents",
+            "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
+            "url": "classes/Mindee-Input-Base64Input.html#method_readContents"
+        },                {
+            "fqsen": "\\Mindee\\Input\\Base64Input\u003A\u003A\u0024tempFile",
+            "name": "tempFile",
+            "summary": "",
+            "url": "classes/Mindee-Input-Base64Input.html#property_tempFile"
+        },                {
             "fqsen": "\\Mindee\\Input\\BytesInput",
             "name": "BytesInput",
             "summary": "Raw\u0020bytes\u0020input.",
@@ -630,6 +640,16 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Base\u0020constructor,\u0020mostly\u0020used\u0020for\u0020Mime\u0020type\u0020checking.",
             "url": "classes/Mindee-Input-BytesInput.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\BytesInput\u003A\u003AreadContents\u0028\u0029",
+            "name": "readContents",
+            "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
+            "url": "classes/Mindee-Input-BytesInput.html#method_readContents"
+        },                {
+            "fqsen": "\\Mindee\\Input\\BytesInput\u003A\u003A\u0024stream",
+            "name": "stream",
+            "summary": "",
+            "url": "classes/Mindee-Input-BytesInput.html#property_stream"
         },                {
             "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions",
             "name": "EnqueueAndParseMethodOptions",
@@ -680,6 +700,16 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Base\u0020constructor,\u0020mostly\u0020used\u0020for\u0020Mime\u0020type\u0020checking.",
             "url": "classes/Mindee-Input-FileInput.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003AreadContents\u0028\u0029",
+            "name": "readContents",
+            "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
+            "url": "classes/Mindee-Input-FileInput.html#method_readContents"
+        },                {
+            "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "",
+            "url": "classes/Mindee-Input-FileInput.html#property_file"
         },                {
             "fqsen": "\\Mindee\\Input\\InputSource",
             "name": "InputSource",
@@ -2106,6 +2136,126 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Custom-CustomV1Page.html#property_fields"
         },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1",
+            "name": "DriverLicenseV1",
+            "summary": "Inference\u0020prediction\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document",
+            "name": "DriverLicenseV1Document",
+            "summary": "Document\u0020data\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024address",
+            "name": "address",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_address"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024category",
+            "name": "category",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_category"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024countryCode",
+            "name": "countryCode",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_countryCode"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024dateOfBirth",
+            "name": "dateOfBirth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_dateOfBirth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024documentId",
+            "name": "documentId",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_documentId"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024expiryDate",
+            "name": "expiryDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_expiryDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024firstName",
+            "name": "firstName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_firstName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issueAuthority",
+            "name": "issueAuthority",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_issueAuthority"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issueDate",
+            "name": "issueDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_issueDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024lastName",
+            "name": "lastName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_lastName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024mrz",
+            "name": "mrz",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_mrz"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024placeOfBirth",
+            "name": "placeOfBirth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_placeOfBirth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page",
+            "name": "DriverLicenseV1Page",
+            "summary": "Page\u0020data\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A\u0024photo",
+            "name": "photo",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#property_photo"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A\u0024signature",
+            "name": "signature",
+            "summary": "",
+            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#property_signature"
+        },                {
             "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1",
             "name": "LicensePlateV1",
             "summary": "Inference\u0020prediction\u0020for\u0020License\u0020Plate,\u0020API\u0020version\u00201.",
@@ -3061,115 +3211,125 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV2Page.html#property_documentType"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1",
-            "name": "InternationalIdV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00201.",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html"
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2",
+            "name": "InternationalIdV2",
+            "summary": "Inference\u0020prediction\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00202.",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html#method___construct"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1\u003A\u003A\u0024endpointName",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2\u003A\u003A\u0024endpointName",
             "name": "endpointName",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html#property_endpointName"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2.html#property_endpointName"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1\u003A\u003A\u0024endpointVersion",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2\u003A\u003A\u0024endpointVersion",
             "name": "endpointVersion",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1.html#property_endpointVersion"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2.html#property_endpointVersion"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document",
-            "name": "InternationalIdV1Document",
-            "summary": "Document\u0020data\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00201.",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html"
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document",
+            "name": "InternationalIdV2Document",
+            "summary": "Document\u0020data\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00202.",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#method___construct"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A__toString\u0028\u0029",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#method___toString"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#method___toString"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024address",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024address",
             "name": "address",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_address"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_address"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024birthDate",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024birthDate",
             "name": "birthDate",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_birthDate"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_birthDate"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024birthPlace",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024birthPlace",
             "name": "birthPlace",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_birthPlace"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_birthPlace"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024countryOfIssue",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024countryOfIssue",
             "name": "countryOfIssue",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_countryOfIssue"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_countryOfIssue"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024documentNumber",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024documentNumber",
             "name": "documentNumber",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_documentNumber"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_documentNumber"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024documentType",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024documentType",
             "name": "documentType",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_documentType"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_documentType"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024expiryDate",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024expiryDate",
             "name": "expiryDate",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_expiryDate"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_expiryDate"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024givenNames",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024givenNames",
             "name": "givenNames",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_givenNames"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_givenNames"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024issueDate",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024issueDate",
             "name": "issueDate",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_issueDate"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_issueDate"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024mrz1",
-            "name": "mrz1",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024mrzLine1",
+            "name": "mrzLine1",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_mrz1"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_mrzLine1"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024mrz2",
-            "name": "mrz2",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024mrzLine2",
+            "name": "mrzLine2",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_mrz2"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_mrzLine2"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024mrz3",
-            "name": "mrz3",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024mrzLine3",
+            "name": "mrzLine3",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_mrz3"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_mrzLine3"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024nationality",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024nationality",
             "name": "nationality",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_nationality"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_nationality"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024sex",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024personalNumber",
+            "name": "personalNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_personalNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024sex",
             "name": "sex",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_sex"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_sex"
         },                {
-            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV1Document\u003A\u003A\u0024surnames",
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024stateOfIssue",
+            "name": "stateOfIssue",
+            "summary": "",
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_stateOfIssue"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A\u0024surnames",
             "name": "surnames",
             "summary": "",
-            "url": "classes/Mindee-Product-InternationalId-InternationalIdV1Document.html#property_surnames"
+            "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html#property_surnames"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4",
             "name": "InvoiceV4",
@@ -3831,6 +3991,466 @@ Search.appendIndex(
             "summary": "String\u0020representation.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5LineItems.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1",
+            "name": "ResumeV1",
+            "summary": "Inference\u0020prediction\u0020for\u0020Resume,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate",
+            "name": "ResumeV1Certificate",
+            "summary": "The\u0020list\u0020of\u0020certificates\u0020obtained\u0020by\u0020the\u0020candidate.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003A\u0024grade",
+            "name": "grade",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#property_grade"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003A\u0024provider",
+            "name": "provider",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#property_provider"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificate\u003A\u003A\u0024year",
+            "name": "year",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificate.html#property_year"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificates",
+            "name": "ResumeV1Certificates",
+            "summary": "The\u0020list\u0020of\u0020certificates\u0020obtained\u0020by\u0020the\u0020candidate.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificates.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificates\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificates.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificates\u003A\u003AcertificatesSeparator\u0028\u0029",
+            "name": "certificatesSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificates.html#method_certificatesSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Certificates\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Certificates.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document",
+            "name": "ResumeV1Document",
+            "summary": "Document\u0020data\u0020for\u0020Resume,\u0020API\u0020version\u00201.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024address",
+            "name": "address",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_address"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024certificates",
+            "name": "certificates",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_certificates"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024documentLanguage",
+            "name": "documentLanguage",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_documentLanguage"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024documentType",
+            "name": "documentType",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024education",
+            "name": "education",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_education"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024emailAddress",
+            "name": "emailAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_emailAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024givenNames",
+            "name": "givenNames",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_givenNames"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024hardSkills",
+            "name": "hardSkills",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_hardSkills"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024jobApplied",
+            "name": "jobApplied",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_jobApplied"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024languages",
+            "name": "languages",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_languages"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024nationality",
+            "name": "nationality",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_nationality"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024phoneNumber",
+            "name": "phoneNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_phoneNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024profession",
+            "name": "profession",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_profession"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024professionalExperiences",
+            "name": "professionalExperiences",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_professionalExperiences"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024socialNetworksUrls",
+            "name": "socialNetworksUrls",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_socialNetworksUrls"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024softSkills",
+            "name": "softSkills",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_softSkills"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A\u0024surnames",
+            "name": "surnames",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Document.html#property_surnames"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education",
+            "name": "ResumeV1Education",
+            "summary": "The\u0020list\u0020of\u0020the\u0020candidate\u0027s\u0020educational\u0020background.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024degreeDomain",
+            "name": "degreeDomain",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_degreeDomain"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024degreeType",
+            "name": "degreeType",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_degreeType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024endMonth",
+            "name": "endMonth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_endMonth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024endYear",
+            "name": "endYear",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_endYear"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024school",
+            "name": "school",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_school"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024startMonth",
+            "name": "startMonth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_startMonth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Education\u003A\u003A\u0024startYear",
+            "name": "startYear",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Education.html#property_startYear"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Educations",
+            "name": "ResumeV1Educations",
+            "summary": "The\u0020list\u0020of\u0020the\u0020candidate\u0027s\u0020educational\u0020background.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Educations.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Educations\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Educations.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Educations\u003A\u003AeducationSeparator\u0028\u0029",
+            "name": "educationSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Educations.html#method_educationSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Educations\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Educations.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language",
+            "name": "ResumeV1Language",
+            "summary": "The\u0020list\u0020of\u0020languages\u0020that\u0020the\u0020candidate\u0020is\u0020proficient\u0020in.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language\u003A\u003A\u0024language",
+            "name": "language",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html#property_language"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Language\u003A\u003A\u0024level",
+            "name": "level",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Language.html#property_level"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Languages",
+            "name": "ResumeV1Languages",
+            "summary": "The\u0020list\u0020of\u0020languages\u0020that\u0020the\u0020candidate\u0020is\u0020proficient\u0020in.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Languages.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Languages\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Languages.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Languages\u003A\u003AlanguagesSeparator\u0028\u0029",
+            "name": "languagesSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Languages.html#method_languagesSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Languages\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1Languages.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience",
+            "name": "ResumeV1ProfessionalExperience",
+            "summary": "The\u0020list\u0020of\u0020the\u0020candidate\u0027s\u0020professional\u0020experiences.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024contractType",
+            "name": "contractType",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_contractType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024department",
+            "name": "department",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_department"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024employer",
+            "name": "employer",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_employer"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024endMonth",
+            "name": "endMonth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_endMonth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024endYear",
+            "name": "endYear",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_endYear"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024role",
+            "name": "role",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_role"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024startMonth",
+            "name": "startMonth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_startMonth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024startYear",
+            "name": "startYear",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_startYear"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperiences",
+            "name": "ResumeV1ProfessionalExperiences",
+            "summary": "The\u0020list\u0020of\u0020the\u0020candidate\u0027s\u0020professional\u0020experiences.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperiences.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperiences\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperiences.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperiences\u003A\u003AprofessionalExperiencesSeparator\u0028\u0029",
+            "name": "professionalExperiencesSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperiences.html#method_professionalExperiencesSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperiences\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperiences.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl",
+            "name": "ResumeV1SocialNetworksUrl",
+            "summary": "The\u0020list\u0020of\u0020social\u0020network\u0020profiles\u0020of\u0020the\u0020candidate.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrl\u003A\u003A\u0024url",
+            "name": "url",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrl.html#property_url"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrls",
+            "name": "ResumeV1SocialNetworksUrls",
+            "summary": "The\u0020list\u0020of\u0020social\u0020network\u0020profiles\u0020of\u0020the\u0020candidate.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrls.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrls\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrls.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrls\u003A\u003AsocialNetworksUrlsSeparator\u0028\u0029",
+            "name": "socialNetworksUrlsSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrls.html#method_socialNetworksUrlsSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1SocialNetworksUrls\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Resume-ResumeV1SocialNetworksUrls.html#method___toString"
+        },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1",
             "name": "BankCheckV1",
             "summary": "Inference\u0020prediction\u0020for\u0020Bank\u0020Check,\u0020API\u0020version\u00201.",
@@ -4256,15 +4876,20 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-product-custom.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate",
-            "name": "LicensePlate",
+            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense",
+            "name": "DriverLicense",
             "summary": "",
-            "url": "namespaces/mindee-product-eu-licenseplate.html"
+            "url": "namespaces/mindee-product-eu-driverlicense.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu",
             "name": "Eu",
             "summary": "",
             "url": "namespaces/mindee-product-eu.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate",
+            "name": "LicensePlate",
+            "summary": "",
+            "url": "namespaces/mindee-product-eu-licenseplate.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument",
             "name": "FinancialDocument",
@@ -4330,6 +4955,11 @@ Search.appendIndex(
             "name": "Receipt",
             "summary": "",
             "url": "namespaces/mindee-product-receipt.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume",
+            "name": "Resume",
+            "summary": "",
+            "url": "namespaces/mindee-product-resume.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck",
             "name": "BankCheck",
