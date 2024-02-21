@@ -13,8 +13,8 @@ use Mindee\Parsing\Standard\PositionField;
 class MultiReceiptsDetectorV1Document extends Prediction
 {
     /**
-    * @var PositionField[] Positions of the receipts on the document.
-    */
+     * @var PositionField[] Positions of the receipts on the document.
+     */
     public array $receipts;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

@@ -11,12 +11,12 @@ use Mindee\Parsing\Standard\PositionField;
 class DriverLicenseV1Page extends DriverLicenseV1Document
 {
     /**
-    * @var PositionField Has a photo of the US driver license holder
-    */
+     * @var PositionField Has a photo of the US driver license holder
+     */
     public PositionField $photo;
     /**
-    * @var PositionField Has a signature of the US driver license holder
-    */
+     * @var PositionField Has a signature of the US driver license holder
+     */
     public PositionField $signature;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

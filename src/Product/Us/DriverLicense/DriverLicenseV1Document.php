@@ -14,72 +14,72 @@ use Mindee\Parsing\Standard\StringField;
 class DriverLicenseV1Document extends Prediction
 {
     /**
-    * @var StringField US driver license holders address
-    */
+     * @var StringField US driver license holders address
+     */
     public StringField $address;
     /**
-    * @var DateField US driver license holders date of birth
-    */
+     * @var DateField US driver license holders date of birth
+     */
     public DateField $dateOfBirth;
     /**
-    * @var StringField Document Discriminator Number of the US Driver License
-    */
+     * @var StringField Document Discriminator Number of the US Driver License
+     */
     public StringField $ddNumber;
     /**
-    * @var StringField US driver license holders class
-    */
+     * @var StringField US driver license holders class
+     */
     public StringField $dlClass;
     /**
-    * @var StringField ID number of the US Driver License.
-    */
+     * @var StringField ID number of the US Driver License.
+     */
     public StringField $driverLicenseId;
     /**
-    * @var StringField US driver license holders endorsements
-    */
+     * @var StringField US driver license holders endorsements
+     */
     public StringField $endorsements;
     /**
-    * @var DateField Date on which the documents expires.
-    */
+     * @var DateField Date on which the documents expires.
+     */
     public DateField $expiryDate;
     /**
-    * @var StringField US driver license holders eye colour
-    */
+     * @var StringField US driver license holders eye colour
+     */
     public StringField $eyeColor;
     /**
-    * @var StringField US driver license holders first name(s)
-    */
+     * @var StringField US driver license holders first name(s)
+     */
     public StringField $firstName;
     /**
-    * @var StringField US driver license holders hair colour
-    */
+     * @var StringField US driver license holders hair colour
+     */
     public StringField $hairColor;
     /**
-    * @var StringField US driver license holders hight
-    */
+     * @var StringField US driver license holders hight
+     */
     public StringField $height;
     /**
-    * @var DateField Date on which the documents was issued.
-    */
+     * @var DateField Date on which the documents was issued.
+     */
     public DateField $issuedDate;
     /**
-    * @var StringField US driver license holders last name
-    */
+     * @var StringField US driver license holders last name
+     */
     public StringField $lastName;
     /**
-    * @var StringField US driver license holders restrictions
-    */
+     * @var StringField US driver license holders restrictions
+     */
     public StringField $restrictions;
     /**
-    * @var StringField US driver license holders gender
-    */
+     * @var StringField US driver license holders gender
+     */
     public StringField $sex;
     /**
-    * @var StringField US State
-    */
+     * @var StringField US State
+     */
     public StringField $state;
     /**
-    * @var StringField US driver license holders weight
-    */
+     * @var StringField US driver license holders weight
+     */
     public StringField $weight;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

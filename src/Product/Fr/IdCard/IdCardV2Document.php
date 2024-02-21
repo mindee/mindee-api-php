@@ -14,64 +14,64 @@ use Mindee\Parsing\Standard\StringField;
 class IdCardV2Document extends Prediction
 {
     /**
-    * @var StringField The alternate name of the card holder.
-    */
+     * @var StringField The alternate name of the card holder.
+     */
     public StringField $alternateName;
     /**
-    * @var StringField The name of the issuing authority.
-    */
+     * @var StringField The name of the issuing authority.
+     */
     public StringField $authority;
     /**
-    * @var DateField The date of birth of the card holder.
-    */
+     * @var DateField The date of birth of the card holder.
+     */
     public DateField $birthDate;
     /**
-    * @var StringField The place of birth of the card holder.
-    */
+     * @var StringField The place of birth of the card holder.
+     */
     public StringField $birthPlace;
     /**
-    * @var StringField The card access number (CAN).
-    */
+     * @var StringField The card access number (CAN).
+     */
     public StringField $cardAccessNumber;
     /**
-    * @var StringField The document number.
-    */
+     * @var StringField The document number.
+     */
     public StringField $documentNumber;
     /**
-    * @var DateField The expiry date of the identification card.
-    */
+     * @var DateField The expiry date of the identification card.
+     */
     public DateField $expiryDate;
     /**
-    * @var StringField The gender of the card holder.
-    */
+     * @var StringField The gender of the card holder.
+     */
     public StringField $gender;
     /**
-    * @var StringField[] The given name(s) of the card holder.
-    */
+     * @var StringField[] The given name(s) of the card holder.
+     */
     public array $givenNames;
     /**
-    * @var DateField The date of issue of the identification card.
-    */
+     * @var DateField The date of issue of the identification card.
+     */
     public DateField $issueDate;
     /**
-    * @var StringField The Machine Readable Zone, first line.
-    */
+     * @var StringField The Machine Readable Zone, first line.
+     */
     public StringField $mrz1;
     /**
-    * @var StringField The Machine Readable Zone, second line.
-    */
+     * @var StringField The Machine Readable Zone, second line.
+     */
     public StringField $mrz2;
     /**
-    * @var StringField The Machine Readable Zone, third line.
-    */
+     * @var StringField The Machine Readable Zone, third line.
+     */
     public StringField $mrz3;
     /**
-    * @var StringField The nationality of the card holder.
-    */
+     * @var StringField The nationality of the card holder.
+     */
     public StringField $nationality;
     /**
-    * @var StringField The surname of the card holder.
-    */
+     * @var StringField The surname of the card holder.
+     */
     public StringField $surname;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

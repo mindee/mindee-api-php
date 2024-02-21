@@ -14,20 +14,20 @@ use Mindee\Parsing\Standard\StringField;
 class CarteVitaleV1Document extends Prediction
 {
     /**
-    * @var StringField[] The given name(s) of the card holder.
-    */
+     * @var StringField[] The given name(s) of the card holder.
+     */
     public array $givenNames;
     /**
-    * @var DateField The date the card was issued.
-    */
+     * @var DateField The date the card was issued.
+     */
     public DateField $issuanceDate;
     /**
-    * @var StringField The Social Security Number (Numéro de Sécurité Sociale) of the card holder
-    */
+     * @var StringField The Social Security Number (Numéro de Sécurité Sociale) of the card holder
+     */
     public StringField $socialSecurity;
     /**
-    * @var StringField The surname of the card holder.
-    */
+     * @var StringField The surname of the card holder.
+     */
     public StringField $surname;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

@@ -11,8 +11,8 @@ use Mindee\Parsing\Standard\PositionField;
 class CropperV1Page extends CropperV1Document
 {
     /**
-    * @var PositionField[] List of documents found in the image.
-    */
+     * @var PositionField[] List of documents found in the image.
+     */
     public array $cropping;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

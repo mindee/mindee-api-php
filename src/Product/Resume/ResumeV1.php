@@ -1,22 +1,22 @@
 <?php
 
-/** International ID V1. */
+/** Resume V1. */
 
-namespace Mindee\Product\InternationalId;
+namespace Mindee\Product\Resume;
 
 use Mindee\Parsing\Common\Inference;
 use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for International ID, API version 1.
+ * Inference prediction for Resume, API version 1.
  */
-class InternationalIdV1 extends Inference
+class ResumeV1 extends Inference
 {
     /**
      * @var string Name of the endpoint.
      */
-    public static string $endpointName = "international_id";
+    public static string $endpointName = "resume";
     /**
      * @var string Version of the endpoint.
      */
@@ -28,11 +28,11 @@ class InternationalIdV1 extends Inference
     public function __construct(array $rawPrediction)
     {
         parent::__construct($rawPrediction);
-        $this->prediction = new InternationalIdV1Document($rawPrediction['prediction']);
+        $this->prediction = new ResumeV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
             try {
-                $this->pages[] = new Page(InternationalIdV1Document::class, $page);
+                $this->pages[] = new Page(ResumeV1Document::class, $page);
             } catch (MindeeUnsetException $ignored) {
             }
         }

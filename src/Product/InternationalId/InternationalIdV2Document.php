@@ -6,72 +6,81 @@ use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\ClassificationField;
+use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for International ID, API version 1.
+ * Document data for International ID, API version 2.
  */
-class InternationalIdV1Document extends Prediction
+class InternationalIdV2Document extends Prediction
 {
     /**
-    * @var StringField The physical location of the document holder's residence.
-    */
+     * @var StringField The physical address of the document holder.
+     */
     public StringField $address;
     /**
-    * @var StringField The date of birth of the document holder.
-    */
-    public StringField $birthDate;
+     * @var DateField The date of birth of the document holder.
+     */
+    public DateField $birthDate;
     /**
-    * @var StringField The location where the document holder was born.
-    */
+     * @var StringField The place of birth of the document holder.
+     */
     public StringField $birthPlace;
     /**
-    * @var StringField The country that issued the identification document.
-    */
+     * @var StringField The country where the document was issued.
+     */
     public StringField $countryOfIssue;
     /**
-    * @var StringField The unique identifier assigned to the identification document.
-    */
+     * @var StringField The unique identifier assigned to the document.
+     */
     public StringField $documentNumber;
     /**
-    * @var ClassificationField The type of identification document being used.
-    */
+     * @var ClassificationField The type of personal identification document.
+     */
     public ClassificationField $documentType;
     /**
-    * @var StringField The date when the document will no longer be valid for use.
-    */
-    public StringField $expiryDate;
+     * @var DateField The date when the document becomes invalid.
+     */
+    public DateField $expiryDate;
     /**
-    * @var StringField[] The first names or given names of the document holder.
-    */
+     * @var StringField[] The list of the document holder's given names.
+     */
     public array $givenNames;
     /**
-    * @var StringField The date when the document was issued.
-    */
-    public StringField $issueDate;
+     * @var DateField The date when the document was issued.
+     */
+    public DateField $issueDate;
     /**
-    * @var StringField First line of information in a standardized format for easy machine reading and processing.
-    */
-    public StringField $mrz1;
+     * @var StringField The Machine Readable Zone, first line.
+     */
+    public StringField $mrzLine1;
     /**
-    * @var StringField Second line of information in a standardized format for easy machine reading and processing.
-    */
-    public StringField $mrz2;
+     * @var StringField The Machine Readable Zone, second line.
+     */
+    public StringField $mrzLine2;
     /**
-    * @var StringField Third line of information in a standardized format for easy machine reading and processing.
-    */
-    public StringField $mrz3;
+     * @var StringField The Machine Readable Zone, third line.
+     */
+    public StringField $mrzLine3;
     /**
-    * @var StringField Indicates the country of citizenship or nationality of the document holder.
-    */
+     * @var StringField The country of citizenship of the document holder.
+     */
     public StringField $nationality;
     /**
-    * @var StringField The document holder's biological sex, such as male or female.
-    */
+     * @var StringField The unique identifier assigned to the document holder.
+     */
+    public StringField $personalNumber;
+    /**
+     * @var StringField The biological sex of the document holder.
+     */
     public StringField $sex;
     /**
-    * @var StringField[] The surnames of the document holder.
-    */
+     * @var StringField The state or territory where the document was issued.
+     */
+    public StringField $stateOfIssue;
+    /**
+     * @var StringField[] The list of the document holder's family names.
+     */
     public array $surnames;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.
@@ -90,7 +99,7 @@ class InternationalIdV1Document extends Prediction
         if (!isset($rawPrediction["birth_date"])) {
             throw new MindeeUnsetException();
         }
-        $this->birthDate = new StringField(
+        $this->birthDate = new DateField(
             $rawPrediction["birth_date"],
             $pageId
         );
@@ -125,7 +134,7 @@ class InternationalIdV1Document extends Prediction
         if (!isset($rawPrediction["expiry_date"])) {
             throw new MindeeUnsetException();
         }
-        $this->expiryDate = new StringField(
+        $this->expiryDate = new DateField(
             $rawPrediction["expiry_date"],
             $pageId
         );
@@ -139,29 +148,29 @@ class InternationalIdV1Document extends Prediction
         if (!isset($rawPrediction["issue_date"])) {
             throw new MindeeUnsetException();
         }
-        $this->issueDate = new StringField(
+        $this->issueDate = new DateField(
             $rawPrediction["issue_date"],
             $pageId
         );
-        if (!isset($rawPrediction["mrz1"])) {
+        if (!isset($rawPrediction["mrz_line1"])) {
             throw new MindeeUnsetException();
         }
-        $this->mrz1 = new StringField(
-            $rawPrediction["mrz1"],
+        $this->mrzLine1 = new StringField(
+            $rawPrediction["mrz_line1"],
             $pageId
         );
-        if (!isset($rawPrediction["mrz2"])) {
+        if (!isset($rawPrediction["mrz_line2"])) {
             throw new MindeeUnsetException();
         }
-        $this->mrz2 = new StringField(
-            $rawPrediction["mrz2"],
+        $this->mrzLine2 = new StringField(
+            $rawPrediction["mrz_line2"],
             $pageId
         );
-        if (!isset($rawPrediction["mrz3"])) {
+        if (!isset($rawPrediction["mrz_line3"])) {
             throw new MindeeUnsetException();
         }
-        $this->mrz3 = new StringField(
-            $rawPrediction["mrz3"],
+        $this->mrzLine3 = new StringField(
+            $rawPrediction["mrz_line3"],
             $pageId
         );
         if (!isset($rawPrediction["nationality"])) {
@@ -171,11 +180,25 @@ class InternationalIdV1Document extends Prediction
             $rawPrediction["nationality"],
             $pageId
         );
+        if (!isset($rawPrediction["personal_number"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->personalNumber = new StringField(
+            $rawPrediction["personal_number"],
+            $pageId
+        );
         if (!isset($rawPrediction["sex"])) {
             throw new MindeeUnsetException();
         }
         $this->sex = new StringField(
             $rawPrediction["sex"],
+            $pageId
+        );
+        if (!isset($rawPrediction["state_of_issue"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->stateOfIssue = new StringField(
+            $rawPrediction["state_of_issue"],
             $pageId
         );
         if (!isset($rawPrediction["surnames"])) {
@@ -203,19 +226,21 @@ class InternationalIdV1Document extends Prediction
 
         $outStr = ":Document Type: $this->documentType
 :Document Number: $this->documentNumber
-:Country of Issue: $this->countryOfIssue
 :Surnames: $surnames
 :Given Names: $givenNames
-:Gender: $this->sex
-:Birth date: $this->birthDate
+:Sex: $this->sex
+:Birth Date: $this->birthDate
 :Birth Place: $this->birthPlace
 :Nationality: $this->nationality
+:Personal Number: $this->personalNumber
+:Country of Issue: $this->countryOfIssue
+:State of Issue: $this->stateOfIssue
 :Issue Date: $this->issueDate
-:Expiry Date: $this->expiryDate
+:Expiration Date: $this->expiryDate
 :Address: $this->address
-:Machine Readable Zone Line 1: $this->mrz1
-:Machine Readable Zone Line 2: $this->mrz2
-:Machine Readable Zone Line 3: $this->mrz3
+:MRZ Line 1: $this->mrzLine1
+:MRZ Line 2: $this->mrzLine2
+:MRZ Line 3: $this->mrzLine3
 ";
         return SummaryHelper::cleanOutString($outStr);
     }

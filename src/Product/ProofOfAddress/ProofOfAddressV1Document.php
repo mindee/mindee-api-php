@@ -16,40 +16,40 @@ use Mindee\Parsing\Standard\StringField;
 class ProofOfAddressV1Document extends Prediction
 {
     /**
-    * @var DateField The date the document was issued.
-    */
+     * @var DateField The date the document was issued.
+     */
     public DateField $date;
     /**
-    * @var DateField[] List of dates found on the document.
-    */
+     * @var DateField[] List of dates found on the document.
+     */
     public array $dates;
     /**
-    * @var StringField The address of the document's issuer.
-    */
+     * @var StringField The address of the document's issuer.
+     */
     public StringField $issuerAddress;
     /**
-    * @var CompanyRegistrationField[] List of company registrations found for the issuer.
-    */
+     * @var CompanyRegistrationField[] List of company registrations found for the issuer.
+     */
     public array $issuerCompanyRegistration;
     /**
-    * @var StringField The name of the person or company issuing the document.
-    */
+     * @var StringField The name of the person or company issuing the document.
+     */
     public StringField $issuerName;
     /**
-    * @var LocaleField The locale detected on the document.
-    */
+     * @var LocaleField The locale detected on the document.
+     */
     public LocaleField $locale;
     /**
-    * @var StringField The address of the recipient.
-    */
+     * @var StringField The address of the recipient.
+     */
     public StringField $recipientAddress;
     /**
-    * @var CompanyRegistrationField[] List of company registrations found for the recipient.
-    */
+     * @var CompanyRegistrationField[] List of company registrations found for the recipient.
+     */
     public array $recipientCompanyRegistration;
     /**
-    * @var StringField The name of the person or company receiving the document.
-    */
+     * @var StringField The name of the person or company receiving the document.
+     */
     public StringField $recipientName;
     /**
      * @param array        $rawPrediction Raw prediction from HTTP response.

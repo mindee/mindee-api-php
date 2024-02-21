@@ -50,7 +50,7 @@ Prediction
 :Date Of Birth: 1957-02-01
 :Restrictions: NONE
 :Endorsements: NONE
-:Class:
+:Driver License Class: D
 :Sex: M
 :Height: 5-08
 :Weight: 185
@@ -75,7 +75,7 @@ Page 0
 :Date Of Birth: 1957-02-01
 :Restrictions: NONE
 :Endorsements: NONE
-:Class:
+:Driver License Class: D
 :Sex: M
 :Height: 5-08
 :Weight: 185
@@ -264,4 +264,4 @@ echo $result->document->inference->prediction->weight->value;
 ```
 
 # Questions?
-[Join our Slack](https://join.slack.com/t/mindee-community/shared_invite/zt-1jv6nawjq-FDgFcF2T5CmMmRpl9LLptw)
+[Join our Slack](https://join.slack.com/t/mindee-community/shared_invite/zt-2d0ds7dtz-DPAF81ZqTy20chsYpQBW5g)

@@ -15,32 +15,32 @@ class FinancialDocumentV1LineItem
     use FieldConfidenceMixin;
 
     /**
-    * @var string The item description.
-    */
+     * @var string The item description.
+     */
     public ?string $description;
     /**
-    * @var string The product code referring to the item.
-    */
+     * @var string The product code referring to the item.
+     */
     public ?string $productCode;
     /**
-    * @var float The item quantity
-    */
+     * @var float The item quantity
+     */
     public ?float $quantity;
     /**
-    * @var float The item tax amount.
-    */
+     * @var float The item tax amount.
+     */
     public ?float $taxAmount;
     /**
-    * @var float The item tax rate in percentage.
-    */
+     * @var float The item tax rate in percentage.
+     */
     public ?float $taxRate;
     /**
-    * @var float The item total amount.
-    */
+     * @var float The item total amount.
+     */
     public ?float $totalAmount;
     /**
-    * @var float The item unit price.
-    */
+     * @var float The item unit price.
+     */
     public ?float $unitPrice;
 
     /**
@@ -51,23 +51,23 @@ class FinancialDocumentV1LineItem
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->description = $rawPrediction["description"];
-        $this->productCode = $rawPrediction["product_code"];
+        $this->description = $rawPrediction["description"] ?? null;
+        $this->productCode = $rawPrediction["product_code"] ?? null;
         $this->quantity = isset($rawPrediction["quantity"]) ?
-            number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
+        null;
         $this->taxAmount = isset($rawPrediction["tax_amount"]) ?
-            number_format(floatval($rawPrediction["tax_amount"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["tax_amount"]), 2, ".", "") :
+        null;
         $this->taxRate = isset($rawPrediction["tax_rate"]) ?
-            number_format(floatval($rawPrediction["tax_rate"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["tax_rate"]), 2, ".", "") :
+        null;
         $this->totalAmount = isset($rawPrediction["total_amount"]) ?
-            number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
+        null;
         $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-            number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
+        null;
     }
 
     /**

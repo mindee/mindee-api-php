@@ -15,20 +15,20 @@ class ReceiptV5LineItem
     use FieldConfidenceMixin;
 
     /**
-    * @var string The item description.
-    */
+     * @var string The item description.
+     */
     public ?string $description;
     /**
-    * @var float The item quantity.
-    */
+     * @var float The item quantity.
+     */
     public ?float $quantity;
     /**
-    * @var float The item total amount.
-    */
+     * @var float The item total amount.
+     */
     public ?float $totalAmount;
     /**
-    * @var float The item unit price.
-    */
+     * @var float The item unit price.
+     */
     public ?float $unitPrice;
 
     /**
@@ -39,16 +39,16 @@ class ReceiptV5LineItem
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->description = $rawPrediction["description"];
+        $this->description = $rawPrediction["description"] ?? null;
         $this->quantity = isset($rawPrediction["quantity"]) ?
-            number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
+        null;
         $this->totalAmount = isset($rawPrediction["total_amount"]) ?
-            number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
+        null;
         $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-            number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
-            null;
+        number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
+        null;
     }
 
     /**
