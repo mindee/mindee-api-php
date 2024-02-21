@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * The list of values that represent the educational background of an individual.
+ * The list of the candidate's educational background.
  */
 class ResumeV1Education
 {
@@ -15,23 +15,23 @@ class ResumeV1Education
     use FieldConfidenceMixin;
 
     /**
-     * @var string The area of study or specialization pursued by an individual in their educational background.
+     * @var string The area of study or specialization.
      */
     public ?string $degreeDomain;
     /**
-     * @var string The type of degree obtained by the individual, such as Bachelor's, Master's, or Doctorate.
+     * @var string The type of degree obtained, such as Bachelor's, Master's, or Doctorate.
      */
     public ?string $degreeType;
     /**
-     * @var string The month when the education program or course was completed or is expected to be completed.
+     * @var string The month when the education program or course was completed.
      */
     public ?string $endMonth;
     /**
-     * @var string The year when the education program or course was completed or is expected to be completed.
+     * @var string The year when the education program or course was completed.
      */
     public ?string $endYear;
     /**
-     * @var string The name of the school the individual went to.
+     * @var string The name of the school.
      */
     public ?string $school;
     /**

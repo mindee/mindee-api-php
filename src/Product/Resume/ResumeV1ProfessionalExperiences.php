@@ -3,7 +3,7 @@
 namespace Mindee\Product\Resume;
 
 /**
- * The list of values that represent the professional experiences of an individual in their global resume.
+ * The list of the candidate's professional experiences.
  */
 class ResumeV1ProfessionalExperiences extends \ArrayObject
 {

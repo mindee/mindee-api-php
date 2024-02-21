@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * The list of values that represent the professional experiences of an individual in their global resume.
+ * The list of the candidate's professional experiences.
  */
 class ResumeV1ProfessionalExperience
 {
@@ -15,36 +15,35 @@ class ResumeV1ProfessionalExperience
     use FieldConfidenceMixin;
 
     /**
-     * @var string The type of contract for a professional experience. Possible values: 'Full-Time', 'Part-Time',
-     * 'Internship' and 'Freelance'.
+     * @var string The type of contract for the professional experience.
      */
     public ?string $contractType;
     /**
-     * @var string The specific department or division within a company where the professional experience was gained.
+     * @var string The specific department or division within the company.
      */
     public ?string $department;
     /**
-     * @var string The name of the company or organization where the candidate has worked.
+     * @var string The name of the company or organization.
      */
     public ?string $employer;
     /**
-     * @var string The month when a professional experience ended.
+     * @var string The month when the professional experience ended.
      */
     public ?string $endMonth;
     /**
-     * @var string The year when a professional experience ended.
+     * @var string The year when the professional experience ended.
      */
     public ?string $endYear;
     /**
-     * @var string The position or job title held by the individual in their previous work experience.
+     * @var string The position or job title held by the candidate.
      */
     public ?string $role;
     /**
-     * @var string The month when a professional experience began.
+     * @var string The month when the professional experience began.
      */
     public ?string $startMonth;
     /**
-     * @var string The year when a professional experience began.
+     * @var string The year when the professional experience began.
      */
     public ?string $startYear;
 

@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * The list of languages that a person is proficient in, as stated in their resume.
+ * The list of languages that the candidate is proficient in.
  */
 class ResumeV1Language
 {
@@ -15,11 +15,11 @@ class ResumeV1Language
     use FieldConfidenceMixin;
 
     /**
-     * @var string The language ISO 639 code.
+     * @var string The language's ISO 639 code.
      */
     public ?string $language;
     /**
-     * @var string The level for the language. Possible values: 'Fluent', 'Proficient', 'Intermediate' and 'Beginner'.
+     * @var string The candidate's level for the language.
      */
     public ?string $level;
 

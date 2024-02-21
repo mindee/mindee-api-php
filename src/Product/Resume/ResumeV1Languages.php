@@ -3,7 +3,7 @@
 namespace Mindee\Product\Resume;
 
 /**
- * The list of languages that a person is proficient in, as stated in their resume.
+ * The list of languages that the candidate is proficient in.
  */
 class ResumeV1Languages extends \ArrayObject
 {

@@ -3,7 +3,7 @@
 namespace Mindee\Product\Resume;
 
 /**
- * The list of URLs for social network profiles of the person.
+ * The list of social network profiles of the candidate.
  */
 class ResumeV1SocialNetworksUrls extends \ArrayObject
 {

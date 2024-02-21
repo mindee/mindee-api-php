@@ -34,7 +34,6 @@ class ResumeV1Test extends TestCase
     {
         $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->documentLanguage->value);
-        $this->assertNull($prediction->documentType->value);
         $this->assertEquals(0, count($prediction->givenNames));
         $this->assertEquals(0, count($prediction->surnames));
         $this->assertNull($prediction->nationality->value);

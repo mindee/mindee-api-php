@@ -3,7 +3,7 @@
 namespace Mindee\Product\Resume;
 
 /**
- * The list of values that represent the educational background of an individual.
+ * The list of the candidate's educational background.
  */
 class ResumeV1Educations extends \ArrayObject
 {

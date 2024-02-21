@@ -87,7 +87,7 @@ Prediction
   +-----------------+------------+---------------------------+-----------+----------+----------------------+-------------+------------+
   | Contract Type   | Department | Employer                  | End Month | End Year | Role                 | Start Month | Start Year |
   +=================+============+===========================+===========+==========+======================+=============+============+
-  | Full-Time       |            | Luna Web Design, New Y... | 05        | 2019     | Web Developer        | 09          | 2015       |
+  | Full-Time       |            | Luna Web Design, New York | 05        | 2019     | Web Developer        | 09          | 2015       |
   +-----------------+------------+---------------------------+-----------+----------+----------------------+-------------+------------+
 :Certificates:
   +------------+--------------------------------+---------------------------+------+
@@ -120,6 +120,12 @@ A typical `BaseField` object will have the following attributes:
 
 Aside from the previous attributes, all basic fields have access to a custom `__toString` method that can be used to print their value as a string.
 
+
+### ClassificationField
+The classification field `ClassificationField` does not implement all the basic `BaseField` attributes. It only implements **value**, **confidence** and **pageId**.
+
+> Note: a classification field's `value is always a `string`.
+
 ### StringField
 The text field `StringField` only has one constraint: its **value** is an optional `?string`.
 
@@ -132,62 +138,62 @@ The list of certificates obtained by the candidate.
 A `ResumeV1Certificate` implements the following attributes:
 
 * **grade** (`string`): The grade obtained for the certificate.
-* **name** (`string`): The name of certifications obtained by the individual.
-* **provider** (`string`): The organization or institution that issued the certificates listed in the document.
+* **name** (`string`): The name of certification.
+* **provider** (`string`): The organization or institution that issued the certificate.
 * **year** (`string`): The year when a certificate was issued or received.
 Fields which are specific to this product; they are not used in any other product.
 
 ### Education Field
-The list of values that represent the educational background of an individual.
+The list of the candidate's educational background.
 
 A `ResumeV1Education` implements the following attributes:
 
-* **degreeDomain** (`string`): The area of study or specialization pursued by an individual in their educational background.
-* **degreeType** (`string`): The type of degree obtained by the individual, such as Bachelor's, Master's, or Doctorate.
-* **endMonth** (`string`): The month when the education program or course was completed or is expected to be completed.
-* **endYear** (`string`): The year when the education program or course was completed or is expected to be completed.
-* **school** (`string`): The name of the school the individual went to.
+* **degreeDomain** (`string`): The area of study or specialization.
+* **degreeType** (`string`): The type of degree obtained, such as Bachelor's, Master's, or Doctorate.
+* **endMonth** (`string`): The month when the education program or course was completed.
+* **endYear** (`string`): The year when the education program or course was completed.
+* **school** (`string`): The name of the school.
 * **startMonth** (`string`): The month when the education program or course began.
 * **startYear** (`string`): The year when the education program or course began.
 Fields which are specific to this product; they are not used in any other product.
 
 ### Languages Field
-The list of languages that a person is proficient in, as stated in their resume.
+The list of languages that the candidate is proficient in.
 
 A `ResumeV1Language` implements the following attributes:
 
-* **language** (`string`): The language ISO 639 code.
-* **level** (`string`): The level for the language. Possible values: 'Fluent', 'Proficient', 'Intermediate' and 'Beginner'.
+* **language** (`string`): The language's ISO 639 code.
+* **level** (`string`): The candidate's level for the language.
 Fields which are specific to this product; they are not used in any other product.
 
 ### Professional Experiences Field
-The list of values that represent the professional experiences of an individual in their global resume.
+The list of the candidate's professional experiences.
 
 A `ResumeV1ProfessionalExperience` implements the following attributes:
 
-* **contractType** (`string`): The type of contract for a professional experience. Possible values: 'Full-Time', 'Part-Time', 'Internship' and 'Freelance'.
-* **department** (`string`): The specific department or division within a company where the professional experience was gained.
-* **employer** (`string`): The name of the company or organization where the candidate has worked.
-* **endMonth** (`string`): The month when a professional experience ended.
-* **endYear** (`string`): The year when a professional experience ended.
-* **role** (`string`): The position or job title held by the individual in their previous work experience.
-* **startMonth** (`string`): The month when a professional experience began.
-* **startYear** (`string`): The year when a professional experience began.
+* **contractType** (`string`): The type of contract for the professional experience.
+* **department** (`string`): The specific department or division within the company.
+* **employer** (`string`): The name of the company or organization.
+* **endMonth** (`string`): The month when the professional experience ended.
+* **endYear** (`string`): The year when the professional experience ended.
+* **role** (`string`): The position or job title held by the candidate.
+* **startMonth** (`string`): The month when the professional experience began.
+* **startYear** (`string`): The year when the professional experience began.
 Fields which are specific to this product; they are not used in any other product.
 
 ### Social Networks Field
-The list of URLs for social network profiles of the person.
+The list of social network profiles of the candidate.
 
 A `ResumeV1SocialNetworksUrl` implements the following attributes:
 
-* **name** (`string`): The name of of the social media concerned.
-* **url** (`string`): The URL of the profile for this particular social network.
+* **name** (`string`): The name of the social network.
+* **url** (`string`): The URL of the social network.
 
 # Attributes
 The following fields are extracted for Resume V1:
 
 ## Address
-**address** : The location information of the person, including city, state, and country.
+**address** : The location information of the candidate, including city, state, and country.
 
 ```php
 echo $result->document->inference->prediction->address->value;
@@ -211,14 +217,14 @@ echo $result->document->inference->prediction->documentLanguage->value;
 ```
 
 ## Document Type
-**documentType** : The type of the document sent, possible values being RESUME, MOTIVATION_LETTER and RECOMMENDATION_LETTER.
+**documentType** : The type of the document sent.
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
 ```
 
 ## Education
-**education** (List[[ResumeV1Education](#education-field)]): The list of values that represent the educational background of an individual.
+**education** (List[[ResumeV1Education](#education-field)]): The list of the candidate's educational background.
 
 ```php
 foreach ($result->document->inference->prediction->education as $educationElem)
@@ -235,7 +241,7 @@ echo $result->document->inference->prediction->emailAddress->value;
 ```
 
 ## Given Names
-**givenNames** : The list of names that represent a person's first or given names.
+**givenNames** : The candidate's first or given names.
 
 ```php
 foreach ($result->document->inference->prediction->givenNames as $givenNamesElem)
@@ -245,7 +251,7 @@ foreach ($result->document->inference->prediction->givenNames as $givenNamesElem
 ```
 
 ## Hard Skills
-**hardSkills** : The list of specific technical abilities and knowledge mentioned in a resume.
+**hardSkills** : The list of the candidate's technical abilities and knowledge.
 
 ```php
 foreach ($result->document->inference->prediction->hardSkills as $hardSkillsElem)
@@ -255,14 +261,14 @@ foreach ($result->document->inference->prediction->hardSkills as $hardSkillsElem
 ```
 
 ## Job Applied
-**jobApplied** : The specific industry or job role that the applicant is applying for.
+**jobApplied** : The position that the candidate is applying for.
 
 ```php
 echo $result->document->inference->prediction->jobApplied->value;
 ```
 
 ## Languages
-**languages** (List[[ResumeV1Language](#languages-field)]): The list of languages that a person is proficient in, as stated in their resume.
+**languages** (List[[ResumeV1Language](#languages-field)]): The list of languages that the candidate is proficient in.
 
 ```php
 foreach ($result->document->inference->prediction->languages as $languagesElem)
@@ -272,7 +278,7 @@ foreach ($result->document->inference->prediction->languages as $languagesElem)
 ```
 
 ## Nationality
-**nationality** : The ISO 3166 code for the country of citizenship or origin of the person.
+**nationality** : The ISO 3166 code for the country of citizenship of the candidate.
 
 ```php
 echo $result->document->inference->prediction->nationality->value;
@@ -286,14 +292,14 @@ echo $result->document->inference->prediction->phoneNumber->value;
 ```
 
 ## Profession
-**profession** : The area of expertise or specialization in which the individual has professional experience and qualifications.
+**profession** : The candidate's current profession.
 
 ```php
 echo $result->document->inference->prediction->profession->value;
 ```
 
 ## Professional Experiences
-**professionalExperiences** (List[[ResumeV1ProfessionalExperience](#professional-experiences-field)]): The list of values that represent the professional experiences of an individual in their global resume.
+**professionalExperiences** (List[[ResumeV1ProfessionalExperience](#professional-experiences-field)]): The list of the candidate's professional experiences.
 
 ```php
 foreach ($result->document->inference->prediction->professionalExperiences as $professionalExperiencesElem)
@@ -303,7 +309,7 @@ foreach ($result->document->inference->prediction->professionalExperiences as $p
 ```
 
 ## Social Networks
-**socialNetworksUrls** (List[[ResumeV1SocialNetworksUrl](#social-networks-field)]): The list of URLs for social network profiles of the person.
+**socialNetworksUrls** (List[[ResumeV1SocialNetworksUrl](#social-networks-field)]): The list of social network profiles of the candidate.
 
 ```php
 foreach ($result->document->inference->prediction->socialNetworksUrls as $socialNetworksUrlsElem)
@@ -313,7 +319,7 @@ foreach ($result->document->inference->prediction->socialNetworksUrls as $social
 ```
 
 ## Soft Skills
-**softSkills** : The list of values that represent a person's interpersonal and communication abilities in a global resume.
+**softSkills** : The list of the candidate's interpersonal and communication abilities.
 
 ```php
 foreach ($result->document->inference->prediction->softSkills as $softSkillsElem)
@@ -323,7 +329,7 @@ foreach ($result->document->inference->prediction->softSkills as $softSkillsElem
 ```
 
 ## Surnames
-**surnames** : The list of last names provided in a resume document.
+**surnames** : The candidate's last names.
 
 ```php
 foreach ($result->document->inference->prediction->surnames as $surnamesElem)
@@ -333,4 +339,4 @@ foreach ($result->document->inference->prediction->surnames as $surnamesElem)
 ```
 
 # Questions?
-[Join our Slack](https://join.slack.com/t/mindee-community/shared_invite/zt-1jv6nawjq-FDgFcF2T5CmMmRpl9LLptw)
+[Join our Slack](https://join.slack.com/t/mindee-community/shared_invite/zt-2d0ds7dtz-DPAF81ZqTy20chsYpQBW5g)

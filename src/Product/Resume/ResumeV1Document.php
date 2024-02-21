@@ -5,6 +5,7 @@ namespace Mindee\Product\Resume;
 use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
+use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
@@ -13,7 +14,7 @@ use Mindee\Parsing\Standard\StringField;
 class ResumeV1Document extends Prediction
 {
     /**
-     * @var StringField The location information of the person, including city, state, and country.
+     * @var StringField The location information of the candidate, including city, state, and country.
      */
     public StringField $address;
     /**
@@ -25,12 +26,11 @@ class ResumeV1Document extends Prediction
      */
     public StringField $documentLanguage;
     /**
-     * @var StringField The type of the document sent, possible values being RESUME, MOTIVATION_LETTER and
-     * RECOMMENDATION_LETTER.
+     * @var ClassificationField The type of the document sent.
      */
-    public StringField $documentType;
+    public ClassificationField $documentType;
     /**
-     * @var ResumeV1Educations The list of values that represent the educational background of an individual.
+     * @var ResumeV1Educations The list of the candidate's educational background.
      */
     public ResumeV1Educations $education;
     /**
@@ -38,23 +38,23 @@ class ResumeV1Document extends Prediction
      */
     public StringField $emailAddress;
     /**
-     * @var StringField[] The list of names that represent a person's first or given names.
+     * @var StringField[] The candidate's first or given names.
      */
     public array $givenNames;
     /**
-     * @var StringField[] The list of specific technical abilities and knowledge mentioned in a resume.
+     * @var StringField[] The list of the candidate's technical abilities and knowledge.
      */
     public array $hardSkills;
     /**
-     * @var StringField The specific industry or job role that the applicant is applying for.
+     * @var StringField The position that the candidate is applying for.
      */
     public StringField $jobApplied;
     /**
-     * @var ResumeV1Languages The list of languages that a person is proficient in, as stated in their resume.
+     * @var ResumeV1Languages The list of languages that the candidate is proficient in.
      */
     public ResumeV1Languages $languages;
     /**
-     * @var StringField The ISO 3166 code for the country of citizenship or origin of the person.
+     * @var StringField The ISO 3166 code for the country of citizenship of the candidate.
      */
     public StringField $nationality;
     /**
@@ -62,26 +62,23 @@ class ResumeV1Document extends Prediction
      */
     public StringField $phoneNumber;
     /**
-     * @var StringField The area of expertise or specialization in which the individual has professional experience
-     * and qualifications.
+     * @var StringField The candidate's current profession.
      */
     public StringField $profession;
     /**
-     * @var ResumeV1ProfessionalExperiences The list of values that represent the professional experiences of an
-     * individual in their global resume.
+     * @var ResumeV1ProfessionalExperiences The list of the candidate's professional experiences.
      */
     public ResumeV1ProfessionalExperiences $professionalExperiences;
     /**
-     * @var ResumeV1SocialNetworksUrls The list of URLs for social network profiles of the person.
+     * @var ResumeV1SocialNetworksUrls The list of social network profiles of the candidate.
      */
     public ResumeV1SocialNetworksUrls $socialNetworksUrls;
     /**
-     * @var StringField[] The list of values that represent a person's interpersonal and communication abilities in a
-     * global resume.
+     * @var StringField[] The list of the candidate's interpersonal and communication abilities.
      */
     public array $softSkills;
     /**
-     * @var StringField[] The list of last names provided in a resume document.
+     * @var StringField[] The candidate's last names.
      */
     public array $surnames;
     /**
@@ -115,7 +112,7 @@ class ResumeV1Document extends Prediction
         if (!isset($rawPrediction["document_type"])) {
             throw new MindeeUnsetException();
         }
-        $this->documentType = new StringField(
+        $this->documentType = new ClassificationField(
             $rawPrediction["document_type"],
             $pageId
         );

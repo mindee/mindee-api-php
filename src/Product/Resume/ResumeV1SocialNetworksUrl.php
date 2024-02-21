@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * The list of URLs for social network profiles of the person.
+ * The list of social network profiles of the candidate.
  */
 class ResumeV1SocialNetworksUrl
 {
@@ -15,11 +15,11 @@ class ResumeV1SocialNetworksUrl
     use FieldConfidenceMixin;
 
     /**
-     * @var string The name of of the social media concerned.
+     * @var string The name of the social network.
      */
     public ?string $name;
     /**
-     * @var string The URL of the profile for this particular social network.
+     * @var string The URL of the social network.
      */
     public ?string $url;
 

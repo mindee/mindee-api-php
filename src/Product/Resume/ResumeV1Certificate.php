@@ -19,11 +19,11 @@ class ResumeV1Certificate
      */
     public ?string $grade;
     /**
-     * @var string The name of certifications obtained by the individual.
+     * @var string The name of certification.
      */
     public ?string $name;
     /**
-     * @var string The organization or institution that issued the certificates listed in the document.
+     * @var string The organization or institution that issued the certificate.
      */
     public ?string $provider;
     /**
