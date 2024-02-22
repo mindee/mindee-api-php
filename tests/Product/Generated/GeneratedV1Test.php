@@ -6,8 +6,8 @@ use Mindee\Parsing\Common\Document;
 use Mindee\Parsing\Common\Page;
 use Mindee\Parsing\Generated\GeneratedListField;
 use Mindee\Parsing\Generated\GeneratedObjectField;
-use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\PositionField;
+use Mindee\Parsing\Standard\StringField;
 use Mindee\Product\Generated\GeneratedV1;
 use Mindee\Product\Generated\GeneratedV1Page;
 use PHPUnit\Framework\TestCase;
@@ -238,7 +238,9 @@ class GeneratedV1Test extends TestCase
         $this->assertInstanceOf(GeneratedListField::class, $fields["taxes"]);
         $this->assertInstanceOf(PositionField::class, $fields["taxes"]->values[0]->polygon);
         $this->assertSame(
-            array_map(function($point) { return [$point->getX(), $point->getY()]; }, $fields["taxes"]->values[0]->polygon->value->getCoordinates()),
+            array_map(function ($point) {
+                return [$point->getX(), $point->getY()];
+            }, $fields["taxes"]->values[0]->polygon->value->getCoordinates()),
             [[0.292, 0.749], [0.543, 0.749], [0.543, 0.763], [0.292, 0.763]]
         );
         $this->assertSame($fields["taxes"]->values[0]->rate, "20.0");
@@ -251,5 +253,135 @@ class GeneratedV1Test extends TestCase
         $this->assertSame($fields["total_net"]->value, "489.97");
 
         $this->assertSame((string)$this->invoiceV4CompleteDoc, $docStr);
+    }
+
+    public function testInvoiceV4Page0()
+    {
+        $docStr = file_get_contents(PRODUCT_DATA_DIR . "/generated/response_v1/summary_page0_invoice_v4.rst");
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["customer_address"]);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["customer_address"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4Page0->prediction->fields["customer_company_registrations"]);
+        $this->assertCount(0, $this->invoiceV4Page0->prediction->fields["customer_company_registrations"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["customer_name"]);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["customer_name"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["date"]);
+        $this->assertEquals("2020-02-17", $this->invoiceV4Page0->prediction->fields["date"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["document_type"]);
+        $this->assertEquals("INVOICE", $this->invoiceV4Page0->prediction->fields["document_type"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["due_date"]);
+        $this->assertEquals("2020-02-17", $this->invoiceV4Page0->prediction->fields["due_date"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["invoice_number"]);
+        $this->assertEquals("0042004801351", $this->invoiceV4Page0->prediction->fields["invoice_number"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4Page0->prediction->fields["line_items"]);
+        $this->assertInstanceOf(GeneratedObjectField::class, $this->invoiceV4Page0->prediction->fields["line_items"]->values[0]);
+        $this->assertEquals("S)BOIE 5X500 FEUILLES A4", $this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->description);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->product_code);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->quantity);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->tax_amount);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->tax_rate);
+        $this->assertEquals("2.63", $this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->total_amount);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["line_items"]->values[0]->unit_price);
+
+        $this->assertInstanceOf(GeneratedObjectField::class, $this->invoiceV4Page0->prediction->fields["locale"]);
+        $this->assertEquals("EUR", $this->invoiceV4Page0->prediction->fields["locale"]->currency);
+        $this->assertEquals("fr", $this->invoiceV4Page0->prediction->fields["locale"]->language);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4Page0->prediction->fields["reference_numbers"]);
+        $this->assertCount(0, $this->invoiceV4Page0->prediction->fields["reference_numbers"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["supplier_address"]);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["supplier_address"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4Page0->prediction->fields["supplier_company_registrations"]);
+        $this->assertCount(0, $this->invoiceV4Page0->prediction->fields["supplier_company_registrations"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["supplier_name"]);
+        $this->assertNull($this->invoiceV4Page0->prediction->fields["supplier_name"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4Page0->prediction->fields["supplier_payment_details"]);
+        $this->assertEquals("FR7640254025476501124705368", $this->invoiceV4Page0->prediction->fields["supplier_payment_details"]->values[0]->iban);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4Page0->prediction->fields["taxes"]);
+        $this->assertInstanceOf(PositionField::class, $this->invoiceV4Page0->prediction->fields["taxes"]->values[0]->polygon);
+        $this->assertEquals([[0.292, 0.749], [0.543, 0.749], [0.543, 0.763], [0.292, 0.763]], array_map(function ($point) {
+            return [$point->getX(), $point->getY()];
+        }, $this->invoiceV4Page0->prediction->fields["taxes"]->values[0]->polygon->value->getCoordinates()));
+
+        $this->assertEquals("20.0", $this->invoiceV4Page0->prediction->fields["taxes"]->values[0]->rate);
+        $this->assertEquals("97.98", $this->invoiceV4Page0->prediction->fields["taxes"]->values[0]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["total_amount"]);
+        $this->assertEquals("587.95", $this->invoiceV4Page0->prediction->fields["total_amount"]->value);
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4Page0->prediction->fields["total_net"]);
+        $this->assertEquals("489.97", $this->invoiceV4Page0->prediction->fields["total_net"]->value);
+
+        $this->assertSame((string)$this->invoiceV4Page0, $docStr);
+    }
+
+    public function testInvoiceV4EmptyDoc()
+    {
+        $docStr = file_get_contents(PRODUCT_DATA_DIR . "/generated/response_v1/summary_empty_invoice_v4.rst");
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["customer_address"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["customer_address"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["customer_company_registrations"]);
+        $this->assertCount(0, $this->invoiceV4EmptyDoc->inference->prediction->fields["customer_company_registrations"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["customer_name"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["customer_name"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["date"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["date"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["document_type"]);
+        $this->assertEquals("INVOICE", $this->invoiceV4EmptyDoc->inference->prediction->fields["document_type"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["due_date"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["due_date"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["invoice_number"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["invoice_number"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["line_items"]);
+        $this->assertCount(0, $this->invoiceV4EmptyDoc->inference->prediction->fields["line_items"]->values);
+
+        $this->assertInstanceOf(GeneratedObjectField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["locale"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["locale"]->currency);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["locale"]->language);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["reference_numbers"]);
+        $this->assertCount(0, $this->invoiceV4EmptyDoc->inference->prediction->fields["reference_numbers"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_address"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_address"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_company_registrations"]);
+        $this->assertCount(0, $this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_company_registrations"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_name"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_name"]->value);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_payment_details"]);
+        $this->assertCount(0, $this->invoiceV4EmptyDoc->inference->prediction->fields["supplier_payment_details"]->values);
+
+        $this->assertInstanceOf(GeneratedListField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["taxes"]);
+        $this->assertCount(0, $this->invoiceV4EmptyDoc->inference->prediction->fields["taxes"]->values);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["total_amount"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["total_amount"]->value);
+
+        $this->assertInstanceOf(StringField::class, $this->invoiceV4EmptyDoc->inference->prediction->fields["total_net"]);
+        $this->assertNull($this->invoiceV4EmptyDoc->inference->prediction->fields["total_net"]->value);
+
+        $this->assertEquals($docStr, strval($this->invoiceV4EmptyDoc));
     }
 }
