@@ -2,7 +2,6 @@
 
 namespace Mindee\Parsing\Generated;
 
-use Mindee\Error\MindeeException;
 use Mindee\Parsing\Standard\StringField;
 
 /**
@@ -36,7 +35,14 @@ class GeneratedListField
             } else {
                 $valueStr = $value;
                 if (isset($valueStr['value'])) {
-                    $valueStr['value'] = strval($value['value']);
+                    if (
+                        (is_int($valueStr['value']) || (is_float($value) && floor($value) == $value)) &&
+                        $value != 0.0
+                    ) {
+                        $valueStr['value'] = $value['value'] . ".0";
+                    } else {
+                        $valueStr['value'] = strval($value['value']);
+                    }
                 }
                 $this->values[] = new StringField($valueStr, $this->pageId);
             }
@@ -51,7 +57,7 @@ class GeneratedListField
     public function getContentsList(): array
     {
         return array_map(function ($v) {
-            return (string) ($v ?: "");
+            return (string)($v ?: "");
         }, $this->values);
     }
 

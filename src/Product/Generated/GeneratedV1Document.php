@@ -2,7 +2,6 @@
 
 namespace Mindee\Product\Generated;
 
-use Mindee\Error\MindeeException;
 use Mindee\Parsing\Generated\GeneratedListField;
 use Mindee\Parsing\Generated\GeneratedObjectField;
 use Mindee\Parsing\Standard\StringField;
@@ -31,7 +30,18 @@ class GeneratedV1Document extends GeneratedV1Prediction
             } else {
                 $fieldContentsStr = $fieldContents;
                 if (isset($fieldContentsStr['value'])) {
-                    $fieldContentsStr['value'] = strval($fieldContentsStr['value']);
+                    if (
+                        (is_int($fieldContentsStr['value']) ||
+                            (is_float($fieldContentsStr['value']) &&
+                                floor($fieldContentsStr['value']) == $fieldContentsStr['value'])) &&
+                        $fieldContentsStr['value'] != 0.0
+                    ) {
+                        $this->{$name} = $fieldContentsStr['value'] . ".0";
+                    } else {
+                        $fieldContentsStr['value'] = strval($fieldContents['value']);
+                    }
+                } else {
+                    $fieldContentsStr['value'] = $fieldContents['value'];
                 }
                 $this->fields[$fieldName] = new StringField($fieldContentsStr);
             }

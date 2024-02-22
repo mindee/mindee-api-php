@@ -19,7 +19,7 @@ class GeneratedObjectField
     private ?string $rawValue;
 
     /** @var array List of all printable field names */
-    private array $printableValues = [];
+    private array $printableValues;
 
     /**
      * Constructor.
@@ -43,7 +43,15 @@ class GeneratedObjectField
             } elseif ($name === "raw_value") {
                 $this->rawValue = $value;
             } else {
-                $this->{$name} = $value !== null ? (string)$value : null;
+                if (isset($value)) {
+                    if ((is_int($value) || (is_float($value) && floor($value) == $value)) && $value != 0.0) {
+                        $this->{$name} = $value . ".0";
+                    } else {
+                        $this->{$name} = strval($value);
+                    }
+                } else {
+                    $this->{$name} = null;
+                }
                 $this->printableValues[] = $name;
             }
             $this->pageId = $pageId ?? $itemPageId;
@@ -99,7 +107,7 @@ class GeneratedObjectField
             "raw_value",
         ];
         foreach (array_keys($strDict) as $key) {
-            if (!in_array($key, $commonKeys, true)) {
+            if (!in_array($key, $commonKeys)) {
                 return true;
             }
         }
