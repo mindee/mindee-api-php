@@ -82,7 +82,7 @@ Generated builds always have access to at least two attributes:
 
 ## Fields
 
-**fields** (`Array[string`=> [GeneratedListField](#generated-list-field)|[GeneratedObjectField](#generated-object-field)|(#stringfield)[StringField]`]`):
+**fields** (`array<string`=> [GeneratedListField](#generated-list-field)|[GeneratedObjectField](#generated-object-field)|(#stringfield)[StringField]`>`):
 
 ```php
 echo $result->document->inference->prediction->fields["my-field"]);
