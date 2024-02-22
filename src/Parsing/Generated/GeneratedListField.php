@@ -2,6 +2,7 @@
 
 namespace Mindee\Parsing\Generated;
 
+use Mindee\Error\MindeeException;
 use Mindee\Parsing\Standard\StringField;
 
 /**
@@ -30,7 +31,7 @@ class GeneratedListField
                 $this->pageId = $value['page_id'];
             }
 
-            if ($this->isGeneratedObject($value)) {
+            if (GeneratedObjectField::isGeneratedObject($value)) {
                 $this->values[] = new GeneratedObjectField($value, $this->pageId);
             } else {
                 $valueStr = $value;
@@ -40,19 +41,6 @@ class GeneratedListField
                 $this->values[] = new StringField($valueStr, $this->pageId);
             }
         }
-    }
-
-    /**
-     * Check if the given value is a generated object.
-     *
-     * @param mixed $value Value to check.
-     * @return boolean Whether the value is a generated object.
-     */
-    private function isGeneratedObject($value): bool
-    {
-        // Implement is_generated_object logic here
-        // This is a placeholder
-        return false;
     }
 
     /**

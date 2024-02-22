@@ -35,7 +35,7 @@ class GeneratedV1Prediction extends Prediction
     public function __toString(): string
     {
         $outStr = "";
-        $pattern = "/^(\n*[  ]*)( {2})/";
+        $pattern = "/^(\n*[  ]*)( {2}):/";
         foreach ($this->fields as $fieldName => $fieldValue) {
             $strValue = "";
             if ($fieldValue instanceof GeneratedListField && count($fieldValue->values) > 0) {

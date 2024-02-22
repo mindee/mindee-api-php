@@ -2,6 +2,7 @@
 
 namespace Mindee\Product\Generated;
 
+use Mindee\Error\MindeeException;
 use Mindee\Parsing\Generated\GeneratedListField;
 use Mindee\Parsing\Generated\GeneratedObjectField;
 use Mindee\Parsing\Standard\StringField;
@@ -23,7 +24,7 @@ class GeneratedV1Document extends GeneratedV1Prediction
         parent::__construct($rawPrediction);
         $this->fields = [];
         foreach ($rawPrediction as $fieldName => $fieldContents) {
-            if (is_array($fieldContents) && array_keys($fieldContents) === range(0, count($fieldContents) - 1)) {
+            if (is_array($fieldContents) && array_values($fieldContents) === $fieldContents) {
                 $this->fields[$fieldName] = new GeneratedListField($fieldContents);
             } elseif (is_array($fieldContents) && GeneratedObjectField::isGeneratedObject($fieldContents)) {
                 $this->fields[$fieldName] = new GeneratedObjectField($fieldContents);

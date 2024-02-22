@@ -24,7 +24,7 @@ class GeneratedV1Page extends GeneratedV1Prediction
         parent::__construct($rawPrediction);
         $this->fields = [];
         foreach ($rawPrediction as $fieldName => $fieldContents) {
-            if (is_array($fieldContents) && array_keys($fieldContents) === range(0, count($fieldContents) - 1)) {
+            if (is_array($fieldContents) && array_values($fieldContents) === $fieldContents) {
                 $this->fields[$fieldName] = new GeneratedListField($fieldContents, $pageId);
             } elseif (is_array($fieldContents) && GeneratedObjectField::isGeneratedObject($fieldContents)) {
                 $this->fields[$fieldName] = new GeneratedObjectField($fieldContents, $pageId);

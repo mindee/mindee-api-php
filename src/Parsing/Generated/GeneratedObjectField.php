@@ -36,7 +36,7 @@ class GeneratedObjectField
             if ($name === "page_id") {
                 $itemPageId = $value;
             } elseif (in_array($name, ["polygon", "rectangle", "quadrangle", "bounding_box"], true)) {
-                $this->{$name} = new PositionField([$name => $value], $name, $itemPageId);
+                $this->{$name} = new PositionField([$name => $value], $itemPageId, false, $name);
                 $this->printableValues[] = $name;
             } elseif ($name === "confidence") {
                 $this->confidence = $value;
