@@ -49,7 +49,7 @@ do
     sed -i "s/my-endpoint/$ENDPOINT/g" $OUTPUT_FILE
   fi
 
-  if echo "${f}" | grep -q "default_sync.txt"
+  if echo "${f}" | grep -q "default.txt"
   then
     sed -i "s/my-account/$ACCOUNT/" $OUTPUT_FILE
     sed -i "s/my-endpoint/$ENDPOINT/" $OUTPUT_FILE

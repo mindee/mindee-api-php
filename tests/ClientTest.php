@@ -2,17 +2,13 @@
 
 use Mindee\Client;
 use Mindee\Error\MindeeApiException;
-use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Product\Custom\CustomV1;
 use Mindee\Product\Invoice\InvoiceV4;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
-
-use const Mindee\Http\API_KEY_ENV_NAME;
 
 class ClientTest extends TestCase
 {
@@ -31,7 +27,7 @@ class ClientTest extends TestCase
         $this->envClient = new Client();
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-        ) . "/tests/resources/file_types/";
+            ) . "/tests/resources/file_types/";
     }
 
     public function testParsePathWithoutToken()
@@ -55,7 +51,6 @@ class ClientTest extends TestCase
         $this->expectException(Mindee\Error\MindeeMimeTypeException::class);
 
         $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "receipt.txt");
-        ;
     }
 
     public function testParsePathWithWrongToken()

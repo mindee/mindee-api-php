@@ -107,6 +107,7 @@ Complete details on the working of the library are available in the following gu
 * [Getting started](https://developers.mindee.com/docs/php-getting-started)
 * [PHP Command Line Interface (CLI)](https://developers.mindee.com/docs/php-cli)
 * [PHP Custom APIs (API Builder)](https://developers.mindee.com/docs/php-api-builder)
+* [PHP Generated APIs](https://developers.mindee.com/docs/php-generated-api)
 * [PHP Invoice OCR](https://developers.mindee.com/docs/php-invoice-ocr)
 * [PHP Receipt OCR](https://developers.mindee.com/docs/php-receipt-ocr)
 * [PHP Financial Document OCR](https://developers.mindee.com/docs/php-financial-document-ocr)
