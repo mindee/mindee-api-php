@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+## v1.3.0 - 2024-02-23
+### Changes
+* :sparkles: add support for GeneratedV1
+* :recycle: update internals to support changes
+
+
 ## v1.2.0 - 2024-02-21
 ### Changes
 * :sparkles: add support for International ID V2
