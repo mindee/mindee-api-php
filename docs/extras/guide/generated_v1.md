@@ -38,7 +38,7 @@ echo strval($apiResponse->document);
 
 # Generated Endpoints
 
-You may have noticed in the previous step that in order to access a custom build, you will need to provide an account and an endpoint name at the very least.
+As shown above, you will need to provide an account and an endpoint name at the very least.
 
 Although it is optional, the version number should match the latest version of your build in most use-cases.
 If it is not set, it will default to "1".
