@@ -29,7 +29,7 @@ class GeneratedV1 extends Inference
     public function __construct(array $rawPrediction)
     {
         parent::__construct($rawPrediction);
-        ;
+
         $this->prediction = new GeneratedV1Document($rawPrediction['prediction']);
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
