@@ -7,7 +7,7 @@ on:
 
 jobs:
   phpunit-ubuntu:
-    name: Run Unit Tests on MacOS
+    name: Run Unit Tests on Ubuntu
     timeout-minutes: 30
     strategy:
       matrix:
