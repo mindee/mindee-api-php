@@ -7,7 +7,7 @@ on:
 
 jobs:
   phpunit-ubuntu:
-    name: Run Unit Tests
+    name: Run Unit Tests on MacOS
     timeout-minutes: 30
     strategy:
       matrix:
@@ -34,7 +34,7 @@ jobs:
           ./vendor/bin/phpunit -c tests/phpunit.xml
 
   phpunit-macos:
-    name: Run Unit Tests
+    name: Run Unit Tests on MacOS
     timeout-minutes: 30
     strategy:
       matrix:
