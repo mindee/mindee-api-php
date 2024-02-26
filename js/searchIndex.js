@@ -1611,6 +1611,86 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_pageId"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField",
+            "name": "GeneratedListField",
+            "summary": "A\u0020list\u0020of\u0020value\u0020or\u0020words\u0020for\u0020generated\u0020APIs.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField\u003A\u003AgetContentsList\u0028\u0029",
+            "name": "getContentsList",
+            "summary": "Get\u0020a\u0020list\u0020of\u0020contents.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html#method_getContentsList"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField\u003A\u003AgetContentsString\u0028\u0029",
+            "name": "getContentsString",
+            "summary": "Get\u0020a\u0020string\u0020representation\u0020of\u0020all\u0020values.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html#method_getContentsString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Get\u0020a\u0020string\u0020representation\u0020of\u0020the\u0020object.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField\u003A\u003A\u0024pageId",
+            "name": "pageId",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html#property_pageId"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField\u003A\u003A\u0024values",
+            "name": "values",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedListField.html#property_values"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField",
+            "name": "GeneratedObjectField",
+            "summary": "A\u0020JSON\u002Dlike\u0020object,\u0020with\u0020miscellaneous\u0020values.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Get\u0020a\u0020string\u0020representation\u0020of\u0020the\u0020object.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003AstrLevel\u0028\u0029",
+            "name": "strLevel",
+            "summary": "ReSTructured\u002Dcompliant\u0020string\u0020representation.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#method_strLevel"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003AisGeneratedObject\u0028\u0029",
+            "name": "isGeneratedObject",
+            "summary": "Checks\u0020whether\u0020a\u0020field\u0020is\u0020a\u0020custom\u0020object\u0020or\u0020not.",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#method_isGeneratedObject"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003A\u0024pageId",
+            "name": "pageId",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_pageId"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003A\u0024confidence",
+            "name": "confidence",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_confidence"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003A\u0024rawValue",
+            "name": "rawValue",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_rawValue"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedObjectField\u003A\u003A\u0024printableValues",
+            "name": "printableValues",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_printableValues"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\AmountField",
             "name": "AmountField",
             "summary": "A\u0020field\u0020containing\u0020an\u0020amount\u0020value.",
@@ -3210,6 +3290,96 @@ Search.appendIndex(
             "name": "documentType",
             "summary": "",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV2Page.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1",
+            "name": "GeneratedV1",
+            "summary": "Generated\u0020document\u0020\u0028API\u0020Builder\u0029\u0020v1\u0020inference\u0020results.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Document",
+            "name": "GeneratedV1Document",
+            "summary": "Generated\u0020V1\u0020document\u0020prediction\u0020results.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "GeneratedV1Document\u0020constructor.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Document\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Document.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Page",
+            "name": "GeneratedV1Page",
+            "summary": "Generated\u0020V1\u0020page\u0020prediction\u0020results.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Page.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Page\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "GeneratedV1Page\u0020constructor.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Page.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Page\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Page.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction",
+            "name": "GeneratedV1Prediction",
+            "summary": "Generated\u0020V1\u0020document\u0020prediction\u0020results.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "GeneratedV1Prediction\u0020constructor.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003AgetSingleFields\u0028\u0029",
+            "name": "getSingleFields",
+            "summary": "Returns\u0020a\u0020dictionary\u0020of\u0020all\u0020fields\u0020that\u0020aren\u0027t\u0020a\u0020collection.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#method_getSingleFields"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003AgetListFields\u0028\u0029",
+            "name": "getListFields",
+            "summary": "Returns\u0020a\u0020dictionary\u0020of\u0020all\u0020list\u002Dlike\u0020fields.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#method_getListFields"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003AgetObjectFields\u0028\u0029",
+            "name": "getObjectFields",
+            "summary": "Returns\u0020a\u0020dictionary\u0020of\u0020all\u0020object\u002Dlike\u0020fields.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#method_getObjectFields"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003AlistFieldNames\u0028\u0029",
+            "name": "listFieldNames",
+            "summary": "Lists\u0020names\u0020of\u0020all\u0020top\u002Dlevel\u0020field\u0020keys.",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#method_listFieldNames"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1Prediction\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#property_fields"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2",
             "name": "InternationalIdV2",
@@ -4851,6 +5021,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-parsing-custom.html"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Generated",
+            "name": "Generated",
+            "summary": "",
+            "url": "namespaces/mindee-parsing-generated.html"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Standard",
             "name": "Standard",
             "summary": "",
@@ -4920,6 +5095,11 @@ Search.appendIndex(
             "name": "IdCard",
             "summary": "",
             "url": "namespaces/mindee-product-fr-idcard.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Generated",
+            "name": "Generated",
+            "summary": "",
+            "url": "namespaces/mindee-product-generated.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId",
             "name": "InternationalId",

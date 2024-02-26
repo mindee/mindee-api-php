@@ -1,153 +1,27 @@
 <?php
 
-// cURL install check
-if (!function_exists('curl_init')) {
-    exit("cURL isn't installed for ".phpversion());
-}
-$API_KEY = 'my-api-key';
-$FILE_PATH = '/path/to/the/file.ext';
-$MIME_TYPE = 'application/pdf'; // change according to the file type
-$ACCOUNT = 'my-account';
-$VERSION = 'my-version';
-$ENDPOINT = 'my-endpoint';
+use Mindee\Client;
+use Mindee\Product\Generated\GeneratedV1;
+use Mindee\Input\PredictMethodOptions;
 
-// Maximum amount of retries to fetch a parsed document
-$MAX_RETRIES = 30;
+// Init a new client
+$mindeeClient = new Client("my-api-key");
 
-// Delay between request
-$DELAY = 2;
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
-// Open a cURL session to enqueue the document
-$ch_post = curl_init();
-
-// Setup headers
-$headers_post = array(
-  "Authorization: Token $API_KEY"
+// Create a custom endpoint
+$customEndpoint = $mindeeClient->createEndpoint(
+    "my-endpoint",
+    "my-account",
+    "my-version"
 );
 
-// Add our file to the request
-$data_post = array(
-  "document" => new CURLFile(
-      $FILE_PATH,
-      $MIME_TYPE,
-      substr($FILE_PATH, strrpos($FILE_PATH, "/") + 1)
-  )
-);
+// Add the custom endpoint to the prediction options.
+$predictOptions = new PredictMethodOptions();
+$predictOptions->setEndpoint($customEndpoint);
 
-// Enqueueing URL
-$url_post = "https://api.mindee.net/v1/products/$ACCOUNT/$ENDPOINT/v$VERSION/predict_async";
+// Parse the file
+$apiResponse = $mindeeClient->enqueueAndParse(GeneratedV1::class, $inputSource, $predictOptions);
 
-$options_post = array(
-  CURLOPT_URL => $url_post,
-  CURLOPT_HTTPHEADER => $headers_post,
-  CURLOPT_POSTFIELDS => $data_post,
-  CURLOPT_RETURNTRANSFER => true
-);
-
-// Set all options for the cURL request
-curl_setopt_array(
-    $ch_post,
-    $options_post
-);
-
-// Execute the request & extract the query content into a variable
-$json_post = curl_exec($ch_post);
-
-if ($json_post == false) {
-    exit("Remote url '$url_post' could not be reached.");
-}
-
-// Close the cURL session
-curl_close($ch_post);
-
-// Store the response as an array to allow for easier manipulations
-$result_post = json_decode($json_post, true);
-
-// Check for both server and upload errors
-if (
-    !isset($result_post['api_request']) ||
-    !isset($result_post['api_request']['status_code']) ||
-    !is_numeric($result_post['api_request']['status_code']) ||
-    $result_post['api_request']['status_code'] > 399 ||
-    $result_post['api_request']['status_code'] < 200
-) {
-    // If the file has been improperly sent, we stop the script.
-    if (!isset($result_post['api_request']['status_code']) || !is_numeric($result_post['api_request']['status_code'])) {
-        echo "Request couldn't be processed.\n";
-    } else {
-        echo "Error " . $result_post['api_request']['status_code'] . " was returned by the API during enqueueing.\n";
-
-        // Print additional details, if there are any:
-        if (isset($result_post['error']) && !empty($result_post['error'])) {
-            echo "This was the given explanation:\n";
-            echo "-------------------------\n";
-            echo "Error Code:" . ($result_post['error']['code'] . "\n" ?? "\n");
-            echo "Message:" . ($result_post['error']['message'] . "\n" ?? "\n");
-            echo "Details:" . ($result_post['error']['details'] . "\n" ?? "\n");
-            echo "-------------------------\n";
-            exit(1);
-        }
-    }
-} else {
-    // Print a small confirmation that the document has been sent to a queue
-    echo "Document successfully enqueued. Proceeding to fetch the result.\n";
-
-    // Get the queue ID
-    $queueId = $result_post['job']['id'];
-    // Enqueueing URL
-    $url_get = "https://api.mindee.net/v1/products/$ACCOUNT/$ENDPOINT/v$VERSION/documents/queue/$queueId";
-
-    // Create a new handle for the new curl request
-    $ch_get = curl_init();
-
-    // Setup headers
-    $headers_get = array(
-      "Authorization: Token $API_KEY"
-    );
-
-    // Our result will be hidden behind a redirection, so we set our curl to follow it if it finds one
-    $options_get = array(
-      CURLOPT_URL => $url_get,
-      CURLOPT_HTTPHEADER => $headers_get,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_FOLLOWLOCATION => true
-    );
-    curl_setopt_array($ch_get, $options_get);
-
-    function call_curl($ch)
-    {
-        // Copying an existing handle handle is quicker than re-creating a new one each time
-        $ch_copy = curl_copy_handle($ch);
-        $json_response = curl_exec($ch_copy);
-        curl_close($ch_copy);
-        return json_decode($json_response, true);
-    }
-
-    // Flag to keep track of whether we got our result back or not
-    $success = false;
-
-    $times_tried = 0;
-    while ($times_tried < $MAX_RETRIES) {
-        // Give the server some time to process the request
-        sleep($DELAY);
-
-        // Open a new cURL session for each attempt to retrieve the document
-        $result_get = call_curl($ch_get);
-
-        if ($result_get['job']['status'] == "completed") {
-            echo(json_encode($result_get['document'], JSON_PRETTY_PRINT));
-            $success = true;
-            break;
-        }
-
-        $times_tried++;
-    }
-
-    // Close the dummy handle to avoid unnecessary resource consumption.
-    curl_close($ch_get);
-
-    // Send an error if something went wrong.
-    if (!$success) {
-        exit("Operation aborted, document not retrieved after $times_tried tries.\n");
-    }
-}
+echo strval($apiResponse->document);
