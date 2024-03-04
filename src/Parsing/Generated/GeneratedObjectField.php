@@ -47,7 +47,11 @@ class GeneratedObjectField
                     if ((is_int($value) || (is_float($value) && floor($value) == $value)) && $value != 0.0) {
                         $this->{$name} = $value . ".0";
                     } else {
-                        $this->{$name} = strval($value);
+                        if (is_array($value)) {
+                            $this->{$name} = implode(", ", $value);
+                        } else {
+                            $this->{$name} = strval($value);
+                        }
                     }
                 } else {
                     $this->{$name} = null;
