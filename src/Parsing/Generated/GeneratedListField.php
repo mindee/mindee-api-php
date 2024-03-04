@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\StringField;
  */
 class GeneratedListField
 {
-    /** @var integer|null Id of the page the object was found on */
+    /** @var integer|null ID of the page the object was found on */
     public ?int $pageId;
 
     /** @var array List of values */

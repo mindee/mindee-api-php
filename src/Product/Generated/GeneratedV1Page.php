@@ -42,7 +42,7 @@ class GeneratedV1Page extends GeneratedV1Prediction
                         $fieldContentsStr['value'] = strval($fieldContents['value']);
                     }
                 } else {
-                    $fieldContentsStr['value'] = $fieldContents['value'];
+                    $fieldContentsStr['value'] = null;
                 }
                 $this->fields[$fieldName] = new StringField($fieldContentsStr, $pageId);
             }

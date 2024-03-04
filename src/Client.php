@@ -10,6 +10,7 @@ namespace Mindee;
 
 use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeHttpException;
+use Mindee\Http\ResponseValidation;
 use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\InputSource;
 use Mindee\Input\PathInput;
@@ -25,6 +26,8 @@ use Mindee\Input\PageOptions;
 use Mindee\Input\URLInputSource;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\Common\PredictResponse;
+use ReflectionClass;
+use ReflectionException;
 
 /**
  * Main entrypoint for Mindee operations.
@@ -151,15 +154,15 @@ class Client
      *
      * @param string $product Name of the product's class.
      * @return Endpoint
-     * @throws \Mindee\Error\MindeeApiException Throws if the product isn't recognized.
+     * @throws MindeeApiException Throws if the product isn't recognized.
      */
     private function constructOTSEndpoint(string $product): Endpoint
     {
         try {
-            $reflection = new \ReflectionClass($product);
+            $reflection = new ReflectionClass($product);
             $endpointName = $reflection->getStaticPropertyValue("endpointName");
             $endpointVersion = $reflection->getStaticPropertyValue("endpointVersion");
-        } catch (\ReflectionException $exception) {
+        } catch (ReflectionException $exception) {
             throw new MindeeApiException("Unable to create custom product " . $product);
         }
         if ($endpointName == 'custom') {
@@ -179,7 +182,7 @@ class Client
      * @param string      $accountName  Name of the endpoint's owner.
      * @param string|null $version      Version of the endpoint.
      * @return Endpoint
-     * @throws \Mindee\Error\MindeeClientException Throws if a custom endpoint name isn't provided.
+     * @throws MindeeClientException Throws if a custom endpoint name isn't provided.
      */
     public function createEndpoint(string $endpointName, string $accountName, ?string $version = null): Endpoint
     {
@@ -212,26 +215,21 @@ class Client
      * @param string   $queueId        ID of the queue.
      * @param Endpoint $endpoint       Endpoint to poll.
      * @return AsyncPredictResponse
-     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeHttpException Throws if the API sent an error.
      */
     private function makeParseQueuedRequest(
         string $predictionType,
         string $queueId,
         Endpoint $endpoint
     ): AsyncPredictResponse {
-        $queuedResponse = $endpoint->documentQueueReqGet($queueId);
-        $dataResponse = json_decode($queuedResponse['data'], true);
-        if (
-            !$dataResponse || !array_key_exists('api_request', $dataResponse) ||
-            count($dataResponse["api_request"]["error"]) != 0
-        ) {
+        $queuedResponse = ResponseValidation::cleanRequestData($endpoint->documentQueueReqGet($queueId));
+        if (!ResponseValidation::isValidAsyncResponse($queuedResponse)) {
             throw MindeeHttpException::handleError(
                 $endpoint->settings->endpointName,
-                $dataResponse,
-                $dataResponse['api_request']['status_code']
+                $queuedResponse
             );
         }
-        return new AsyncPredictResponse($predictionType, $dataResponse);
+        return new AsyncPredictResponse($predictionType, $queuedResponse['data']);
     }
 
     /**
@@ -241,8 +239,8 @@ class Client
      * @param InputSource          $inputDoc       Input file.
      * @param PredictMethodOptions $options        Prediction Options.
      * @return AsyncPredictResponse
-     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
-     * @throws \Mindee\Error\MindeeApiException Throws if one attempts to edit remote resources.
+     * @throws MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeEnqueueRequest(
         string $predictionType,
@@ -254,25 +252,19 @@ class Client
         } else {
             throw new MindeeApiException("Cannot edit non-local input sources.");
         }
-        $response = $options->endpoint->predictAsyncRequestPost(
+        $response = ResponseValidation::cleanRequestData($options->endpoint->predictAsyncRequestPost(
             $inputDoc,
             $options->predictOptions->includeWords,
             $options->closeFile,
             $options->predictOptions->cropper
-        );
-        $dataResponse = json_decode($response['data'], true);
-        if (
-            !$dataResponse || !array_key_exists('api_request', $dataResponse) ||
-            count($dataResponse["api_request"]["error"]) != 0
-        ) {
+        ));
+        if (!ResponseValidation::isValidAsyncResponse($response)) {
             throw MindeeHttpException::handleError(
                 $options->endpoint->settings->endpointName,
-                $dataResponse,
-                $dataResponse['api_request']['status_code']
+                $response
             );
         }
-
-        return new AsyncPredictResponse($predictionType, $dataResponse);
+        return new AsyncPredictResponse($predictionType, $response['data']);
     }
 
     /**
@@ -282,8 +274,8 @@ class Client
      * @param InputSource          $inputDoc       Input file.
      * @param PredictMethodOptions $options        Prediction Options.
      * @return PredictResponse
-     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
-     * @throws \Mindee\Error\MindeeApiException Throws if one attempts to edit remote resources.
+     * @throws MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeParseRequest(
         string $predictionType,
@@ -295,22 +287,20 @@ class Client
         } else {
             throw new MindeeApiException("Cannot edit non-local input sources.");
         }
-        $response = $options->endpoint->predictRequestPost(
+        $response = ResponseValidation::cleanRequestData($options->endpoint->predictRequestPost(
             $inputDoc,
             $options->predictOptions->includeWords,
             $options->closeFile,
             $options->predictOptions->cropper
-        );
-        $dataResponse = json_decode($response['data'], true);
-        if (!array_key_exists('api_request', $dataResponse) || count($dataResponse["api_request"]["error"]) != 0) {
+        ));
+        if (!ResponseValidation::isValidSyncResponse($response)) {
             throw MindeeHttpException::handleError(
                 $options->endpoint->settings->endpointName,
-                $dataResponse,
-                $dataResponse['api_request']['status_code']
+                $response
             );
         }
 
-        return new PredictResponse($predictionType, $dataResponse);
+        return new PredictResponse($predictionType, $response["data"]);
     }
 
     /**
@@ -344,7 +334,7 @@ class Client
      * @param PredictMethodOptions|null         $options        Prediction Options.
      * @param EnqueueAndParseMethodOptions|null $asyncOptions   Async Options. Manages timers.
      * @return AsyncPredictResponse
-     * @throws \Mindee\Error\MindeeApiException Throws if the document couldn't be retrieved in time.
+     * @throws MindeeApiException Throws if the document couldn't be retrieved in time.
      */
     public function enqueueAndParse(
         string $predictionType,
@@ -393,7 +383,7 @@ class Client
      * @param InputSource               $inputDoc       Input File.
      * @param PredictMethodOptions|null $options        Prediction Options.
      * @return AsyncPredictResponse
-     * @throws \Mindee\Error\MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeHttpException Throws if the API sent an error.
      */
     public function enqueue(
         string $predictionType,
