@@ -19,7 +19,7 @@ class GeneratedListField
      * Constructor.
      *
      * @param array        $rawPrediction Raw prediction data.
-     * @param integer|null $pageId        Id of the page.
+     * @param integer|null $pageId        ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
