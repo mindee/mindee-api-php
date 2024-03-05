@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\PositionField;
  */
 class GeneratedObjectField
 {
-    /** @var integer|null Id of the page the object was found on */
+    /** @var integer|null ID of the page the object was found on */
     public ?int $pageId;
 
     /** @var float|null Confidence with which the value was assessed */
@@ -25,7 +25,7 @@ class GeneratedObjectField
      * Constructor.
      *
      * @param array        $rawPrediction Raw prediction data.
-     * @param integer|null $pageId        Id of the page.
+     * @param integer|null $pageId        ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -47,7 +47,11 @@ class GeneratedObjectField
                     if ((is_int($value) || (is_float($value) && floor($value) == $value)) && $value != 0.0) {
                         $this->{$name} = $value . ".0";
                     } else {
-                        $this->{$name} = strval($value);
+                        if (is_array($value)) {
+                            $this->{$name} = implode(", ", $value);
+                        } else {
+                            $this->{$name} = strval($value);
+                        }
                     }
                 } else {
                     $this->{$name} = null;

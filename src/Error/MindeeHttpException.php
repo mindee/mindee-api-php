@@ -67,7 +67,7 @@ class MindeeHttpException extends MindeeException
      *
      * @param array|string $response Parsed server response.
      * @return string[]
-     * @throws \Mindee\Error\MindeeException Throws if the error itself can't be built.
+     * @throws MindeeException Throws if the error itself can't be built.
      */
     public static function createErrorObj($response): array
     {
@@ -123,12 +123,17 @@ class MindeeHttpException extends MindeeException
     /**
      * @param string       $url      Remote URL the error was found on.
      * @param array|string $response Raw server response.
-     * @param integer      $code     Error code.
      * @return MindeeHttpException
      */
-    public static function handleError(string $url, $response, int $code): MindeeHttpException
+    public static function handleError(string $url, $response): MindeeHttpException
     {
-        $errorObj = MindeeHttpException::createErrorObj($response);
+        $dataResponse = $response['data'] ?? ["data" => null];
+        $errorObj = MindeeHttpException::createErrorObj($dataResponse);
+        if (array_key_exists("code", $response) && is_numeric($response['code'])) {
+            $code = intval($response['code']);
+        } else {
+            $code = 500;
+        }
         if ($code >= 400 && $code <= 499) {
             return new MindeeHttpClientException($errorObj, $url, $code);
         }

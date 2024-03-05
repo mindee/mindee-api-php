@@ -11,7 +11,7 @@ use Mindee\Parsing\Standard\StringField;
  */
 class GeneratedV1Document extends GeneratedV1Prediction
 {
-    /** @var array Dictionary of all fields in the document */
+    /** @var array Dictionary of all fields in the document. */
     public array $fields;
 
     /**
@@ -41,7 +41,7 @@ class GeneratedV1Document extends GeneratedV1Prediction
                         $fieldContentsStr['value'] = strval($fieldContents['value']);
                     }
                 } else {
-                    $fieldContentsStr['value'] = $fieldContents['value'];
+                    $fieldContentsStr['value'] = null;
                 }
                 $this->fields[$fieldName] = new StringField($fieldContentsStr);
             }

@@ -51,8 +51,8 @@ class MindeeHttpExceptionTest extends TestCase
     public function testHTTP400Exception()
     {
         $json = file_get_contents($this->errorDir . "error_400_no_details.json");
-        $errorObj = json_decode($json, true);
-        $error400 = MindeeHttpException::handleError("dummy-url", $errorObj, 400);
+        $errorObj = ["data" => json_decode($json, true), "code" => 400];
+        $error400 = MindeeHttpException::handleError("dummy-url", $errorObj);
         $this->assertEquals(400, $error400->statusCode);
         $this->assertEquals("SomeCode", $error400->apiCode);
         $this->assertEquals("Some scary message here", $error400->apiMessage);
@@ -64,8 +64,8 @@ class MindeeHttpExceptionTest extends TestCase
     public function testHTTP401Exception()
     {
         $json = file_get_contents($this->errorDir . "error_401_invalid_token.json");
-        $errorObj = json_decode($json, true);
-        $error401 = MindeeHttpException::handleError("dummy-url", $errorObj, 401);
+        $errorObj = ["data" => json_decode($json, true), "code" => 401];
+        $error401 = MindeeHttpException::handleError("dummy-url", $errorObj);
         $this->assertEquals(401, $error401->statusCode);
         $this->assertEquals("Unauthorized", $error401->apiCode);
         $this->assertEquals("Authorization required", $error401->apiMessage);
@@ -77,8 +77,8 @@ class MindeeHttpExceptionTest extends TestCase
     public function testHTTP429Exception()
     {
         $json = file_get_contents($this->errorDir . "error_429_too_many_requests.json");
-        $errorObj = json_decode($json, true);
-        $error429 = MindeeHttpException::handleError("dummy-url", $errorObj, 429);
+        $errorObj = ["data" => json_decode($json, true), "code" => 429];
+        $error429 = MindeeHttpException::handleError("dummy-url", $errorObj);
         $this->assertEquals(429, $error429->statusCode);
         $this->assertEquals("TooManyRequests", $error429->apiCode);
         $this->assertEquals("Too many requests", $error429->apiMessage);
@@ -90,8 +90,8 @@ class MindeeHttpExceptionTest extends TestCase
     public function testHTTP500Exception()
     {
         $json = file_get_contents($this->errorDir . "error_500_inference_fail.json");
-        $errorObj = json_decode($json, true);
-        $error500 = MindeeHttpException::handleError("dummy-url", $errorObj, 500);
+        $errorObj = ["data" => json_decode($json, true), "code" => 500];
+        $error500 = MindeeHttpException::handleError("dummy-url", $errorObj);
         $this->assertEquals(500, $error500->statusCode);
         $this->assertEquals("failure", $error500->apiCode);
         $this->assertEquals("Inference failed", $error500->apiMessage);
@@ -103,7 +103,7 @@ class MindeeHttpExceptionTest extends TestCase
     public function testHTTP500HTMLError()
     {
         $errorRefContents = file_get_contents($this->errorDir . "error_50x.html");
-        $error500 = MindeeHttpException::handleError("dummy-url", $errorRefContents, 500);
+        $error500 = MindeeHttpException::handleError("dummy-url", ["data" => $errorRefContents, "code" => 500]);
         $this->assertEquals(500, $error500->statusCode);
         $this->assertEquals("UnknownError", $error500->apiCode);
         $this->assertEquals("Server sent back an unexpected reply.", $error500->apiMessage);
