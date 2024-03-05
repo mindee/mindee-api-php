@@ -2,6 +2,7 @@
 
 namespace Parsing\Common;
 
+use Mindee\Http\ResponseValidation;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
@@ -10,6 +11,7 @@ class AsyncPredictResponseTest extends TestCase
 {
     private string $filePathPostSuccess;
     private string $filePathPostFail;
+    private string $filePathGetFailJob;
     private string $filePathGetProcessing;
     private string $filePathGetCompleted;
 
@@ -20,12 +22,14 @@ class AsyncPredictResponseTest extends TestCase
         $this->filePathPostFail = $asyncDir . "/post_fail_forbidden.json";
         $this->filePathGetProcessing = $asyncDir . "/get_processing.json";
         $this->filePathGetCompleted = $asyncDir . "/get_completed.json";
+        $this->filePathGetFailJob = $asyncDir . "/get_failed_job_error.json";
     }
 
     public function testAsyncResponsePOSTSuccess()
     {
         $json = file_get_contents($this->filePathPostSuccess);
         $response = json_decode($json, true);
+        $this->assertTrue(ResponseValidation::isValidAsyncResponse(["data" => $response, "code" => 200]));
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);
         $this->assertEquals(
@@ -42,23 +46,20 @@ class AsyncPredictResponseTest extends TestCase
     {
         $json = file_get_contents($this->filePathPostFail);
         $response = json_decode($json, true);
-        $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
-        $this->assertNotNull($parsedResponse->job);
-        $this->assertEquals(
-            "2023-01-01T00:00:00+00:00",
-            $parsedResponse->job->issuedAt->format('Y-m-d\TH:i:sP')
-        );
-        $this->assertNull($parsedResponse->job->availableAt);
-        $this->assertNull($parsedResponse->job->status);
-        $this->assertNull($parsedResponse->job->id);
-        $this->assertNull($parsedResponse->job->id);
-        $this->assertEquals("Forbidden", $parsedResponse->apiRequest->error["code"]);
+        $this->assertFalse(ResponseValidation::isValidAsyncResponse(["data" => $response, "code" => 200]));
+    }
+    public function testAsyncResponseGETFailedJob()
+    {
+        $json = file_get_contents($this->filePathGetFailJob);
+        $response = json_decode($json, true);
+        $this->assertFalse(ResponseValidation::isValidAsyncResponse(["data" => $response, "code" => 200]));
     }
 
     public function testAsyncResponseGETProcessing()
     {
         $json = file_get_contents($this->filePathGetProcessing);
         $response = json_decode($json, true);
+        $this->assertTrue(ResponseValidation::isValidAsyncResponse(["data" => $response, "code" => 200]));
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);
         $this->assertEquals(
@@ -75,6 +76,7 @@ class AsyncPredictResponseTest extends TestCase
     {
         $json = file_get_contents($this->filePathGetCompleted);
         $response = json_decode($json, true);
+        $this->assertTrue(ResponseValidation::isValidAsyncResponse(["data" => $response, "code" => 200]));
         $parsedResponse = new AsyncPredictResponse(InvoiceSplitterV1::class, $response);
         $this->assertNotNull($parsedResponse->job);
         $this->assertEquals(
