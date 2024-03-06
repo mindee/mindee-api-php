@@ -3,6 +3,8 @@
 namespace Mindee\Parsing\Standard;
 
 use DateTimeImmutable;
+use DateTimeZone;
+use Exception;
 use Mindee\Error\MindeeApiException;
 
 /**
@@ -14,9 +16,9 @@ class DateField extends BaseField
     use FieldPositionMixin;
 
     /**
-     * @var \DateTimeImmutable|null Date as a standard object.
+     * @var DateTimeImmutable|null Date as a standard object.
      */
-    public ?\DateTimeImmutable $dateObject;
+    public ?DateTimeImmutable $dateObject;
 
     /**
      * @var string|null The raw field value.
@@ -29,7 +31,7 @@ class DateField extends BaseField
      * @param integer|null $pageId        Page number for multi pages document.
      * @param boolean      $reconstructed Whether the field was reconstructed.
      * @param string       $valueKey      Key to use for the value.
-     * @throws \Mindee\Error\MindeeApiException Throws if the date can't be created from the given value.
+     * @throws MindeeApiException Throws if the date can't be created from the given value.
      */
     public function __construct(
         array $rawPrediction,
@@ -43,11 +45,11 @@ class DateField extends BaseField
         if (isset($this->value)) {
             if ($this->value) {
                 try {
-                    $this->dateObject = new \DateTimeImmutable($this->value, new \DateTimeZone('UTC'));
-                } catch (\Exception $e) {
+                    $this->dateObject = new DateTimeImmutable($this->value, new DateTimeZone('UTC'));
+                } catch (Exception $e) {
                     try {
-                        $this->dateObject = new \DateTimeImmutable(strtotime($this->value), new \DateTimeZone('UTC'));
-                    } catch (\Exception $e2) {
+                        $this->dateObject = new DateTimeImmutable(strtotime($this->value), new DateTimeZone('UTC'));
+                    } catch (Exception $e2) {
                         throw new MindeeApiException("Couldn't create date field from value '" . $this->value . "'");
                     }
                 }

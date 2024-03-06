@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(PassportV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -68,7 +68,6 @@ Page 0
 :Expiry Date: 2017-04-22
 :MRZ Line 1: P<GBRPUDARSAN<<HENERT<<<<<<<<<<<<<<<<<<<<<<<
 :MRZ Line 2: 7077979792GBR9505209M1704224<<<<<<<<<<<<<<00
-
 ```
 
 # Field Types

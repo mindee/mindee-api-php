@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(BarcodeReaderV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -52,7 +52,6 @@ Page 0
 :Barcodes 1D: Mindee
 :Barcodes 2D: https://developers.mindee.com/docs/barcode-reader-ocr
               I love paperwork! - Said no one ever
-
 ```
 
 # Field Types

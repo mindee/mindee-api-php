@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file asynchronously
 $apiResponse = $mindeeClient->enqueueAndParse(ResumeV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -97,7 +97,6 @@ Prediction
   +------------+--------------------------------+---------------------------+------+
   |            | Programming Languages: Java... |                           |      |
   +------------+--------------------------------+---------------------------+------+
-
 ```
 
 # Field Types

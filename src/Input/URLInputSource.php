@@ -16,7 +16,7 @@ class URLInputSource extends InputSource
 
     /**
      * @param string $url Input URL.
-     * @throws \Mindee\Error\MindeeSourceException Throws if the URL isn't secure.
+     * @throws MindeeSourceException Throws if the URL isn't secure.
      */
     public function __construct(string $url)
     {

@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(CarteGriseV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -128,7 +128,6 @@ Page 0
 :Owner's Surname: DUPONT
 :MRZ Line 1:
 :MRZ Line 2: CI<<MARQUES<<<<<<<MODELE<<<<<<<2009AS0528402
-
 ```
 
 # Field Types

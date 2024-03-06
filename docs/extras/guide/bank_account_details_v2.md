@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(BankAccountDetailsV2::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -62,7 +62,6 @@ Page 0
   :Account Number: 08932891361
 :IBAN: FR7613335000400893289136106
 :SWIFT Code: CEPAFRPP333
-
 ```
 
 # Field Types

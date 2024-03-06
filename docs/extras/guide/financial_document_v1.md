@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(FinancialDocumentV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -120,7 +120,6 @@ Page 0
   +--------------------------------------+--------------+----------+------------+--------------+--------------+------------+
   | Labon 3hrs                           |              | 3.00     |            |              | 45.00        | 15.00      |
   +--------------------------------------+--------------+----------+------------+--------------+--------------+------------+
-
 ```
 
 # Field Types

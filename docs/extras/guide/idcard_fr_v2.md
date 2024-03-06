@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(IdCardV2::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -80,7 +80,6 @@ Page 0
 :Mrz Line 3:
 :Date of Issue: 2015-04-03
 :Issuing Authority: SOUS-PREFECTURE DE BELLE (02)
-
 ```
 
 # Field Types

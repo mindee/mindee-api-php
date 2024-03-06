@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(CarteVitaleV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -54,7 +54,6 @@ Page 0
 :Surname: DURAND
 :Social Security Number: 269054958815780
 :Issuance Date: 2007-01-01
-
 ```
 
 # Field Types

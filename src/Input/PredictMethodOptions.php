@@ -10,15 +10,15 @@ use Mindee\Http\Endpoint;
 class PredictMethodOptions
 {
     /**
-     * @var \Mindee\Input\PredictOptions Prediction options.
+     * @var PredictOptions Prediction options.
      */
     public PredictOptions $predictOptions;
     /**
-     * @var \Mindee\Input\PageOptions Page options.
+     * @var PageOptions Page options.
      */
     public PageOptions $pageOptions;
     /**
-     * @var \Mindee\Http\Endpoint|null Endpoint.
+     * @var Endpoint|null Endpoint.
      */
     public ?Endpoint $endpoint;
 
@@ -40,7 +40,7 @@ class PredictMethodOptions
     }
 
     /**
-     * @param \Mindee\Input\PredictOptions $predictOptions Prediction Options.
+     * @param PredictOptions $predictOptions Prediction Options.
      * @return $this
      */
     public function setPredictOptions(PredictOptions $predictOptions): PredictMethodOptions
@@ -50,7 +50,7 @@ class PredictMethodOptions
     }
 
     /**
-     * @param \Mindee\Input\PageOptions $pageOptions Page Options.
+     * @param PageOptions $pageOptions Page Options.
      * @return $this
      */
     public function setPageOptions(PageOptions $pageOptions): PredictMethodOptions
@@ -60,7 +60,7 @@ class PredictMethodOptions
     }
 
     /**
-     * @param \Mindee\Http\Endpoint $customEndpoint Endpoint.
+     * @param Endpoint $customEndpoint Endpoint.
      * @return $this
      */
     public function setEndpoint(Endpoint $customEndpoint): PredictMethodOptions
