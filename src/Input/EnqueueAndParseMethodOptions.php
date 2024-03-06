@@ -36,7 +36,7 @@ class EnqueueAndParseMethodOptions
     /**
      * @param integer $initialDelay Delay between polls.
      * @return $this
-     * @throws \Mindee\Error\MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
+     * @throws MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
      */
     public function setInitialDelaySec(int $initialDelay): EnqueueAndParseMethodOptions
     {
@@ -50,7 +50,7 @@ class EnqueueAndParseMethodOptions
     /**
      * @param integer $delay Delay between successive attempts to poll a queue.
      * @return $this
-     * @throws \Mindee\Error\MindeeApiException Throws if the delay is less than 2 seconds.
+     * @throws MindeeApiException Throws if the delay is less than 2 seconds.
      */
     public function setDelaySec(int $delay): EnqueueAndParseMethodOptions
     {

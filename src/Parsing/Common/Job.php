@@ -31,10 +31,13 @@ class Job
      * @var integer|null Time (ms) taken for the request to be processed by the API.
      */
     public ?int $millisecsTaken;
-
+    /**
+     * @var array|null Information about an error that occurred during the job processing.
+     */
+    public ?array $error;
     /**
      * @param array $rawResponse Raw prediction array.
-     * @throws \Mindee\Error\MindeeApiException Throws if a date is faulty.
+     * @throws MindeeApiException Throws if a date is faulty.
      */
     public function __construct(array $rawResponse)
     {

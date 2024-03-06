@@ -13,7 +13,7 @@ abstract class PolygonUtils
      * Gets the centroid (Point) of a set of points.
      *
      * @param array $vertices Array of points.
-     * @return \Mindee\Geometry\Point
+     * @return Point
      */
     public static function getCentroid(array $vertices): Point
     {
@@ -34,9 +34,9 @@ abstract class PolygonUtils
     /**
      * Retrieves the minimum y coordinate of a Polygon.
      *
-     * @param \Mindee\Geometry\Polygon $polygon Polygon to get the minimum y coordinate of.
+     * @param Polygon $polygon Polygon to get the minimum y coordinate of.
      * @return float
-     * @throws \Mindee\Error\MindeeGeometryException Throws if a minimum y-axis value cannot
+     * @throws MindeeGeometryException Throws if a minimum y-axis value cannot
      * be found, e.g. if the polygon is empty.
      */
     public static function getMinYCoordinate(Polygon $polygon): float
@@ -59,9 +59,9 @@ abstract class PolygonUtils
     /**
      * Retrieves the minimum x coordinate of a Polygon.
      *
-     * @param \Mindee\Geometry\Polygon $polygon Polygon to get the minimum y coordinate of.
+     * @param Polygon $polygon Polygon to get the minimum y coordinate of.
      * @return float
-     * @throws \Mindee\Error\MindeeGeometryException Throws if a minimum x-axis value cannot be
+     * @throws MindeeGeometryException Throws if a minimum x-axis value cannot be
      * found, e.g. if the polygon is empty.
      */
     public static function getMinXCoordinate(Polygon $polygon): float
@@ -84,9 +84,9 @@ abstract class PolygonUtils
     /**
      * Retrieves the maximum y coordinate of a Polygon.
      *
-     * @param \Mindee\Geometry\Polygon $polygon Polygon to get the minimum y coordinate of.
+     * @param Polygon $polygon Polygon to get the minimum y coordinate of.
      * @return float
-     * @throws \Mindee\Error\MindeeGeometryException Throws if a maximum y-axis value cannot be
+     * @throws MindeeGeometryException Throws if a maximum y-axis value cannot be
      * found, e.g. if the polygon is empty.
      */
     public static function getMaxYCoordinate(Polygon $polygon): float
@@ -109,9 +109,9 @@ abstract class PolygonUtils
     /**
      * Retrieves the maximum x coordinate of a Polygon.
      *
-     * @param \Mindee\Geometry\Polygon $polygon Polygon to get the minimum y coordinate of.
+     * @param Polygon $polygon Polygon to get the minimum y coordinate of.
      * @return float
-     * @throws \Mindee\Error\MindeeGeometryException Throws if a maximum x-axis value cannot be
+     * @throws MindeeGeometryException Throws if a maximum x-axis value cannot be
      * found, e.g. if the polygon is empty.
      */
     public static function getMaxXCoordinate(Polygon $polygon): float
@@ -134,8 +134,8 @@ abstract class PolygonUtils
     /**
      * Compares two polygons on the Y axis. Returns a sort-compliant result (0;-1;1).
      *
-     * @param \Mindee\Geometry\Polygon $polygon1 First polygon to compare.
-     * @param \Mindee\Geometry\Polygon $polygon2 Second polygon to compare.
+     * @param Polygon $polygon1 First polygon to compare.
+     * @param Polygon $polygon2 Second polygon to compare.
      * @return integer
      */
     public static function compareOnY(Polygon $polygon1, Polygon $polygon2): int
@@ -151,10 +151,10 @@ abstract class PolygonUtils
     /**
      * Merges two polygons.
      *
-     * @param \Mindee\Geometry\Polygon|null $base   First polygon to merge.
-     * @param \Mindee\Geometry\Polygon|null $target Second polygon to merge.
-     * @return \Mindee\Geometry\Polygon
-     * @throws \Mindee\Error\MindeeGeometryException Throws if both polygons are empty.
+     * @param Polygon|null $base   First polygon to merge.
+     * @param Polygon|null $target Second polygon to merge.
+     * @return Polygon
+     * @throws MindeeGeometryException Throws if both polygons are empty.
      */
     public static function merge(?Polygon $base, ?Polygon $target): Polygon
     {
@@ -174,9 +174,9 @@ abstract class PolygonUtils
     /**
      * Creates a bounding box from one or two polygons.
      *
-     * @param \Mindee\Geometry\Polygon|null $base   First polygon.
-     * @param \Mindee\Geometry\Polygon|null $target Second polygon.
-     * @return \Mindee\Geometry\Polygon
+     * @param Polygon|null $base   First polygon.
+     * @param Polygon|null $target Second polygon.
+     * @return Polygon
      */
     public static function createBoundingBoxFrom(?Polygon $base, ?Polygon $target = null): Polygon
     {
@@ -199,8 +199,8 @@ abstract class PolygonUtils
      * Generates a quadrilateral Polygon from a given prediction.
      *
      * @param array $prediction Raw prediction array.
-     * @return \Mindee\Geometry\Polygon
-     * @throws \Mindee\Error\MindeeGeometryException Throws if the polygon isn't a quadrilateral.
+     * @return Polygon
+     * @throws MindeeGeometryException Throws if the polygon isn't a quadrilateral.
      */
     public static function quadrilateralFromPrediction(array $prediction): Polygon
     {
@@ -220,7 +220,7 @@ abstract class PolygonUtils
      * Generates a Polygon from a given prediction.
      *
      * @param array $prediction Raw prediction array.
-     * @return \Mindee\Geometry\Polygon
+     * @return Polygon
      */
     public static function polygonFromPrediction(array $prediction): Polygon
     {
@@ -235,9 +235,9 @@ abstract class PolygonUtils
     /**
      * Checks whether a point is located within a coordinate range on the x-axis.
      *
-     * @param \Mindee\Geometry\Point $point Point to check.
-     * @param float                  $minX  Lower bound.
-     * @param float                  $maxX  Upper bound.
+     * @param Point $point Point to check.
+     * @param float $minX  Lower bound.
+     * @param float $maxX  Upper bound.
      * @return boolean
      */
     public static function isPointInX(Point $point, float $minX, float $maxX): bool
@@ -248,8 +248,8 @@ abstract class PolygonUtils
     /**
      * Checks whether a point is in a polygon's x-axis range.
      *
-     * @param \Mindee\Geometry\Point   $point   Point to check.
-     * @param \Mindee\Geometry\Polygon $polygon Polygon.
+     * @param Point   $point   Point to check.
+     * @param Polygon $polygon Polygon.
      * @return boolean
      */
     public static function isPointInPolygonX(Point $point, Polygon $polygon): bool
@@ -262,9 +262,9 @@ abstract class PolygonUtils
     /**
      * Checks whether a point is located within a coordinate range on the y-axis.
      *
-     * @param \Mindee\Geometry\Point $point Point to check.
-     * @param float                  $minY  Lower bound.
-     * @param float                  $maxY  Upper bound.
+     * @param Point $point Point to check.
+     * @param float $minY  Lower bound.
+     * @param float $maxY  Upper bound.
      * @return boolean
      */
     public static function isPointInY(Point $point, float $minY, float $maxY): bool
@@ -275,8 +275,8 @@ abstract class PolygonUtils
     /**
      * Checks whether a point is in a polygon's y-axis range.
      *
-     * @param \Mindee\Geometry\Point   $point   Point to check.
-     * @param \Mindee\Geometry\Polygon $polygon Polygon.
+     * @param Point   $point   Point to check.
+     * @param Polygon $polygon Polygon.
      * @return boolean
      */
     public static function isPointInPolygonY(Point $point, Polygon $polygon): bool

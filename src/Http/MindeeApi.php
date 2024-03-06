@@ -135,9 +135,9 @@ class MindeeApi
     /**
      * @param string|null $apiKey       API key.
      * @param string      $endpointName Name of the endpoint.
-     * @param string      $accountName  Name of the endpoint's owner.
-     * @param string      $version      Version of the endpoint.
-     * @throws \Mindee\Error\MindeeException Throws if the API key specified is invalid.
+     * @param string|null $accountName  Name of the endpoint's owner.
+     * @param string|null $version      Version of the endpoint.
+     * @throws MindeeException Throws if the API key specified is invalid.
      */
     public function __construct(
         ?string $apiKey,

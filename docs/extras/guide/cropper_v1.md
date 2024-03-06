@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(CropperV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -48,7 +48,6 @@ Page 0
 ------
 :Document Cropper: Polygon with 26 points.
                    Polygon with 25 points.
-
 ```
 
 # Field Types

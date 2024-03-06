@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(DriverLicenseV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -72,7 +72,6 @@ Page 0
 :Issue Authority: 99999UpiaCity
 :MRZ: D1FRA13AA000026181231MARTIN<<9
 :Address:
-
 ```
 
 # Field Types

@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(ProofOfAddressV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -86,7 +86,6 @@ Page 0
         2010-07-01
         2011-07-27
 :Date of Issue: 2011-07-27
-
 ```
 
 # Field Types

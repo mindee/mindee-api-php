@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(DriverLicenseV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -82,7 +82,6 @@ Page 0
 :Hair Color: BRO
 :Eye Color: BRO
 :Document Discriminator: 1234567890123456
-
 ```
 
 # Field Types

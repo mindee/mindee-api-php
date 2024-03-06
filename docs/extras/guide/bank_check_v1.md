@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -62,7 +62,6 @@ Page 0
 :Routing Number:
 :Account Number: 7789778136
 :Check Number: 0003401
-
 ```
 
 # Field Types

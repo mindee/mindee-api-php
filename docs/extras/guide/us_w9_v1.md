@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(W9V1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -58,7 +58,6 @@ Page 0
 :Signature Position: Polygon with 4 points.
 :Signature Date Position:
 :Tax Classification LLC:
-
 ```
 
 # Field Types

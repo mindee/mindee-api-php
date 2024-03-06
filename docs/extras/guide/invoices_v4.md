@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(InvoiceV4::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -110,7 +110,6 @@ Page 0
   +--------------------------------------+--------------+----------+------------+--------------+--------------+------------+
   | Mobile designs Includes responsiv... |              | 1.00     |            |              | 250.00       | 250.00     |
   +--------------------------------------+--------------+----------+------------+--------------+--------------+------------+
-
 ```
 
 # Field Types

@@ -22,7 +22,7 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(LicensePlateV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;
 ```
 
 **Output (RST):**
@@ -48,7 +48,6 @@ Page Predictions
 Page 0
 ------
 :License Plates: BY-323-YB
-
 ```
 
 # Field Types
