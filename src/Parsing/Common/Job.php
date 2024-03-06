@@ -2,6 +2,7 @@
 
 namespace Mindee\Parsing\Common;
 
+use DateTimeImmutable;
 use Mindee\Error\MindeeApiException;
 
 /**
@@ -16,13 +17,13 @@ class Job
      */
     public ?string $id;
     /**
-     * @var \DateTimeImmutable|null Timestamp of the request reception by the API.
+     * @var DateTimeImmutable|null Timestamp of the request reception by the API.
      */
-    public ?\DateTimeImmutable $issuedAt;
+    public ?DateTimeImmutable $issuedAt;
     /**
-     * @var \DateTimeImmutable|null Timestamp of the request after it has been completed.
+     * @var DateTimeImmutable|null Timestamp of the request after it has been completed.
      */
-    public ?\DateTimeImmutable $availableAt;
+    public ?DateTimeImmutable $availableAt;
     /**
      * @var string|null Status of the request, as seen by the API.
      */
@@ -42,10 +43,10 @@ class Job
     public function __construct(array $rawResponse)
     {
         try {
-            $this->issuedAt = new \DateTimeImmutable($rawResponse['issued_at']);
+            $this->issuedAt = new DateTimeImmutable($rawResponse['issued_at']);
         } catch (\Exception $e) {
             try {
-                $this->issuedAt = new \DateTimeImmutable(strtotime($rawResponse['issued_at']));
+                $this->issuedAt = new DateTimeImmutable(strtotime($rawResponse['issued_at']));
             } catch (\Exception $e2) {
                 throw new MindeeApiException("Could not create date from " . $rawResponse['issued_at']);
             }
@@ -54,10 +55,10 @@ class Job
         $this->status = $rawResponse['status'];
         if (array_key_exists('available_at', $rawResponse) && strtotime($rawResponse['available_at'])) {
             try {
-                $this->availableAt = new \DateTimeImmutable($rawResponse['available_at']);
+                $this->availableAt = new DateTimeImmutable($rawResponse['available_at']);
             } catch (\Exception $e) {
                 try {
-                    $this->availableAt = new \DateTimeImmutable(strtotime($rawResponse['available_at']));
+                    $this->availableAt = new DateTimeImmutable(strtotime($rawResponse['available_at']));
                 } catch (\Exception $e2) {
                     throw new MindeeApiException("Could not create date from " . $rawResponse['available_at']);
                 }

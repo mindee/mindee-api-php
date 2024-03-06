@@ -5,6 +5,7 @@ namespace Mindee\Http;
 use Mindee;
 use Mindee\Input\InputSource;
 use Mindee\Input\URLInputSource;
+use Mindee\Input\LocalInputSource;
 
 /**
  * Endpoint management.
@@ -25,10 +26,10 @@ class Endpoint extends BaseEndpoint
     public string $version;
 
     /**
-     * @param string                 $urlName  Url (name) of the endpoint.
-     * @param string                 $owner    Name of the endpoint's owner.
-     * @param string                 $version  Version of the endpoint.
-     * @param \Mindee\Http\MindeeApi $settings Settings for the endpoint.
+     * @param string    $urlName  Url (name) of the endpoint.
+     * @param string    $owner    Name of the endpoint's owner.
+     * @param string    $version  Version of the endpoint.
+     * @param MindeeApi $settings Settings for the endpoint.
      */
     public function __construct(
         string $urlName,
@@ -80,13 +81,13 @@ class Endpoint extends BaseEndpoint
     /**
      * Starts a CURL session, using POST.
      *
-     * @param \Mindee\Input\InputSource $fileCurl     File to upload.
-     * @param boolean                   $includeWords Whether to include the full text for each page.
-     *                          This performs a full OCR operation on the server and will increase response time.
-     * @param boolean                   $cropper      Whether to include cropper results for each page.
-     *                               This performs a cropping operation on the server and will increase response time.
-     * @param boolean                   $async        Whether the query is in async mode.
-     * @param boolean                   $closeFile    Close file.
+     * @param InputSource $fileCurl     File to upload.
+     * @param boolean     $includeWords Whether to include the full text for each page.
+     *                    This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $cropper      Whether to include cropper results for each page.
+     *                    This performs a cropping operation on the server and will increase response time.
+     * @param boolean     $async        Whether the query is in async mode.
+     * @param boolean     $closeFile    Close file.
      * @return array
      */
     private function initCurlSessionPost(
@@ -113,7 +114,10 @@ class Endpoint extends BaseEndpoint
         curl_setopt($ch, CURLOPT_POST, true);
         if ($fileCurl instanceof URLInputSource) {
             $postFields = ['document' => $fileCurl];
-        } else {
+        } elseif ($fileCurl instanceof LocalInputSource) {
+            if ($closeFile) {
+                $fileCurl->close();
+            }
             $postFields = ['document' => $fileCurl->fileObject];
         }
         if ($includeWords) {
@@ -149,12 +153,12 @@ class Endpoint extends BaseEndpoint
     /**
      * Sends a document for asynchronous enqueuing.
      *
-     * @param \Mindee\Input\InputSource $fileCurl     File to upload.
-     * @param boolean                   $includeWords Whether to include the full text for each page.
-     *                          This performs a full OCR operation on the server and will increase response time.
-     * @param boolean                   $closeFile    Whether to close the file after parsing it.
-     * @param boolean                   $cropper      Whether to include cropper results for each page.
-     *                               This performs a cropping operation on the server and will increase response time.
+     * @param InputSource $fileCurl     File to upload.
+     * @param boolean     $includeWords Whether to include the full text for each page.
+     *                    This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $closeFile    Whether to close the file after parsing it.
+     * @param boolean     $cropper      Whether to include cropper results for each page.
+     *                    This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictRequestPost(
@@ -171,10 +175,10 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl     File to upload.
      * @param boolean     $includeWords Whether to include the full text for each page.
-     *            This performs a full OCR operation on the server and will increase response time.
+     *                    This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $closeFile    Whether to close the file after parsing it.
      * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                 This performs a cropping operation on the server and will increase response time.
+     *                    This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictAsyncRequestPost(

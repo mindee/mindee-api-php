@@ -33,16 +33,12 @@ class Base64Input extends LocalInputSource
     /**
      * Reads the contents of the file.
      *
-     * @param boolean $closeFile Whether to close the file after parsing it.
      * @return array
      */
-    public function readContents(bool $closeFile = true): array
+    public function readContents(): array
     {
         $fileHandle = fopen($this->fileObject->getFilename(), 'r');
         $strContents = fread($fileHandle, filesize($this->fileObject->getFilename()));
-        if ($closeFile) {
-            fclose($fileHandle);
-        }
         unlink($this->tempFile);
         return [basename($this->fileName), $strContents];
     }

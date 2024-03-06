@@ -2,6 +2,8 @@
 
 namespace Mindee\Input;
 
+use Mindee\Error\MindeeSourceException;
+
 /**
  * Binary file input.
  */
@@ -29,15 +31,40 @@ class FileInput extends LocalInputSource
     /**
      * Reads the contents of the file.
      *
-     * @param boolean $closeFile Whether to close the file after parsing it.
      * @return array
      */
-    public function readContents(bool $closeFile = true): array
+    public function readContents(): array
     {
         $fileContents = fread($this->file, filesize($this->filePath));
-        if ($closeFile) {
-            unlink($this->filePath);
-        }
         return [$this->fileName, $fileContents];
+    }
+
+
+    /**
+     * Closes the file.
+     *
+     * @return void
+     * @throws MindeeSourceException Throws when strict mode is enabled.
+     */
+    public function close(): void
+    {
+        if (!is_resource($this->file)) {
+            if ($this->throwsOnClose) {
+                throw new MindeeSourceException("File is already closed.");
+            }
+            error_log("File is already closed.");
+        } else {
+            fclose($this->file);
+        }
+    }
+
+    /**
+     * Returns the reference to the file object. Only used for testing purposes.
+     *
+     * @return mixed
+     */
+    public function getFilePtr()
+    {
+        return $this->file;
     }
 }
