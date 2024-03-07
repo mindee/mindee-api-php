@@ -30,12 +30,12 @@ echo $apiResponse->document;
 ########
 Document
 ########
-:Mindee ID: 80f2328c-58a5-486a-9599-eb2d738680f0
+:Mindee ID: a9062dd1-0d34-42ab-9505-0481a8545106
 :Filename: default_sample.jpg
 
 Inference
 #########
-:Product: mindee/invoices v4.4
+:Product: mindee/invoices v4.5
 :Rotation applied: Yes
 
 Prediction
@@ -61,6 +61,8 @@ Prediction
 :Customer Name: JIRO DOI
 :Customer Company Registrations:
 :Customer Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
+:Shipping Address:
+:Billing Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
 :Document Type: INVOICE
 :Line Items:
   +--------------------------------------+--------------+----------+------------+--------------+--------------+------------+
@@ -99,6 +101,8 @@ Page 0
 :Customer Name: JIRO DOI
 :Customer Company Registrations:
 :Customer Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
+:Shipping Address:
+:Billing Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
 :Document Type: INVOICE
 :Line Items:
   +--------------------------------------+--------------+----------+------------+--------------+--------------+------------+
@@ -203,6 +207,13 @@ A `InvoiceV4LineItem` implements the following attributes:
 # Attributes
 The following fields are extracted for Invoice V4:
 
+## Billing Address
+**billingAddress** : The customer's address used for billing.
+
+```php
+echo $result->document->inference->prediction->billingAddress->value;
+```
+
 ## Customer Address
 **customerAddress** : The address of the customer.
 
@@ -280,6 +291,13 @@ foreach ($result->document->inference->prediction->referenceNumbers as $referenc
 {
     echo $referenceNumbersElem->value;
 }
+```
+
+## Shipping Address
+**shippingAddress** : Customer's delivery address.
+
+```php
+echo $result->document->inference->prediction->shippingAddress->value;
 ```
 
 ## Supplier Address
