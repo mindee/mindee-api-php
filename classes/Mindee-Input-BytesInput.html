@@ -202,6 +202,12 @@
                         &nbsp;: resource            </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose">$throwsOnClose</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
     </dl>
 
 <h4 id="toc-methods">
@@ -218,11 +224,25 @@
 <dd>Base constructor, mostly used for Mime type checking.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Mindee-Input-LocalInputSource.html#method_close">close()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Closes the handle/stream, if the input type supports it.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Mindee-Input-LocalInputSource.html#method_countDocPages">countDocPages()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Counts the amount of pages in a PDF.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Mindee-Input-LocalInputSource.html#method_enableStrictMode">enableStrictMode()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Enables strict mode.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Mindee-Input-LocalInputSource.html#method_isPDF">isPDF()</a>
@@ -297,7 +317,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -332,7 +352,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -367,7 +387,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -402,7 +422,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -450,6 +470,41 @@
 
     
         <section class="phpdocumentor-description"><p>Stream object.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_throwsOnClose">
+        $throwsOnClose
+        <a href="classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$throwsOnClose</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Sets the input mode to debug. Only used in unit tests.</p>
 </section>
 
     
@@ -522,6 +577,55 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_close">
+        close()
+        <a href="classes/Mindee-Input-LocalInputSource.html#method_close" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">148</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Closes the handle/stream, if the input type supports it.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">close</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Input-LocalInputSource.html#method_close#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeSourceException.html"><abbr title="\Mindee\Error\MindeeSourceException">MindeeSourceException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Throws when strict mode is enabled.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_countDocPages">
         countDocPages()
         <a href="classes/Mindee-Input-LocalInputSource.html#method_countDocPages" class="headerlink"><i class="fas fa-link"></i></a>
@@ -530,7 +634,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -556,6 +660,40 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_enableStrictMode">
+        enableStrictMode()
+        <a href="classes/Mindee-Input-LocalInputSource.html#method_enableStrictMode" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">163</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Enables strict mode.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">enableStrictMode</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Currently only used to throw on misuse of close().</p>
+</section>
+
+    
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_isPDF">
         isPDF()
         <a href="classes/Mindee-Input-LocalInputSource.html#method_isPDF" class="headerlink"><i class="fas fa-link"></i></a>
@@ -564,7 +702,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">84</span>
 
     </aside>
 
@@ -600,7 +738,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -634,7 +772,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -668,7 +806,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -702,7 +840,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/BytesInput.php"><a href="files/src-input-bytesinput.html"><abbr title="src/Input/BytesInput.php">BytesInput.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -710,24 +848,12 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">readContents</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$closeFile</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">readContents</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$closeFile</span>
-                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Whether to close the file after parsing it.</p>
-</section>
-
-            </dd>
-            </dl>
-
+    
     
 
             <section>
@@ -750,7 +876,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -903,6 +1029,7 @@
                                                     <li><a href="classes/Mindee-Input-LocalInputSource.html#property_fileObject">$fileObject<a href="classes/Mindee-Input-BytesInput.html"></li>
                                                     <li><a href="classes/Mindee-Input-LocalInputSource.html#property_filePath">$filePath<a href="classes/Mindee-Input-BytesInput.html"></li>
                                                     <li><a href="classes/Mindee-Input-BytesInput.html#property_stream">$stream<a href="classes/Mindee-Input-BytesInput.html"></li>
+                                                    <li><a href="classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose">$throwsOnClose<a href="classes/Mindee-Input-BytesInput.html"></li>
                                             </ul>
                 </li>
             
@@ -910,7 +1037,9 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Mindee-Input-BytesInput.html#method___construct">__construct()</a></li>
+                                            <li><a href="classes/Mindee-Input-LocalInputSource.html#method_close">close()</a></li>
                                             <li><a href="classes/Mindee-Input-LocalInputSource.html#method_countDocPages">countDocPages()</a></li>
+                                            <li><a href="classes/Mindee-Input-LocalInputSource.html#method_enableStrictMode">enableStrictMode()</a></li>
                                             <li><a href="classes/Mindee-Input-LocalInputSource.html#method_isPDF">isPDF()</a></li>
                                             <li><a href="classes/Mindee-Input-LocalInputSource.html#method_isPDFEmpty">isPDFEmpty()</a></li>
                                             <li><a href="classes/Mindee-Input-LocalInputSource.html#method_mergePDFPages">mergePDFPages()</a></li>

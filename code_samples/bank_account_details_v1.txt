@@ -12,4 +12,4 @@ $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 // Parse the file
 $apiResponse = $mindeeClient->parse(BankAccountDetailsV1::class, $inputSource);
 
-echo strval($apiResponse->document);
+echo $apiResponse->document;

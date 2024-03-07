@@ -611,6 +611,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Http-MindeeApi.html#property_baseUrl"
         },                {
+            "fqsen": "\\Mindee\\Http\\ResponseValidation",
+            "name": "ResponseValidation",
+            "summary": "Wrapper\u0020class\u0020for\u0020http\u0020requests\/responses\u0020validation\u0020handling.",
+            "url": "classes/Mindee-Http-ResponseValidation.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\ResponseValidation\u003A\u003AisValidSyncResponse\u0028\u0029",
+            "name": "isValidSyncResponse",
+            "summary": "Checks\u0020if\u0020the\u0020synchronous\u0020response\u0020is\u0020valid.\u0020Returns\u0020True\u0020if\u0020the\u0020response\u0020is\u0020valid.",
+            "url": "classes/Mindee-Http-ResponseValidation.html#method_isValidSyncResponse"
+        },                {
+            "fqsen": "\\Mindee\\Http\\ResponseValidation\u003A\u003AisValidAsyncResponse\u0028\u0029",
+            "name": "isValidAsyncResponse",
+            "summary": "Checks\u0020if\u0020the\u0020asynchronous\u0020response\u0020is\u0020valid.\u0020Also\u0020checks\u0020if\u0020it\u0020is\u0020a\u0020valid\u0020synchronous\u0020response.",
+            "url": "classes/Mindee-Http-ResponseValidation.html#method_isValidAsyncResponse"
+        },                {
+            "fqsen": "\\Mindee\\Http\\ResponseValidation\u003A\u003AcleanRequestData\u0028\u0029",
+            "name": "cleanRequestData",
+            "summary": "Checks\u0020and\u0020corrects\u0020the\u0020response\u0020object\u0020depending\u0020on\u0020the\u0020possible\u0020kinds\u0020of\u0020returns.",
+            "url": "classes/Mindee-Http-ResponseValidation.html#method_cleanRequestData"
+        },                {
             "fqsen": "\\Mindee\\Input\\Base64Input",
             "name": "Base64Input",
             "summary": "Base64\u002Dencoded\u0020text\u0020input.",
@@ -706,6 +726,16 @@ Search.appendIndex(
             "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
             "url": "classes/Mindee-Input-FileInput.html#method_readContents"
         },                {
+            "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003Aclose\u0028\u0029",
+            "name": "close",
+            "summary": "Closes\u0020the\u0020file.",
+            "url": "classes/Mindee-Input-FileInput.html#method_close"
+        },                {
+            "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003AgetFilePtr\u0028\u0029",
+            "name": "getFilePtr",
+            "summary": "Returns\u0020the\u0020reference\u0020to\u0020the\u0020file\u0020object.\u0020Only\u0020used\u0020for\u0020testing\u0020purposes.",
+            "url": "classes/Mindee-Input-FileInput.html#method_getFilePtr"
+        },                {
             "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003A\u0024file",
             "name": "file",
             "summary": "",
@@ -766,6 +796,16 @@ Search.appendIndex(
             "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_readContents"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003Aclose\u0028\u0029",
+            "name": "close",
+            "summary": "Closes\u0020the\u0020handle\/stream,\u0020if\u0020the\u0020input\u0020type\u0020supports\u0020it.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_close"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AenableStrictMode\u0028\u0029",
+            "name": "enableStrictMode",
+            "summary": "Enables\u0020strict\u0020mode.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_enableStrictMode"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024fileObject",
             "name": "fileObject",
             "summary": "",
@@ -785,6 +825,11 @@ Search.appendIndex(
             "name": "filePath",
             "summary": "",
             "url": "classes/Mindee-Input-LocalInputSource.html#property_filePath"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024throwsOnClose",
+            "name": "throwsOnClose",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose"
         },                {
             "fqsen": "\\Mindee\\Input\\KEEP_ONLY",
             "name": "KEEP_ONLY",
@@ -1190,6 +1235,11 @@ Search.appendIndex(
             "name": "millisecsTaken",
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Job.html#property_millisecsTaken"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Job\u003A\u003A\u0024error",
+            "name": "error",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Job.html#property_error"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\MVisionV1",
             "name": "MVisionV1",
