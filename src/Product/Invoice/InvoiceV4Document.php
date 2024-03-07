@@ -20,6 +20,10 @@ use Mindee\Parsing\Standard\Taxes;
 class InvoiceV4Document extends Prediction
 {
     /**
+     * @var StringField The customer's address used for billing.
+     */
+    public StringField $billingAddress;
+    /**
      * @var StringField The address of the customer.
      */
     public StringField $customerAddress;
@@ -60,6 +64,10 @@ class InvoiceV4Document extends Prediction
      */
     public array $referenceNumbers;
     /**
+     * @var StringField Customer's delivery address.
+     */
+    public StringField $shippingAddress;
+    /**
      * @var StringField The address of the supplier or merchant.
      */
     public StringField $supplierAddress;
@@ -98,6 +106,13 @@ class InvoiceV4Document extends Prediction
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
+        if (!isset($rawPrediction["billing_address"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->billingAddress = new StringField(
+            $rawPrediction["billing_address"],
+            $pageId
+        );
         if (!isset($rawPrediction["customer_address"])) {
             throw new MindeeUnsetException();
         }
@@ -167,6 +182,13 @@ class InvoiceV4Document extends Prediction
         $this->referenceNumbers = $rawPrediction["reference_numbers"] == null ? [] : array_map(
             fn ($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["reference_numbers"]
+        );
+        if (!isset($rawPrediction["shipping_address"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->shippingAddress = new StringField(
+            $rawPrediction["shipping_address"],
+            $pageId
         );
         if (!isset($rawPrediction["supplier_address"])) {
             throw new MindeeUnsetException();
@@ -265,6 +287,8 @@ class InvoiceV4Document extends Prediction
 :Customer Name: $this->customerName
 :Customer Company Registrations: $customerCompanyRegistrations
 :Customer Address: $this->customerAddress
+:Shipping Address: $this->shippingAddress
+:Billing Address: $this->billingAddress
 :Document Type: $this->documentType
 :Line Items: $lineItemsSummary
 ";

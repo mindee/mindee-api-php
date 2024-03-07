@@ -49,6 +49,8 @@ class InvoiceV4Test extends TestCase
         $this->assertNull($prediction->customerName->value);
         $this->assertEquals(0, count($prediction->customerCompanyRegistrations));
         $this->assertNull($prediction->customerAddress->value);
+        $this->assertNull($prediction->shippingAddress->value);
+        $this->assertNull($prediction->billingAddress->value);
         $this->assertEquals(0, count($prediction->lineItems));
     }
 }
