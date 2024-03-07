@@ -1,5 +1,14 @@
 # Mindee PHP API Library Changelog
 
+## v1.3.1 - 2024-03-07
+### Changes
+* :recycle: update error handling to account for future evolutions
+* :memo: update miscellaneous product documentations
+
+### Fixes
+* :bug: fix file close not working properly
+
+
 ## v1.3.0 - 2024-02-23
 ### Changes
 * :sparkles: add support for GeneratedV1
