@@ -36,18 +36,13 @@ class BytesInput extends LocalInputSource
     /**
      * Reads the contents of the file.
      *
-     * @param boolean $closeFile Whether to close the file after parsing it.
      * @return array
      */
-    public function readContents(bool $closeFile = true): array
+    public function readContents(): array
     {
         rewind($this->stream);
         $streamContents = stream_get_contents($this->stream);
-        if ($closeFile) {
-            fclose($this->stream);
-        } else {
-            rewind($this->stream);
-        }
+        rewind($this->stream);
         return [$this->fileName, $streamContents];
     }
 }

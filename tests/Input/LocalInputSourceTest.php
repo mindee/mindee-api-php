@@ -32,7 +32,7 @@ class LocalInputSourceTest extends TestCase
     public function testPDFReadContents()
     {
         $inputDoc = new PathInput($this->fileTypesDir . "/pdf/multipage.pdf");
-        $contents = $inputDoc->readContents(false);
+        $contents = $inputDoc->readContents();
         $this->assertEquals("multipage.pdf", $contents[0]);
     }
 
@@ -77,7 +77,7 @@ class LocalInputSourceTest extends TestCase
         $fileContents = file_get_contents($this->fileTypesDir . "/pdf/multipage.pdf");
         $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
         $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
-        $contents = $inputDoc->readContents(false);
+        $contents = $inputDoc->readContents();
         $this->assertEquals("multipage.pdf", $contents[0]);
         $this->assertEquals($fileContents, $contents[1]);
     }
@@ -86,7 +86,7 @@ class LocalInputSourceTest extends TestCase
     {
         $pdfBytes = file_get_contents($this->fileTypesDir . "/pdf/multipage.pdf");
         $inputDoc = $this->dummyClient->sourceFromBytes($pdfBytes, "dummy.pdf");
-        $contents = $inputDoc->readContents(false);
+        $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
         $this->assertEquals($pdfBytes, $contents[1]);
     }
@@ -95,7 +95,7 @@ class LocalInputSourceTest extends TestCase
     {
         $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
         $inputDoc = $this->dummyClient->sourceFromb64String($pdfBytes, "dummy.pdf");
-        $contents = $inputDoc->readContents(false);
+        $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
         $this->assertEquals($pdfBytes, $contents[1]);
     }
@@ -104,5 +104,33 @@ class LocalInputSourceTest extends TestCase
     {
         $this->expectException(MindeeSourceException::class);
         $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
+    }
+
+
+    public function testFileCloseValid(){
+        $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
+        $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
+        $this->assertTrue(is_resource($inputDoc->getFilePtr()));
+        $inputDoc->close();
+        $this->assertFalse(is_resource($inputDoc->getFilePtr()));
+    }
+
+    public function testFileCloseInvalid(){
+        $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
+        $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
+        $inputDoc->enableStrictMode();
+        fclose($fileRef);
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage("File is already closed.");
+        $inputDoc->close();
+    }
+
+    public function testFileCloseNotImplemented(){
+        $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
+        $inputDoc = $this->dummyClient->sourceFromb64String($pdfBytes, "dummy.pdf");
+        $inputDoc->enableStrictMode();
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage("Closing is not implemented on this type of local input source.");
+        $inputDoc->close();
     }
 }
