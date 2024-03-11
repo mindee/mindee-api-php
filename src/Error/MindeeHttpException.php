@@ -32,9 +32,9 @@ class MindeeHttpException extends MindeeException
     public ?string $apiMessage;
 
     /**
-     * @param array $httpError Array containing the error data.
-     * @param string $url Remote URL the error was found on.
-     * @param integer $code Error code.
+     * @param array   $httpError Array containing the error data.
+     * @param string  $url       Remote URL the error was found on.
+     * @param integer $code      Error code.
      */
     public function __construct(array $httpError, string $url, int $code)
     {
@@ -128,7 +128,7 @@ class MindeeHttpException extends MindeeException
     }
 
     /**
-     * @param string $url Remote URL the error was found on.
+     * @param string               $url      Remote URL the error was found on.
      * @param array|string|boolean $response Raw server response.
      * @return MindeeHttpException
      */
