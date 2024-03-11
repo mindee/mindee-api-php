@@ -32,9 +32,9 @@ class MindeeHttpException extends MindeeException
     public ?string $apiMessage;
 
     /**
-     * @param array   $httpError Array containing the error data.
-     * @param string  $url       Remote URL the error was found on.
-     * @param integer $code      Error code.
+     * @param array $httpError Array containing the error data.
+     * @param string $url Remote URL the error was found on.
+     * @param integer $code Error code.
      */
     public function __construct(array $httpError, string $url, int $code)
     {
@@ -112,8 +112,15 @@ class MindeeHttpException extends MindeeException
 
             return $errorArray;
         }
-        if (array_key_exists('api_request', $response) && array_key_exists('error', $response['api_request'])) {
+        if (
+            is_array($response) &&
+            array_key_exists('api_request', $response) &&
+            array_key_exists('error', $response['api_request'])
+        ) {
             return $response['api_request']['error'];
+        }
+        if (!$response) {
+            throw new MindeeException("Request to the API failed.");
         }
         throw new MindeeException(
             'Could not build a specific HTTP exception from: ' . json_encode($response, JSON_PRETTY_PRINT)
@@ -121,13 +128,17 @@ class MindeeHttpException extends MindeeException
     }
 
     /**
-     * @param string       $url      Remote URL the error was found on.
-     * @param array|string $response Raw server response.
+     * @param string $url Remote URL the error was found on.
+     * @param array|string|boolean $response Raw server response.
      * @return MindeeHttpException
      */
     public static function handleError(string $url, $response): MindeeHttpException
     {
-        $dataResponse = $response['data'] ?? ["data" => null];
+        if (is_array($response)) {
+            $dataResponse = $response['data'] ?? ["data" => null];
+        } else {
+            $dataResponse = ["data" => null];
+        }
         $errorObj = MindeeHttpException::createErrorObj($dataResponse);
         if (array_key_exists("code", $response) && is_numeric($response['code'])) {
             $code = intval($response['code']);
