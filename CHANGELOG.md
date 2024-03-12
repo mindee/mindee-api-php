@@ -1,5 +1,12 @@
 # Mindee PHP API Library Changelog
 
+## v1.3.2 - 2024-03-12
+### Fixes
+* :bug: fix improper handling of base64 files
+* :bug: fix improper handling of bytes files
+* :bug: fix error catching for CURL calls
+
+
 ## v1.3.1 - 2024-03-07
 ### Changes
 * :recycle: update error handling to account for future evolutions
