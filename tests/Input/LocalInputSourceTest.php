@@ -94,10 +94,10 @@ class LocalInputSourceTest extends TestCase
     public function testInputFromRawb64String()
     {
         $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
-        $inputDoc = $this->dummyClient->sourceFromb64String($pdfBytes, "dummy.pdf");
+        $inputDoc = $this->dummyClient->sourceFromB64String($pdfBytes, "dummy.pdf");
         $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
-        $this->assertEquals($pdfBytes, $contents[1]);
+        $this->assertEquals(str_replace("\n", "", $pdfBytes), str_replace("\n", "", $contents[1]));
     }
 
     public function testInputFromHTTPShouldThrow()

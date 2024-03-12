@@ -96,7 +96,7 @@ class Client
      * @param string $fileName File name, mandatory.
      * @return Base64Input
      */
-    public function sourceFromb64String(string $fileB64, string $fileName): Base64Input
+    public function sourceFromB64String(string $fileB64, string $fileName): Base64Input
     {
         return new Base64Input($fileB64, $fileName);
     }

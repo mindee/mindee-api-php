@@ -8,9 +8,9 @@ namespace Mindee\Input;
 class BytesInput extends LocalInputSource
 {
     /**
-     * @var resource Stream object.
+     * @var string Temporary file.
      */
-    public $stream;
+    private string $tempFile;
 
     /**
      * @param string $fileBytes Raw data as bytes.
@@ -18,17 +18,13 @@ class BytesInput extends LocalInputSource
      */
     public function __construct(string $fileBytes, string $fileName)
     {
-        $this->stream = fopen('php://temp', 'r+');
-        fwrite($this->stream, $fileBytes);
-        rewind($this->stream);
-        $tmpfname = tempnam(sys_get_temp_dir(), 'bytes_');
+        $this->tempFile = tempnam(sys_get_temp_dir(), 'b64_');
+        $this->fileName = $fileName;
+        file_put_contents($this->tempFile, $fileBytes);
+        rename($this->tempFile, $this->tempFile .= "." . pathinfo($this->fileName, PATHINFO_EXTENSION));
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $this->fileMimetype = finfo_buffer($finfo, $fileBytes);
-        file_put_contents($tmpfname, $this->stream);
-        $this->fileName = $fileName;
-        $this->fileObject = new \CURLFile($tmpfname, $this->fileMimetype, $fileName);
-        unlink($tmpfname);
-        rewind($this->stream);
+        $this->fileObject = new \CURLFile($this->tempFile, $this->fileMimetype, $this->fileName);
         parent::__construct();
     }
 
@@ -40,9 +36,9 @@ class BytesInput extends LocalInputSource
      */
     public function readContents(): array
     {
-        rewind($this->stream);
-        $streamContents = stream_get_contents($this->stream);
-        rewind($this->stream);
-        return [$this->fileName, $streamContents];
+        $fileHandle = fopen($this->fileObject->getFilename(), 'r');
+        $strContents = fread($fileHandle, filesize($this->fileObject->getFilename()));
+        unlink($this->tempFile);
+        return [$this->fileName, $strContents];
     }
 }
