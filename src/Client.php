@@ -366,7 +366,7 @@ class Client
             error_log("Polling server for parsing result with job id: " . $enqueueResponse->job->id);
             $retryCounter++;
             sleep($asyncOptions->delaySec);
-            $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id);
+            $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
         }
         if ($pollResults->job->status != "completed") {
             throw new MindeeApiException(
