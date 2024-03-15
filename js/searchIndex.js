@@ -26,10 +26,10 @@ Search.appendIndex(
             "summary": "Load\u0020a\u0020document\u0020from\u0020raw\u0020bytes.",
             "url": "classes/Mindee-Client.html#method_sourceFromBytes"
         },                {
-            "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromb64String\u0028\u0029",
-            "name": "sourceFromb64String",
+            "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromB64String\u0028\u0029",
+            "name": "sourceFromB64String",
             "summary": "Load\u0020a\u0020document\u0020from\u0020a\u0020base64\u0020encoded\u0020string.",
-            "url": "classes/Mindee-Client.html#method_sourceFromb64String"
+            "url": "classes/Mindee-Client.html#method_sourceFromB64String"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AsourceFromUrl\u0028\u0029",
             "name": "sourceFromUrl",
@@ -666,10 +666,10 @@ Search.appendIndex(
             "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
             "url": "classes/Mindee-Input-BytesInput.html#method_readContents"
         },                {
-            "fqsen": "\\Mindee\\Input\\BytesInput\u003A\u003A\u0024stream",
-            "name": "stream",
+            "fqsen": "\\Mindee\\Input\\BytesInput\u003A\u003A\u0024tempFile",
+            "name": "tempFile",
             "summary": "",
-            "url": "classes/Mindee-Input-BytesInput.html#property_stream"
+            "url": "classes/Mindee-Input-BytesInput.html#property_tempFile"
         },                {
             "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions",
             "name": "EnqueueAndParseMethodOptions",
@@ -3586,6 +3586,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024billingAddress",
+            "name": "billingAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_billingAddress"
+        },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerAddress",
             "name": "customerAddress",
             "summary": "",
@@ -3635,6 +3640,11 @@ Search.appendIndex(
             "name": "referenceNumbers",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_referenceNumbers"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024shippingAddress",
+            "name": "shippingAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_shippingAddress"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierAddress",
             "name": "supplierAddress",
