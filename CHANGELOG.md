@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.3.4 - 2024-03-20
+### Fixes
+* :bug: fix improper handling of number fields on Generated APIs (see #41)
+
+
 ## v1.3.3 - 2024-03-15
 ### Fixes
 * :bug: not sending the custom endpoint to parseQueued method (#39) (Co-authored-by: andreifiroiu)
