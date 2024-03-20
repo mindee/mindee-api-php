@@ -2,7 +2,7 @@
 
 ## v1.3.3 - 2024-03-15
 ### Fixes
-* :bug: not sending the custom endpoint to parseQueued method (#39) (Co-authored-by: andreifiroiu
+* :bug: not sending the custom endpoint to parseQueued method (#39) (Co-authored-by: andreifiroiu)
 
 
 ## v1.3.2 - 2024-03-12

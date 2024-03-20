@@ -32,31 +32,31 @@ class GeneratedObjectField
         $itemPageId = null;
         $this->printableValues = [];
 
-        foreach ($rawPrediction as $name => $value) {
-            if ($name === "page_id") {
+        foreach ($rawPrediction as $fieldName => $value) {
+            if ($fieldName === "page_id") {
                 $itemPageId = $value;
-            } elseif (in_array($name, ["polygon", "rectangle", "quadrangle", "bounding_box"], true)) {
-                $this->{$name} = new PositionField([$name => $value], $itemPageId, false, $name);
-                $this->printableValues[] = $name;
-            } elseif ($name === "confidence") {
+            } elseif (in_array($fieldName, ["polygon", "rectangle", "quadrangle", "bounding_box"], true)) {
+                $this->{$fieldName} = new PositionField([$fieldName => $value], $itemPageId, false, $fieldName);
+                $this->printableValues[] = $fieldName;
+            } elseif ($fieldName === "confidence") {
                 $this->confidence = $value;
-            } elseif ($name === "raw_value") {
+            } elseif ($fieldName === "raw_value") {
                 $this->rawValue = $value;
             } else {
                 if (isset($value)) {
                     if ((is_int($value) || (is_float($value) && floor($value) == $value)) && $value != 0.0) {
-                        $this->{$name} = $value . ".0";
+                        $this->{$fieldName} = $value . ".0";
                     } else {
                         if (is_array($value)) {
-                            $this->{$name} = implode(", ", $value);
+                            $this->{$fieldName} = implode(", ", $value);
                         } else {
-                            $this->{$name} = strval($value);
+                            $this->{$fieldName} = strval($value);
                         }
                     }
                 } else {
-                    $this->{$name} = null;
+                    $this->{$fieldName} = null;
                 }
-                $this->printableValues[] = $name;
+                $this->printableValues[] = $fieldName;
             }
             $this->pageId = $pageId ?? $itemPageId;
         }

@@ -37,7 +37,7 @@ class GeneratedV1Page extends GeneratedV1Prediction
                                 floor($fieldContentsStr['value']) == $fieldContentsStr['value'])) &&
                         $fieldContentsStr['value'] != 0.0
                     ) {
-                        $this->{$name} = $fieldContentsStr['value'] . ".0";
+                        $this->{$fieldName} = $fieldContentsStr['value'] . ".0";
                     } else {
                         $fieldContentsStr['value'] = strval($fieldContents['value']);
                     }
