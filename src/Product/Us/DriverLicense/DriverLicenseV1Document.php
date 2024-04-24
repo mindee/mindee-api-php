@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Driver License, API version 1.
+ * Driver License API version 1.1 document data.
  */
 class DriverLicenseV1Document extends Prediction
 {

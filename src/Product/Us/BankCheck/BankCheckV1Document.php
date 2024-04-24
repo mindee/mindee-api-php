@@ -10,7 +10,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Bank Check, API version 1.
+ * Bank Check API version 1.1 document data.
  */
 class BankCheckV1Document extends Prediction
 {

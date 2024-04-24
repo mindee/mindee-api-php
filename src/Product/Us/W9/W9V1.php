@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for W9, API version 1.
+ * W9 API version 1 inference prediction.
  */
 class W9V1 extends Inference
 {

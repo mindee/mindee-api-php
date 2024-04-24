@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Passport, API version 1.
+ * Passport API version 1 inference prediction.
  */
 class PassportV1 extends Inference
 {

@@ -7,7 +7,7 @@ use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 
 /**
- * Document data for Cropper, API version 1.
+ * Cropper API version 1.1 document data.
  */
 class CropperV1Document extends Prediction
 {

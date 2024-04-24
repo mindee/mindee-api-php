@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Proof of Address, API version 1.
+ * Proof of Address API version 1 inference prediction.
  */
 class ProofOfAddressV1 extends Inference
 {

@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Carte Nationale d'Identité, API version 2.
+ * Carte Nationale d'Identité API version 2 inference prediction.
  */
 class IdCardV2 extends Inference
 {

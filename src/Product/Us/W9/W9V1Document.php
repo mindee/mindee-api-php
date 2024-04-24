@@ -7,7 +7,7 @@ use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 
 /**
- * Document data for W9, API version 1.
+ * W9 API version 1.0 document data.
  */
 class W9V1Document extends Prediction
 {

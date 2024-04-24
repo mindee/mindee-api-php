@@ -8,7 +8,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for License Plate, API version 1.
+ * License Plate API version 1.1 document data.
  */
 class LicensePlateV1Document extends Prediction
 {

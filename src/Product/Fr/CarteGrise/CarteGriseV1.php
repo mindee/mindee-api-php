@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Carte Grise, API version 1.
+ * Carte Grise API version 1 inference prediction.
  */
 class CarteGriseV1 extends Inference
 {

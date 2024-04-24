@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Passport, API version 1.
+ * Passport API version 1.1 document data.
  */
 class PassportV1Document extends Prediction
 {

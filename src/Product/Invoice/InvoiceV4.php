@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Invoice, API version 4.
+ * Invoice API version 4 inference prediction.
  */
 class InvoiceV4 extends Inference
 {

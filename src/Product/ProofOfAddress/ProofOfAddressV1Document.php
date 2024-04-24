@@ -11,7 +11,7 @@ use Mindee\Parsing\Standard\LocaleField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Proof of Address, API version 1.
+ * Proof of Address API version 1.1 document data.
  */
 class ProofOfAddressV1Document extends Prediction
 {

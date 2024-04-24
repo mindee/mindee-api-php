@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Multi Receipts Detector, API version 1.
+ * Multi Receipts Detector API version 1 inference prediction.
  */
 class MultiReceiptsDetectorV1 extends Inference
 {

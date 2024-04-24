@@ -6,7 +6,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\PositionField;
 
 /**
- * Page data for Bank Check, API version 1.
+ * Bank Check API version 1.1 page data.
  */
 class BankCheckV1Page extends BankCheckV1Document
 {

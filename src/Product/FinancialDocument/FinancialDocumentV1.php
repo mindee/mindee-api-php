@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Financial Document, API version 1.
+ * Financial Document API version 1 inference prediction.
  */
 class FinancialDocumentV1 extends Inference
 {

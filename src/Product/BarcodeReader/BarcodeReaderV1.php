@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Barcode Reader, API version 1.
+ * Barcode Reader API version 1 inference prediction.
  */
 class BarcodeReaderV1 extends Inference
 {

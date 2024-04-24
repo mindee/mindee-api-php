@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Carte Vitale, API version 1.
+ * Carte Vitale API version 1 inference prediction.
  */
 class CarteVitaleV1 extends Inference
 {
