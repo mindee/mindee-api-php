@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Carte Vitale, API version 1.
+ * Carte Vitale API version 1.1 document data.
  */
 class CarteVitaleV1Document extends Prediction
 {

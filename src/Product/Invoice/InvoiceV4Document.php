@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Document data for Invoice, API version 4.
+ * Invoice API version 4.6 document data.
  */
 class InvoiceV4Document extends Prediction
 {
@@ -31,6 +31,10 @@ class InvoiceV4Document extends Prediction
      * @var CompanyRegistrationField[] List of company registrations associated to the customer.
      */
     public array $customerCompanyRegistrations;
+    /**
+     * @var StringField The customer account number or identifier from the supplier.
+     */
+    public StringField $customerId;
     /**
      * @var StringField The name of the customer or client.
      */
@@ -76,6 +80,10 @@ class InvoiceV4Document extends Prediction
      */
     public array $supplierCompanyRegistrations;
     /**
+     * @var StringField The email of the supplier or merchant.
+     */
+    public StringField $supplierEmail;
+    /**
      * @var StringField The name of the supplier or merchant.
      */
     public StringField $supplierName;
@@ -83,6 +91,14 @@ class InvoiceV4Document extends Prediction
      * @var PaymentDetailsField[] List of payment details associated to the supplier.
      */
     public array $supplierPaymentDetails;
+    /**
+     * @var StringField The phone number of the supplier or merchant.
+     */
+    public StringField $supplierPhoneNumber;
+    /**
+     * @var StringField The website URL of the supplier or merchant.
+     */
+    public StringField $supplierWebsite;
     /**
      * @var Taxes List of tax line details.
      */
@@ -126,6 +142,13 @@ class InvoiceV4Document extends Prediction
         $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] == null ? [] : array_map(
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["customer_company_registrations"]
+        );
+        if (!isset($rawPrediction["customer_id"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->customerId = new StringField(
+            $rawPrediction["customer_id"],
+            $pageId
         );
         if (!isset($rawPrediction["customer_name"])) {
             throw new MindeeUnsetException();
@@ -204,6 +227,13 @@ class InvoiceV4Document extends Prediction
             fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );
+        if (!isset($rawPrediction["supplier_email"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->supplierEmail = new StringField(
+            $rawPrediction["supplier_email"],
+            $pageId
+        );
         if (!isset($rawPrediction["supplier_name"])) {
             throw new MindeeUnsetException();
         }
@@ -217,6 +247,20 @@ class InvoiceV4Document extends Prediction
         $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] == null ? [] : array_map(
             fn ($prediction) => new PaymentDetailsField($prediction, $pageId),
             $rawPrediction["supplier_payment_details"]
+        );
+        if (!isset($rawPrediction["supplier_phone_number"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->supplierPhoneNumber = new StringField(
+            $rawPrediction["supplier_phone_number"],
+            $pageId
+        );
+        if (!isset($rawPrediction["supplier_website"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->supplierWebsite = new StringField(
+            $rawPrediction["supplier_website"],
+            $pageId
         );
         if (!isset($rawPrediction["taxes"])) {
             throw new MindeeUnsetException();
@@ -284,9 +328,13 @@ class InvoiceV4Document extends Prediction
 :Supplier Name: $this->supplierName
 :Supplier Company Registrations: $supplierCompanyRegistrations
 :Supplier Address: $this->supplierAddress
+:Supplier Phone Number: $this->supplierPhoneNumber
+:Supplier Website: $this->supplierWebsite
+:Supplier Email: $this->supplierEmail
 :Customer Name: $this->customerName
 :Customer Company Registrations: $customerCompanyRegistrations
 :Customer Address: $this->customerAddress
+:Customer ID: $this->customerId
 :Shipping Address: $this->shippingAddress
 :Billing Address: $this->billingAddress
 :Document Type: $this->documentType

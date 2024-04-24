@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Cropper, API version 1.
+ * Cropper API version 1 inference prediction.
  */
 class CropperV1 extends Inference
 {

@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Carte Grise, API version 1.
+ * Carte Grise API version 1.1 document data.
  */
 class CarteGriseV1Document extends Prediction
 {

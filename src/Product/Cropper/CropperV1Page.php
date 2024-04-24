@@ -6,7 +6,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\PositionField;
 
 /**
- * Page data for Cropper, API version 1.
+ * Cropper API version 1.1 page data.
  */
 class CropperV1Page extends CropperV1Document
 {

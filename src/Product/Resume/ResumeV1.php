@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Resume, API version 1.
+ * Resume API version 1 inference prediction.
  */
 class ResumeV1 extends Inference
 {

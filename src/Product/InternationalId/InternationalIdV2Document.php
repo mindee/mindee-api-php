@@ -10,7 +10,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for International ID, API version 2.
+ * International ID API version 2.0 document data.
  */
 class InternationalIdV2Document extends Prediction
 {

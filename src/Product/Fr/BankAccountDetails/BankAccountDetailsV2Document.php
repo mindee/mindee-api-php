@@ -8,7 +8,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Bank Account Details, API version 2.
+ * Bank Account Details API version 2.0 document data.
  */
 class BankAccountDetailsV2Document extends Prediction
 {

@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for International ID, API version 2.
+ * International ID API version 2 inference prediction.
  */
 class InternationalIdV2 extends Inference
 {

@@ -6,7 +6,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\PositionField;
 
 /**
- * Page data for Driver License, API version 1.
+ * Driver License API version 1.1 page data.
  */
 class DriverLicenseV1Page extends DriverLicenseV1Document
 {

@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for Bank Account Details, API version 1.
+ * Bank Account Details API version 1 inference prediction.
  */
 class BankAccountDetailsV1 extends Inference
 {

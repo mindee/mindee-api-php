@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Resume, API version 1.
+ * Resume API version 1.0 document data.
  */
 class ResumeV1Document extends Prediction
 {

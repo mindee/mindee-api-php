@@ -9,7 +9,7 @@ use Mindee\Parsing\Common\Page;
 use Mindee\Error\MindeeUnsetException;
 
 /**
- * Inference prediction for License Plate, API version 1.
+ * License Plate API version 1 inference prediction.
  */
 class LicensePlateV1 extends Inference
 {

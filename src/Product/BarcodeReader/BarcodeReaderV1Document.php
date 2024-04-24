@@ -8,7 +8,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Barcode Reader, API version 1.
+ * Barcode Reader API version 1.0 document data.
  */
 class BarcodeReaderV1Document extends Prediction
 {

@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Document data for Carte Nationale d'Identité, API version 2.
+ * Carte Nationale d'Identité API version 2.0 document data.
  */
 class IdCardV2Document extends Prediction
 {

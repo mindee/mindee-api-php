@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\PositionField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Page data for W9, API version 1.
+ * W9 API version 1.0 page data.
  */
 class W9V1Page extends W9V1Document
 {

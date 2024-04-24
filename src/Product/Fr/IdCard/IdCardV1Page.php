@@ -6,7 +6,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\ClassificationField;
 
 /**
- * Page data for Carte Nationale d'Identité, API version 1.
+ * Carte Nationale d'Identité API version 1.1 page data.
  */
 class IdCardV1Page extends IdCardV1Document
 {
