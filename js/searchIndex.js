@@ -2103,7 +2103,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\BarcodeReader\\BarcodeReaderV1",
             "name": "BarcodeReaderV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Barcode\u0020Reader,\u0020API\u0020version\u00201.",
+            "summary": "Barcode\u0020Reader\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-BarcodeReader-BarcodeReaderV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\BarcodeReader\\BarcodeReaderV1\u003A\u003A__construct\u0028\u0029",
@@ -2123,7 +2123,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\BarcodeReader\\BarcodeReaderV1Document",
             "name": "BarcodeReaderV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Barcode\u0020Reader,\u0020API\u0020version\u00201.",
+            "summary": "Barcode\u0020Reader\u0020API\u0020version\u00201.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-BarcodeReader-BarcodeReaderV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\BarcodeReader\\BarcodeReaderV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2148,7 +2148,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1",
             "name": "CropperV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Cropper,\u0020API\u0020version\u00201.",
+            "summary": "Cropper\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Cropper-CropperV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1\u003A\u003A__construct\u0028\u0029",
@@ -2168,7 +2168,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1Document",
             "name": "CropperV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Cropper,\u0020API\u0020version\u00201.",
+            "summary": "Cropper\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Cropper-CropperV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1Document\u003A\u003A__toString\u0028\u0029",
@@ -2178,7 +2178,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1Page",
             "name": "CropperV1Page",
-            "summary": "Page\u0020data\u0020for\u0020Cropper,\u0020API\u0020version\u00201.",
+            "summary": "Cropper\u0020API\u0020version\u00201.1\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Cropper-CropperV1Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1Page\u003A\u003A__construct\u0028\u0029",
@@ -2268,7 +2268,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1",
             "name": "DriverLicenseV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A__construct\u0028\u0029",
@@ -2288,7 +2288,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document",
             "name": "DriverLicenseV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2363,7 +2363,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page",
             "name": "DriverLicenseV1Page",
-            "summary": "Page\u0020data\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201.0\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__construct\u0028\u0029",
@@ -2388,7 +2388,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1",
             "name": "LicensePlateV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020License\u0020Plate,\u0020API\u0020version\u00201.",
+            "summary": "License\u0020Plate\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1\u003A\u003A__construct\u0028\u0029",
@@ -2408,7 +2408,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1Document",
             "name": "LicensePlateV1Document",
-            "summary": "Document\u0020data\u0020for\u0020License\u0020Plate,\u0020API\u0020version\u00201.",
+            "summary": "License\u0020Plate\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2428,7 +2428,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1",
             "name": "FinancialDocumentV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Financial\u0020Document,\u0020API\u0020version\u00201.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1\u003A\u003A__construct\u0028\u0029",
@@ -2448,7 +2448,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Financial\u0020Document,\u0020API\u0020version\u00201.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.6\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2460,6 +2460,11 @@ Search.appendIndex(
             "name": "__toString",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024billingAddress",
+            "name": "billingAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_billingAddress"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024category",
             "name": "category",
@@ -2475,6 +2480,11 @@ Search.appendIndex(
             "name": "customerCompanyRegistrations",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_customerCompanyRegistrations"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024customerId",
+            "name": "customerId",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_customerId"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024customerName",
             "name": "customerName",
@@ -2516,6 +2526,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_referenceNumbers"
         },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024shippingAddress",
+            "name": "shippingAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_shippingAddress"
+        },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024subcategory",
             "name": "subcategory",
             "summary": "",
@@ -2531,6 +2546,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_supplierCompanyRegistrations"
         },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024supplierEmail",
+            "name": "supplierEmail",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_supplierEmail"
+        },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024supplierName",
             "name": "supplierName",
             "summary": "",
@@ -2545,6 +2565,11 @@ Search.appendIndex(
             "name": "supplierPhoneNumber",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_supplierPhoneNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024supplierWebsite",
+            "name": "supplierWebsite",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_supplierWebsite"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024taxes",
             "name": "taxes",
@@ -2658,7 +2683,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1",
             "name": "BankAccountDetailsV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Bank\u0020Account\u0020Details,\u0020API\u0020version\u00201.",
+            "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1\u003A\u003A__construct\u0028\u0029",
@@ -2678,7 +2703,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document",
             "name": "BankAccountDetailsV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Bank\u0020Account\u0020Details,\u0020API\u0020version\u00201.",
+            "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00201.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2708,7 +2733,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV2",
             "name": "BankAccountDetailsV2",
-            "summary": "Inference\u0020prediction\u0020for\u0020Bank\u0020Account\u0020Details,\u0020API\u0020version\u00202.",
+            "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00202\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV2\u003A\u003A__construct\u0028\u0029",
@@ -2773,7 +2798,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV2Document",
             "name": "BankAccountDetailsV2Document",
-            "summary": "Document\u0020data\u0020for\u0020Bank\u0020Account\u0020Details,\u0020API\u0020version\u00202.",
+            "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00202.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV2Document\u003A\u003A__construct\u0028\u0029",
@@ -2808,7 +2833,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteGrise\\CarteGriseV1",
             "name": "CarteGriseV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Carte\u0020Grise,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Grise\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Fr-CarteGrise-CarteGriseV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteGrise\\CarteGriseV1\u003A\u003A__construct\u0028\u0029",
@@ -2828,7 +2853,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteGrise\\CarteGriseV1Document",
             "name": "CarteGriseV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Carte\u0020Grise,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Grise\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-CarteGrise-CarteGriseV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteGrise\\CarteGriseV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3048,7 +3073,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1",
             "name": "CarteVitaleV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Carte\u0020Vitale,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Vitale\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1\u003A\u003A__construct\u0028\u0029",
@@ -3068,7 +3093,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document",
             "name": "CarteVitaleV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Carte\u0020Vitale,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Vitale\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3103,7 +3128,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1",
             "name": "IdCardV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Carte\u0020Nationale\u0020d\u0027Identit\u00E9,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A__construct\u0028\u0029",
@@ -3123,7 +3148,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1Document",
             "name": "IdCardV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Carte\u0020Nationale\u0020d\u0027Identit\u00E9,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3188,7 +3213,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1Page",
             "name": "IdCardV1Page",
-            "summary": "Page\u0020data\u0020for\u0020Carte\u0020Nationale\u0020d\u0027Identit\u00E9,\u0020API\u0020version\u00201.",
+            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201.1\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV1Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1Page\u003A\u003A__construct\u0028\u0029",
@@ -3208,7 +3233,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV2",
             "name": "IdCardV2",
-            "summary": "Inference\u0020prediction\u0020for\u0020Carte\u0020Nationale\u0020d\u0027Identit\u00E9,\u0020API\u0020version\u00202.",
+            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00202\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV2.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV2\u003A\u003A__construct\u0028\u0029",
@@ -3228,7 +3253,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV2Document",
             "name": "IdCardV2Document",
-            "summary": "Document\u0020data\u0020for\u0020Carte\u0020Nationale\u0020d\u0027Identit\u00E9,\u0020API\u0020version\u00202.",
+            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00202.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV2Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV2Document\u003A\u003A__construct\u0028\u0029",
@@ -3318,7 +3343,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV2Page",
             "name": "IdCardV2Page",
-            "summary": "Page\u0020data\u0020for\u0020Carte\u0020Nationale\u0020d\u0027Identit\u00E9,\u0020API\u0020version\u00202.",
+            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00202.0\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Fr-IdCard-IdCardV2Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV2Page\u003A\u003A__construct\u0028\u0029",
@@ -3433,7 +3458,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2",
             "name": "InternationalIdV2",
-            "summary": "Inference\u0020prediction\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00202.",
+            "summary": "International\u0020ID\u0020API\u0020version\u00202\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-InternationalId-InternationalIdV2.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2\u003A\u003A__construct\u0028\u0029",
@@ -3453,7 +3478,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document",
             "name": "InternationalIdV2Document",
-            "summary": "Document\u0020data\u0020for\u0020International\u0020ID,\u0020API\u0020version\u00202.",
+            "summary": "International\u0020ID\u0020API\u0020version\u00202.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A__construct\u0028\u0029",
@@ -3553,7 +3578,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4",
             "name": "InvoiceV4",
-            "summary": "Inference\u0020prediction\u0020for\u0020Invoice,\u0020API\u0020version\u00204.",
+            "summary": "Invoice\u0020API\u0020version\u00204\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4\u003A\u003A__construct\u0028\u0029",
@@ -3573,7 +3598,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
             "name": "InvoiceV4Document",
-            "summary": "Document\u0020data\u0020for\u0020Invoice,\u0020API\u0020version\u00204.",
+            "summary": "Invoice\u0020API\u0020version\u00204.6\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
@@ -3600,6 +3625,11 @@ Search.appendIndex(
             "name": "customerCompanyRegistrations",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_customerCompanyRegistrations"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerId",
+            "name": "customerId",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_customerId"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerName",
             "name": "customerName",
@@ -3656,6 +3686,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierCompanyRegistrations"
         },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierEmail",
+            "name": "supplierEmail",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierEmail"
+        },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierName",
             "name": "supplierName",
             "summary": "",
@@ -3665,6 +3700,16 @@ Search.appendIndex(
             "name": "supplierPaymentDetails",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierPaymentDetails"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierPhoneNumber",
+            "name": "supplierPhoneNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierPhoneNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierWebsite",
+            "name": "supplierWebsite",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_supplierWebsite"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024taxes",
             "name": "taxes",
@@ -3833,7 +3878,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1",
             "name": "MultiReceiptsDetectorV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Multi\u0020Receipts\u0020Detector,\u0020API\u0020version\u00201.",
+            "summary": "Multi\u0020Receipts\u0020Detector\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-MultiReceiptsDetector-MultiReceiptsDetectorV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1\u003A\u003A__construct\u0028\u0029",
@@ -3853,7 +3898,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1Document",
             "name": "MultiReceiptsDetectorV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Multi\u0020Receipts\u0020Detector,\u0020API\u0020version\u00201.",
+            "summary": "Multi\u0020Receipts\u0020Detector\u0020API\u0020version\u00201.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-MultiReceiptsDetector-MultiReceiptsDetectorV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3873,7 +3918,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Passport\\PassportV1",
             "name": "PassportV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Passport,\u0020API\u0020version\u00201.",
+            "summary": "Passport\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Passport-PassportV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Passport\\PassportV1\u003A\u003A__construct\u0028\u0029",
@@ -3893,7 +3938,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Passport\\PassportV1Document",
             "name": "PassportV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Passport,\u0020API\u0020version\u00201.",
+            "summary": "Passport\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Passport-PassportV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Passport\\PassportV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3963,7 +4008,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1",
             "name": "ProofOfAddressV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Proof\u0020of\u0020Address,\u0020API\u0020version\u00201.",
+            "summary": "Proof\u0020of\u0020Address\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1\u003A\u003A__construct\u0028\u0029",
@@ -3983,7 +4028,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document",
             "name": "ProofOfAddressV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Proof\u0020of\u0020Address,\u0020API\u0020version\u00201.",
+            "summary": "Proof\u0020of\u0020Address\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A__construct\u0028\u0029",
@@ -4043,7 +4088,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5",
             "name": "ReceiptV5",
-            "summary": "Inference\u0020prediction\u0020for\u0020Receipt,\u0020API\u0020version\u00205.",
+            "summary": "Receipt\u0020API\u0020version\u00205\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5\u003A\u003A__construct\u0028\u0029",
@@ -4063,7 +4108,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document",
             "name": "ReceiptV5Document",
-            "summary": "Document\u0020data\u0020for\u0020Receipt,\u0020API\u0020version\u00205.",
+            "summary": "Receipt\u0020API\u0020version\u00205.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document\u003A\u003A__construct\u0028\u0029",
@@ -4223,7 +4268,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1",
             "name": "ResumeV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Resume,\u0020API\u0020version\u00201.",
+            "summary": "Resume\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Resume-ResumeV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1\u003A\u003A__construct\u0028\u0029",
@@ -4308,7 +4353,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document",
             "name": "ResumeV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Resume,\u0020API\u0020version\u00201.",
+            "summary": "Resume\u0020API\u0020version\u00201.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Resume-ResumeV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A__construct\u0028\u0029",
@@ -4683,7 +4728,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1",
             "name": "BankCheckV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Bank\u0020Check,\u0020API\u0020version\u00201.",
+            "summary": "Bank\u0020Check\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Us-BankCheck-BankCheckV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1\u003A\u003A__construct\u0028\u0029",
@@ -4703,7 +4748,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1Document",
             "name": "BankCheckV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Bank\u0020Check,\u0020API\u0020version\u00201.",
+            "summary": "Bank\u0020Check\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Us-BankCheck-BankCheckV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A__construct\u0028\u0029",
@@ -4748,7 +4793,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1Page",
             "name": "BankCheckV1Page",
-            "summary": "Page\u0020data\u0020for\u0020Bank\u0020Check,\u0020API\u0020version\u00201.",
+            "summary": "Bank\u0020Check\u0020API\u0020version\u00201.1\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Us-BankCheck-BankCheckV1Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\BankCheck\\BankCheckV1Page\u003A\u003A__construct\u0028\u0029",
@@ -4773,7 +4818,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1",
             "name": "DriverLicenseV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1\u003A\u003A__construct\u0028\u0029",
@@ -4793,7 +4838,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document",
             "name": "DriverLicenseV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__construct\u0028\u0029",
@@ -4893,7 +4938,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page",
             "name": "DriverLicenseV1Page",
-            "summary": "Page\u0020data\u0020for\u0020Driver\u0020License,\u0020API\u0020version\u00201.",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201.1\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__construct\u0028\u0029",
@@ -4918,7 +4963,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1",
             "name": "W9V1",
-            "summary": "Inference\u0020prediction\u0020for\u0020W9,\u0020API\u0020version\u00201.",
+            "summary": "W9\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-Us-W9-W9V1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1\u003A\u003A__construct\u0028\u0029",
@@ -4938,7 +4983,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Document",
             "name": "W9V1Document",
-            "summary": "Document\u0020data\u0020for\u0020W9,\u0020API\u0020version\u00201.",
+            "summary": "W9\u0020API\u0020version\u00201.0\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Us-W9-W9V1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Document\u003A\u003A__toString\u0028\u0029",
@@ -4948,7 +4993,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page",
             "name": "W9V1Page",
-            "summary": "Page\u0020data\u0020for\u0020W9,\u0020API\u0020version\u00201.",
+            "summary": "W9\u0020API\u0020version\u00201.0\u0020page\u0020data.",
             "url": "classes/Mindee-Product-Us-W9-W9V1Page.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A__construct\u0028\u0029",
