@@ -3,7 +3,7 @@
 ## v1.4.0 - 2024-05-02
 ### Changes
 * :sparkles: update invoice to 4.6 and financial document to 1.6 (#44)
-q
+
 
 ## v1.3.4 - 2024-03-20
 ### Fixes
