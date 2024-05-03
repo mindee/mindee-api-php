@@ -2,6 +2,7 @@
 
 namespace Input;
 use Mindee\Client;
+use Mindee\Error\MindeeSourceException;
 use Mindee\Input\URLInputSource;
 use PHPUnit\Framework\TestCase;
 
@@ -24,4 +25,10 @@ class URLInputSourceTest extends TestCase
         $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
         $this->assertInstanceOf(URLInputSource::class, $inputDoc);
     }
+    public function testInputFromHTTPShouldThrow()
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
+    }
+
 }

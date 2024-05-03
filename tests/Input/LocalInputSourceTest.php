@@ -5,7 +5,6 @@ namespace Input;
 use Mindee\Client;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\PathInput;
-use Mindee\Input\URLInputSource;
 use PHPUnit\Framework\TestCase;
 
 class LocalInputSourceTest extends TestCase
@@ -98,12 +97,6 @@ class LocalInputSourceTest extends TestCase
         $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
         $this->assertEquals(str_replace("\n", "", $pdfBytes), str_replace("\n", "", $contents[1]));
-    }
-
-    public function testInputFromHTTPShouldThrow()
-    {
-        $this->expectException(MindeeSourceException::class);
-        $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
     }
 
 
