@@ -2,7 +2,7 @@
 
 ## v1.4.1 - 2024-05-03
 ### Fixes
-* :bug: replace instance of invalid syntax for  
+* :bug: replace instance of invalid syntax for older php versions (#47)
 
 
 ## v1.4.0 - 2024-05-02
