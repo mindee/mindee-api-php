@@ -20,7 +20,7 @@ class URLInputSource extends InputSource
      */
     public function __construct(string $url)
     {
-        if (!(substr($url, 0, 8) === 'https://')) {
+        if ((substr($url, 0, 8) !== 'https://')) {
             throw new MindeeSourceException('URL must be HTTPS');
         }
         $this->url = $url;
