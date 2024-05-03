@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.4.1 - 2024-05-03
+### Fixes
+* :bug: replace instance of invalid syntax for  
+
+
 ## v1.4.0 - 2024-05-02
 ### Changes
 * :sparkles: update invoice to 4.6 and financial document to 1.6 (#44)
