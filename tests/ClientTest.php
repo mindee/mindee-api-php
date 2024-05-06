@@ -5,9 +5,11 @@ use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\EnqueueAndParseMethodOptions;
+use Mindee\Input\PageOptions;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Product\Custom\CustomV1;
 use Mindee\Product\Invoice\InvoiceV4;
+use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -84,5 +86,27 @@ class ClientTest extends TestCase
         $this->expectException(MindeeApiException::class);
         $asyncParseOptions = new EnqueueAndParseMethodOptions();
         $asyncParseOptions->setDelaySec(0);
+    }
+
+    public function testPredictOptionsWrongInputType(){
+        $pageOptions = new PageOptions([0,1]);
+        $this->assertFalse($pageOptions->isEmpty());
+        $predictOptions = new PredictMethodOptions();
+        $predictOptions->setPageOptions($pageOptions);
+        $urlInputSource = $this->dummyClient->sourceFromUrl("https://dummy");
+        $this->expectException(MindeeApiException::class);
+        $this->dummyClient->parse(InvoiceV4::class, $urlInputSource, $predictOptions);
+        $this->expectException(MindeeApiException::class);
+        $this->dummyClient->enqueue(InvoiceSplitterV1::class, $urlInputSource, $predictOptions);
+    }
+
+    public function testPredictOptionsValidInputType(){
+        $predictOptions = new PredictMethodOptions();
+        $this->assertTrue($predictOptions->pageOptions->isEmpty());
+        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");
+        $this->expectException(MindeeHttpClientException::class);
+        $this->dummyClient->parse(InvoiceV4::class, $inputDoc, $predictOptions);
+        $this->expectException(MindeeHttpClientException::class);
+        $this->dummyClient->enqueue(InvoiceSplitterV1::class, $inputDoc, $predictOptions);
     }
 }

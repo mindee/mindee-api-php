@@ -47,4 +47,22 @@ class PageOptions
         $this->operation = $operation;
         $this->onMinPage = $onMinPage;
     }
+
+
+    /**
+     * Checks whether the options are set.
+     *
+     * @return boolean
+     */
+    public function isEmpty(): bool
+    {
+        if (
+            ($this->pageIndexes !== null && $this->pageIndexes !== []) ||
+            $this->operation !== KEEP_ONLY ||
+            $this->onMinPage !== 0
+        ) {
+            return false;
+        }
+        return true;
+    }
 }
