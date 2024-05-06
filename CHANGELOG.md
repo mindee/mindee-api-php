@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+# v1.4.2 - 2024-05-04
+### Fixes
+* :bug: fix improper handling of url sources in client calls (#50)
+* :recycle: add more relevant tests
+
+
 ## v1.4.1 - 2024-05-03
 ### Fixes
 * :bug: replace instance of invalid syntax for older php versions (#47)
