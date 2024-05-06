@@ -12,7 +12,7 @@ class URLInputSource extends InputSource
     /**
      * @var string The Uniform Resource Locator.
      */
-    protected string $url;
+    public string $url;
 
     /**
      * @param string $url Input URL.
