@@ -8,21 +8,21 @@
 
 namespace Mindee;
 
+use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeHttpException;
-use Mindee\Http\ResponseValidation;
-use Mindee\Input\EnqueueAndParseMethodOptions;
-use Mindee\Input\InputSource;
-use Mindee\Input\PathInput;
-use Mindee\Input\PredictMethodOptions;
-use Mindee\Error\MindeeApiException;
 use Mindee\Http\Endpoint;
 use Mindee\Http\MindeeApi;
+use Mindee\Http\ResponseValidation;
 use Mindee\Input\Base64Input;
 use Mindee\Input\BytesInput;
+use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\FileInput;
+use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\PageOptions;
+use Mindee\Input\PathInput;
+use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\URLInputSource;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\Common\PredictResponse;
@@ -247,10 +247,12 @@ class Client
         InputSource $inputDoc,
         PredictMethodOptions $options
     ): AsyncPredictResponse {
-        if ($inputDoc instanceof LocalInputSource) {
-            $this->cutDocPages($inputDoc, $options->pageOptions);
-        } else {
-            throw new MindeeApiException("Cannot edit non-local input sources.");
+        if (!$options->pageOptions->isEmpty()) {
+            if ($inputDoc instanceof LocalInputSource) {
+                $this->cutDocPages($inputDoc, $options->pageOptions);
+            } else {
+                throw new MindeeApiException("Cannot edit non-local input sources.");
+            }
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->predictAsyncRequestPost(
             $inputDoc,
@@ -282,10 +284,12 @@ class Client
         InputSource $inputDoc,
         PredictMethodOptions $options
     ): PredictResponse {
-        if ($inputDoc instanceof LocalInputSource) {
-            $this->cutDocPages($inputDoc, $options->pageOptions);
-        } else {
-            throw new MindeeApiException("Cannot edit non-local input sources.");
+        if (!$options->pageOptions->isEmpty()) {
+            if ($inputDoc instanceof LocalInputSource) {
+                $this->cutDocPages($inputDoc, $options->pageOptions);
+            } else {
+                throw new MindeeApiException("Cannot edit non-local input sources.");
+            }
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->predictRequestPost(
             $inputDoc,
