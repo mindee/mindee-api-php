@@ -113,7 +113,7 @@ class Endpoint extends BaseEndpoint
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         if ($fileCurl instanceof URLInputSource) {
-            $postFields = ['document' => $fileCurl];
+            $postFields = ['document' => $fileCurl->url];
         } elseif ($fileCurl instanceof LocalInputSource) {
             if ($closeFile) {
                 $fileCurl->close();
@@ -126,7 +126,9 @@ class Endpoint extends BaseEndpoint
         if ($cropper) {
             $postFields['cropper'] = 'true';
         }
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+        if (isset($postFields)) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+        }
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . Mindee\VERSION);
 
