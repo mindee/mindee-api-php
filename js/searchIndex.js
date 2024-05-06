@@ -851,6 +851,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-PageOptions.html#method___construct"
         },                {
+            "fqsen": "\\Mindee\\Input\\PageOptions\u003A\u003AisEmpty\u0028\u0029",
+            "name": "isEmpty",
+            "summary": "Checks\u0020whether\u0020the\u0020options\u0020are\u0020set.",
+            "url": "classes/Mindee-Input-PageOptions.html#method_isEmpty"
+        },                {
             "fqsen": "\\Mindee\\Input\\PageOptions\u003A\u003A\u0024pageIndexes",
             "name": "pageIndexes",
             "summary": "",
