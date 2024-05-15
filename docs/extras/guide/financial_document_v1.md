@@ -275,6 +275,13 @@ echo $result->document->inference->prediction->customerName->value;
 echo $result->document->inference->prediction->date->value;
 ```
 
+## Document Number
+**documentNumber** : The document number or identifier.
+
+```php
+echo $result->document->inference->prediction->documentNumber->value;
+```
+
 ## Document Type
 **documentType** : One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
 
@@ -290,7 +297,7 @@ echo $result->document->inference->prediction->dueDate->value;
 ```
 
 ## Invoice Number
-**invoiceNumber** : The invoice number or identifier.
+**invoiceNumber** : The invoice number or identifier only if document is an invoice.
 
 ```php
 echo $result->document->inference->prediction->invoiceNumber->value;
@@ -311,6 +318,13 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 
 ```php
 echo $result->document->inference->prediction->locale->value;
+```
+
+## Receipt Number
+**receiptNumber** : The receipt number or identifier only if document is a receipt.
+
+```php
+echo $result->document->inference->prediction->receiptNumber->value;
 ```
 
 ## Reference Numbers

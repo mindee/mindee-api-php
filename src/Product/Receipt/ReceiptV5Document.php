@@ -14,7 +14,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Receipt API version 5.1 document data.
+ * Receipt API version 5.2 document data.
  */
 class ReceiptV5Document extends Prediction
 {
@@ -38,6 +38,10 @@ class ReceiptV5Document extends Prediction
      * @var LocaleField The locale detected on the document.
      */
     public LocaleField $locale;
+    /**
+     * @var StringField The receipt number or identifier.
+     */
+    public StringField $receiptNumber;
     /**
      * @var ClassificationField The purchase subcategory among predefined classes for transport and food.
      */
@@ -122,6 +126,13 @@ class ReceiptV5Document extends Prediction
         }
         $this->locale = new LocaleField(
             $rawPrediction["locale"],
+            $pageId
+        );
+        if (!isset($rawPrediction["receipt_number"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->receiptNumber = new StringField(
+            $rawPrediction["receipt_number"],
             $pageId
         );
         if (!isset($rawPrediction["subcategory"])) {
@@ -229,6 +240,7 @@ class ReceiptV5Document extends Prediction
 :Supplier Company Registrations: $supplierCompanyRegistrations
 :Supplier Address: $this->supplierAddress
 :Supplier Phone Number: $this->supplierPhoneNumber
+:Receipt Number: $this->receiptNumber
 :Line Items: $lineItemsSummary
 ";
         return SummaryHelper::cleanOutString($outStr);

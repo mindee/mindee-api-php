@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Financial Document API version 1.6 document data.
+ * Financial Document API version 1.7 document data.
  */
 class FinancialDocumentV1Document extends Prediction
 {
@@ -48,6 +48,10 @@ class FinancialDocumentV1Document extends Prediction
      */
     public DateField $date;
     /**
+     * @var StringField The document number or identifier.
+     */
+    public StringField $documentNumber;
+    /**
      * @var ClassificationField One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
      */
     public ClassificationField $documentType;
@@ -56,7 +60,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public DateField $dueDate;
     /**
-     * @var StringField The invoice number or identifier.
+     * @var StringField The invoice number or identifier only if document is an invoice.
      */
     public StringField $invoiceNumber;
     /**
@@ -67,6 +71,10 @@ class FinancialDocumentV1Document extends Prediction
      * @var LocaleField The locale detected on the document.
      */
     public LocaleField $locale;
+    /**
+     * @var StringField The receipt number or identifier only if document is a receipt.
+     */
+    public StringField $receiptNumber;
     /**
      * @var StringField[] List of Reference numbers, including PO number.
      */
@@ -187,6 +195,13 @@ class FinancialDocumentV1Document extends Prediction
             $rawPrediction["date"],
             $pageId
         );
+        if (!isset($rawPrediction["document_number"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->documentNumber = new StringField(
+            $rawPrediction["document_number"],
+            $pageId
+        );
         if (!isset($rawPrediction["document_type"])) {
             throw new MindeeUnsetException();
         }
@@ -220,6 +235,13 @@ class FinancialDocumentV1Document extends Prediction
         }
         $this->locale = new LocaleField(
             $rawPrediction["locale"],
+            $pageId
+        );
+        if (!isset($rawPrediction["receipt_number"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->receiptNumber = new StringField(
+            $rawPrediction["receipt_number"],
             $pageId
         );
         if (!isset($rawPrediction["reference_numbers"])) {
@@ -361,6 +383,8 @@ class FinancialDocumentV1Document extends Prediction
 
         $outStr = ":Locale: $this->locale
 :Invoice Number: $this->invoiceNumber
+:Receipt Number: $this->receiptNumber
+:Document Number: $this->documentNumber
 :Reference Numbers: $referenceNumbers
 :Purchase Date: $this->date
 :Due Date: $this->dueDate
