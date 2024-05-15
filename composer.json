@@ -21,6 +21,6 @@
     }
   },
   "bin": [
-    "bin/cli"
+    "bin/mindee"
   ]
 }

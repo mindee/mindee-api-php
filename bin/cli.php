@@ -1,11 +1,10 @@
-#!/usr/bin/env php
 <?php
 
 namespace Mindee\CLI;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/CommandConfig.php';
-require __DIR__ . '/MindeeCLI.php';
+require __DIR__ . '/MindeeCLICommand.php';
 
 use Mindee\Product;
 use Symfony\Component\Console\Application;
@@ -104,7 +103,7 @@ $documents = [
 
 // Create a new instance of the Application and add your MindeeCLI command
 $cli = new Application();
-$mindeeCommand = new MindeeCLI($documents);
+$mindeeCommand = new MindeeCLICommand($documents);
 $cli->add($mindeeCommand);
 
 $argv = $_SERVER['argv'];
@@ -125,7 +124,8 @@ if (sizeof($argv) > 0) {
 }
 
 try {
-    $cli->setDefaultCommand($mindeeCommand->getName());
+    $cli->add($mindeeCommand);
+    $cli->setDefaultCommand($mindeeCommand->getName(), true);
     $cli->run();
 } catch (\Exception $e) {
     error_log("Could not start the Mindee CLI, an exception was raised:");
