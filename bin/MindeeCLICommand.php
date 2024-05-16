@@ -6,7 +6,6 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/version.php';
 
 use Mindee\Client;
-use Mindee\Http\Endpoint;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\PredictOptions;
@@ -23,11 +22,20 @@ const JSON_PRINT_RECURSION_DEPTH = 20;
 
 class MindeeCLICommand extends Command
 {
+    /**
+     * @var array $documentList Array of document configurations.
+     */
     private array $documentList;
+    /**
+     * @var array $acceptableDocuments Array of acceptable documents.
+     */
     private array $acceptableDocuments;
+
+    /**
+     * @param array $documentList Array of document configurations.
+     */
     public function __construct(array $documentList)
     {
-        $this->apiKey = null;
         $this->documentList = $documentList;
 
         $this->acceptableDocuments = [];
@@ -37,7 +45,11 @@ class MindeeCLICommand extends Command
         parent::__construct('mindee');
     }
 
-    protected function formatHelp($product = null)
+    /**
+     * @param string|null $product Selected product, for customisation of the help section.
+     * @return string
+     */
+    protected function formatHelp(string $product = null): string
     {
         $helpCondensed = "";
         if (!$product) {
@@ -50,7 +62,7 @@ Available products:";
                 $helpCondensed .= "\n  " . str_pad($documentName, 65 - strlen($document->help)) . $document->help;
             }
         } else {
-            // Handle the case where a specific product help is needed
+            $helpCondensed .= $this->documentList[$product]->help;
         }
         return $helpCondensed;
     }
@@ -65,18 +77,17 @@ Available products:";
                 InputArgument::REQUIRED,
                 'Specify which product to use. Available products are :' . implode("\n  ", $this->acceptableDocuments)
             )
-            ->addArgument(
-                'method',
-                InputArgument::REQUIRED,
+            ->addOption(
+                'async_polling',
+                'A',
+                InputOption::VALUE_NONE,
                 'Specify which polling method to use from: parse, enqueue-and-parse'
             )
             ->addArgument(
                 'file_path_or_url',
                 InputArgument::REQUIRED,
                 'Path or URL of the file to be processed.'
-            )
-            ->setHelp("Processes a document.")
-        ;  // Set the help message here
+            );  // Set the help message here
 
         $this->configureMainOptions();
         $this->configureCustomOptions();
@@ -84,20 +95,69 @@ Available products:";
 
     private function configureMainOptions()
     {
-        $this->addOption('pages_remove', 'r', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Indexes of the pages to remove from the document.')
-            ->addOption('pages_keep', 'p', InputOption::VALUE_REQUIRED, 'Indexes of the pages to keep in the document.')
-            ->addOption('key', 'k', InputOption::VALUE_OPTIONAL, 'API key for the account. Is retrieved from environment if not provided.')
-            ->addOption('output_type', 'o', InputOption::VALUE_REQUIRED, "Specify how to output the data.\n - summary: a basic summary (default)\n - raw: the raw HTTP response\n - parsed: the validated and parsed data fields\n")
-            ->addOption('full_text', 't', InputOption::VALUE_NONE, "Include full document text in response.")
-        ;
+        $this->addOption(
+            'pages_remove',
+            'r',
+            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+            'Indexes of the pages to remove from the document.'
+        )
+            ->addOption(
+                'pages_keep',
+                'p',
+                InputOption::VALUE_REQUIRED,
+                'Indexes of the pages to keep in the document.'
+            )
+            ->addOption(
+                'key',
+                'k',
+                InputOption::VALUE_OPTIONAL,
+                'API key for the account. Is retrieved from environment if not provided.'
+            )
+            ->addOption(
+                'output_type',
+                'o',
+                InputOption::VALUE_REQUIRED,
+                'Specify how to output the data.
+ - summary: a basic summary (default)
+ - raw: the raw HTTP response
+ - parsed: the validated and parsed data fields
+'
+            )
+            ->addOption(
+                'full_text',
+                't',
+                InputOption::VALUE_NONE,
+                "Include full document text in response."
+            )
+            ->addOption(
+                'cropper',
+                'c',
+                InputOption::VALUE_NONE,
+                "Apply cropper operation to the document (if available)."
+            );
     }
 
     private function configureCustomOptions()
     {
         $this
-            ->addOption('account_name', 'a', InputOption::VALUE_REQUIRED, 'API account name for the endpoint')
-            ->addOption('endpoint_name', 'e', InputOption::VALUE_REQUIRED, 'API endpoint name for the endpoint')
-            ->addOption('endpoint_version', 'd', InputOption::VALUE_OPTIONAL, 'Version for the endpoint. If not set, use the latest version of the model');
+            ->addOption(
+                'account_name',
+                'a',
+                InputOption::VALUE_REQUIRED,
+                'API account name for the endpoint'
+            )
+            ->addOption(
+                'endpoint_name',
+                'e',
+                InputOption::VALUE_REQUIRED,
+                'API endpoint name for the endpoint'
+            )
+            ->addOption(
+                'endpoint_version',
+                'd',
+                InputOption::VALUE_OPTIONAL,
+                'Version for the endpoint. If not set, use the latest version of the model'
+            );
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output)
@@ -133,10 +193,15 @@ Available products:";
                 return Command::FAILURE;
             }
             $mindeeClient = new Client($key);
-            $pollingMethod = $input->getArgument('method');
-            if ($pollingMethod && !in_array($pollingMethod, ['parse', 'enqueue-and-parse'])) {
-                $output->writeln("<error>Invalid polling: $pollingMethod</error>");
-                $output->writeln("<error>Available methods: 'parse', 'enqueue-and-parse'</error>");
+            $isAsync = $input->getOption('async_polling');
+            if ($isAsync && !$this->documentList[$product]->isAsync) {
+                $output->writeln("<error>Invalid polling method for $product</error>");
+                $output->writeln("<comment>Asynchronous mode is not supported.</comment>");
+                return Command::FAILURE;
+            }
+            if (!$isAsync && !$this->documentList[$product]->isSync) {
+                $output->writeln("<error>Invalid polling method for $product</error>");
+                $output->writeln("<comment>Synchronous mode is not supported.</comment>");
                 return Command::FAILURE;
             }
             $pagesRemove = $input->getOption('pages_remove');
@@ -174,66 +239,65 @@ Available products:";
                 $endpointName = $input->getOption('endpoint_name');
                 $endpointVersion = $input->getOption('endpoint_version');
                 if (!$accountName) {
-                    $output->writeln("<error>Please specify the name of the account for the custom endpoint.</error>");
+                    $output->writeln("<error>Please specify the name of the account for $product endpoint.</error>");
                     return Command::FAILURE;
                 }
                 if (!$endpointName) {
-                    $output->writeln("<error>Please specify the name of the endpoint.</error>");
+                    $output->writeln("<error>Please specify the name of $product endpoint.</error>");
                     return Command::FAILURE;
                 }
                 if (!$endpointVersion) {
                     $endpointVersion = '1';
-                    $output->writeln("<comment>No version provided for custom endpoint, version 1 will be used by default.</comment>");
+                    $output->writeln(
+                        "<comment>No version provided for \"" .
+                        $endpointName .
+                        "\", version 1 will be used by default.</comment>"
+                    );
                 }
-                $endpoint = new Endpoint($accountName, $endpointName, $endpointVersion);
+                $endpoint = $mindeeClient->createEndpoint($endpointName, $accountName, $endpointVersion);
                 $predictMethodOptions->setEndpoint($endpoint);
             }
-            if ($pollingMethod === "parse") {
+            if (!$isAsync) {
                 $result = $mindeeClient->parse(
                     $this->documentList[$product]->docClass,
                     $file,
                     $predictMethodOptions
                 );
-            } elseif ($pollingMethod === "enqueue-and-parse") {
+            } else {
                 $result = $mindeeClient->enqueueAndParse(
                     $this->documentList[$product]->docClass,
                     $file,
                     $predictMethodOptions
                 );
-            } else {
-                $output->writeln("<error>Unhandled polling method $pollingMethod.</error>");
-                return Command::FAILURE;
             }
             if ($outputType === "raw") {
                 echo(
-                    json_encode(
-                        json_decode(
-                            $result->getRawHttp(),
-                            true,
-                            JSON_PRINT_RECURSION_DEPTH,
-                            JSON_UNESCAPED_SLASHES
-                        ),
-                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-                    )
+                json_encode(
+                    json_decode(
+                        $result->getRawHttp(),
+                        true,
+                        JSON_PRINT_RECURSION_DEPTH,
+                        JSON_UNESCAPED_SLASHES
+                    ),
+                    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                )
                 );
             } elseif ($outputType == "parsed") {
                 echo(
-                    json_encode(
-                        json_decode(
-                            $result->getRawHttp(),
-                            true,
-                            JSON_PRINT_RECURSION_DEPTH,
-                            JSON_UNESCAPED_SLASHES
-                        )['document'],
-                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-                    )
+                json_encode(
+                    json_decode(
+                        $result->getRawHttp(),
+                        true,
+                        JSON_PRINT_RECURSION_DEPTH,
+                        JSON_UNESCAPED_SLASHES
+                    )['document'],
+                    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                )
                 );
             } else {
                 echo($result->document);
             }
-
-            // Your logic goes here based on the input options
-            return Command::SUCCESS;
         }
+        return Command::SUCCESS;
     }
 }

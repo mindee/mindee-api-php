@@ -28,6 +28,12 @@ $documents = [
         true,
         false
     ),
+    "generated" => new CommandConfig(
+        "Custom document type from docTI",
+        Product\Generated\GeneratedV1::class,
+        false,
+        true
+    ),
     "eu-license-plate" => new CommandConfig(
         "EU License Plate",
         Product\Eu\LicensePlate\LicensePlateV1::class,
