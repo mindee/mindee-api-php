@@ -6,24 +6,25 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/version.php';
 
 use Mindee\Client;
+use Mindee\Http\Endpoint;
+use Mindee\Input\PageOptions;
+use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\PredictOptions;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use const Mindee\Input\KEEP_ONLY;
+use const Mindee\Input\REMOVE;
 use const Mindee\VERSION;
+
+const JSON_PRINT_RECURSION_DEPTH = 20;
 
 class MindeeCLICommand extends Command
 {
     private array $documentList;
     private array $acceptableDocuments;
-    private ?string $apiKey;
-    private ?string $cutPages;
-    private ?string $keepPages;
-
-    private Client $mindeeClient;
-    private string $pollingMethod;
     public function __construct(array $documentList)
     {
         $this->apiKey = null;
@@ -38,10 +39,11 @@ class MindeeCLICommand extends Command
 
     protected function formatHelp($product = null)
     {
+        $helpCondensed = "";
         if (!$product) {
             $helpCondensed = "Mindee Command-Line interface.
 Usage:
-  mindee <product> [options]
+  mindee [options] [--] <product> <method> <file_path_or_url>
 
 Available products:";
             foreach ($this->documentList as $documentName => $document) {
@@ -61,29 +63,33 @@ Available products:";
             ->addArgument(
                 'product',
                 InputArgument::REQUIRED,
-                'Specify which product to use. Available products are :'.implode("\n  ", $this->acceptableDocuments)
+                'Specify which product to use. Available products are :' . implode("\n  ", $this->acceptableDocuments)
             )
             ->addArgument(
                 'method',
                 InputArgument::REQUIRED,
-                'Specify which polling method to use from: parse, enqueue, enqueue-and-parse')
-            ->setHelp($this->formatHelp())
+                'Specify which polling method to use from: parse, enqueue-and-parse'
+            )
+            ->addArgument(
+                'file_path_or_url',
+                InputArgument::REQUIRED,
+                'Path or URL of the file to be processed.'
+            )
+            ->setHelp("Processes a document.")
         ;  // Set the help message here
 
         $this->configureMainOptions();
         $this->configureCustomOptions();
-        $this->addArgument(
-            'file_path_or_url',
-            InputArgument::REQUIRED,
-            'Path or URL of the file to be processed.'
-        );
     }
 
     private function configureMainOptions()
     {
-        $this->addOption('cut_doc', 'c', InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY, 'Cuts to apply to document')
-            ->addOption('pages_keep', 'p', InputOption::VALUE_REQUIRED, 'Pages to keep, default: 5')
-            ->addOption('key', 'k', InputOption::VALUE_OPTIONAL, 'API key for the account. Is retrieved from environment if not provided.');
+        $this->addOption('pages_remove', 'r', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Indexes of the pages to remove from the document.')
+            ->addOption('pages_keep', 'p', InputOption::VALUE_REQUIRED, 'Indexes of the pages to keep in the document.')
+            ->addOption('key', 'k', InputOption::VALUE_OPTIONAL, 'API key for the account. Is retrieved from environment if not provided.')
+            ->addOption('output_type', 'o', InputOption::VALUE_REQUIRED, "Specify how to output the data.\n - summary: a basic summary (default)\n - raw: the raw HTTP response\n - parsed: the validated and parsed data fields\n")
+            ->addOption('full_text', 't', InputOption::VALUE_NONE, "Include full document text in response.")
+        ;
     }
 
     private function configureCustomOptions()
@@ -101,7 +107,7 @@ Available products:";
 
         if (count(array_filter($args)) <= 0 && count(array_filter($opts)) <= 0) {
             $output->writeln($this->formatHelp(), OutputInterface::OUTPUT_NORMAL);
-            exit(Command::SUCCESS);
+            exit(Command::FAILURE);
         }
     }
 
@@ -112,35 +118,58 @@ Available products:";
             $output->writeln(VERSION);
         } else {
             $product = $input->getArgument('product');
-            if (!in_array($product, $this->acceptableDocuments))
-            {
+            if (!in_array($product, $this->acceptableDocuments)) {
                 $output->writeln("<error>Invalid product: $product</error>");
-                $output->writeln('<error>Available products: ' . implode(', ', $this->acceptableDocuments). '</error>');
+                $output->writeln('<error>Available products are: ' .
+                    implode(', ', $this->acceptableDocuments) .
+                    '</error>');
                 return Command::FAILURE;
             }
             $key = $input->getOption('key');
-            $mindeeClient = new Client($key);
-            $pollingMethod = $input->getArgument('method');
-            if (!in_array($pollingMethod, ['parse', 'enqueue', 'enqueue-and-parse'])) {
-                $output->writeln("<error>Invalid polling: $pollingMethod</error>");
-                $output->writeln("<error>Available methods: 'parse', 'enqueue', 'enqueue-and-parse'</error>");
+            $outputType = $input->getOption('output_type');
+            if ($outputType && !in_array($outputType, ['raw', 'summary', 'parsed'])) {
+                $output->writeln("<error>Invalid output type: $outputType</error>");
+                $output->writeln("<error>Available output types: 'raw', 'summary', 'parsed'</error>");
                 return Command::FAILURE;
             }
-            $cutDoc = $input->getOption('cut_doc');
-            $filePathOrUrl = $input->getOption('file_path_or_url');
+            $mindeeClient = new Client($key);
+            $pollingMethod = $input->getArgument('method');
+            if ($pollingMethod && !in_array($pollingMethod, ['parse', 'enqueue-and-parse'])) {
+                $output->writeln("<error>Invalid polling: $pollingMethod</error>");
+                $output->writeln("<error>Available methods: 'parse', 'enqueue-and-parse'</error>");
+                return Command::FAILURE;
+            }
+            $pagesRemove = $input->getOption('pages_remove');
+            $pagesKeep = $input->getOption('pages_keep');
+            if ($pagesKeep && $pagesRemove) {
+                $output->writeln("<error>Page cut & page keep operations are mutually exclusive.</error>");
+                return Command::FAILURE;
+            }
+            $filePathOrUrl = $input->getArgument('file_path_or_url');
             if ((substr($filePathOrUrl, 0, 8) !== 'https://')) {
-                if (@file_exists($filePathOrUrl) || file_get_contents($filePathOrUrl)){
-                    $file = $mindeeClient->sourceFromFile($filePathOrUrl);
+                if (@file_exists($filePathOrUrl) || @file_get_contents($filePathOrUrl)) {
+                    $file = $mindeeClient->sourceFromPath($filePathOrUrl);
+                } else {
+                    $output->writeln("<error>Invalid path or url provided.</error>");
+                    return Command::FAILURE;
                 }
             } else {
                 $file = $mindeeClient->sourceFromUrl($filePathOrUrl);
             }
+            $pageOptions = new PageOptions();
+            if ($pagesRemove) {
+                $pageOptions = new PageOptions($pagesRemove, REMOVE, 0);
+            } elseif ($pagesKeep) {
+                $pageOptions = new PageOptions($pagesKeep, KEEP_ONLY, 0);
+            }
             $predictOptions = new PredictOptions();
-            echo "Product: $product\n";
-            echo "Method: $pollingMethod\n";
-            echo "Key: $key\n";
-            echo "Cut doc: ".implode(', ', $cutDoc)."\n";
-            if ($product==="custom" || $product==="generated"){
+            if ($input->getOption('full_text')) {
+                $predictOptions->setIncludeWords(true);
+            }
+            $predictMethodOptions = new PredictMethodOptions();
+            $predictMethodOptions->setPredictOptions($predictOptions);
+            $predictMethodOptions->setPageOptions($pageOptions);
+            if ($product === "custom" || $product === "generated") {
                 $accountName = $input->getOption('account_name');
                 $endpointName = $input->getOption('endpoint_name');
                 $endpointVersion = $input->getOption('endpoint_version');
@@ -156,18 +185,52 @@ Available products:";
                     $endpointVersion = '1';
                     $output->writeln("<comment>No version provided for custom endpoint, version 1 will be used by default.</comment>");
                 }
-                echo "Account Name: $accountName\n";
-                echo "Endpoint Name: $endpointName\n";
-                echo "Endpoint Version: $endpointVersion\n";
-            } else {
-                if ($pollingMethod==="parse"){
-                    $result = $mindeeClient->parse(
-                        $this->documentList[$product]->docClass,
-                        $file
-                    );
-                }
+                $endpoint = new Endpoint($accountName, $endpointName, $endpointVersion);
+                $predictMethodOptions->setEndpoint($endpoint);
             }
-
+            if ($pollingMethod === "parse") {
+                $result = $mindeeClient->parse(
+                    $this->documentList[$product]->docClass,
+                    $file,
+                    $predictMethodOptions
+                );
+            } elseif ($pollingMethod === "enqueue-and-parse") {
+                $result = $mindeeClient->enqueueAndParse(
+                    $this->documentList[$product]->docClass,
+                    $file,
+                    $predictMethodOptions
+                );
+            } else {
+                $output->writeln("<error>Unhandled polling method $pollingMethod.</error>");
+                return Command::FAILURE;
+            }
+            if ($outputType === "raw") {
+                echo(
+                    json_encode(
+                        json_decode(
+                            $result->getRawHttp(),
+                            true,
+                            JSON_PRINT_RECURSION_DEPTH,
+                            JSON_UNESCAPED_SLASHES
+                        ),
+                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                    )
+                );
+            } elseif ($outputType == "parsed") {
+                echo(
+                    json_encode(
+                        json_decode(
+                            $result->getRawHttp(),
+                            true,
+                            JSON_PRINT_RECURSION_DEPTH,
+                            JSON_UNESCAPED_SLASHES
+                        )['document'],
+                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                    )
+                );
+            } else {
+                echo($result->document);
+            }
 
             // Your logic goes here based on the input options
             return Command::SUCCESS;
