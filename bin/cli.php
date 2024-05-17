@@ -28,10 +28,9 @@ $documents = [
         true,
         false
     ),
-    "generated" => new CommandConfig(
-        "Custom document type from docTI",
-        Product\Generated\GeneratedV1::class,
-        false,
+    "eu-driver-license" => new CommandConfig(
+        "EU Driver License",
+        Product\Eu\DriverLicense\DriverLicenseV1::class,
         true
     ),
     "eu-license-plate" => new CommandConfig(
@@ -54,9 +53,26 @@ $documents = [
         Product\Fr\CarteGrise\CarteGriseV1::class,
         true
     ),
+    "fr-carte-vitale" => new CommandConfig(
+        "FR Carte Vitale",
+        Product\Fr\CarteVitale\CarteVitaleV1::class,
+        true
+    ),
     "fr-id-card" => new CommandConfig(
         "FR ID Card",
         Product\Fr\IdCard\IdCardV2::class,
+        true
+    ),
+    "generated" => new CommandConfig(
+        "Custom document type from docTI",
+        Product\Generated\GeneratedV1::class,
+        false,
+        true
+    ),
+    "international-id" => new CommandConfig(
+        "International Id",
+        Product\InternationalId\InternationalIdV2::class,
+        false,
         true
     ),
     "invoice" => new CommandConfig(
@@ -88,6 +104,12 @@ $documents = [
     "receipt" => new CommandConfig(
         "Expense Receipt",
         Product\Receipt\ReceiptV5::class,
+        true
+    ),
+    "resume" => new CommandConfig(
+        "Resume",
+        Product\Resume\ResumeV1::class,
+        false,
         true
     ),
     "us-bank-check" => new CommandConfig(
