@@ -87,7 +87,7 @@ Available products:";
                 'file_path_or_url',
                 InputArgument::REQUIRED,
                 'Path or URL of the file to be processed.'
-            );  // Set the help message here
+            );
 
         $this->configureMainOptions();
         $this->configureCustomOptions();
@@ -215,7 +215,7 @@ Available products:";
                 if (@file_exists($filePathOrUrl) || @file_get_contents($filePathOrUrl)) {
                     $file = $mindeeClient->sourceFromPath($filePathOrUrl);
                 } else {
-                    $output->writeln("<error>Invalid path or url provided.</error>");
+                    $output->writeln("<error>Invalid path or url provided '$filePathOrUrl'.</error>");
                     return Command::FAILURE;
                 }
             } else {

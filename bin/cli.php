@@ -129,28 +129,9 @@ $documents = [
     ),
 ];
 
-// Create a new instance of the Application and add your MindeeCLI command
 $cli = new Application();
 $mindeeCommand = new MindeeCLICommand($documents);
 $cli->add($mindeeCommand);
-
-$argv = $_SERVER['argv'];
-function removeWhitespaceArguments($arg): bool
-{
-    return trim($arg) !== ''; // Keep non-empty arguments after trimming whitespace
-}
-
-$base['command'] = 'mindee'; // Skips the need to specify "mindee" to symfony's CLI tool.
-array_shift($argv);
-if (sizeof($argv) > 0) {
-    // Filter the arguments to remove elements containing only whitespace;
-    foreach ($argv as $arg) {
-        if (strlen(trim($arg)) > 0) {
-            $base[] = trim($arg);
-        }
-    }
-}
-
 try {
     $cli->add($mindeeCommand);
     $cli->setDefaultCommand($mindeeCommand->getName(), true);

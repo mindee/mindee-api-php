@@ -11,7 +11,6 @@ class CommandConfig
 
     public function __construct(string $help, string $docClass, bool $isSync, bool $isAsync = false)
     {
-// Constructor implementation
         $this->help = $help;
         $this->docClass = $docClass;
         $this->isSync = $isSync;
