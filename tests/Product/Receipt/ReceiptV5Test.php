@@ -45,6 +45,7 @@ class ReceiptV5Test extends TestCase
         $this->assertEquals(0, count($prediction->supplierCompanyRegistrations));
         $this->assertNull($prediction->supplierAddress->value);
         $this->assertNull($prediction->supplierPhoneNumber->value);
+        $this->assertNull($prediction->receiptNumber->value);
         $this->assertEquals(0, count($prediction->lineItems));
     }
 }

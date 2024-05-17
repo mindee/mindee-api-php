@@ -220,6 +220,13 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 echo $result->document->inference->prediction->locale->value;
 ```
 
+## Receipt Number
+**receiptNumber** : The receipt number or identifier.
+
+```php
+echo $result->document->inference->prediction->receiptNumber->value;
+```
+
 ## Purchase Subcategory
 **subcategory** : The purchase subcategory among predefined classes for transport and food.
 
