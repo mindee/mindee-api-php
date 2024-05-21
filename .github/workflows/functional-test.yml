@@ -85,7 +85,7 @@ jobs:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: ext-curl, ext-fileinfo, ext-json
+          extensions: curl, fileinfo, json
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
