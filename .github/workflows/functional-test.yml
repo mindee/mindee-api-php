@@ -1,0 +1,85 @@
+name: Functional Tests
+
+on:
+  push:
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  MINDEE_ACCOUNT_SE_TESTS: ${{ secrets.MINDEE_ACCOUNT_SE_TESTS }}
+  MINDEE_ENDPOINT_SE_TESTS: ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
+  MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
+jobs:
+  functional-tests-ubuntu:
+    name: Run Functional Tests on All Platforms
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 2
+      matrix:
+        php-version:
+          - 7.4
+          - 8.3
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v2
+      - name: Unit testing with phpunit
+        run: |
+          ./vendor/bin/phpunit -c tests/functional.xml
+
+  functional-tests-macos:
+    name: Run Functional Tests on MacOS
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 2
+      matrix:
+        php-version:
+          - 7.4
+          - 8.3
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        env:
+          phpts: zts
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v2
+      - name: Unit testing with phpunit
+        run: |
+          ./vendor/bin/phpunit -c tests/functional.xml
+
+
+  functional-tests-windows:
+    name: Run Functional Tests on Windows
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 2
+      matrix:
+        php-version:
+          - 7.4
+          - 8.3
+    runs-on: "windows-latest"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        env:
+          phpts: zts
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v2
+      - name: Unit testing with phpunit
+        run: |
+          ./vendor/bin/phpunit -c tests/functional.xml

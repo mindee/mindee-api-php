@@ -274,9 +274,12 @@ Available products:";
                             $predictMethodOptions
                         );
                     } catch (MindeeHttpException $e) {
-                        if ($e->statusCode === 401) {
-                            $output->writeln("Invalid API key '$key'.");
+                        if ($e->getMessage()) {
+                            $output->writeln($e->getMessage());
                         }
+                        return Command::FAILURE;
+                    } catch (\Exception $e) {
+                        $output->writeln("Something went wrong, '" . $e->getMessage() . "' was raised.");
                         return Command::FAILURE;
                     }
                 } else {
@@ -287,9 +290,12 @@ Available products:";
                             $predictMethodOptions
                         );
                     } catch (MindeeHttpException $e) {
-                        if ($e->statusCode === 401) {
-                            $output->writeln("Invalid API key '$key'.");
+                        if ($e->getMessage()) {
+                            $output->writeln($e->getMessage());
                         }
+                        return Command::FAILURE;
+                    } catch (\Exception $e) {
+                        $output->writeln("Something went wrong, '" . $e->getMessage() . "' was raised.");
                         return Command::FAILURE;
                     }
                 }
@@ -298,28 +304,28 @@ Available products:";
                 return Command::SUCCESS;
             }
             if ($outputType === "raw") {
-                echo(
-                json_encode(
-                    json_decode(
-                        $result->getRawHttp(),
-                        true,
-                        JSON_PRINT_RECURSION_DEPTH,
-                        JSON_UNESCAPED_SLASHES
-                    ),
-                    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-                )
+                $output->writeln(
+                    json_encode(
+                        json_decode(
+                            $result->getRawHttp(),
+                            true,
+                            JSON_PRINT_RECURSION_DEPTH,
+                            JSON_UNESCAPED_SLASHES
+                        ),
+                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                    )
                 );
             } elseif ($outputType == "parsed") {
-                echo(
-                json_encode(
-                    json_decode(
-                        $result->getRawHttp(),
-                        true,
-                        JSON_PRINT_RECURSION_DEPTH,
-                        JSON_UNESCAPED_SLASHES
-                    )['document'],
-                    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-                )
+                $output->writeln(
+                    json_encode(
+                        json_decode(
+                            $result->getRawHttp(),
+                            true,
+                            JSON_PRINT_RECURSION_DEPTH,
+                            JSON_UNESCAPED_SLASHES
+                        )['document'],
+                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+                    )
                 );
             } else {
                 echo($result->document);

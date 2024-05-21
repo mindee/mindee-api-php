@@ -1,8 +1,9 @@
 <?php
 
 namespace Mindee\CLI;
+require __DIR__ . '/../vendor/autoload.php';
 
-class CommandConfig
+class DocumentCommandConfig
 {
     public string $help;
     public string $docClass;

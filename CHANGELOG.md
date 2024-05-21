@@ -1,7 +1,7 @@
 # Mindee PHP API Library Changelog
 
 # v1.5.0 - 2024-05-21
-### Fixes
+### Changes
 * :sparkles: update financial document to v1.7
 * :sparkles: update receipt to v5.2
 
