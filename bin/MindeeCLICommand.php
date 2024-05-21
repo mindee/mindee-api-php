@@ -2,9 +2,6 @@
 
 namespace Mindee\CLI;
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/version.php';
-
 use Mindee\Client;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\PageOptions;
@@ -15,12 +12,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use const Mindee\Input\KEEP_ONLY;
 use const Mindee\Input\REMOVE;
 use const Mindee\VERSION;
 
 const JSON_PRINT_RECURSION_DEPTH = 20;
 
+/**
+ * Configuration Class for CLI.
+ */
 class MindeeCLICommand extends Command
 {
     /**
@@ -37,6 +38,7 @@ class MindeeCLICommand extends Command
      */
     public function __construct(array $documentList)
     {
+        require __DIR__ . '/../src/version.php';
         $this->documentList = $documentList;
 
         $this->acceptableDocuments = [];
@@ -68,10 +70,13 @@ Available products:";
         return $helpCondensed;
     }
 
+    /**
+     * @return void sets the main CLI properties.
+     */
     protected function configure()
     {
         $this
-            ->setName('Mindee')
+            ->setName('mindee')
             ->setDescription('Mindee client.')
             ->addArgument(
                 'product',
@@ -88,6 +93,9 @@ Available products:";
         $this->configureCustomOptions();
     }
 
+    /**
+     * @return void Sets main properties regarding polling/parsing.
+     */
     private function configureMainOptions()
     {
         $this->addOption(
@@ -144,6 +152,9 @@ Available products:";
             );
     }
 
+    /**
+     * @return void Sets custom options.
+     */
     private function configureCustomOptions()
     {
         $this
@@ -167,6 +178,13 @@ Available products:";
             );
     }
 
+    /**
+     * Initializes the CLI runner, writes the help section if no argument nor option is given.
+     *
+     * @param InputInterface  $input  Input interface given to the CLI.
+     * @param OutputInterface $output Output interface.
+     * @return void
+     */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $args = $input->getArguments();
@@ -178,7 +196,14 @@ Available products:";
         }
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * Runs a command (overload).
+     *
+     * @param InputInterface  $input  Input interface given to the CLI.
+     * @param OutputInterface $output Output interface.
+     * @return integer Command execution code return.
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $version = $input->getOption('version');
         if ($version) {

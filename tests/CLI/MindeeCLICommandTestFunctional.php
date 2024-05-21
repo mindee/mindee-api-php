@@ -3,10 +3,10 @@
 namespace CLI;
 
 require_once(__DIR__ . "/../../vendor/autoload.php");
-require_once(__DIR__."/../../bin/Documents.php");
+require_once(__DIR__."/../../bin/MindeeCLIDocuments.php");
 require_once(__DIR__."/MindeeCLITestingUtilities.php");
 
-use Mindee\CLI\Documents;
+use Mindee\CLI\MindeeCLIDocuments;
 use PHPUnit\Framework\TestCase;
 
 class MindeeCLICommandTestFunctional extends TestCase
@@ -39,7 +39,7 @@ class MindeeCLICommandTestFunctional extends TestCase
         $endpoint = getenv('MINDEE_ENDPOINT_SE_TESTS');
         $data[] = ["custom", false, ["-a", $account, "-e", $endpoint, "-d", "1"]];
         $data[] = ["generated", true, ["-a", "mindee", "-e", "invoice_splitter", "-d", "1"]];
-        foreach (Documents::getSpecs() as $productName => $productSpecs) {
+        foreach (MindeeCLIDocuments::getSpecs() as $productName => $productSpecs) {
             if ($productName != "custom" && $productName != "generated") {
                 if ($productSpecs->isSync) {
                     $data[] = [$productName, false];

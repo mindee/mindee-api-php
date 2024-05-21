@@ -2,9 +2,6 @@
 
 namespace CLI;
 
-use Mindee\CLI\MindeeCLICommand;
-use Symfony\Component\Console\Application;
-
 use Mindee\Product;
 
 class MindeeCLITestingUtilities

@@ -3,7 +3,7 @@
 namespace Mindee\CLI;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/Documents.php';
+require __DIR__ . '/MindeeCLIDocuments.php';
 require __DIR__ . '/MindeeCLICommand.php';
 
 use Mindee\Product;
@@ -11,7 +11,7 @@ use Symfony\Component\Console\Application;
 
 
 $cli = new Application();
-$mindeeCommand = new MindeeCLICommand(Documents::getSpecs());
+$mindeeCommand = new MindeeCLICommand(MindeeCLIDocuments::getSpecs());
 $cli->add($mindeeCommand);
 try {
     $cli->add($mindeeCommand);

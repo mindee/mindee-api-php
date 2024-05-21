@@ -9,9 +9,11 @@ require_once(__DIR__."/MindeeCLITestingUtilities.php");
 class MindeeCLICommandTest extends TestCase
 {
     private string $apiKey;
+    private string $filePath;
 
     protected function setUp(): void
     {
+        $this->filePath = (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/file_types/pdf/blank_1.pdf";
         $this->apiKey = getenv('MINDEE_API_KEY');
     }
 
@@ -26,14 +28,14 @@ class MindeeCLICommandTest extends TestCase
 
     public function testInvalidKey()
     {
-        $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/file_types/pdf/blank_1.pdf", "-k", "invalid-key"]);
+        $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", $this->filePath, "-k", "invalid-key"]);
         $this->assertEquals(1, $cmdOutput["code"]);
         $this->assertTrue(str_contains(implode(" ", $cmdOutput["output"]), "Invalid token provided"));
     }
 
     public function testInvalidProduct()
     {
-        $cmdOutput = MindeeCLITestingUtilities::executeTest(["invalid-product", (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/file_types/pdf/blank_1.pdf", "-k", "invalid-key", "-D"]);
+        $cmdOutput = MindeeCLITestingUtilities::executeTest(["invalid-product", $this->filePath, "-k", "invalid-key", "-D"]);
         $this->assertEquals(1, $cmdOutput["code"]);
         $this->assertTrue(str_contains($cmdOutput["output"][0], "Invalid product: invalid-product"));
     }

@@ -2,14 +2,17 @@
 
 namespace Mindee\CLI;
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/DocumentCommandConfig.php';
-
-class Documents
+/**
+ * Document specifications for CLI usage.
+ */
+class MindeeCLIDocuments
 {
-    public static function getSpecs()
+    /**
+     * @return array Specifications for each Mindee Document, for CLI usage.
+     */
+    public static function getSpecs(): array
     {
-
+        require __DIR__ . '/DocumentCommandConfig.php';
         return [
             "barcode-reader" => new DocumentCommandConfig(
                 "Barcode-reader tool",
