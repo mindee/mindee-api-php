@@ -1,6 +1,7 @@
 name: Functional Tests
 
 on:
+  push:
   workflow_run:
     workflows: ["Test Code Samples"]
     branches:
