@@ -17,7 +17,7 @@ env:
   MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
 jobs:
   functional-tests-ubuntu:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Ensure previous workflow succeeded
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}  # Ensure previous workflow succeeded
     name: Run Functional Tests on All Platforms
     timeout-minutes: 30
     strategy:
@@ -41,7 +41,7 @@ jobs:
           ./vendor/bin/phpunit -c tests/functional.xml
 
   functional-tests-macos:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Ensure previous workflow succeeded
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}  # Ensure previous workflow succeeded
     name: Run Functional Tests on MacOS
     timeout-minutes: 30
     strategy:
@@ -68,7 +68,7 @@ jobs:
 
 
   functional-tests-windows:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Ensure previous workflow succeeded
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}  # Ensure previous workflow succeeded
     name: Run Functional Tests on Windows
     timeout-minutes: 30
     strategy:
