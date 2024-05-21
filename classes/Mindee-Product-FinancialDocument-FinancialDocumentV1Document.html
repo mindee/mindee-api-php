@@ -146,7 +146,7 @@
 
     </aside>
 
-            <p class="phpdocumentor-summary">Financial Document API version 1.6 document data.</p>
+            <p class="phpdocumentor-summary">Financial Document API version 1.7 document data.</p>
 
 
 
@@ -216,6 +216,12 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentNumber">$documentNumber</a>
+    <span>
+                        &nbsp;: <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentType">$documentType</a>
     <span>
                         &nbsp;: <a href="classes/Mindee-Parsing-Standard-ClassificationField.html"><abbr title="\Mindee\Parsing\Standard\ClassificationField">ClassificationField</abbr></a>            </span>
@@ -243,6 +249,12 @@
     <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_locale">$locale</a>
     <span>
                         &nbsp;: <a href="classes/Mindee-Parsing-Standard-LocaleField.html"><abbr title="\Mindee\Parsing\Standard\LocaleField">LocaleField</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_receiptNumber">$receiptNumber</a>
+    <span>
+                        &nbsp;: <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
@@ -627,6 +639,41 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_documentNumber">
+        $documentNumber
+        <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentNumber" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">53</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$documentNumber</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>The document number or identifier.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_documentType">
         $documentType
         <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentType" class="headerlink"><i class="fas fa-link"></i></a>
@@ -637,7 +684,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -672,7 +719,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -707,7 +754,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -719,7 +766,7 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>The invoice number or identifier.</p>
+        <section class="phpdocumentor-description"><p>The invoice number or identifier only if document is an invoice.</p>
 </section>
 
     
@@ -742,7 +789,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -777,7 +824,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -802,6 +849,41 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_receiptNumber">
+        $receiptNumber
+        <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_receiptNumber" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">77</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$receiptNumber</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>The receipt number or identifier only if document is a receipt.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_referenceNumbers">
         $referenceNumbers
         <a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_referenceNumbers" class="headerlink"><i class="fas fa-link"></i></a>
@@ -812,7 +894,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -847,7 +929,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -882,7 +964,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -917,7 +999,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
@@ -952,7 +1034,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -987,7 +1069,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
@@ -1022,7 +1104,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -1057,7 +1139,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
@@ -1092,7 +1174,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">113</span>
 
     </aside>
 
@@ -1127,7 +1209,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -1162,7 +1244,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">121</span>
 
     </aside>
 
@@ -1197,7 +1279,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -1232,7 +1314,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -1267,7 +1349,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
@@ -1302,7 +1384,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 
     </aside>
 
@@ -1337,7 +1419,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">141</span>
 
     </aside>
 
@@ -1377,7 +1459,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">139</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
@@ -1446,7 +1528,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/FinancialDocument/FinancialDocumentV1Document.php"><a href="files/src-product-financialdocument-financialdocumentv1document.html"><abbr title="src/Product/FinancialDocument/FinancialDocumentV1Document.php">FinancialDocumentV1Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">342</span>
+    <span class="phpdocumentor-element-found-in__line">364</span>
 
     </aside>
 
@@ -1591,11 +1673,13 @@
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_customerId">$customerId<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_customerName">$customerName<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_date">$date<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
+                                                    <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentNumber">$documentNumber<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentType">$documentType<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_dueDate">$dueDate<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_invoiceNumber">$invoiceNumber<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_lineItems">$lineItems<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_locale">$locale<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
+                                                    <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_receiptNumber">$receiptNumber<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_referenceNumbers">$referenceNumbers<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_shippingAddress">$shippingAddress<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>
                                                     <li><a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_subcategory">$subcategory<a href="classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"></li>

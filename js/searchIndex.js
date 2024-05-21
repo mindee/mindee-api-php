@@ -2453,7 +2453,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.6\u0020document\u0020data.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.7\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2501,6 +2501,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_date"
         },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024documentNumber",
+            "name": "documentNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentNumber"
+        },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024documentType",
             "name": "documentType",
             "summary": "",
@@ -2525,6 +2530,11 @@ Search.appendIndex(
             "name": "locale",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_locale"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024receiptNumber",
+            "name": "receiptNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_receiptNumber"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024referenceNumbers",
             "name": "referenceNumbers",
@@ -4113,7 +4123,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document",
             "name": "ReceiptV5Document",
-            "summary": "Receipt\u0020API\u0020version\u00205.1\u0020document\u0020data.",
+            "summary": "Receipt\u0020API\u0020version\u00205.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document\u003A\u003A__construct\u0028\u0029",
@@ -4150,6 +4160,11 @@ Search.appendIndex(
             "name": "locale",
             "summary": "",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5Document.html#property_locale"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document\u003A\u003A\u0024receiptNumber",
+            "name": "receiptNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Receipt-ReceiptV5Document.html#property_receiptNumber"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document\u003A\u003A\u0024subcategory",
             "name": "subcategory",
