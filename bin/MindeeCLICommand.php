@@ -6,6 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/version.php';
 
 use Mindee\Client;
+use Mindee\Error\MindeeHttpException;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\PredictOptions;
@@ -266,19 +267,34 @@ Available products:";
             $debug = $input->getOption('debug');
             if (!$debug) {
                 if (!$isAsync) {
-                    $result = $mindeeClient->parse(
-                        $this->documentList[$product]->docClass,
-                        $file,
-                        $predictMethodOptions
-                    );
+                    try {
+                        $result = $mindeeClient->parse(
+                            $this->documentList[$product]->docClass,
+                            $file,
+                            $predictMethodOptions
+                        );
+                    } catch (MindeeHttpException $e) {
+                        if ($e->statusCode === 401) {
+                            $output->writeln("Invalid API key '$key'.");
+                        }
+                        return Command::FAILURE;
+                    }
                 } else {
-                    $result = $mindeeClient->enqueueAndParse(
-                        $this->documentList[$product]->docClass,
-                        $file,
-                        $predictMethodOptions
-                    );
+                    try {
+                        $result = $mindeeClient->enqueueAndParse(
+                            $this->documentList[$product]->docClass,
+                            $file,
+                            $predictMethodOptions
+                        );
+                    } catch (MindeeHttpException $e) {
+                        if ($e->statusCode === 401) {
+                            $output->writeln("Invalid API key '$key'.");
+                        }
+                        return Command::FAILURE;
+                    }
                 }
             } else {
+                $output->writeln("Command executed successfully.");
                 return Command::SUCCESS;
             }
             if ($outputType === "raw") {
