@@ -1,7 +1,12 @@
 name: Functional Tests
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Test Code Samples"]
+    branches:
+      - '*'
+    types:
+      - completed
   # Allows running this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -79,7 +84,8 @@ jobs:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-      - uses: php-actions/composer@v6
+          extensions: ext-curl, ext-fileinfo, ext-json
+      - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
           ./vendor/bin/phpunit -c tests/functional.xml

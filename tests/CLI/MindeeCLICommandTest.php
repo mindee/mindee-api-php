@@ -28,7 +28,7 @@ class MindeeCLICommandTest extends TestCase
     {
         $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/file_types/pdf/blank_1.pdf", "-k", "invalid-key"]);
         $this->assertEquals(1, $cmdOutput["code"]);
-        $this->assertTrue(str_contains($cmdOutput["output"][0], "Invalid token provided"));
+        $this->assertTrue(str_contains(implode(" ", $cmdOutput["output"]), "Invalid token provided"));
     }
 
     public function testInvalidProduct()
