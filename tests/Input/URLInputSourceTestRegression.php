@@ -12,7 +12,7 @@ class URLInputSourceTestRegression extends TestCase
 
     protected string $fileTypesDir;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->realClient = new Client();
     }

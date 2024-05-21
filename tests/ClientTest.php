@@ -17,19 +17,26 @@ class ClientTest extends TestCase
     private Client $emptyClient;
     private Client $dummyClient;
     private Client $envClient;
+    private string $oldKey;
     private string $fileTypesDir;
 
 
     protected function setUp(): void
     {
+        $this->oldKey = getenv('MINDEE_API_KEY');
         $this->dummyClient = new Client("dummy-key");
-        putenv('MINDEE_API_KEY' . '=');
+        putenv('MINDEE_API_KEY=');
         $this->emptyClient = new Client();
-        putenv('MINDEE_API_KEY' . '=dummy-env-key');
+        putenv('MINDEE_API_KEY=dummy-env-key');
         $this->envClient = new Client();
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/file_types/";
+    }
+
+
+    protected function tearDown(): void {
+        putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
 
     public function testParsePathWithoutToken()
@@ -88,8 +95,9 @@ class ClientTest extends TestCase
         $asyncParseOptions->setDelaySec(0);
     }
 
-    public function testPredictOptionsWrongInputType(){
-        $pageOptions = new PageOptions([0,1]);
+    public function testPredictOptionsWrongInputType()
+    {
+        $pageOptions = new PageOptions([0, 1]);
         $this->assertFalse($pageOptions->isEmpty());
         $predictOptions = new PredictMethodOptions();
         $predictOptions->setPageOptions($pageOptions);
@@ -100,7 +108,8 @@ class ClientTest extends TestCase
         $this->dummyClient->enqueue(InvoiceSplitterV1::class, $urlInputSource, $predictOptions);
     }
 
-    public function testPredictOptionsValidInputType(){
+    public function testPredictOptionsValidInputType()
+    {
         $predictOptions = new PredictMethodOptions();
         $this->assertTrue($predictOptions->pageOptions->isEmpty());
         $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");

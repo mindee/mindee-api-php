@@ -77,12 +77,6 @@ Available products:";
                 InputArgument::REQUIRED,
                 'Specify which product to use. Available products are :' . implode("\n  ", $this->acceptableDocuments)
             )
-            ->addOption(
-                'async_polling',
-                'A',
-                InputOption::VALUE_NONE,
-                'Specify which polling method to use from: parse, enqueue-and-parse'
-            )
             ->addArgument(
                 'file_path_or_url',
                 InputArgument::REQUIRED,
@@ -96,11 +90,17 @@ Available products:";
     private function configureMainOptions()
     {
         $this->addOption(
-            'pages_remove',
-            'r',
-            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-            'Indexes of the pages to remove from the document.'
+            'async_polling',
+            'A',
+            InputOption::VALUE_NONE,
+            'When enabled, enqueues and parses the document asynchronously.'
         )
+            ->addOption(
+                'pages_remove',
+                'r',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'Indexes of the pages to remove from the document.'
+            )
             ->addOption(
                 'pages_keep',
                 'p',
@@ -134,6 +134,12 @@ Available products:";
                 'c',
                 InputOption::VALUE_NONE,
                 "Apply cropper operation to the document (if available)."
+            )
+            ->addOption(
+                'debug',
+                'D',
+                InputOption::VALUE_NONE,
+                'Debug mode (dry-run).'
             );
     }
 
@@ -257,18 +263,23 @@ Available products:";
                 $endpoint = $mindeeClient->createEndpoint($endpointName, $accountName, $endpointVersion);
                 $predictMethodOptions->setEndpoint($endpoint);
             }
-            if (!$isAsync) {
-                $result = $mindeeClient->parse(
-                    $this->documentList[$product]->docClass,
-                    $file,
-                    $predictMethodOptions
-                );
+            $debug = $input->getOption('debug');
+            if (!$debug) {
+                if (!$isAsync) {
+                    $result = $mindeeClient->parse(
+                        $this->documentList[$product]->docClass,
+                        $file,
+                        $predictMethodOptions
+                    );
+                } else {
+                    $result = $mindeeClient->enqueueAndParse(
+                        $this->documentList[$product]->docClass,
+                        $file,
+                        $predictMethodOptions
+                    );
+                }
             } else {
-                $result = $mindeeClient->enqueueAndParse(
-                    $this->documentList[$product]->docClass,
-                    $file,
-                    $predictMethodOptions
-                );
+                return Command::SUCCESS;
             }
             if ($outputType === "raw") {
                 echo(
