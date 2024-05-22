@@ -1,5 +1,12 @@
 # Mindee PHP API Library Changelog
 
+# v1.6.0 - 2024-05-22
+### Changes
+* :sparkles: add Command Line Utility
+* :recycle: tweak tests
+* :memo: add CLI documentation
+
+
 # v1.5.0 - 2024-05-21
 ### Changes
 * :sparkles: update financial document to v1.7
