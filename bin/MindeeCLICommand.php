@@ -104,7 +104,7 @@ Available products:";
     private function configureMainOptions()
     {
         $this->addOption(
-            'async_polling',
+            'async',
             'A',
             InputOption::VALUE_NONE,
             'When enabled, enqueues and parses the document asynchronously.'
@@ -225,7 +225,7 @@ Available products:";
         if ($this->documentList[$product]->isAsync && !$this->documentList[$product]->isSync) {
             $isAsync = true;
         } else {
-            $isAsync = $input->getOption('async_polling');
+            $isAsync = $input->getOption('async');
         }
 
         if (!$this->isValidPollingMethod($product, $isAsync, $output)) {
