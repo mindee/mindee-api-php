@@ -222,7 +222,11 @@ Available products:";
         $outputType = $input->getOption('output_type');
 
         $client = new Client($input->getOption('key'));
-        $isAsync = $input->getOption('async_polling');
+        if ($this->documentList[$product]->isAsync && !$this->documentList[$product]->isSync) {
+            $isAsync = true;
+        } else {
+            $isAsync = $input->getOption('async_polling');
+        }
 
         if (!$this->isValidPollingMethod($product, $isAsync, $output)) {
             return Command::FAILURE;

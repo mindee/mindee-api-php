@@ -36,8 +36,11 @@ export MINDEE_API_KEY=xxxxxx
 ./mindee invoice-splitter path/to/the/invoice.pdf -A
 ```
 
-> Note: the `-A` parameter is **mandatory** for asynchronous APIs.
+> Note: the `-A` can be omitted on products which do not support synchronous mode.
 
+```shell
+./mindee invoice-splitter path/to/the/invoice.pdf -A
+```
 
 ### [DEPRECATED] Example parse command for a custom document (API Builder)
 
