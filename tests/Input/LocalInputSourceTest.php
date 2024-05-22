@@ -6,19 +6,25 @@ use Mindee\Client;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
+use const Mindee\Http\API_KEY_ENV_NAME;
 
 class LocalInputSourceTest extends TestCase
 {
+    private string $oldKey;
     protected Client $dummyClient;
     protected string $fileTypesDir;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
+        $this->oldKey = getenv(API_KEY_ENV_NAME);
         $this->dummyClient = new Client("dummy-key");
-        putenv('MINDEE_API_KEY' . '=');
+        putenv(API_KEY_ENV_NAME . '=');
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/file_types/";
+    }
+    protected function tearDown(): void {
+        putenv(API_KEY_ENV_NAME . '=' . $this->oldKey);
     }
 
 //    public function testPDFReconstructOK()

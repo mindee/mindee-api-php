@@ -5,20 +5,24 @@ use Mindee\Client;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\URLInputSource;
 use PHPUnit\Framework\TestCase;
+use const Mindee\Http\API_KEY_ENV_NAME;
 
 class URLInputSourceTest extends TestCase
 {
-
+    private string $oldKey;
     protected Client $dummyClient;
     protected string $fileTypesDir;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
+        $this->oldKey = getEnv(API_KEY_ENV_NAME);
         $this->dummyClient = new Client("dummy-key");
-        putenv('MINDEE_API_KEY' . '=');
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/file_types/";
+    }
+    protected function tearDown(): void {
+        putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
     public function testInputFromHTTPShouldNotThrow()
     {
