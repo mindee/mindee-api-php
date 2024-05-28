@@ -3,7 +3,7 @@
 namespace Mindee\Parsing\Standard;
 
 /**
- * A field containing a text value.
+ * A field containing a boolean value.
  */
 class BooleanField extends BaseField
 {
