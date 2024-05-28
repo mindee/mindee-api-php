@@ -8,7 +8,7 @@
     "ext-curl": "*",
     "ext-fileinfo": "*",
     "ext-json": "*",
-    "symfony/console": "^5.4"
+    "symfony/console": ">=5.4"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.38",
