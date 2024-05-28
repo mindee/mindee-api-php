@@ -44,7 +44,11 @@ class LocaleField extends BaseField
         ?int $pageId = null,
         bool $reconstructed = false
     ) {
-        $valueKey = array_key_exists('value', $rawPrediction) ? 'value' : 'language';
+        if (array_key_exists('value', $rawPrediction) && $rawPrediction['value'] !== null) {
+            $valueKey = 'value';
+        } else {
+            $valueKey = 'language';
+        }
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->language = LocaleField::getValue($rawPrediction, 'language');
         $this->country = LocaleField::getValue($rawPrediction, 'country');
