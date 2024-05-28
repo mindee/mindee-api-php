@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\FieldPositionMixin;
 /**
  * The address of the sender.
  */
-class UsMailV2SenderAddres
+class UsMailV2SenderAddress
 {
     use FieldPositionMixin;
     use FieldConfidenceMixin;
