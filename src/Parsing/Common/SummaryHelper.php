@@ -37,12 +37,18 @@ class SummaryHelper
     /**
      * Truncates line-items to the max width of their corresponding column.
      *
-     * @param string|null  $inputString String to check.
+     * @param string|boolean|null  $inputString String to check.
      * @param integer|null $maxColSize  Maximum size for the current column, if it exists.
      * @return string
      */
-    public static function formatForDisplay(?string $inputString = null, ?int $maxColSize = null): string
+    public static function formatForDisplay($inputString = null, ?int $maxColSize = null): string
     {
+        if ($inputString === true) {
+            return 'True';
+        }
+        if ($inputString === false) {
+            return 'False';
+        }
         if (!$inputString || strlen($inputString) == 0) {
             return "";
         }
