@@ -13,17 +13,17 @@ class Base64Input extends LocalInputSource
     private string $tempFile;
 
     /**
-     * @param string $fileB64  Raw data as a base64-encoded string.
-     * @param string $fileName File name of the input.
+     * @param string $strBase64 Raw data as a base64-encoded string.
+     * @param string $fileName  File name of the input.
      */
-    public function __construct(string $fileB64, string $fileName)
+    public function __construct(string $strBase64, string $fileName)
     {
         $this->tempFile = tempnam(sys_get_temp_dir(), 'b64_');
         $this->fileName = $fileName;
-        file_put_contents($this->tempFile, $fileB64);
+        file_put_contents($this->tempFile, base64_decode($strBase64));
         rename($this->tempFile, $this->tempFile .= "." . pathinfo($this->fileName, PATHINFO_EXTENSION));
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $this->fileMimetype = finfo_buffer($finfo, base64_decode($fileB64));
+        $this->fileMimetype = finfo_buffer($finfo, base64_decode($strBase64));
         $this->fileObject = new \CURLFile($this->tempFile, $this->fileMimetype, $this->fileName);
         parent::__construct();
     }

@@ -102,7 +102,7 @@ class LocalInputSourceTest extends TestCase
         $inputDoc = $this->dummyClient->sourceFromB64String($pdfBytes, "dummy.pdf");
         $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
-        $this->assertEquals(str_replace("\n", "", $pdfBytes), str_replace("\n", "", $contents[1]));
+        $this->assertEquals(str_replace("\n", "", $pdfBytes), str_replace("\n", "", base64_encode($contents[1])));
     }
 
 
