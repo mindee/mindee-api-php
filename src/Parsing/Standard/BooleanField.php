@@ -2,6 +2,8 @@
 
 namespace Mindee\Parsing\Standard;
 
+use Mindee\Parsing\Common\SummaryHelper;
+
 /**
  * A field containing a boolean value.
  */
@@ -11,7 +13,7 @@ class BooleanField extends BaseField
     use FieldConfidenceMixin;
 
     /**
-     * @var string|null Value as string.
+     * @var boolean|null Value as string.
      */
     public $value;
 
@@ -38,11 +40,6 @@ class BooleanField extends BaseField
      */
     public function __toString(): string
     {
-        if ($this->value === true) {
-            return 'True';
-        } elseif ($this->value === false) {
-            return 'False';
-        }
-        return "";
+        return SummaryHelper::formatForDisplay($this->value);
     }
 }
