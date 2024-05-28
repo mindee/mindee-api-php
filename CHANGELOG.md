@@ -9,7 +9,7 @@
 
 ### Fixes
 * :bug: fix base64 encoded files not being sent properly
-* :recycle: loosen symfony/console version to prevent incompatibilities (Co-authored-by: psihius)
+* :recycle: loosen symfony/console version to prevent incompatibilities (Co-authored-by: @psihius)
 
 
 # v1.6.0 - 2024-05-22

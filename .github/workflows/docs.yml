@@ -24,7 +24,7 @@ jobs:
           wget https://phpdoc.org/phpDocumentor.phar
       - name: Build documentation
         run: |
-          php phpDocumentor.phar run -d ./src -t ./docs/_build
+          php phpDocumentor.phar -d ./src -t ./docs/_build
       - name: Move code samples
         run: |
           cp -r ./docs/code_samples ./docs/_build/
