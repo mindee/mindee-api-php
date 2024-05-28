@@ -86,7 +86,7 @@ Fields which are specific to this product; they are not used in any other produc
 ### Sender Address Field
 The address of the sender.
 
-A `UsMailV2SenderAddres` implements the following attributes:
+A `UsMailV2SenderAddress` implements the following attributes:
 
 * **city** (`string`): The city of the sender's address.
 * **complete** (`string`): The complete address of the sender.
@@ -118,7 +118,7 @@ foreach ($result->document->inference->prediction->recipientNames as $recipientN
 ```
 
 ## Sender Address
-**senderAddress** ([UsMailV2SenderAddres](#sender-address-field)): The address of the sender.
+**senderAddress** ([UsMailV2SenderAddress](#sender-address-field)): The address of the sender.
 
 ```php
 echo $result->document->inference->prediction->senderAddress->value;

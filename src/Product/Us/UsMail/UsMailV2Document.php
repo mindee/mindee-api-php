@@ -21,9 +21,9 @@ class UsMailV2Document extends Prediction
      */
     public array $recipientNames;
     /**
-     * @var UsMailV2SenderAddres The address of the sender.
+     * @var UsMailV2SenderAddress The address of the sender.
      */
-    public UsMailV2SenderAddres $senderAddress;
+    public UsMailV2SenderAddress $senderAddress;
     /**
      * @var StringField The name of the sender.
      */
@@ -52,7 +52,7 @@ class UsMailV2Document extends Prediction
         if (!isset($rawPrediction["sender_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->senderAddress = new UsMailV2SenderAddres(
+        $this->senderAddress = new UsMailV2SenderAddress(
             $rawPrediction["sender_address"],
             $pageId
         );
