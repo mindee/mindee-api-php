@@ -1,5 +1,17 @@
 # Mindee PHP API Library Changelog
 
+# v1.7.0 - 2024-05-28
+### Changes
+* :sparkles: add support for boolean fields
+* :sparkles: add support for US Mail V2
+* :sparkles: add support for local responses & webhooks
+* :sparkles: add support for HMAC validation
+
+### Fixes
+* :bug: fix base64 encoded files not being sent properly
+* :recycle: loosen symfony/console version to prevent incompatibilities (Co-authored-by: psihius)
+
+
 # v1.6.0 - 2024-05-22
 ### Changes
 * :sparkles: add Command Line Utility
