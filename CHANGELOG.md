@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+# v1.7.0 - 2024-05-31
+### Changes
+* :sparkles: add support for webhooks & HMAC validation (#64)
+
+
 # v1.7.0 - 2024-05-28
 ### Changes
 * :sparkles: add support for boolean fields
