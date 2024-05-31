@@ -96,6 +96,11 @@ Search.appendIndex(
             "summary": "Parses\u0020a\u0020queued\u0020document.",
             "url": "classes/Mindee-Client.html#method_parseQueued"
         },                {
+            "fqsen": "\\Mindee\\Client\u003A\u003AloadPrediction\u0028\u0029",
+            "name": "loadPrediction",
+            "summary": "",
+            "url": "classes/Mindee-Client.html#method_loadPrediction"
+        },                {
             "fqsen": "\\Mindee\\Client\u003A\u003ADEFAULT_OWNER",
             "name": "DEFAULT_OWNER",
             "summary": "Default\u0020owner\u0020for\u0020API\u0020products.",
@@ -830,6 +835,36 @@ Search.appendIndex(
             "name": "throwsOnClose",
             "summary": "",
             "url": "classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse",
+            "name": "LocalResponse",
+            "summary": "Local\u0020response\u0020loaded\u0020from\u0020a\u0020file.",
+            "url": "classes/Mindee-Input-LocalResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalResponse.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003AgetHMACSignature\u0028\u0029",
+            "name": "getHMACSignature",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalResponse.html#method_getHMACSignature"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003AisValidHMACSignature\u0028\u0029",
+            "name": "isValidHMACSignature",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalResponse.html#method_isValidHMACSignature"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalResponse.html#property_file"
         },                {
             "fqsen": "\\Mindee\\Input\\KEEP_ONLY",
             "name": "KEEP_ONLY",
