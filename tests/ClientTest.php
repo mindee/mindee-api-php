@@ -5,6 +5,7 @@ use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\EnqueueAndParseMethodOptions;
+use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Product\Custom\CustomV1;
@@ -19,6 +20,7 @@ class ClientTest extends TestCase
     private Client $envClient;
     private string $oldKey;
     private string $fileTypesDir;
+    private string $invoicePath;
 
 
     protected function setUp(): void
@@ -32,6 +34,9 @@ class ClientTest extends TestCase
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/file_types/";
+        $this->invoicePath = (
+            getenv('GITHUB_WORKSPACE') ?: "."
+            ) . "/tests/resources/products/invoices/response_v4/complete.json";
     }
 
 
@@ -117,5 +122,11 @@ class ClientTest extends TestCase
         $this->dummyClient->parse(InvoiceV4::class, $inputDoc, $predictOptions);
         $this->expectException(MindeeHttpClientException::class);
         $this->dummyClient->enqueue(InvoiceSplitterV1::class, $inputDoc, $predictOptions);
+    }
+
+    public function testLoadLocalResponse(){
+        $localResponse = new LocalResponse($this->invoicePath);
+        $res = $this->dummyClient->loadPrediction(InvoiceV4::class, $localResponse);
+        $this->assertNotNull($res);
     }
 }
