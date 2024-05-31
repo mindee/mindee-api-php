@@ -10,6 +10,7 @@ namespace Mindee;
 
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeClientException;
+use Mindee\Error\MindeeException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Http\Endpoint;
 use Mindee\Http\MindeeApi;
@@ -20,6 +21,7 @@ use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\FileInput;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
+use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
 use Mindee\Input\PredictMethodOptions;
@@ -420,5 +422,27 @@ class Client
             $predictionType,
         );
         return $this->makeParseQueuedRequest($predictionType, $queueId, $endpoint);
+    }
+
+
+    /**
+     * @param string        $predictionType Name of the product's class.
+     * @param LocalResponse $localResponse  Local response to load.
+     * @return AsyncPredictResponse|PredictResponse A valid prediction response.
+     * @throws MindeeException Throws if the loaded response isn't a valid prediction.
+     */
+    public function loadPrediction(
+        string $predictionType,
+        LocalResponse $localResponse
+    ) {
+        try {
+            $json = $localResponse->toArray();
+            if (isset($json['job'])) {
+                return new AsyncPredictResponse($predictionType, $json);
+            }
+            return new PredictResponse($predictionType, $json);
+        } catch (\Exception $e) {
+            throw new MindeeException("Local response is not a valid prediction.");
+        }
     }
 }
