@@ -8,14 +8,11 @@ use Mindee\Client;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\PredictOptions;
 use Mindee\Parsing\Common\Extras\CropperExtra;
-use Mindee\Product\Cropper\CropperV1;
 use Mindee\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
-use Product\RegressionUtilities;
 
 class CropperExtraTestRegression extends TestCase
 {
-    private string $rstRef;
     private CropperExtra $cropperExtra;
 
     protected function setUp(): void
