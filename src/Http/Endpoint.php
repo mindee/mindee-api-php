@@ -107,7 +107,6 @@ class Endpoint extends BaseEndpoint
         );
 
         $suffix = $async ? '/predict_async' : '/predict';
-        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . $suffix);
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -124,8 +123,9 @@ class Endpoint extends BaseEndpoint
             $postFields['include_mvision'] = 'true';
         }
         if ($cropper) {
-            $postFields['cropper'] = 'true';
+            $suffix .= '?cropper=true';
         }
+        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . $suffix);
         if (isset($postFields)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
