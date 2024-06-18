@@ -2,6 +2,8 @@
 
 namespace Mindee\Parsing\Standard;
 
+use Mindee\Parsing\Common\SummaryHelper;
+
 /**
  * A company registration item.
  */
@@ -32,12 +34,38 @@ class CompanyRegistrationField extends BaseField
         $this->setPosition($rawPrediction);
     }
 
+    /**
+     * Return as a table line for RST display.
+     *
+     * @return string
+     */
+    public function toTableLine(): string
+    {
+        $printable = $this->printableValues();
+        return sprintf("| %-15s | %-20s ", $printable['type'], $printable['value']);
+    }
 
     /**
-     * @return string String representation.
+     * String representation.
+     *
+     * @return string
      */
-    public function print(): string
+    public function __toString(): string
     {
-        return isset($this->value) ? "$this->type: $this->value" : '';
+        $printable = $this->printableValues();
+        return sprintf("Type: %s, Value: %s", $printable['type'], $printable['value']);
+    }
+
+    /**
+     * Returns an array of proper values for the formatting.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
+        $printable = [];
+        $printable['type'] = SummaryHelper::formatForDisplay($this->type);
+        $printable['value'] = SummaryHelper::formatForDisplay($this->value);
+        return $printable;
     }
 }
