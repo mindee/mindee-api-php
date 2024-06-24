@@ -21,6 +21,7 @@
     }
   },
   "bin": [
-    "bin/mindee"
+    "mindee",
+    "bin/cli.php"
   ]
 }
