@@ -1886,10 +1886,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Standard\\CompanyRegistrationField\u003A\u003Aprint\u0028\u0029",
-            "name": "print",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_print"
+            "fqsen": "\\Mindee\\Parsing\\Standard\\CompanyRegistrationField\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Return\u0020as\u0020a\u0020table\u0020line\u0020for\u0020RST\u0020display.",
+            "url": "classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\CompanyRegistrationField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\CompanyRegistrationField\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020proper\u0020values\u0020for\u0020the\u0020formatting.",
+            "url": "classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_printableValues"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\CompanyRegistrationField\u003A\u003A\u0024type",
             "name": "type",

@@ -145,7 +145,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/CompanyRegistrationField.php"><a href="files/src-parsing-standard-companyregistrationfield.html"><abbr title="src/Parsing/Standard/CompanyRegistrationField.php">CompanyRegistrationField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -242,16 +242,18 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Parsing-Standard-BaseField.html#method___toString">__toString()</a>
+    <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method___toString">__toString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>String representation.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_print">print()</a>
+    <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_toTableLine">toTableLine()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Return as a table line for RST display.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a>
@@ -266,6 +268,13 @@
                                 &nbsp;: void    </span>
 </dt>
 <dd>Sets the position of a field.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_printableValues">printableValues()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Returns an array of proper values for the formatting.</dd>
 
     </dl>
 
@@ -482,7 +491,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/CompanyRegistrationField.php"><a href="files/src-parsing-standard-companyregistrationfield.html"><abbr title="src/Parsing/Standard/CompanyRegistrationField.php">CompanyRegistrationField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -611,7 +620,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/CompanyRegistrationField.php"><a href="files/src-parsing-standard-companyregistrationfield.html"><abbr title="src/Parsing/Standard/CompanyRegistrationField.php">CompanyRegistrationField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -677,17 +686,18 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
-        <a href="classes/Mindee-Parsing-Standard-BaseField.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/BaseField.php"><a href="files/src-parsing-standard-basefield.html"><abbr title="src/Parsing/Standard/BaseField.php">BaseField.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/CompanyRegistrationField.php"><a href="files/src-parsing-standard-companyregistrationfield.html"><abbr title="src/Parsing/Standard/CompanyRegistrationField.php">CompanyRegistrationField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">String representation.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
@@ -703,10 +713,6 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>String representation.</p>
-</section>
-
             </section>
 
 </article>
@@ -716,22 +722,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_print">
-        print()
-        <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_print" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_toTableLine">
+        toTableLine()
+        <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_toTableLine" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/CompanyRegistrationField.php"><a href="files/src-parsing-standard-companyregistrationfield.html"><abbr title="src/Parsing/Standard/CompanyRegistrationField.php">CompanyRegistrationField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Return as a table line for RST display.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">print</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">toTableLine</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -744,10 +751,6 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>String representation.</p>
-</section>
-
             </section>
 
 </article>
@@ -842,6 +845,44 @@
     
 
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_printableValues">
+        printableValues()
+        <a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_printableValues" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Standard/CompanyRegistrationField.php"><a href="files/src-parsing-standard-companyregistrationfield.html"><abbr title="src/Parsing/Standard/CompanyRegistrationField.php">CompanyRegistrationField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">64</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns an array of proper values for the formatting.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">printableValues</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
 </article>
             </section>
 
@@ -971,10 +1012,11 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/Mindee-Parsing-Standard-BaseField.html#method___compare">__compare()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-BaseField.html#method___toString">__toString()</a></li>
-                                            <li><a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_print">print()</a></li>
+                                            <li><a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method___toString">__toString()</a></li>
+                                            <li><a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_toTableLine">toTableLine()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a></li>
                                             <li><a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#method_setPosition">setPosition()</a></li>
+                                            <li><a href="classes/Mindee-Parsing-Standard-CompanyRegistrationField.html#method_printableValues">printableValues()</a></li>
                                     </ul>
             </li>
                     </ul>
