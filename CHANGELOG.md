@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+# v1.8.1 - 2024-06-24
+### Fixes
+* :bug: fix improper script targeting causing warning in composer install (#70)
+
+
 # v1.8.0 - 2024-05-31
 ### Changes
 * :sparkles: add support for webhooks & HMAC validation (#64)
