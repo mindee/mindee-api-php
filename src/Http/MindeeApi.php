@@ -146,7 +146,7 @@ class MindeeApi
         ?string $version = "1"
     ) {
         $this->setApiKey($apiKey);
-        if (!$this->apiKey) {
+        if (!$this->apiKey or strlen($this->apiKey) == 0) {
             throw new MindeeException(
                 "Missing API key for '$endpointName v$version' (belonging to $accountName)," .
                 " check your Client configuration.You can set this using the " .
