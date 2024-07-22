@@ -49,6 +49,7 @@ abstract class LocalInputSource extends InputSource
      * @var boolean Sets the input mode to debug. Only used in unit tests.
      */
     protected bool $throwsOnClose;
+
     /**
      * Checks the mimetype integrity of a file.
      *
@@ -69,9 +70,13 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Base constructor, mostly used for Mime type checking.
+     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
-    public function __construct()
+    public function __construct(bool $fixPDF = false)
     {
+        if ($fixPDF) {
+            $this->fixPDF();
+        }
         $this->checkMimeType();
         $this->throwsOnClose = false;
     }
@@ -137,6 +142,36 @@ abstract class LocalInputSource extends InputSource
         $strContents = fread($fileHandle, filesize($this->fileObject->getFilename()));
         fclose($fileHandle);
         return [basename($this->fileObject->getFilename()), $strContents];
+    }
+
+
+    /**
+     * Attempts to fix a PDF file.
+     *
+     * @return void
+     * @throws MindeeSourceException Throws if the file couldn't be fixed.
+     */
+    private function fixPDF(): void
+    {
+        $bytesContent = file_get_contents($this->fileObject->getFilename());
+
+        $pdfMarkerPosition = strpos(strtoupper($bytesContent), '%PDF');
+
+        if ($pdfMarkerPosition !== false) {
+            $tempFile = tempnam(sys_get_temp_dir(), 'pdf_fix_');
+            rename($tempFile, $tempFile .= "." . pathinfo($this->fileName, PATHINFO_EXTENSION));
+
+            file_put_contents($tempFile, substr($bytesContent, $pdfMarkerPosition));
+
+            $this->fileObject = new \CURLFile($tempFile, $this->fileMimetype, $this->fileName);
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $this->fileMimetype = finfo_file($finfo, $tempFile);
+            finfo_close($finfo);
+            return;
+        }
+
+        // Throw an exception if the %PDF marker is not found
+        throw new MindeeSourceException("PDF file could not be fixed.");
     }
 
     /**

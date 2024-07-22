@@ -60,47 +60,51 @@ class Client
     /**
      * Load a document from an absolute path, as a string.
      *
-     * @param string $filePath Path of the file.
+     * @param string  $filePath Path of the file.
+     * @param boolean $fixPDF   Whether the PDF should be fixed or not.
      * @return PathInput
      */
-    public function sourceFromPath(string $filePath): PathInput
+    public function sourceFromPath(string $filePath, bool $fixPDF = false): PathInput
     {
-        return new PathInput($filePath);
+        return new PathInput($filePath, $fixPDF);
     }
 
     /**
      * Load a document from a normal PHP file object.
      *
-     * @param mixed $file File object as created from the file() function.
+     * @param mixed   $file   File object as created from the file() function.
+     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      * @return FileInput
      */
-    public function sourceFromFile($file): FileInput
+    public function sourceFromFile($file, bool $fixPDF = false): FileInput
     {
-        return new FileInput($file);
+        return new FileInput($file, $fixPDF);
     }
 
     /**
      * Load a document from raw bytes.
      *
-     * @param string $fileBytes File object in raw bytes.
-     * @param string $fileName  File name, mandatory.
+     * @param string  $fileBytes File object in raw bytes.
+     * @param string  $fileName  File name, mandatory.
+     * @param boolean $fixPDF    Whether the PDF should be fixed or not.
      * @return BytesInput
      */
-    public function sourceFromBytes(string $fileBytes, string $fileName): BytesInput
+    public function sourceFromBytes(string $fileBytes, string $fileName, bool $fixPDF = false): BytesInput
     {
-        return new BytesInput($fileBytes, $fileName);
+        return new BytesInput($fileBytes, $fileName, $fixPDF);
     }
 
     /**
      * Load a document from a base64 encoded string.
      *
-     * @param string $fileB64  File object in Base64.
-     * @param string $fileName File name, mandatory.
+     * @param string  $fileB64  File object in Base64.
+     * @param string  $fileName File name, mandatory.
+     * @param boolean $fixPDF   Whether the PDF should be fixed or not.
      * @return Base64Input
      */
-    public function sourceFromB64String(string $fileB64, string $fileName): Base64Input
+    public function sourceFromB64String(string $fileB64, string $fileName, bool $fixPDF = false): Base64Input
     {
-        return new Base64Input($fileB64, $fileName);
+        return new Base64Input($fileB64, $fileName, $fixPDF);
     }
 
     /**
