@@ -1,5 +1,16 @@
 # Mindee PHP API Library Changelog
 
+# v1.9.0 - 2024-07-23
+### Changes
+* :sparkles: add support for US healthcare card V1
+* :sparkles: add support for Invoice V4.7
+* :sparkles: add support for FinancialDocument V1.9
+* :sparkles: add PDF fixing utility
+
+### Fixes
+* :recycle: rigidify api key check
+
+
 # v1.8.1 - 2024-06-24
 ### Fixes
 * :bug: fix improper script targeting causing warning in composer install (#70)
