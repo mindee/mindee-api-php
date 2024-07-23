@@ -1,11 +1,11 @@
 <?php
 
-namespace Mindee\Product\FinancialDocument;
+namespace Mindee\Product\Us\HealthcareCard;
 
 /**
- * List of line item details.
+ * Is a fixed amount for a covered service.
  */
-class FinancialDocumentV1LineItems extends \ArrayObject
+class HealthcareCardV1Copays extends \ArrayObject
 {
     /**
      * @param array        $rawPrediction Raw prediction array.
@@ -15,7 +15,7 @@ class FinancialDocumentV1LineItems extends \ArrayObject
     {
         $entries = [];
         foreach ($rawPrediction as $entry) {
-            $entries[] = new FinancialDocumentV1LineItem($entry, $pageId);
+            $entries[] = new HealthcareCardV1Copay($entry, $pageId);
         }
         parent::__construct($entries);
     }
@@ -26,17 +26,11 @@ class FinancialDocumentV1LineItems extends \ArrayObject
      * @param string $char Character to use as a separator.
      * @return string
      */
-    public static function lineItemsSeparator(string $char): string
+    public static function copaysSeparator(string $char): string
     {
         $outStr = "  ";
-        $outStr .= "+" . str_repeat($char, 38);
-        $outStr .= "+" . str_repeat($char, 14);
-        $outStr .= "+" . str_repeat($char, 10);
-        $outStr .= "+" . str_repeat($char, 12);
         $outStr .= "+" . str_repeat($char, 14);
         $outStr .= "+" . str_repeat($char, 14);
-        $outStr .= "+" . str_repeat($char, 17);
-        $outStr .= "+" . str_repeat($char, 12);
         return $outStr . "+";
     }
 
@@ -55,19 +49,13 @@ class FinancialDocumentV1LineItems extends \ArrayObject
         }
         while ($iterator->valid()) {
             $entry = $iterator->current();
-            $lines .= "\n  " . $entry->toTableLine() . "\n" . self::lineItemsSeparator('-');
+            $lines .= "\n  " . $entry->toTableLine() . "\n" . self::copaysSeparator('-');
             $iterator->next();
         }
-        $outStr = "\n" . self::lineItemsSeparator('-') . "\n ";
-        $outStr .= " | Description                         ";
-        $outStr .= " | Product code";
-        $outStr .= " | Quantity";
-        $outStr .= " | Tax Amount";
-        $outStr .= " | Tax Rate (%)";
-        $outStr .= " | Total Amount";
-        $outStr .= " | Unit of measure";
-        $outStr .= " | Unit Price";
-        $outStr .= " |\n" . self::lineItemsSeparator('=');
+        $outStr = "\n" . self::copaysSeparator('-') . "\n ";
+        $outStr .= " | Service Fees";
+        $outStr .= " | Service Name";
+        $outStr .= " |\n" . self::copaysSeparator('=');
         $outStr .= $lines;
         return $outStr;
     }

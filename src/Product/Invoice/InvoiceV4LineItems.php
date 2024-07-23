@@ -35,6 +35,7 @@ class InvoiceV4LineItems extends \ArrayObject
         $outStr .= "+" . str_repeat($char, 12);
         $outStr .= "+" . str_repeat($char, 14);
         $outStr .= "+" . str_repeat($char, 14);
+        $outStr .= "+" . str_repeat($char, 17);
         $outStr .= "+" . str_repeat($char, 12);
         return $outStr . "+";
     }
@@ -64,6 +65,7 @@ class InvoiceV4LineItems extends \ArrayObject
         $outStr .= " | Tax Amount";
         $outStr .= " | Tax Rate (%)";
         $outStr .= " | Total Amount";
+        $outStr .= " | Unit of measure";
         $outStr .= " | Unit Price";
         $outStr .= " |\n" . self::lineItemsSeparator('=');
         $outStr .= $lines;
