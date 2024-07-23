@@ -39,6 +39,10 @@ class FinancialDocumentV1LineItem
      */
     public ?float $totalAmount;
     /**
+     * @var string The item unit of measure.
+     */
+    public ?string $unitMeasure;
+    /**
      * @var float The item unit price.
      */
     public ?float $unitPrice;
@@ -65,6 +69,7 @@ class FinancialDocumentV1LineItem
         $this->totalAmount = isset($rawPrediction["total_amount"]) ?
         number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
         null;
+        $this->unitMeasure = $rawPrediction["unit_measure"] ?? null;
         $this->unitPrice = isset($rawPrediction["unit_price"]) ?
         number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
         null;
@@ -84,6 +89,7 @@ class FinancialDocumentV1LineItem
         $outArr["taxAmount"] = $this->taxAmount == null ? "" : number_format($this->taxAmount, 2, ".", "");
         $outArr["taxRate"] = $this->taxRate == null ? "" : number_format($this->taxRate, 2, ".", "");
         $outArr["totalAmount"] = $this->totalAmount == null ? "" : number_format($this->totalAmount, 2, ".", "");
+        $outArr["unitMeasure"] = SummaryHelper::formatForDisplay($this->unitMeasure);
         $outArr["unitPrice"] = $this->unitPrice == null ? "" : number_format($this->unitPrice, 2, ".", "");
         return $outArr;
     }
@@ -102,6 +108,7 @@ class FinancialDocumentV1LineItem
         $outStr .= str_pad($printable["taxAmount"], 10) . " | ";
         $outStr .= str_pad($printable["taxRate"], 12) . " | ";
         $outStr .= str_pad($printable["totalAmount"], 12) . " | ";
+        $outStr .= str_pad($printable["unitMeasure"], 15) . " | ";
         $outStr .= str_pad($printable["unitPrice"], 10) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
