@@ -43,6 +43,7 @@ class MindeeCLIDocuments
             "financial-document" => new DocumentCommandConfig(
                 "Financial Document (receipt or invoice)",
                 \Mindee\Product\FinancialDocument\FinancialDocumentV1::class,
+                true,
                 true
             ),
             "fr-bank-account-details" => new DocumentCommandConfig(
@@ -122,6 +123,12 @@ class MindeeCLIDocuments
             "us-driver-license" => new DocumentCommandConfig(
                 "US Driver License",
                 \Mindee\Product\Us\DriverLicense\DriverLicenseV1::class,
+                true
+            ),
+            "us-healthcare-card" => new DocumentCommandConfig(
+                "US Healthcare Card",
+                \Mindee\Product\Us\HealthcareCard\HealthcareCardV1::class,
+                false,
                 true
             ),
             "us-w9" => new DocumentCommandConfig(
