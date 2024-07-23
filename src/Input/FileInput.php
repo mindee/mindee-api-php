@@ -15,16 +15,17 @@ class FileInput extends LocalInputSource
     private $file;
 
     /**
-     * @param mixed &$file File reference.
+     * @param mixed   &$file  File reference.
+     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
-    public function __construct(&$file)
+    public function __construct(&$file, bool $fixPDF = false)
     {
         $this->file = &$file;
         $this->filePath = stream_get_meta_data($this->file)['uri'];
         $this->fileName = basename($this->filePath);
         $this->fileMimetype = mime_content_type($this->filePath);
         $this->fileObject = new \CURLFile($this->filePath, $this->fileName, $this->fileMimetype);
-        parent::__construct();
+        parent::__construct($fixPDF);
     }
 
 

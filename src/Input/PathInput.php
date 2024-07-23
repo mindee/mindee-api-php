@@ -8,9 +8,10 @@ namespace Mindee\Input;
 class PathInput extends LocalInputSource
 {
     /**
-     * @param string $filePath Path to open.
+     * @param string  $filePath Path to open.
+     * @param boolean $fixPDF   Whether the PDF should be fixed or not.
      */
-    public function __construct(string $filePath)
+    public function __construct(string $filePath, bool $fixPDF = false)
     {
         $this->filePath = $filePath;
         $this->fileName = basename($filePath);
@@ -20,6 +21,6 @@ class PathInput extends LocalInputSource
         $this->fileMimetype = $mimeType;
         $this->fileObject = new \CURLFile($this->filePath, $mimeType, $this->fileName);
         finfo_close($file);
-        parent::__construct();
+        parent::__construct($fixPDF);
     }
 }
