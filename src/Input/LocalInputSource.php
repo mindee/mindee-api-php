@@ -153,20 +153,23 @@ abstract class LocalInputSource extends InputSource
      */
     private function fixPDF(): void
     {
+        if (str_starts_with($this->fileMimetype, "image/")) {
+            error_log("Input file is an image, skipping PDF fix.");
+            return;
+        }
         $bytesContent = file_get_contents($this->fileObject->getFilename());
 
-        $pdfMarkerPosition = strpos(strtoupper($bytesContent), '%PDF');
+        $pdfMarkerPosition = strrpos(strtoupper($bytesContent), '%PDF');
 
         if ($pdfMarkerPosition !== false) {
             $tempFile = tempnam(sys_get_temp_dir(), 'pdf_fix_');
             rename($tempFile, $tempFile .= "." . pathinfo($this->fileName, PATHINFO_EXTENSION));
-
             file_put_contents($tempFile, substr($bytesContent, $pdfMarkerPosition));
 
-            $this->fileObject = new \CURLFile($tempFile, $this->fileMimetype, $this->fileName);
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $this->fileMimetype = finfo_file($finfo, $tempFile);
             finfo_close($finfo);
+            $this->fileObject = new \CURLFile($tempFile, $this->fileMimetype, $this->fileName);
             return;
         }
 

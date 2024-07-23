@@ -2,10 +2,13 @@
 
 namespace Input;
 
+use Exception;
 use Mindee\Client;
+use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
+
 use const Mindee\Http\API_KEY_ENV_NAME;
 
 class LocalInputSourceTest extends TestCase
@@ -22,8 +25,13 @@ class LocalInputSourceTest extends TestCase
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/file_types/";
+        $this->productsDir = (
+            getenv('GITHUB_WORKSPACE') ?: "."
+            ) . "/tests/resources/products/";
     }
-    protected function tearDown(): void {
+
+    protected function tearDown(): void
+    {
         putenv(API_KEY_ENV_NAME . '=' . $this->oldKey);
     }
 
@@ -106,7 +114,8 @@ class LocalInputSourceTest extends TestCase
     }
 
 
-    public function testFileCloseValid(){
+    public function testFileCloseValid()
+    {
         $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
         $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
         $this->assertTrue(is_resource($inputDoc->getFilePtr()));
@@ -114,7 +123,8 @@ class LocalInputSourceTest extends TestCase
         $this->assertFalse(is_resource($inputDoc->getFilePtr()));
     }
 
-    public function testFileCloseInvalid(){
+    public function testFileCloseInvalid()
+    {
         $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
         $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
         $inputDoc->enableStrictMode();
@@ -124,12 +134,35 @@ class LocalInputSourceTest extends TestCase
         $inputDoc->close();
     }
 
-    public function testFileCloseNotImplemented(){
+    public function testFileCloseNotImplemented()
+    {
         $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
         $inputDoc = $this->dummyClient->sourceFromb64String($pdfBytes, "dummy.pdf");
         $inputDoc->enableStrictMode();
         $this->expectException(MindeeSourceException::class);
         $this->expectExceptionMessage("Closing is not implemented on this type of local input source.");
         $inputDoc->close();
+    }
+
+    public function testShouldNotRaiseMimeErrorForBrokenFixablePdf()
+    {
+        $this->expectNotToPerformAssertions();
+
+        $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/broken_fixable.pdf', true);
+    }
+
+    public function testShouldRaiseErrorForBrokenUnfixablePdf()
+    {
+        $this->expectException(MindeeSourceException::class);
+
+        $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/broken_unfixable.pdf', true);
+    }
+
+    public function testShouldSendCorrectResultsForBrokenFixableInvoicePdf()
+    {
+        $sourceDocOriginal = $this->dummyClient->sourceFromPath($this->productsDir . '/invoices/invoice.pdf');
+
+        $sourceDocFixed = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/broken_invoice.pdf', true);
+        $this->assertEquals($sourceDocFixed->readContents()[1], $sourceDocOriginal->readContents()[1]);
     }
 }
