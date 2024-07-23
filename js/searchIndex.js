@@ -801,6 +801,11 @@ Search.appendIndex(
             "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_readContents"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AfixPDF\u0028\u0029",
+            "name": "fixPDF",
+            "summary": "Attempts\u0020to\u0020fix\u0020a\u0020PDF\u0020file.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_fixPDF"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003Aclose\u0028\u0029",
             "name": "close",
             "summary": "Closes\u0020the\u0020handle\/stream,\u0020if\u0020the\u0020input\u0020type\u0020supports\u0020it.",
@@ -2518,7 +2523,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.7\u0020document\u0020data.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.9\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -2735,6 +2740,11 @@ Search.appendIndex(
             "name": "totalAmount",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItem.html#property_totalAmount"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItem\u003A\u003A\u0024unitMeasure",
+            "name": "unitMeasure",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItem.html#property_unitMeasure"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItem\u003A\u003A\u0024unitPrice",
             "name": "unitPrice",
@@ -3678,7 +3688,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
             "name": "InvoiceV4Document",
-            "summary": "Invoice\u0020API\u0020version\u00204.6\u0020document\u0020data.",
+            "summary": "Invoice\u0020API\u0020version\u00204.7\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
@@ -3865,6 +3875,11 @@ Search.appendIndex(
             "name": "totalAmount",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItem.html#property_totalAmount"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItem\u003A\u003A\u0024unitMeasure",
+            "name": "unitMeasure",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItem.html#property_unitMeasure"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItem\u003A\u003A\u0024unitPrice",
             "name": "unitPrice",
@@ -5046,6 +5061,156 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html#property_signature"
         },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1",
+            "name": "HealthcareCardV1",
+            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay",
+            "name": "HealthcareCardV1Copay",
+            "summary": "Is\u0020a\u0020fixed\u0020amount\u0020for\u0020a\u0020covered\u0020service.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003A\u0024serviceFees",
+            "name": "serviceFees",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html#property_serviceFees"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003A\u0024serviceName",
+            "name": "serviceName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html#property_serviceName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copays",
+            "name": "HealthcareCardV1Copays",
+            "summary": "Is\u0020a\u0020fixed\u0020amount\u0020for\u0020a\u0020covered\u0020service.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copays.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copays\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copays.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copays\u003A\u003AcopaysSeparator\u0028\u0029",
+            "name": "copaysSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copays.html#method_copaysSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copays\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copays.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document",
+            "name": "HealthcareCardV1Document",
+            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024companyName",
+            "name": "companyName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_companyName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024copays",
+            "name": "copays",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_copays"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024dependents",
+            "name": "dependents",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_dependents"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024enrollmentDate",
+            "name": "enrollmentDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_enrollmentDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024groupNumber",
+            "name": "groupNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_groupNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024issuer80840",
+            "name": "issuer80840",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_issuer80840"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024memberId",
+            "name": "memberId",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_memberId"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024memberName",
+            "name": "memberName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_memberName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024payerId",
+            "name": "payerId",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_payerId"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024rxBin",
+            "name": "rxBin",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_rxBin"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024rxGrp",
+            "name": "rxGrp",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_rxGrp"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024rxPcn",
+            "name": "rxPcn",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_rxPcn"
+        },                {
             "fqsen": "\\Mindee\\Product\\Us\\UsMail\\UsMailV2",
             "name": "UsMailV2",
             "summary": "US\u0020Mail\u0020API\u0020version\u00202\u0020inference\u0020prediction.",
@@ -5530,6 +5695,11 @@ Search.appendIndex(
             "name": "DriverLicense",
             "summary": "",
             "url": "namespaces/mindee-product-us-driverlicense.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard",
+            "name": "HealthcareCard",
+            "summary": "",
+            "url": "namespaces/mindee-product-us-healthcarecard.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\UsMail",
             "name": "UsMail",
