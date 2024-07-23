@@ -170,7 +170,6 @@ abstract class LocalInputSource extends InputSource
             return;
         }
 
-        // Throw an exception if the %PDF marker is not found
         throw new MindeeSourceException("PDF file could not be fixed.");
     }
 
