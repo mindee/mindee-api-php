@@ -14,7 +14,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Receipt API version 5.2 document data.
+ * Receipt API version 5.3 document data.
  */
 class ReceiptV5Document extends Prediction
 {

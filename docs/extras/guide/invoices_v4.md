@@ -25,6 +25,26 @@ $apiResponse = $mindeeClient->parse(InvoiceV4::class, $inputSource);
 echo $apiResponse->document;
 ```
 
+You can also call this product asynchronously:
+
+```php
+<?php
+
+use Mindee\Client;
+use Mindee\Product\Invoice\InvoiceV4;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file asynchronously
+$apiResponse = $mindeeClient->enqueueAndParse(InvoiceV4::class, $inputSource);
+
+echo $apiResponse->document;
+```
+
 **Output (RST):**
 ```rst
 ########
