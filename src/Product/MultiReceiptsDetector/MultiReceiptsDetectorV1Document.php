@@ -8,7 +8,7 @@ use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Standard\PositionField;
 
 /**
- * Multi Receipts Detector API version 1.0 document data.
+ * Multi Receipts Detector API version 1.1 document data.
  */
 class MultiReceiptsDetectorV1Document extends Prediction
 {
