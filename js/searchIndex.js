@@ -3568,7 +3568,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document",
             "name": "InternationalIdV2Document",
-            "summary": "International\u0020ID\u0020API\u0020version\u00202.0\u0020document\u0020data.",
+            "summary": "International\u0020ID\u0020API\u0020version\u00202.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A__construct\u0028\u0029",
@@ -3993,7 +3993,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1Document",
             "name": "MultiReceiptsDetectorV1Document",
-            "summary": "Multi\u0020Receipts\u0020Detector\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "summary": "Multi\u0020Receipts\u0020Detector\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-MultiReceiptsDetector-MultiReceiptsDetectorV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1Document\u003A\u003A__construct\u0028\u0029",
@@ -4203,7 +4203,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document",
             "name": "ReceiptV5Document",
-            "summary": "Receipt\u0020API\u0020version\u00205.2\u0020document\u0020data.",
+            "summary": "Receipt\u0020API\u0020version\u00205.3\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document\u003A\u003A__construct\u0028\u0029",
