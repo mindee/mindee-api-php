@@ -68,7 +68,7 @@ Page 0
 ## Standard Fields
 These fields are generic and used in several products.
 
-### BasicField
+### BaseField
 Each prediction object contains a set of fields that inherit from the generic `BaseField` class.
 A typical `BaseField` object will have the following attributes:
 
@@ -79,13 +79,15 @@ A typical `BaseField` object will have the following attributes:
 * **pageId** (`integer`): the ID of the page, is `null` when at document-level.
 * **reconstructed** (`bool`): indicates whether an object was reconstructed (not extracted as the API gave it).
 
-> **Note:** A `Point` simply refers to a List of two numbers (`[float, float]`).
+> **Note:** A `Point` simply refers to a list of two numbers (`[float, float]`).
 
 
 Aside from the previous attributes, all basic fields have access to a custom `__toString` method that can be used to print their value as a string.
 
 ### StringField
-The text field `StringField` only has one constraint: its **value** is an optional `?string`.
+The text field `StringField` implements the following:
+* **value** (`string`): represents the value of the field as a string.
+* **rawValue** (`string`): the value of the string as it appears on the document.
 
 ## Specific Fields
 Fields which are specific to this product; they are not used in any other product.

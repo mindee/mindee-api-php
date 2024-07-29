@@ -103,7 +103,7 @@ Prediction
 ## Standard Fields
 These fields are generic and used in several products.
 
-### BasicField
+### BaseField
 Each prediction object contains a set of fields that inherit from the generic `BaseField` class.
 A typical `BaseField` object will have the following attributes:
 
@@ -114,7 +114,7 @@ A typical `BaseField` object will have the following attributes:
 * **pageId** (`integer`): the ID of the page, is `null` when at document-level.
 * **reconstructed** (`bool`): indicates whether an object was reconstructed (not extracted as the API gave it).
 
-> **Note:** A `Point` simply refers to a List of two numbers (`[float, float]`).
+> **Note:** A `Point` simply refers to a list of two numbers (`[float, float]`).
 
 
 Aside from the previous attributes, all basic fields have access to a custom `__toString` method that can be used to print their value as a string.
@@ -126,7 +126,9 @@ The classification field `ClassificationField` does not implement all the basic 
 > Note: a classification field's `value is always a `string`.
 
 ### StringField
-The text field `StringField` only has one constraint: its **value** is an optional `?string`.
+The text field `StringField` implements the following:
+* **value** (`string`): represents the value of the field as a string.
+* **rawValue** (`string`): the value of the string as it appears on the document.
 
 ## Specific Fields
 Fields which are specific to this product; they are not used in any other product.
@@ -199,7 +201,7 @@ echo $result->document->inference->prediction->address->value;
 ```
 
 ## Certificates
-**certificates** (List[[ResumeV1Certificate](#certificates-field)]): The list of certificates obtained by the candidate.
+**certificates** ([[ResumeV1Certificate](#certificates-field)]): The list of certificates obtained by the candidate.
 
 ```php
 foreach ($result->document->inference->prediction->certificates as $certificatesElem)
@@ -223,7 +225,7 @@ echo $result->document->inference->prediction->documentType->value;
 ```
 
 ## Education
-**education** (List[[ResumeV1Education](#education-field)]): The list of the candidate's educational background.
+**education** ([[ResumeV1Education](#education-field)]): The list of the candidate's educational background.
 
 ```php
 foreach ($result->document->inference->prediction->education as $educationElem)
@@ -267,7 +269,7 @@ echo $result->document->inference->prediction->jobApplied->value;
 ```
 
 ## Languages
-**languages** (List[[ResumeV1Language](#languages-field)]): The list of languages that the candidate is proficient in.
+**languages** ([[ResumeV1Language](#languages-field)]): The list of languages that the candidate is proficient in.
 
 ```php
 foreach ($result->document->inference->prediction->languages as $languagesElem)
@@ -298,7 +300,7 @@ echo $result->document->inference->prediction->profession->value;
 ```
 
 ## Professional Experiences
-**professionalExperiences** (List[[ResumeV1ProfessionalExperience](#professional-experiences-field)]): The list of the candidate's professional experiences.
+**professionalExperiences** ([[ResumeV1ProfessionalExperience](#professional-experiences-field)]): The list of the candidate's professional experiences.
 
 ```php
 foreach ($result->document->inference->prediction->professionalExperiences as $professionalExperiencesElem)
@@ -308,7 +310,7 @@ foreach ($result->document->inference->prediction->professionalExperiences as $p
 ```
 
 ## Social Networks
-**socialNetworksUrls** (List[[ResumeV1SocialNetworksUrl](#social-networks-field)]): The list of social network profiles of the candidate.
+**socialNetworksUrls** ([[ResumeV1SocialNetworksUrl](#social-networks-field)]): The list of social network profiles of the candidate.
 
 ```php
 foreach ($result->document->inference->prediction->socialNetworksUrls as $socialNetworksUrlsElem)

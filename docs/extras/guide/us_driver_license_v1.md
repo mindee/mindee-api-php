@@ -88,7 +88,7 @@ Page 0
 ## Standard Fields
 These fields are generic and used in several products.
 
-### BasicField
+### BaseField
 Each prediction object contains a set of fields that inherit from the generic `BaseField` class.
 A typical `BaseField` object will have the following attributes:
 
@@ -99,7 +99,7 @@ A typical `BaseField` object will have the following attributes:
 * **pageId** (`integer`): the ID of the page, is `null` when at document-level.
 * **reconstructed** (`bool`): indicates whether an object was reconstructed (not extracted as the API gave it).
 
-> **Note:** A `Point` simply refers to a List of two numbers (`[float, float]`).
+> **Note:** A `Point` simply refers to a list of two numbers (`[float, float]`).
 
 
 Aside from the previous attributes, all basic fields have access to a custom `__toString` method that can be used to print their value as a string.
@@ -117,10 +117,12 @@ The position field `PositionField` does not implement all the basic `BaseField` 
 * **quadrangle** (`[Point, Point, Point, Point]`): a free polygon made up of four points.
 
 ### StringField
-The text field `StringField` only has one constraint: its **value** is an optional `?string`.
+The text field `StringField` implements the following:
+* **value** (`string`): represents the value of the field as a string.
+* **rawValue** (`string`): the value of the string as it appears on the document.
 
 ## Page-Level Fields
-Some fields are constrained to the page level, and so will not be retrievable to through the document.
+Some fields are constrained to the page level, and so will not be retrievable at document level.
 
 # Attributes
 The following fields are extracted for Driver License V1:
@@ -220,9 +222,10 @@ echo $result->document->inference->prediction->lastName->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**photo** : Has a photo of the US driver license holder
 
 ```php
-foreach($result->document->photo as $photoElem){
-    echo $photoElem;
-}->polygon->getCoordinates();
+foreach($result->document->inference->prediction->photo as $photoElem)
+{
+    echo $photoElem->polygon->getCoordinates();
+}
 ```
 
 ## Restrictions
@@ -243,9 +246,10 @@ echo $result->document->inference->prediction->sex->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**signature** : Has a signature of the US driver license holder
 
 ```php
-foreach($result->document->signature as $signatureElem){
-    echo $signatureElem;
-}->polygon->getCoordinates();
+foreach($result->document->inference->prediction->signature as $signatureElem)
+{
+    echo $signatureElem->polygon->getCoordinates();
+}
 ```
 
 ## State
