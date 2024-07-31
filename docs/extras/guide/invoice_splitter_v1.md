@@ -1,5 +1,8 @@
 ---
 title: Invoice Splitter API PHP
+category: 622b805aaec68102ea7fcbc2
+slug: php-invoice-splitter-ocr
+parentDoc: 658193df8e029d002ad9c89b
 ---
 The PHP OCR SDK supports the [Invoice Splitter API](https://platform.mindee.com/mindee/invoice_splitter).
 

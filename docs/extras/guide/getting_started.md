@@ -1,3 +1,9 @@
+---
+title: Getting Started
+category: 622b805aaec68102ea7fcbc2
+slug: php-getting-started
+parentDoc: 658193df8e029d002ad9c89b
+---
 This guide will help you get started with the Mindee PHP OCR SDK to easily extract data from your documents.
 
 The PHP OCR SDK supports [invoice](https://developers.mindee.com/docs/php-invoice-ocr), [passport](https://developers.mindee.com/docs/php-passport-ocr), [receipt](https://developers.mindee.com/docs/php-receipt-ocr) OCR APIs and [custom-built API](https://developers.mindee.com/docs/php-api-builder) from the API Builder.
