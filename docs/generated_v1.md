@@ -1,5 +1,8 @@
 ---
 title: Generated API PHP
+category: 622b805aaec68102ea7fcbc2
+slug: php-generated-api
+parentDoc: 658193df8e029d002ad9c89b
 ---
 The PHP OCR SDK supports generated APIs.
 Generated APIs can theoretically support all APIs in a catch-all generic format.

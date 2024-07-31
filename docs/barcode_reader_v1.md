@@ -1,17 +1,20 @@
 ---
-title: EU License Plate OCR PHP
+title: Barcode Reader OCR PHP
+category: 622b805aaec68102ea7fcbc2
+slug: php-barcode-reader-ocr
+parentDoc: 658193df8e029d002ad9c89b
 ---
-The PHP OCR SDK supports the [License Plate API](https://platform.mindee.com/mindee/license_plates).
+The PHP OCR SDK supports the [Barcode Reader API](https://platform.mindee.com/mindee/barcode_reader).
 
-Using the [sample below](https://github.com/mindee/client-lib-test-data/blob/main/products/license_plates/default_sample.jpg), we are going to illustrate how to extract the data that we want using the OCR SDK.
-![License Plate sample](https://github.com/mindee/client-lib-test-data/blob/main/products/license_plates/default_sample.jpg?raw=true)
+Using the [sample below](https://github.com/mindee/client-lib-test-data/blob/main/products/barcode_reader/default_sample.jpg), we are going to illustrate how to extract the data that we want using the OCR SDK.
+![Barcode Reader sample](https://github.com/mindee/client-lib-test-data/blob/main/products/barcode_reader/default_sample.jpg?raw=true)
 
 # Quick-Start
 ```php
 <?php
 
 use Mindee\Client;
-use Mindee\Product\Eu\LicensePlate\LicensePlateV1;
+use Mindee\Product\BarcodeReader\BarcodeReaderV1;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");
@@ -20,7 +23,7 @@ $mindeeClient = new Client("my-api-key");
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
 // Parse the file
-$apiResponse = $mindeeClient->parse(LicensePlateV1::class, $inputSource);
+$apiResponse = $mindeeClient->parse(BarcodeReaderV1::class, $inputSource);
 
 echo $apiResponse->document;
 ```
@@ -30,24 +33,28 @@ echo $apiResponse->document;
 ########
 Document
 ########
-:Mindee ID: f0f48232-2c80-4473-9c6f-88a09111b84d
+:Mindee ID: f9c48da1-a306-4805-8da8-f7231fda2d88
 :Filename: default_sample.jpg
 
 Inference
 #########
-:Product: mindee/license_plates v1.0
-:Rotation applied: No
+:Product: mindee/barcode_reader v1.0
+:Rotation applied: Yes
 
 Prediction
 ==========
-:License Plates: BY-323-YB
+:Barcodes 1D: Mindee
+:Barcodes 2D: https://developers.mindee.com/docs/barcode-reader-ocr
+              I love paperwork! - Said no one ever
 
 Page Predictions
 ================
 
 Page 0
 ------
-:License Plates: BY-323-YB
+:Barcodes 1D: Mindee
+:Barcodes 2D: https://developers.mindee.com/docs/barcode-reader-ocr
+              I love paperwork! - Said no one ever
 ```
 
 # Field Types
@@ -62,7 +69,7 @@ A typical `BaseField` object will have the following attributes:
 * **confidence** (`float`): the confidence score of the field prediction.
 * **boundingBox** (`[Point, Point, Point, Point]`): contains exactly 4 relative vertices (points) coordinates of a right rectangle containing the field in the document.
 * **polygon** (`Point[]`): contains the relative vertices coordinates (`Point`) of a polygon containing the field in the image.
-* **pageId** (`integer`): the ID of the page, is `null` when at document-level.
+* **pageId** (`integer`): the ID of the page, always `null` when at document-level.
 * **reconstructed** (`bool`): indicates whether an object was reconstructed (not extracted as the API gave it).
 
 > **Note:** A `Point` simply refers to a list of two numbers (`[float, float]`).
@@ -76,15 +83,25 @@ The text field `StringField` implements the following:
 * **rawValue** (`string`): the value of the string as it appears on the document.
 
 # Attributes
-The following fields are extracted for License Plate V1:
+The following fields are extracted for Barcode Reader V1:
 
-## License Plates
-**licensePlates** : List of all license plates found in the image.
+## Barcodes 1D
+**codes1D** : List of decoded 1D barcodes.
 
 ```php
-foreach ($result->document->inference->prediction->licensePlates as $licensePlatesElem)
+foreach ($result->document->inference->prediction->codes1D as $codes1DElem)
 {
-    echo $licensePlatesElem->value;
+    echo $codes1DElem->value;
+}
+```
+
+## Barcodes 2D
+**codes2D** : List of decoded 2D barcodes.
+
+```php
+foreach ($result->document->inference->prediction->codes2D as $codes2DElem)
+{
+    echo $codes2DElem->value;
 }
 ```
 

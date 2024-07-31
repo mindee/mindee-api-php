@@ -1,5 +1,8 @@
 ---
 title: FR Carte Nationale d'Identité OCR PHP
+category: 622b805aaec68102ea7fcbc2
+slug: php-fr-carte-nationale-didentite-ocr
+parentDoc: 658193df8e029d002ad9c89b
 ---
 The PHP OCR SDK supports the [Carte Nationale d'Identité API](https://platform.mindee.com/mindee/idcard_fr).
 
@@ -94,7 +97,7 @@ A typical `BaseField` object will have the following attributes:
 * **confidence** (`float`): the confidence score of the field prediction.
 * **boundingBox** (`[Point, Point, Point, Point]`): contains exactly 4 relative vertices (points) coordinates of a right rectangle containing the field in the document.
 * **polygon** (`Point[]`): contains the relative vertices coordinates (`Point`) of a polygon containing the field in the image.
-* **pageId** (`integer`): the ID of the page, is `null` when at document-level.
+* **pageId** (`integer`): the ID of the page, always `null` when at document-level.
 * **reconstructed** (`bool`): indicates whether an object was reconstructed (not extracted as the API gave it).
 
 > **Note:** A `Point` simply refers to a list of two numbers (`[float, float]`).

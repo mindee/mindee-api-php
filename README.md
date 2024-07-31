@@ -106,8 +106,8 @@ Complete details on the working of the library are available in the following gu
 
 * [Getting started](https://developers.mindee.com/docs/php-getting-started)
 * [PHP Command Line Interface (CLI)](https://developers.mindee.com/docs/php-cli)
-* [PHP Custom APIs (API Builder)](https://developers.mindee.com/docs/php-api-builder)
-* [PHP Generated APIs](https://developers.mindee.com/docs/php-generated-api)
+* [PHP Generated APIs](https://developers.mindee.com/docs/php-generated-ocr)
+* [PHP Custom APIs (API Builder - Deprecated)](https://developers.mindee.com/docs/php-api-builder)
 * [PHP Invoice OCR](https://developers.mindee.com/docs/php-invoice-ocr)
 * [PHP Receipt OCR](https://developers.mindee.com/docs/php-receipt-ocr)
 * [PHP Financial Document OCR](https://developers.mindee.com/docs/php-financial-document-ocr)
@@ -120,19 +120,19 @@ Complete details on the working of the library are available in the following gu
 * [PHP FR Bank Account Detail OCR](https://developers.mindee.com/docs/php-fr-bank-account-details-ocr)
 * [PHP FR Carte Grise OCR](https://developers.mindee.com/docs/php-fr-carte-grise-ocr)
 * [PHP FR Carte Vitale OCR](https://developers.mindee.com/docs/php-fr-carte-vitale-ocr)
-* [PHP FR ID Card OCR](https://developers.mindee.com/docs/php-fr-id-card-ocr)
+* [PHP FR ID Card OCR](https://developers.mindee.com/docs/php-fr-carte-nationale-didentite-ocr)
 * [PHP US Bank Check OCR](https://developers.mindee.com/docs/php-us-bank-checks-ocr)
 * [PHP US W9 OCR](https://developers.mindee.com/docs/php-us-w9-ocr)
 * [PHP US Driver License OCR](https://developers.mindee.com/docs/php-us-driver-license-ocr)
-* [PHP Barcode Reader API](https://developers.mindee.com/docs/php-barcode-reader-api)
-* [PHP Cropper API](https://developers.mindee.com/docs/php-cropper-api)
-* [PHP Invoice Splitter API](https://developers.mindee.com/docs/php-invoice-splitter-api)
-* [PHP Multi Receipts Detector API](https://developers.mindee.com/docs/php-multi-receipts-detector-api)
+* [PHP Barcode Reader API](https://developers.mindee.com/docs/php-barcode-reader-ocr)
+* [PHP Cropper API](https://developers.mindee.com/docs/php-cropper-ocr)
+* [PHP Invoice Splitter API](https://developers.mindee.com/docs/php-invoice-splitter-ocr)
+* [PHP Multi Receipts Detector API](https://developers.mindee.com/docs/php-multi-receipts-detector-ocr)
 
 You can view the source code on [GitHub](https://github.com/mindee/mindee-api-php).
 
 You can also take a look at the
-**[Reference Documentation](https://mindee.github.io/mindee-api-php/)**.
+**[Reference Documentation](https://mindee.github.io/mindee-api-php)**.
 
 ## License
 Copyright © Mindee

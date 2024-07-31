@@ -1,5 +1,8 @@
 ---
 title: US US Mail OCR PHP
+category: 622b805aaec68102ea7fcbc2
+slug: php-us-us-mail-ocr
+parentDoc: 658193df8e029d002ad9c89b
 ---
 The PHP OCR SDK supports the [US Mail API](https://platform.mindee.com/mindee/us_mail).
 
