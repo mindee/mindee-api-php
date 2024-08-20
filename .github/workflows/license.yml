@@ -1,0 +1,29 @@
+#
+# Make sure dependencies use compatible licenses.
+#
+name: License Check
+
+on:
+  - pull_request
+
+jobs:
+  license-check:
+    name: Check Licenses
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        php-version:
+          - 8.3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v3
+
+      - name: License check
+        run: |
+          vendor/bin/license-checker check
