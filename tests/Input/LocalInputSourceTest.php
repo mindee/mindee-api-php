@@ -2,14 +2,13 @@
 
 namespace Input;
 
-use Exception;
 use Mindee\Client;
-use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
 
 use const Mindee\Http\API_KEY_ENV_NAME;
+use const Mindee\Input\KEEP_ONLY;
 
 class LocalInputSourceTest extends TestCase
 {
@@ -35,12 +34,18 @@ class LocalInputSourceTest extends TestCase
         putenv(API_KEY_ENV_NAME . '=' . $this->oldKey);
     }
 
-//    public function testPDFReconstructOK()
-//    {
-//        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-//        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]); // TODO: processPDF feature
-//        $this->assertInstanceOf(resource, $inputObj->readContents()); TODO when pdf handling lib is added
-//    }
+    public function testPDFCountPages()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $this->assertEquals(12, $inputObj->countDocPages());
+    }
+
+    public function testPDFReconstructOK()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]);
+        $this->assertEquals(5, $inputObj->countDocPages());
+    }
 
     public function testPDFReadContents()
     {
