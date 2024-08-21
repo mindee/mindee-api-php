@@ -106,7 +106,7 @@ Complete details on the working of the library are available in the following gu
 
 * [Getting started](https://developers.mindee.com/docs/php-getting-started)
 * [PHP Command Line Interface (CLI)](https://developers.mindee.com/docs/php-cli)
-* [PHP Generated APIs](https://developers.mindee.com/docs/php-generated-ocr)
+* [PHP Generated APIs](https://developers.mindee.com/docs/php-generated-api)
 * [PHP Custom APIs (API Builder - Deprecated)](https://developers.mindee.com/docs/php-api-builder)
 * [PHP Invoice OCR](https://developers.mindee.com/docs/php-invoice-ocr)
 * [PHP Receipt OCR](https://developers.mindee.com/docs/php-receipt-ocr)
@@ -121,7 +121,7 @@ Complete details on the working of the library are available in the following gu
 * [PHP FR Carte Grise OCR](https://developers.mindee.com/docs/php-fr-carte-grise-ocr)
 * [PHP FR Carte Vitale OCR](https://developers.mindee.com/docs/php-fr-carte-vitale-ocr)
 * [PHP FR ID Card OCR](https://developers.mindee.com/docs/php-fr-carte-nationale-didentite-ocr)
-* [PHP US Bank Check OCR](https://developers.mindee.com/docs/php-us-bank-checks-ocr)
+* [PHP US Bank Check OCR](https://developers.mindee.com/docs/php-us-bank-check-ocr)
 * [PHP US W9 OCR](https://developers.mindee.com/docs/php-us-w9-ocr)
 * [PHP US Driver License OCR](https://developers.mindee.com/docs/php-us-driver-license-ocr)
 * [PHP Barcode Reader API](https://developers.mindee.com/docs/php-barcode-reader-ocr)
