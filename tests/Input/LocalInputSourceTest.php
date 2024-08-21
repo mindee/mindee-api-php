@@ -3,9 +3,13 @@
 namespace Input;
 
 use Mindee\Client;
+use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
+use setasign\Fpdi\Fpdi;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfReader\PdfReaderException;
 
 use const Mindee\Http\API_KEY_ENV_NAME;
 use const Mindee\Input\KEEP_ONLY;
@@ -54,13 +58,45 @@ class LocalInputSourceTest extends TestCase
         $this->assertEquals("multipage.pdf", $contents[0]);
     }
 
-//    public function testPDFreconstructNoCut(){ // TODO when pdf handling lib is added
-//
-//    }
+    /**
+     * @dataProvider pageIndexesProvider
+     */
+    public function testPDFCutNPages(array $indexes)
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(KEEP_ONLY, 2, $indexes);
+        try {
+            $basePdf = new FPDI();
+            $cutPdf = new FPDI();
+            $pageCountCutPdf = $cutPdf->setSourceFile($this->fileTypesDir . "pdf/multipage_cut-" . count($indexes) . ".pdf");
+            $pageCountBasePdf = $basePdf->setSourceFile($inputObj->fileObject->getFilename());
+            $basePdf->Close();
+            $cutPdf->Close();
+            $this->assertEquals(count($indexes), $inputObj->countDocPages());
+            $this->assertEquals($pageCountCutPdf, $pageCountBasePdf);
 
-//    public function testPDFCutNPages(){ // TODO when pdf handling lib is added
-//
-//    }
+            $basePdf = new FPDI();
+            $cutPdf = new FPDI();
+            for ($pageNumber = 0; $pageNumber < $pageCountBasePdf; $pageNumber++) {
+                $cutPdf->setSourceFile($this->fileTypesDir . "pdf/multipage_cut-" . count($indexes) . ".pdf");
+                $basePdf->setSourceFile($inputObj->fileObject->getFilename());
+                $cutPdf->AddPage();
+                $cutPdf->useTemplate($cutPdf->importPage($pageNumber + 1));
+                $basePdf->AddPage();
+                $basePdf->useTemplate($basePdf->importPage($pageNumber + 1));
+//                $this->assertEquals($cutPdf->Output('', 'S'), $basePdf->Output('', 'S'));
+            }
+            $basePdf->Close();
+            $cutPdf->Close();
+        } catch (PdfParserException | PdfReaderException $e) {
+            throw new MindeePDFException("Failed to read PDF file.");
+        }
+    }
+
+    public function pageIndexesProvider()
+    {
+        return [[[0]], [[0, -2]], [[0, -2, -1]]];
+    }
 
 //    public function testPDFKeep5FirstPages(){ // TODO when pdf handling lib is added
 //

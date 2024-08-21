@@ -137,6 +137,9 @@ abstract class LocalInputSource extends InputSource
         $pagesToKeep = [];
         if ($behavior == KEEP_ONLY) {
             foreach ($pageIndexes as $pageId) {
+                if ($pageId < 0) {
+                    $pageId = $this->countDocPages() + $pageId;
+                }
                 if (!in_array($pageId, $allPages)) {
                     error_log("Page index '" . $pageId . "' is not present in source document");
                 } else {
@@ -146,6 +149,9 @@ abstract class LocalInputSource extends InputSource
         } elseif ($behavior == REMOVE) {
             $pagesToRemove = [];
             foreach ($pageIndexes as $pageId) {
+                if ($pageId < 0) {
+                    $pageId = $this->countDocPages() + $pageId;
+                }
                 if (!in_array($pageId, $allPages)) {
                     error_log("Page index '" . $pageId . "' is not present in source document");
                 } else {
@@ -170,6 +176,7 @@ abstract class LocalInputSource extends InputSource
     {
         $cutPdfTempFile = tempnam(sys_get_temp_dir(), 'mindee_cut_pdf_');
         file_put_contents($cutPdfTempFile, $fileBytes);
+        $this->filePath = $cutPdfTempFile;
         $this->fileObject = new CURLFile($cutPdfTempFile, $this->fileMimetype, $this->fileName);
     }
 
@@ -181,14 +188,15 @@ abstract class LocalInputSource extends InputSource
      */
     public function mergePDFPages(array $pageNumbers)
     {
-        $pdf = new FPDI();
         try {
+            $pdf = new FPDI();
             $pdf->setSourceFile($this->filePath);
             foreach ($pageNumbers as $pageNumber) {
                 $pdf->AddPage();
                 $pdf->useTemplate($pdf->importPage($pageNumber + 1));
             }
             $this->saveBytesAsFile($pdf->Output($this->fileName, 'S'));
+            $pdf->Close();
         } catch (PdfParserException | PdfReaderException $e) {
             throw new MindeePDFException("Failed to read PDF file.");
         }
@@ -203,18 +211,20 @@ abstract class LocalInputSource extends InputSource
      */
     public function isPDFEmpty(int $threshold = 1024): bool
     {
-        $pdf = new FPDI();
         try {
+            $pdf = new FPDI();
             $pageCount = $pdf->setSourceFile($this->fileObject->getFilename());
             $pdf->Close();
-            for ($pageNumber = 1; $pageNumber < $pageCount; $pageNumber++) {
+            for ($pageNumber = 0; $pageNumber < $pageCount; $pageNumber++) {
                 $pdfPage = new FPDI();
                 $pdfPage->setSourceFile($this->fileObject->getFilename());
                 $pdfPage->AddPage();
                 $pdfPage->useTemplate($pdfPage->importPage($pageNumber + 1));
                 if (strlen($pdfPage->Output('', 'S')) > $threshold) {
+                    $pdfPage->Close();
                     return false;
                 }
+                $pdfPage->Close();
             }
         } catch (PdfParserException | PdfReaderException $e) {
             throw new MindeePDFException("Failed to read PDF file.");
