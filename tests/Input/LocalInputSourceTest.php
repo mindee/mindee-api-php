@@ -13,6 +13,7 @@ use setasign\Fpdi\PdfReader\PdfReaderException;
 
 use const Mindee\Http\API_KEY_ENV_NAME;
 use const Mindee\Input\KEEP_ONLY;
+use const Mindee\Input\REMOVE;
 
 class LocalInputSourceTest extends TestCase
 {
@@ -27,10 +28,10 @@ class LocalInputSourceTest extends TestCase
         putenv(API_KEY_ENV_NAME . '=');
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/file_types/";
+        ) . "/tests/resources/file_types/";
         $this->productsDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/products/";
+        ) . "/tests/resources/products/";
     }
 
     protected function tearDown(): void
@@ -68,7 +69,9 @@ class LocalInputSourceTest extends TestCase
         try {
             $basePdf = new FPDI();
             $cutPdf = new FPDI();
-            $pageCountCutPdf = $cutPdf->setSourceFile($this->fileTypesDir . "pdf/multipage_cut-" . count($indexes) . ".pdf");
+            $pageCountCutPdf = $cutPdf->setSourceFile(
+                $this->fileTypesDir . "pdf/multipage_cut-" . count($indexes) . ".pdf"
+            );
             $pageCountBasePdf = $basePdf->setSourceFile($inputObj->fileObject->getFilename());
             $basePdf->Close();
             $cutPdf->Close();
@@ -84,11 +87,13 @@ class LocalInputSourceTest extends TestCase
                 $cutPdf->useTemplate($cutPdf->importPage($pageNumber + 1));
                 $basePdf->AddPage();
                 $basePdf->useTemplate($basePdf->importPage($pageNumber + 1));
-//                $this->assertEquals($cutPdf->Output('', 'S'), $basePdf->Output('', 'S'));
+                // Note: comparing extracted page bytes content turns out to be reliable when using FPDF.
+                // This will be left here until a better solution is found within the limitations of licensing.
+                //                $this->assertEquals($cutPdf->Output('', 'S'), $basePdf->Output('', 'S'));
             }
             $basePdf->Close();
             $cutPdf->Close();
-        } catch (PdfParserException | PdfReaderException $e) {
+        } catch (PdfParserException|PdfReaderException $e) {
             throw new MindeePDFException("Failed to read PDF file.");
         }
     }
@@ -98,33 +103,55 @@ class LocalInputSourceTest extends TestCase
         return [[[0]], [[0, -2]], [[0, -2, -1]]];
     }
 
-//    public function testPDFKeep5FirstPages(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFKeep5FirstPages() // TODO when pdf handling lib is added
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]);
+        $this->assertEquals(5, $inputObj->countDocPages());
+    }
 
-//    public function testPDFKeepInvalidPages(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFKeepInvalidPages()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 17]);
+        $this->assertEquals(2, $inputObj->countDocPages());
+    }
 
-//    public function testPDFRemove5LastPages(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFRemove5LastPages()
+    {
 
-//    public function testPDFRemove5FirstPages(){ // TODO when pdf handling lib is added
-//
-//    }
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(REMOVE, 2, [-5, -4, -3, -2, -1]);
+        $this->assertEquals(7, $inputObj->countDocPages());
+    }
 
-//    public function testPDFRemoveInvalidPages(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFRemove5FirstPages()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(REMOVE, 2, [0, 1, 2, 3, 4]);
+        $this->assertEquals(7, $inputObj->countDocPages());
+    }
 
-//    public function testPDFKeepNoPages(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFRemoveInvalidPages()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputObj->processPDF(REMOVE, 2, [16]);
+        $this->assertEquals(12, $inputObj->countDocPages());
+    }
 
-//    public function testPDFRemoveAllPages(){ // TODO when pdf handling lib is added
-//
-//    }
+    public function testPDFKeepNoPages()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $this->expectException(MindeePDFException::class);
+        $inputObj->processPDF(KEEP_ONLY, 2, []);
+    }
+
+    public function testPDFRemoveAllPages()
+    {
+        $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
+        $this->expectException(MindeePDFException::class);
+        $inputObj->processPDF(REMOVE, 2, range(0, $inputObj->countDocPages() - 1));
+    }
 
     public function testPDFInputFromFile()
     {

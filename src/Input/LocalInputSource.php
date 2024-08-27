@@ -133,7 +133,7 @@ abstract class LocalInputSource extends InputSource
         if ($this->countDocPages() < $onMinPages) {
             return;
         }
-        $allPages = range(0, $this->countDocPages());
+        $allPages = range(0, $this->countDocPages() - 1);
         $pagesToKeep = [];
         if ($behavior == KEEP_ONLY) {
             foreach ($pageIndexes as $pageId) {
@@ -158,7 +158,7 @@ abstract class LocalInputSource extends InputSource
                     $pagesToRemove[] = $pageId;
                 }
             }
-            $pagesToKeep = array_diff($pagesToRemove, $pageIndexes);
+            $pagesToKeep = array_diff($allPages, $pagesToRemove);
         } else {
             throw new MindeePDFException("Unknown operation '" . $behavior . "'.");
         }

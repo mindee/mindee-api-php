@@ -33,14 +33,15 @@ class ClientTest extends TestCase
         $this->envClient = new Client();
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/file_types/";
+        ) . "/tests/resources/file_types/";
         $this->invoicePath = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/products/invoices/response_v4/complete.json";
+        ) . "/tests/resources/products/invoices/response_v4/complete.json";
     }
 
 
-    protected function tearDown(): void {
+    protected function tearDown(): void
+    {
         putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
 
@@ -124,7 +125,8 @@ class ClientTest extends TestCase
         $this->dummyClient->enqueue(InvoiceSplitterV1::class, $inputDoc, $predictOptions);
     }
 
-    public function testLoadLocalResponse(){
+    public function testLoadLocalResponse()
+    {
         $localResponse = new LocalResponse($this->invoicePath);
         $res = $this->dummyClient->loadPrediction(InvoiceV4::class, $localResponse);
         $this->assertNotNull($res);

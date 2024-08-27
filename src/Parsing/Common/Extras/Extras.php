@@ -2,8 +2,6 @@
 
 namespace Mindee\Parsing\Common\Extras;
 
-use Mindee\Parsing\Common\Extras\CropperExtra;
-
 /**
  * Extras collection wrapper class.
  *
