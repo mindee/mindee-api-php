@@ -103,7 +103,7 @@ class LocalInputSourceTest extends TestCase
         return [[[0]], [[0, -2]], [[0, -2, -1]]];
     }
 
-    public function testPDFKeep5FirstPages() // TODO when pdf handling lib is added
+    public function testPDFKeep5FirstPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]);
