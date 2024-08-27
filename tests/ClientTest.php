@@ -11,6 +11,7 @@ use Mindee\Input\PredictMethodOptions;
 use Mindee\Product\Custom\CustomV1;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -33,10 +34,10 @@ class ClientTest extends TestCase
         $this->envClient = new Client();
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-        ) . "/tests/resources/file_types/";
+            ) . "/tests/resources/file_types/";
         $this->invoicePath = (
             getenv('GITHUB_WORKSPACE') ?: "."
-        ) . "/tests/resources/products/invoices/response_v4/complete.json";
+            ) . "/tests/resources/products/invoices/response_v4/complete.json";
     }
 
 
@@ -85,6 +86,15 @@ class ClientTest extends TestCase
 
         $this->expectException(MindeeHTTPClientException::class);
         $this->dummyClient->parse(CustomV1::class, $inputDoc, $predictOptions->setEndpoint($dummyEndpoint));
+    }
+
+    public function testCutOptions()
+    {
+        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/multipage.pdf");
+        $this->expectException(MindeeHttpClientException::class);
+        $pageOptions = new PageOptions(range(0, 4));
+        $this->dummyClient->parse(ReceiptV5::class, $inputDoc, null, $pageOptions);
+        $this->assertEquals(5, $inputDoc->countDocPages());
     }
 
     public function testAsyncWrongInitialDelay()
