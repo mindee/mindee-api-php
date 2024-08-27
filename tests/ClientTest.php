@@ -34,10 +34,10 @@ class ClientTest extends TestCase
         $this->envClient = new Client();
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/file_types/";
+        ) . "/tests/resources/file_types/";
         $this->invoicePath = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/products/invoices/response_v4/complete.json";
+        ) . "/tests/resources/products/invoices/response_v4/complete.json";
     }
 
 
