@@ -81,6 +81,7 @@ class MindeeCLIDocuments
             "invoice" => new DocumentCommandConfig(
                 "Invoice",
                 \Mindee\Product\Invoice\InvoiceV4::class,
+                true,
                 true
             ),
             "invoice-splitter" => new DocumentCommandConfig(
@@ -107,6 +108,7 @@ class MindeeCLIDocuments
             "receipt" => new DocumentCommandConfig(
                 "Expense Receipt",
                 \Mindee\Product\Receipt\ReceiptV5::class,
+                true,
                 true
             ),
             "resume" => new DocumentCommandConfig(
