@@ -3,6 +3,7 @@
 namespace Mindee\Extraction;
 
 use Mindee\Error\MindeePDFException;
+use Mindee\Input\BytesInput;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
 
@@ -74,14 +75,11 @@ class ExtractedPdf
     /**
      * Return the file in a format suitable for sending to MindeeClient for parsing.
      *
-     * @return array An array containing the PDF bytes and filename.
+     * @return BytesInput Bytes input for the image.
      */
-    public function asInputSource(): array
+    public function asInputSource(): BytesInput
     {
-        return [
-            'bytes' => $this->pdfBytes,
-            'filename' => $this->filename
-        ];
+        return new BytesInput($this->pdfBytes, $this->filename);
     }
 
     /**

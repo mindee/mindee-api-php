@@ -109,7 +109,6 @@ class MindeeCLIDocuments
                 "Expense Receipt",
                 \Mindee\Product\Receipt\ReceiptV5::class,
                 true,
-                true
             ),
             "resume" => new DocumentCommandConfig(
                 "Resume",

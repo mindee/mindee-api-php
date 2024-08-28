@@ -7,11 +7,12 @@ use Mindee\Parsing\Common\Document;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
+require_once(__DIR__."/../Product/RegressionUtilities.php");
 use Product\RegressionUtilities;
 
 class PdfExtractorTest extends TestCase
 {
-    private const PRODUCT_DATA_DIR = 'resources/products';
+    private const PRODUCT_DATA_DIR = '/tests/resources/products';
 
     private function getInvoiceSplitter5pPath()
     {
@@ -35,7 +36,7 @@ class PdfExtractorTest extends TestCase
     public function testPdfShouldExtractInvoicesStrict()
     {
         $client = new Client();
-        $invoiceSplitterInput = new PathInput(self::PRODUCT_DATA_DIR . '/invoice_splitter/default_sample.pdf');
+        $invoiceSplitterInput = new PathInput((getenv('GITHUB_WORKSPACE') ?: ".") . self::PRODUCT_DATA_DIR . '/invoice_splitter/default_sample.pdf');
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
         $pdfExtractor = new PdfExtractor($invoiceSplitterInput);
@@ -44,11 +45,11 @@ class PdfExtractorTest extends TestCase
         $extractedPdfsStrict = $pdfExtractor->extractInvoices($inference->prediction->invoicePageGroups);
 
         $this->assertCount(2, $extractedPdfsStrict);
-        $this->assertEquals('default_sample_001-001.pdf', $extractedPdfsStrict[0]->filename);
-        $this->assertEquals('default_sample_002-002.pdf', $extractedPdfsStrict[1]->filename);
+        $this->assertEquals('default_sample_001-001.pdf', $extractedPdfsStrict[0]->getFilename());
+        $this->assertEquals('default_sample_002-002.pdf', $extractedPdfsStrict[1]->getFilename());
 
         $invoice0 = $client->parse(InvoiceV4::class, $extractedPdfsStrict[0]->asInputSource());
-        $testStringRstInvoice0 = $this->prepareInvoiceReturn(
+        $testStringRstInvoice0 = $this->prepareInvoiceReturn((getenv('GITHUB_WORKSPACE') ?: ".") .
             self::PRODUCT_DATA_DIR . '/invoices/response_v4/summary_full_invoice_p1.rst',
             $invoice0->document
         );
