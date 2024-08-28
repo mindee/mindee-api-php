@@ -2,6 +2,8 @@
 
 namespace Mindee\Extraction;
 
+use Mindee\Input\BytesInput;
+
 /**
  * An extracted sub-image.
  */
@@ -12,14 +14,14 @@ class ExtractedImage
      *
      * @var \Imagick
      */
-    private $image;
+    public \Imagick $image;
 
     /**
      * Name of the file.
      *
      * @var string
      */
-    protected string $filename;
+    public string $filename;
 
     /**
      * String representation of the save format.
@@ -62,13 +64,13 @@ class ExtractedImage
      * Returns the image in a format suitable for sending to a client for parsing.
      *
      * @throws \ImagickException Throws if the image can't be processed.
-     * @return string Binary string of the image data
+     * @return BytesInput Bytes input for the image.
      */
-    public function asInputSource(): string
+    public function asInputSource(): BytesInput
     {
         $format = $this->getEncodedImageFormat($this->saveFormat);
         $this->image->setImageFormat($format);
-        return $this->image->getImageBlob();
+        return new BytesInput($this->image->getImageBlob(), $this->filename);
     }
 
     /**
