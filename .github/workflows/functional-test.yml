@@ -34,6 +34,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+      - name: Change ImageMagick security policy on Ubuntu
+        run: |
+          DQT='"'
+          SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
+          RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
+          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
