@@ -3,8 +3,8 @@
 namespace Mindee\Extraction;
 
 use Mindee\Error\MindeeGeometryException;
-use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
+use Mindee\Geometry\BBox;
 use Mindee\Input\LocalInputSource;
 
 /**
@@ -183,11 +183,11 @@ class ImageExtractor
     /**
      * Extracts an image from a set of coordinates.
      *
-     * @param Mindee\Geometry\BBox $bbox BBox coordinates.
+     * @param BBox    $bbox      BBox coordinates.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @return \Imagick
      */
-    private function extractImageFromBbox(Mindee\Geometry\BBox $bbox, int $pageIndex): Imagick
+    private function extractImageFromBbox(BBox $bbox, int $pageIndex): \Imagick
     {
         $image = $this->pageImages[$pageIndex];
         $width = $image->getImageWidth();

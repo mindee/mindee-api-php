@@ -33,6 +33,11 @@ class DependencyChecker
         return extension_loaded('imagick');
     }
 
+    /**
+     * Checks whether Imagick is blocked by restrictive policy.
+     *
+     * @return boolean
+     */
     public static function isImageMagickPolicyAllowed(): bool
     {
         if (!self::isImageMagickAvailable()) {

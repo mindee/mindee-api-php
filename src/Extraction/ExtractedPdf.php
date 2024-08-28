@@ -12,13 +12,6 @@ use setasign\Fpdi\PdfParser\PdfParserException;
 class ExtractedPdf
 {
     /**
-     * File handle for an ExtractedPdf.
-     *
-     * @var FPDI
-     */
-    private FPDI $pdfHandle;
-
-    /**
      * File object for an ExtractedPdf.
      *
      * @var string
@@ -53,11 +46,11 @@ class ExtractedPdf
     public function getPageCount(): int
     {
         try {
-            $this->pdfHandle = new FPDI();
+            $pdfHandle = new FPDI();
 
             $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
             file_put_contents($tempFilename, $this->pdfBytes);
-            return $this->pdfHandle->setSourceFile($tempFilename);
+            return $pdfHandle->setSourceFile($tempFilename);
         } catch (PdfParserException $e) {
             throw new MindeePDFException("Couldn't open PDF file. FPDI sent the following: " . $e->getMessage());
         }
@@ -105,28 +98,5 @@ class ExtractedPdf
     public function getFilename(): string
     {
         return $this->filename;
-    }
-
-    /**
-     * Returns the FPDI wrapper for the file.
-     *
-     * @return FPDI A custom FPDI PDF wrapper handle.
-     * @throws MindeePDFException Throws if a FPDI handle can't be generated for the given object.
-     */
-    public function getPdfHandle(): FPDI
-    {
-        if (!isset($this->pdfBytes)) {
-            throw new MindeePDFException("Extracted pdf contains no bytes!");
-        }
-        try {
-            $this->pdfHandle = new FPDI();
-
-            $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
-            file_put_contents($tempFilename, $this->pdfBytes);
-            $this->pdfHandle->setSourceFile($tempFilename);
-        } catch (PdfParserException $e) {
-            throw new MindeePDFException("Invalid data in extracted pdf bytes.");
-        }
-        return $this->pdfHandle;
     }
 }
