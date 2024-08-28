@@ -108,7 +108,7 @@ class ImageExtractor
      * @param string|null $outputName The base output filename, must have an image extension.
      * @return array A list of extracted images.
      */
-    public function extractImagesFromPage(array $fields, int $pageIndex, ?string $outputName=null): array
+    public function extractImagesFromPage(array $fields, int $pageIndex, ?string $outputName = null): array
     {
         $outputName ??= $this->filename;
         return $this->extractFromPage($fields, $pageIndex, $outputName);
