@@ -25,7 +25,7 @@ class InvoiceSplitterV1PageGroup
         foreach ($rawPrediction['page_indexes'] as $pageIndex) {
             $this->pageIndexes[] = $pageIndex;
         }
-        if (in_array('confidence', $rawPrediction) && is_numeric($rawPrediction['confidence'])) {
+        if (array_key_exists('confidence', $rawPrediction) && is_numeric($rawPrediction['confidence'])) {
             $this->confidence = floatval($rawPrediction['confidence']);
         } else {
             $this->confidence = 0.0;
