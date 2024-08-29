@@ -86,10 +86,6 @@ jobs:
           submodules: recursive
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
-      - name: Install ImageMagick
-        run: |
-          choco install imagemagick.app -y
-          refreshenv
         env:
           phpts: zts
         with:
