@@ -94,14 +94,11 @@ jobs:
         with:
           submodules: recursive
       - name: Install Ghostscript
-        run: choco install ghostscript -y
+        run: choco install ghostscript --version 9.56.1 -y
       - name: Setting Ghostscript paths
         shell: bash
         run: |
-          echo "C:/Program Files (x86)/gs/gs10.3.1/bin/" >> $GITHUB_PATH
-          echo "C:/Program Files/gs/gs10.3.1/bin/" >> $GITHUB_PATH
-          export PATH="/c/Program Files (x86)/gs/gs10.3.1/bin/:$PATH"
-          export PATH="/c/Program Files/gs/gs10.3.1/bin/:$PATH"
+          doskey gs=gswin64
       - name: Configure ImageMagick
         run: |
           $imagickConfigPath = (php -r "echo ini_get('imagick.configure_path');")
