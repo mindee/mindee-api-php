@@ -95,10 +95,12 @@ jobs:
           submodules: recursive
       - name: Install Ghostscript
         run: choco install ghostscript --version 9.56.1 -y
-      - name: Setting Ghostscript paths
+      - name: Setting Ghostscript alias
         shell: bash
         run: |
           doskey gs=gswin64
+          doskey /macrofile=%TEMP%\doskey-macros.txt
+          reg add "HKCU\Software\Microsoft\Command Processor" /v Autorun /d "doskey /macrofile=\"%TEMP%\doskey-macros.txt\"" /f
       - name: Configure ImageMagick
         run: |
           $imagickConfigPath = (php -r "echo ini_get('imagick.configure_path');")
