@@ -109,13 +109,6 @@ jobs:
           <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE policymap [<!ELEMENT policymap (policy)+><!ELEMENT policy (#PCDATA)><!ATTLIST policy domain (delegate|coder|filter|path|resource) #IMPLIED><!ATTLIST policy name CDATA #IMPLIED><!ATTLIST policy rights CDATA #IMPLIED><!ATTLIST policy pattern CDATA #IMPLIED><!ATTLIST policy value CDATA #IMPLIED>]><policymap><policy domain="delegate" rights="read|write" pattern="gs" value="C:\Program Files (x86)\gs\gs10.03.1\bin\gswin32c.exe"/></policymap>
           "@
           $policyContent | Out-File -FilePath "$imagickConfigPath\policy.xml" -Encoding utf8 -Force
-      - name: Verify ImageMagick Configuration
-        run: |
-          php -r "var_dump(class_exists('Imagick'));"
-          php -r "var_dump(Imagick::queryFormats('PDF'));"
-          php -r "$i = new Imagick(); var_dump($i->getVersion());"
-          php -r "try { $i = new Imagick('test.pdf'); echo 'PDF support works'; } catch (Exception $e) { echo 'Error: ' . $e->getMessage(); }"
-        shell: powershell
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
