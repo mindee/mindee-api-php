@@ -96,10 +96,10 @@ jobs:
       - name: Install Ghostscript
         run: |
           choco install ghostscript --version 9.56.1 -y
-          doskey gs=gswin64
           $Temp = [System.Environment]::GetEnvironmentVariable('TEMP','Machine')
-          doskey /macros > $Temp\doskey-macros.txt
-          reg add "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v Autorun /d "doskey /macrofile='$Temp\doskey-macros.txt'" /f
+          echo "doskey gs=gswin64" > $Temp\doskey-macros.cmd
+          reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
+          reg add "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
       - name: Configure ImageMagick
         run: |
           $imagickConfigPath = (php -r "echo ini_get('imagick.configure_path');")
