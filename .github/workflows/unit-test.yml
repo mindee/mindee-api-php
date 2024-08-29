@@ -100,6 +100,8 @@ jobs:
           echo "doskey gs=gswin64c" > $Temp\doskey-macros.cmd
           reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
           reg add "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
+          Write-Host "Ghostscript version, pre-check:"
+          gswin64c --version
         shell: powershell
       - name: Verify Ghostscript installation
         run: |
