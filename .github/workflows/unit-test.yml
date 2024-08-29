@@ -99,7 +99,7 @@ jobs:
           doskey gs=gswin64
           $Temp = [System.Environment]::GetEnvironmentVariable('TEMP','Machine')
           doskey /macros > $Temp\doskey-macros.txt
-          reg add "HKCU\Software\Microsoft\Command Processor" /v Autorun /d "doskey /macrofile='$Temp\doskey-macros.txt'" /f
+          reg add "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v Autorun /d "doskey /macrofile='$Temp\doskey-macros.txt'" /f
       - name: Configure ImageMagick
         run: |
           $imagickConfigPath = (php -r "echo ini_get('imagick.configure_path');")
