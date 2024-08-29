@@ -101,18 +101,6 @@ jobs:
           New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
           gs --version
         shell: powershell
-      - name: Verify Ghostscript installation
-        run: |
-         Write-Host "Ghostscript version:"
-         gswin64c --version
-         Write-Host "gs symlink version:"
-         gs --version
-         Write-Host "PATH:"
-         $env:PATH -split ';'
-         Write-Host "Ghostscript location:"
-         Get-Command gs
-         Get-Command gswin64c
-        shell: powershell
 
       - name: Configure ImageMagick
         run: |
