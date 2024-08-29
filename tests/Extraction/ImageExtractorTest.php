@@ -82,13 +82,14 @@ class ImageExtractorTest extends TestCase
 
     public function testGivenAPdfShouldExtractPositionFields()
     {
-        $image = new PathInput(
+        $imageInput = new PathInput(
             (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/products/multi_receipts_detector/multipage_sample.pdf"
         );
         $response = $this->getMultiReceiptsDetectorPrediction("multipage_sample");
         $inference = $response->document->inference;
+        $this->assertNotEmpty($imageInput->readContents()[1]);
 
-        $extractor = new ImageExtractor($image);
+        $extractor = new ImageExtractor($imageInput);
         $this->assertEquals(2, $extractor->getPageCount());
 
         foreach ($inference->pages as $page) {
