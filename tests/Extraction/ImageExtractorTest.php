@@ -33,7 +33,7 @@ class ImageExtractorTest extends TestCase
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
             foreach ($subImages as $i => $extractedImage) {
                 $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+//                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
 
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
@@ -69,13 +69,13 @@ class ImageExtractorTest extends TestCase
                     sprintf("barcodes_1D_page-001_%03d.jpg", $i + 1),
                     $source->fileName
                 );
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+//                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
             }
 
             $codes2D = $extractor->extractImagesFromPage($page->prediction->codes2D, $page->id, "barcodes_2D.jpg");
             foreach ($codes2D as $extractedImage) {
                 $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+//                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
             }
         }
     }
@@ -96,7 +96,7 @@ class ImageExtractorTest extends TestCase
 
             foreach ($subImages as $i => $extractedImage) {
                 $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+//                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
 
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
