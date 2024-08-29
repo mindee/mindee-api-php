@@ -93,15 +93,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Install Ghostscript
+      - name: Install Ghostscript and find installation path
         run: |
-          choco install ghostscript --version 9.56.1 -y
-          $Temp = [System.Environment]::GetEnvironmentVariable('TEMP','Machine')
-          echo "doskey gs=gswin64c" > $Temp\doskey-macros.cmd
-          reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
-          reg add "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
-          Write-Host "Ghostscript version, pre-check:"
-          gswin64c --version
+          choco install ghostscript -y
+          $gsPath = Get-ChildItem -Path "C:\Program Files\gs" -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName
+          if ($gsPath) {
+            $gsBin = Join-Path $gsPath "bin"
+            echo "$gsBin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+            $env:PATH = "$gsBin;$env:PATH"
+            echo "Ghostscript found at: $gsBin"
+          } else {
+            echo "Ghostscript installation not found in expected location"
+          }
         shell: powershell
       - name: Verify Ghostscript installation
         run: |
