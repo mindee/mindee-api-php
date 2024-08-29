@@ -92,6 +92,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json, imagick
+      - name: Install Ghostscript
+        run: choco install ghostscript -y
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
