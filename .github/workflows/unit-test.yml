@@ -93,18 +93,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Install Ghostscript and find installation path
+      - name: Install Ghostscript
+        run: choco install ghostscript --version 10.03.1 -y
+      - name: Create Ghostscript alias
         run: |
-          choco install ghostscript -y
-          $gsPath = Get-ChildItem -Path "C:\Program Files\gs" -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName
-          if ($gsPath) {
-            $gsBin = Join-Path $gsPath "bin"
-            echo "$gsBin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-            $env:PATH = "$gsBin;$env:PATH"
-            echo "Ghostscript found at: $gsBin"
-          } else {
-            echo "Ghostscript installation not found in expected location"
-          }
+          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\ProgramData\gs\gs10.03.1\bin\gswin64c.exe"
+          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\ProgramData\gs\gs10.03.1\bin\gswin64c.exe"
         shell: powershell
       - name: Verify Ghostscript installation
         run: |
@@ -123,7 +117,7 @@ jobs:
         run: |
           $imagickConfigPath = (php -r "echo ini_get('imagick.configure_path');")
           $policyContent = @"
-          <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE policymap [<!ELEMENT policymap (policy)+><!ELEMENT policy (#PCDATA)><!ATTLIST policy domain (delegate|coder|filter|path|resource) #IMPLIED><!ATTLIST policy name CDATA #IMPLIED><!ATTLIST policy rights CDATA #IMPLIED><!ATTLIST policy pattern CDATA #IMPLIED><!ATTLIST policy value CDATA #IMPLIED>]><policymap><policy domain="delegate" rights="read|write" pattern="gs" value="C:\Program Files\gs\gs9.56.1\bin\gswin32c.exe"/></policymap>
+          <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE policymap [<!ELEMENT policymap (policy)+><!ELEMENT policy (#PCDATA)><!ATTLIST policy domain (delegate|coder|filter|path|resource) #IMPLIED><!ATTLIST policy name CDATA #IMPLIED><!ATTLIST policy rights CDATA #IMPLIED><!ATTLIST policy pattern CDATA #IMPLIED><!ATTLIST policy value CDATA #IMPLIED>]><policymap><policy domain="delegate" rights="read|write" pattern="gs" value="C:\Program Files\gs\gs10.03.1\bin\gswin32c.exe"/></policymap>
           "@
           $policyContent | Out-File -FilePath "$imagickConfigPath\policy.xml" -Encoding utf8 -Force
       - name: Set up php ${{ matrix.php-version }}
