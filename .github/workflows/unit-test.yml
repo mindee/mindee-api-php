@@ -66,7 +66,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
       - name: Install Ghostscript
-        run: brew install ghostscript
+        run: brew update && brew install imagemagick
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         env:
@@ -99,6 +99,10 @@ jobs:
           extensions: curl, fileinfo, json, imagick
       - name: Install Ghostscript
         run: choco install ghostscript -y
+      - name: Add Ghostscript to PATH
+        run: |
+         $gsPath = (Get-ChildItem "C:\Program Files\gs" -Directory | Sort-Object Name -Descending | Select-Object -First 1).FullName + "\bin"
+         echo "$gsPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         env:
