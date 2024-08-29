@@ -68,8 +68,8 @@ jobs:
       - name: Install Ghostscript & ImageMagick
         run: | 
           brew update
-          brew install imagemagick -y
-          brew install ghostscript -y
+          brew install imagemagick
+          brew install ghostscript
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         env:
