@@ -61,10 +61,10 @@ class ImageExtractor
         }
 
         if ($this->inputSource->isPDF()) {
-            $this->pageImages = $this->pdfToImages($localInput->readContents()[1]);
+            $this->pageImages = $this->pdfToImages($this->inputSource->readContents()[1]);
         } else {
             $image = new \Imagick();
-            $image->readImageBlob($localInput->readContents()[1]);
+            $image->readImageBlob($this->inputSource->readContents()[1]);
             $this->pageImages[] = $image;
         }
     }
