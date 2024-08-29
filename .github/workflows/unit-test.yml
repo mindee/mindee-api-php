@@ -100,23 +100,15 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json, imagick
-      - name: Download and Install Ghostscript
+      - name: Install Ghostscript
+        run: choco install ghostscript -y
+      - name: Setting Ghostscript paths
+        shell: bash
         run: |
-          $url = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10031/gs10031w32.exe"
-          $output = "$env:TEMP\gs10031w32.exe"
-          Invoke-WebRequest -Uri $url -OutFile $output
-          Start-Process -FilePath $output -ArgumentList "/S" -Wait
-        shell: powershell
-
-      - name: Add Ghostscript to PATH
-        run: |
-          $gsPath = "C:\Program Files (x86)\gs\gs10.03.1\bin"
-          echo "$gsPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-
-      - name: Add Ghostscript to PATH
-        run: |
-         $gsPath = (Get-ChildItem "C:\Program Files\gs" -Directory | Sort-Object Name -Descending | Select-Object -First 1).FullName + "\bin"
-         echo "$gsPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+         echo "C:/Program Files (x86)/gs/gs9.53.3/bin/" >> $GITHUB_PATH
+         echo "C:/Program Files/gs/gs9.53.3/bin/" >> $GITHUB_PATH
+         export PATH="/c/Program Files (x86)/gs/gs9.53.3/bin/:$PATH"
+         export PATH="/c/Program Files/gs/gs9.53.3/bin/:$PATH"
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         env:
