@@ -99,6 +99,7 @@ jobs:
         run: |
           New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
           New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
+          gs --version
         shell: powershell
       - name: Verify Ghostscript installation
         run: |
