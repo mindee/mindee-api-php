@@ -97,7 +97,7 @@ jobs:
         run: |
           choco install ghostscript --version 9.56.1 -y
           doskey gs=gswin64
-          doskey /macrofile=%TEMP%\doskey-macros.txt
+          doskey /macros > %TEMP%\doskey-macros.txt
           reg add "HKCU\Software\Microsoft\Command Processor" /v Autorun /d "doskey /macrofile=\"%TEMP%\doskey-macros.txt\"" /f
       - name: Configure ImageMagick
         run: |
