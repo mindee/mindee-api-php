@@ -94,11 +94,12 @@ jobs:
         with:
           submodules: recursive
       - name: Install Ghostscript
-        run: choco install ghostscript --version 9.56.1 -y
-      - name: Create Ghostscript symlinks
         run: |
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs9.56.1\bin\gswin64c.exe"
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs9.56.1\bin\gswin64c.exe"
+          choco install ghostscript --version 9.56.1 -y
+          $Temp = [System.Environment]::GetEnvironmentVariable('TEMP','Machine')
+          echo "doskey gs=gswin64c" > $Temp\doskey-macros.cmd
+          reg add "HKCU\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
+          reg add "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v AutoRun /t REG_EXPAND_SZ /d "$Temp\doskey-macros.cmd" /f
         shell: powershell
       - name: Verify Ghostscript installation
         run: |
