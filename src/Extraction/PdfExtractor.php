@@ -117,11 +117,11 @@ class PdfExtractor
 
                 $mergedPdfBytes = $pdf->Output('S');
             } catch (
-            PdfParserException|
-            CrossReferenceException|
-            FilterException|
-            PdfTypeException|
-            PdfReaderException $e
+                PdfParserException |
+                CrossReferenceException |
+                FilterException |
+                PdfTypeException |
+                PdfReaderException $e
             ) {
                 throw new MindeePDFException("PDF file couldn't be processed during extraction.");
             }
@@ -134,8 +134,8 @@ class PdfExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array $pageIndexes List of sub-lists of pages to keep.
-     * @param boolean $strict Whether to trust confidence scores of 1.0 only or not.
+     * @param array   $pageIndexes List of sub-lists of pages to keep.
+     * @param boolean $strict      Whether to trust confidence scores of 1.0 only or not.
      * @return array A list of extracted invoices.
      */
     public function extractInvoices(array $pageIndexes, bool $strict = false): array

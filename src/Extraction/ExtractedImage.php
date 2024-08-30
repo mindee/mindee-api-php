@@ -35,7 +35,7 @@ class ExtractedImage
     /**
      * Initializes a new instance of the ExtractedImage class.
      *
-     * @param mixed  $image      The extracted image. Not explicitly typed as \ImageMagick to avoid errors.
+     * @param mixed  $image      The extracted image. Not explicitly typed as \Imagick to avoid errors.
      * @param string $filename   The filename for the image.
      * @param string $saveFormat The format to save the image.
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
