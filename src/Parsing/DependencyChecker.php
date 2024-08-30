@@ -46,7 +46,10 @@ class DependencyChecker
 
         $imagick = new \Imagick();
         try {
-            $imagick->readImage('pdf:');
+            $imagick->readImage(
+                (getenv('GITHUB_WORKSPACE') ?: ".") .
+                "/tests/resources/products/expense_receipts/default_sample.jpg"
+            );
             return true;
         } catch (\ImagickException $e) {
             return false;

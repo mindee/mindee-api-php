@@ -10,7 +10,7 @@ use Mindee\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use PHPUnit\Framework\TestCase;
 
-class ImageExtractorTest extends TestCase
+class ImageExtractorTestPdf extends TestCase
 {
 
     private Client $dummyClient;

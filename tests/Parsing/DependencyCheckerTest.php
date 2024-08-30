@@ -15,6 +15,6 @@ class DependencyCheckerTest extends TestCase {
     }
 
     public function testImageMagickPolicy() {
-        $this->assertTrue(DependencyChecker::isImageMagickAvailable());
+        $this->assertTrue(DependencyChecker::isImageMagickPolicyAllowed());
     }
 }
