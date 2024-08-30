@@ -66,11 +66,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Install ImageMagick
-        run: |
-          brew update
-          brew install imagemagick
-          pecl install imagick
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
@@ -78,6 +73,11 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json, imagick
+      - name: Install ImageMagick
+        run: |
+          brew update
+          brew install imagemagick
+          pecl install imagick
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
