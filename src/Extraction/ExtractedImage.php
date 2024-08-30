@@ -2,7 +2,9 @@
 
 namespace Mindee\Extraction;
 
+use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
+use Mindee\Parsing\DependencyChecker;
 
 /**
  * An extracted sub-image.
@@ -36,9 +38,16 @@ class ExtractedImage
      * @param mixed  $image      The extracted image. Not explicitly typed as \ImageMagick to avoid errors.
      * @param string $filename   The filename for the image.
      * @param string $saveFormat The format to save the image.
+     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
     public function __construct($image, string $filename, string $saveFormat)
     {
+        if (!DependencyChecker::isFullPdfHandlingAvailable()) {
+            throw new MindeeUnhandledException(
+                "To enable full support of PDF features, you need " .
+                "to enable ImageMagick & Ghostscript on your PHP installation."
+            );
+        }
         $this->image = $image;
         $this->filename = $filename;
         $this->saveFormat = $saveFormat;

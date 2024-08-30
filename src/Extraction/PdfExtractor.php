@@ -4,7 +4,9 @@ namespace Mindee\Extraction;
 
 use InvalidArgumentException;
 use Mindee\Error\MindeePDFException;
+use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\LocalInputSource;
+use Mindee\Parsing\DependencyChecker;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1PageGroup;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
@@ -29,19 +31,30 @@ class PdfExtractor
 
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
-     * @throws \ImagickException Throws if the provided input source can't be processed.
+     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
+     * @throws MindeePDFException Throws if the provided input source can't be processed by Imagick.
      */
     public function __construct(LocalInputSource $localInput)
     {
+        if (!DependencyChecker::isFullPdfHandlingAvailable()) {
+            throw new MindeeUnhandledException(
+                "To enable full support of PDF features, you need " .
+                "to enable ImageMagick & Ghostscript on your PHP installation."
+            );
+        }
         $this->fileName = $localInput->fileName;
 
         if ($localInput->isPDF()) {
             $this->pdfBytes = $localInput->readContents()[1];
         } else {
-            $imagick = new \Imagick();
-            $imagick->readImageBlob($localInput->readContents()[1]);
-            $imagick->setImageFormat('pdf');
-            $this->pdfBytes = $imagick->getImageBlob();
+            try {
+                $image = new \Imagick();
+            } catch (\ImagickException $e) {
+                throw new MindeePDFException("Imagick could not process this file. Reason given:", $e->getMessage());
+            }
+            $image->readImageBlob($localInput->readContents()[1]);
+            $image->setImageFormat('pdf');
+            $this->pdfBytes = $image->getImageBlob();
         }
     }
 
@@ -104,11 +117,11 @@ class PdfExtractor
 
                 $mergedPdfBytes = $pdf->Output('S');
             } catch (
-                PdfParserException |
-                CrossReferenceException |
-                FilterException |
-                PdfTypeException |
-                PdfReaderException $e
+            PdfParserException|
+            CrossReferenceException|
+            FilterException|
+            PdfTypeException|
+            PdfReaderException $e
             ) {
                 throw new MindeePDFException("PDF file couldn't be processed during extraction.");
             }
@@ -121,8 +134,8 @@ class PdfExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array   $pageIndexes List of sub-lists of pages to keep.
-     * @param boolean $strict      Whether to trust confidence scores of 1.0 only or not.
+     * @param array $pageIndexes List of sub-lists of pages to keep.
+     * @param boolean $strict Whether to trust confidence scores of 1.0 only or not.
      * @return array A list of extracted invoices.
      */
     public function extractInvoices(array $pageIndexes, bool $strict = false): array

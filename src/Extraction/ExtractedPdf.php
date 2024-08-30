@@ -3,7 +3,9 @@
 namespace Mindee\Extraction;
 
 use Mindee\Error\MindeePDFException;
+use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
+use Mindee\Parsing\DependencyChecker;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
 
@@ -31,9 +33,16 @@ class ExtractedPdf
      *
      * @param string $pdfBytes A binary string representation of the PDF.
      * @param string $filename Name of the original file.
+     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
     public function __construct(string $pdfBytes, string $filename)
     {
+        if (!DependencyChecker::isFullPdfHandlingAvailable()) {
+            throw new MindeeUnhandledException(
+                "To enable full support of PDF features, you need " .
+                "to enable ImageMagick & Ghostscript on your PHP installation."
+            );
+        }
         $this->pdfBytes = $pdfBytes;
         $this->filename = $filename;
     }

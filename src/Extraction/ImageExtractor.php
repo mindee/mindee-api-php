@@ -3,9 +3,12 @@
 namespace Mindee\Extraction;
 
 use Mindee\Error\MindeeGeometryException;
+use Mindee\Error\MindeePDFException;
+use Mindee\Error\MindeeUnhandledException;
 use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
 use Mindee\Input\LocalInputSource;
+use Mindee\Parsing\DependencyChecker;
 use Mindee\Parsing\Standard\BaseField;
 
 /**
@@ -42,10 +45,17 @@ class ImageExtractor
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      * @param string|null      $saveFormat Save format, will be coerced to jpg by default.
-     * @throws \ImagickException Throws if ImageMagick can't handle the image.
+     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
+     * @throws MindeePDFException Throws if ImageMagick can't handle the image.
      */
     public function __construct(LocalInputSource $localInput, ?string $saveFormat = null)
     {
+        if (!DependencyChecker::isFullPdfHandlingAvailable()) {
+            throw new MindeeUnhandledException(
+                "To enable full support of PDF features, you need " .
+                "to enable ImageMagick & Ghostscript on your PHP installation."
+            );
+        }
         $this->filename = $localInput->fileName;
         $this->inputSource = $localInput;
 
@@ -63,7 +73,11 @@ class ImageExtractor
         if ($this->inputSource->isPDF()) {
             $this->pageImages = $this->pdfToImages($this->inputSource->readContents()[1]);
         } else {
-            $image = new \Imagick();
+            try {
+                $image = new \Imagick();
+            } catch (\ImagickException $e) {
+                throw new MindeePDFException("Imagick could not process this file. Reason given:", $e->getMessage());
+            }
             $image->readImageBlob($this->inputSource->readContents()[1]);
             $this->pageImages[] = $image;
         }
