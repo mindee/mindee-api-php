@@ -5,7 +5,7 @@ namespace Parsing;
 use Mindee\Parsing\DependencyChecker;
 use PHPUnit\Framework\TestCase;
 
-class DependencyCheckerTest extends TestCase {
+class DependencyCheckerPdfTest extends TestCase {
     public function testGhostScriptDependency() {
         $this->assertTrue(DependencyChecker::isGhostscriptAvailable());
     }
