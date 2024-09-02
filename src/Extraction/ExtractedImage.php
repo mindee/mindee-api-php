@@ -42,10 +42,17 @@ class ExtractedImage
      */
     public function __construct($image, string $filename, string $saveFormat)
     {
-        if (!DependencyChecker::isFullPdfHandlingAvailable()) {
+        if (!DependencyChecker::isImageMagickAvailable()) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need " .
-                "to enable ImageMagick & Ghostscript on your PHP installation."
+                "to enable ImageMagick on your PHP installation. Also, you " .
+                "should setup ImageMagick's policy to allow for PDF operations."
+            );
+        }
+        if (!DependencyChecker::isGhostscriptAvailable()) {
+            throw new MindeeUnhandledException(
+                "To enable full support of PDF features, you need " .
+                "to enable Ghostscript on your PHP installation."
             );
         }
         $this->image = $image;
@@ -58,8 +65,8 @@ class ExtractedImage
      * Uses the default image format and filename.
      *
      * @param string $outputPath The output directory (must exist).
-     * @throws \ImagickException Throws if the image can't be processed.
      * @return void
+     * @throws \ImagickException Throws if the image can't be processed.
      */
     public function writeToFile(string $outputPath): void
     {

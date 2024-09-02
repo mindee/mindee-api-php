@@ -37,10 +37,17 @@ class ExtractedPdf
      */
     public function __construct(string $pdfBytes, string $filename)
     {
-        if (!DependencyChecker::isFullPdfHandlingAvailable()) {
+        if (!DependencyChecker::isImageMagickAvailable()) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need " .
-                "to enable ImageMagick & Ghostscript on your PHP installation."
+                "to enable ImageMagick on your PHP installation. Also, you " .
+                "should setup ImageMagick's policy to allow for PDF operations."
+            );
+        }
+        if (!DependencyChecker::isGhostscriptAvailable()) {
+            throw new MindeeUnhandledException(
+                "To enable full support of PDF features, you need " .
+                "to enable Ghostscript on your PHP installation."
             );
         }
         $this->pdfBytes = $pdfBytes;

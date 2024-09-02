@@ -55,18 +55,4 @@ class DependencyChecker
             return false;
         }
     }
-
-    /**
-     * @return boolean True if full PDF handling features are available.
-     */
-    public static function isFullPdfHandlingAvailable(): bool
-    {
-        if (!self::isGhostscriptAvailable()) {
-            return false;
-        }
-        if (!self::isImageMagickPolicyAllowed()) {
-            return false;
-        }
-        return true;
-    }
 }
