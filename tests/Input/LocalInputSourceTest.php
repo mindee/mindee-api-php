@@ -87,7 +87,7 @@ class LocalInputSourceTest extends TestCase
                 $cutPdf->useTemplate($cutPdf->importPage($pageNumber + 1));
                 $basePdf->AddPage();
                 $basePdf->useTemplate($basePdf->importPage($pageNumber + 1));
-                // Note: comparing extracted page bytes content turns out to be reliable when using FPDF.
+                // Note: comparing extracted page bytes content turns out to be unreliable when using FPDF.
                 // This will be left here until a better solution is found within the limitations of licensing.
                 //                $this->assertEquals($cutPdf->Output('', 'S'), $basePdf->Output('', 'S'));
             }
