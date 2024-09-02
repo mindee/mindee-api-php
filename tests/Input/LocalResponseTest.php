@@ -5,12 +5,14 @@ namespace Input;
 use Mindee\Input\LocalResponse;
 use PHPUnit\Framework\TestCase;
 
-class LocalResponseTest extends TestCase {
+class LocalResponseTest extends TestCase
+{
     private string $signature;
     private string $dummyKey;
     private string $filePath;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->filePath = (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/async/get_completed_empty.json";
         $this->signature = "5ed1673e34421217a5dbfcad905ee62261a3dd66c442f3edd19302072bbf70d0";
         $this->dummyKey = "ogNjY44MhvKPGTtVsI8zG82JqWQa68woYQH";
@@ -102,7 +104,7 @@ class LocalResponseTest extends TestCase {
 
         fclose($stream); // Close the stream after use
     }
-    
+
     public function testValidFilePathLocalResponse()
     {
         $localResponse = new LocalResponse($this->filePath);

@@ -17,7 +17,7 @@ class CropperExtraTest extends TestCase
     {
         $this->cropperDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/extras/cropper/";
+        ) . "/tests/resources/extras/cropper/";
         $completeDocFile = file_get_contents($this->cropperDir . "complete.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $this->completeDoc = new Document(ReceiptV5::class, $completeDocJSON["document"]);

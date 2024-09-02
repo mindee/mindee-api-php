@@ -8,7 +8,11 @@ namespace Mindee\Input;
 
 use CURLFile;
 use Mindee\Error\MindeeMimeTypeException;
+use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
+use setasign\Fpdi\Fpdi;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfReader\PdfReaderException;
 
 /**
  * List of allowed mime types for document parsing.
@@ -93,42 +97,139 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Counts the amount of pages in a PDF.
-     * To be implemented.
      *
-     * @return void
+     * @return integer
+     * @throws MindeePDFException Throws if the source pdf can't be properly processed.
+     * @throws MindeeSourceException Throws if the source isn't a pdf.
      */
-    public function countDocPages() // TODO: add PDF lib
+    public function countDocPages(): int
     {
+        if (!$this->isPDF()) {
+            throw new MindeeSourceException("File is not a PDF.");
+        }
+        $pdf = new FPDI();
+        try {
+            return $pdf->setSourceFile($this->fileObject->getFilename());
+        } catch (PdfParserException $e) {
+            throw new MindeePDFException("Failed to read PDF file.");
+        }
     }
 
     /**
      * Processes a PDF file.
      * To be implemented.
      *
+     * @param string  $behavior    Behaviors available: KEEP_ONLY, REMOVE.
+     * @param integer $onMinPages  Minimum of pages to apply the operation.
+     * @param array   $pageIndexes Indexes of the pages to apply the operation to.
      * @return void
+     * @throws MindeePDFException Throws if the operation is unknown, or if the resulting PDF can't be processed.
      */
-    public function processPDF() // TODO: add PDF lib
+    public function processPDF(string $behavior, int $onMinPages, array $pageIndexes)
     {
+        if ($this->isPDFEmpty()) {
+            throw new MindeePDFException("Pages are empty in PDF file.");
+        }
+        if ($this->countDocPages() < $onMinPages) {
+            return;
+        }
+        $allPages = range(0, $this->countDocPages() - 1);
+        $pagesToKeep = [];
+        if ($behavior == KEEP_ONLY) {
+            foreach ($pageIndexes as $pageId) {
+                if ($pageId < 0) {
+                    $pageId = $this->countDocPages() + $pageId;
+                }
+                if (!in_array($pageId, $allPages)) {
+                    error_log("Page index '" . $pageId . "' is not present in source document");
+                } else {
+                    $pagesToKeep[] = $pageId;
+                }
+            }
+        } elseif ($behavior == REMOVE) {
+            $pagesToRemove = [];
+            foreach ($pageIndexes as $pageId) {
+                if ($pageId < 0) {
+                    $pageId = $this->countDocPages() + $pageId;
+                }
+                if (!in_array($pageId, $allPages)) {
+                    error_log("Page index '" . $pageId . "' is not present in source document");
+                } else {
+                    $pagesToRemove[] = $pageId;
+                }
+            }
+            $pagesToKeep = array_diff($allPages, $pagesToRemove);
+        } else {
+            throw new MindeePDFException("Unknown operation '" . $behavior . "'.");
+        }
+        if (count($pagesToKeep) < 1) {
+            throw new MindeePDFException("Resulting PDF would have no pages left.");
+        }
+        $this->mergePDFPages($pagesToKeep);
     }
 
     /**
-     * Merges the pages of a PDF.
-     * To be implemented.
-     *
+     * @param string $fileBytes Raw data as bytes.
      * @return void
      */
-    public function mergePDFPages() // TODO: add PDF lib
+    private function saveBytesAsFile(string $fileBytes)
     {
+        $cutPdfTempFile = tempnam(sys_get_temp_dir(), 'mindee_cut_pdf_');
+        file_put_contents($cutPdfTempFile, $fileBytes);
+        $this->filePath = $cutPdfTempFile;
+        $this->fileObject = new CURLFile($cutPdfTempFile, $this->fileMimetype, $this->fileName);
+    }
+
+    /**
+     * Create a new PDF from pages and set it as the main file object.
+     * @param array $pageNumbers Array of page numbers to add to the newly created PDF.
+     * @return void
+     * @throws MindeePDFException Throws if the pdf file can't be processed.
+     */
+    public function mergePDFPages(array $pageNumbers)
+    {
+        try {
+            $pdf = new FPDI();
+            $pdf->setSourceFile($this->filePath);
+            foreach ($pageNumbers as $pageNumber) {
+                $pdf->AddPage();
+                $pdf->useTemplate($pdf->importPage($pageNumber + 1));
+            }
+            $this->saveBytesAsFile($pdf->Output($this->fileName, 'S'));
+            $pdf->Close();
+        } catch (PdfParserException | PdfReaderException $e) {
+            throw new MindeePDFException("Failed to read PDF file.");
+        }
     }
 
     /**
      * Checks whether the contents of a PDF are empty.
-     * To be implemented.
+     * @param integer $threshold Semi-arbitrary threshold of minimum bytes on the page for it to be considered empty.
      *
-     * @return void
+     * @return boolean
+     * @throws MindeePDFException Throws if the pdf file can't be processed.
      */
-    public function isPDFEmpty() // TODO: add PDF lib
+    public function isPDFEmpty(int $threshold = 1024): bool
     {
+        try {
+            $pdf = new FPDI();
+            $pageCount = $pdf->setSourceFile($this->fileObject->getFilename());
+            $pdf->Close();
+            for ($pageNumber = 0; $pageNumber < $pageCount; $pageNumber++) {
+                $pdfPage = new FPDI();
+                $pdfPage->setSourceFile($this->fileObject->getFilename());
+                $pdfPage->AddPage();
+                $pdfPage->useTemplate($pdfPage->importPage($pageNumber + 1));
+                if (strlen($pdfPage->Output('', 'S')) > $threshold) {
+                    $pdfPage->Close();
+                    return false;
+                }
+                $pdfPage->Close();
+            }
+        } catch (PdfParserException | PdfReaderException $e) {
+            throw new MindeePDFException("Failed to read PDF file.");
+        }
+        return true;
     }
 
     /**
@@ -169,7 +270,7 @@ abstract class LocalInputSource extends InputSource
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $this->fileMimetype = finfo_file($finfo, $tempFile);
             finfo_close($finfo);
-            $this->fileObject = new \CURLFile($tempFile, $this->fileMimetype, $this->fileName);
+            $this->fileObject = new CURLFile($tempFile, $this->fileMimetype, $this->fileName);
             return;
         }
 

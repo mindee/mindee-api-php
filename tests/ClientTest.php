@@ -11,6 +11,7 @@ use Mindee\Input\PredictMethodOptions;
 use Mindee\Product\Custom\CustomV1;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
@@ -40,7 +41,8 @@ class ClientTest extends TestCase
     }
 
 
-    protected function tearDown(): void {
+    protected function tearDown(): void
+    {
         putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
 
@@ -86,6 +88,15 @@ class ClientTest extends TestCase
         $this->dummyClient->parse(CustomV1::class, $inputDoc, $predictOptions->setEndpoint($dummyEndpoint));
     }
 
+    public function testCutOptions()
+    {
+        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/multipage.pdf");
+        $this->expectException(MindeeHttpClientException::class);
+        $pageOptions = new PageOptions(range(0, 4));
+        $this->dummyClient->parse(ReceiptV5::class, $inputDoc, null, $pageOptions);
+        $this->assertEquals(5, $inputDoc->countDocPages());
+    }
+
     public function testAsyncWrongInitialDelay()
     {
         $this->expectException(MindeeApiException::class);
@@ -124,7 +135,8 @@ class ClientTest extends TestCase
         $this->dummyClient->enqueue(InvoiceSplitterV1::class, $inputDoc, $predictOptions);
     }
 
-    public function testLoadLocalResponse(){
+    public function testLoadLocalResponse()
+    {
         $localResponse = new LocalResponse($this->invoicePath);
         $res = $this->dummyClient->loadPrediction(InvoiceV4::class, $localResponse);
         $this->assertNotNull($res);

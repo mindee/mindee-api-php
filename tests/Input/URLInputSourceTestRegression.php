@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class URLInputSourceTestRegression extends TestCase
 {
-
     protected string $fileTypesDir;
 
     protected function setUp(): void

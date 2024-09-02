@@ -18,7 +18,7 @@ class MindeeCLICommandTestFunctional extends TestCase
         $this->apiKey = getenv('MINDEE_API_KEY');
     }
 
-    private function runValidCall($productName, $async = false, $initialArgs=[]): array
+    private function runValidCall($productName, $async = false, $initialArgs = []): array
     {
         $filePath = (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/file_types/pdf/blank_1.pdf";
         $args = [$productName, $filePath, "-k", $this->apiKey];
@@ -55,7 +55,7 @@ class MindeeCLICommandTestFunctional extends TestCase
     /**
      * @dataProvider productDataProvider
      */
-    public function testProduct($productName, $async, $additionnalArgs=[])
+    public function testProduct($productName, $async, $additionnalArgs = [])
     {
         $cmdOutput = $this->runValidCall($productName, $async, $additionnalArgs);
         $this->assertEquals(0, $cmdOutput["code"], $productName . ($async ? " async" : " sync") . " test (code).");

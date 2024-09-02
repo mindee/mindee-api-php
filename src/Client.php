@@ -212,6 +212,7 @@ class Client
      */
     private function cutDocPages(LocalInputSource $inputDoc, PageOptions $pageOptions)
     {
+        $inputDoc->processPDF($pageOptions->operation, $pageOptions->onMinPage, $pageOptions->pageIndexes);
     }
 
     /**
@@ -318,16 +319,21 @@ class Client
      *
      * @param string                    $predictionType Name of the product's class.
      * @param InputSource               $inputDoc       Input file.
-     * @param PredictMethodOptions|null $options        Prediction Options.
+     * @param PredictMethodOptions|null $options        Prediction options.
+     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
      * @return PredictResponse
      */
     public function parse(
         string $predictionType,
         InputSource $inputDoc,
-        ?PredictMethodOptions $options = null
+        ?PredictMethodOptions $options = null,
+        ?PageOptions $pageOptions = null
     ): PredictResponse {
         if ($options == null) {
             $options = new PredictMethodOptions();
+        }
+        if ($pageOptions != null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+            $this->cutDocPages($inputDoc, $pageOptions);
         }
         $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
             $predictionType,
@@ -343,6 +349,7 @@ class Client
      * @param InputSource                       $inputDoc       Input file.
      * @param PredictMethodOptions|null         $options        Prediction Options.
      * @param EnqueueAndParseMethodOptions|null $asyncOptions   Async Options. Manages timers.
+     * @param PageOptions|null                  $pageOptions    Options to apply to the PDF file.
      * @return AsyncPredictResponse
      * @throws MindeeApiException Throws if the document couldn't be retrieved in time.
      */
@@ -350,7 +357,8 @@ class Client
         string $predictionType,
         InputSource $inputDoc,
         ?PredictMethodOptions $options = null,
-        ?EnqueueAndParseMethodOptions $asyncOptions = null
+        ?EnqueueAndParseMethodOptions $asyncOptions = null,
+        ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
         if ($options == null) {
             $options = new PredictMethodOptions();
@@ -362,7 +370,7 @@ class Client
         $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
             $predictionType,
         );
-        $enqueueResponse = $this->enqueue($predictionType, $inputDoc, $options);
+        $enqueueResponse = $this->enqueue($predictionType, $inputDoc, $options, $pageOptions);
         error_log("Successfully enqueued document with job id: " . $enqueueResponse->job->id);
 
         sleep($asyncOptions->initialDelaySec);
@@ -392,16 +400,20 @@ class Client
      * @param string                    $predictionType Name of the product's class.
      * @param InputSource               $inputDoc       Input File.
      * @param PredictMethodOptions|null $options        Prediction Options.
+     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
      * @return AsyncPredictResponse
-     * @throws MindeeHttpException Throws if the API sent an error.
      */
     public function enqueue(
         string $predictionType,
         InputSource $inputDoc,
-        ?PredictMethodOptions $options = null
+        ?PredictMethodOptions $options = null,
+        ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
         if ($options == null) {
             $options = new PredictMethodOptions();
+        }
+        if ($pageOptions != null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+            $this->cutDocPages($inputDoc, $pageOptions);
         }
         $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
             $predictionType,
