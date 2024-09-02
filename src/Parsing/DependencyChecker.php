@@ -32,8 +32,6 @@ class DependencyChecker
                         $commandWasExecuted = true;
                     }
                 }
-
-                // Check if GS is in the system PATH
                 $pathDirs = explode(';', getenv('PATH'));
                 foreach ($pathDirs as $dir) {
                     if (file_exists($dir . '\gswin64c.exe') || file_exists($dir . '\gswin32c.exe')) {
