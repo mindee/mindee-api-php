@@ -31,24 +31,13 @@ class PdfExtractor
 
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
-     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
-     * @throws MindeePDFException Throws if the provided input source can't be processed by Imagick.
+     * @throws MindeeUnhandledException|MindeePDFException Throws if PDF operations aren't supported,
+     * or if the file can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
-        if (!DependencyChecker::isImageMagickAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable full support of PDF features, you need " .
-                "to enable ImageMagick on your PHP installation. Also, you " .
-                "should setup ImageMagick's policy to allow for PDF operations."
-            );
-        }
-        if (!DependencyChecker::isGhostscriptAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable full support of PDF features, you need " .
-                "to enable Ghostscript on your PHP installation."
-            );
-        }
+        DependencyChecker::isImageMagickAvailable();
+        DependencyChecker::isGhostscriptAvailable();
         $this->fileName = $localInput->fileName;
 
         if ($localInput->isPDF()) {

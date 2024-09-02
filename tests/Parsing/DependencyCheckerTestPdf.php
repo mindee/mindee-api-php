@@ -7,14 +7,17 @@ use PHPUnit\Framework\TestCase;
 
 class DependencyCheckerPdfTest extends TestCase {
     public function testGhostScriptDependency() {
-        $this->assertTrue(DependencyChecker::isGhostscriptAvailable());
+        $this->expectNotToPerformAssertions();
+        DependencyChecker::isGhostscriptAvailable();
     }
 
     public function testImageMagickDependency() {
-        $this->assertTrue(DependencyChecker::isImageMagickAvailable());
+        $this->expectNotToPerformAssertions();
+        DependencyChecker::isImageMagickAvailable();
     }
 
     public function testImageMagickPolicy() {
-        $this->assertTrue(DependencyChecker::isImageMagickPolicyAllowed());
+        $this->expectNotToPerformAssertions();
+        DependencyChecker::isImageMagickPolicyAllowed();
     }
 }

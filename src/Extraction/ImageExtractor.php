@@ -45,24 +45,13 @@ class ImageExtractor
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      * @param string|null      $saveFormat Save format, will be coerced to jpg by default.
-     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
-     * @throws MindeePDFException Throws if ImageMagick can't handle the image.
+     * @throws MindeeUnhandledException|MindeePDFException Throws if PDF operations aren't supported,
+     * or if the file can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput, ?string $saveFormat = null)
     {
-        if (!DependencyChecker::isImageMagickAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable full support of PDF features, you need " .
-                "to enable ImageMagick on your PHP installation. Also, you " .
-                "should setup ImageMagick's policy to allow for PDF operations."
-            );
-        }
-        if (!DependencyChecker::isGhostscriptAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable full support of PDF features, you need " .
-                "to enable Ghostscript on your PHP installation."
-            );
-        }
+        DependencyChecker::isImageMagickAvailable();
+        DependencyChecker::isGhostscriptAvailable();
         $this->filename = $localInput->fileName;
         $this->inputSource = $localInput;
 
@@ -82,10 +71,10 @@ class ImageExtractor
         } else {
             try {
                 $image = new \Imagick();
+                $image->readImageBlob($this->inputSource->readContents()[1]);
             } catch (\ImagickException $e) {
                 throw new MindeePDFException("Imagick could not process this file. Reason given:", $e->getMessage());
             }
-            $image->readImageBlob($this->inputSource->readContents()[1]);
             $this->pageImages[] = $image;
         }
     }

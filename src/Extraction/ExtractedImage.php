@@ -42,19 +42,8 @@ class ExtractedImage
      */
     public function __construct($image, string $filename, string $saveFormat)
     {
-        if (!DependencyChecker::isImageMagickAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable full support of PDF features, you need " .
-                "to enable ImageMagick on your PHP installation. Also, you " .
-                "should setup ImageMagick's policy to allow for PDF operations."
-            );
-        }
-        if (!DependencyChecker::isGhostscriptAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable full support of PDF features, you need " .
-                "to enable Ghostscript on your PHP installation."
-            );
-        }
+        DependencyChecker::isImageMagickAvailable();
+        DependencyChecker::isGhostscriptAvailable();
         $this->image = $image;
         $this->filename = $filename;
         $this->saveFormat = $saveFormat;
