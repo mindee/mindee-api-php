@@ -20,9 +20,26 @@ class DependencyChecker
     {
         try {
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $command32WasExecuted = (bool)shell_exec('which gswin32c.exe');
-                $command64WasExecuted = (bool)shell_exec('which gswin64c.exe');
-                $commandWasExecuted = $command32WasExecuted || $command64WasExecuted;
+                $possiblePaths = [
+                    'C:\Program Files\gs\gs*\bin\gswin64c.exe',
+                    'C:\Program Files (x86)\gs\gs*\bin\gswin32c.exe',
+                    'C:\Program Files\gs\gs*\bin\gswin32c.exe'
+                ];
+
+                foreach ($possiblePaths as $path) {
+                    $matches = glob($path);
+                    if (!empty($matches)) {
+                        $commandWasExecuted = true;
+                    }
+                }
+
+                // Check if GS is in the system PATH
+                $pathDirs = explode(';', getenv('PATH'));
+                foreach ($pathDirs as $dir) {
+                    if (file_exists($dir . '\gswin64c.exe') || file_exists($dir . '\gswin32c.exe')) {
+                        $commandWasExecuted = true;
+                    }
+                }
             } else {
                 $commandWasExecuted = (bool)shell_exec('which gs');
             }
