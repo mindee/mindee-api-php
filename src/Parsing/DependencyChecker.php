@@ -20,8 +20,8 @@ class DependencyChecker
     {
         try {
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $command32WasExecuted = (bool)shell_exec('which gswin32.exe');
-                $command64WasExecuted = (bool)shell_exec('which gswin64.exe');
+                $command32WasExecuted = (bool)shell_exec('which gswin32c.exe');
+                $command64WasExecuted = (bool)shell_exec('which gswin64c.exe');
                 $commandWasExecuted = $command32WasExecuted || $command64WasExecuted;
             } else {
                 $commandWasExecuted = (bool)shell_exec('which gs');
