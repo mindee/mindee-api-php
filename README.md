@@ -101,7 +101,7 @@ $apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
 echo strval($apiResponse->document);
 ```
 
-## Full PDF support on windows
+## Full PDF support
 
 Some features such as Invoice Splitter auto-extraction & Multi Receipts auto-extraction require the library to use, [ImageMagick](https://www.php.net/manual/en/imagick.setup.php) which in turn uses [GhostScript](https://www.ghostscript.com/).
 
@@ -125,6 +125,9 @@ sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
 ```
 
 ### MacOS
+
+Brew will be required for this install.
+
 ```bash
 brew update
 brew install imagemagick
