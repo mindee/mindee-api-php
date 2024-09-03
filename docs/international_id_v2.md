@@ -140,13 +140,13 @@ echo $result->document->inference->prediction->documentNumber->value;
 ## Document Type
 **documentType** : The type of personal identification document.
 
-> Possible values include:
-> - IDENTIFICATION_CARD
-> - PASSPORT
-> - DRIVER_LICENSE
-> - VISA
-> - RESIDENCY_CARD
-> - VOTER_REGISTRATION
+#### Possible values include:
+ - IDENTIFICATION_CARD
+ - PASSPORT
+ - DRIVER_LICENSE
+ - VISA
+ - RESIDENCY_CARD
+ - VOTER_REGISTRATION
 
 ```php
 echo $result->document->inference->prediction->documentType->value;

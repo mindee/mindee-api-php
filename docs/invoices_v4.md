@@ -289,9 +289,9 @@ echo $result->document->inference->prediction->date->value;
 ## Document Type
 **documentType** : One of: 'INVOICE', 'CREDIT NOTE'.
 
-> Possible values include:
-> - INVOICE
-> - CREDIT NOTE
+#### Possible values include:
+ - INVOICE
+ - CREDIT NOTE
 
 ```php
 echo $result->document->inference->prediction->documentType->value;

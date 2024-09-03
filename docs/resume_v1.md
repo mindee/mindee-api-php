@@ -169,11 +169,11 @@ A `ResumeV1Language` implements the following attributes:
 * **language** (`string`): The language's ISO 639 code.
 * **level** (`string`): The candidate's level for the language.
 
-> Possible values include:
-> - Fluent
-> - Proficient
-> - Intermediate
-> - Beginner
+#### Possible values include:
+ - Fluent
+ - Proficient
+ - Intermediate
+ - Beginner
 
 Fields which are specific to this product; they are not used in any other product.
 
@@ -184,11 +184,11 @@ A `ResumeV1ProfessionalExperience` implements the following attributes:
 
 * **contractType** (`string`): The type of contract for the professional experience.
 
-> Possible values include:
-> - Full-Time
-> - Part-Time
-> - Internship
-> - Freelance
+#### Possible values include:
+ - Full-Time
+ - Part-Time
+ - Internship
+ - Freelance
 
 * **department** (`string`): The specific department or division within the company.
 * **employer** (`string`): The name of the company or organization.
@@ -237,10 +237,10 @@ echo $result->document->inference->prediction->documentLanguage->value;
 ## Document Type
 **documentType** : The type of the document sent.
 
-> Possible values include:
-> - RESUME
-> - MOTIVATION_LETTER
-> - RECOMMENDATION_LETTER
+#### Possible values include:
+ - RESUME
+ - MOTIVATION_LETTER
+ - RECOMMENDATION_LETTER
 
 ```php
 echo $result->document->inference->prediction->documentType->value;

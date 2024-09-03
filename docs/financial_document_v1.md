@@ -263,15 +263,15 @@ echo $result->document->inference->prediction->billingAddress->value;
 ## Purchase Category
 **category** : The purchase category among predefined classes.
 
-> Possible values include:
-> - toll
-> - food
-> - parking
-> - transport
-> - accommodation
-> - gasoline
-> - telecom
-> - miscellaneous
+#### Possible values include:
+ - toll
+ - food
+ - parking
+ - transport
+ - accommodation
+ - gasoline
+ - telecom
+ - miscellaneous
 
 ```php
 echo $result->document->inference->prediction->category->value;
@@ -325,11 +325,11 @@ echo $result->document->inference->prediction->documentNumber->value;
 ## Document Type
 **documentType** : One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
 
-> Possible values include:
-> - INVOICE
-> - CREDIT NOTE
-> - CREDIT CARD RECEIPT
-> - EXPENSE RECEIPT
+#### Possible values include:
+ - INVOICE
+ - CREDIT NOTE
+ - CREDIT CARD RECEIPT
+ - EXPENSE RECEIPT
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
@@ -393,12 +393,12 @@ echo $result->document->inference->prediction->shippingAddress->value;
 ## Purchase Subcategory
 **subcategory** : The purchase subcategory among predefined classes for transport and food.
 
-> Possible values include:
-> - plane
-> - taxi
-> - train
-> - restaurant
-> - shopping
+#### Possible values include:
+ - plane
+ - taxi
+ - train
+ - restaurant
+ - shopping
 
 ```php
 echo $result->document->inference->prediction->subcategory->value;
