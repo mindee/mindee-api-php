@@ -103,13 +103,15 @@ echo strval($apiResponse->document);
 
 ## Full PDF support
 
-Some features such as Invoice Splitter auto-extraction & Multi Receipts auto-extraction require the library to use, [ImageMagick](https://www.php.net/manual/en/imagick.setup.php) which in turn uses [GhostScript](https://www.ghostscript.com/).
+Some features such as Invoice Splitter auto-extraction & Multi Receipts auto-extraction require the [ImageMagick](https://www.php.net/manual/en/imagick.setup.php) library, which in turn requires [GhostScript](https://www.ghostscript.com/).
 
 ### Unix
 
-ImageMagick is usually bundled with most installation, but you can install it based on your distro. More details [here](https://imagemagick.org/script/advanced-linux-installation.php).
+ImageMagick is usually bundled with most installations. If not, you can install it using your distribution's package manager.
 
-Ghostscript can be installed from the [website download page](https://ghostscript.com/releases/gsdnld.html), or from the apt store:
+More details [here](https://imagemagick.org/script/advanced-linux-installation.php).
+
+Ghostscript can be installed from the [website download page](https://ghostscript.com/releases/gsdnld.html), or if using an apt compatible distribution:
 ```bash
 sudo apt-get update
 sudo apt-get install -y ghostscript
@@ -142,7 +144,7 @@ choco install ghostscript --version 10.03.1 -y
 ```
 
 **⚠️ Important note if you are using Windows** 
-The `gs` alias might not be available by default, but it is possible to bind it fairly simply by either adding gswin32c.exe or gswin64c.exe to $PATH and then adding a symlink in powershell using:
+The `gs` alias might not be available by default, but it is possible to bind it fairly simply by either adding `gswin32c.exe` or `gswin64c.exe` to your `$PATH` and then adding a symlink in powershell using:
 
 ```
 New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
