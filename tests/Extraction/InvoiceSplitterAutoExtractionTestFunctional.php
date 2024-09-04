@@ -7,9 +7,9 @@ use Mindee\Parsing\Common\Document;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
-use Product\RegressionUtilities;
+use Product\TestingUtilities;
 
-require_once(__DIR__ . "/../Product/RegressionUtilities.php");
+require_once(__DIR__ . "/../Product/TestingUtilities.php");
 
 class PdfExtractorTest extends TestCase
 {
@@ -25,14 +25,14 @@ class PdfExtractorTest extends TestCase
         $rstContent = file_get_contents($rstFilePath);
         $parsingVersion = $invoicePrediction->inference->product->version;
         $parsingId = $invoicePrediction->id;
-        $rstContent = str_replace(RegressionUtilities::getVersion($rstContent), $parsingVersion, $rstContent);
-        $rstContent = str_replace(RegressionUtilities::getId($rstContent), $parsingId, $rstContent);
+        $rstContent = str_replace(TestingUtilities::getVersion($rstContent), $parsingVersion, $rstContent);
+        $rstContent = str_replace(TestingUtilities::getId($rstContent), $parsingId, $rstContent);
         return $rstContent;
     }
 
     /**
      * @test
-     * @group regression
+     * @group functional
      */
     public function testPdfShouldExtractInvoicesStrict()
     {

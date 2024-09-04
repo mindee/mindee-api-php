@@ -2,7 +2,7 @@
 
 namespace Product;
 
-class RegressionUtilities
+class TestingUtilities
 {
     public static function getVersion(string $rstStr)
     {
