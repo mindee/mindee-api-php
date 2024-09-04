@@ -1,29 +1,21 @@
-name: Functional Tests
+name: Unit Tests for PDF features
 
 on:
-  pull_request:
-  workflow_run:
-    workflows: ["Test Code Samples"]
-    branches:
-      - '*'
-    types:
-      - completed
+  push:
   # Allows running this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  MINDEE_ACCOUNT_SE_TESTS: ${{ secrets.MINDEE_ACCOUNT_SE_TESTS }}
-  MINDEE_ENDPOINT_SE_TESTS: ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
-  MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
 jobs:
-  functional-tests-ubuntu:
-    name: Run Functional Tests on Ubuntu
+  phpunit-ubuntu:
+    name: Run Unit Tests on Ubuntu
     timeout-minutes: 30
     strategy:
-      max-parallel: 2
       matrix:
         php-version:
           - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
           - 8.3
     runs-on: "ubuntu-latest"
     steps:
@@ -38,7 +30,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
       - uses: ramsey/composer-install@v2
       - name: Change ImageMagick security policy on Ubuntu
         run: |
@@ -47,17 +38,21 @@ jobs:
           RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
       - name: Unit testing with phpunit
+        env:
+          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
         run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
+          ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
-  functional-tests-macos:
-    name: Run Functional Tests on MacOS
+  phpunit-macos:
+    name: Run Unit Tests on MacOS
     timeout-minutes: 30
     strategy:
-      max-parallel: 2
       matrix:
         php-version:
           - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
           - 8.3
     runs-on: "macos-latest"
     steps:
@@ -70,25 +65,28 @@ jobs:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
       - name: Install ImageMagick
         run: |
           brew update
           brew install imagemagick
+          pecl install imagick
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
+        env:
+          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
         run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
+          ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
-
-  functional-tests-windows:
-    name: Run Functional Tests on Windows
+  phpunit-windows:
+    name: Run Unit Tests on Windows
     timeout-minutes: 30
     strategy:
-      max-parallel: 2
       matrix:
         php-version:
           - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
           - 8.3
     runs-on: "windows-latest"
     steps:
@@ -97,6 +95,11 @@ jobs:
           submodules: recursive
       - name: Install Ghostscript
         run: choco install ghostscript --version 10.03.1 -y
+      - name: Create Ghostscript alias
+        run: |
+          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
+          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
+        shell: powershell
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
@@ -104,9 +107,9 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json, imagick
-      - name: Install Ghostscript
-        run: choco install ghostscript -y
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
+        env:
+          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
         run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
+          ./vendor/bin/phpunit -c tests/pdffeatures.xml

@@ -2,7 +2,6 @@
 
 namespace Mindee\Parsing\Standard;
 
-use Mindee\Error\MindeeGeometryException;
 use Mindee\Geometry\Polygon;
 use Mindee\Geometry\PolygonUtils;
 
