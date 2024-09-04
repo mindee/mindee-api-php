@@ -186,15 +186,220 @@ Search.appendIndex(
             "summary": "Exceptions\u0020relating\u0020to\u0020mime\u0020type\u0020issues.",
             "url": "classes/Mindee-Error-MindeeMimeTypeException.html"
         },                {
+            "fqsen": "\\Mindee\\Error\\MindeePDFException",
+            "name": "MindeePDFException",
+            "summary": "Exceptions\u0020relating\u0020to\u0020the\u0020handling\u0020of\u0020PDF\u0020documents.",
+            "url": "classes/Mindee-Error-MindeePDFException.html"
+        },                {
             "fqsen": "\\Mindee\\Error\\MindeeSourceException",
             "name": "MindeeSourceException",
             "summary": "Exceptions\u0020relating\u0020to\u0020sources\u0020\u0028documents\u0029\u0020handling.",
             "url": "classes/Mindee-Error-MindeeSourceException.html"
         },                {
+            "fqsen": "\\Mindee\\Error\\MindeeUnhandledException",
+            "name": "MindeeUnhandledException",
+            "summary": "Exceptions\u0020relating\u0020to\u0020missing\u0020dependencies.",
+            "url": "classes/Mindee-Error-MindeeUnhandledException.html"
+        },                {
             "fqsen": "\\Mindee\\Error\\MindeeUnsetException",
             "name": "MindeeUnsetException",
             "summary": "Exceptions\u0020relating\u0020to\u0020products\u0020containing\u0020unset\u0020fields.",
             "url": "classes/Mindee-Error-MindeeUnsetException.html"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage",
+            "name": "ExtractedImage",
+            "summary": "An\u0020extracted\u0020sub\u002Dimage.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initializes\u0020a\u0020new\u0020instance\u0020of\u0020the\u0020ExtractedImage\u0020class.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003AwriteToFile\u0028\u0029",
+            "name": "writeToFile",
+            "summary": "Writes\u0020the\u0020image\u0020to\u0020a\u0020file.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#method_writeToFile"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003AasInputSource\u0028\u0029",
+            "name": "asInputSource",
+            "summary": "Returns\u0020the\u0020image\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020sending\u0020to\u0020a\u0020client\u0020for\u0020parsing.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#method_asInputSource"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003AgetEncodedImageFormat\u0028\u0029",
+            "name": "getEncodedImageFormat",
+            "summary": "Get\u0020the\u0020encoded\u0020image\u0020format.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#method_getEncodedImageFormat"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003A\u0024image",
+            "name": "image",
+            "summary": "Imagick\u0020wrapper\u0020for\u0020the\u0020image.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#property_image"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "Name\u0020of\u0020the\u0020file.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedImage\u003A\u003A\u0024saveFormat",
+            "name": "saveFormat",
+            "summary": "String\u0020representation\u0020of\u0020the\u0020save\u0020format.",
+            "url": "classes/Mindee-Extraction-ExtractedImage.html#property_saveFormat"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf",
+            "name": "ExtractedPdf",
+            "summary": "An\u0020extracted\u0020sub\u002DPdf.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initializes\u0020a\u0020new\u0020instance\u0020of\u0020the\u0020ExtractedPdf\u0020class.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003AgetPageCount\u0028\u0029",
+            "name": "getPageCount",
+            "summary": "Wrapper\u0020for\u0020pdf\u0020GetPageCount\u0028\u0029.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#method_getPageCount"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003AwriteToFile\u0028\u0029",
+            "name": "writeToFile",
+            "summary": "Write\u0020the\u0020PDF\u0020to\u0020a\u0020file.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#method_writeToFile"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003AasInputSource\u0028\u0029",
+            "name": "asInputSource",
+            "summary": "Return\u0020the\u0020file\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020sending\u0020to\u0020MindeeClient\u0020for\u0020parsing.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#method_asInputSource"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003AgetPdfBytes\u0028\u0029",
+            "name": "getPdfBytes",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#method_getPdfBytes"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003AgetFilename\u0028\u0029",
+            "name": "getFilename",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#method_getFilename"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003A\u0024pdfBytes",
+            "name": "pdfBytes",
+            "summary": "File\u0020object\u0020for\u0020an\u0020ExtractedPdf.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#property_pdfBytes"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ExtractedPdf\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "Name\u0020of\u0020the\u0020original\u0020file.",
+            "url": "classes/Mindee-Extraction-ExtractedPdf.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor",
+            "name": "ImageExtractor",
+            "summary": "Extract\u0020sub\u002Dimages\u0020from\u0020an\u0020image.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003ApdfToImages\u0028\u0029",
+            "name": "pdfToImages",
+            "summary": "Renders\u0020the\u0020input\u0020PDF\u0027s\u0020pages\u0020as\u0020individual\u0020images.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_pdfToImages"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AgetPageCount\u0028\u0029",
+            "name": "getPageCount",
+            "summary": "Gets\u0020the\u0020number\u0020of\u0020pages\u0020in\u0020the\u0020file.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_getPageCount"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AextractImagesFromPage\u0028\u0029",
+            "name": "extractImagesFromPage",
+            "summary": "Extract\u0020multiple\u0020images\u0020on\u0020a\u0020given\u0020page\u0020from\u0020a\u0020list\u0020of\u0020fields\u0020having\u0020position\u0020data.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_extractImagesFromPage"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AextractFromPage\u0028\u0029",
+            "name": "extractFromPage",
+            "summary": "Extracts\u0020images\u0020from\u0020a\u0020page.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_extractFromPage"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AextractImage\u0028\u0029",
+            "name": "extractImage",
+            "summary": "Extracts\u0020a\u0020single\u0020image\u0020from\u0020a\u0020Position\u0020field.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_extractImage"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AgetInputSource\u0028\u0029",
+            "name": "getInputSource",
+            "summary": "Getter\u0020for\u0020the\u0020local\u0020input\u0020source.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_getInputSource"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AextractImageFromBbox\u0028\u0029",
+            "name": "extractImageFromBbox",
+            "summary": "Extracts\u0020an\u0020image\u0020from\u0020a\u0020set\u0020of\u0020coordinates.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_extractImageFromBbox"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003AsplitNameStrict\u0028\u0029",
+            "name": "splitNameStrict",
+            "summary": "Splits\u0020the\u0020filename\u0020into\u0020name\u0020and\u0020extension.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#method_splitNameStrict"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003A\u0024pageImages",
+            "name": "pageImages",
+            "summary": "Array\u0020of\u0020extracted\u0020page\u0020images.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#property_pageImages"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "Name\u0020of\u0020the\u0020file.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003A\u0024saveFormat",
+            "name": "saveFormat",
+            "summary": "Format\u0020to\u0020save\u0020the\u0020image\u0020as.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#property_saveFormat"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\ImageExtractor\u003A\u003A\u0024inputSource",
+            "name": "inputSource",
+            "summary": "Local\u0020input\u0020object\u0020used\u0020by\u0020the\u0020ImageExtractor.",
+            "url": "classes/Mindee-Extraction-ImageExtractor.html#property_inputSource"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor",
+            "name": "PdfExtractor",
+            "summary": "PDF\u0020extraction\u0020class.",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003AgetPageCount\u0028\u0029",
+            "name": "getPageCount",
+            "summary": "Wrapper\u0020for\u0020pdf\u0020GetPageCount\u0028\u0029.",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#method_getPageCount"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003AextractSubDocuments\u0028\u0029",
+            "name": "extractSubDocuments",
+            "summary": "Extracts\u0020sub\u002Ddocuments\u0020from\u0020the\u0020source\u0020document\u0020using\u0020list\u0020of\u0020page\u0020indexes.",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#method_extractSubDocuments"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003AextractInvoices\u0028\u0029",
+            "name": "extractInvoices",
+            "summary": "Extracts\u0020invoices\u0020as\u0020complete\u0020PDFs\u0020from\u0020the\u0020document.",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#method_extractInvoices"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003AgetFileName\u0028\u0029",
+            "name": "getFileName",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#method_getFileName"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003A\u0024pdfBytes",
+            "name": "pdfBytes",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#property_pdfBytes"
+        },                {
+            "fqsen": "\\Mindee\\Extraction\\PdfExtractor\u003A\u003A\u0024fileName",
+            "name": "fileName",
+            "summary": "",
+            "url": "classes/Mindee-Extraction-PdfExtractor.html#property_fileName"
         },                {
             "fqsen": "\\Mindee\\Geometry\\BBox",
             "name": "BBox",
@@ -786,9 +991,14 @@ Search.appendIndex(
             "summary": "Processes\u0020a\u0020PDF\u0020file.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_processPDF"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AsaveBytesAsFile\u0028\u0029",
+            "name": "saveBytesAsFile",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_saveBytesAsFile"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AmergePDFPages\u0028\u0029",
             "name": "mergePDFPages",
-            "summary": "Merges\u0020the\u0020pages\u0020of\u0020a\u0020PDF.",
+            "summary": "Create\u0020a\u0020new\u0020PDF\u0020from\u0020pages\u0020and\u0020set\u0020it\u0020as\u0020the\u0020main\u0020file\u0020object.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_mergePDFPages"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AisPDFEmpty\u0028\u0029",
@@ -1705,6 +1915,26 @@ Search.appendIndex(
             "name": "pageId",
             "summary": "",
             "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_pageId"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\DependencyChecker",
+            "name": "DependencyChecker",
+            "summary": "Utility\u0020class\u0020to\u0020check\u0020the\u0020availability\u0020of\u0020potentially\u0020incompatible\u0020libraries.",
+            "url": "classes/Mindee-Parsing-DependencyChecker.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\DependencyChecker\u003A\u003AisGhostscriptAvailable\u0028\u0029",
+            "name": "isGhostscriptAvailable",
+            "summary": "Returns\u0020true\u0020if\u0020ghostscript\u0020is\u0020available\u0020on\u0020the\u0020system.",
+            "url": "classes/Mindee-Parsing-DependencyChecker.html#method_isGhostscriptAvailable"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\DependencyChecker\u003A\u003AisImageMagickAvailable\u0028\u0029",
+            "name": "isImageMagickAvailable",
+            "summary": "Returns\u0020true\u0020if\u0020ImageMagick\u0020is\u0020available\u0020on\u0020the\u0020system.",
+            "url": "classes/Mindee-Parsing-DependencyChecker.html#method_isImageMagickAvailable"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\DependencyChecker\u003A\u003AisImageMagickPolicyAllowed\u0028\u0029",
+            "name": "isImageMagickPolicyAllowed",
+            "summary": "Checks\u0020whether\u0020Imagick\u0020is\u0020blocked\u0020by\u0020restrictive\u0020policy.",
+            "url": "classes/Mindee-Parsing-DependencyChecker.html#method_isImageMagickPolicyAllowed"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Generated\\GeneratedListField",
             "name": "GeneratedListField",
@@ -5521,6 +5751,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-error.html"
         },                {
+            "fqsen": "\\Mindee\\Extraction",
+            "name": "Extraction",
+            "summary": "",
+            "url": "namespaces/mindee-extraction.html"
+        },                {
             "fqsen": "\\Mindee\\Geometry",
             "name": "Geometry",
             "summary": "",
@@ -5541,11 +5776,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-parsing-common.html"
         },                {
-            "fqsen": "\\Mindee\\Parsing",
-            "name": "Parsing",
-            "summary": "",
-            "url": "namespaces/mindee-parsing.html"
-        },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Extras",
             "name": "Extras",
             "summary": "",
@@ -5560,6 +5790,11 @@ Search.appendIndex(
             "name": "Custom",
             "summary": "",
             "url": "namespaces/mindee-parsing-custom.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing",
+            "name": "Parsing",
+            "summary": "",
+            "url": "namespaces/mindee-parsing.html"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Generated",
             "name": "Generated",
