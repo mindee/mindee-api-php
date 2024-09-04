@@ -192,6 +192,16 @@ The following fields are extracted for Receipt V5:
 ## Purchase Category
 **category** : The purchase category among predefined classes.
 
+#### Possible values include:
+ - toll
+ - food
+ - parking
+ - transport
+ - accommodation
+ - gasoline
+ - telecom
+ - miscellaneous
+
 ```php
 echo $result->document->inference->prediction->category->value;
 ```
@@ -205,6 +215,10 @@ echo $result->document->inference->prediction->date->value;
 
 ## Document Type
 **documentType** : One of: 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+
+#### Possible values include:
+ - expense_receipt
+ - credit_card_receipt
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
@@ -236,6 +250,13 @@ echo $result->document->inference->prediction->receiptNumber->value;
 
 ## Purchase Subcategory
 **subcategory** : The purchase subcategory among predefined classes for transport and food.
+
+#### Possible values include:
+ - plane
+ - taxi
+ - train
+ - restaurant
+ - shopping
 
 ```php
 echo $result->document->inference->prediction->subcategory->value;
