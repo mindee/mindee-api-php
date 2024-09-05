@@ -5,7 +5,7 @@
 * :sparkles: add support for pdf operations
 * :sparkles: add support for multi-receipts auto-extraction
 * :sparkles: add support for invoice-splitter auto-extraction
-*
+
 ### Fixes
 * :coffin: remove regression testing
 * :memo: update documentation

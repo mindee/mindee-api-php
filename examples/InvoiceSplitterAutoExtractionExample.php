@@ -6,7 +6,7 @@ use Mindee\Input\PathInput;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use Mindee\Product\Invoice\InvoiceV4;
 
-$apiKey = getenv("MINDEE_API_KEY");
+$apiKey = "my-api-key-here";
 $mindeeClient = new Client($apiKey);
 
 $inputPath = "path/to/your/file.ext";

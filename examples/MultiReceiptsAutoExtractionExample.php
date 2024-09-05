@@ -6,7 +6,7 @@ use Mindee\Input\PathInput;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\Product\Receipt\ReceiptV5;
 
-$apiKey = getenv("MINDEE_API_KEY");
+$apiKey = "my-api-key-here";
 $mindeeClient = new Client($apiKey);
 
 $inputPath = "path/to/your/file.ext";
