@@ -85,7 +85,7 @@ class Endpoint extends BaseEndpoint
      * @param boolean     $includeWords Whether to include the full text for each page.
      *                        This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-     *                             This performs a full OCR operation on the server and will increase response time.
+     *                             This performs a full OCR operation on the server and may increase response time.
      * @param boolean     $cropper      Whether to include cropper results for each page.
      *                             This performs a cropping operation on the server and will increase response time.
      * @param boolean     $async        Whether the query is in async mode.
@@ -169,7 +169,7 @@ class Endpoint extends BaseEndpoint
      * @param boolean     $includeWords Whether to include the full text for each page.
      *                        This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-     *                             This performs a full OCR operation on the server and will increase response time.
+     *                             This performs a full OCR operation on the server and may increase response time.
      * @param boolean     $closeFile    Whether to close the file after parsing it.
      * @param boolean     $cropper      Whether to include cropper results for each page.
      *                             This performs a cropping operation on the server and will increase response time.
@@ -192,7 +192,7 @@ class Endpoint extends BaseEndpoint
      * @param boolean     $includeWords Whether to include the full text for each page.
      *                        This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-*                             This performs a full OCR operation on the server and will increase response time.
+*                             This performs a full OCR operation on the server and may increase response time.
      * @param boolean     $closeFile    Whether to close the file after parsing it.
      * @param boolean     $cropper      Whether to include cropper results for each page.
      *                             This performs a cropping operation on the server and will increase response time.

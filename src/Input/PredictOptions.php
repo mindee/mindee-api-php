@@ -20,7 +20,7 @@ class PredictOptions
     public bool $fullText;
     /**
      * @var boolean Whether to include cropper results for each page.
-     * This performs a cropping operation on the server and will increase response time.
+     * This performs a cropping operation on the server and may increase response time.
      */
     public bool $cropper;
 
