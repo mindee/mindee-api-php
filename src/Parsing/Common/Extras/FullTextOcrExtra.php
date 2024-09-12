@@ -25,10 +25,10 @@ class FullTextOcrExtra
      */
     public function __construct(array $rawPrediction)
     {
-        if (isset($rawPrediction['content']) && !isEmpty($rawPrediction['content'])) {
+        if (isset($rawPrediction['content'])) {
             $this->content = $rawPrediction['content'];
         }
-        if (isset($rawPrediction['language']) && !isEmpty($rawPrediction['language'])) {
+        if (isset($rawPrediction['language'])) {
             $this->language = $rawPrediction['language'];
         }
     }

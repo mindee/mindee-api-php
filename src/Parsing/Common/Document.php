@@ -55,10 +55,10 @@ class Document
         if (array_key_exists("ocr", $rawResponse) && $rawResponse['ocr']) {
             $this->ocr = new Ocr($rawResponse['ocr']);
         }
-        if (array_key_exists("extras", $rawResponse) && $rawResponse['extras']) {
-            $this->extras = new Extras($rawResponse['extras']);
+        if (array_key_exists("extras", $rawResponse["inference"]) && $rawResponse["inference"]['extras']) {
+            $this->extras = new Extras($rawResponse["inference"]['extras']);
         }
-        $this->injectFullTextOcr($rawResponse['inference']);
+        $this->injectFullTextOcr($rawResponse);
     }
 
     /**
@@ -104,7 +104,7 @@ $this->inference";
 
         $artificialTextObj = ['content' => $fullTextContent];
 
-        if (!property_exists($this, 'extras')) {
+        if (!isset($this->extras)) {
             $this->extras = new Extras(['full_text_ocr' => $artificialTextObj]);
         } else {
             $this->extras->addArtificialExtra(['full_text_ocr' => $artificialTextObj]);

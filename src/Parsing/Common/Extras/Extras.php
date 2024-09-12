@@ -43,10 +43,12 @@ class Extras
     public function __construct(array $rawPrediction)
     {
         foreach ($rawPrediction as $key => $extra) {
-            if ($key != 'cropper') {
-                $this->__set($key, $extra);
-            } else {
+            if ($key == 'cropper') {
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
+            } elseif ($key == 'full_text_ocr') {
+                $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
+            } else {
+                $this->__set($key, $extra);
             }
         }
     }
@@ -60,7 +62,7 @@ class Extras
      */
     public function addArtificialExtra(array $rawPrediction)
     {
-        if (isset($rawPrediction["full_text_ocr"]) && !isEmpty($rawPrediction['$rawPrediction'])) {
+        if (isset($rawPrediction["full_text_ocr"]) && !isEmpty($rawPrediction['full_text_ocr'])) {
             $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
         }
     }
@@ -76,10 +78,10 @@ class Extras
             $resStr .= "\n";
         }
         if ($this->cropper) {
-            $resStr .= ":cropper:" . strval($this->cropper) . "\n";
+            $resStr .= ":cropper:" . $this->cropper . "\n";
         }
         if ($this->fullTextOcr) {
-            $resStr .= ":full_text_ocr:" . strval($this->fullTextOcr) . "\n";
+            $resStr .= ":full_text_ocr:" . $this->fullTextOcr . "\n";
         }
         return $resStr;
     }

@@ -21,7 +21,7 @@ class ExtrasIntegrationFunctional extends TestCase
     public function testShouldSendCropperExtra(): void
     {
         $sample = $this->client->sourceFromPath(
-            "tests/data/products/invoices/default_sample.jpg"
+            (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/products/invoices/default_sample.jpg"
         );
         $predictOptions = new PredictOptions();
         $predictOptions->setCropper(true);
@@ -31,13 +31,13 @@ class ExtrasIntegrationFunctional extends TestCase
         $response = $this->client->parse(InvoiceV4::class, $sample, $predictMethodOptions);
 
         $this->assertNotNull($response->document->inference->pages[0]->extras->cropper);
-        $this->assertGreaterThan(0, count($response->document->extras->cropper->croppings));
+        $this->assertGreaterThan(0, count($response->document->inference->pages[0]->extras->cropper->croppings));
     }
 
     public function testShouldSendFullTextOcrExtra(): void
     {
         $sample = $this->client->sourceFromPath(
-            "tests/data/products/international_id/default_sample.jpg"
+            (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/products/international_id/default_sample.jpg"
         );
         $predictOptions = new PredictOptions();
         $predictOptions->setFullText(true);
