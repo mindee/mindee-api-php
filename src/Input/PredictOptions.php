@@ -12,6 +12,12 @@ class PredictOptions
      * This performs a full OCR operation on the server and will increase response time.
      */
     public bool $includeWords;
+
+    /**
+     * @var boolean Whether to include the full OCR text response in compatible APIs.
+     * This performs a full OCR operation on the server and will increase response time.
+     */
+    public bool $fullText;
     /**
      * @var boolean Whether to include cropper results for each page.
      * This performs a cropping operation on the server and will increase response time.
@@ -24,6 +30,7 @@ class PredictOptions
     public function __construct()
     {
         $this->includeWords = false;
+        $this->fullText = false;
         $this->cropper = false;
     }
 
@@ -34,6 +41,16 @@ class PredictOptions
     public function setIncludeWords(bool $includeWords): PredictOptions
     {
         $this->includeWords = $includeWords;
+        return $this;
+    }
+
+    /**
+     * @param boolean $fullText Whether to include the full text.
+     * @return $this
+     */
+    public function setFullText(bool $fullText): PredictOptions
+    {
+        $this->fullText = $fullText;
         return $this;
     }
 

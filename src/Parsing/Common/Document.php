@@ -58,6 +58,7 @@ class Document
         if (array_key_exists("extras", $rawResponse) && $rawResponse['extras']) {
             $this->extras = new Extras($rawResponse['extras']);
         }
+        $this->injectFullTextOcr($rawResponse['inference']);
     }
 
     /**
@@ -72,5 +73,41 @@ Document
 :Filename: $this->filename
 
 $this->inference";
+    }
+
+    /**
+     * Injects the results from pages' "full_text_ocr", if present.
+     *
+     * @param array $rawResponse Raw HTTP response.
+     * @return void
+     */
+    private function injectFullTextOcr(array $rawResponse): void
+    {
+        $pages = $rawResponse['inference']['pages'] ?? [];
+
+        if (
+            empty($pages) ||
+            !isset($pages[0]['extras']) ||
+            !isset($pages[0]['extras']['full_text_ocr'])
+        ) {
+            return;
+        }
+
+        $fullTextContent = implode("\n", array_map(
+            function ($page) {
+                return $page['extras']['full_text_ocr']['content'] ?? '';
+            },
+            array_filter($pages, function ($page) {
+                return isset($page['extras']['full_text_ocr']);
+            })
+        ));
+
+        $artificialTextObj = ['content' => $fullTextContent];
+
+        if (!property_exists($this, 'extras')) {
+            $this->extras = new Extras(['full_text_ocr' => $artificialTextObj]);
+        } else {
+            $this->extras->addArtificialExtra(['full_text_ocr' => $artificialTextObj]);
+        }
     }
 }

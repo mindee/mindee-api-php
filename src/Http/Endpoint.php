@@ -4,8 +4,8 @@ namespace Mindee\Http;
 
 use Mindee;
 use Mindee\Input\InputSource;
-use Mindee\Input\URLInputSource;
 use Mindee\Input\LocalInputSource;
+use Mindee\Input\URLInputSource;
 
 /**
  * Endpoint management.
@@ -83,9 +83,11 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl     File to upload.
      * @param boolean     $includeWords Whether to include the full text for each page.
-     *                    This performs a full OCR operation on the server and will increase response time.
+     *                        This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
+     *                             This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                    This performs a cropping operation on the server and will increase response time.
+     *                             This performs a cropping operation on the server and will increase response time.
      * @param boolean     $async        Whether the query is in async mode.
      * @param boolean     $closeFile    Close file.
      * @return array
@@ -93,6 +95,7 @@ class Endpoint extends BaseEndpoint
     private function initCurlSessionPost(
         InputSource $fileCurl,
         bool $includeWords,
+        bool $fullText,
         bool $cropper,
         bool $async,
         bool $closeFile
@@ -122,8 +125,15 @@ class Endpoint extends BaseEndpoint
         if ($includeWords) {
             $postFields['include_mvision'] = 'true';
         }
-        if ($cropper) {
-            $suffix .= '?cropper=true';
+        if ($fullText && $cropper) {
+            $suffix .= '?full_text_ocr=true&cropper=true';
+        } else {
+            if ($fullText) {
+                $suffix .= '?full_text_ocr=true';
+            }
+            if ($cropper) {
+                $suffix .= '?cropper=true';
+            }
         }
         curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . $suffix);
         if (isset($postFields)) {
@@ -157,19 +167,22 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl     File to upload.
      * @param boolean     $includeWords Whether to include the full text for each page.
-     *                    This performs a full OCR operation on the server and will increase response time.
+     *                        This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
+     *                             This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $closeFile    Whether to close the file after parsing it.
      * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                    This performs a cropping operation on the server and will increase response time.
+     *                             This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictRequestPost(
         InputSource $fileCurl,
         bool $includeWords,
+        bool $fullText,
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, false, $closeFile);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, false, $closeFile);
     }
 
     /**
@@ -177,19 +190,22 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl     File to upload.
      * @param boolean     $includeWords Whether to include the full text for each page.
-     *                    This performs a full OCR operation on the server and will increase response time.
+     *                        This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
+*                             This performs a full OCR operation on the server and will increase response time.
      * @param boolean     $closeFile    Whether to close the file after parsing it.
      * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                    This performs a cropping operation on the server and will increase response time.
+     *                             This performs a cropping operation on the server and will increase response time.
      * @return array
      */
     public function predictAsyncRequestPost(
         InputSource $fileCurl,
         bool $includeWords,
+        bool $fullText,
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $cropper, true, $closeFile);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, true, $closeFile);
     }
 
     /**
