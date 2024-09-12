@@ -144,6 +144,12 @@ Available products:";
                 "Include full document text in response."
             )
             ->addOption(
+                'full_text_ocr',
+                'f',
+                InputOption::VALUE_NONE,
+                "Include full text ocr in response."
+            )
+            ->addOption(
                 'cropper',
                 'c',
                 InputOption::VALUE_NONE,
@@ -388,6 +394,9 @@ Available products:";
         $predictOptions = new PredictOptions();
         if ($input->getOption('full_text')) {
             $predictOptions->setIncludeWords(true);
+        }
+        if ($input->getOption('full_text_ocr')) {
+            $predictOptions->setFullText(true);
         }
         return $predictOptions;
     }

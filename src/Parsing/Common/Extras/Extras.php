@@ -2,6 +2,8 @@
 
 namespace Mindee\Parsing\Common\Extras;
 
+use function PHPUnit\Framework\isEmpty;
+
 /**
  * Extras collection wrapper class.
  *
@@ -13,6 +15,10 @@ class Extras
      * @var \Mindee\Parsing\Common\Extras\CropperExtra|null Cropper extra.
      */
     public ?CropperExtra $cropper;
+    /**
+     * @var \Mindee\Parsing\Common\Extras\CropperExtra|null Cropper extra.
+     */
+    public ?FullTextOcrExtra $fullTextOcr;
     /**
      * @var array Other extras.
      */
@@ -37,19 +43,46 @@ class Extras
     public function __construct(array $rawPrediction)
     {
         foreach ($rawPrediction as $key => $extra) {
-            if ($key != 'cropper') {
-                $this->__set($key, $extra);
-            } else {
+            if ($key == 'cropper') {
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
+            } elseif ($key == 'full_text_ocr') {
+                $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
+            } else {
+                $this->__set($key, $extra);
             }
         }
     }
 
     /**
-     * @return string String representation.
+     * Adds artificial extra data for reconstructed extras.
+     * Currently only used for full_text_ocr.
+     *
+     * @param array $rawPrediction Raw HTTP response.
+     * @return void
      */
-    public function __toString(): string
+    public function addArtificialExtra(array $rawPrediction)
     {
-        return implode('', $this->data);
+        if (isset($rawPrediction["full_text_ocr"]) && !isEmpty($rawPrediction['full_text_ocr'])) {
+            $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $resStr = '';
+        foreach ($this->data as $key => $extra) {
+            $resStr .= $key . ': ' . $extra;
+            $resStr .= "\n";
+        }
+        if ($this->cropper) {
+            $resStr .= ":cropper:" . $this->cropper . "\n";
+        }
+        if ($this->fullTextOcr) {
+            $resStr .= ":full_text_ocr:" . $this->fullTextOcr . "\n";
+        }
+        return $resStr;
     }
 }
