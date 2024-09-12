@@ -1,11 +1,16 @@
 # Mindee PHP API Library Changelog
 
+## v1.11.0 - 2024-09-12
+### Changes
+* :sparkles: add support for full text ocr on compatible APIs
+
+
 ## v1.10.0 - 2024-09-04
 ### Changes
 * :sparkles: add support for pdf operations
 * :sparkles: add support for multi-receipts auto-extraction
 * :sparkles: add support for invoice-splitter auto-extraction
-*
+
 ### Fixes
 * :coffin: remove regression testing
 * :memo: update documentation
