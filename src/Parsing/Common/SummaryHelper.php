@@ -46,11 +46,14 @@ class SummaryHelper
     /**
      * Prepends carriage return, new line & tab symbols with a backslash in a string.
      *
-     * @param string $string The string to fix.
-     * @return string The fixed string.
+     * @param string|null $string The string to fix.
+     * @return string|null The fixed string.
      */
-    private static function escapeSpecialChars(string $string): string
+    private static function escapeSpecialChars(?string $string): ?string
     {
+        if ($string === null) {
+            return null;
+        }
         $find = array("\n", "\t", "\r");
         $replace = array("\\n", "\\t", "\\r");
         return str_replace($find, $replace, $string);
