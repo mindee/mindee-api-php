@@ -43,7 +43,14 @@ class SummaryHelper
         return preg_replace('/ *([\n\r])/', "\n", $inputString);
     }
 
-    private static function escapeSpecialChars($string) {
+    /**
+     * Prepends carriage return, new line & tab symbols with a backslash in a string.
+     *
+     * @param string $string The string to fix.
+     * @return string The fixed string.
+     */
+    private static function escapeSpecialChars(string $string): string
+    {
         $find = array("\n", "\t", "\r");
         $replace = array("\\n", "\\t", "\\r");
         return str_replace($find, $replace, $string);

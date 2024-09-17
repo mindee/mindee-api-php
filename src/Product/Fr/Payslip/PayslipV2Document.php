@@ -115,7 +115,8 @@ class PayslipV2Document extends Prediction
     {
         $employeeToFieldList = $this->employee != null ? $this->employee->toFieldList() : "";
         $employerToFieldList = $this->employer != null ? $this->employer->toFieldList() : "";
-        $bankAccountDetailsToFieldList = $this->bankAccountDetails != null ? $this->bankAccountDetails->toFieldList() : "";
+        $bankAccountDetailsToFieldList = $this->bankAccountDetails != null ?
+            $this->bankAccountDetails->toFieldList() : "";
         $employmentToFieldList = $this->employment != null ? $this->employment->toFieldList() : "";
         $salaryDetailsSummary = strval($this->salaryDetails);
         $payDetailToFieldList = $this->payDetail != null ? $this->payDetail->toFieldList() : "";
