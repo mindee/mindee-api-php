@@ -9,7 +9,7 @@ class TestingUtilities
         $versionLineStartPos = strpos($rstStr, ":Product: ");
         $versionEndPos = strpos($rstStr, "\n", $versionLineStartPos);
 
-        $substring = substr($rstStr, $versionLineStartPos, $versionEndPos - $versionLineStartPos);
+        $substring = mb_substr($rstStr, $versionLineStartPos, $versionEndPos - $versionLineStartPos);
         $versionStartPos = strrpos($substring, " v");
 
         return substr($substring, $versionStartPos + 2);

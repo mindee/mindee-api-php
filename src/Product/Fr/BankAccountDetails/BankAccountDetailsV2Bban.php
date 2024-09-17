@@ -46,6 +46,21 @@ class BankAccountDetailsV2Bban
     }
 
     /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["bbanBankCode"] = SummaryHelper::formatForDisplay($this->bbanBankCode);
+        $outArr["bbanBranchCode"] = SummaryHelper::formatForDisplay($this->bbanBranchCode);
+        $outArr["bbanKey"] = SummaryHelper::formatForDisplay($this->bbanKey);
+        $outArr["bbanNumber"] = SummaryHelper::formatForDisplay($this->bbanNumber);
+        return $outArr;
+    }
+
+    /**
      * Return values for printing as an array.
      *
      * @return array
@@ -80,6 +95,6 @@ class BankAccountDetailsV2Bban
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toTableLine());
+        return SummaryHelper::cleanOutString($this->toFieldList());
     }
 }

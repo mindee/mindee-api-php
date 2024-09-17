@@ -93,10 +93,10 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return '| ' . str_pad($printable['basis'], 13, ' ') .
-            ' | ' . str_pad($printable['code'], 6, ' ') .
-            ' | ' . str_pad($printable['rate'], 8, ' ') .
-            ' | ' . str_pad($printable['value'], 13, ' ') . ' |';
+        return '| ' . mb_str_pad($printable['basis'], 13, ' ') .
+            ' | ' . mb_str_pad($printable['code'], 6, ' ') .
+            ' | ' . mb_str_pad($printable['rate'], 8, ' ') .
+            ' | ' . mb_str_pad($printable['value'], 13, ' ') . ' |';
     }
 
     /**

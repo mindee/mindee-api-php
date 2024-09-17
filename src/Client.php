@@ -146,7 +146,7 @@ class Client
      */
     private function cleanAccountName(string $accountName): string
     {
-        if (!$accountName || strlen(trim($accountName)) < 1) {
+        if (!$accountName || mb_strlen(trim($accountName)) < 1) {
             error_log(
                 "No account name provided for custom build. " . self::DEFAULT_OWNER . " will be used by default."
             );
@@ -192,7 +192,7 @@ class Client
      */
     public function createEndpoint(string $endpointName, string $accountName, ?string $version = null): Endpoint
     {
-        if (strlen($endpointName) == 0) {
+        if (mb_strlen($endpointName) == 0) {
             throw new MindeeClientException("Custom endpoint requires a valid 'endpoint_name'.");
         }
         $accountName = $this->cleanAccountName($accountName);

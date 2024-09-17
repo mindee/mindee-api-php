@@ -61,11 +61,11 @@ class ResumeV1Education
     }
 
     /**
-     * Return values for printing as an array.
+     * Return values for printing inside an RST table.
      *
      * @return array
      */
-    private function printableValues(): array
+    private function tablePrintableValues(): array
     {
         $outArr = [];
         $outArr["degreeDomain"] = SummaryHelper::formatForDisplay($this->degreeDomain, 15);
@@ -77,6 +77,24 @@ class ResumeV1Education
         $outArr["startYear"] = SummaryHelper::formatForDisplay($this->startYear);
         return $outArr;
     }
+
+    /**
+     * Return values for printing as an array.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
+        $outArr = [];
+        $outArr["degreeDomain"] = SummaryHelper::formatForDisplay($this->degreeDomain);
+        $outArr["degreeType"] = SummaryHelper::formatForDisplay($this->degreeType);
+        $outArr["endMonth"] = SummaryHelper::formatForDisplay($this->endMonth);
+        $outArr["endYear"] = SummaryHelper::formatForDisplay($this->endYear);
+        $outArr["school"] = SummaryHelper::formatForDisplay($this->school);
+        $outArr["startMonth"] = SummaryHelper::formatForDisplay($this->startMonth);
+        $outArr["startYear"] = SummaryHelper::formatForDisplay($this->startYear);
+        return $outArr;
+    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
@@ -84,15 +102,15 @@ class ResumeV1Education
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["degreeDomain"], 15) . " | ";
-        $outStr .= str_pad($printable["degreeType"], 25) . " | ";
-        $outStr .= str_pad($printable["endMonth"], 9) . " | ";
-        $outStr .= str_pad($printable["endYear"], 8) . " | ";
-        $outStr .= str_pad($printable["school"], 25) . " | ";
-        $outStr .= str_pad($printable["startMonth"], 11) . " | ";
-        $outStr .= str_pad($printable["startYear"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["degreeDomain"], 15) . " | ";
+        $outStr .= mb_str_pad($printable["degreeType"], 25) . " | ";
+        $outStr .= mb_str_pad($printable["endMonth"], 9) . " | ";
+        $outStr .= mb_str_pad($printable["endYear"], 8) . " | ";
+        $outStr .= mb_str_pad($printable["school"], 25) . " | ";
+        $outStr .= mb_str_pad($printable["startMonth"], 11) . " | ";
+        $outStr .= mb_str_pad($printable["startYear"], 10) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

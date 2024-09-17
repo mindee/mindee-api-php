@@ -51,11 +51,11 @@ class UsMailV2SenderAddress
     }
 
     /**
-     * Return values for printing as an array.
+     * Return values for printing inside an RST table.
      *
      * @return array
      */
-    private function printableValues(): array
+    private function tablePrintableValues(): array
     {
         $outArr = [];
         $outArr["city"] = SummaryHelper::formatForDisplay($this->city, 15);
@@ -63,6 +63,22 @@ class UsMailV2SenderAddress
         $outArr["postalCode"] = SummaryHelper::formatForDisplay($this->postalCode);
         $outArr["state"] = SummaryHelper::formatForDisplay($this->state);
         $outArr["street"] = SummaryHelper::formatForDisplay($this->street, 25);
+        return $outArr;
+    }
+
+    /**
+     * Return values for printing as an array.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
+        $outArr = [];
+        $outArr["city"] = SummaryHelper::formatForDisplay($this->city);
+        $outArr["complete"] = SummaryHelper::formatForDisplay($this->complete);
+        $outArr["postalCode"] = SummaryHelper::formatForDisplay($this->postalCode);
+        $outArr["state"] = SummaryHelper::formatForDisplay($this->state);
+        $outArr["street"] = SummaryHelper::formatForDisplay($this->street);
         return $outArr;
     }
     /**
@@ -87,6 +103,6 @@ class UsMailV2SenderAddress
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toTableLine());
+        return SummaryHelper::cleanOutString($this->toFieldList());
     }
 }

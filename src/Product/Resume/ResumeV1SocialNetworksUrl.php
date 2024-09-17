@@ -36,6 +36,19 @@ class ResumeV1SocialNetworksUrl
     }
 
     /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["name"] = SummaryHelper::formatForDisplay($this->name, 20);
+        $outArr["url"] = SummaryHelper::formatForDisplay($this->url, 50);
+        return $outArr;
+    }
+
+    /**
      * Return values for printing as an array.
      *
      * @return array
@@ -43,8 +56,8 @@ class ResumeV1SocialNetworksUrl
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["name"] = SummaryHelper::formatForDisplay($this->name, 20);
-        $outArr["url"] = SummaryHelper::formatForDisplay($this->url, 50);
+        $outArr["name"] = SummaryHelper::formatForDisplay($this->name);
+        $outArr["url"] = SummaryHelper::formatForDisplay($this->url);
         return $outArr;
     }
     /**
@@ -54,10 +67,10 @@ class ResumeV1SocialNetworksUrl
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["name"], 20) . " | ";
-        $outStr .= str_pad($printable["url"], 50) . " | ";
+        $outStr .= mb_str_pad($printable["name"], 20) . " | ";
+        $outStr .= mb_str_pad($printable["url"], 50) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

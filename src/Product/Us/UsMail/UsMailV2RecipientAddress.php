@@ -61,11 +61,11 @@ class UsMailV2RecipientAddress
     }
 
     /**
-     * Return values for printing as an array.
+     * Return values for printing inside an RST table.
      *
      * @return array
      */
-    private function printableValues(): array
+    private function tablePrintableValues(): array
     {
         $outArr = [];
         $outArr["city"] = SummaryHelper::formatForDisplay($this->city, 15);
@@ -77,6 +77,24 @@ class UsMailV2RecipientAddress
         $outArr["street"] = SummaryHelper::formatForDisplay($this->street, 25);
         return $outArr;
     }
+
+    /**
+     * Return values for printing as an array.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
+        $outArr = [];
+        $outArr["city"] = SummaryHelper::formatForDisplay($this->city);
+        $outArr["complete"] = SummaryHelper::formatForDisplay($this->complete);
+        $outArr["isAddressChange"] = SummaryHelper::formatForDisplay($this->isAddressChange);
+        $outArr["postalCode"] = SummaryHelper::formatForDisplay($this->postalCode);
+        $outArr["privateMailboxNumber"] = SummaryHelper::formatForDisplay($this->privateMailboxNumber);
+        $outArr["state"] = SummaryHelper::formatForDisplay($this->state);
+        $outArr["street"] = SummaryHelper::formatForDisplay($this->street);
+        return $outArr;
+    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
@@ -84,15 +102,15 @@ class UsMailV2RecipientAddress
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["city"], 15) . " | ";
-        $outStr .= str_pad($printable["complete"], 35) . " | ";
-        $outStr .= str_pad($printable["isAddressChange"], 17) . " | ";
-        $outStr .= str_pad($printable["postalCode"], 11) . " | ";
-        $outStr .= str_pad($printable["privateMailboxNumber"], 22) . " | ";
-        $outStr .= str_pad($printable["state"], 5) . " | ";
-        $outStr .= str_pad($printable["street"], 25) . " | ";
+        $outStr .= mb_str_pad($printable["city"], 15) . " | ";
+        $outStr .= mb_str_pad($printable["complete"], 35) . " | ";
+        $outStr .= mb_str_pad($printable["isAddressChange"], 17) . " | ";
+        $outStr .= mb_str_pad($printable["postalCode"], 11) . " | ";
+        $outStr .= mb_str_pad($printable["privateMailboxNumber"], 22) . " | ";
+        $outStr .= mb_str_pad($printable["state"], 5) . " | ";
+        $outStr .= mb_str_pad($printable["street"], 25) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

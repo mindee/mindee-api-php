@@ -41,14 +41,26 @@ class ReceiptV5LineItem
         $this->setPosition($rawPrediction);
         $this->description = $rawPrediction["description"] ?? null;
         $this->quantity = isset($rawPrediction["quantity"]) ?
-        number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["quantity"]) : null;
         $this->totalAmount = isset($rawPrediction["total_amount"]) ?
-        number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["total_amount"]) : null;
         $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-        number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["unit_price"]) : null;
+    }
+
+    /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
+        $outArr["quantity"] = SummaryHelper::formatFloat($this->quantity);
+        $outArr["totalAmount"] = SummaryHelper::formatFloat($this->totalAmount);
+        $outArr["unitPrice"] = SummaryHelper::formatFloat($this->unitPrice);
+        return $outArr;
     }
 
     /**
@@ -59,10 +71,10 @@ class ReceiptV5LineItem
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
-        $outArr["quantity"] = $this->quantity == null ? "" : number_format($this->quantity, 2, ".", "");
-        $outArr["totalAmount"] = $this->totalAmount == null ? "" : number_format($this->totalAmount, 2, ".", "");
-        $outArr["unitPrice"] = $this->unitPrice == null ? "" : number_format($this->unitPrice, 2, ".", "");
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description);
+        $outArr["quantity"] = SummaryHelper::formatFloat($this->quantity);
+        $outArr["totalAmount"] = SummaryHelper::formatFloat($this->totalAmount);
+        $outArr["unitPrice"] = SummaryHelper::formatFloat($this->unitPrice);
         return $outArr;
     }
     /**
@@ -72,12 +84,12 @@ class ReceiptV5LineItem
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["description"], 36) . " | ";
-        $outStr .= str_pad($printable["quantity"], 8) . " | ";
-        $outStr .= str_pad($printable["totalAmount"], 12) . " | ";
-        $outStr .= str_pad($printable["unitPrice"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["description"], 36) . " | ";
+        $outStr .= mb_str_pad($printable["quantity"], 8) . " | ";
+        $outStr .= mb_str_pad($printable["totalAmount"], 12) . " | ";
+        $outStr .= mb_str_pad($printable["unitPrice"], 10) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

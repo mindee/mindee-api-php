@@ -67,7 +67,7 @@ Usage:
 
 Available products:";
             foreach ($this->documentList as $documentName => $document) {
-                $helpCondensed .= "\n  " . str_pad($documentName, 65 - strlen($document->help)) . $document->help;
+                $helpCondensed .= "\n  " . str_pad($documentName, 65 - mb_strlen($document->help)) . $document->help;
             }
         } else {
             $helpCondensed .= $this->documentList[$product]->help;

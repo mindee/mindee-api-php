@@ -66,11 +66,11 @@ class ResumeV1ProfessionalExperience
     }
 
     /**
-     * Return values for printing as an array.
+     * Return values for printing inside an RST table.
      *
      * @return array
      */
-    private function printableValues(): array
+    private function tablePrintableValues(): array
     {
         $outArr = [];
         $outArr["contractType"] = SummaryHelper::formatForDisplay($this->contractType, 15);
@@ -83,6 +83,25 @@ class ResumeV1ProfessionalExperience
         $outArr["startYear"] = SummaryHelper::formatForDisplay($this->startYear);
         return $outArr;
     }
+
+    /**
+     * Return values for printing as an array.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
+        $outArr = [];
+        $outArr["contractType"] = SummaryHelper::formatForDisplay($this->contractType);
+        $outArr["department"] = SummaryHelper::formatForDisplay($this->department);
+        $outArr["employer"] = SummaryHelper::formatForDisplay($this->employer);
+        $outArr["endMonth"] = SummaryHelper::formatForDisplay($this->endMonth);
+        $outArr["endYear"] = SummaryHelper::formatForDisplay($this->endYear);
+        $outArr["role"] = SummaryHelper::formatForDisplay($this->role);
+        $outArr["startMonth"] = SummaryHelper::formatForDisplay($this->startMonth);
+        $outArr["startYear"] = SummaryHelper::formatForDisplay($this->startYear);
+        return $outArr;
+    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
@@ -90,16 +109,16 @@ class ResumeV1ProfessionalExperience
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["contractType"], 15) . " | ";
-        $outStr .= str_pad($printable["department"], 10) . " | ";
-        $outStr .= str_pad($printable["employer"], 25) . " | ";
-        $outStr .= str_pad($printable["endMonth"], 9) . " | ";
-        $outStr .= str_pad($printable["endYear"], 8) . " | ";
-        $outStr .= str_pad($printable["role"], 20) . " | ";
-        $outStr .= str_pad($printable["startMonth"], 11) . " | ";
-        $outStr .= str_pad($printable["startYear"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["contractType"], 15) . " | ";
+        $outStr .= mb_str_pad($printable["department"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["employer"], 25) . " | ";
+        $outStr .= mb_str_pad($printable["endMonth"], 9) . " | ";
+        $outStr .= mb_str_pad($printable["endYear"], 8) . " | ";
+        $outStr .= mb_str_pad($printable["role"], 20) . " | ";
+        $outStr .= mb_str_pad($printable["startMonth"], 11) . " | ";
+        $outStr .= mb_str_pad($printable["startYear"], 10) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

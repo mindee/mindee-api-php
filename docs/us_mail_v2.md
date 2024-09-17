@@ -50,7 +50,7 @@ echo $apiResponse->document;
 ## Standard Fields
 These fields are generic and used in several products.
 
-### BasicField
+### BaseField
 Each prediction object contains a set of fields that inherit from the generic `BaseField` class.
 A typical `BaseField` object will have the following attributes:
 
@@ -58,16 +58,18 @@ A typical `BaseField` object will have the following attributes:
 * **confidence** (`float`): the confidence score of the field prediction.
 * **boundingBox** (`[Point, Point, Point, Point]`): contains exactly 4 relative vertices (points) coordinates of a right rectangle containing the field in the document.
 * **polygon** (`Point[]`): contains the relative vertices coordinates (`Point`) of a polygon containing the field in the image.
-* **pageId** (`integer`): the ID of the page, is `null` when at document-level.
+* **pageId** (`integer`): the ID of the page, always `null` when at document-level.
 * **reconstructed** (`bool`): indicates whether an object was reconstructed (not extracted as the API gave it).
 
-> **Note:** A `Point` simply refers to a List of two numbers (`[float, float]`).
+> **Note:** A `Point` simply refers to a list of two numbers (`[float, float]`).
 
 
 Aside from the previous attributes, all basic fields have access to a custom `__toString` method that can be used to print their value as a string.
 
 ### StringField
-The text field `StringField` only has one constraint: its **value** is an optional `?string`.
+The text field `StringField` implements the following:
+* **value** (`string`): represents the value of the field as a string.
+* **rawValue** (`string`): the value of the string as it appears on the document.
 
 ## Specific Fields
 Fields which are specific to this product; they are not used in any other product.
@@ -101,7 +103,7 @@ A `UsMailV2SenderAddress` implements the following attributes:
 The following fields are extracted for US Mail V2:
 
 ## Recipient Addresses
-**recipientAddresses** (List[[UsMailV2RecipientAddress](#recipient-addresses-field)]): The addresses of the recipients.
+**recipientAddresses** ([[UsMailV2RecipientAddress](#recipient-addresses-field)]): The addresses of the recipients.
 
 ```php
 foreach ($result->document->inference->prediction->recipientAddresses as $recipientAddressesElem)

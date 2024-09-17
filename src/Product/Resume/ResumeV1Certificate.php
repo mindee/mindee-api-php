@@ -46,6 +46,21 @@ class ResumeV1Certificate
     }
 
     /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["grade"] = SummaryHelper::formatForDisplay($this->grade, 10);
+        $outArr["name"] = SummaryHelper::formatForDisplay($this->name, 30);
+        $outArr["provider"] = SummaryHelper::formatForDisplay($this->provider, 25);
+        $outArr["year"] = SummaryHelper::formatForDisplay($this->year);
+        return $outArr;
+    }
+
+    /**
      * Return values for printing as an array.
      *
      * @return array
@@ -53,9 +68,9 @@ class ResumeV1Certificate
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["grade"] = SummaryHelper::formatForDisplay($this->grade, 10);
-        $outArr["name"] = SummaryHelper::formatForDisplay($this->name, 30);
-        $outArr["provider"] = SummaryHelper::formatForDisplay($this->provider, 25);
+        $outArr["grade"] = SummaryHelper::formatForDisplay($this->grade);
+        $outArr["name"] = SummaryHelper::formatForDisplay($this->name);
+        $outArr["provider"] = SummaryHelper::formatForDisplay($this->provider);
         $outArr["year"] = SummaryHelper::formatForDisplay($this->year);
         return $outArr;
     }
@@ -66,12 +81,12 @@ class ResumeV1Certificate
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["grade"], 10) . " | ";
-        $outStr .= str_pad($printable["name"], 30) . " | ";
-        $outStr .= str_pad($printable["provider"], 25) . " | ";
-        $outStr .= str_pad($printable["year"], 4) . " | ";
+        $outStr .= mb_str_pad($printable["grade"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["name"], 30) . " | ";
+        $outStr .= mb_str_pad($printable["provider"], 25) . " | ";
+        $outStr .= mb_str_pad($printable["year"], 4) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

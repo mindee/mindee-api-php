@@ -8,19 +8,28 @@ namespace Mindee\Parsing\Common;
 class SummaryHelper
 {
     /**
-     * Adds custom separators for console display in line-items-like fields.
-     *
-     * @param array  $columnSizes Sizes of the respective columns.
-     * @param string $separator   Separator character.
-     * @return string
+     * @param float|null $number Number to parse.
+     * @return string Number as a valid float string.
      */
-    public static function lineSeparator(array $columnSizes, string $separator): string
+    public static function formatFloat(?float $number): string
     {
-        $outStr = "  +";
-        foreach ($columnSizes as $size) {
-            $outStr .= str_repeat($separator . "+", $size);
+        if ($number === null) {
+            return '';
         }
-        return $outStr;
+        // First, format to 5 decimal places
+        $formatted = number_format($number, 5, '.', '');
+
+        // Trim trailing zeros, but keep at least 2 decimal places
+        $formatted = rtrim(rtrim($formatted, '0'), '.');
+
+        // If less than 2 decimal places, pad with zeros
+        if (substr_count($formatted, '.') == 0) {
+            $formatted .= '.00';
+        } elseif (mb_strlen($formatted) - strpos($formatted, '.') <= 2) {
+            $formatted = sprintf("%.2f", $formatted);
+        }
+
+        return $formatted;
     }
 
     /**
@@ -32,6 +41,12 @@ class SummaryHelper
     public static function cleanOutString(string $inputString): string
     {
         return preg_replace('/ *([\n\r])/', "\n", $inputString);
+    }
+
+    private static function escapeSpecialChars($string) {
+        $find = array("\n", "\t", "\r");
+        $replace = array("\\n", "\\t", "\\r");
+        return str_replace($find, $replace, $string);
     }
 
     /**
@@ -49,13 +64,14 @@ class SummaryHelper
         if ($inputString === false) {
             return 'False';
         }
-        if (!$inputString || strlen($inputString) == 0) {
+        $inputString = SummaryHelper::escapeSpecialChars($inputString);
+        if (!$inputString || mb_strlen($inputString) == 0) {
             return "";
         }
         if (!isset($maxColSize)) {
             return $inputString;
         }
-        return strlen($inputString) <= $maxColSize ? $inputString : substr(
+        return mb_strlen($inputString) <= $maxColSize ? $inputString : mb_substr(
             $inputString,
             0,
             $maxColSize - 3

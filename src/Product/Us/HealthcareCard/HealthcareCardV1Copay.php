@@ -32,9 +32,21 @@ class HealthcareCardV1Copay
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->serviceFees = isset($rawPrediction["service_fees"]) ?
-        number_format(floatval($rawPrediction["service_fees"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["service_fees"]) : null;
         $this->serviceName = $rawPrediction["service_name"] ?? null;
+    }
+
+    /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["serviceFees"] = SummaryHelper::formatFloat($this->serviceFees);
+        $outArr["serviceName"] = SummaryHelper::formatForDisplay($this->serviceName);
+        return $outArr;
     }
 
     /**
@@ -45,7 +57,7 @@ class HealthcareCardV1Copay
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["serviceFees"] = $this->serviceFees == null ? "" : number_format($this->serviceFees, 2, ".", "");
+        $outArr["serviceFees"] = SummaryHelper::formatFloat($this->serviceFees);
         $outArr["serviceName"] = SummaryHelper::formatForDisplay($this->serviceName);
         return $outArr;
     }
@@ -56,10 +68,10 @@ class HealthcareCardV1Copay
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["serviceFees"], 12) . " | ";
-        $outStr .= str_pad($printable["serviceName"], 12) . " | ";
+        $outStr .= mb_str_pad($printable["serviceFees"], 12) . " | ";
+        $outStr .= mb_str_pad($printable["serviceName"], 12) . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 
