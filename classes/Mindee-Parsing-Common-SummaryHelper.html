@@ -186,6 +186,13 @@
 <dd>Properly formats carriage returns in a string and remove leading spaces before them.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatFloat">formatFloat()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Formats decimal numbers for display, by removing all excess digits after the fifth.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatForDisplay">formatForDisplay()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -193,11 +200,18 @@
 <dd>Truncates line-items to the max width of their corresponding column.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_lineSeparator">lineSeparator()</a>
+    <a class="" href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_padString">padString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Adds custom separators for console display in line-items-like fields.</dd>
+<dd>Pads and add separators to a string for rst table items.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_escapeSpecialChars">escapeSpecialChars()</a>
+    <span>
+                                &nbsp;: string|null    </span>
+</dt>
+<dd>Prepends carriage return, new line &amp; tab symbols with a backslash in a string.</dd>
 
     </dl>
 
@@ -227,7 +241,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/SummaryHelper.php"><a href="files/src-parsing-common-summaryhelper.html"><abbr title="src/Parsing/Common/SummaryHelper.php">SummaryHelper.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -270,6 +284,61 @@
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_formatFloat">
+        formatFloat()
+        <a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatFloat" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/SummaryHelper.php"><a href="files/src-parsing-common-summaryhelper.html"><abbr title="src/Parsing/Common/SummaryHelper.php">SummaryHelper.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">16</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Formats decimal numbers for display, by removing all excess digits after the fifth.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">formatFloat</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">float|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$number</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$number</span>
+                : <span class="phpdocumentor-signature__argument__return-type">float|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Number to parse.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Number as a valid float string.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_formatForDisplay">
         formatForDisplay()
         <a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatForDisplay" class="headerlink"><i class="fas fa-link"></i></a>
@@ -278,7 +347,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/SummaryHelper.php"><a href="files/src-parsing-common-summaryhelper.html"><abbr title="src/Parsing/Common/SummaryHelper.php">SummaryHelper.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -330,23 +399,23 @@
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_lineSeparator">
-        lineSeparator()
-        <a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_lineSeparator" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_padString">
+        padString()
+        <a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_padString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/SummaryHelper.php"><a href="files/src-parsing-common-summaryhelper.html"><abbr title="src/Parsing/Common/SummaryHelper.php">SummaryHelper.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">102</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Adds custom separators for console display in line-items-like fields.</p>
+        <p class="phpdocumentor-summary">Pads and add separators to a string for rst table items.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">lineSeparator</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$columnSizes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$separator</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">padString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputString</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$colSize</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$separator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;|&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -355,20 +424,29 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$columnSizes</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$inputString</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Sizes of the respective columns.</p>
+                    <section class="phpdocumentor-description"><p>Input value, as an already printable string.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$colSize</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Column size assigned to the value.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$separator</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">&quot;|&quot;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Separator character.</p>
+                    <section class="phpdocumentor-description"><p>Optional custom separator for tables.</p>
 </section>
 
             </dd>
@@ -381,6 +459,65 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The string, with table separators.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_escapeSpecialChars">
+        escapeSpecialChars()
+        <a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_escapeSpecialChars" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/SummaryHelper.php"><a href="files/src-parsing-common-summaryhelper.html"><abbr title="src/Parsing/Common/SummaryHelper.php">SummaryHelper.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Prepends carriage return, new line &amp; tab symbols with a backslash in a string.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">escapeSpecialChars</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$string</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$string</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The string to fix.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The fixed string.</p>
+</section>
+
             </section>
 
 </article>
@@ -498,8 +635,10 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_cleanOutString">cleanOutString()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatFloat">formatFloat()</a></li>
                                             <li class=""><a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_formatForDisplay">formatForDisplay()</a></li>
-                                            <li class=""><a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_lineSeparator">lineSeparator()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_padString">padString()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-Common-SummaryHelper.html#method_escapeSpecialChars">escapeSpecialChars()</a></li>
                                     </ul>
             </li>
                     </ul>

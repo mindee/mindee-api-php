@@ -195,31 +195,31 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_contractType">$contractType</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_department">$department</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_employer">$employer</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_endMonth">$endMonth</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_endYear">$endYear</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
@@ -231,19 +231,19 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_role">$role</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_startMonth">$startMonth</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_startYear">$startYear</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
     </dl>
@@ -293,6 +293,13 @@
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Return values for printing as an array.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method_tablePrintableValues">tablePrintableValues()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Return values for printing inside an RST table.</dd>
 
     </dl>
 
@@ -408,7 +415,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$contractType</span>
     </code>
 
@@ -446,7 +453,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$department</span>
     </code>
 
@@ -484,7 +491,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$employer</span>
     </code>
 
@@ -522,7 +529,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$endMonth</span>
     </code>
 
@@ -560,7 +567,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$endYear</span>
     </code>
 
@@ -636,7 +643,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$role</span>
     </code>
 
@@ -674,7 +681,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$startMonth</span>
     </code>
 
@@ -712,7 +719,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$startYear</span>
     </code>
 
@@ -802,7 +809,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Resume/ResumeV1ProfessionalExperience.php"><a href="files/src-product-resume-resumev1professionalexperience.html"><abbr title="src/Product/Resume/ResumeV1ProfessionalExperience.php">ResumeV1ProfessionalExperience.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">128</span>
 
     </aside>
 
@@ -844,7 +851,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Resume/ResumeV1ProfessionalExperience.php"><a href="files/src-product-resume-resumev1professionalexperience.html"><abbr title="src/Product/Resume/ResumeV1ProfessionalExperience.php">ResumeV1ProfessionalExperience.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
@@ -977,7 +984,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Resume/ResumeV1ProfessionalExperience.php"><a href="files/src-product-resume-resumev1professionalexperience.html"><abbr title="src/Product/Resume/ResumeV1ProfessionalExperience.php">ResumeV1ProfessionalExperience.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
@@ -986,6 +993,45 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">printableValues</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_tablePrintableValues">
+        tablePrintableValues()
+        <a href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method_tablePrintableValues" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Resume/ResumeV1ProfessionalExperience.php"><a href="files/src-product-resume-resumev1professionalexperience.html"><abbr title="src/Product/Resume/ResumeV1ProfessionalExperience.php">ResumeV1ProfessionalExperience.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">73</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return values for printing inside an RST table.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">tablePrintableValues</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1138,6 +1184,7 @@
                                             <li class=""><a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a></li>
                                             <li class=""><a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#method_setPosition">setPosition()</a></li>
                                             <li class=""><a href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method_printableValues">printableValues()</a></li>
+                                            <li class=""><a href="classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#method_tablePrintableValues">tablePrintableValues()</a></li>
                                     </ul>
             </li>
                     </ul>

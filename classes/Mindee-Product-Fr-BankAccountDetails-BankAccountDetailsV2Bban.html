@@ -184,25 +184,25 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#property_bbanBankCode">$bbanBankCode</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#property_bbanBranchCode">$bbanBranchCode</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#property_bbanKey">$bbanKey</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#property_bbanNumber">$bbanNumber</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
@@ -271,6 +271,13 @@
 </dt>
 <dd>Return values for printing as an array.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#method_tablePrintableValues">tablePrintableValues()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Return values for printing inside an RST table.</dd>
+
     </dl>
 
 
@@ -309,7 +316,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$bbanBankCode</span>
     </code>
 
@@ -347,7 +354,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$bbanBranchCode</span>
     </code>
 
@@ -385,7 +392,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$bbanKey</span>
     </code>
 
@@ -423,7 +430,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$bbanNumber</span>
     </code>
 
@@ -627,7 +634,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv2bban.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php">BankAccountDetailsV2Bban.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
@@ -669,7 +676,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv2bban.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php">BankAccountDetailsV2Bban.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">82</span>
 
     </aside>
 
@@ -802,7 +809,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv2bban.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php">BankAccountDetailsV2Bban.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -811,6 +818,45 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">printableValues</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_tablePrintableValues">
+        tablePrintableValues()
+        <a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#method_tablePrintableValues" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv2bban.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV2Bban.php">BankAccountDetailsV2Bban.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">53</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return values for printing inside an RST table.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">tablePrintableValues</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -959,6 +1005,7 @@
                                             <li class=""><a href="classes/Mindee-Parsing-Standard-FieldConfidenceMixin.html#method_setConfidence">setConfidence()</a></li>
                                             <li class=""><a href="classes/Mindee-Parsing-Standard-FieldPositionMixin.html#method_setPosition">setPosition()</a></li>
                                             <li class=""><a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#method_printableValues">printableValues()</a></li>
+                                            <li class=""><a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2Bban.html#method_tablePrintableValues">tablePrintableValues()</a></li>
                                     </ul>
             </li>
                     </ul>
