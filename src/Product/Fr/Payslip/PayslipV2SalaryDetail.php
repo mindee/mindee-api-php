@@ -86,10 +86,10 @@ class PayslipV2SalaryDetail
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["amount"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["base"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["rate"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["amount"], 12);
+        $outStr .= SummaryHelper::padString($printable["base"], 9);
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
+        $outStr .= SummaryHelper::padString($printable["rate"], 9);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

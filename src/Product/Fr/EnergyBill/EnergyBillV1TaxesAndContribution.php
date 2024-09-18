@@ -100,12 +100,12 @@ class EnergyBillV1TaxesAndContribution
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["endDate"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["startDate"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["taxRate"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["total"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["unitPrice"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
+        $outStr .= SummaryHelper::padString($printable["endDate"], 10);
+        $outStr .= SummaryHelper::padString($printable["startDate"], 10);
+        $outStr .= SummaryHelper::padString($printable["taxRate"], 8);
+        $outStr .= SummaryHelper::padString($printable["total"], 9);
+        $outStr .= SummaryHelper::padString($printable["unitPrice"], 10);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

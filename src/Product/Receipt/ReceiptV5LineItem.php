@@ -86,10 +86,10 @@ class ReceiptV5LineItem
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["quantity"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["totalAmount"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["unitPrice"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
+        $outStr .= SummaryHelper::padString($printable["quantity"], 8);
+        $outStr .= SummaryHelper::padString($printable["totalAmount"], 12);
+        $outStr .= SummaryHelper::padString($printable["unitPrice"], 10);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

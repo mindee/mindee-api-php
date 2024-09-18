@@ -83,10 +83,10 @@ class ResumeV1Certificate
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["grade"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["name"], 30, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["provider"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["year"], 4, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["grade"], 10);
+        $outStr .= SummaryHelper::padString($printable["name"], 30);
+        $outStr .= SummaryHelper::padString($printable["provider"], 25);
+        $outStr .= SummaryHelper::padString($printable["year"], 4);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

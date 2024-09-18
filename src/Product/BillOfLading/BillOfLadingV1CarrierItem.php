@@ -100,12 +100,12 @@ class BillOfLadingV1CarrierItem
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["grossWeight"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["measurement"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["measurementUnit"], 16, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["quantity"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["weightUnit"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
+        $outStr .= SummaryHelper::padString($printable["grossWeight"], 12);
+        $outStr .= SummaryHelper::padString($printable["measurement"], 11);
+        $outStr .= SummaryHelper::padString($printable["measurementUnit"], 16);
+        $outStr .= SummaryHelper::padString($printable["quantity"], 8);
+        $outStr .= SummaryHelper::padString($printable["weightUnit"], 11);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

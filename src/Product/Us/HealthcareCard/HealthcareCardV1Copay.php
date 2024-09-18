@@ -70,8 +70,8 @@ class HealthcareCardV1Copay
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["serviceFees"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["serviceName"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["serviceFees"], 12);
+        $outStr .= SummaryHelper::padString($printable["serviceName"], 12);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

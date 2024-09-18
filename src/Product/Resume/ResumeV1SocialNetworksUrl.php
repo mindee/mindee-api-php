@@ -69,8 +69,8 @@ class ResumeV1SocialNetworksUrl
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["name"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["url"], 50, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["name"], 20);
+        $outStr .= SummaryHelper::padString($printable["url"], 50);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

@@ -74,16 +74,33 @@ class SummaryHelper
             return 'False';
         }
         $inputString = SummaryHelper::escapeSpecialChars($inputString);
-        if (!$inputString || mb_strlen($inputString) == 0) {
+        if (!$inputString || mb_strlen($inputString, "UTF-8") == 0) {
             return "";
         }
         if (!isset($maxColSize)) {
             return $inputString;
         }
-        return mb_strlen($inputString) <= $maxColSize ? $inputString : mb_substr(
+        if (mb_strlen($inputString, "UTF-8") <= $maxColSize) {
+            return $inputString;
+        }
+        return mb_substr(
             $inputString,
             0,
-            $maxColSize - 3
+            $maxColSize - 3,
+            "UTF-8"
         ) . "...";
+    }
+
+    /**
+     * Pads and add separators to a string for rst table items.
+     *
+     * @param string  $inputString Input value, as an already printable string.
+     * @param integer $colSize     Column size assigned to the value.
+     * @param string  $separator   Optional custom separator for tables.
+     * @return string The string, with table separators.
+     */
+    public static function padString(string $inputString, int $colSize, string $separator = "|"): string
+    {
+        return mb_str_pad($inputString, $colSize, " ", STR_PAD_RIGHT, "UTF-8") . " $separator ";
     }
 }

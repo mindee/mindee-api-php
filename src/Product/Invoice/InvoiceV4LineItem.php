@@ -116,14 +116,14 @@ class InvoiceV4LineItem
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["productCode"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["quantity"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["taxAmount"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["taxRate"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["totalAmount"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["unitMeasure"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["unitPrice"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
+        $outStr .= SummaryHelper::padString($printable["productCode"], 12);
+        $outStr .= SummaryHelper::padString($printable["quantity"], 8);
+        $outStr .= SummaryHelper::padString($printable["taxAmount"], 10);
+        $outStr .= SummaryHelper::padString($printable["taxRate"], 12);
+        $outStr .= SummaryHelper::padString($printable["totalAmount"], 12);
+        $outStr .= SummaryHelper::padString($printable["unitMeasure"], 15);
+        $outStr .= SummaryHelper::padString($printable["unitPrice"], 10);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

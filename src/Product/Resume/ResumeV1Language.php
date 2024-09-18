@@ -69,8 +69,8 @@ class ResumeV1Language
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["language"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["level"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["language"], 8);
+        $outStr .= SummaryHelper::padString($printable["level"], 20);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

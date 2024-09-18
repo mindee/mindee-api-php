@@ -93,11 +93,11 @@ class NutritionFactsLabelV1Nutrient
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["dailyValue"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["name"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["per100G"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["perServing"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["unit"], 4, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["dailyValue"], 11);
+        $outStr .= SummaryHelper::padString($printable["name"], 20);
+        $outStr .= SummaryHelper::padString($printable["per100G"], 8);
+        $outStr .= SummaryHelper::padString($printable["perServing"], 11);
+        $outStr .= SummaryHelper::padString($printable["unit"], 4);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

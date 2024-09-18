@@ -104,13 +104,13 @@ class UsMailV2RecipientAddress
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["city"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["complete"], 35, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["isAddressChange"], 17, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["postalCode"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["privateMailboxNumber"], 22, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["state"], 5, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["street"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["city"], 15);
+        $outStr .= SummaryHelper::padString($printable["complete"], 35);
+        $outStr .= SummaryHelper::padString($printable["isAddressChange"], 17);
+        $outStr .= SummaryHelper::padString($printable["postalCode"], 11);
+        $outStr .= SummaryHelper::padString($printable["privateMailboxNumber"], 22);
+        $outStr .= SummaryHelper::padString($printable["state"], 5);
+        $outStr .= SummaryHelper::padString($printable["street"], 25);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

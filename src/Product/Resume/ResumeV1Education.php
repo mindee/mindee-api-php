@@ -104,13 +104,13 @@ class ResumeV1Education
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["degreeDomain"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["degreeType"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["endMonth"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["endYear"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["school"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["startMonth"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
-        $outStr .= mb_str_pad($printable["startYear"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= SummaryHelper::padString($printable["degreeDomain"], 15);
+        $outStr .= SummaryHelper::padString($printable["degreeType"], 25);
+        $outStr .= SummaryHelper::padString($printable["endMonth"], 9);
+        $outStr .= SummaryHelper::padString($printable["endYear"], 8);
+        $outStr .= SummaryHelper::padString($printable["school"], 25);
+        $outStr .= SummaryHelper::padString($printable["startMonth"], 11);
+        $outStr .= SummaryHelper::padString($printable["startYear"], 10);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 
