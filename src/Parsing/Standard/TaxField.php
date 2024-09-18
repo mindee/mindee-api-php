@@ -27,18 +27,17 @@ class TaxField extends BaseField
     public ?float $basis;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
-     * @param integer|null $pageId Page number for multi pages document.
-     * @param boolean $reconstructed Whether the field has been reconstructed.
-     * @param string $valueKey Key to use for the value.
+     * @param array        $rawPrediction Raw prediction array.
+     * @param integer|null $pageId        Page number for multi pages document.
+     * @param boolean      $reconstructed Whether the field has been reconstructed.
+     * @param string       $valueKey      Key to use for the value.
      */
     public function __construct(
-        array  $rawPrediction,
-        ?int   $pageId = null,
-        bool   $reconstructed = false,
+        array $rawPrediction,
+        ?int $pageId = null,
+        bool $reconstructed = false,
         string $valueKey = 'value'
-    )
-    {
+    ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->setPosition($rawPrediction);
         if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
