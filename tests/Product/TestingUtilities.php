@@ -20,8 +20,8 @@ class TestingUtilities
     {
         // Replaces the string of a created object to avoid errors during tests.
 
-        $idEndPos = mb_strpos($rstStr, "\n:Filename:", "UTF-8");
-        $idStartPos = mb_strpos($rstStr, ":Mindee ID: ", "UTF-8");
+        $idEndPos = mb_strpos($rstStr, "\n:Filename:", 0, "UTF-8");
+        $idStartPos = mb_strpos($rstStr, ":Mindee ID: ", 0, "UTF-8");
 
         return mb_substr($rstStr, $idStartPos + 12, $idEndPos - ($idStartPos + 12), "UTF-8");
     }
