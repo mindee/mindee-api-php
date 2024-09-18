@@ -15,43 +15,43 @@ class PayslipV2PayDetail
     use FieldConfidenceMixin;
 
     /**
-     * @var float The gross salary of the employee.
+     * @var float|null The gross salary of the employee.
      */
     public ?float $grossSalary;
     /**
-     * @var float The year-to-date gross salary of the employee.
+     * @var float|null The year-to-date gross salary of the employee.
      */
     public ?float $grossSalaryYtd;
     /**
-     * @var float The income tax rate of the employee.
+     * @var float|null The income tax rate of the employee.
      */
     public ?float $incomeTaxRate;
     /**
-     * @var float The income tax withheld from the employee's pay.
+     * @var float|null The income tax withheld from the employee's pay.
      */
     public ?float $incomeTaxWithheld;
     /**
-     * @var float The net paid amount of the employee.
+     * @var float|null The net paid amount of the employee.
      */
     public ?float $netPaid;
     /**
-     * @var float The net paid amount before tax of the employee.
+     * @var float|null The net paid amount before tax of the employee.
      */
     public ?float $netPaidBeforeTax;
     /**
-     * @var float The net taxable amount of the employee.
+     * @var float|null The net taxable amount of the employee.
      */
     public ?float $netTaxable;
     /**
-     * @var float The year-to-date net taxable amount of the employee.
+     * @var float|null The year-to-date net taxable amount of the employee.
      */
     public ?float $netTaxableYtd;
     /**
-     * @var float The total cost to the employer.
+     * @var float|null The total cost to the employer.
      */
     public ?float $totalCostEmployer;
     /**
-     * @var float The total taxes and deductions of the employee.
+     * @var float|null The total taxes and deductions of the employee.
      */
     public ?float $totalTaxesAndDeductions;
 

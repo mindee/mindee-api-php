@@ -15,23 +15,23 @@ class UsMailV2SenderAddress
     use FieldConfidenceMixin;
 
     /**
-     * @var string The city of the sender's address.
+     * @var string|null The city of the sender's address.
      */
     public ?string $city;
     /**
-     * @var string The complete address of the sender.
+     * @var string|null The complete address of the sender.
      */
     public ?string $complete;
     /**
-     * @var string The postal code of the sender's address.
+     * @var string|null The postal code of the sender's address.
      */
     public ?string $postalCode;
     /**
-     * @var string Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
+     * @var string|null Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
      */
     public ?string $state;
     /**
-     * @var string The street of the sender's address.
+     * @var string|null The street of the sender's address.
      */
     public ?string $street;
 

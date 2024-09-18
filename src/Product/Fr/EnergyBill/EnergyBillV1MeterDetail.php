@@ -15,15 +15,15 @@ class EnergyBillV1MeterDetail
     use FieldConfidenceMixin;
 
     /**
-     * @var string The unique identifier of the energy meter.
+     * @var string|null The unique identifier of the energy meter.
      */
     public ?string $meterNumber;
     /**
-     * @var string The type of energy meter.
+     * @var string|null The type of energy meter.
      */
     public ?string $meterType;
     /**
-     * @var string The unit of measurement for energy consumption, which can be kW, m³, or L.
+     * @var string|null The unit of measurement for energy consumption, which can be kW, m³, or L.
      */
     public ?string $unit;
 

@@ -55,7 +55,7 @@ class Page
     public function __toString(): string
     {
         $title = "Page $this->id";
-        $dashes = str_repeat('-', mb_strlen($title));
+        $dashes = str_repeat('-', mb_strlen($title, "UTF-8"));
 
         return "$title
 $dashes

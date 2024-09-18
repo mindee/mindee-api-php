@@ -15,19 +15,19 @@ class NutritionFactsLabelV1Sodium
     use FieldConfidenceMixin;
 
     /**
-     * @var float DVs are the recommended amounts of sodium to consume or not to exceed each day.
+     * @var float|null DVs are the recommended amounts of sodium to consume or not to exceed each day.
      */
     public ?float $dailyValue;
     /**
-     * @var float The amount of sodium per 100g of the product.
+     * @var float|null The amount of sodium per 100g of the product.
      */
     public ?float $per100G;
     /**
-     * @var float The amount of sodium per serving of the product.
+     * @var float|null The amount of sodium per serving of the product.
      */
     public ?float $perServing;
     /**
-     * @var string The unit of measurement for the amount of sodium.
+     * @var string|null The unit of measurement for the amount of sodium.
      */
     public ?string $unit;
 

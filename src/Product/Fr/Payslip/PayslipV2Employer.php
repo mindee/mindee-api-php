@@ -15,31 +15,31 @@ class PayslipV2Employer
     use FieldConfidenceMixin;
 
     /**
-     * @var string The address of the employer.
+     * @var string|null The address of the employer.
      */
     public ?string $address;
     /**
-     * @var string The company ID of the employer.
+     * @var string|null The company ID of the employer.
      */
     public ?string $companyId;
     /**
-     * @var string The site of the company.
+     * @var string|null The site of the company.
      */
     public ?string $companySite;
     /**
-     * @var string The NAF code of the employer.
+     * @var string|null The NAF code of the employer.
      */
     public ?string $nafCode;
     /**
-     * @var string The name of the employer.
+     * @var string|null The name of the employer.
      */
     public ?string $name;
     /**
-     * @var string The phone number of the employer.
+     * @var string|null The phone number of the employer.
      */
     public ?string $phoneNumber;
     /**
-     * @var string The URSSAF number of the employer.
+     * @var string|null The URSSAF number of the employer.
      */
     public ?string $urssafNumber;
 

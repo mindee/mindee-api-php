@@ -15,19 +15,19 @@ class BillOfLadingV1Shipper
     use FieldConfidenceMixin;
 
     /**
-     * @var string The address of the shipper.
+     * @var string|null The address of the shipper.
      */
     public ?string $address;
     /**
-     * @var string The  email of the shipper.
+     * @var string|null The  email of the shipper.
      */
     public ?string $email;
     /**
-     * @var string The name of the shipper.
+     * @var string|null The name of the shipper.
      */
     public ?string $name;
     /**
-     * @var string The phone number of the shipper.
+     * @var string|null The phone number of the shipper.
      */
     public ?string $phone;
 

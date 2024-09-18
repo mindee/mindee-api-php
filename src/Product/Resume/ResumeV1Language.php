@@ -15,11 +15,11 @@ class ResumeV1Language
     use FieldConfidenceMixin;
 
     /**
-     * @var string The language's ISO 639 code.
+     * @var string|null The language's ISO 639 code.
      */
     public ?string $language;
     /**
-     * @var string The candidate's level for the language.
+     * @var string|null The candidate's level for the language.
      */
     public ?string $level;
 
@@ -69,8 +69,8 @@ class ResumeV1Language
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["language"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["level"], 20) . " | ";
+        $outStr .= mb_str_pad($printable["language"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["level"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

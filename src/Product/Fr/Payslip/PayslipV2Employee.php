@@ -15,31 +15,31 @@ class PayslipV2Employee
     use FieldConfidenceMixin;
 
     /**
-     * @var string The address of the employee.
+     * @var string|null The address of the employee.
      */
     public ?string $address;
     /**
-     * @var string The date of birth of the employee.
+     * @var string|null The date of birth of the employee.
      */
     public ?string $dateOfBirth;
     /**
-     * @var string The first name of the employee.
+     * @var string|null The first name of the employee.
      */
     public ?string $firstName;
     /**
-     * @var string The last name of the employee.
+     * @var string|null The last name of the employee.
      */
     public ?string $lastName;
     /**
-     * @var string The phone number of the employee.
+     * @var string|null The phone number of the employee.
      */
     public ?string $phoneNumber;
     /**
-     * @var string The registration number of the employee.
+     * @var string|null The registration number of the employee.
      */
     public ?string $registrationNumber;
     /**
-     * @var string The social security number of the employee.
+     * @var string|null The social security number of the employee.
      */
     public ?string $socialSecurityNumber;
 

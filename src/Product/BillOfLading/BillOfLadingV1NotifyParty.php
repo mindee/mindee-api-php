@@ -15,19 +15,19 @@ class BillOfLadingV1NotifyParty
     use FieldConfidenceMixin;
 
     /**
-     * @var string The address of the notify party.
+     * @var string|null The address of the notify party.
      */
     public ?string $address;
     /**
-     * @var string The  email of the shipper.
+     * @var string|null The  email of the shipper.
      */
     public ?string $email;
     /**
-     * @var string The name of the notify party.
+     * @var string|null The name of the notify party.
      */
     public ?string $name;
     /**
-     * @var string The phone number of the notify party.
+     * @var string|null The phone number of the notify party.
      */
     public ?string $phone;
 

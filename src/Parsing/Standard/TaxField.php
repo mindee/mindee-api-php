@@ -2,8 +2,6 @@
 
 namespace Mindee\Parsing\Standard;
 
-use ArrayObject;
-
 /**
  * Tax line information.
  */
@@ -29,17 +27,18 @@ class TaxField extends BaseField
     public ?float $basis;
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
-     * @param boolean      $reconstructed Whether the field has been reconstructed.
-     * @param string       $valueKey      Key to use for the value.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field has been reconstructed.
+     * @param string $valueKey Key to use for the value.
      */
     public function __construct(
-        array $rawPrediction,
-        ?int $pageId = null,
-        bool $reconstructed = false,
+        array  $rawPrediction,
+        ?int   $pageId = null,
+        bool   $reconstructed = false,
         string $valueKey = 'value'
-    ) {
+    )
+    {
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->setPosition($rawPrediction);
         if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
@@ -78,9 +77,9 @@ class TaxField extends BaseField
     {
         return [
             'code' => $this->code ?? '',
-            'basis' => isset($this->basis) ? number_format((float)$this->basis, 2, ".", "") : null,
-            'rate' => isset($this->rate) ? number_format((float)$this->rate, 2, ".", "") : null,
-            'value' => isset($this->value) ? number_format((float)$this->value, 2, ".", "") : null,
+            'basis' => isset($this->basis) ? number_format((float)$this->basis, 2, ".", "") : '',
+            'rate' => isset($this->rate) ? number_format((float)$this->rate, 2, ".", "") : '',
+            'value' => isset($this->value) ? number_format((float)$this->value, 2, ".", "") : '',
         ];
     }
 
@@ -93,10 +92,10 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return '| ' . mb_str_pad($printable['basis'], 13, ' ') .
-            ' | ' . mb_str_pad($printable['code'], 6, ' ') .
-            ' | ' . mb_str_pad($printable['rate'], 8, ' ') .
-            ' | ' . mb_str_pad($printable['value'], 13, ' ') . ' |';
+        return '| ' . mb_str_pad($printable['basis'], 13, ' ', STR_PAD_RIGHT, "UTF-8") .
+            ' | ' . mb_str_pad($printable['code'], 6, ' ', STR_PAD_RIGHT, "UTF-8") .
+            ' | ' . mb_str_pad($printable['rate'], 8, ' ', STR_PAD_RIGHT, "UTF-8") .
+            ' | ' . mb_str_pad($printable['value'], 13, ' ', STR_PAD_RIGHT, "UTF-8") . ' |';
     }
 
     /**

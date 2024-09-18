@@ -15,11 +15,11 @@ class EnergyBillV1EnergySupplier
     use FieldConfidenceMixin;
 
     /**
-     * @var string The address of the energy supplier.
+     * @var string|null The address of the energy supplier.
      */
     public ?string $address;
     /**
-     * @var string The name of the energy supplier.
+     * @var string|null The name of the energy supplier.
      */
     public ?string $name;
 

@@ -15,27 +15,27 @@ class PayslipV2Employment
     use FieldConfidenceMixin;
 
     /**
-     * @var string The category of the employment.
+     * @var string|null The category of the employment.
      */
     public ?string $category;
     /**
-     * @var float The coefficient of the employment.
+     * @var float|null The coefficient of the employment.
      */
     public ?float $coefficient;
     /**
-     * @var string The collective agreement of the employment.
+     * @var string|null The collective agreement of the employment.
      */
     public ?string $collectiveAgreement;
     /**
-     * @var string The job title of the employee.
+     * @var string|null The job title of the employee.
      */
     public ?string $jobTitle;
     /**
-     * @var string The position level of the employment.
+     * @var string|null The position level of the employment.
      */
     public ?string $positionLevel;
     /**
-     * @var string The start date of the employment.
+     * @var string|null The start date of the employment.
      */
     public ?string $startDate;
 

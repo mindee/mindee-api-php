@@ -15,27 +15,27 @@ class EnergyBillV1EnergyUsage
     use FieldConfidenceMixin;
 
     /**
-     * @var string Description or details of the energy usage.
+     * @var string|null Description or details of the energy usage.
      */
     public ?string $description;
     /**
-     * @var string The end date of the energy usage.
+     * @var string|null The end date of the energy usage.
      */
     public ?string $endDate;
     /**
-     * @var string The start date of the energy usage.
+     * @var string|null The start date of the energy usage.
      */
     public ?string $startDate;
     /**
-     * @var float The rate of tax applied to the total cost.
+     * @var float|null The rate of tax applied to the total cost.
      */
     public ?float $taxRate;
     /**
-     * @var float The total cost of energy consumed.
+     * @var float|null The total cost of energy consumed.
      */
     public ?float $total;
     /**
-     * @var float The price per unit of energy consumed.
+     * @var float|null The price per unit of energy consumed.
      */
     public ?float $unitPrice;
 
@@ -100,12 +100,12 @@ class EnergyBillV1EnergyUsage
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36) . " | ";
-        $outStr .= mb_str_pad($printable["endDate"], 10) . " | ";
-        $outStr .= mb_str_pad($printable["startDate"], 10) . " | ";
-        $outStr .= mb_str_pad($printable["taxRate"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["total"], 9) . " | ";
-        $outStr .= mb_str_pad($printable["unitPrice"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["endDate"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["startDate"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["taxRate"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["total"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["unitPrice"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

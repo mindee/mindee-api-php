@@ -15,15 +15,15 @@ class NutritionFactsLabelV1AddedSugar
     use FieldConfidenceMixin;
 
     /**
-     * @var float DVs are the recommended amounts of added sugars to consume or not to exceed each day.
+     * @var float|null DVs are the recommended amounts of added sugars to consume or not to exceed each day.
      */
     public ?float $dailyValue;
     /**
-     * @var float The amount of added sugars per 100g of the product.
+     * @var float|null The amount of added sugars per 100g of the product.
      */
     public ?float $per100G;
     /**
-     * @var float The amount of added sugars per serving of the product.
+     * @var float|null The amount of added sugars per serving of the product.
      */
     public ?float $perServing;
 

@@ -8,6 +8,8 @@ namespace Mindee\Parsing\Common;
 class SummaryHelper
 {
     /**
+     * Formats decimal numbers for display, by removing all excess digits after the fifth.
+     *
      * @param float|null $number Number to parse.
      * @return string Number as a valid float string.
      */
@@ -16,16 +18,13 @@ class SummaryHelper
         if ($number === null) {
             return '';
         }
-        // First, format to 5 decimal places
         $formatted = number_format($number, 5, '.', '');
 
-        // Trim trailing zeros, but keep at least 2 decimal places
         $formatted = rtrim(rtrim($formatted, '0'), '.');
 
-        // If less than 2 decimal places, pad with zeros
         if (substr_count($formatted, '.') == 0) {
             $formatted .= '.00';
-        } elseif (mb_strlen($formatted) - strpos($formatted, '.') <= 2) {
+        } elseif (strlen($formatted) - strpos($formatted, '.') <= 2) {
             $formatted = sprintf("%.2f", $formatted);
         }
 

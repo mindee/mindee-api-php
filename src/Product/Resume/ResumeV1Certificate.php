@@ -15,19 +15,19 @@ class ResumeV1Certificate
     use FieldConfidenceMixin;
 
     /**
-     * @var string The grade obtained for the certificate.
+     * @var string|null The grade obtained for the certificate.
      */
     public ?string $grade;
     /**
-     * @var string The name of certification.
+     * @var string|null The name of certification.
      */
     public ?string $name;
     /**
-     * @var string The organization or institution that issued the certificate.
+     * @var string|null The organization or institution that issued the certificate.
      */
     public ?string $provider;
     /**
-     * @var string The year when a certificate was issued or received.
+     * @var string|null The year when a certificate was issued or received.
      */
     public ?string $year;
 
@@ -83,10 +83,10 @@ class ResumeV1Certificate
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["grade"], 10) . " | ";
-        $outStr .= mb_str_pad($printable["name"], 30) . " | ";
-        $outStr .= mb_str_pad($printable["provider"], 25) . " | ";
-        $outStr .= mb_str_pad($printable["year"], 4) . " | ";
+        $outStr .= mb_str_pad($printable["grade"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["name"], 30, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["provider"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["year"], 4, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

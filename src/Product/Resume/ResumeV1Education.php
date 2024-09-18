@@ -15,31 +15,31 @@ class ResumeV1Education
     use FieldConfidenceMixin;
 
     /**
-     * @var string The area of study or specialization.
+     * @var string|null The area of study or specialization.
      */
     public ?string $degreeDomain;
     /**
-     * @var string The type of degree obtained, such as Bachelor's, Master's, or Doctorate.
+     * @var string|null The type of degree obtained, such as Bachelor's, Master's, or Doctorate.
      */
     public ?string $degreeType;
     /**
-     * @var string The month when the education program or course was completed.
+     * @var string|null The month when the education program or course was completed.
      */
     public ?string $endMonth;
     /**
-     * @var string The year when the education program or course was completed.
+     * @var string|null The year when the education program or course was completed.
      */
     public ?string $endYear;
     /**
-     * @var string The name of the school.
+     * @var string|null The name of the school.
      */
     public ?string $school;
     /**
-     * @var string The month when the education program or course began.
+     * @var string|null The month when the education program or course began.
      */
     public ?string $startMonth;
     /**
-     * @var string The year when the education program or course began.
+     * @var string|null The year when the education program or course began.
      */
     public ?string $startYear;
 
@@ -104,13 +104,13 @@ class ResumeV1Education
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["degreeDomain"], 15) . " | ";
-        $outStr .= mb_str_pad($printable["degreeType"], 25) . " | ";
-        $outStr .= mb_str_pad($printable["endMonth"], 9) . " | ";
-        $outStr .= mb_str_pad($printable["endYear"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["school"], 25) . " | ";
-        $outStr .= mb_str_pad($printable["startMonth"], 11) . " | ";
-        $outStr .= mb_str_pad($printable["startYear"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["degreeDomain"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["degreeType"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["endMonth"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["endYear"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["school"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["startMonth"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["startYear"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

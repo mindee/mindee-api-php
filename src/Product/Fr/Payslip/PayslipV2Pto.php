@@ -15,15 +15,15 @@ class PayslipV2Pto
     use FieldConfidenceMixin;
 
     /**
-     * @var float The amount of paid time off accrued in this period.
+     * @var float|null The amount of paid time off accrued in this period.
      */
     public ?float $accruedThisPeriod;
     /**
-     * @var float The balance of paid time off at the end of the period.
+     * @var float|null The balance of paid time off at the end of the period.
      */
     public ?float $balanceEndOfPeriod;
     /**
-     * @var float The amount of paid time off used in this period.
+     * @var float|null The amount of paid time off used in this period.
      */
     public ?float $usedThisPeriod;
 

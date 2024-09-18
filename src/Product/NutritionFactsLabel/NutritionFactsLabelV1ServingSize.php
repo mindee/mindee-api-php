@@ -15,11 +15,11 @@ class NutritionFactsLabelV1ServingSize
     use FieldConfidenceMixin;
 
     /**
-     * @var float The amount of a single serving.
+     * @var float|null The amount of a single serving.
      */
     public ?float $amount;
     /**
-     * @var string The unit for the amount of a single serving.
+     * @var string|null The unit for the amount of a single serving.
      */
     public ?string $unit;
 

@@ -15,35 +15,35 @@ class FinancialDocumentV1LineItem
     use FieldConfidenceMixin;
 
     /**
-     * @var string The item description.
+     * @var string|null The item description.
      */
     public ?string $description;
     /**
-     * @var string The product code referring to the item.
+     * @var string|null The product code referring to the item.
      */
     public ?string $productCode;
     /**
-     * @var float The item quantity
+     * @var float|null The item quantity
      */
     public ?float $quantity;
     /**
-     * @var float The item tax amount.
+     * @var float|null The item tax amount.
      */
     public ?float $taxAmount;
     /**
-     * @var float The item tax rate in percentage.
+     * @var float|null The item tax rate in percentage.
      */
     public ?float $taxRate;
     /**
-     * @var float The item total amount.
+     * @var float|null The item total amount.
      */
     public ?float $totalAmount;
     /**
-     * @var string The item unit of measure.
+     * @var string|null The item unit of measure.
      */
     public ?string $unitMeasure;
     /**
-     * @var float The item unit price.
+     * @var float|null The item unit price.
      */
     public ?float $unitPrice;
 
@@ -116,14 +116,14 @@ class FinancialDocumentV1LineItem
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36) . " | ";
-        $outStr .= mb_str_pad($printable["productCode"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["quantity"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["taxAmount"], 10) . " | ";
-        $outStr .= mb_str_pad($printable["taxRate"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["totalAmount"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["unitMeasure"], 15) . " | ";
-        $outStr .= mb_str_pad($printable["unitPrice"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["productCode"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["quantity"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["taxAmount"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["taxRate"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["totalAmount"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["unitMeasure"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["unitPrice"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

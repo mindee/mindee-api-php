@@ -48,7 +48,11 @@ class GeneratedV1Prediction extends Prediction
                     if ($fieldValue->values[$i] instanceof GeneratedObjectField) {
                         $strValue .= preg_replace($pattern, "\\1* :", "{$fieldValue->values[$i]->strLevel(1)}");
                     } else {
-                        $strValue .= " " . str_repeat(" ", mb_strlen($fieldName) + 2) . "{$fieldValue->values[$i]}\n";
+                        $strValue .= " " . str_repeat(
+                            " ",
+                            mb_strlen($fieldName, "UTF-8") + 2
+                        ) .
+                            "{$fieldValue->values[$i]}\n";
                     }
                 }
                 $strValue = rtrim($strValue);

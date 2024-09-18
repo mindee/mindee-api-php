@@ -15,19 +15,19 @@ class PayslipV2SalaryDetail
     use FieldConfidenceMixin;
 
     /**
-     * @var float The amount of the earnings.
+     * @var float|null The amount of the earnings.
      */
     public ?float $amount;
     /**
-     * @var float The base value of the earnings.
+     * @var float|null The base value of the earnings.
      */
     public ?float $base;
     /**
-     * @var string The description of the earnings.
+     * @var string|null The description of the earnings.
      */
     public ?string $description;
     /**
-     * @var float The rate of the earnings.
+     * @var float|null The rate of the earnings.
      */
     public ?float $rate;
 
@@ -86,10 +86,10 @@ class PayslipV2SalaryDetail
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["amount"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["base"], 9) . " | ";
-        $outStr .= mb_str_pad($printable["description"], 36) . " | ";
-        $outStr .= mb_str_pad($printable["rate"], 9) . " | ";
+        $outStr .= mb_str_pad($printable["amount"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["base"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["rate"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

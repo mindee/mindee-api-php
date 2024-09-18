@@ -15,23 +15,23 @@ class NutritionFactsLabelV1Nutrient
     use FieldConfidenceMixin;
 
     /**
-     * @var float DVs are the recommended amounts of nutrients to consume or not to exceed each day.
+     * @var float|null DVs are the recommended amounts of nutrients to consume or not to exceed each day.
      */
     public ?float $dailyValue;
     /**
-     * @var string The name of nutrients of the product.
+     * @var string|null The name of nutrients of the product.
      */
     public ?string $name;
     /**
-     * @var float The amount of nutrients per 100g of the product.
+     * @var float|null The amount of nutrients per 100g of the product.
      */
     public ?float $per100G;
     /**
-     * @var float The amount of nutrients per serving of the product.
+     * @var float|null The amount of nutrients per serving of the product.
      */
     public ?float $perServing;
     /**
-     * @var string The unit of measurement for the amount of nutrients.
+     * @var string|null The unit of measurement for the amount of nutrients.
      */
     public ?string $unit;
 
@@ -93,11 +93,11 @@ class NutritionFactsLabelV1Nutrient
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["dailyValue"], 11) . " | ";
-        $outStr .= mb_str_pad($printable["name"], 20) . " | ";
-        $outStr .= mb_str_pad($printable["per100G"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["perServing"], 11) . " | ";
-        $outStr .= mb_str_pad($printable["unit"], 4) . " | ";
+        $outStr .= mb_str_pad($printable["dailyValue"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["name"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["per100G"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["perServing"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["unit"], 4, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

@@ -15,27 +15,27 @@ class BillOfLadingV1CarrierItem
     use FieldConfidenceMixin;
 
     /**
-     * @var string A description of the item.
+     * @var string|null A description of the item.
      */
     public ?string $description;
     /**
-     * @var float The gross weight of the item.
+     * @var float|null The gross weight of the item.
      */
     public ?float $grossWeight;
     /**
-     * @var float The measurement of the item.
+     * @var float|null The measurement of the item.
      */
     public ?float $measurement;
     /**
-     * @var string The unit of measurement for the measurement.
+     * @var string|null The unit of measurement for the measurement.
      */
     public ?string $measurementUnit;
     /**
-     * @var float The quantity of the item being shipped.
+     * @var float|null The quantity of the item being shipped.
      */
     public ?float $quantity;
     /**
-     * @var string The unit of measurement for weights.
+     * @var string|null The unit of measurement for weights.
      */
     public ?string $weightUnit;
 
@@ -100,12 +100,12 @@ class BillOfLadingV1CarrierItem
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36) . " | ";
-        $outStr .= mb_str_pad($printable["grossWeight"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["measurement"], 11) . " | ";
-        $outStr .= mb_str_pad($printable["measurementUnit"], 16) . " | ";
-        $outStr .= mb_str_pad($printable["quantity"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["weightUnit"], 11) . " | ";
+        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["grossWeight"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["measurement"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["measurementUnit"], 16, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["quantity"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["weightUnit"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

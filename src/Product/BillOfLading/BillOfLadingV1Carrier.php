@@ -15,15 +15,15 @@ class BillOfLadingV1Carrier
     use FieldConfidenceMixin;
 
     /**
-     * @var string The name of the carrier.
+     * @var string|null The name of the carrier.
      */
     public ?string $name;
     /**
-     * @var string The professional number of the carrier.
+     * @var string|null The professional number of the carrier.
      */
     public ?string $professionalNumber;
     /**
-     * @var string The Standard Carrier Alpha Code (SCAC) of the carrier.
+     * @var string|null The Standard Carrier Alpha Code (SCAC) of the carrier.
      */
     public ?string $scac;
 

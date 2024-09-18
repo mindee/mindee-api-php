@@ -15,11 +15,11 @@ class HealthcareCardV1Copay
     use FieldConfidenceMixin;
 
     /**
-     * @var float The price of service.
+     * @var float|null The price of service.
      */
     public ?float $serviceFees;
     /**
-     * @var string The name of service of the copay.
+     * @var string|null The name of service of the copay.
      */
     public ?string $serviceName;
 
@@ -70,8 +70,8 @@ class HealthcareCardV1Copay
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["serviceFees"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["serviceName"], 12) . " | ";
+        $outStr .= mb_str_pad($printable["serviceFees"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["serviceName"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

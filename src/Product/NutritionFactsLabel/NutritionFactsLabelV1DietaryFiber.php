@@ -15,15 +15,15 @@ class NutritionFactsLabelV1DietaryFiber
     use FieldConfidenceMixin;
 
     /**
-     * @var float DVs are the recommended amounts of dietary fiber to consume or not to exceed each day.
+     * @var float|null DVs are the recommended amounts of dietary fiber to consume or not to exceed each day.
      */
     public ?float $dailyValue;
     /**
-     * @var float The amount of dietary fiber per 100g of the product.
+     * @var float|null The amount of dietary fiber per 100g of the product.
      */
     public ?float $per100G;
     /**
-     * @var float The amount of dietary fiber per serving of the product.
+     * @var float|null The amount of dietary fiber per serving of the product.
      */
     public ?float $perServing;
 

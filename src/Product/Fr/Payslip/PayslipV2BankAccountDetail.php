@@ -15,15 +15,15 @@ class PayslipV2BankAccountDetail
     use FieldConfidenceMixin;
 
     /**
-     * @var string The name of the bank.
+     * @var string|null The name of the bank.
      */
     public ?string $bankName;
     /**
-     * @var string The IBAN of the bank account.
+     * @var string|null The IBAN of the bank account.
      */
     public ?string $iban;
     /**
-     * @var string The SWIFT code of the bank.
+     * @var string|null The SWIFT code of the bank.
      */
     public ?string $swift;
 

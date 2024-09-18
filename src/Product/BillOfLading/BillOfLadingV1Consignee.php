@@ -15,19 +15,19 @@ class BillOfLadingV1Consignee
     use FieldConfidenceMixin;
 
     /**
-     * @var string The address of the consignee.
+     * @var string|null The address of the consignee.
      */
     public ?string $address;
     /**
-     * @var string The  email of the shipper.
+     * @var string|null The  email of the shipper.
      */
     public ?string $email;
     /**
-     * @var string The name of the consignee.
+     * @var string|null The name of the consignee.
      */
     public ?string $name;
     /**
-     * @var string The phone number of the consignee.
+     * @var string|null The phone number of the consignee.
      */
     public ?string $phone;
 

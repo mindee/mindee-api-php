@@ -15,11 +15,11 @@ class ResumeV1SocialNetworksUrl
     use FieldConfidenceMixin;
 
     /**
-     * @var string The name of the social network.
+     * @var string|null The name of the social network.
      */
     public ?string $name;
     /**
-     * @var string The URL of the social network.
+     * @var string|null The URL of the social network.
      */
     public ?string $url;
 
@@ -69,8 +69,8 @@ class ResumeV1SocialNetworksUrl
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["name"], 20) . " | ";
-        $outStr .= mb_str_pad($printable["url"], 50) . " | ";
+        $outStr .= mb_str_pad($printable["name"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["url"], 50, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

@@ -67,7 +67,13 @@ Usage:
 
 Available products:";
             foreach ($this->documentList as $documentName => $document) {
-                $helpCondensed .= "\n  " . str_pad($documentName, 65 - mb_strlen($document->help)) . $document->help;
+                $helpCondensed .= "\n  " . mb_str_pad(
+                    $documentName,
+                    65 - mb_strlen($document->help, "UTF-8"),
+                    ' ',
+                    STR_PAD_RIGHT,
+                    "UTF-8"
+                ) . $document->help;
             }
         } else {
             $helpCondensed .= $this->documentList[$product]->help;
@@ -529,7 +535,7 @@ Available products:";
 
     /**
      * @param PredictResponse|AsyncPredictResponse|string $result     Result of the parsing (or message if in debug
-     *     mode).
+     *         mode).
      * @param string|null                                 $outputType Type of output (raw, parsed or summary).
      * @param OutputInterface                             $output     Output interface for the CLI.
      * @return integer Command execution code return.

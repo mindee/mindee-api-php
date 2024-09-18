@@ -15,19 +15,19 @@ class ReceiptV5LineItem
     use FieldConfidenceMixin;
 
     /**
-     * @var string The item description.
+     * @var string|null The item description.
      */
     public ?string $description;
     /**
-     * @var float The item quantity.
+     * @var float|null The item quantity.
      */
     public ?float $quantity;
     /**
-     * @var float The item total amount.
+     * @var float|null The item total amount.
      */
     public ?float $totalAmount;
     /**
-     * @var float The item unit price.
+     * @var float|null The item unit price.
      */
     public ?float $unitPrice;
 
@@ -86,10 +86,10 @@ class ReceiptV5LineItem
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["description"], 36) . " | ";
-        $outStr .= mb_str_pad($printable["quantity"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["totalAmount"], 12) . " | ";
-        $outStr .= mb_str_pad($printable["unitPrice"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["description"], 36, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["quantity"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["totalAmount"], 12, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["unitPrice"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

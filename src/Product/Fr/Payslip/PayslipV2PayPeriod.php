@@ -15,23 +15,23 @@ class PayslipV2PayPeriod
     use FieldConfidenceMixin;
 
     /**
-     * @var string The end date of the pay period.
+     * @var string|null The end date of the pay period.
      */
     public ?string $endDate;
     /**
-     * @var string The month of the pay period.
+     * @var string|null The month of the pay period.
      */
     public ?string $month;
     /**
-     * @var string The date of payment for the pay period.
+     * @var string|null The date of payment for the pay period.
      */
     public ?string $paymentDate;
     /**
-     * @var string The start date of the pay period.
+     * @var string|null The start date of the pay period.
      */
     public ?string $startDate;
     /**
-     * @var string The year of the pay period.
+     * @var string|null The year of the pay period.
      */
     public ?string $year;
 

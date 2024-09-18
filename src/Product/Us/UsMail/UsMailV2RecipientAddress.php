@@ -15,11 +15,11 @@ class UsMailV2RecipientAddress
     use FieldConfidenceMixin;
 
     /**
-     * @var string The city of the recipient's address.
+     * @var string|null The city of the recipient's address.
      */
     public ?string $city;
     /**
-     * @var string The complete address of the recipient.
+     * @var string|null The complete address of the recipient.
      */
     public ?string $complete;
     /**
@@ -27,19 +27,19 @@ class UsMailV2RecipientAddress
      */
     public bool $isAddressChange;
     /**
-     * @var string The postal code of the recipient's address.
+     * @var string|null The postal code of the recipient's address.
      */
     public ?string $postalCode;
     /**
-     * @var string The private mailbox number of the recipient's address.
+     * @var string|null The private mailbox number of the recipient's address.
      */
     public ?string $privateMailboxNumber;
     /**
-     * @var string Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
+     * @var string|null Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
      */
     public ?string $state;
     /**
-     * @var string The street of the recipient's address.
+     * @var string|null The street of the recipient's address.
      */
     public ?string $street;
 
@@ -104,13 +104,13 @@ class UsMailV2RecipientAddress
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["city"], 15) . " | ";
-        $outStr .= mb_str_pad($printable["complete"], 35) . " | ";
-        $outStr .= mb_str_pad($printable["isAddressChange"], 17) . " | ";
-        $outStr .= mb_str_pad($printable["postalCode"], 11) . " | ";
-        $outStr .= mb_str_pad($printable["privateMailboxNumber"], 22) . " | ";
-        $outStr .= mb_str_pad($printable["state"], 5) . " | ";
-        $outStr .= mb_str_pad($printable["street"], 25) . " | ";
+        $outStr .= mb_str_pad($printable["city"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["complete"], 35, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["isAddressChange"], 17, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["postalCode"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["privateMailboxNumber"], 22, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["state"], 5, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["street"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

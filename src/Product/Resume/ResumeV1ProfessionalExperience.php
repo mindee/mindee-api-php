@@ -15,35 +15,35 @@ class ResumeV1ProfessionalExperience
     use FieldConfidenceMixin;
 
     /**
-     * @var string The type of contract for the professional experience.
+     * @var string|null The type of contract for the professional experience.
      */
     public ?string $contractType;
     /**
-     * @var string The specific department or division within the company.
+     * @var string|null The specific department or division within the company.
      */
     public ?string $department;
     /**
-     * @var string The name of the company or organization.
+     * @var string|null The name of the company or organization.
      */
     public ?string $employer;
     /**
-     * @var string The month when the professional experience ended.
+     * @var string|null The month when the professional experience ended.
      */
     public ?string $endMonth;
     /**
-     * @var string The year when the professional experience ended.
+     * @var string|null The year when the professional experience ended.
      */
     public ?string $endYear;
     /**
-     * @var string The position or job title held by the candidate.
+     * @var string|null The position or job title held by the candidate.
      */
     public ?string $role;
     /**
-     * @var string The month when the professional experience began.
+     * @var string|null The month when the professional experience began.
      */
     public ?string $startMonth;
     /**
-     * @var string The year when the professional experience began.
+     * @var string|null The year when the professional experience began.
      */
     public ?string $startYear;
 
@@ -111,14 +111,14 @@ class ResumeV1ProfessionalExperience
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= mb_str_pad($printable["contractType"], 15) . " | ";
-        $outStr .= mb_str_pad($printable["department"], 10) . " | ";
-        $outStr .= mb_str_pad($printable["employer"], 25) . " | ";
-        $outStr .= mb_str_pad($printable["endMonth"], 9) . " | ";
-        $outStr .= mb_str_pad($printable["endYear"], 8) . " | ";
-        $outStr .= mb_str_pad($printable["role"], 20) . " | ";
-        $outStr .= mb_str_pad($printable["startMonth"], 11) . " | ";
-        $outStr .= mb_str_pad($printable["startYear"], 10) . " | ";
+        $outStr .= mb_str_pad($printable["contractType"], 15, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["department"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["employer"], 25, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["endMonth"], 9, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["endYear"], 8, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["role"], 20, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["startMonth"], 11, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
+        $outStr .= mb_str_pad($printable["startYear"], 10, ' ', STR_PAD_RIGHT, "UTF-8") . " | ";
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 
