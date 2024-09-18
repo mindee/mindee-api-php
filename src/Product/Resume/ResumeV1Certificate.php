@@ -15,19 +15,19 @@ class ResumeV1Certificate
     use FieldConfidenceMixin;
 
     /**
-     * @var string The grade obtained for the certificate.
+     * @var string|null The grade obtained for the certificate.
      */
     public ?string $grade;
     /**
-     * @var string The name of certification.
+     * @var string|null The name of certification.
      */
     public ?string $name;
     /**
-     * @var string The organization or institution that issued the certificate.
+     * @var string|null The organization or institution that issued the certificate.
      */
     public ?string $provider;
     /**
-     * @var string The year when a certificate was issued or received.
+     * @var string|null The year when a certificate was issued or received.
      */
     public ?string $year;
 
@@ -46,6 +46,21 @@ class ResumeV1Certificate
     }
 
     /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["grade"] = SummaryHelper::formatForDisplay($this->grade, 10);
+        $outArr["name"] = SummaryHelper::formatForDisplay($this->name, 30);
+        $outArr["provider"] = SummaryHelper::formatForDisplay($this->provider, 25);
+        $outArr["year"] = SummaryHelper::formatForDisplay($this->year);
+        return $outArr;
+    }
+
+    /**
      * Return values for printing as an array.
      *
      * @return array
@@ -53,9 +68,9 @@ class ResumeV1Certificate
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["grade"] = SummaryHelper::formatForDisplay($this->grade, 10);
-        $outArr["name"] = SummaryHelper::formatForDisplay($this->name, 30);
-        $outArr["provider"] = SummaryHelper::formatForDisplay($this->provider, 25);
+        $outArr["grade"] = SummaryHelper::formatForDisplay($this->grade);
+        $outArr["name"] = SummaryHelper::formatForDisplay($this->name);
+        $outArr["provider"] = SummaryHelper::formatForDisplay($this->provider);
         $outArr["year"] = SummaryHelper::formatForDisplay($this->year);
         return $outArr;
     }
@@ -66,12 +81,12 @@ class ResumeV1Certificate
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["grade"], 10) . " | ";
-        $outStr .= str_pad($printable["name"], 30) . " | ";
-        $outStr .= str_pad($printable["provider"], 25) . " | ";
-        $outStr .= str_pad($printable["year"], 4) . " | ";
+        $outStr .= SummaryHelper::padString($printable["grade"], 10);
+        $outStr .= SummaryHelper::padString($printable["name"], 30);
+        $outStr .= SummaryHelper::padString($printable["provider"], 25);
+        $outStr .= SummaryHelper::padString($printable["year"], 4);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

@@ -15,19 +15,19 @@ class BankAccountDetailsV2Bban
     use FieldConfidenceMixin;
 
     /**
-     * @var string The BBAN bank code outputted as a string.
+     * @var string|null The BBAN bank code outputted as a string.
      */
     public ?string $bbanBankCode;
     /**
-     * @var string The BBAN branch code outputted as a string.
+     * @var string|null The BBAN branch code outputted as a string.
      */
     public ?string $bbanBranchCode;
     /**
-     * @var string The BBAN key outputted as a string.
+     * @var string|null The BBAN key outputted as a string.
      */
     public ?string $bbanKey;
     /**
-     * @var string The BBAN Account number outputted as a string.
+     * @var string|null The BBAN Account number outputted as a string.
      */
     public ?string $bbanNumber;
 
@@ -43,6 +43,21 @@ class BankAccountDetailsV2Bban
         $this->bbanBranchCode = $rawPrediction["bban_branch_code"] ?? null;
         $this->bbanKey = $rawPrediction["bban_key"] ?? null;
         $this->bbanNumber = $rawPrediction["bban_number"] ?? null;
+    }
+
+    /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["bbanBankCode"] = SummaryHelper::formatForDisplay($this->bbanBankCode);
+        $outArr["bbanBranchCode"] = SummaryHelper::formatForDisplay($this->bbanBranchCode);
+        $outArr["bbanKey"] = SummaryHelper::formatForDisplay($this->bbanKey);
+        $outArr["bbanNumber"] = SummaryHelper::formatForDisplay($this->bbanNumber);
+        return $outArr;
     }
 
     /**
@@ -80,6 +95,6 @@ class BankAccountDetailsV2Bban
      */
     public function __toString(): string
     {
-        return SummaryHelper::cleanOutString($this->toTableLine());
+        return SummaryHelper::cleanOutString($this->toFieldList());
     }
 }

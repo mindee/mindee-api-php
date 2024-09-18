@@ -15,11 +15,11 @@ class UsMailV2RecipientAddress
     use FieldConfidenceMixin;
 
     /**
-     * @var string The city of the recipient's address.
+     * @var string|null The city of the recipient's address.
      */
     public ?string $city;
     /**
-     * @var string The complete address of the recipient.
+     * @var string|null The complete address of the recipient.
      */
     public ?string $complete;
     /**
@@ -27,19 +27,19 @@ class UsMailV2RecipientAddress
      */
     public bool $isAddressChange;
     /**
-     * @var string The postal code of the recipient's address.
+     * @var string|null The postal code of the recipient's address.
      */
     public ?string $postalCode;
     /**
-     * @var string The private mailbox number of the recipient's address.
+     * @var string|null The private mailbox number of the recipient's address.
      */
     public ?string $privateMailboxNumber;
     /**
-     * @var string Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
+     * @var string|null Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
      */
     public ?string $state;
     /**
-     * @var string The street of the recipient's address.
+     * @var string|null The street of the recipient's address.
      */
     public ?string $street;
 
@@ -61,11 +61,11 @@ class UsMailV2RecipientAddress
     }
 
     /**
-     * Return values for printing as an array.
+     * Return values for printing inside an RST table.
      *
      * @return array
      */
-    private function printableValues(): array
+    private function tablePrintableValues(): array
     {
         $outArr = [];
         $outArr["city"] = SummaryHelper::formatForDisplay($this->city, 15);
@@ -77,6 +77,24 @@ class UsMailV2RecipientAddress
         $outArr["street"] = SummaryHelper::formatForDisplay($this->street, 25);
         return $outArr;
     }
+
+    /**
+     * Return values for printing as an array.
+     *
+     * @return array
+     */
+    private function printableValues(): array
+    {
+        $outArr = [];
+        $outArr["city"] = SummaryHelper::formatForDisplay($this->city);
+        $outArr["complete"] = SummaryHelper::formatForDisplay($this->complete);
+        $outArr["isAddressChange"] = SummaryHelper::formatForDisplay($this->isAddressChange);
+        $outArr["postalCode"] = SummaryHelper::formatForDisplay($this->postalCode);
+        $outArr["privateMailboxNumber"] = SummaryHelper::formatForDisplay($this->privateMailboxNumber);
+        $outArr["state"] = SummaryHelper::formatForDisplay($this->state);
+        $outArr["street"] = SummaryHelper::formatForDisplay($this->street);
+        return $outArr;
+    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
@@ -84,15 +102,15 @@ class UsMailV2RecipientAddress
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["city"], 15) . " | ";
-        $outStr .= str_pad($printable["complete"], 35) . " | ";
-        $outStr .= str_pad($printable["isAddressChange"], 17) . " | ";
-        $outStr .= str_pad($printable["postalCode"], 11) . " | ";
-        $outStr .= str_pad($printable["privateMailboxNumber"], 22) . " | ";
-        $outStr .= str_pad($printable["state"], 5) . " | ";
-        $outStr .= str_pad($printable["street"], 25) . " | ";
+        $outStr .= SummaryHelper::padString($printable["city"], 15);
+        $outStr .= SummaryHelper::padString($printable["complete"], 35);
+        $outStr .= SummaryHelper::padString($printable["isAddressChange"], 17);
+        $outStr .= SummaryHelper::padString($printable["postalCode"], 11);
+        $outStr .= SummaryHelper::padString($printable["privateMailboxNumber"], 22);
+        $outStr .= SummaryHelper::padString($printable["state"], 5);
+        $outStr .= SummaryHelper::padString($printable["street"], 25);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

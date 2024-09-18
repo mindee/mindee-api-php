@@ -2,8 +2,6 @@
 
 namespace Mindee\Parsing\Standard;
 
-use ArrayObject;
-
 /**
  * Tax line information.
  */
@@ -78,9 +76,9 @@ class TaxField extends BaseField
     {
         return [
             'code' => $this->code ?? '',
-            'basis' => isset($this->basis) ? number_format((float)$this->basis, 2, ".", "") : null,
-            'rate' => isset($this->rate) ? number_format((float)$this->rate, 2, ".", "") : null,
-            'value' => isset($this->value) ? number_format((float)$this->value, 2, ".", "") : null,
+            'basis' => isset($this->basis) ? number_format((float)$this->basis, 2, ".", "") : '',
+            'rate' => isset($this->rate) ? number_format((float)$this->rate, 2, ".", "") : '',
+            'value' => isset($this->value) ? number_format((float)$this->value, 2, ".", "") : '',
         ];
     }
 
@@ -93,10 +91,10 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return '| ' . str_pad($printable['basis'], 13, ' ') .
-            ' | ' . str_pad($printable['code'], 6, ' ') .
-            ' | ' . str_pad($printable['rate'], 8, ' ') .
-            ' | ' . str_pad($printable['value'], 13, ' ') . ' |';
+        return '| ' . mb_str_pad($printable['basis'], 13, ' ', STR_PAD_RIGHT, "UTF-8") .
+            ' | ' . mb_str_pad($printable['code'], 6, ' ', STR_PAD_RIGHT, "UTF-8") .
+            ' | ' . mb_str_pad($printable['rate'], 8, ' ', STR_PAD_RIGHT, "UTF-8") .
+            ' | ' . mb_str_pad($printable['value'], 13, ' ', STR_PAD_RIGHT, "UTF-8") . ' |';
     }
 
     /**

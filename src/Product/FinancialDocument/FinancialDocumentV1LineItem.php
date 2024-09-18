@@ -15,35 +15,35 @@ class FinancialDocumentV1LineItem
     use FieldConfidenceMixin;
 
     /**
-     * @var string The item description.
+     * @var string|null The item description.
      */
     public ?string $description;
     /**
-     * @var string The product code referring to the item.
+     * @var string|null The product code referring to the item.
      */
     public ?string $productCode;
     /**
-     * @var float The item quantity
+     * @var float|null The item quantity
      */
     public ?float $quantity;
     /**
-     * @var float The item tax amount.
+     * @var float|null The item tax amount.
      */
     public ?float $taxAmount;
     /**
-     * @var float The item tax rate in percentage.
+     * @var float|null The item tax rate in percentage.
      */
     public ?float $taxRate;
     /**
-     * @var float The item total amount.
+     * @var float|null The item total amount.
      */
     public ?float $totalAmount;
     /**
-     * @var string The item unit of measure.
+     * @var string|null The item unit of measure.
      */
     public ?string $unitMeasure;
     /**
-     * @var float The item unit price.
+     * @var float|null The item unit price.
      */
     public ?float $unitPrice;
 
@@ -58,21 +58,35 @@ class FinancialDocumentV1LineItem
         $this->description = $rawPrediction["description"] ?? null;
         $this->productCode = $rawPrediction["product_code"] ?? null;
         $this->quantity = isset($rawPrediction["quantity"]) ?
-        number_format(floatval($rawPrediction["quantity"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["quantity"]) : null;
         $this->taxAmount = isset($rawPrediction["tax_amount"]) ?
-        number_format(floatval($rawPrediction["tax_amount"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["tax_amount"]) : null;
         $this->taxRate = isset($rawPrediction["tax_rate"]) ?
-        number_format(floatval($rawPrediction["tax_rate"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["tax_rate"]) : null;
         $this->totalAmount = isset($rawPrediction["total_amount"]) ?
-        number_format(floatval($rawPrediction["total_amount"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["total_amount"]) : null;
         $this->unitMeasure = $rawPrediction["unit_measure"] ?? null;
         $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-        number_format(floatval($rawPrediction["unit_price"]), 2, ".", "") :
-        null;
+            floatval($rawPrediction["unit_price"]) : null;
+    }
+
+    /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
+        $outArr["productCode"] = SummaryHelper::formatForDisplay($this->productCode);
+        $outArr["quantity"] = SummaryHelper::formatFloat($this->quantity);
+        $outArr["taxAmount"] = SummaryHelper::formatFloat($this->taxAmount);
+        $outArr["taxRate"] = SummaryHelper::formatFloat($this->taxRate);
+        $outArr["totalAmount"] = SummaryHelper::formatFloat($this->totalAmount);
+        $outArr["unitMeasure"] = SummaryHelper::formatForDisplay($this->unitMeasure);
+        $outArr["unitPrice"] = SummaryHelper::formatFloat($this->unitPrice);
+        return $outArr;
     }
 
     /**
@@ -83,14 +97,14 @@ class FinancialDocumentV1LineItem
     private function printableValues(): array
     {
         $outArr = [];
-        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description);
         $outArr["productCode"] = SummaryHelper::formatForDisplay($this->productCode);
-        $outArr["quantity"] = $this->quantity == null ? "" : number_format($this->quantity, 2, ".", "");
-        $outArr["taxAmount"] = $this->taxAmount == null ? "" : number_format($this->taxAmount, 2, ".", "");
-        $outArr["taxRate"] = $this->taxRate == null ? "" : number_format($this->taxRate, 2, ".", "");
-        $outArr["totalAmount"] = $this->totalAmount == null ? "" : number_format($this->totalAmount, 2, ".", "");
+        $outArr["quantity"] = SummaryHelper::formatFloat($this->quantity);
+        $outArr["taxAmount"] = SummaryHelper::formatFloat($this->taxAmount);
+        $outArr["taxRate"] = SummaryHelper::formatFloat($this->taxRate);
+        $outArr["totalAmount"] = SummaryHelper::formatFloat($this->totalAmount);
         $outArr["unitMeasure"] = SummaryHelper::formatForDisplay($this->unitMeasure);
-        $outArr["unitPrice"] = $this->unitPrice == null ? "" : number_format($this->unitPrice, 2, ".", "");
+        $outArr["unitPrice"] = SummaryHelper::formatFloat($this->unitPrice);
         return $outArr;
     }
     /**
@@ -100,16 +114,16 @@ class FinancialDocumentV1LineItem
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["description"], 36) . " | ";
-        $outStr .= str_pad($printable["productCode"], 12) . " | ";
-        $outStr .= str_pad($printable["quantity"], 8) . " | ";
-        $outStr .= str_pad($printable["taxAmount"], 10) . " | ";
-        $outStr .= str_pad($printable["taxRate"], 12) . " | ";
-        $outStr .= str_pad($printable["totalAmount"], 12) . " | ";
-        $outStr .= str_pad($printable["unitMeasure"], 15) . " | ";
-        $outStr .= str_pad($printable["unitPrice"], 10) . " | ";
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
+        $outStr .= SummaryHelper::padString($printable["productCode"], 12);
+        $outStr .= SummaryHelper::padString($printable["quantity"], 8);
+        $outStr .= SummaryHelper::padString($printable["taxAmount"], 10);
+        $outStr .= SummaryHelper::padString($printable["taxRate"], 12);
+        $outStr .= SummaryHelper::padString($printable["totalAmount"], 12);
+        $outStr .= SummaryHelper::padString($printable["unitMeasure"], 15);
+        $outStr .= SummaryHelper::padString($printable["unitPrice"], 10);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

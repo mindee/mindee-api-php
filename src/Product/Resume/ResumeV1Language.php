@@ -15,11 +15,11 @@ class ResumeV1Language
     use FieldConfidenceMixin;
 
     /**
-     * @var string The language's ISO 639 code.
+     * @var string|null The language's ISO 639 code.
      */
     public ?string $language;
     /**
-     * @var string The candidate's level for the language.
+     * @var string|null The candidate's level for the language.
      */
     public ?string $level;
 
@@ -36,6 +36,19 @@ class ResumeV1Language
     }
 
     /**
+     * Return values for printing inside an RST table.
+     *
+     * @return array
+     */
+    private function tablePrintableValues(): array
+    {
+        $outArr = [];
+        $outArr["language"] = SummaryHelper::formatForDisplay($this->language);
+        $outArr["level"] = SummaryHelper::formatForDisplay($this->level, 20);
+        return $outArr;
+    }
+
+    /**
      * Return values for printing as an array.
      *
      * @return array
@@ -44,7 +57,7 @@ class ResumeV1Language
     {
         $outArr = [];
         $outArr["language"] = SummaryHelper::formatForDisplay($this->language);
-        $outArr["level"] = SummaryHelper::formatForDisplay($this->level, 20);
+        $outArr["level"] = SummaryHelper::formatForDisplay($this->level);
         return $outArr;
     }
     /**
@@ -54,10 +67,10 @@ class ResumeV1Language
      */
     public function toTableLine(): string
     {
-        $printable = $this->printableValues();
+        $printable = $this->tablePrintableValues();
         $outStr = "| ";
-        $outStr .= str_pad($printable["language"], 8) . " | ";
-        $outStr .= str_pad($printable["level"], 20) . " | ";
+        $outStr .= SummaryHelper::padString($printable["language"], 8);
+        $outStr .= SummaryHelper::padString($printable["level"], 20);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 
