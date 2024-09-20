@@ -1,6 +1,12 @@
 # Mindee PHP API Library Changelog
 
-## V1.11.0 - 2024-09-18
+## v1.11.1 - 2024-09-19
+### Fixes
+* :recycle: removed unused dependency
+* :recycle: fix tests
+
+
+## v1.11.0 - 2024-09-18
 ### Changes
 * :sparkles: add support for BillOfLadingV1
 * :sparkles: add support for (US) UsMailV2
