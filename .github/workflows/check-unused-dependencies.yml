@@ -1,0 +1,30 @@
+#
+# Make sure dependencies are all properly integrated
+#
+name: Dependencies usage check
+
+on:
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  license-check:
+    name: Check depdencies
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - 8.3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v3
+
+      - name: Download archive
+        run: curl -OL https://github.com/composer-unused/composer-unused/releases/latest/download/composer-unused.phar
+
+      - name: run check
+        run: php composer-unused.phar
