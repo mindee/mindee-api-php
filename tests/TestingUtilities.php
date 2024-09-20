@@ -45,9 +45,9 @@ class TestingUtilities
      * https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#PHP
      * @param string $referenceStr Base string.
      * @param string $targetStr    String to compare.
-     * @return float Levenshtein distance between the two strings.
+     * @return integer Levenshtein distance between the two strings.
      */
-    private static function lev(string $referenceStr, string $targetStr): float
+    private static function lev(string $referenceStr, string $targetStr): int
     {
         $refLength = strlen($referenceStr);
         $targetLength = strlen($targetStr);
