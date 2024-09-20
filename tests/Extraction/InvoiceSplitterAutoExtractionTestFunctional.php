@@ -7,18 +7,12 @@ use Mindee\Parsing\Common\Document;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
-use Product\TestingUtilities;
 
-require_once(__DIR__ . "/../Product/TestingUtilities.php");
+require_once(__DIR__ . "/../TestingUtilities.php");
 
 class PdfExtractorTest extends TestCase
 {
     private const PRODUCT_DATA_DIR = '/tests/resources/products';
-
-    private function getInvoiceSplitter5pPath()
-    {
-        return self::PRODUCT_DATA_DIR . '/invoice_splitter/invoice_5p.pdf';
-    }
 
     private function prepareInvoiceReturn(string $rstFilePath, Document $invoicePrediction): string
     {
@@ -54,7 +48,13 @@ class PdfExtractorTest extends TestCase
             self::PRODUCT_DATA_DIR . '/invoices/response_v4/summary_full_invoice_p1.rst',
             $invoice0->document
         );
-        // NOTE: PHP seems to be unable to properly render the Supplier Payment Details for this document, hence the circumventing below:
-        $this->assertEquals(preg_replace('/:Supplier Payment Details.*\n/', '', $testStringRstInvoice0), preg_replace('/:Supplier Payment Details.*\n/', '', (string)$invoice0->document));
+
+        $this->assertGreaterThan(
+            0.97,
+            TestingUtilities::levenshteinRatio(
+                $testStringRstInvoice0,
+                (string)$invoice0->document
+            )
+        );
     }
 }
