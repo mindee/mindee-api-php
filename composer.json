@@ -10,8 +10,7 @@
     "ext-json": "*",
     "symfony/console": ">=5.4",
     "setasign/fpdf": "^1.8",
-    "setasign/fpdi": "^2.6",
-    "spatie/pdf-to-image": "^1.2"
+    "setasign/fpdi": "^2.6"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.38",
