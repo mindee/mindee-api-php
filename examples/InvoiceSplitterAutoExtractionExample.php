@@ -11,19 +11,19 @@ function parseInvoice(string $filePath, Client $mindeeClient)
     $inputSource = new PathInput($filePath);
 
     if ($inputSource->isPdf() && $inputSource->countDocPages() > 1) {
-        parseMultiPageInvoice($inputSource, $mindeeClient);
+        parseMultiPage($inputSource, $mindeeClient);
     } else {
-        parseSinglePageInvoice($inputSource, $mindeeClient);
+        parseSinglePage($inputSource, $mindeeClient);
     }
 }
 
-function parseSinglePageInvoice(PathInput $inputSource, Client $mindeeClient)
+function parseSinglePage(PathInput $inputSource, Client $mindeeClient)
 {
     $invoiceResult = $mindeeClient->parse(InvoiceV4::class, $inputSource);
     echo $invoiceResult->document;
 }
 
-function parseMultiPageInvoice(PathInput $inputSource, Client $mindeeClient)
+function parseMultiPage(PathInput $inputSource, Client $mindeeClient)
 {
     global $mindeeClient;
     $pdfExtractor = new PdfExtractor($inputSource);
