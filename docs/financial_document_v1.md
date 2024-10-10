@@ -366,6 +366,20 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 echo $result->document->inference->prediction->locale->value;
 ```
 
+## Payment Date
+**paymentDate** : The date on which the payment is due / fullfilled.
+
+```php
+echo $result->document->inference->prediction->paymentDate->value;
+```
+
+## Purchase Order Number
+**poNumber** : The purchase order number.
+
+```php
+echo $result->document->inference->prediction->poNumber->value;
+```
+
 ## Receipt Number
 **receiptNumber** : The receipt number or identifier only if document is a receipt.
 

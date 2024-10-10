@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Financial Document API version 1.9 document data.
+ * Financial Document API version 1.10 document data.
  */
 class FinancialDocumentV1Document extends Prediction
 {
@@ -71,6 +71,14 @@ class FinancialDocumentV1Document extends Prediction
      * @var LocaleField The locale detected on the document.
      */
     public LocaleField $locale;
+    /**
+     * @var DateField The date on which the payment is due / fullfilled.
+     */
+    public DateField $paymentDate;
+    /**
+     * @var StringField The purchase order number.
+     */
+    public StringField $poNumber;
     /**
      * @var StringField The receipt number or identifier only if document is a receipt.
      */
@@ -237,6 +245,20 @@ class FinancialDocumentV1Document extends Prediction
             $rawPrediction["locale"],
             $pageId
         );
+        if (!isset($rawPrediction["payment_date"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->paymentDate = new DateField(
+            $rawPrediction["payment_date"],
+            $pageId
+        );
+        if (!isset($rawPrediction["po_number"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->poNumber = new StringField(
+            $rawPrediction["po_number"],
+            $pageId
+        );
         if (!isset($rawPrediction["receipt_number"])) {
             throw new MindeeUnsetException();
         }
@@ -383,11 +405,13 @@ class FinancialDocumentV1Document extends Prediction
 
         $outStr = ":Locale: $this->locale
 :Invoice Number: $this->invoiceNumber
+:Purchase Order Number: $this->poNumber
 :Receipt Number: $this->receiptNumber
 :Document Number: $this->documentNumber
 :Reference Numbers: $referenceNumbers
 :Purchase Date: $this->date
 :Due Date: $this->dueDate
+:Payment Date: $this->paymentDate
 :Total Net: $this->totalNet
 :Total Amount: $this->totalAmount
 :Taxes: $this->taxes

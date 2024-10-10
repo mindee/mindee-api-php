@@ -83,7 +83,7 @@ Prediction
 :Supplier Address: 156 University Ave, Toronto ON, Canada, M5H 2H7
 :Supplier Phone Number: 4165551212
 :Supplier Website:
-:Supplier Email: i_doi@example.com
+:Supplier Email: ldoi@example.com
 :Customer Name: JIRO DOI
 :Customer Company Registrations:
 :Customer Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
@@ -127,7 +127,7 @@ Page 0
 :Supplier Address: 156 University Ave, Toronto ON, Canada, M5H 2H7
 :Supplier Phone Number: 4165551212
 :Supplier Website:
-:Supplier Email: i_doi@example.com
+:Supplier Email: ldoi@example.com
 :Customer Name: JIRO DOI
 :Customer Company Registrations:
 :Customer Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
@@ -326,6 +326,20 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 
 ```php
 echo $result->document->inference->prediction->locale->value;
+```
+
+## Payment Date
+**paymentDate** : The date on which the payment is due/ was full-filled.
+
+```php
+echo $result->document->inference->prediction->paymentDate->value;
+```
+
+## Purchase Order Number
+**poNumber** : The purchase order number.
+
+```php
+echo $result->document->inference->prediction->poNumber->value;
 ```
 
 ## Reference Numbers

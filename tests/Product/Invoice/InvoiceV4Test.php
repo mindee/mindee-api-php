@@ -35,9 +35,11 @@ class InvoiceV4Test extends TestCase
         $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->locale->value);
         $this->assertNull($prediction->invoiceNumber->value);
+        $this->assertNull($prediction->poNumber->value);
         $this->assertEquals(0, count($prediction->referenceNumbers));
         $this->assertNull($prediction->date->value);
         $this->assertNull($prediction->dueDate->value);
+        $this->assertNull($prediction->paymentDate->value);
         $this->assertNull($prediction->totalNet->value);
         $this->assertNull($prediction->totalAmount->value);
         $this->assertNull($prediction->totalTax->value);
