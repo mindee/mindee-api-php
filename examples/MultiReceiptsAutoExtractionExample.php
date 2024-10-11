@@ -6,6 +6,11 @@ use Mindee\Input\PathInput;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\Product\Receipt\ReceiptV5;
 
+$mindeeClient = new Client("my-api-key-here");
+// $mindeeClient = new Client(); // Optionally, use an environment variable.
+$inputPath = "path/to/your/file.ext";
+
+
 function processReceipts($client, $inputPath) {
     $inputSource = new PathInput($inputPath);
     $imageExtractor = new ImageExtractor($inputSource);
@@ -29,9 +34,4 @@ function processReceipts($client, $inputPath) {
         echo $result->document . "\n";
     }
 }
-
-$mindeeClient = new Client("my-api-key-here");
-// $mindeeClient = new Client(); // Optionally, use an environment variable.
-$inputPath = "path/to/your/file.ext";
-
 processReceipts($mindeeClient, $inputPath);

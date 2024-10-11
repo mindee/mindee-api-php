@@ -25,6 +25,11 @@ class DateField extends BaseField
      */
     public $value;
 
+    /**
+     * @var boolean|null Whether the field was computed or retrieved directly from the document.
+     */
+    public ?bool $isComputed;
+
 
     /**
      * @param array        $rawPrediction Raw prediction array.
@@ -42,6 +47,9 @@ class DateField extends BaseField
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->setPosition($rawPrediction);
 
+        if (isset($rawPrediction['is_computed'])) {
+            $this->isComputed = $rawPrediction['is_computed'];
+        }
         if (isset($this->value)) {
             if ($this->value) {
                 try {

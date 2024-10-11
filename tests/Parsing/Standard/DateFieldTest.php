@@ -17,11 +17,13 @@ class DateFieldTest extends TestCase
                 [0.414, 0.707],
                 [0.414, 0.831],
                 [0.016, 0.831],
-            ]
+            ],
+            "is_computed" => true
         ];
         $date = new DateField($fieldArray);
         $this->assertEquals("2018-04-01", $date->value);
         $this->assertInstanceOf(\DateTimeImmutable::class, $date->dateObject);
+        $this->assertTrue($date->isComputed);
     }
 
     public function testConstructorNoDate()
