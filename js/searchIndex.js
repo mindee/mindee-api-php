@@ -2221,6 +2221,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Standard-DateField.html#property_value"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\DateField\u003A\u003A\u0024isComputed",
+            "name": "isComputed",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-DateField.html#property_isComputed"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\FieldConfidenceMixin",
             "name": "FieldConfidenceMixin",
             "summary": "Trait\u0020to\u0020add\u0020position\u0020information.",
@@ -3178,7 +3183,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.9\u0020document\u0020data.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.10\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3255,6 +3260,16 @@ Search.appendIndex(
             "name": "locale",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_locale"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024paymentDate",
+            "name": "paymentDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_paymentDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024poNumber",
+            "name": "poNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_poNumber"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024receiptNumber",
             "name": "receiptNumber",
@@ -5383,7 +5398,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
             "name": "InvoiceV4Document",
-            "summary": "Invoice\u0020API\u0020version\u00204.7\u0020document\u0020data.",
+            "summary": "Invoice\u0020API\u0020version\u00204.8\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
@@ -5450,6 +5465,16 @@ Search.appendIndex(
             "name": "locale",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_locale"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024paymentDate",
+            "name": "paymentDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_paymentDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024poNumber",
+            "name": "poNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_poNumber"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024referenceNumbers",
             "name": "referenceNumbers",
