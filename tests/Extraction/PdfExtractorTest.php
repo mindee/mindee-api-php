@@ -10,7 +10,7 @@ use Mindee\Input\PathInput;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
 
-class PdfExtractorTestPdf extends TestCase
+class PdfExtractorTest extends TestCase
 {
 
     private Client $dummyClient;

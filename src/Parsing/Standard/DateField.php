@@ -5,6 +5,7 @@ namespace Mindee\Parsing\Standard;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 
 /**
@@ -58,7 +59,11 @@ class DateField extends BaseField
                     try {
                         $this->dateObject = new DateTimeImmutable(strtotime($this->value), new DateTimeZone('UTC'));
                     } catch (Exception $e2) {
-                        throw new MindeeApiException("Couldn't create date field from value '" . $this->value . "'");
+                        throw new MindeeApiException(
+                            "Couldn't create date field from value '" . $this->value . "'",
+                            ErrorCode::API_UNPROCESSABLE_ENTITY,
+                            $e
+                        );
                     }
                 }
             } else {

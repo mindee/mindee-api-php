@@ -3,6 +3,7 @@
 namespace Mindee\Parsing\Common;
 
 use DateTimeImmutable;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 
 /**
@@ -48,7 +49,11 @@ class Job
             try {
                 $this->issuedAt = new DateTimeImmutable(strtotime($rawResponse['issued_at']));
             } catch (\Exception $e2) {
-                throw new MindeeApiException("Could not create date from " . $rawResponse['issued_at']);
+                throw new MindeeApiException(
+                    "Could not create date from " . $rawResponse['issued_at'],
+                    ErrorCode::API_UNPROCESSABLE_ENTITY,
+                    $e2
+                );
             }
         }
         $this->id = $rawResponse['id'];
@@ -60,7 +65,11 @@ class Job
                 try {
                     $this->availableAt = new DateTimeImmutable(strtotime($rawResponse['available_at']));
                 } catch (\Exception $e2) {
-                    throw new MindeeApiException("Could not create date from " . $rawResponse['available_at']);
+                    throw new MindeeApiException(
+                        "Could not create date from " . $rawResponse['available_at'],
+                        ErrorCode::API_UNPROCESSABLE_ENTITY,
+                        $e
+                    );
                 }
             }
             $ts1 = (int)$this->availableAt->format('Uv');

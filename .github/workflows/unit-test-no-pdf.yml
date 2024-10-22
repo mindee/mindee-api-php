@@ -1,4 +1,4 @@
-name: Unit Tests for PDF features
+name: Unit Tests without PDF support
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   phpunit-ubuntu:
-    name: Run Unit Tests on Ubuntu
+    name: Run Unit Tests on Ubuntu without PDF support
     timeout-minutes: 30
     strategy:
       matrix:
@@ -22,21 +22,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ghostscript
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
       - uses: ramsey/composer-install@v2
-      - name: Change ImageMagick security policy on Ubuntu
-        run: |
-          DQT='"'
-          SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
-          RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
       - name: Unit testing with phpunit
         env:
           MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
@@ -44,7 +34,7 @@ jobs:
           ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
   phpunit-macos:
-    name: Run Unit Tests on MacOS
+    name: Run Unit Tests on MacOS without PDF support
     timeout-minutes: 30
     strategy:
       matrix:
@@ -65,11 +55,6 @@ jobs:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-      - name: Install ImageMagick
-        run: |
-          brew update
-          brew install imagemagick
-          pecl install imagick
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         env:
@@ -78,7 +63,7 @@ jobs:
           ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
   phpunit-windows:
-    name: Run Unit Tests on Windows
+    name: Run Unit Tests on Windows without PDF support
     timeout-minutes: 30
     strategy:
       matrix:
@@ -93,20 +78,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: choco install ghostscript --version 10.03.1 -y
-      - name: Create Ghostscript alias
-        run: |
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
-        shell: powershell
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
+          extensions: curl, fileinfo, json
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         env:

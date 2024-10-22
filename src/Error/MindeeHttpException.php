@@ -120,10 +120,14 @@ class MindeeHttpException extends MindeeException
             return $response['api_request']['error'];
         }
         if (!$response) {
-            throw new MindeeException("Request to the API failed.");
+            throw new MindeeException(
+                "Request to the API failed.",
+                ErrorCode::API_REQUEST_FAILED
+            );
         }
         throw new MindeeException(
-            'Could not build a specific HTTP exception from: ' . json_encode($response, JSON_PRETTY_PRINT)
+            'Could not build a specific HTTP exception from: ' . json_encode($response, JSON_PRETTY_PRINT),
+            ErrorCode::EXCEPTION_BUILD_FAILED
         );
     }
 

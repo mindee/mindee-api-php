@@ -46,7 +46,7 @@ class PdfExtractor
             try {
                 $image = new \Imagick();
             } catch (\ImagickException $e) {
-                throw new MindeePDFException("Imagick could not process this file. Reason given:", $e->getMessage());
+                throw new MindeePDFException("Imagick could not process this file.\n", 0, $e);
             }
             $image->readImageBlob($localInput->readContents()[1]);
             $image->setImageFormat('pdf');
@@ -69,7 +69,7 @@ class PdfExtractor
             file_put_contents($tempFilename, $this->pdfBytes);
             return $pdfHandle->setSourceFile($tempFilename);
         } catch (PdfParserException $e) {
-            throw new MindeePDFException("Couldn't open PDF file. FPDI sent the following: " . $e->getMessage());
+            throw new MindeePDFException("Couldn't open PDF file. FPDI sent the following: ", 0, $e);
         }
     }
 
