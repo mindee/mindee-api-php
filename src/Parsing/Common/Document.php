@@ -2,6 +2,7 @@
 
 namespace Mindee\Parsing\Common;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Parsing\Common\Extras\Extras;
 use Mindee\Parsing\Common\Ocr\Ocr;
@@ -49,8 +50,12 @@ class Document
         try {
             $reflection = new \ReflectionClass($predictionType);
             $this->inference = $reflection->newInstance($rawResponse['inference']);
-        } catch (\ReflectionException $exception) {
-            throw new MindeeApiException("Unable to create custom product " . $predictionType);
+        } catch (\ReflectionException $e) {
+            throw new MindeeApiException(
+                "Unable to create custom product " . $predictionType,
+                ErrorCode::INTERNAL_LIBRARY_ERROR,
+                $e
+            );
         }
         if (array_key_exists("ocr", $rawResponse) && $rawResponse['ocr']) {
             $this->ocr = new Ocr($rawResponse['ocr']);

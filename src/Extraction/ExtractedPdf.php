@@ -2,6 +2,7 @@
 
 namespace Mindee\Extraction;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
@@ -58,7 +59,11 @@ class ExtractedPdf
             file_put_contents($tempFilename, $this->pdfBytes);
             return $pdfHandle->setSourceFile($tempFilename);
         } catch (PdfParserException $e) {
-            throw new MindeePDFException("Couldn't open PDF file. FPDI sent the following: " . $e->getMessage());
+            throw new MindeePDFException(
+                "Couldn't open PDF file.",
+                ErrorCode::PDF_CANT_CREATE,
+                $e
+            );
         }
     }
 

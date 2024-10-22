@@ -8,6 +8,7 @@
 
 namespace Mindee;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeException;
@@ -168,12 +169,16 @@ class Client
             $reflection = new ReflectionClass($product);
             $endpointName = $reflection->getStaticPropertyValue("endpointName");
             $endpointVersion = $reflection->getStaticPropertyValue("endpointVersion");
-        } catch (ReflectionException $exception) {
-            throw new MindeeApiException("Unable to create custom product " . $product);
+        } catch (ReflectionException $e) {
+            throw new MindeeApiException(
+                "Unable to create custom product " . $product,
+                ErrorCode::INTERNAL_LIBRARY_ERROR
+            );
         }
         if ($endpointName == 'custom') {
             throw new MindeeApiException(
-                'Please create an endpoint manually before sending requests to a custom build.'
+                'Please create an endpoint manually before sending requests to a custom build.',
+                ErrorCode::USER_INPUT_ERROR
             );
         }
         $endpointOwner = self::DEFAULT_OWNER;
@@ -193,7 +198,10 @@ class Client
     public function createEndpoint(string $endpointName, string $accountName, ?string $version = null): Endpoint
     {
         if (mb_strlen($endpointName, "UTF-8") == 0) {
-            throw new MindeeClientException("Custom endpoint requires a valid 'endpoint_name'.");
+            throw new MindeeClientException(
+                "Custom endpoint requires a valid 'endpoint_name'.",
+                ErrorCode::USER_INPUT_ERROR
+            );
         }
         $accountName = $this->cleanAccountName($accountName);
         if (!$version || strlen($version) < 1) {
@@ -258,7 +266,10 @@ class Client
             if ($inputDoc instanceof LocalInputSource) {
                 $this->cutDocPages($inputDoc, $options->pageOptions);
             } else {
-                throw new MindeeApiException("Cannot edit non-local input sources.");
+                throw new MindeeApiException(
+                    "Cannot edit non-local input sources.",
+                    ErrorCode::USER_OPERATION_ERROR
+                );
             }
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->predictAsyncRequestPost(
@@ -296,7 +307,10 @@ class Client
             if ($inputDoc instanceof LocalInputSource) {
                 $this->cutDocPages($inputDoc, $options->pageOptions);
             } else {
-                throw new MindeeApiException("Cannot edit non-local input sources.");
+                throw new MindeeApiException(
+                    "Cannot edit non-local input sources.",
+                    ErrorCode::USER_OPERATION_ERROR
+                );
             }
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->predictRequestPost(
@@ -390,7 +404,8 @@ class Client
         }
         if ($pollResults->job->status != "completed") {
             throw new MindeeApiException(
-                "Couldn't retrieve document " . $enqueueResponse->job->id . " after $retryCounter tries."
+                "Couldn't retrieve document " . $enqueueResponse->job->id . " after $retryCounter tries.",
+                ErrorCode::API_TIMEOUT
             );
         }
         return $pollResults;
@@ -460,7 +475,10 @@ class Client
             }
             return new PredictResponse($predictionType, $json);
         } catch (\Exception $e) {
-            throw new MindeeException("Local response is not a valid prediction.");
+            throw new MindeeException(
+                "Local response is not a valid prediction.",
+                ErrorCode::USER_INPUT_ERROR
+            );
         }
     }
 }

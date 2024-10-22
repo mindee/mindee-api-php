@@ -2,8 +2,11 @@
 
 namespace Mindee\Parsing\Common;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Parsing\Common\Extras\Extras;
+use ReflectionClass;
+use ReflectionException;
 
 /**
  * Base Page object for predictions.
@@ -15,31 +18,35 @@ class Page
      */
     public int $id;
     /**
-     * @var \Mindee\Parsing\Common\OrientationField Orientation of the page.
+     * @var OrientationField Orientation of the page.
      */
     public OrientationField $orientation;
     /**
-     * @var \Mindee\Parsing\Common\Prediction|object Type of Page prediction.
+     * @var Prediction|object Type of Page prediction.
      */
     public Prediction $prediction;
     /**
-     * @var \Mindee\Parsing\Common\Extras\Extras Potential Extras fields sent back along with the prediction.
+     * @var Extras Potential Extras fields sent back along with the prediction.
      */
     public Extras $extras;
 
     /**
      * @param string $predictionType Type of prediction.
      * @param array  $rawPrediction  Raw prediction array.
-     * @throws \Mindee\Error\MindeeApiException Throws if the prediction type isn't recognized.
+     * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawPrediction)
     {
         $this->id = $rawPrediction['id'];
         try {
-            $reflection = new \ReflectionClass($predictionType);
+            $reflection = new ReflectionClass($predictionType);
             $this->prediction = $reflection->newInstance($rawPrediction['prediction'], $this->id);
-        } catch (\ReflectionException $exception) {
-            throw new MindeeApiException("Unable to create custom product " . $predictionType);
+        } catch (ReflectionException $e) {
+            throw new MindeeApiException(
+                "Unable to create custom product " . $predictionType,
+                ErrorCode::INTERNAL_LIBRARY_ERROR,
+                $e
+            );
         }
         if (array_key_exists('orientation', $rawPrediction)) {
             $this->orientation = new OrientationField($rawPrediction['orientation'], $this->id, false, 'value');
