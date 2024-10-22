@@ -2,6 +2,7 @@
 
 namespace Mindee\Input;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeSourceException;
 
 /**
@@ -51,7 +52,10 @@ class FileInput extends LocalInputSource
     {
         if (!is_resource($this->file)) {
             if ($this->throwsOnClose) {
-                throw new MindeeSourceException("File is already closed.");
+                throw new MindeeSourceException(
+                    "File is already closed.",
+                    ErrorCode::USER_OPERATION_ERROR
+                );
             }
             error_log("File is already closed.");
         } else {

@@ -2,6 +2,7 @@
 
 namespace Mindee\Input;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeSourceException;
 
 /**
@@ -21,7 +22,10 @@ class URLInputSource extends InputSource
     public function __construct(string $url)
     {
         if ((substr($url, 0, 8) !== 'https://')) {
-            throw new MindeeSourceException('URL must be HTTPS');
+            throw new MindeeSourceException(
+                'URL must be HTTPS',
+                ErrorCode::USER_INPUT_ERROR
+            );
         }
         $this->url = $url;
     }

@@ -3,8 +3,10 @@
 namespace Input;
 
 use Mindee\Client;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
+use Mindee\Image\ImageCompressor;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
 use setasign\Fpdi\Fpdi;
@@ -20,6 +22,8 @@ class LocalInputSourceTest extends TestCase
     private string $oldKey;
     protected Client $dummyClient;
     protected string $fileTypesDir;
+    protected string $productsDir;
+    protected string $outputDir;
 
     protected function setUp(): void
     {
@@ -31,7 +35,10 @@ class LocalInputSourceTest extends TestCase
         ) . "/tests/resources/file_types/";
         $this->productsDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-        ) . "/tests/resources/products/";
+            ) . "/tests/resources/products/";
+        $this->outputDir = (
+            getenv('GITHUB_WORKSPACE') ?: "."
+            ) . "/tests/resources/output/";
     }
 
     protected function tearDown(): void
@@ -87,14 +94,18 @@ class LocalInputSourceTest extends TestCase
                 $cutPdf->useTemplate($cutPdf->importPage($pageNumber + 1));
                 $basePdf->AddPage();
                 $basePdf->useTemplate($basePdf->importPage($pageNumber + 1));
-                // Note: comparing extracted page bytes content turns out to be unreliable when using FPDF.
+                // TODO: comparing extracted page bytes content turns out to be unreliable when using FPDF.
                 // This will be left here until a better solution is found within the limitations of licensing.
                 //                $this->assertEquals($cutPdf->Output('', 'S'), $basePdf->Output('', 'S'));
             }
             $basePdf->Close();
             $cutPdf->Close();
-        } catch (PdfParserException|PdfReaderException $e) {
-            throw new MindeePDFException("Failed to read PDF file.");
+        } catch (PdfParserException | PdfReaderException $e) {
+            throw new MindeePDFException(
+                "Failed to read PDF file.",
+                ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
         }
     }
 
@@ -232,5 +243,86 @@ class LocalInputSourceTest extends TestCase
 
         $sourceDocFixed = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/broken_invoice.pdf', true);
         $this->assertEquals($sourceDocFixed->readContents()[1], $sourceDocOriginal->readContents()[1]);
+    }
+
+    public function testImageQualityCompressionFromInputSource()
+    {
+        $receiptInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/receipt.jpg');
+        $receiptInput->compress(80);
+        file_put_contents(
+            $this->outputDir . "/compress_indirect.jpg",
+            file_get_contents($receiptInput->fileObject->getFilename())
+        );
+        $sizeOriginal = filesize($this->fileTypesDir . '/receipt.jpg');
+        $sizeCompressed = filesize($this->outputDir . "/compress_indirect.jpg");
+        $this->assertGreaterThan($sizeCompressed, $sizeOriginal);
+    }
+
+    public function testDirectImageQualityCompression()
+    {
+        $receiptInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/receipt.jpg');
+        $sizeOriginal = filesize($this->fileTypesDir . '/receipt.jpg');
+        $compresses = [
+          100 => ImageCompressor::compressImage($receiptInput->fileObject, 100),
+          85 => ImageCompressor::compressImage($receiptInput->fileObject),
+          50 => ImageCompressor::compressImage($receiptInput->fileObject, 50),
+          10 => ImageCompressor::compressImage($receiptInput->fileObject, 10),
+          1 => ImageCompressor::compressImage($receiptInput->fileObject, 1)
+        ];
+
+        $outputFiles = [
+          100 => $this->outputDir  . "/compress100.jpg",
+          85 => $this->outputDir  . "/compress85.jpg",
+          50 => $this->outputDir  . "/compress50.jpg",
+          10 => $this->outputDir  . "/compress10.jpg",
+          1 => $this->outputDir  . "/compress1.jpg",
+        ];
+
+        $compressSize = [];
+        foreach ($compresses as $key => $value) {
+            file_put_contents(
+                $outputFiles[$key],
+                file_get_contents($value->getFilename())
+            );
+            $compressSize[$key] = filesize($outputFiles[$key]);
+        }
+        $this->assertGreaterThan($compressSize[85], $compressSize[100]);
+        $this->assertGreaterThan($sizeOriginal, $compressSize[85]);
+        $this->assertGreaterThan($compressSize[50], $sizeOriginal);
+        $this->assertGreaterThan($compressSize[10], $compressSize[50]);
+        $this->assertGreaterThan($compressSize[1], $compressSize[10]);
+    }
+
+    public function testPDFSourceText() {
+        $imageInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/receipt.jpg');
+        $pdfEmptyInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/blank_1.pdf');
+        $pdfSourceText = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/multipage.pdf');
+        $this->assertTrue($pdfSourceText->hasSourceText(), "Source text should be properly detected.");
+        $this->assertFalse($pdfEmptyInput->hasSourceText(), "Empty PDFs should not have source text detected.");
+        $this->assertFalse($imageInput->hasSourceText(), "An image should not have any text.");
+    }
+
+    public function testCompressPDFFromInputSource() {
+        $imageInput = $this->dummyClient->sourceFromPath(
+            $this->productsDir .
+            '/invoice_splitter/default_sample.pdf'
+        );
+        $imageInput->compress(50);
+
+        file_put_contents(
+            $this->outputDir . "/not_compressed.pdf",
+            file_get_contents($imageInput->fileObject->getFilename())
+        );
+        $sizeOriginal = filesize($this->productsDir . '/invoice_splitter/default_sample.pdf');
+        $sizeIgnored = filesize($this->outputDir . "/not_compressed.pdf");
+        $this->assertEquals($sizeIgnored, $sizeOriginal);
+
+        $imageInput->compress(50, null, null, true, false);
+        file_put_contents(
+            $this->outputDir . "/compress_indirect.pdf",
+            file_get_contents($imageInput->fileObject->getFilename())
+        );
+        $sizeCompressed = filesize($this->outputDir . '/compress_indirect.pdf');
+        $this->assertLessThan($sizeOriginal, $sizeCompressed);
     }
 }

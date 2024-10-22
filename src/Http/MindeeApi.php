@@ -7,6 +7,7 @@
 namespace Mindee\Http;
 
 use Mindee\Client;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
 
 use const Mindee\VERSION;
@@ -150,7 +151,8 @@ class MindeeApi
             throw new MindeeException(
                 "Missing API key for '$endpointName v$version' (belonging to $accountName)," .
                 " check your Client configuration.You can set this using the " .
-                API_KEY_ENV_NAME . ' environment variable.'
+                API_KEY_ENV_NAME . ' environment variable.',
+                ErrorCode::USER_INPUT_ERROR
             );
         }
         $this->endpointName = $endpointName;

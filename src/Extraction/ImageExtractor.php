@@ -2,7 +2,9 @@
 
 namespace Mindee\Extraction;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
+use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Geometry\BBox;
@@ -73,7 +75,11 @@ class ImageExtractor
                 $image = new \Imagick();
                 $image->readImageBlob($this->inputSource->readContents()[1]);
             } catch (\ImagickException $e) {
-                throw new MindeePDFException("Imagick could not process this file. Reason given:", $e->getMessage());
+                throw new MindeePDFException(
+                    "Image couldn't be processed.",
+                    ErrorCode::IMAGE_CANT_PROCESS,
+                    $e
+                );
             }
             $this->pageImages[] = $image;
         }
@@ -84,20 +90,28 @@ class ImageExtractor
      *
      * @param string $fileBytes Input pdf.
      * @return array A list of pages.
-     * @throws \ImagickException Throws if the image can't be handled.
+     * @throws MindeeImageException Throws if the image can't be handled.
      */
     public static function pdfToImages(string $fileBytes): array
     {
-        $images = [];
-        $imagick = new \Imagick();
-        $imagick->readImageBlob($fileBytes);
+        try {
+            $images = [];
+            $imagick = new \Imagick();
+            $imagick->readImageBlob($fileBytes);
 
-        foreach ($imagick as $page) {
-            $page->setImageFormat('png');
-            $images[] = $page;
+            foreach ($imagick as $page) {
+                $page->setImageFormat('png');
+                $images[] = $page;
+            }
+
+            return $images;
+        } catch (\ImagickException $e) {
+            throw new MindeeImageException(
+                "Couldn't convert PDF to images.",
+                ErrorCode::FILE_OPERATION_ABORTED,
+                $e
+            );
         }
-
-        return $images;
     }
 
     /**
@@ -176,7 +190,10 @@ class ImageExtractor
         }
 
         if ($boundingBox === null) {
-            throw new MindeeGeometryException("Provided field has no valid position data.");
+            throw new MindeeGeometryException(
+                "Provided field has no valid position data.",
+                ErrorCode::GEOMETRIC_OPERATION_FAILED
+            );
         }
 
         $bbox = BBoxUtils::generateBBoxFromPolygon($boundingBox);

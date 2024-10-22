@@ -2,6 +2,7 @@
 
 namespace Mindee\Input;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
 
 /**
@@ -49,7 +50,10 @@ class LocalResponse
             fwrite($this->file, $strStripped);
             rewind($this->file);
         } else {
-            throw new MindeeException("Incompatible type for input.");
+            throw new MindeeException(
+                "Incompatible type for input.",
+                ErrorCode::USER_INPUT_ERROR
+            );
         }
     }
 
@@ -64,11 +68,18 @@ class LocalResponse
             $content = stream_get_contents($this->file);
             $json = json_decode($content, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new MindeeException("File is not a valid dictionary.");
+                throw new MindeeException(
+                    "File is not a valid JSON-like object.",
+                    ErrorCode::USER_INPUT_ERROR
+                );
             }
             return $json;
         } catch (MindeeException $e) {
-            throw new MindeeException("File is not a valid dictionary.", 0, $e);
+            throw new MindeeException(
+                "File is not a valid dictionary.",
+                ErrorCode::USER_INPUT_ERROR,
+                $e
+            );
         }
     }
 
@@ -86,7 +97,11 @@ class LocalResponse
             $content = stream_get_contents($this->file);
             return hash_hmac($algorithm, $content, $secretKey);
         } catch (MindeeException $e) {
-            throw new MindeeException("Could not get HMAC signature from payload.", 0, $e);
+            throw new MindeeException(
+                "Could not get HMAC signature from payload.",
+                ErrorCode::FILE_CANT_PROCESS,
+                $e
+            );
         }
     }
 
