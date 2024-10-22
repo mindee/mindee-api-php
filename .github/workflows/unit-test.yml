@@ -1,4 +1,4 @@
-name: Unit Tests for PDF features
+name: Unit Tests with PDF features
 
 on:
   push:
