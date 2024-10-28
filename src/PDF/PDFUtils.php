@@ -3,11 +3,13 @@
 namespace Mindee\PDF;
 
 use CURLFile;
+use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePDFException;
 use setasign\Fpdi\Fpdi;
 use Smalot\PdfParser\Page;
+use Smalot\PdfParser\Parser;
 
 /**
  * PDF utility class.
@@ -41,61 +43,22 @@ class PDFUtils
             return $imagickHandle;
         } catch (MindeePDFException $e) {
             throw $e;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException("Conversion to MagickImage failed.\n" . $e->getMessage());
         }
-    }
-
-    /**
-     * Checks a PDF's stream content for text operators
-     * See https://opensource.adobe.com/dc-acrobat-sdk-docs/pdfstandards/PDF32000_2008.pdf page 243-251.
-     * @param string $data Stream data from a PDF's page.
-     * @return boolean True if a text operator is found in the stream.
-     */
-    private static function streamHasText(string $data): bool
-    {
-        if (empty($data)) {
-            return false;
-        }
-
-        $textOperators = ['Tc', 'Tw', 'Th', 'TL', 'Tf', 'Tfs', 'Tk', 'Tr', 'Tm', 'T*', 'Tj', 'TJ', "'", '"'];
-        foreach ($textOperators as $op) {
-            if (strpos($data, $op) !== false) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
      * Checks whether the file has source text. Returns false if the file isn't a PDF.
      * @param string $pdfPath Path to the PDF file.
      * @return boolean True if the PDF has source text, false otherwise.
+     * @throws Exception Throws if an instance of pdf-parser can't be created.
      */
     public static function hasSourceText(string $pdfPath): bool
     {
-        if (!file_exists($pdfPath) || !is_readable($pdfPath)) {
-            return false;
-        }
-
-        $pdf = file_get_contents($pdfPath);
-        if ($pdf === false) {
-            return false;
-        }
-
-        if (substr($pdf, 0, 4) !== '%PDF') {
-            return false;
-        }
-
-        preg_match_all('/stream\s(.*?)\sendstream/s', $pdf, $matches);
-
-        foreach ($matches[1] as $stream) {
-            if (self::streamHasText($stream)) {
-                return true;
-            }
-        }
-
-        return false;
+        $parser = new Parser();
+        $pdf = $parser->parseFile($pdfPath);
+        return strlen($pdf->getText()) > 0;
     }
 
     /**
@@ -113,20 +76,20 @@ class PDFUtils
 
             foreach ($page->getTextArray() as $text) {
                 if (isset($text[1])) {
-                    $fontDetails = self::extractFontDetails($fonts, $text[1]);
+                    $fontDetails = static::extractFontDetails($fonts, $text[1]);
                     $textElements[] = [
                         'text' => $text[0],
                         'x' => $text[2][0],
                         'y' => $text[2][1],
                         'font' => $fontDetails['name'],
                         'size' => $fontDetails['size'],
-                        'color' => self::extractColor($text[1]),
+                        'color' => static::extractColor($text[1]),
                     ];
                 }
             }
 
             return $textElements;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException('Failed to parse text elements: ' . $e->getMessage());
         }
     }
@@ -174,7 +137,7 @@ class PDFUtils
      */
     public static function addTextElement(FPDI $pdf, array $element): void
     {
-        $fontName = self::mapFontName($element['font']);
+        $fontName = static::mapFontName($element['font']);
         $pdf->SetFont($fontName, '', $element['size']);
 
         $pdf->SetTextColor($element['color'][0], $element['color'][1], $element['color'][2]);
@@ -208,8 +171,9 @@ class PDFUtils
     public static function toCURLFile(string $path): CURLFile
     {
         try {
-            return new CURLFile($path, 'application/pdf');
-        } catch (\Exception $e) {
+            $postFileName = pathinfo($path, PATHINFO_FILENAME);
+            return new CURLFile($path, 'application/pdf', $postFileName . ".pdf");
+        } catch (Exception $e) {
             throw new MindeeImageException(
                 "Conversion to CURLFile failed.",
                 ErrorCode::FILE_OPERATION_ABORTED,

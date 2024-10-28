@@ -35,25 +35,31 @@ class PDFCompressor
             $parser = new Parser();
             $pdf = $parser->parseFile($pdfPath);
 
-            if (PDFUtils::hasSourceText($pdfPath)) {
+            if (strlen($pdf->getText()) > 0) {
                 if ($forceSourceTextCompression) {
-                    if ($disableSourceText) {
+                    if (!$disableSourceText) {
                         echo "\033[33m[WARNING] Re-writing PDF source-text is an EXPERIMENTAL feature.\033[0m\n";
                     } else {
-                        echo "\033[33m[WARNING] Source-file contains text, but disable_source_text flag is ignored. " .
-                            "Resulting file will not contain any embedded text.\033[0m\n";
+                        echo "\033[33m[WARNING] Source-file contains text, but disable_source_text flag is set to" .
+                            " false. Resulting file will not contain any embedded text.\033[0m\n";
                     }
                 } else {
                     echo "\033[33m[WARNING] Source-text detected in input PDF. Aborting operation.\033[0m\n";
-                    return PDFUtils::toCURLFile($pdfPath);
+                    $outputPath = tempnam(sys_get_temp_dir(), 'compressed_pdf_') . '.pdf';
+                    copy($pdfPath, $outputPath);
+                    return PDFUtils::toCURLFile($outputPath);
                 }
             }
 
             $fpdi = new Fpdi();
             $pageCount = $fpdi->setSourceFile($pdfPath);
-            $outPdf = self::processPdfPages($pdfPath, $quality, $pageCount);
+            $outPdf = static::processPdfPages($pdfPath, $quality, $pageCount);
 
-            $outputPath = self::createOutputPdf($outPdf, $disableSourceText, $pdf);
+            $outputPath = static::createOutputPdf($outPdf, $disableSourceText, $pdf);
+            if (filesize($outputPath) > filesize($pdfPath)) {
+                echo "\033[33m[WARNING] Output PDF would be larger than input. Aborting operation.\033[0m\n";
+                return PDFUtils::toCURLFile($pdfPath);
+            }
             return PDFUtils::toCURLFile($outputPath);
         } catch (\Exception $e) {
             throw new MindeePDFException(
@@ -77,9 +83,9 @@ class PDFCompressor
         $outputPdf = new FPDI();
 
         for ($i = 1; $i <= $pageCount; $i++) {
-            $tempJpegFile = self::processPdfPage($sourcePdfPath, $i, $quality);
+            list($tempJpegFile, $orientation) = static::processPdfPage($sourcePdfPath, $i, $quality);
             list($width, $height) = getimagesize($tempJpegFile);
-            $outputPdf->AddPage('', [$width, $height]);
+            $outputPdf->AddPage($orientation, [$width, $height]);
             $outputPdf->Image($tempJpegFile, 0, 0, $width, $height);
             unlink($tempJpegFile);
         }
@@ -99,11 +105,11 @@ class PDFCompressor
     {
         try {
             if (!$disableSourceText) {
-                self::injectText($originalPdf, [], $processedPdf);
+                static::injectText($originalPdf, [], $processedPdf);
             }
 
             $outputPath = tempnam(sys_get_temp_dir(), 'compressed_pdf_') . '.pdf';
-            $processedPdf->Output($outputPath, 'F');
+            $processedPdf->Output('F', $outputPath);
 
             return $outputPath;
         } catch (\Exception $e) {
@@ -132,12 +138,8 @@ class PDFCompressor
                 if (!isset($pages[$index])) {
                     break;
                 }
-
                 $outputPdf->AddPage();
-
-                // Extract text elements with their properties
                 $textElements = PDFUtils::extractTextElements($page);
-
                 foreach ($textElements as $element) {
                     PDFUtils::addTextElement($outputPdf, $element);
                 }
@@ -157,10 +159,10 @@ class PDFCompressor
      * @param string  $sourcePdfPath Path to the source PDF file.
      * @param integer $pageIndex     The index of the page to process.
      * @param integer $imageQuality  The quality setting for JPEG compression.
-     * @return string Path to the temporary JPEG file.
+     * @return array Path to the temporary JPEG file and orientation of the page.
      * @throws MindeePDFException If there's an error processing the page.
      */
-    private static function processPdfPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): string
+    private static function processPdfPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): array
     {
         try {
             $singlePagePdf = new FPDI();
@@ -172,11 +174,13 @@ class PDFCompressor
             $singlePagePdf->useTemplate($tplId);
 
             $tempPdfFile = tempnam(sys_get_temp_dir(), 'pdf_page_') . '.pdf';
-            $singlePagePdf->Output($tempPdfFile, 'F');
+            $singlePagePdf->Output('F', $tempPdfFile);
 
             $imagick = new \Imagick();
             $imagick->readImage($tempPdfFile);
             $imagick->setImageFormat('jpg');
+            $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_REMOVE);
+            $imagick->setImageCompression(\Imagick::COMPRESSION_JPEG);
             $imagick->setImageCompressionQuality($imageQuality);
 
             $tempJpegFile = tempnam(sys_get_temp_dir(), 'pdf_page_') . '.jpg';
@@ -184,7 +188,7 @@ class PDFCompressor
 
             unlink($tempPdfFile);
 
-            return $tempJpegFile;
+            return [$tempJpegFile, $size['orientation']];
         } catch (\Exception $e) {
             throw new MindeePDFException(
                 "Couldn't process PDF page $pageIndex.",

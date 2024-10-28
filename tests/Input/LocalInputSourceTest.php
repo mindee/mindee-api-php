@@ -8,6 +8,7 @@ use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Image\ImageCompressor;
 use Mindee\Input\PathInput;
+use Mindee\PDF\PDFCompressor;
 use PHPUnit\Framework\TestCase;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
@@ -32,7 +33,7 @@ class LocalInputSourceTest extends TestCase
         putenv(API_KEY_ENV_NAME . '=');
         $this->fileTypesDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
-        ) . "/tests/resources/file_types/";
+            ) . "/tests/resources/file_types/";
         $this->productsDir = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/products/";
@@ -44,7 +45,30 @@ class LocalInputSourceTest extends TestCase
     protected function tearDown(): void
     {
         putenv(API_KEY_ENV_NAME . '=' . $this->oldKey);
+
+        $filesToDelete = [
+            $this->outputDir . "/compress_indirect.jpg",
+            $this->outputDir . "/compress100.jpg",
+            $this->outputDir . "/compress85.jpg",
+            $this->outputDir . "/compress50.jpg",
+            $this->outputDir . "/compress10.jpg",
+            $this->outputDir . "/compress1.jpg",
+            $this->outputDir . "/not_compressed.pdf",
+            $this->outputDir . "/compress_indirect.pdf",
+            $this->outputDir . "/not_compressed_multipage.pdf",
+            $this->outputDir . "/compress_direct_85.pdf",
+            $this->outputDir . "/compress_direct_75.pdf",
+            $this->outputDir . "/compress_direct_50.pdf",
+            $this->outputDir . "/compress_direct_10.pdf"
+        ];
+
+        foreach ($filesToDelete as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+            }
+        }
     }
+
 
     public function testPDFCountPages()
     {
@@ -263,19 +287,19 @@ class LocalInputSourceTest extends TestCase
         $receiptInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/receipt.jpg');
         $sizeOriginal = filesize($this->fileTypesDir . '/receipt.jpg');
         $compresses = [
-          100 => ImageCompressor::compressImage($receiptInput->fileObject, 100),
-          85 => ImageCompressor::compressImage($receiptInput->fileObject),
-          50 => ImageCompressor::compressImage($receiptInput->fileObject, 50),
-          10 => ImageCompressor::compressImage($receiptInput->fileObject, 10),
-          1 => ImageCompressor::compressImage($receiptInput->fileObject, 1)
+            100 => ImageCompressor::compress($receiptInput->fileObject, 100),
+            85 => ImageCompressor::compress($receiptInput->fileObject),
+            50 => ImageCompressor::compress($receiptInput->fileObject, 50),
+            10 => ImageCompressor::compress($receiptInput->fileObject, 10),
+            1 => ImageCompressor::compress($receiptInput->fileObject, 1)
         ];
 
         $outputFiles = [
-          100 => $this->outputDir  . "/compress100.jpg",
-          85 => $this->outputDir  . "/compress85.jpg",
-          50 => $this->outputDir  . "/compress50.jpg",
-          10 => $this->outputDir  . "/compress10.jpg",
-          1 => $this->outputDir  . "/compress1.jpg",
+            100 => $this->outputDir . "/compress100.jpg",
+            85 => $this->outputDir . "/compress85.jpg",
+            50 => $this->outputDir . "/compress50.jpg",
+            10 => $this->outputDir . "/compress10.jpg",
+            1 => $this->outputDir . "/compress1.jpg",
         ];
 
         $compressSize = [];
@@ -293,7 +317,8 @@ class LocalInputSourceTest extends TestCase
         $this->assertGreaterThan($compressSize[1], $compressSize[10]);
     }
 
-    public function testPDFSourceText() {
+    public function testPDFSourceText()
+    {
         $imageInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/receipt.jpg');
         $pdfEmptyInput = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/blank_1.pdf');
         $pdfSourceText = $this->dummyClient->sourceFromPath($this->fileTypesDir . '/pdf/multipage.pdf');
@@ -302,27 +327,82 @@ class LocalInputSourceTest extends TestCase
         $this->assertFalse($imageInput->hasSourceText(), "An image should not have any text.");
     }
 
-    public function testCompressPDFFromInputSource() {
-        $imageInput = $this->dummyClient->sourceFromPath(
-            $this->productsDir .
-            '/invoice_splitter/default_sample.pdf'
+    public function testCompressPDFFromInputSource()
+    {
+        $pdfInput = $this->dummyClient->sourceFromPath(
+            $this->fileTypesDir . "pdf/not_blank_image_only.pdf"
         );
-        $imageInput->compress(50);
+        $this->assertFalse($pdfInput->hasSourceText());
 
         file_put_contents(
             $this->outputDir . "/not_compressed.pdf",
-            file_get_contents($imageInput->fileObject->getFilename())
+            file_get_contents($pdfInput->fileObject->getFilename())
         );
-        $sizeOriginal = filesize($this->productsDir . '/invoice_splitter/default_sample.pdf');
+        $sizeOriginal = filesize($this->fileTypesDir . '/pdf/not_blank_image_only.pdf');
         $sizeIgnored = filesize($this->outputDir . "/not_compressed.pdf");
         $this->assertEquals($sizeIgnored, $sizeOriginal);
 
-        $imageInput->compress(50, null, null, true, false);
+        $pdfInput->compress(90, null, null, true, false);
         file_put_contents(
             $this->outputDir . "/compress_indirect.pdf",
-            file_get_contents($imageInput->fileObject->getFilename())
+            file_get_contents($pdfInput->fileObject->getFilename())
         );
         $sizeCompressed = filesize($this->outputDir . '/compress_indirect.pdf');
         $this->assertLessThan($sizeOriginal, $sizeCompressed);
+    }
+
+
+    public function testAbortPDFCompressionIfOutputTooBig()
+    {
+        $pdfInput = $this->dummyClient->sourceFromPath(
+            $this->fileTypesDir . "pdf/multipage.pdf"
+        );
+        $this->assertTrue($pdfInput->hasSourceText());
+
+        file_put_contents(
+            $this->outputDir . "/not_compressed_multipage.pdf",
+            file_get_contents($pdfInput->fileObject->getFilename())
+        );
+        $pdfInput->compress(5, null, null, true, false);
+        $sizeOriginal = filesize($this->fileTypesDir . '/pdf/multipage.pdf');
+        $sizeIgnored = filesize($this->outputDir . "/not_compressed_multipage.pdf");
+        $this->assertEquals($sizeIgnored, $sizeOriginal);
+    }
+
+    public function testCompressPDFFromCompressor()
+    {
+        $pdfInput = $this->dummyClient->sourceFromPath(
+            $this->productsDir .
+            '/invoice_splitter/default_sample.pdf'
+        );
+        $sizeOriginal = filesize($this->productsDir .
+            '/invoice_splitter/default_sample.pdf');
+
+        $this->assertFalse($pdfInput->hasSourceText());
+        $pdfCompresses = [
+            85 => PDFCompressor::compress($pdfInput->fileObject),
+            75 => PDFCompressor::compress($pdfInput->fileObject, 75),
+            50 => PDFCompressor::compress($pdfInput->fileObject, 50),
+            10 => PDFCompressor::compress($pdfInput->fileObject, 10),
+        ];
+        $outputFiles = [
+            85 => $this->outputDir . "/compress_direct_85.pdf",
+            75 => $this->outputDir . "/compress_direct_75.pdf",
+            50 => $this->outputDir . "/compress_direct_50.pdf",
+            10 => $this->outputDir . "/compress_direct_10.pdf",
+        ];
+
+        $compressSize = [];
+        foreach ($pdfCompresses as $key => $value) {
+            file_put_contents(
+                $outputFiles[$key],
+                file_get_contents($value->getFilename())
+            );
+            $compressSize[$key] = filesize($outputFiles[$key]);
+        }
+        $this->assertGreaterThan($compressSize[85], $sizeOriginal);
+        $this->assertGreaterThan($compressSize[75], $compressSize[85]);
+        $this->assertGreaterThan($compressSize[50], $compressSize[75]);
+        $this->assertGreaterThan($compressSize[10], $compressSize[50]);
     }
 }

@@ -19,7 +19,7 @@ class ImageCompressor
      * @return \CURLFile Curlfile handle for the image.
      * @throws MindeeImageException Throws if image processing fails.
      */
-    public static function compressImage(
+    public static function compress(
         $inputImage,
         ?int $quality = 85,
         ?int $maxWidth = null,
@@ -27,8 +27,16 @@ class ImageCompressor
     ): \CURLFile {
         try {
             $image = ImageUtils::toMagickImage($inputImage);
+            $initialImage = $image->clone();
+            $initialFileSize = $image->getImageLength();
             ImageUtils::resizeImage($image, $maxWidth, $maxHeight);
             ImageUtils::compressImageQuality($image, $quality);
+
+            $finalImageSize = $image->getImageLength();
+            if ($initialFileSize < $finalImageSize) {
+                echo "\033[33m[WARNING] Output image would be larger than input. Aborting operation.\033[0m\n";
+                return ImageUtils::toCURLFile($initialImage);
+            }
             return ImageUtils::toCURLFile($image);
         } catch (\Exception $e) {
             throw new MindeeImageException("Image compression failed.", Mindee\Error\ErrorCode::OPERATION_ABORTED, $e);

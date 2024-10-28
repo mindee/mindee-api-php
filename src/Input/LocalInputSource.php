@@ -7,6 +7,7 @@
 namespace Mindee\Input;
 
 use CURLFile;
+use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeMimeTypeException;
@@ -340,36 +341,36 @@ abstract class LocalInputSource extends InputSource
     }
 
     /**
-     * @param integer      $quality           Quality of the output file.
-     * @param integer|null $maxWidth          Maximum width (Ignored for PDFs).
-     * @param integer|null $maxHeight         Maximum height (Ignored for PDFs).
-     * @param boolean      $forceSourceText   Whether to force the operation on PDFs with source text.
-     *              This will attempt to re-render PDF text over the rasterized original.
-     *              If disabled, ignored the operation.
-     *              WARNING: this operation is strongly discouraged.
-     * @param boolean      $disableSourceText If the PDF has source text, whether to re-apply it to the original or not.
-     *      Needs force_source_text to work.
+     * @param integer      $quality                    Quality of the output file.
+     * @param integer|null $maxWidth                   Maximum width (Ignored for PDFs).
+     * @param integer|null $maxHeight                  Maximum height (Ignored for PDFs).
+     * @param boolean      $forceSourceTextCompression Whether to force the operation on PDFs with source text.
+     *            This will attempt to re-render PDF text over the rasterized original.
+     *            If disabled, ignored the operation.
+     *            WARNING: this operation is strongly discouraged.
+     * @param boolean      $disableSourceText          If the PDF has source text, whether to re-apply it to the
+     *            original or not. Needs force_source_text to work.
      * @return void
      */
     public function compress(
         int $quality = 85,
         int $maxWidth = null,
         int $maxHeight = null,
-        bool $forceSourceText = false,
+        bool $forceSourceTextCompression = false,
         bool $disableSourceText = true
     ): void {
         if ($this->isPDF()) {
             $this->fileObject = PDFCompressor::compress(
                 $this->fileObject,
                 $quality,
-                $forceSourceText,
+                $forceSourceTextCompression,
                 $disableSourceText
             );
             $this->fileMimetype = 'application/pdf';
             $pathInfo = pathinfo($this->filePath);
             $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.pdf';
         } else {
-            $this->fileObject = ImageCompressor::compressImage(
+            $this->fileObject = ImageCompressor::compress(
                 $this->fileObject,
                 $quality,
                 $maxWidth,
@@ -385,6 +386,7 @@ abstract class LocalInputSource extends InputSource
      * Checks the source file for source text.
      *
      * @return boolean Returns false if none is found, or if the file isn't a PDF.
+     * @throws Exception Throws if an instance of pdf-parser can't be created.
      */
     public function hasSourceText(): bool
     {
