@@ -6,11 +6,14 @@ use CURLFile;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePDFException;
 use setasign\Fpdi\Fpdi;
+use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
+use Smalot\PdfParser\Config;
 use Smalot\PdfParser\Document;
+use Smalot\PdfParser\Page;
 use Smalot\PdfParser\Parser;
 
 /**
- * PDF utility class.
+ * PDF compression class.
  */
 class PDFCompressor
 {
@@ -32,7 +35,9 @@ class PDFCompressor
     ): \CURLFile {
         try {
             $pdfPath = PDFUtils::extractFilePath($input);
-            $parser = new Parser();
+            $config = new Config();
+            $config->setDataTmFontInfoHasToBeIncluded(true);
+            $parser = new Parser([], $config);
             $pdf = $parser->parseFile($pdfPath);
 
             if (strlen($pdf->getText()) > 0) {
@@ -51,15 +56,34 @@ class PDFCompressor
                 }
             }
 
-            $fpdi = new Fpdi();
-            $pageCount = $fpdi->setSourceFile($pdfPath);
-            $outPdf = static::processPdfPages($pdfPath, $quality, $pageCount);
-
-            $outputPath = static::createOutputPdf($outPdf, $disableSourceText, $pdf);
-            if (filesize($outputPath) > filesize($pdfPath)) {
-                echo "\033[33m[WARNING] Output PDF would be larger than input. Aborting operation.\033[0m\n";
-                return PDFUtils::toCURLFile($pdfPath);
+            try {
+                $fpdi = new CustomFPDI();
+                $pageCount = $fpdi->setSourceFile($pdfPath);
+            } catch (CrossReferenceException $e) {
+                echo "\033[33m[WARNING] PDF Format is not directly supported. Output PDF will be rasterized and" .
+                    " source text won't be available.\033[0m\n";
+                $pdfPath = PDFUtils::downgradePdfVersion($pdfPath);
+                $fpdi = new CustomFPDI();
+                $pdf = $parser->parseFile($pdfPath);
+                $pageCount = $fpdi->setSourceFile($pdfPath);
             }
+
+            $outPdf = new CustomFPDI();
+            for ($i = 1; $i <= $pageCount; $i++) {
+                list($tempJpegFile, $orientation) = static::processPdfPage($pdfPath, $i, $quality);
+                list($width, $height) = getimagesize($tempJpegFile);
+                $outPdf->AddPage($orientation, [$width, $height]);
+                $outPdf->Image($tempJpegFile, 0, 0, $width, $height);
+                unlink($tempJpegFile);
+
+                if (!$disableSourceText) {
+                    static::injectTextForPage($pdf->getPages()[$i - 1], $outPdf);
+                }
+            }
+
+            $outputPath = tempnam(sys_get_temp_dir(), 'compressed_pdf_') . '.pdf';
+            $outPdf->Output('F', $outputPath);
+
             return PDFUtils::toCURLFile($outputPath);
         } catch (\Exception $e) {
             throw new MindeePDFException(
@@ -69,6 +93,29 @@ class PDFCompressor
             );
         }
     }
+
+    /**
+     * @param Page       $inputPage Input page.
+     * @param CustomFPDI $outputPdf Output PDF handle.
+     * @return void
+     * @throws MindeePDFException Throws if text can't be inserted into the page.
+     */
+    private static function injectTextForPage(Page $inputPage, CustomFPDI $outputPdf): void
+    {
+        try {
+            $textElements = PDFUtils::extractTextElements($inputPage);
+            foreach ($textElements as $element) {
+                PDFUtils::addTextElement($outputPdf, $element);
+            }
+        } catch (\Exception $e) {
+            throw new MindeePDFException(
+                "Couldn't inject text into the new file.",
+                ErrorCode::PDF_CANT_EDIT,
+                $e
+            );
+        }
+    }
+
 
     /**
      * Processes all pages in the PDF.
@@ -95,17 +142,20 @@ class PDFCompressor
     /**
      * Creates the final output PDF, optionally injecting text from the original PDF.
      *
-     * @param FPDI     $processedPdf      The FPDI object containing the processed pages.
-     * @param boolean  $disableSourceText Whether to disable source text injection.
-     * @param Document $originalPdf       The original PDF document (used for text injection).
+     * @param CustomFPDI $processedPdf      The FPDI object containing the processed pages.
+     * @param boolean    $disableSourceText Whether to disable source text injection.
+     * @param Document   $originalPdf       The original PDF document (used for text injection).
      * @return string Path to the output PDF file
      * @throws MindeePDFException If there's an error creating the output PDF.
      */
-    private static function createOutputPdf(FPDI $processedPdf, bool $disableSourceText, Document $originalPdf): string
-    {
+    private static function createOutputPdf(
+        CustomFPDI $processedPdf,
+        bool $disableSourceText,
+        Document $originalPdf
+    ): string {
         try {
             if (!$disableSourceText) {
-                static::injectText($originalPdf, [], $processedPdf);
+                static::injectText($originalPdf, $processedPdf);
             }
 
             $outputPath = tempnam(sys_get_temp_dir(), 'compressed_pdf_') . '.pdf';
@@ -125,23 +175,28 @@ class PDFCompressor
     /**
      * Extracts text from a source text PDF, and injects it into a newly-created one.
      *
-     * @param Document $originalPdf Original PDF document.
-     * @param array    $pages       Array of pages containing the rasterized version of the initial pages.
-     * @param FPDI     $outputPdf   The output PDF object.
+     * @param Document   $inputPdf  Input PDF document.
+     * @param CustomFPDI $outputPdf The output PDF object.
      * @return void
      * @throws MindeePDFException Throws if the text can't be injected.
      */
-    private static function injectText(Document $originalPdf, array $pages, FPDI $outputPdf): void
+    private static function injectText(Document $inputPdf, CustomFPDI $outputPdf): void
     {
         try {
-            foreach ($originalPdf->getPages() as $index => $page) {
-                if (!isset($pages[$index])) {
-                    break;
-                }
-                $outputPdf->AddPage();
-                $textElements = PDFUtils::extractTextElements($page);
-                foreach ($textElements as $element) {
-                    PDFUtils::addTextElement($outputPdf, $element);
+            $pages = $inputPdf->getPages();
+            $pageCount = count($pages);
+
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $textElements = PDFUtils::extractTextElements($pages[$i - 1]);
+
+                if (!empty($textElements)) {
+                    $tplIdx = $outputPdf->importPage($i);
+                    $size = $outputPdf->getTemplateSize($tplIdx);
+                    $outputPdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
+                    $outputPdf->useTemplate($tplIdx);
+                    foreach ($textElements as $element) {
+                        PDFUtils::addTextElement($outputPdf, $element);
+                    }
                 }
             }
         } catch (\Exception $e) {
@@ -152,6 +207,7 @@ class PDFCompressor
             );
         }
     }
+
 
     /**
      * Processes a single PDF page, rasterizing it to a JPEG image.

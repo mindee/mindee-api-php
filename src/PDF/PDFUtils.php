@@ -7,7 +7,7 @@ use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePDFException;
-use setasign\Fpdi\Fpdi;
+use Smalot\PdfParser\Config;
 use Smalot\PdfParser\Page;
 use Smalot\PdfParser\Parser;
 
@@ -44,7 +44,11 @@ class PDFUtils
         } catch (MindeePDFException $e) {
             throw $e;
         } catch (Exception $e) {
-            throw new MindeePDFException("Conversion to MagickImage failed.\n" . $e->getMessage());
+            throw new MindeePDFException(
+                "Conversion to MagickImage failed.\n",
+                ErrorCode::IMAGE_CANT_PROCESS,
+                $e
+            );
         }
     }
 
@@ -56,10 +60,81 @@ class PDFUtils
      */
     public static function hasSourceText(string $pdfPath): bool
     {
-        $parser = new Parser();
+        $config = new Config();
+        $config->setDataTmFontInfoHasToBeIncluded(true);
+        $parser = new Parser([], $config);
         $pdf = $parser->parseFile($pdfPath);
         return strlen($pdf->getText()) > 0;
     }
+
+    /**
+     * Extracts text elements with their properties from all pages in a PDF.
+     *
+     * @param string $pdfPath Path to the PDF file.
+     * @return array An array of arrays, each containing text elements for a page.
+     *               Each text element includes text content, position, font, size, and color.
+     * @throws MindeePDFException Throws if the PDF can't be parsed or text elements can't be extracted.
+     */
+    public static function extractPagesTextElements(string $pdfPath): array
+    {
+        try {
+            $config = new Config();
+            $config->setDataTmFontInfoHasToBeIncluded(true);
+            $parser = new Parser([], $config);
+            $pdf = $parser->parseFile($pdfPath);
+            $allPagesTextElements = [];
+
+            foreach ($pdf->getPages() as $pageNumber => $page) {
+                $result = self::extractTextElements($page);
+                $text = implode('', array_map(function ($e) {
+                    return $e['text'];
+                }, $result));
+                $allPagesTextElements[$pageNumber] = $text;
+            }
+
+            return $allPagesTextElements;
+        } catch (Exception $e) {
+            throw new MindeePDFException(
+                'Failed to parse PDF or extract text elements: ',
+                ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
+        }
+    }
+
+
+    /**
+     * Downgrades PDF files unsupported by FPDI to a compatible version.
+     *
+     * @param string $inputPath Input PDF path.
+     * @return string Output path.
+     * @throws MindeePDFException Throws if the file can't be handled through Imagick.
+     * @throws Exception Will be thrown as MindeePDFException, this is just for PHPCS linting purposes.
+     */
+    public static function downgradePdfVersion(string $inputPath): string
+    {
+        try {
+            $outputPath = tempnam(sys_get_temp_dir(), 'downgrade_pdf_') . '.pdf';
+            $command = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET" .
+                " -dBATCH -sOutputFile={$outputPath} \"{$inputPath}\"";
+
+            exec($command, $output, $returnCode);
+
+            if ($returnCode !== 0) {
+                unlink($outputPath);
+                throw new Exception();
+            }
+
+            return $outputPath;
+        } catch (Exception $e) {
+            throw new MindeePDFException(
+                "Can't downgrade PDF version.",
+                ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
+        }
+    }
+
 
     /**
      * Extracts text elements with their properties from a PDF page.
@@ -71,95 +146,85 @@ class PDFUtils
     public static function extractTextElements(Page $page): array
     {
         try {
+            $dataTm = $page->getDataTm();
+        } catch (\Exception | \TypeError $e) {
+            return [];
+        }
+        try {
             $textElements = [];
-            $fonts = $page->getFonts();
-
-            foreach ($page->getTextArray() as $text) {
+            foreach ($dataTm as $text) {
                 if (isset($text[1])) {
-                    $fontDetails = static::extractFontDetails($fonts, $text[1]);
                     $textElements[] = [
-                        'text' => $text[0],
-                        'x' => $text[2][0],
-                        'y' => $text[2][1],
-                        'font' => $fontDetails['name'],
-                        'size' => $fontDetails['size'],
-                        'color' => static::extractColor($text[1]),
+                        'text' => $text[1],
+                        'rotation' => rad2deg(floatval($text[0][2])),
+                        'x' => floatval($text[0][4]),
+                        'y' => floatval($text[0][5]),
+                        'font' => $page->getFont($text[2]),
+                        'size' => floatval($text[3])
                     ];
                 }
             }
 
             return $textElements;
         } catch (Exception $e) {
-            throw new MindeePDFException('Failed to parse text elements: ' . $e->getMessage());
+            throw new MindeePDFException(
+                'Failed to parse text elements: ',
+                ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
         }
     }
 
     /**
-     * Extracts font details from the font array of a page.
-     *
-     * @param array $fonts   Array of Font objects from the PDF page.
-     * @param array $details Font details array from a text element.
-     * @return array Associative array with 'name' and 'size' of the font
+     * @param string $fontName Name of the font/subfont.
+     * @return array The standard font & possible style.
      */
-    private static function extractFontDetails(array $fonts, array $details): array
+    private static function standardizeFontName(string $fontName): array
     {
-        $fontName = 'Arial';
-        $fontSize = 12;
+        $cleanName = preg_replace('/^.*?\+/', '', $fontName);
+        $parts = explode('-', $cleanName, 2);
 
-        foreach ($fonts as $font) {
-            if ($font->getDetails() === $details) {
-                $fontName = $font->getName();
-                $fontSize = $font->getDetails()['FontSize'] ?? 12;
-                break;
-            }
+        $fontFamily = $parts[0];
+        $fontStyle = $parts[1] ?? '';
+
+        if ($fontStyle === $fontFamily) {
+            $fontStyle = '';
+        }
+        $fontStyle = str_replace(['Bold', 'Italic', 'Oblique'], ['B', 'I', 'I'], $fontStyle);
+        if (strpos($fontStyle, 'B') !== false && strpos($fontStyle, 'I') !== false) {
+            $fontStyle = 'BI';
         }
 
-        return ['name' => $fontName, 'size' => $fontSize];
-    }
-
-    /**
-     * Extracts the color from text. Defaults to black if color information is not available.
-     *
-     * @param array $details Text bit.
-     * @return int[] RGB values.
-     */
-    private static function extractColor(array $details): array
-    {
-        return $details['Color'] ?? [0, 0, 0];
+        return [
+            'family' => $fontFamily,
+            'style' => $fontStyle
+        ];
     }
 
     /**
      * Adds a text element to the output PDF.
      *
-     * @param FPDI  $pdf     The output PDF object.
-     * @param array $element Text element array containing text, position, font, size, and color.
+     * @param CustomFPDI $pdf     The output PDF object.
+     * @param array      $element Text element array containing text, position, font, size, and color.
      * @return void
      */
-    public static function addTextElement(FPDI $pdf, array $element): void
+    public static function addTextElement(CustomFPDI $pdf, array $element): void
     {
-        $fontName = static::mapFontName($element['font']);
-        $pdf->SetFont($fontName, '', $element['size']);
+        $fontInfo = static::standardizeFontName($element['font']->getName());
+        $pageHeight = $pdf->GetPageHeight();
 
-        $pdf->SetTextColor($element['color'][0], $element['color'][1], $element['color'][2]);
+        $size = $element['size'] * 3;
+        $x = $element['x']  - $size / 10;
+        $y = $pageHeight - $element['y']  - $size / 10;
+        $pdf->SetFont($fontInfo['family'], $fontInfo['style'], $size);
 
-        $pdf->SetXY($element['x'], $element['y']);
-        $pdf->Write(0, $element['text']);
-    }
+        $pdf->SetTextColor(0, 0, 0); // No currently reliable nor easy way of retrieving text color.
 
-    /**
-     * @param string $originalFont Original font name.
-     * @return string Corresponding standard font. Defaults to Helvetica.
-     */
-    private static function mapFontName(string $originalFont): string
-    {
-        $fontMap = [
-            'Helvetica' => 'Helvetica',
-            'Times' => 'Times',
-            'Courier' => 'Courier',
-            'Arial' => 'Arial'
-        ];
-
-        return $fontMap[$originalFont] ?? 'Helvetica';
+        $pdf->SetXY($x, $y);
+        $pdf->startTransform();
+        $pdf->rotate($element['rotation'], $x, $y);
+        $pdf->Cell(0, 0, $element['text']);
+        $pdf->stopTransform();
     }
 
     /**

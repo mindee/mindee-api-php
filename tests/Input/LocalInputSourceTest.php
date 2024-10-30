@@ -9,6 +9,7 @@ use Mindee\Error\MindeeSourceException;
 use Mindee\Image\ImageCompressor;
 use Mindee\Input\PathInput;
 use Mindee\PDF\PDFCompressor;
+use Mindee\PDF\PDFUtils;
 use PHPUnit\Framework\TestCase;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
@@ -59,7 +60,8 @@ class LocalInputSourceTest extends TestCase
             $this->outputDir . "/compress_direct_85.pdf",
             $this->outputDir . "/compress_direct_75.pdf",
             $this->outputDir . "/compress_direct_50.pdf",
-            $this->outputDir . "/compress_direct_10.pdf"
+            $this->outputDir . "/compress_direct_10.pdf",
+            $this->outputDir . "/text_multipage.pdf"
         ];
 
         foreach ($filesToDelete as $file) {
@@ -351,24 +353,6 @@ class LocalInputSourceTest extends TestCase
         $this->assertLessThan($sizeOriginal, $sizeCompressed);
     }
 
-
-    public function testAbortPDFCompressionIfOutputTooBig()
-    {
-        $pdfInput = $this->dummyClient->sourceFromPath(
-            $this->fileTypesDir . "pdf/multipage.pdf"
-        );
-        $this->assertTrue($pdfInput->hasSourceText());
-
-        file_put_contents(
-            $this->outputDir . "/not_compressed_multipage.pdf",
-            file_get_contents($pdfInput->fileObject->getFilename())
-        );
-        $pdfInput->compress(5, null, null, true, false);
-        $sizeOriginal = filesize($this->fileTypesDir . '/pdf/multipage.pdf');
-        $sizeIgnored = filesize($this->outputDir . "/not_compressed_multipage.pdf");
-        $this->assertEquals($sizeIgnored, $sizeOriginal);
-    }
-
     public function testCompressPDFFromCompressor()
     {
         $pdfInput = $this->dummyClient->sourceFromPath(
@@ -404,5 +388,30 @@ class LocalInputSourceTest extends TestCase
         $this->assertGreaterThan($compressSize[75], $compressSize[85]);
         $this->assertGreaterThan($compressSize[50], $compressSize[75]);
         $this->assertGreaterThan($compressSize[10], $compressSize[50]);
+    }
+
+    public function testSourceTextPDFCompression()
+    {
+
+        $pdfInput = $this->dummyClient->sourceFromPath(
+            $this->fileTypesDir . "pdf/multipage.pdf"
+        );
+
+        $this->assertTrue($pdfInput->hasSourceText());
+
+        $pdfInput->compress(5, null, null, true, false);
+        file_put_contents(
+            $this->outputDir . "/text_multipage.pdf",
+            file_get_contents($pdfInput->fileObject->getFilename())
+        );
+        $sizeOriginal = filesize($this->fileTypesDir . "pdf/multipage.pdf");
+        $sizeTextCompressed = filesize($this->outputDir . "/text_multipage.pdf");
+        $this->assertLessThan($sizeTextCompressed, $sizeOriginal);
+        // Note: Greater size when compressed is expected due to original not having any images.
+
+        $this->assertNotEquals(
+            str_repeat('*', 650),
+            implode('', PDFUtils::extractPagesTextElements($this->outputDir . "/text_multipage.pdf"))
+        );
     }
 }

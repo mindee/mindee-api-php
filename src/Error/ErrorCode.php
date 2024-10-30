@@ -11,7 +11,8 @@ class ErrorCode
     public const IMAGE_CANT_PROCESS = 2011;
     public const PDF_CANT_PROCESS = 2021;
     public const PDF_CANT_CREATE = 2022;
-    public const PDF_CANT_EDIT = 2021;
+    public const PDF_CANT_EDIT = 2023;
+    public const PDF_UNSUPPORTED_COMPRESSION = 2024;
     public const FILE_OPERATION_ABORTED = 2030;
     public const FILE_OPERATION_ERROR = 2031;
     public const USER_INPUT_ERROR = 4000;
