@@ -28,6 +28,26 @@ $apiResponse = $mindeeClient->parse(ReceiptV5::class, $inputSource);
 echo $apiResponse->document;
 ```
 
+You can also call this product asynchronously:
+
+```php
+<?php
+
+use Mindee\Client;
+use Mindee\Product\Receipt\ReceiptV5;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file asynchronously
+$apiResponse = $mindeeClient->enqueueAndParse(ReceiptV5::class, $inputSource);
+
+echo $apiResponse->document;
+```
+
 **Output (RST):**
 ```rst
 ########
@@ -45,7 +65,7 @@ Prediction
 ==========
 :Expense Locale: en-GB; en; GB; GBP;
 :Purchase Category: food
-:Purchase Subcategory:
+:Purchase Subcategory: restaurant
 :Document Type: EXPENSE RECEIPT
 :Purchase Date: 2016-02-26
 :Purchase Time: 15:20
@@ -79,7 +99,7 @@ Page 0
 ------
 :Expense Locale: en-GB; en; GB; GBP;
 :Purchase Category: food
-:Purchase Subcategory:
+:Purchase Subcategory: restaurant
 :Document Type: EXPENSE RECEIPT
 :Purchase Date: 2016-02-26
 :Purchase Time: 15:20
