@@ -34,8 +34,7 @@ class PDFCompressor
         int $quality = 85,
         bool $forceSourceTextCompression = false,
         bool $disableSourceText = true
-    ): \CURLFile
-    {
+    ): \CURLFile {
         //phpcs: enable
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
@@ -142,8 +141,7 @@ class PDFCompressor
         CustomFPDI $processedPdf,
         bool       $disableSourceText,
         Document   $originalPdf
-    ): string
-    {
+    ): string {
         try {
             if (!$disableSourceText) {
                 static::injectText($originalPdf, $processedPdf);
