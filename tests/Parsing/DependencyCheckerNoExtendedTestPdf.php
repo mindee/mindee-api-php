@@ -8,7 +8,7 @@ use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
 
-class DependencyCheckerNoExtendedPdfTest extends TestCase
+class DependencyCheckerNoExtendedTestPdf extends TestCase
 {
     public function testNoImageExtractor()
     {

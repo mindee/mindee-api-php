@@ -2,6 +2,7 @@
 
 namespace Mindee\Input;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 
 /**
@@ -41,7 +42,10 @@ class EnqueueAndParseMethodOptions
     public function setInitialDelaySec(int $initialDelay): EnqueueAndParseMethodOptions
     {
         if ($initialDelay < 4) {
-            throw new MindeeApiException("Cannot set initial parsing delay to less than 4 seconds.");
+            throw new MindeeApiException(
+                "Cannot set initial parsing delay to less than 4 seconds.",
+                ErrorCode::USER_INPUT_ERROR
+            );
         }
         $this->initialDelaySec = $initialDelay;
         return $this;
@@ -55,7 +59,10 @@ class EnqueueAndParseMethodOptions
     public function setDelaySec(int $delay): EnqueueAndParseMethodOptions
     {
         if ($delay < 2) {
-            throw new MindeeApiException("Cannot set auto-parsing delay to less than 2 seconds.");
+            throw new MindeeApiException(
+                "Cannot set auto-parsing delay to less than 2 seconds.",
+                ErrorCode::USER_INPUT_ERROR
+            );
         }
         $this->delaySec = $delay;
         return $this;

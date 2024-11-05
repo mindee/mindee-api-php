@@ -10,7 +10,7 @@ use Mindee\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use PHPUnit\Framework\TestCase;
 
-class ImageExtractorTestPdf extends TestCase
+class ImageExtractorTest extends TestCase
 {
 
     private Client $dummyClient;
@@ -18,6 +18,7 @@ class ImageExtractorTestPdf extends TestCase
     protected function setUp(): void
     {
         $this->dummyClient = new Client("dummy-key");
+        $this->outputDir = (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/";
     }
 
     public function testGivenAnImageShouldExtractPositionFields()
@@ -33,7 +34,7 @@ class ImageExtractorTestPdf extends TestCase
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
             foreach ($subImages as $i => $extractedImage) {
                 $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+                $extractedImage->writeToFile($this->outputDir);
 
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
@@ -69,13 +70,13 @@ class ImageExtractorTestPdf extends TestCase
                     sprintf("barcodes_1D_page-001_%03d.jpg", $i + 1),
                     $source->fileName
                 );
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+                $extractedImage->writeToFile($this->outputDir);
             }
 
             $codes2D = $extractor->extractImagesFromPage($page->prediction->codes2D, $page->id, "barcodes_2D.jpg");
             foreach ($codes2D as $extractedImage) {
                 $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+                $extractedImage->writeToFile($this->outputDir);
             }
         }
     }
@@ -97,7 +98,7 @@ class ImageExtractorTestPdf extends TestCase
 
             foreach ($subImages as $i => $extractedImage) {
                 $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile((getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/output/");
+                $extractedImage->writeToFile($this->outputDir);
 
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
@@ -114,4 +115,31 @@ class ImageExtractorTestPdf extends TestCase
         $localResponse = new LocalResponse($fileName);
         return $this->dummyClient->loadPrediction(BarcodeReaderV1::class, $localResponse);
     }
+
+    protected function tearDown(): void
+    {
+        $filesToDelete = [
+            $this->outputDir . "/barcodes_1D_page-001_001.jpg",
+            $this->outputDir . "/barcodes_2D_page-001_001.jpg",
+            $this->outputDir . "/barcodes_2D_page-001_002.jpg",
+            $this->outputDir . "/multipage_sample_page-001_001.jpg",
+            $this->outputDir . "/multipage_sample_page-001_002.jpg",
+            $this->outputDir . "/multipage_sample_page-001_003.jpg",
+            $this->outputDir . "/multipage_sample_page-002_001.jpg",
+            $this->outputDir . "/multipage_sample_page-002_002.jpg",
+            $this->outputDir . "/default_sample_page-001_001.jpg",
+            $this->outputDir . "/default_sample_page-001_002.jpg",
+            $this->outputDir . "/default_sample_page-001_003.jpg",
+            $this->outputDir . "/default_sample_page-001_004.jpg",
+            $this->outputDir . "/default_sample_page-001_005.jpg",
+            $this->outputDir . "/default_sample_page-001_006.jpg",
+        ];
+
+        foreach ($filesToDelete as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+            }
+        }
+    }
+
 }

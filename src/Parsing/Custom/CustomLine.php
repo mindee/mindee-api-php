@@ -2,6 +2,7 @@
 
 namespace Mindee\Parsing\Custom;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
 use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
@@ -105,7 +106,10 @@ class CustomLine
         if (array_key_exists($anchorName, $fields)) {
             $anchorField = $fields[$anchorName];
         } else {
-            throw new MindeeException('No lines have been detected.');
+            throw new MindeeException(
+                'No lines have been detected.',
+                ErrorCode::GEOMETRIC_OPERATION_FAILED
+            );
         }
         $currentLineNumber = 1;
         $currentLine = new CustomLine($currentLineNumber);
