@@ -95,7 +95,7 @@ class MindeeHttpExceptionTest extends TestCase
         $this->assertEquals(500, $error500->statusCode);
         $this->assertEquals("failure", $error500->apiCode);
         $this->assertEquals("Inference failed", $error500->apiMessage);
-        $this->assertEquals("Cannot run prediction: ", $error500->apiDetails);
+        $this->assertEquals("Can not run prediction: ", $error500->apiDetails);
         $this->expectException(MindeeHttpClientException::class);
         throw $error500;
     }
