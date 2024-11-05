@@ -128,7 +128,7 @@ class PDFUtils
             return $outputPath;
         } catch (Exception $e) {
             throw new MindeePDFException(
-                "Can't downgrade PDF version.",
+                "Cannot downgrade PDF version.",
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
             );

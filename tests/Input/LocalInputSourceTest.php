@@ -406,12 +406,13 @@ class LocalInputSourceTest extends TestCase
         );
         $sizeOriginal = filesize($this->fileTypesDir . "pdf/multipage.pdf");
         $sizeTextCompressed = filesize($this->outputDir . "/text_multipage.pdf");
-        $this->assertLessThan($sizeTextCompressed, $sizeOriginal);
-        // Note: Greater size when compressed is expected due to original not having any images.
+        $this->assertEquals($sizeTextCompressed, $sizeOriginal);
+        // Note: Greater size when compressed is expected due to original not having any images, so the operation will
+        // be aborted.
 
-        $this->assertNotEquals(
+        $this->assertEquals(
             str_repeat('*', 650),
-            implode('', PDFUtils::extractPagesTextElements($this->outputDir . "/text_multipage.pdf"))
+            implode('', str_replace(" ", "", PDFUtils::extractPagesTextElements($this->outputDir . "/text_multipage.pdf")))
         );
     }
 }

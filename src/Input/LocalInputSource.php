@@ -13,7 +13,9 @@ use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
+use Mindee\Error\MindeeUnhandledException;
 use Mindee\Image\ImageCompressor;
+use Mindee\Parsing\DependencyChecker;
 use Mindee\PDF\PDFCompressor;
 use Mindee\PDF\PDFUtils;
 use setasign\Fpdi\Fpdi;
@@ -346,6 +348,7 @@ abstract class LocalInputSource extends InputSource
      * @param integer|null $maxHeight                  Maximum height (Ignored for PDFs).
      * @param boolean      $forceSourceTextCompression Whether to force the operation on PDFs with source text.
      *            This will attempt to re-render PDF text over the rasterized original.
+     *            The script will attempt to re-write text, but might not support all fonts & encoding.
      *            If disabled, ignored the operation.
      *            WARNING: this operation is strongly discouraged.
      * @param boolean      $disableSourceText          If the PDF has source text, whether to re-apply it to the
@@ -378,7 +381,7 @@ abstract class LocalInputSource extends InputSource
             );
             $this->fileMimetype = 'image/jpeg';
             $pathInfo = pathinfo($this->filePath);
-            $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.jpeg';
+            $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.jpg';
         }
     }
 

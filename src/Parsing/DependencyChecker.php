@@ -3,6 +3,7 @@
 namespace Mindee\Parsing;
 
 use Exception;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeUnhandledException;
 
 /**
@@ -44,13 +45,15 @@ class DependencyChecker
         } catch (Exception $e) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need " .
-                "to enable Ghostscript on your PHP installation."
+                "to enable Ghostscript on your PHP installation.",
+                ErrorCode::USER_MISSING_DEPENDENCY
             );
         }
         if (!$commandWasExecuted) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need " .
-                "to enable Ghostscript on your PHP installation."
+                "to enable Ghostscript on your PHP installation.",
+                ErrorCode::USER_MISSING_DEPENDENCY
             );
         }
     }
@@ -67,7 +70,8 @@ class DependencyChecker
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need " .
                 "to enable ImageMagick on your PHP installation. Also, you " .
-                "should setup ImageMagick's policy to allow for PDF operations."
+                "should setup ImageMagick's policy to allow for PDF operations.",
+                ErrorCode::USER_MISSING_DEPENDENCY
             );
         }
     }
@@ -92,7 +96,8 @@ class DependencyChecker
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need " .
                 "to enable ImageMagick on your PHP installation. Also, you " .
-                "should setup ImageMagick's policy to allow for PDF operations."
+                "should setup ImageMagick's policy to allow for PDF operations.",
+                ErrorCode::USER_MISSING_DEPENDENCY
             );
         }
     }
