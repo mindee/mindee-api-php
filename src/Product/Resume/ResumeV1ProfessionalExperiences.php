@@ -31,6 +31,7 @@ class ResumeV1ProfessionalExperiences extends \ArrayObject
         $outStr = "  ";
         $outStr .= "+" . str_repeat($char, 17);
         $outStr .= "+" . str_repeat($char, 12);
+        $outStr .= "+" . str_repeat($char, 38);
         $outStr .= "+" . str_repeat($char, 27);
         $outStr .= "+" . str_repeat($char, 11);
         $outStr .= "+" . str_repeat($char, 10);
@@ -61,6 +62,7 @@ class ResumeV1ProfessionalExperiences extends \ArrayObject
         $outStr = "\n" . self::professionalExperiencesSeparator('-') . "\n ";
         $outStr .= " | Contract Type  ";
         $outStr .= " | Department";
+        $outStr .= " | Description                         ";
         $outStr .= " | Employer                 ";
         $outStr .= " | End Month";
         $outStr .= " | End Year";

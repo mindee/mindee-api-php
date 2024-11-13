@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Invoice API version 4.8 document data.
+ * Invoice API version 4.9 document data.
  */
 class InvoiceV4Document extends Prediction
 {

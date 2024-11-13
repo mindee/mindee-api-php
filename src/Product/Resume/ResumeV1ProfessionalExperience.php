@@ -23,6 +23,10 @@ class ResumeV1ProfessionalExperience
      */
     public ?string $department;
     /**
+     * @var string|null The description of the professional experience as written in the document.
+     */
+    public ?string $description;
+    /**
      * @var string|null The name of the company or organization.
      */
     public ?string $employer;
@@ -57,6 +61,7 @@ class ResumeV1ProfessionalExperience
         $this->setPosition($rawPrediction);
         $this->contractType = $rawPrediction["contract_type"] ?? null;
         $this->department = $rawPrediction["department"] ?? null;
+        $this->description = $rawPrediction["description"] ?? null;
         $this->employer = $rawPrediction["employer"] ?? null;
         $this->endMonth = $rawPrediction["end_month"] ?? null;
         $this->endYear = $rawPrediction["end_year"] ?? null;
@@ -75,6 +80,7 @@ class ResumeV1ProfessionalExperience
         $outArr = [];
         $outArr["contractType"] = SummaryHelper::formatForDisplay($this->contractType, 15);
         $outArr["department"] = SummaryHelper::formatForDisplay($this->department, 10);
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
         $outArr["employer"] = SummaryHelper::formatForDisplay($this->employer, 25);
         $outArr["endMonth"] = SummaryHelper::formatForDisplay($this->endMonth);
         $outArr["endYear"] = SummaryHelper::formatForDisplay($this->endYear);
@@ -94,6 +100,7 @@ class ResumeV1ProfessionalExperience
         $outArr = [];
         $outArr["contractType"] = SummaryHelper::formatForDisplay($this->contractType);
         $outArr["department"] = SummaryHelper::formatForDisplay($this->department);
+        $outArr["description"] = SummaryHelper::formatForDisplay($this->description);
         $outArr["employer"] = SummaryHelper::formatForDisplay($this->employer);
         $outArr["endMonth"] = SummaryHelper::formatForDisplay($this->endMonth);
         $outArr["endYear"] = SummaryHelper::formatForDisplay($this->endYear);
@@ -113,6 +120,7 @@ class ResumeV1ProfessionalExperience
         $outStr = "| ";
         $outStr .= SummaryHelper::padString($printable["contractType"], 15);
         $outStr .= SummaryHelper::padString($printable["department"], 10);
+        $outStr .= SummaryHelper::padString($printable["description"], 36);
         $outStr .= SummaryHelper::padString($printable["employer"], 25);
         $outStr .= SummaryHelper::padString($printable["endMonth"], 9);
         $outStr .= SummaryHelper::padString($printable["endYear"], 8);
