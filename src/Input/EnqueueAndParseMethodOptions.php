@@ -5,6 +5,9 @@ namespace Mindee\Input;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 
+const MINIMUM_INITIAL_DELAY_SECONDS = 1.0;
+const MINIMUM_DELAY_SECONDS = 1.0;
+
 /**
  * Handles options tied to asynchronous parsing.
  */
@@ -28,8 +31,8 @@ class EnqueueAndParseMethodOptions
      */
     public function __construct()
     {
-        $this->initialDelaySec = 4;
-        $this->delaySec = 2;
+        $this->initialDelaySec = 2;
+        $this->delaySec = 1.5;
         $this->maxRetries = 30;
     }
 
@@ -41,9 +44,9 @@ class EnqueueAndParseMethodOptions
      */
     public function setInitialDelaySec(int $initialDelay): EnqueueAndParseMethodOptions
     {
-        if ($initialDelay < 4) {
+        if ($initialDelay < MINIMUM_INITIAL_DELAY_SECONDS) {
             throw new MindeeApiException(
-                "Cannot set initial parsing delay to less than 4 seconds.",
+                "Cannot set initial parsing delay to less than " . MINIMUM_INITIAL_DELAY_SECONDS . " second(s).",
                 ErrorCode::USER_INPUT_ERROR
             );
         }
@@ -54,13 +57,13 @@ class EnqueueAndParseMethodOptions
     /**
      * @param integer $delay Delay between successive attempts to poll a queue.
      * @return $this
-     * @throws MindeeApiException Throws if the delay is less than 2 seconds.
+     * @throws MindeeApiException Throws if the delay is too low.
      */
     public function setDelaySec(int $delay): EnqueueAndParseMethodOptions
     {
-        if ($delay < 2) {
+        if ($delay < MINIMUM_DELAY_SECONDS) {
             throw new MindeeApiException(
-                "Cannot set auto-parsing delay to less than 2 seconds.",
+                "Cannot set auto-parsing delay to less than " . MINIMUM_DELAY_SECONDS . " second(s).",
                 ErrorCode::USER_INPUT_ERROR
             );
         }
@@ -76,7 +79,7 @@ class EnqueueAndParseMethodOptions
     {
         if (!$maxRetries || $maxRetries < 0) {
             $this->maxRetries = 30;
-            error_log("Notice: setting the amount of retries for auto-parsing to 30");
+            error_log("Notice: setting the amount of retries for auto-parsing to 30.");
         } else {
             $this->delaySec = $maxRetries;
         }
