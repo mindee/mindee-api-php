@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Financial Document API version 1.10 document data.
+ * Financial Document API version 1.11 document data.
  */
 class FinancialDocumentV1Document extends Prediction
 {
