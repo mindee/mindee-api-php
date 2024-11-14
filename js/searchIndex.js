@@ -111,6 +111,91 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Client.html#property_apiKey"
         },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode",
+            "name": "ErrorCode",
+            "summary": "Enum\u0020class\u0020holding\u0020error\u0020codes\u0020for\u0020exceptions.",
+            "url": "classes/Mindee-Error-ErrorCode.html"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AFILE_CANT_PROCESS",
+            "name": "FILE_CANT_PROCESS",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_FILE_CANT_PROCESS"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AIMAGE_CANT_PROCESS",
+            "name": "IMAGE_CANT_PROCESS",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_IMAGE_CANT_PROCESS"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003APDF_CANT_PROCESS",
+            "name": "PDF_CANT_PROCESS",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_PDF_CANT_PROCESS"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003APDF_CANT_CREATE",
+            "name": "PDF_CANT_CREATE",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_PDF_CANT_CREATE"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003APDF_CANT_EDIT",
+            "name": "PDF_CANT_EDIT",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_PDF_CANT_EDIT"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AFILE_OPERATION_ABORTED",
+            "name": "FILE_OPERATION_ABORTED",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_FILE_OPERATION_ABORTED"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AFILE_OPERATION_ERROR",
+            "name": "FILE_OPERATION_ERROR",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_FILE_OPERATION_ERROR"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AUSER_INPUT_ERROR",
+            "name": "USER_INPUT_ERROR",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_USER_INPUT_ERROR"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AUSER_OPERATION_ERROR",
+            "name": "USER_OPERATION_ERROR",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_USER_OPERATION_ERROR"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AUSER_MISSING_DEPENDENCY",
+            "name": "USER_MISSING_DEPENDENCY",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_USER_MISSING_DEPENDENCY"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AGEOMETRIC_OPERATION_FAILED",
+            "name": "GEOMETRIC_OPERATION_FAILED",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_GEOMETRIC_OPERATION_FAILED"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AAPI_REQUEST_FAILED",
+            "name": "API_REQUEST_FAILED",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_API_REQUEST_FAILED"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AAPI_TIMEOUT",
+            "name": "API_TIMEOUT",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_API_TIMEOUT"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AAPI_UNPROCESSABLE_ENTITY",
+            "name": "API_UNPROCESSABLE_ENTITY",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_API_UNPROCESSABLE_ENTITY"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AEXCEPTION_BUILD_FAILED",
+            "name": "EXCEPTION_BUILD_FAILED",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_EXCEPTION_BUILD_FAILED"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AINTERNAL_LIBRARY_ERROR",
+            "name": "INTERNAL_LIBRARY_ERROR",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_INTERNAL_LIBRARY_ERROR"
+        },                {
             "fqsen": "\\Mindee\\Error\\MindeeApiException",
             "name": "MindeeApiException",
             "summary": "Exceptions\u0020relating\u0020to\u0020library\u0020issues.",
@@ -181,6 +266,11 @@ Search.appendIndex(
             "summary": "Exceptions\u0020relating\u0020to\u0020server\u002Dside\u0020HTTP\u0020calls.",
             "url": "classes/Mindee-Error-MindeeHttpServerException.html"
         },                {
+            "fqsen": "\\Mindee\\Error\\MindeeImageException",
+            "name": "MindeeImageException",
+            "summary": "Exceptions\u0020relating\u0020to\u0020the\u0020handling\u0020of\u0020images.",
+            "url": "classes/Mindee-Error-MindeeImageException.html"
+        },                {
             "fqsen": "\\Mindee\\Error\\MindeeMimeTypeException",
             "name": "MindeeMimeTypeException",
             "summary": "Exceptions\u0020relating\u0020to\u0020mime\u0020type\u0020issues.",
@@ -205,6 +295,16 @@ Search.appendIndex(
             "name": "MindeeUnsetException",
             "summary": "Exceptions\u0020relating\u0020to\u0020products\u0020containing\u0020unset\u0020fields.",
             "url": "classes/Mindee-Error-MindeeUnsetException.html"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeUnsetException\u003A\u003A\u0024code",
+            "name": "code",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeUnsetException.html#property_code"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeUnsetException\u003A\u003A\u0024message",
+            "name": "message",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeUnsetException.html#property_message"
         },                {
             "fqsen": "\\Mindee\\Extraction\\ExtractedImage",
             "name": "ExtractedImage",
@@ -841,6 +941,41 @@ Search.appendIndex(
             "summary": "Checks\u0020and\u0020corrects\u0020the\u0020response\u0020object\u0020depending\u0020on\u0020the\u0020possible\u0020kinds\u0020of\u0020returns.",
             "url": "classes/Mindee-Http-ResponseValidation.html#method_cleanRequestData"
         },                {
+            "fqsen": "\\Mindee\\Image\\ImageCompressor",
+            "name": "ImageCompressor",
+            "summary": "Image\u0020compressor\u0020class\u0020to\u0020handle\u0020image\u0020compression.",
+            "url": "classes/Mindee-Image-ImageCompressor.html"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageCompressor\u003A\u003Acompress\u0028\u0029",
+            "name": "compress",
+            "summary": "",
+            "url": "classes/Mindee-Image-ImageCompressor.html#method_compress"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageUtils",
+            "name": "ImageUtils",
+            "summary": "Miscellaneous\u0020image\u0020operations.",
+            "url": "classes/Mindee-Image-ImageUtils.html"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageUtils\u003A\u003AtoMagickImage\u0028\u0029",
+            "name": "toMagickImage",
+            "summary": "",
+            "url": "classes/Mindee-Image-ImageUtils.html#method_toMagickImage"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageUtils\u003A\u003AresizeImage\u0028\u0029",
+            "name": "resizeImage",
+            "summary": "Resizes\u0020a\u0020provided\u0020MiniMagick\u0020Image\u0020with\u0020the\u0020given\u0020width\u0020\u0026\u0020height,\u0020if\u0020present.",
+            "url": "classes/Mindee-Image-ImageUtils.html#method_resizeImage"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageUtils\u003A\u003AcompressImageQuality\u0028\u0029",
+            "name": "compressImageQuality",
+            "summary": "Compresses\u0020the\u0020quality\u0020of\u0020the\u0020provided\u0020MiniMagick\u0020image.",
+            "url": "classes/Mindee-Image-ImageUtils.html#method_compressImageQuality"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageUtils\u003A\u003AtoCURLFile\u0028\u0029",
+            "name": "toCURLFile",
+            "summary": "Converts\u0020an\u0020Imagick\u0020into\u0020a\u0020valid\u0020CURLFile\u0020handle.",
+            "url": "classes/Mindee-Image-ImageUtils.html#method_toCURLFile"
+        },                {
             "fqsen": "\\Mindee\\Input\\Base64Input",
             "name": "Base64Input",
             "summary": "Base64\u002Dencoded\u0020text\u0020input.",
@@ -880,6 +1015,16 @@ Search.appendIndex(
             "name": "tempFile",
             "summary": "",
             "url": "classes/Mindee-Input-BytesInput.html#property_tempFile"
+        },                {
+            "fqsen": "\\Mindee\\Input\\MINIMUM_INITIAL_DELAY_SECONDS",
+            "name": "MINIMUM_INITIAL_DELAY_SECONDS",
+            "summary": "",
+            "url": "namespaces/mindee-input.html#constant_MINIMUM_INITIAL_DELAY_SECONDS"
+        },                {
+            "fqsen": "\\Mindee\\Input\\MINIMUM_DELAY_SECONDS",
+            "name": "MINIMUM_DELAY_SECONDS",
+            "summary": "",
+            "url": "namespaces/mindee-input.html#constant_MINIMUM_DELAY_SECONDS"
         },                {
             "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions",
             "name": "EnqueueAndParseMethodOptions",
@@ -1025,6 +1170,16 @@ Search.appendIndex(
             "name": "enableStrictMode",
             "summary": "Enables\u0020strict\u0020mode.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_enableStrictMode"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003Acompress\u0028\u0029",
+            "name": "compress",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_compress"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AhasSourceText\u0028\u0029",
+            "name": "hasSourceText",
+            "summary": "Checks\u0020the\u0020source\u0020file\u0020for\u0020source\u0020text.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_hasSourceText"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024fileObject",
             "name": "fileObject",
@@ -2471,6 +2626,111 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Standard-TaxField.html#property_basis"
         },                {
+            "fqsen": "\\Mindee\\PDF\\CustomFPDI",
+            "name": "CustomFPDI",
+            "summary": "Custom\u0020wrapper\u0020to\u0020add\u0020text\u0020rotation\u0020to\u0020FPDI.",
+            "url": "classes/Mindee-PDF-CustomFPDI.html"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\CustomFPDI\u003A\u003Arotate\u0028\u0029",
+            "name": "rotate",
+            "summary": "Rotates\u0020the\u0020current\u0020drawing\u0020context.",
+            "url": "classes/Mindee-PDF-CustomFPDI.html#method_rotate"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\CustomFPDI\u003A\u003A_endpage\u0028\u0029",
+            "name": "_endpage",
+            "summary": "Ends\u0020the\u0020page,\u0020resetting\u0020any\u0020rotation.",
+            "url": "classes/Mindee-PDF-CustomFPDI.html#method__endpage"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\CustomFPDI\u003A\u003AstartTransform\u0028\u0029",
+            "name": "startTransform",
+            "summary": "Starts\u0020a\u0020new\u0020transformation.",
+            "url": "classes/Mindee-PDF-CustomFPDI.html#method_startTransform"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\CustomFPDI\u003A\u003AstopTransform\u0028\u0029",
+            "name": "stopTransform",
+            "summary": "Stops\u0020the\u0020current\u0020transformation.",
+            "url": "classes/Mindee-PDF-CustomFPDI.html#method_stopTransform"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\CustomFPDI\u003A\u003A\u0024angle",
+            "name": "angle",
+            "summary": "",
+            "url": "classes/Mindee-PDF-CustomFPDI.html#property_angle"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFCompressor",
+            "name": "PDFCompressor",
+            "summary": "PDF\u0020compression\u0020class.",
+            "url": "classes/Mindee-PDF-PDFCompressor.html"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFCompressor\u003A\u003Acompress\u0028\u0029",
+            "name": "compress",
+            "summary": "Compresses\u0020each\u0020page\u0020of\u0020a\u0020provided\u0020PDF\u0020stream.\u0020Skips\u0020if\u0020force_source_text\u0020isn\u0027t\u0020set\u0020and\u0020source\u0020text\u0020is\u0020detected.",
+            "url": "classes/Mindee-PDF-PDFCompressor.html#method_compress"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFCompressor\u003A\u003AinjectTextForPage\u0028\u0029",
+            "name": "injectTextForPage",
+            "summary": "",
+            "url": "classes/Mindee-PDF-PDFCompressor.html#method_injectTextForPage"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFCompressor\u003A\u003AcreateOutputPdf\u0028\u0029",
+            "name": "createOutputPdf",
+            "summary": "Creates\u0020the\u0020final\u0020output\u0020PDF,\u0020optionally\u0020injecting\u0020text\u0020from\u0020the\u0020original\u0020PDF.",
+            "url": "classes/Mindee-PDF-PDFCompressor.html#method_createOutputPdf"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFCompressor\u003A\u003AinjectText\u0028\u0029",
+            "name": "injectText",
+            "summary": "Extracts\u0020text\u0020from\u0020a\u0020source\u0020text\u0020PDF,\u0020and\u0020injects\u0020it\u0020into\u0020a\u0020newly\u002Dcreated\u0020one.",
+            "url": "classes/Mindee-PDF-PDFCompressor.html#method_injectText"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFCompressor\u003A\u003AprocessPdfPage\u0028\u0029",
+            "name": "processPdfPage",
+            "summary": "Processes\u0020a\u0020single\u0020PDF\u0020page,\u0020rasterizing\u0020it\u0020to\u0020a\u0020JPEG\u0020image.",
+            "url": "classes/Mindee-PDF-PDFCompressor.html#method_processPdfPage"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils",
+            "name": "PDFUtils",
+            "summary": "PDF\u0020utility\u0020class.",
+            "url": "classes/Mindee-PDF-PDFUtils.html"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AextractFilePath\u0028\u0029",
+            "name": "extractFilePath",
+            "summary": "",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_extractFilePath"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AhasSourceText\u0028\u0029",
+            "name": "hasSourceText",
+            "summary": "Checks\u0020whether\u0020the\u0020file\u0020has\u0020source\u0020text.\u0020Returns\u0020false\u0020if\u0020the\u0020file\u0020isn\u0027t\u0020a\u0020PDF.",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_hasSourceText"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AextractPagesTextElements\u0028\u0029",
+            "name": "extractPagesTextElements",
+            "summary": "Extracts\u0020text\u0020elements\u0020with\u0020their\u0020properties\u0020from\u0020all\u0020pages\u0020in\u0020a\u0020PDF.",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_extractPagesTextElements"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AdowngradePdfVersion\u0028\u0029",
+            "name": "downgradePdfVersion",
+            "summary": "Downgrades\u0020PDF\u0020files\u0020unsupported\u0020by\u0020FPDI\u0020to\u0020a\u0020compatible\u0020version.",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_downgradePdfVersion"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AextractTextElements\u0028\u0029",
+            "name": "extractTextElements",
+            "summary": "Extracts\u0020text\u0020elements\u0020with\u0020their\u0020properties\u0020from\u0020a\u0020PDF\u0020page.",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_extractTextElements"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AstandardizeFontName\u0028\u0029",
+            "name": "standardizeFontName",
+            "summary": "",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_standardizeFontName"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AaddTextElement\u0028\u0029",
+            "name": "addTextElement",
+            "summary": "Adds\u0020a\u0020text\u0020element\u0020to\u0020the\u0020output\u0020PDF.",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_addTextElement"
+        },                {
+            "fqsen": "\\Mindee\\PDF\\PDFUtils\u003A\u003AtoCURLFile\u0028\u0029",
+            "name": "toCURLFile",
+            "summary": "Loads\u0020a\u0020pdf\u0020handle\u0020into\u0020a\u0020valid\u0020CURLFile\u0020handle.",
+            "url": "classes/Mindee-PDF-PDFUtils.html#method_toCURLFile"
+        },                {
             "fqsen": "\\Mindee\\Product\\BarcodeReader\\BarcodeReaderV1",
             "name": "BarcodeReaderV1",
             "summary": "Barcode\u0020Reader\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
@@ -2881,6 +3141,96 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-BillOfLading-BillOfLadingV1Shipper.html#property_phone"
         },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1",
+            "name": "BusinessCardV1",
+            "summary": "Business\u0020Card\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document",
+            "name": "BusinessCardV1Document",
+            "summary": "Business\u0020Card\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024address",
+            "name": "address",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_address"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024company",
+            "name": "company",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_company"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024email",
+            "name": "email",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_email"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024faxNumber",
+            "name": "faxNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_faxNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024firstname",
+            "name": "firstname",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_firstname"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024jobTitle",
+            "name": "jobTitle",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_jobTitle"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024lastname",
+            "name": "lastname",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_lastname"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024mobileNumber",
+            "name": "mobileNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_mobileNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024phoneNumber",
+            "name": "phoneNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_phoneNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024socialMedia",
+            "name": "socialMedia",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_socialMedia"
+        },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard\\BusinessCardV1Document\u003A\u003A\u0024website",
+            "name": "website",
+            "summary": "",
+            "url": "classes/Mindee-Product-BusinessCard-BusinessCardV1Document.html#property_website"
+        },                {
             "fqsen": "\\Mindee\\Product\\Cropper\\CropperV1",
             "name": "CropperV1",
             "summary": "Cropper\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
@@ -3000,6 +3350,76 @@ Search.appendIndex(
             "name": "fields",
             "summary": "",
             "url": "classes/Mindee-Product-Custom-CustomV1Page.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1",
+            "name": "DeliveryNoteV1",
+            "summary": "Delivery\u0020note\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document",
+            "name": "DeliveryNoteV1Document",
+            "summary": "Delivery\u0020note\u0020API\u0020version\u00201.1\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024customerAddress",
+            "name": "customerAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_customerAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024customerName",
+            "name": "customerName",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_customerName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024deliveryDate",
+            "name": "deliveryDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_deliveryDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024deliveryNumber",
+            "name": "deliveryNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_deliveryNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024supplierAddress",
+            "name": "supplierAddress",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_supplierAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024supplierName",
+            "name": "supplierName",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_supplierName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A\u0024totalAmount",
+            "name": "totalAmount",
+            "summary": "",
+            "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_totalAmount"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1",
             "name": "DriverLicenseV1",
@@ -3183,7 +3603,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.10\u0020document\u0020data.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.11\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -5256,6 +5676,156 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Generated-GeneratedV1Prediction.html#property_fields"
         },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1",
+            "name": "IndianPassportV1",
+            "summary": "Passport\u0020\u002D\u0020India\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document",
+            "name": "IndianPassportV1Document",
+            "summary": "Passport\u0020\u002D\u0020India\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024address1",
+            "name": "address1",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_address1"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024address2",
+            "name": "address2",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_address2"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024address3",
+            "name": "address3",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_address3"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024birthDate",
+            "name": "birthDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_birthDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024birthPlace",
+            "name": "birthPlace",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_birthPlace"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024country",
+            "name": "country",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_country"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024expiryDate",
+            "name": "expiryDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_expiryDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024fileNumber",
+            "name": "fileNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_fileNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024gender",
+            "name": "gender",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_gender"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024givenNames",
+            "name": "givenNames",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_givenNames"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024idNumber",
+            "name": "idNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_idNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024issuanceDate",
+            "name": "issuanceDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_issuanceDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024issuancePlace",
+            "name": "issuancePlace",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_issuancePlace"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024legalGuardian",
+            "name": "legalGuardian",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_legalGuardian"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024mrz1",
+            "name": "mrz1",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_mrz1"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024mrz2",
+            "name": "mrz2",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_mrz2"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024nameOfMother",
+            "name": "nameOfMother",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_nameOfMother"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024nameOfSpouse",
+            "name": "nameOfSpouse",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_nameOfSpouse"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024oldPassportDateOfIssue",
+            "name": "oldPassportDateOfIssue",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_oldPassportDateOfIssue"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024oldPassportNumber",
+            "name": "oldPassportNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_oldPassportNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024oldPassportPlaceOfIssue",
+            "name": "oldPassportPlaceOfIssue",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_oldPassportPlaceOfIssue"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024pageNumber",
+            "name": "pageNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_pageNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A\u0024surname",
+            "name": "surname",
+            "summary": "",
+            "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html#property_surname"
+        },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2",
             "name": "InternationalIdV2",
             "summary": "International\u0020ID\u0020API\u0020version\u00202\u0020inference\u0020prediction.",
@@ -5398,7 +5968,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
             "name": "InvoiceV4Document",
-            "summary": "Invoice\u0020API\u0020version\u00204.8\u0020document\u0020data.",
+            "summary": "Invoice\u0020API\u0020version\u00204.9\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
@@ -6908,7 +7478,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document",
             "name": "ResumeV1Document",
-            "summary": "Resume\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "summary": "Resume\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Resume-ResumeV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A__construct\u0028\u0029",
@@ -7190,6 +7760,11 @@ Search.appendIndex(
             "name": "department",
             "summary": "",
             "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_department"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024description",
+            "name": "description",
+            "summary": "",
+            "url": "classes/Mindee-Product-Resume-ResumeV1ProfessionalExperience.html#property_description"
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1ProfessionalExperience\u003A\u003A\u0024employer",
             "name": "employer",
@@ -8026,6 +8601,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-http.html"
         },                {
+            "fqsen": "\\Mindee\\Image",
+            "name": "Image",
+            "summary": "",
+            "url": "namespaces/mindee-image.html"
+        },                {
             "fqsen": "\\Mindee\\Input",
             "name": "Input",
             "summary": "",
@@ -8066,6 +8646,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-parsing-standard.html"
         },                {
+            "fqsen": "\\Mindee\\PDF",
+            "name": "PDF",
+            "summary": "",
+            "url": "namespaces/mindee-pdf.html"
+        },                {
             "fqsen": "\\Mindee\\Product\\BarcodeReader",
             "name": "BarcodeReader",
             "summary": "",
@@ -8081,6 +8666,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-product-billoflading.html"
         },                {
+            "fqsen": "\\Mindee\\Product\\BusinessCard",
+            "name": "BusinessCard",
+            "summary": "",
+            "url": "namespaces/mindee-product-businesscard.html"
+        },                {
             "fqsen": "\\Mindee\\Product\\Cropper",
             "name": "Cropper",
             "summary": "",
@@ -8090,6 +8680,11 @@ Search.appendIndex(
             "name": "Custom",
             "summary": "",
             "url": "namespaces/mindee-product-custom.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DeliveryNote",
+            "name": "DeliveryNote",
+            "summary": "",
+            "url": "namespaces/mindee-product-deliverynote.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense",
             "name": "DriverLicense",
@@ -8150,6 +8745,16 @@ Search.appendIndex(
             "name": "Generated",
             "summary": "",
             "url": "namespaces/mindee-product-generated.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport",
+            "name": "IndianPassport",
+            "summary": "",
+            "url": "namespaces/mindee-product-ind-indianpassport.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Ind",
+            "name": "Ind",
+            "summary": "",
+            "url": "namespaces/mindee-product-ind.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId",
             "name": "InternationalId",
