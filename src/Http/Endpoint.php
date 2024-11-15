@@ -2,10 +2,7 @@
 
 namespace Mindee\Http;
 
-use Mindee;
 use Mindee\Input\InputSource;
-use Mindee\Input\LocalInputSource;
-use Mindee\Input\URLInputSource;
 
 /**
  * Endpoint management.
@@ -44,114 +41,6 @@ class Endpoint extends BaseEndpoint
     }
 
     /**
-     * Starts a CURL session, using GET.
-     *
-     * @param string $queueId ID of the queue to poll.
-     * @return array
-     */
-    private function initCurlSessionGet(string $queueId): array
-    {
-        $ch = curl_init();
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
-            [
-                'Authorization: Token ' . $this->settings->apiKey,
-            ]
-        );
-
-        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . "/documents/queue/$queueId");
-        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . Mindee\VERSION);
-
-        $resp = [
-            'data' => curl_exec($ch),
-            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
-        ];
-        curl_close($ch);
-
-        return $resp;
-    }
-
-    /**
-     * Starts a CURL session, using POST.
-     *
-     * @param InputSource $fileCurl     File to upload.
-     * @param boolean     $includeWords Whether to include the full text for each page.
-     *                        This performs a full OCR operation on the server and will increase response time.
-     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-     *                             This performs a full OCR operation on the server and may increase response time.
-     * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                             This performs a cropping operation on the server and will increase response time.
-     * @param boolean     $async        Whether the query is in async mode.
-     * @param boolean     $closeFile    Close file.
-     * @return array
-     */
-    private function initCurlSessionPost(
-        InputSource $fileCurl,
-        bool $includeWords,
-        bool $fullText,
-        bool $cropper,
-        bool $async,
-        bool $closeFile
-    ): array {
-        $ch = curl_init();
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
-            [
-                'Authorization: Token ' . $this->settings->apiKey,
-            ]
-        );
-
-        $suffix = $async ? '/predict_async' : '/predict';
-        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        if ($fileCurl instanceof URLInputSource) {
-            $postFields = ['document' => $fileCurl->url];
-        } elseif ($fileCurl instanceof LocalInputSource) {
-            if ($closeFile) {
-                $fileCurl->close();
-            }
-            $postFields = ['document' => $fileCurl->fileObject];
-        }
-        if ($includeWords) {
-            $postFields['include_mvision'] = 'true';
-        }
-        if ($fullText && $cropper) {
-            $suffix .= '?full_text_ocr=true&cropper=true';
-        } else {
-            if ($fullText) {
-                $suffix .= '?full_text_ocr=true';
-            }
-            if ($cropper) {
-                $suffix .= '?cropper=true';
-            }
-        }
-        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . $suffix);
-        if (isset($postFields)) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-        }
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . Mindee\VERSION);
-
-        $resp = [
-            'data' => curl_exec($ch),
-            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
-        ];
-        curl_close($ch);
-
-        return $resp;
-    }
-
-    /**
      * Retrieves a document from its queue ID.
      *
      * @param string $queueId ID of the queue to poll.
@@ -182,7 +71,7 @@ class Endpoint extends BaseEndpoint
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, false, $closeFile);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, 'sync', $closeFile);
     }
 
     /**
@@ -205,7 +94,7 @@ class Endpoint extends BaseEndpoint
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, true, $closeFile);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, 'async', $closeFile);
     }
 
     /**

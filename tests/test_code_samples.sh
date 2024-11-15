@@ -32,7 +32,7 @@ composer dump-autoload
 chmod -R 777 ./
 cd -
 
-for f in $(find docs/code_samples -maxdepth 1 -name "*.txt" | sort -h)
+for f in $(find docs/code_samples -maxdepth 1 -name "*.txt" -not -name "workflow_execution.txt" | sort -h)
 do
   echo
   echo "###############################################"

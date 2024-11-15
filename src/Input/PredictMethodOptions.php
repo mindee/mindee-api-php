@@ -2,6 +2,7 @@
 
 namespace Mindee\Input;
 
+use Mindee\Http\BaseEndpoint;
 use Mindee\Http\Endpoint;
 
 /**
@@ -20,7 +21,7 @@ class PredictMethodOptions
     /**
      * @var Endpoint|null Endpoint.
      */
-    public ?Endpoint $endpoint;
+    public ?BaseEndpoint $endpoint;
 
     /**
      * @var boolean Whether to close the file after parsing it.

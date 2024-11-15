@@ -50,6 +50,11 @@ class ResponseValidation
         } else {
             return false;
         }
+        if (isset($response["data"]["execution"])) {
+            return !(
+                isset($response["data"]["execution"]["error"]) && count($response["data"]["execution"]["error"]) > 0
+            );
+        }
         if (!isset($response["data"]["job"])) {
             return false;
         }

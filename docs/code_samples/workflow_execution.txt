@@ -1,0 +1,17 @@
+<?php
+
+use Mindee\Client;
+use Mindee\Product\Generated\GeneratedV1;
+
+$workflowId = "workflow-id";
+
+// Init a new client
+$mindeeClient = new Client();
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Send the file to the workflow
+$workflowResponse = $mindeeClient->executeWorkflow(GeneratedV1::class, $inputSource, $workflowId);
+
+echo $workflowResponse->execution;
