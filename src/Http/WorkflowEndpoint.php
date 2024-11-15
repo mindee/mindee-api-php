@@ -7,7 +7,7 @@ use Mindee\Input\InputSource;
 /**
  * Workflow router endpoint substitute.
  */
-class WorkflowRouter extends BaseEndpoint
+class WorkflowEndpoint extends BaseEndpoint
 {
     /**
      * @param MindeeWorkflowApi $settings Settings for the endpoint.

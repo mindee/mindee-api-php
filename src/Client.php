@@ -18,7 +18,7 @@ use Mindee\Http\Endpoint;
 use Mindee\Http\MindeeApi;
 use Mindee\Http\MindeeWorkflowApi;
 use Mindee\Http\ResponseValidation;
-use Mindee\Http\WorkflowRouter;
+use Mindee\Http\WorkflowEndpoint;
 use Mindee\Input\Base64Input;
 use Mindee\Input\BytesInput;
 use Mindee\Input\EnqueueAndParseMethodOptions;
@@ -311,7 +311,7 @@ class Client
         PredictMethodOptions $options
     ): WorkflowResponse {
         $workflowRouterSettings = new MindeeWorkflowApi($this->apiKey, $workflowId);
-        $options->endpoint = new WorkflowRouter($workflowRouterSettings);
+        $options->endpoint = new WorkflowEndpoint($workflowRouterSettings);
         if (!$options->pageOptions->isEmpty()) {
             if ($inputDoc instanceof LocalInputSource) {
                 $this->cutDocPages($inputDoc, $options->pageOptions);
