@@ -2,12 +2,6 @@
 
 namespace Mindee\Http;
 
-use Mindee\Input\InputSource;
-use Mindee\Input\LocalInputSource;
-use Mindee\Input\URLInputSource;
-
-use const Mindee\VERSION;
-
 /**
  * Abstract class for endpoints.
  */
@@ -50,7 +44,7 @@ abstract class BaseEndpoint
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . VERSION);
+        curl_setopt($ch, CURLOPT_USERAGENT, USER_AGENT);
 
         $resp = [
             'data' => curl_exec($ch),
@@ -74,7 +68,7 @@ abstract class BaseEndpoint
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'mindee-api-php@v' . VERSION);
+        curl_setopt($ch, CURLOPT_USERAGENT, USER_AGENT);
         $resp = [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
