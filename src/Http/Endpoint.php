@@ -75,7 +75,7 @@ class Endpoint extends BaseEndpoint
         bool $closeFile,
         bool $cropper
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, 'sync', $closeFile);
+        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, false, $closeFile);
     }
 
     /**
