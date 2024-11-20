@@ -68,7 +68,7 @@ jobs:
       - name: Install ImageMagick
         run: |
           brew update
-          brew install imagemagick
+          brew install imagemagick@6
           pecl install imagick
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
