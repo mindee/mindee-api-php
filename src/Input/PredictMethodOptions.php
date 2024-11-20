@@ -4,6 +4,7 @@ namespace Mindee\Input;
 
 use Mindee\Http\BaseEndpoint;
 use Mindee\Http\Endpoint;
+use Mindee\Http\WorkflowEndpoint;
 
 /**
  * Handles options tied to prediction method.
@@ -15,13 +16,17 @@ class PredictMethodOptions
      */
     public PredictOptions $predictOptions;
     /**
+     * @var WorkflowOptions Workflow options.
+     */
+    public WorkflowOptions $workflowOptions;
+    /**
      * @var PageOptions Page options.
      */
     public PageOptions $pageOptions;
     /**
-     * @var Endpoint|null Endpoint.
+     * @var Endpoint|WorkflowEndpoint|null Endpoint.
      */
-    public ?BaseEndpoint $endpoint;
+    public $endpoint;
 
     /**
      * @var boolean Whether to close the file after parsing it.
@@ -47,6 +52,16 @@ class PredictMethodOptions
     public function setPredictOptions(PredictOptions $predictOptions): PredictMethodOptions
     {
         $this->predictOptions = $predictOptions;
+        return $this;
+    }
+
+    /**
+     * @param WorkflowOptions $workflowOptions Prediction Options.
+     * @return $this
+     */
+    public function setWorkflowOptions(WorkflowOptions $workflowOptions): PredictMethodOptions
+    {
+        $this->workflowOptions = $workflowOptions;
         return $this;
     }
 

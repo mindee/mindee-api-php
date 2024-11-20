@@ -1,7 +1,8 @@
 <?php
 
+
 use Mindee\Client;
-use Mindee\Product\Generated\GeneratedV1;
+use Mindee\Input\WorkflowOptions;
 
 $workflowId = "workflow-id";
 
@@ -11,7 +12,13 @@ $mindeeClient = new Client();
 // Load a file from disk
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
+
 // Send the file to the workflow
-$workflowResponse = $mindeeClient->executeWorkflow(GeneratedV1::class, $inputSource, $workflowId);
+$workflowResponse = $mindeeClient->executeWorkflow($inputSource, $workflowId);
+
+// Alternatively, add an alias and priority to the document:
+// $options = new WorkflowOptions('document-alias', "document-priority");
+$workflowResponse = $mindeeClient->executeWorkflow($inputSource, $workflowId, $options);
+
 
 echo $workflowResponse->execution;

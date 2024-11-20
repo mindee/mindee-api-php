@@ -30,9 +30,11 @@ use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\URLInputSource;
+use Mindee\Input\WorkflowOptions;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\Common\PredictResponse;
 use Mindee\Parsing\Common\WorkflowResponse;
+use Mindee\Product\Generated\GeneratedV1;
 use ReflectionClass;
 use ReflectionException;
 
@@ -324,14 +326,13 @@ class Client
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->executeWorkflowRequestPost(
             $inputDoc,
-            $options->predictOptions->includeWords,
-            $options->predictOptions->fullText,
-            $options->closeFile,
-            $options->predictOptions->cropper
+            $options->workflowOptions->alias,
+            $options->workflowOptions->priority,
+            $options->workflowOptions->fullText,
         ));
-        if (!ResponseValidation::isValidAsyncResponse($response)) {
+        if (!ResponseValidation::isValidWorkflowResponse($response)) {
             throw MindeeHttpException::handleError(
-                $options->endpoint->settings->endpointName,
+                "workflows/$workflowId/executions",
                 $response
             );
         }
@@ -339,7 +340,7 @@ class Client
             return new WorkflowResponse($predictionType, $response['data']);
         } catch (Exception $e) {
             throw new MindeeApiException(
-                "Unable to create workflow response for " . $predictionType,
+                "Unable to create workflow response for $predictionType",
                 ErrorCode::API_UNPROCESSABLE_ENTITY
             );
         }
@@ -543,26 +544,32 @@ class Client
     /**
      * Sends a document to a workflow.
      *
-     * @param string                    $predictionType Name of the product's class.
-     * @param InputSource               $inputDoc       Input File.
-     * @param string                    $workflowId     ID of the workflow.
-     * @param PredictMethodOptions|null $options        Prediction Options.
-     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
+     * @param InputSource          $inputDoc    Input File.
+     * @param string               $workflowId  ID of the workflow.
+     * @param WorkflowOptions|null $options     Prediction Options.
+     * @param PageOptions|null     $pageOptions Options to apply to the PDF file.
      * @return WorkflowResponse
      */
     public function executeWorkflow(
-        string $predictionType,
         InputSource $inputDoc,
         string $workflowId,
-        ?PredictMethodOptions $options = null,
+        ?WorkflowOptions $options = null,
         ?PageOptions $pageOptions = null
     ): WorkflowResponse {
         if ($options == null) {
-            $options = new PredictMethodOptions();
+            $options = new WorkflowOptions();
         }
         if ($pageOptions != null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
-        return $this->makeWorkflowExecutionRequest($predictionType, $inputDoc, $workflowId, $options);
+
+        $predictMethodOptions = new PredictMethodOptions();
+        $predictMethodOptions->setWorkflowOptions($options);
+        return $this->makeWorkflowExecutionRequest(
+            GeneratedV1::class,
+            $inputDoc,
+            $workflowId,
+            $predictMethodOptions
+        );
     }
 }

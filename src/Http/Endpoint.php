@@ -3,6 +3,10 @@
 namespace Mindee\Http;
 
 use Mindee\Input\InputSource;
+use Mindee\Input\LocalInputSource;
+use Mindee\Input\URLInputSource;
+
+use const Mindee\VERSION;
 
 /**
  * Endpoint management.
@@ -97,10 +101,65 @@ class Endpoint extends BaseEndpoint
         return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, 'async', $closeFile);
     }
 
+
     /**
-     * @param InputSource $fileCurl
-     * @param bool $includeWords
-     * @param bool $cropper
+     * Starts a CURL session, using POST.
+     *
+     * @param InputSource $fileCurl     File to upload.
+     * @param boolean     $includeWords Whether to include the full text for each page.
+     *                        This performs a full OCR operation on the server and will increase response time.
+     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
+     *                             This performs a full OCR operation on the server and may increase response time.
+     * @param boolean     $cropper      Whether to include cropper results for each page.
+     *                             This performs a cropping operation on the server and will increase response time.
+     * @param boolean     $async        Whether the query is in async mode.
+     * @param boolean     $closeFile    Close file.
      * @return array
      */
+    private function initCurlSessionPost(
+        InputSource $fileCurl,
+        bool $includeWords,
+        bool $fullText,
+        bool $cropper,
+        bool $async,
+        bool $closeFile
+    ): array {
+        $ch = curl_init();
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            [
+                'Authorization: Token ' . $this->settings->apiKey,
+            ]
+        );
+
+        $suffix = $async ? '/predict_async' : '/predict';
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        $postFields = null;
+        if ($fileCurl instanceof URLInputSource) {
+            $postFields = ['document' => $fileCurl->url];
+        } elseif ($fileCurl instanceof LocalInputSource) {
+            if ($closeFile) {
+                $fileCurl->close();
+            }
+            $postFields = ['document' => $fileCurl->fileObject];
+        }
+        if ($includeWords) {
+            $postFields['include_mvision'] = 'true';
+        }
+        if ($fullText && $cropper) {
+            $suffix .= '?full_text_ocr=true&cropper=true';
+        } else {
+            if ($fullText) {
+                $suffix .= '?full_text_ocr=true';
+            }
+            if ($cropper) {
+                $suffix .= '?cropper=true';
+            }
+        }
+        return $this->setFinalCurlOpts($ch, $suffix, $postFields);
+    }
 }

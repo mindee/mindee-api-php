@@ -5,7 +5,7 @@ namespace Mindee\Input;
 /**
  * Handles options tied to Predictions.
  */
-class PredictOptions
+class PredictOptions extends CommonOptions
 {
     /**
      * @var boolean Whether to include the full text for each page.
@@ -14,11 +14,6 @@ class PredictOptions
     public bool $includeWords;
 
     /**
-     * @var boolean Whether to include the full OCR text response in compatible APIs.
-     * This performs a full OCR operation on the server and will increase response time.
-     */
-    public bool $fullText;
-    /**
      * @var boolean Whether to include cropper results for each page.
      * This performs a cropping operation on the server and may increase response time.
      */
@@ -26,12 +21,21 @@ class PredictOptions
 
     /**
      * Prediction options.
+     * @param boolean $fullText     Whether to include the full OCR text response in compatible APIs.
+     *          This performs a full OCR operation on the server and will increase response time.
+     * @param boolean $includeWords Whether to include the full text for each page.
+     *     This performs a full OCR operation on the server and will increase response time.
+     * @param boolean $cropper      Whether to include cropper results for each page.
+     *          This performs a cropping operation on the server and may increase response time.
      */
-    public function __construct()
-    {
-        $this->includeWords = false;
-        $this->fullText = false;
-        $this->cropper = false;
+    public function __construct(
+        bool $fullText = false,
+        bool $includeWords = false,
+        bool $cropper = false
+    ) {
+        parent::__construct($fullText);
+        $this->includeWords = $includeWords;
+        $this->cropper = $cropper;
     }
 
     /**
@@ -41,16 +45,6 @@ class PredictOptions
     public function setIncludeWords(bool $includeWords): PredictOptions
     {
         $this->includeWords = $includeWords;
-        return $this;
-    }
-
-    /**
-     * @param boolean $fullText Whether to include the full text.
-     * @return $this
-     */
-    public function setFullText(bool $fullText): PredictOptions
-    {
-        $this->fullText = $fullText;
         return $this;
     }
 

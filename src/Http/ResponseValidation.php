@@ -32,6 +32,31 @@ class ResponseValidation
 
 
     /**
+     * Checks if the workflow response is valid. Also checks if it is a valid synchronous response.
+     * Returns True if the response is valid.
+     *
+     * @param array $response A response array.
+     * @return boolean
+     */
+    public static function isValidWorkflowResponse(array $response): bool
+    {
+        if (!ResponseValidation::isValidSyncResponse($response)) {
+            return false;
+        }
+        if (isset($response["code"])) {
+            if ($response["code"] < 200 || $response["code"] > 302) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        if (!isset($response["data"]["execution"])) {
+            return false;
+        }
+        return !(isset($response["data"]["execution"]["error"]) && count($response["data"]["execution"]["error"]) > 0);
+    }
+
+    /**
      * Checks if the asynchronous response is valid. Also checks if it is a valid synchronous response.
      * Returns True if the response is valid.
      *
@@ -49,11 +74,6 @@ class ResponseValidation
             }
         } else {
             return false;
-        }
-        if (isset($response["data"]["execution"])) {
-            return !(
-                isset($response["data"]["execution"]["error"]) && count($response["data"]["execution"]["error"]) > 0
-            );
         }
         if (!isset($response["data"]["job"])) {
             return false;
