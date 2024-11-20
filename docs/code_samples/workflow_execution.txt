@@ -18,7 +18,7 @@ $workflowResponse = $mindeeClient->executeWorkflow($inputSource, $workflowId);
 
 // Alternatively, add an alias and priority to the document:
 // $options = new WorkflowOptions('document-alias', "document-priority");
-$workflowResponse = $mindeeClient->executeWorkflow($inputSource, $workflowId, $options);
+// $workflowResponse = $mindeeClient->executeWorkflow($inputSource, $workflowId, $options);
 
 
 echo $workflowResponse->execution;

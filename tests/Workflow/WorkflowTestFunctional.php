@@ -27,7 +27,7 @@ class WorkflowTestFunctional extends TestCase
         $options = new WorkflowOptions("php-" . $currentDateTime, "low");
         $response = $this->mindeeClient->executeWorkflow($inputSource, $this->workflowId, $options);
         $this->assertEquals(202, $response->apiRequest->statusCode);
-        $this->assertEquals($currentDateTime, $response->execution->file->alias);
-        $this->assertEquals("low", $response->execution->file->priority);
+        $this->assertEquals("php-$currentDateTime", $response->execution->file->alias);
+        $this->assertEquals("low", $response->execution->priority);
     }
 }
