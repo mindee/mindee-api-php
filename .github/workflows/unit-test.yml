@@ -50,7 +50,7 @@ jobs:
       matrix:
         php-version:
           - 7.4
-          - '8.0'
+          - 8.0
           - 8.1
           - 8.2
           - 8.3
@@ -66,12 +66,16 @@ jobs:
           brew uninstall -f imagemagick || true
           brew uninstall -f pkg-config || true
           brew cleanup
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        env:
+          phpts: zts
+        with:
+          php-version: ${{ matrix.php-version }}
       - name: Install Imagemagick
         run: |
           brew install pkg-config imagemagick@7
           export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
-      - name: Install PHP
-        run: brew install php@${{matrix.php-version}}-zts
       - name: Install Imagick
         run: pecl install imagick
       - uses: ramsey/composer-install@v2
