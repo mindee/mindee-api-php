@@ -68,6 +68,7 @@ jobs:
       - name: Install ImageMagick
         run: |
           brew update
+          brew upgrade
           brew install pkg-config imagemagick
           export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
           pecl install imagick
