@@ -69,8 +69,8 @@ jobs:
         run: |
           brew update
           brew upgrade
-          brew uninstall imagemagick 2> /dev/null/
-          brew uninstall pkg-config 2> /dev/null/
+          brew uninstall -f imagemagick || true
+          brew uninstall -f pkg-config || true
           brew cleanup
           brew install pkg-config imagemagick@7
           export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
