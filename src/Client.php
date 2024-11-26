@@ -329,6 +329,7 @@ class Client
             $options->workflowOptions->alias,
             $options->workflowOptions->priority,
             $options->workflowOptions->fullText,
+            $options->workflowOptions->publicUrl,
         ));
         if (!ResponseValidation::isValidWorkflowResponse($response)) {
             throw MindeeHttpException::handleError(
