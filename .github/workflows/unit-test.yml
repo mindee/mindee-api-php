@@ -66,16 +66,16 @@ jobs:
           brew uninstall -f imagemagick || true
           brew uninstall -f pkg-config || true
           brew cleanup
+      - name: Install Imagemagick
+        run: |
+          brew install pkg-config imagemagick@7
+          export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-      - name: Install Imagemagick
-        run: |
-          brew install pkg-config imagemagick@7
-          export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
       - name: Install Imagick
         run: pecl install imagick
       - uses: ramsey/composer-install@v2
