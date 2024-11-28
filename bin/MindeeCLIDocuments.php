@@ -30,9 +30,10 @@ class MindeeCLIDocuments
                 true,
                 false
             ),
-            "eu-driver-license" => new DocumentCommandConfig(
-                "EU Driver License",
-                \Mindee\Product\Eu\DriverLicense\DriverLicenseV1::class,
+            "driver-license" => new DocumentCommandConfig(
+                "Driver License",
+                \Mindee\Product\DriverLicense\DriverLicenseV1::class,
+                false,
                 true
             ),
             "eu-license-plate" => new DocumentCommandConfig(
@@ -56,9 +57,10 @@ class MindeeCLIDocuments
                 \Mindee\Product\Fr\CarteGrise\CarteGriseV1::class,
                 true
             ),
-            "fr-carte-vitale" => new DocumentCommandConfig(
-                "FR Carte Vitale",
-                \Mindee\Product\Fr\CarteVitale\CarteVitaleV1::class,
+            "fr-health-card" => new DocumentCommandConfig(
+                "FR Health Card",
+                \Mindee\Product\Fr\HealthCard\HealthCardV1::class,
+                false,
                 true
             ),
             "fr-id-card" => new DocumentCommandConfig(
@@ -100,15 +102,11 @@ class MindeeCLIDocuments
                 \Mindee\Product\Passport\PassportV1::class,
                 true
             ),
-            "proof-of-address" => new DocumentCommandConfig(
-                "Proof of Address",
-                \Mindee\Product\ProofOfAddress\ProofOfAddressV1::class,
-                true
-            ),
             "receipt" => new DocumentCommandConfig(
                 "Expense Receipt",
                 \Mindee\Product\Receipt\ReceiptV5::class,
                 true,
+                true
             ),
             "resume" => new DocumentCommandConfig(
                 "Resume",
@@ -119,11 +117,6 @@ class MindeeCLIDocuments
             "us-bank-check" => new DocumentCommandConfig(
                 "US Bank Check",
                 \Mindee\Product\Us\BankCheck\BankCheckV1::class,
-                true
-            ),
-            "us-driver-license" => new DocumentCommandConfig(
-                "US Driver License",
-                \Mindee\Product\Us\DriverLicense\DriverLicenseV1::class,
                 true
             ),
             "us-healthcare-card" => new DocumentCommandConfig(

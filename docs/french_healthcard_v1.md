@@ -1,20 +1,20 @@
 ---
-title: FR Carte Vitale OCR PHP
+title: FR Health Card OCR PHP
 category: 622b805aaec68102ea7fcbc2
-slug: php-fr-carte-vitale-ocr
+slug: php-fr-health-card-ocr
 parentDoc: 658193df8e029d002ad9c89b
 ---
-The PHP OCR SDK supports the [Carte Vitale API](https://platform.mindee.com/mindee/carte_vitale).
+The PHP OCR SDK supports the [Health Card API](https://platform.mindee.com/mindee/french_healthcard).
 
-Using the [sample below](https://github.com/mindee/client-lib-test-data/blob/main/products/carte_vitale/default_sample.jpg), we are going to illustrate how to extract the data that we want using the OCR SDK.
-![Carte Vitale sample](https://github.com/mindee/client-lib-test-data/blob/main/products/carte_vitale/default_sample.jpg?raw=true)
+Using the [sample below](https://github.com/mindee/client-lib-test-data/blob/main/products/french_healthcard/default_sample.jpg), we are going to illustrate how to extract the data that we want using the OCR SDK.
+![Health Card sample](https://github.com/mindee/client-lib-test-data/blob/main/products/french_healthcard/default_sample.jpg?raw=true)
 
 # Quick-Start
 ```php
 <?php
 
 use Mindee\Client;
-use Mindee\Product\Fr\CarteVitale\CarteVitaleV1;
+use Mindee\Product\Fr\HealthCard\HealthCardV1;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");
@@ -22,8 +22,8 @@ $mindeeClient = new Client("my-api-key");
 // Load a file from disk
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
-// Parse the file
-$apiResponse = $mindeeClient->parse(CarteVitaleV1::class, $inputSource);
+// Parse the file asynchronously
+$apiResponse = $mindeeClient->enqueueAndParse(HealthCardV1::class, $inputSource);
 
 echo $apiResponse->document;
 ```
@@ -33,29 +33,19 @@ echo $apiResponse->document;
 ########
 Document
 ########
-:Mindee ID: 8c25cc63-212b-4537-9c9b-3fbd3bd0ee20
+:Mindee ID: 9ee2733d-933a-4dcd-a73a-a31395e3b288
 :Filename: default_sample.jpg
 
 Inference
 #########
-:Product: mindee/carte_vitale v1.0
+:Product: mindee/french_healthcard v1.0
 :Rotation applied: Yes
 
 Prediction
 ==========
 :Given Name(s): NATHALIE
 :Surname: DURAND
-:Social Security Number: 269054958815780
-:Issuance Date: 2007-01-01
-
-Page Predictions
-================
-
-Page 0
-------
-:Given Name(s): NATHALIE
-:Surname: DURAND
-:Social Security Number: 269054958815780
+:Social Security Number: 2 69 05 49 588 157 80
 :Issuance Date: 2007-01-01
 ```
 
@@ -90,10 +80,10 @@ The text field `StringField` implements the following:
 * **rawValue** (`string`): the value of the string as it appears on the document.
 
 # Attributes
-The following fields are extracted for Carte Vitale V1:
+The following fields are extracted for Health Card V1:
 
 ## Given Name(s)
-**givenNames** : The given name(s) of the card holder.
+**givenNames** : The given names of the card holder.
 
 ```php
 foreach ($result->document->inference->prediction->givenNames as $givenNamesElem)
@@ -103,14 +93,14 @@ foreach ($result->document->inference->prediction->givenNames as $givenNamesElem
 ```
 
 ## Issuance Date
-**issuanceDate** : The date the card was issued.
+**issuanceDate** : The date when the carte vitale document was issued.
 
 ```php
 echo $result->document->inference->prediction->issuanceDate->value;
 ```
 
 ## Social Security Number
-**socialSecurity** : The Social Security Number (Numéro de Sécurité Sociale) of the card holder
+**socialSecurity** : The social security number of the card holder.
 
 ```php
 echo $result->document->inference->prediction->socialSecurity->value;
