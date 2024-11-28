@@ -1,0 +1,15 @@
+<?php
+
+use Mindee\Client;
+use Mindee\Product\DriverLicense\DriverLicenseV1;
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+// Parse the file asynchronously
+$apiResponse = $mindeeClient->enqueueAndParse(DriverLicenseV1::class, $inputSource);
+
+echo $apiResponse->document;
