@@ -206,6 +206,13 @@
 </dt>
 <dd>Checks if the synchronous response is valid. Returns True if the response is valid.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Http-ResponseValidation.html#method_isValidWorkflowResponse">isValidWorkflowResponse()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Checks if the workflow response is valid. Also checks if it is a valid synchronous response.</dd>
+
     </dl>
 
 
@@ -234,7 +241,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/ResponseValidation.php"><a href="files/src-http-responsevalidation.html"><abbr title="src/Http/ResponseValidation.php">ResponseValidation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -285,7 +292,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/ResponseValidation.php"><a href="files/src-http-responsevalidation.html"><abbr title="src/Http/ResponseValidation.php">ResponseValidation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -360,6 +367,59 @@
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>A response object.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isValidWorkflowResponse">
+        isValidWorkflowResponse()
+        <a href="classes/Mindee-Http-ResponseValidation.html#method_isValidWorkflowResponse" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/ResponseValidation.php"><a href="files/src-http-responsevalidation.html"><abbr title="src/Http/ResponseValidation.php">ResponseValidation.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Checks if the workflow response is valid. Also checks if it is a valid synchronous response.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">isValidWorkflowResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Returns True if the response is valid.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$response</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>A response array.</p>
 </section>
 
             </dd>
@@ -491,6 +551,7 @@
                                             <li class=""><a href="classes/Mindee-Http-ResponseValidation.html#method_cleanRequestData">cleanRequestData()</a></li>
                                             <li class=""><a href="classes/Mindee-Http-ResponseValidation.html#method_isValidAsyncResponse">isValidAsyncResponse()</a></li>
                                             <li class=""><a href="classes/Mindee-Http-ResponseValidation.html#method_isValidSyncResponse">isValidSyncResponse()</a></li>
+                                            <li class=""><a href="classes/Mindee-Http-ResponseValidation.html#method_isValidWorkflowResponse">isValidWorkflowResponse()</a></li>
                                     </ul>
             </li>
                     </ul>

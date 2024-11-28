@@ -71,6 +71,11 @@ Search.appendIndex(
             "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020an\u0020asynchronous\u0020endpoint.",
             "url": "classes/Mindee-Client.html#method_makeEnqueueRequest"
         },                {
+            "fqsen": "\\Mindee\\Client\u003A\u003AmakeWorkflowExecutionRequest\u0028\u0029",
+            "name": "makeWorkflowExecutionRequest",
+            "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020a\u0020workflow.",
+            "url": "classes/Mindee-Client.html#method_makeWorkflowExecutionRequest"
+        },                {
             "fqsen": "\\Mindee\\Client\u003A\u003AmakeParseRequest\u0028\u0029",
             "name": "makeParseRequest",
             "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020a\u0020synchronous\u0020endpoint.",
@@ -100,6 +105,11 @@ Search.appendIndex(
             "name": "loadPrediction",
             "summary": "",
             "url": "classes/Mindee-Client.html#method_loadPrediction"
+        },                {
+            "fqsen": "\\Mindee\\Client\u003A\u003AexecuteWorkflow\u0028\u0029",
+            "name": "executeWorkflow",
+            "summary": "Sends\u0020a\u0020document\u0020to\u0020a\u0020workflow.",
+            "url": "classes/Mindee-Client.html#method_executeWorkflow"
         },                {
             "fqsen": "\\Mindee\\Client\u003A\u003ADEFAULT_OWNER",
             "name": "DEFAULT_OWNER",
@@ -761,71 +771,6 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020in\u0020a\u0020polygon\u0027s\u0020y\u002Daxis\u0020range.",
             "url": "classes/Mindee-Geometry-PolygonUtils.html#method_isPointInPolygonY"
         },                {
-            "fqsen": "\\Mindee\\Http\\BaseEndpoint",
-            "name": "BaseEndpoint",
-            "summary": "Abstract\u0020class\u0020for\u0020endpoints.",
-            "url": "classes/Mindee-Http-BaseEndpoint.html"
-        },                {
-            "fqsen": "\\Mindee\\Http\\BaseEndpoint\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Http-BaseEndpoint.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Http\\BaseEndpoint\u003A\u003A\u0024settings",
-            "name": "settings",
-            "summary": "",
-            "url": "classes/Mindee-Http-BaseEndpoint.html#property_settings"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint",
-            "name": "Endpoint",
-            "summary": "Endpoint\u0020management.",
-            "url": "classes/Mindee-Http-Endpoint.html"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Http-Endpoint.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003AinitCurlSessionGet\u0028\u0029",
-            "name": "initCurlSessionGet",
-            "summary": "Starts\u0020a\u0020CURL\u0020session,\u0020using\u0020GET.",
-            "url": "classes/Mindee-Http-Endpoint.html#method_initCurlSessionGet"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003AinitCurlSessionPost\u0028\u0029",
-            "name": "initCurlSessionPost",
-            "summary": "Starts\u0020a\u0020CURL\u0020session,\u0020using\u0020POST.",
-            "url": "classes/Mindee-Http-Endpoint.html#method_initCurlSessionPost"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003AdocumentQueueReqGet\u0028\u0029",
-            "name": "documentQueueReqGet",
-            "summary": "Retrieves\u0020a\u0020document\u0020from\u0020its\u0020queue\u0020ID.",
-            "url": "classes/Mindee-Http-Endpoint.html#method_documentQueueReqGet"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003ApredictRequestPost\u0028\u0029",
-            "name": "predictRequestPost",
-            "summary": "Sends\u0020a\u0020document\u0020for\u0020asynchronous\u0020enqueuing.",
-            "url": "classes/Mindee-Http-Endpoint.html#method_predictRequestPost"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003ApredictAsyncRequestPost\u0028\u0029",
-            "name": "predictAsyncRequestPost",
-            "summary": "Sends\u0020a\u0020document\u0020for\u0020synchronous\u0020enqueuing.",
-            "url": "classes/Mindee-Http-Endpoint.html#method_predictAsyncRequestPost"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A\u0024urlName",
-            "name": "urlName",
-            "summary": "",
-            "url": "classes/Mindee-Http-Endpoint.html#property_urlName"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A\u0024owner",
-            "name": "owner",
-            "summary": "",
-            "url": "classes/Mindee-Http-Endpoint.html#property_owner"
-        },                {
-            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A\u0024version",
-            "name": "version",
-            "summary": "",
-            "url": "classes/Mindee-Http-Endpoint.html#property_version"
-        },                {
             "fqsen": "\\Mindee\\Http\\API_KEY_ENV_NAME",
             "name": "API_KEY_ENV_NAME",
             "summary": "Default\u0020key\u0020name\u0020for\u0020the\u0020API\u0020key\u0020entry\u0020in\u0020environment\u0020variables.",
@@ -856,45 +801,135 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-http.html#constant_USER_AGENT"
         },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi",
+            "name": "BaseApi",
+            "summary": "Base\u0020class\u0020for\u0020API\u0020settings.",
+            "url": "classes/Mindee-Http-BaseApi.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AsetBaseUrl\u0028\u0029",
+            "name": "setBaseUrl",
+            "summary": "Sets\u0020the\u0020base\u0020url.",
+            "url": "classes/Mindee-Http-BaseApi.html#method_setBaseUrl"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AsetTimeout\u0028\u0029",
+            "name": "setTimeout",
+            "summary": "Sets\u0020the\u0020default\u0020timeout.",
+            "url": "classes/Mindee-Http-BaseApi.html#method_setTimeout"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AsetFromEnv\u0028\u0029",
+            "name": "setFromEnv",
+            "summary": "Sets\u0020values\u0020from\u0020environment\u0020if\u0020needed.",
+            "url": "classes/Mindee-Http-BaseApi.html#method_setFromEnv"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AsetApiKey\u0028\u0029",
+            "name": "setApiKey",
+            "summary": "Sets\u0020the\u0020API\u0020key.",
+            "url": "classes/Mindee-Http-BaseApi.html#method_setApiKey"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseApi.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A\u0024apiKey",
+            "name": "apiKey",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseApi.html#property_apiKey"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A\u0024requestTimeout",
+            "name": "requestTimeout",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseApi.html#property_requestTimeout"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A\u0024urlRoot",
+            "name": "urlRoot",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseApi.html#property_urlRoot"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A\u0024baseUrl",
+            "name": "baseUrl",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseApi.html#property_baseUrl"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseEndpoint",
+            "name": "BaseEndpoint",
+            "summary": "Abstract\u0020class\u0020for\u0020endpoints.",
+            "url": "classes/Mindee-Http-BaseEndpoint.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseEndpoint\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseEndpoint.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseEndpoint\u003A\u003AinitCurlSessionGet\u0028\u0029",
+            "name": "initCurlSessionGet",
+            "summary": "Starts\u0020a\u0020CURL\u0020session,\u0020using\u0020GET.",
+            "url": "classes/Mindee-Http-BaseEndpoint.html#method_initCurlSessionGet"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseEndpoint\u003A\u003AsetFinalCurlOpts\u0028\u0029",
+            "name": "setFinalCurlOpts",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseEndpoint.html#method_setFinalCurlOpts"
+        },                {
+            "fqsen": "\\Mindee\\Http\\BaseEndpoint\u003A\u003A\u0024settings",
+            "name": "settings",
+            "summary": "",
+            "url": "classes/Mindee-Http-BaseEndpoint.html#property_settings"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint",
+            "name": "Endpoint",
+            "summary": "Endpoint\u0020management.",
+            "url": "classes/Mindee-Http-Endpoint.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Http-Endpoint.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003AdocumentQueueReqGet\u0028\u0029",
+            "name": "documentQueueReqGet",
+            "summary": "Retrieves\u0020a\u0020document\u0020from\u0020its\u0020queue\u0020ID.",
+            "url": "classes/Mindee-Http-Endpoint.html#method_documentQueueReqGet"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003ApredictRequestPost\u0028\u0029",
+            "name": "predictRequestPost",
+            "summary": "Sends\u0020a\u0020document\u0020for\u0020asynchronous\u0020enqueuing.",
+            "url": "classes/Mindee-Http-Endpoint.html#method_predictRequestPost"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003ApredictAsyncRequestPost\u0028\u0029",
+            "name": "predictAsyncRequestPost",
+            "summary": "Sends\u0020a\u0020document\u0020for\u0020synchronous\u0020enqueuing.",
+            "url": "classes/Mindee-Http-Endpoint.html#method_predictAsyncRequestPost"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003AinitCurlSessionPost\u0028\u0029",
+            "name": "initCurlSessionPost",
+            "summary": "Starts\u0020a\u0020CURL\u0020session,\u0020using\u0020POST.",
+            "url": "classes/Mindee-Http-Endpoint.html#method_initCurlSessionPost"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A\u0024urlName",
+            "name": "urlName",
+            "summary": "",
+            "url": "classes/Mindee-Http-Endpoint.html#property_urlName"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A\u0024owner",
+            "name": "owner",
+            "summary": "",
+            "url": "classes/Mindee-Http-Endpoint.html#property_owner"
+        },                {
+            "fqsen": "\\Mindee\\Http\\Endpoint\u003A\u003A\u0024version",
+            "name": "version",
+            "summary": "",
+            "url": "classes/Mindee-Http-Endpoint.html#property_version"
+        },                {
             "fqsen": "\\Mindee\\Http\\MindeeApi",
             "name": "MindeeApi",
             "summary": "Data\u0020class\u0020containing\u0020settings\u0020for\u0020endpoints.",
             "url": "classes/Mindee-Http-MindeeApi.html"
         },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003AsetBaseUrl\u0028\u0029",
-            "name": "setBaseUrl",
-            "summary": "Sets\u0020the\u0020base\u0020url.",
-            "url": "classes/Mindee-Http-MindeeApi.html#method_setBaseUrl"
-        },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003AsetTimeout\u0028\u0029",
-            "name": "setTimeout",
-            "summary": "Sets\u0020the\u0020default\u0020timeout.",
-            "url": "classes/Mindee-Http-MindeeApi.html#method_setTimeout"
-        },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003AsetFromEnv\u0028\u0029",
-            "name": "setFromEnv",
-            "summary": "Sets\u0020values\u0020from\u0020environment\u0020if\u0020needed.",
-            "url": "classes/Mindee-Http-MindeeApi.html#method_setFromEnv"
-        },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003AsetApiKey\u0028\u0029",
-            "name": "setApiKey",
-            "summary": "Sets\u0020the\u0020API\u0020key.",
-            "url": "classes/Mindee-Http-MindeeApi.html#method_setApiKey"
-        },                {
             "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
             "url": "classes/Mindee-Http-MindeeApi.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003A\u0024apiKey",
-            "name": "apiKey",
-            "summary": "",
-            "url": "classes/Mindee-Http-MindeeApi.html#property_apiKey"
-        },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003A\u0024requestTimeout",
-            "name": "requestTimeout",
-            "summary": "",
-            "url": "classes/Mindee-Http-MindeeApi.html#property_requestTimeout"
         },                {
             "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003A\u0024endpointName",
             "name": "endpointName",
@@ -911,15 +946,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Http-MindeeApi.html#property_accountName"
         },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003A\u0024urlRoot",
-            "name": "urlRoot",
-            "summary": "",
-            "url": "classes/Mindee-Http-MindeeApi.html#property_urlRoot"
+            "fqsen": "\\Mindee\\Http\\MindeeWorkflowApi",
+            "name": "MindeeWorkflowApi",
+            "summary": "Data\u0020class\u0020containing\u0020settings\u0020for\u0020workflows.",
+            "url": "classes/Mindee-Http-MindeeWorkflowApi.html"
         },                {
-            "fqsen": "\\Mindee\\Http\\MindeeApi\u003A\u003A\u0024baseUrl",
-            "name": "baseUrl",
+            "fqsen": "\\Mindee\\Http\\MindeeWorkflowApi\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-Http-MindeeApi.html#property_baseUrl"
+            "url": "classes/Mindee-Http-MindeeWorkflowApi.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeWorkflowApi\u003A\u003A\u0024workflowId",
+            "name": "workflowId",
+            "summary": "",
+            "url": "classes/Mindee-Http-MindeeWorkflowApi.html#property_workflowId"
         },                {
             "fqsen": "\\Mindee\\Http\\ResponseValidation",
             "name": "ResponseValidation",
@@ -931,6 +971,11 @@ Search.appendIndex(
             "summary": "Checks\u0020if\u0020the\u0020synchronous\u0020response\u0020is\u0020valid.\u0020Returns\u0020True\u0020if\u0020the\u0020response\u0020is\u0020valid.",
             "url": "classes/Mindee-Http-ResponseValidation.html#method_isValidSyncResponse"
         },                {
+            "fqsen": "\\Mindee\\Http\\ResponseValidation\u003A\u003AisValidWorkflowResponse\u0028\u0029",
+            "name": "isValidWorkflowResponse",
+            "summary": "Checks\u0020if\u0020the\u0020workflow\u0020response\u0020is\u0020valid.\u0020Also\u0020checks\u0020if\u0020it\u0020is\u0020a\u0020valid\u0020synchronous\u0020response.",
+            "url": "classes/Mindee-Http-ResponseValidation.html#method_isValidWorkflowResponse"
+        },                {
             "fqsen": "\\Mindee\\Http\\ResponseValidation\u003A\u003AisValidAsyncResponse\u0028\u0029",
             "name": "isValidAsyncResponse",
             "summary": "Checks\u0020if\u0020the\u0020asynchronous\u0020response\u0020is\u0020valid.\u0020Also\u0020checks\u0020if\u0020it\u0020is\u0020a\u0020valid\u0020synchronous\u0020response.",
@@ -940,6 +985,26 @@ Search.appendIndex(
             "name": "cleanRequestData",
             "summary": "Checks\u0020and\u0020corrects\u0020the\u0020response\u0020object\u0020depending\u0020on\u0020the\u0020possible\u0020kinds\u0020of\u0020returns.",
             "url": "classes/Mindee-Http-ResponseValidation.html#method_cleanRequestData"
+        },                {
+            "fqsen": "\\Mindee\\Http\\WorkflowEndpoint",
+            "name": "WorkflowEndpoint",
+            "summary": "Workflow\u0020router\u0020endpoint\u0020substitute.",
+            "url": "classes/Mindee-Http-WorkflowEndpoint.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\WorkflowEndpoint\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Http-WorkflowEndpoint.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Http\\WorkflowEndpoint\u003A\u003AexecuteWorkflowRequestPost\u0028\u0029",
+            "name": "executeWorkflowRequestPost",
+            "summary": "Sends\u0020a\u0020document\u0020for\u0020synchronous\u0020enqueuing.",
+            "url": "classes/Mindee-Http-WorkflowEndpoint.html#method_executeWorkflowRequestPost"
+        },                {
+            "fqsen": "\\Mindee\\Http\\WorkflowEndpoint\u003A\u003AinitCurlSessionPost\u0028\u0029",
+            "name": "initCurlSessionPost",
+            "summary": "Starts\u0020a\u0020CURL\u0020session,\u0020using\u0020POST.",
+            "url": "classes/Mindee-Http-WorkflowEndpoint.html#method_initCurlSessionPost"
         },                {
             "fqsen": "\\Mindee\\Image\\ImageCompressor",
             "name": "ImageCompressor",
@@ -1015,6 +1080,26 @@ Search.appendIndex(
             "name": "tempFile",
             "summary": "",
             "url": "classes/Mindee-Input-BytesInput.html#property_tempFile"
+        },                {
+            "fqsen": "\\Mindee\\Input\\CommonOptions",
+            "name": "CommonOptions",
+            "summary": "Common\u0020base\u0020for\u0020regular\u0020prediction\u0020options\u0020and\u0020workflow\u0020options.",
+            "url": "classes/Mindee-Input-CommonOptions.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\CommonOptions\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Prediction\u0020options.",
+            "url": "classes/Mindee-Input-CommonOptions.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\CommonOptions\u003A\u003AsetFullText\u0028\u0029",
+            "name": "setFullText",
+            "summary": "",
+            "url": "classes/Mindee-Input-CommonOptions.html#method_setFullText"
+        },                {
+            "fqsen": "\\Mindee\\Input\\CommonOptions\u003A\u003A\u0024fullText",
+            "name": "fullText",
+            "summary": "",
+            "url": "classes/Mindee-Input-CommonOptions.html#property_fullText"
         },                {
             "fqsen": "\\Mindee\\Input\\MINIMUM_INITIAL_DELAY_SECONDS",
             "name": "MINIMUM_INITIAL_DELAY_SECONDS",
@@ -1301,6 +1386,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-PredictMethodOptions.html#method_setPredictOptions"
         },                {
+            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003AsetWorkflowOptions\u0028\u0029",
+            "name": "setWorkflowOptions",
+            "summary": "",
+            "url": "classes/Mindee-Input-PredictMethodOptions.html#method_setWorkflowOptions"
+        },                {
             "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003AsetPageOptions\u0028\u0029",
             "name": "setPageOptions",
             "summary": "",
@@ -1320,6 +1410,11 @@ Search.appendIndex(
             "name": "predictOptions",
             "summary": "",
             "url": "classes/Mindee-Input-PredictMethodOptions.html#property_predictOptions"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024workflowOptions",
+            "name": "workflowOptions",
+            "summary": "",
+            "url": "classes/Mindee-Input-PredictMethodOptions.html#property_workflowOptions"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024pageOptions",
             "name": "pageOptions",
@@ -1351,11 +1446,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-PredictOptions.html#method_setIncludeWords"
         },                {
-            "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003AsetFullText\u0028\u0029",
-            "name": "setFullText",
-            "summary": "",
-            "url": "classes/Mindee-Input-PredictOptions.html#method_setFullText"
-        },                {
             "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003AsetCropper\u0028\u0029",
             "name": "setCropper",
             "summary": "",
@@ -1365,11 +1455,6 @@ Search.appendIndex(
             "name": "includeWords",
             "summary": "",
             "url": "classes/Mindee-Input-PredictOptions.html#property_includeWords"
-        },                {
-            "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003A\u0024fullText",
-            "name": "fullText",
-            "summary": "",
-            "url": "classes/Mindee-Input-PredictOptions.html#property_fullText"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictOptions\u003A\u003A\u0024cropper",
             "name": "cropper",
@@ -1390,6 +1475,31 @@ Search.appendIndex(
             "name": "url",
             "summary": "",
             "url": "classes/Mindee-Input-URLInputSource.html#property_url"
+        },                {
+            "fqsen": "\\Mindee\\Input\\WorkflowOptions",
+            "name": "WorkflowOptions",
+            "summary": "Handles\u0020options\u0020tied\u0020to\u0020Workflows.",
+            "url": "classes/Mindee-Input-WorkflowOptions.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\WorkflowOptions\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Prediction\u0020options.",
+            "url": "classes/Mindee-Input-WorkflowOptions.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\WorkflowOptions\u003A\u003A\u0024alias",
+            "name": "alias",
+            "summary": "",
+            "url": "classes/Mindee-Input-WorkflowOptions.html#property_alias"
+        },                {
+            "fqsen": "\\Mindee\\Input\\WorkflowOptions\u003A\u003A\u0024priority",
+            "name": "priority",
+            "summary": "",
+            "url": "classes/Mindee-Input-WorkflowOptions.html#property_priority"
+        },                {
+            "fqsen": "\\Mindee\\Input\\WorkflowOptions\u003A\u003A\u0024publicUrl",
+            "name": "publicUrl",
+            "summary": "",
+            "url": "classes/Mindee-Input-WorkflowOptions.html#property_publicUrl"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\ApiRequest",
             "name": "ApiRequest",
@@ -1520,6 +1630,106 @@ Search.appendIndex(
             "name": "ocr",
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Document.html#property_ocr"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution",
+            "name": "Execution",
+            "summary": "Representation\u0020of\u0020a\u0020workflow\u0020execution.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024batchName",
+            "name": "batchName",
+            "summary": "Identifier\u0020for\u0020the\u0020batch\u0020to\u0020which\u0020the\u0020execution\u0020belongs.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_batchName"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024createdAt",
+            "name": "createdAt",
+            "summary": "The\u0020time\u0020at\u0020which\u0020the\u0020execution\u0020started.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_createdAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "File\u0020representation\u0020within\u0020a\u0020workflow\u0020execution.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_file"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "Identifier\u0020for\u0020the\u0020execution.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024inference",
+            "name": "inference",
+            "summary": "Deserialized\u0020inference\u0020object.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_inference"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024priority",
+            "name": "priority",
+            "summary": "Priority\u0020of\u0020the\u0020execution.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_priority"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024reviewedAt",
+            "name": "reviewedAt",
+            "summary": "The\u0020time\u0020at\u0020which\u0020the\u0020file\u0020was\u0020tagged\u0020as\u0020reviewed.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_reviewedAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024availableAt",
+            "name": "availableAt",
+            "summary": "The\u0020time\u0020at\u0020which\u0020the\u0020file\u0020was\u0020uploaded\u0020to\u0020a\u0020workflow.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_availableAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024reviewedPrediction",
+            "name": "reviewedPrediction",
+            "summary": "Reviewed\u0020fields\u0020and\u0020values.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_reviewedPrediction"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "Execution\u0020Status.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "Execution\u0020type.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_type"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024uploadedAt",
+            "name": "uploadedAt",
+            "summary": "The\u0020time\u0020at\u0020which\u0020the\u0020file\u0020was\u0020uploaded\u0020to\u0020a\u0020workflow.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_uploadedAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Execution\u003A\u003A\u0024workflowId",
+            "name": "workflowId",
+            "summary": "Identifier\u0020for\u0020the\u0020workflow.",
+            "url": "classes/Mindee-Parsing-Common-Execution.html#property_workflowId"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\ExecutionFile",
+            "name": "ExecutionFile",
+            "summary": "Representation\u0020of\u0020a\u0020workflow\u0020execution\u0027s\u0020file\u0020data.",
+            "url": "classes/Mindee-Parsing-Common-ExecutionFile.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\ExecutionFile\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-ExecutionFile.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\ExecutionFile\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-ExecutionFile.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\ExecutionFile\u003A\u003A\u0024alias",
+            "name": "alias",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-ExecutionFile.html#property_alias"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\CropperExtra",
             "name": "CropperExtra",
@@ -1985,6 +2195,21 @@ Search.appendIndex(
             "name": "padString",
             "summary": "Pads\u0020and\u0020add\u0020separators\u0020to\u0020a\u0020string\u0020for\u0020rst\u0020table\u0020items.",
             "url": "classes/Mindee-Parsing-Common-SummaryHelper.html#method_padString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\WorkflowResponse",
+            "name": "WorkflowResponse",
+            "summary": "Represents\u0020the\u0020server\u0020response\u0020after\u0020a\u0020document\u0020is\u0020sent\u0020to\u0020a\u0020workflow.",
+            "url": "classes/Mindee-Parsing-Common-WorkflowResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\WorkflowResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-WorkflowResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\WorkflowResponse\u003A\u003A\u0024execution",
+            "name": "execution",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-WorkflowResponse.html#property_execution"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField",
             "name": "ClassificationField",
@@ -3421,6 +3646,106 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html#property_totalAmount"
         },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1",
+            "name": "DriverLicenseV1",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document",
+            "name": "DriverLicenseV1Document",
+            "summary": "Driver\u0020License\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024category",
+            "name": "category",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_category"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024countryCode",
+            "name": "countryCode",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_countryCode"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024dateOfBirth",
+            "name": "dateOfBirth",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_dateOfBirth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024ddNumber",
+            "name": "ddNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_ddNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024expiryDate",
+            "name": "expiryDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_expiryDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024firstName",
+            "name": "firstName",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_firstName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issuedDate",
+            "name": "issuedDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_issuedDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issuingAuthority",
+            "name": "issuingAuthority",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_issuingAuthority"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024lastName",
+            "name": "lastName",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_lastName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024mrz",
+            "name": "mrz",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_mrz"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024placeOfBirth",
+            "name": "placeOfBirth",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_placeOfBirth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024state",
+            "name": "state",
+            "summary": "",
+            "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_state"
+        },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1",
             "name": "DriverLicenseV1",
             "summary": "Driver\u0020License\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
@@ -4786,6 +5111,61 @@ Search.appendIndex(
             "summary": "String\u0020representation.",
             "url": "classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1TaxesAndContributions.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1",
+            "name": "HealthCardV1",
+            "summary": "Health\u0020Card\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document",
+            "name": "HealthCardV1Document",
+            "summary": "Health\u0020Card\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document\u003A\u003A\u0024givenNames",
+            "name": "givenNames",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html#property_givenNames"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document\u003A\u003A\u0024issuanceDate",
+            "name": "issuanceDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html#property_issuanceDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document\u003A\u003A\u0024socialSecurity",
+            "name": "socialSecurity",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html#property_socialSecurity"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard\\HealthCardV1Document\u003A\u003A\u0024surname",
+            "name": "surname",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-HealthCard-HealthCardV1Document.html#property_surname"
+        },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard\\IdCardV1",
             "name": "IdCardV1",
             "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
@@ -5586,6 +5966,606 @@ Search.appendIndex(
             "summary": "String\u0020representation.",
             "url": "classes/Mindee-Product-Fr-Payslip-PayslipV2SalaryDetails.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3",
+            "name": "PayslipV3",
+            "summary": "Payslip\u0020API\u0020version\u00203\u0020inference\u0020prediction.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3\u003A\u003A\u0024endpointName",
+            "name": "endpointName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3.html#property_endpointName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3\u003A\u003A\u0024endpointVersion",
+            "name": "endpointVersion",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3.html#property_endpointVersion"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail",
+            "name": "PayslipV3BankAccountDetail",
+            "summary": "Information\u0020about\u0020the\u0020employee\u0027s\u0020bank\u0020account.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003AtoFieldList\u0028\u0029",
+            "name": "toFieldList",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020a\u0020field\u0020list.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#method_toFieldList"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003A\u0024bankName",
+            "name": "bankName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#property_bankName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003A\u0024iban",
+            "name": "iban",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#property_iban"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3BankAccountDetail\u003A\u003A\u0024swift",
+            "name": "swift",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3BankAccountDetail.html#property_swift"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document",
+            "name": "PayslipV3Document",
+            "summary": "Payslip\u0020API\u0020version\u00203.0\u0020document\u0020data.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024bankAccountDetails",
+            "name": "bankAccountDetails",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_bankAccountDetails"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024employee",
+            "name": "employee",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_employee"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024employer",
+            "name": "employer",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_employer"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024employment",
+            "name": "employment",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_employment"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024paidTimeOff",
+            "name": "paidTimeOff",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_paidTimeOff"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024payDetail",
+            "name": "payDetail",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_payDetail"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024payPeriod",
+            "name": "payPeriod",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_payPeriod"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Document\u003A\u003A\u0024salaryDetails",
+            "name": "salaryDetails",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Document.html#property_salaryDetails"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee",
+            "name": "PayslipV3Employee",
+            "summary": "Information\u0020about\u0020the\u0020employee.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003AtoFieldList\u0028\u0029",
+            "name": "toFieldList",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020a\u0020field\u0020list.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#method_toFieldList"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024address",
+            "name": "address",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_address"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024dateOfBirth",
+            "name": "dateOfBirth",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_dateOfBirth"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024firstName",
+            "name": "firstName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_firstName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024lastName",
+            "name": "lastName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_lastName"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024phoneNumber",
+            "name": "phoneNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_phoneNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024registrationNumber",
+            "name": "registrationNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_registrationNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employee\u003A\u003A\u0024socialSecurityNumber",
+            "name": "socialSecurityNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employee.html#property_socialSecurityNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer",
+            "name": "PayslipV3Employer",
+            "summary": "Information\u0020about\u0020the\u0020employer.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003AtoFieldList\u0028\u0029",
+            "name": "toFieldList",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020a\u0020field\u0020list.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#method_toFieldList"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024address",
+            "name": "address",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_address"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024companyId",
+            "name": "companyId",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_companyId"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024companySite",
+            "name": "companySite",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_companySite"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024nafCode",
+            "name": "nafCode",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_nafCode"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024phoneNumber",
+            "name": "phoneNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_phoneNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employer\u003A\u003A\u0024urssafNumber",
+            "name": "urssafNumber",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employer.html#property_urssafNumber"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment",
+            "name": "PayslipV3Employment",
+            "summary": "Information\u0020about\u0020the\u0020employment.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003AtoFieldList\u0028\u0029",
+            "name": "toFieldList",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020a\u0020field\u0020list.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#method_toFieldList"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024category",
+            "name": "category",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_category"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024coefficient",
+            "name": "coefficient",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_coefficient"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024collectiveAgreement",
+            "name": "collectiveAgreement",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_collectiveAgreement"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024jobTitle",
+            "name": "jobTitle",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_jobTitle"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024positionLevel",
+            "name": "positionLevel",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_positionLevel"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024seniorityDate",
+            "name": "seniorityDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_seniorityDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3Employment\u003A\u003A\u0024startDate",
+            "name": "startDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3Employment.html#property_startDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff",
+            "name": "PayslipV3PaidTimeOff",
+            "summary": "Information\u0020about\u0020paid\u0020time\u0020off.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A\u0024accrued",
+            "name": "accrued",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#property_accrued"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A\u0024period",
+            "name": "period",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#property_period"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A\u0024ptoType",
+            "name": "ptoType",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#property_ptoType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A\u0024remaining",
+            "name": "remaining",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#property_remaining"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOff\u003A\u003A\u0024used",
+            "name": "used",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOff.html#property_used"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOffs",
+            "name": "PayslipV3PaidTimeOffs",
+            "summary": "Information\u0020about\u0020paid\u0020time\u0020off.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOffs.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOffs\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOffs.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOffs\u003A\u003ApaidTimeOffSeparator\u0028\u0029",
+            "name": "paidTimeOffSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOffs.html#method_paidTimeOffSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PaidTimeOffs\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PaidTimeOffs.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail",
+            "name": "PayslipV3PayDetail",
+            "summary": "Detailed\u0020information\u0020about\u0020the\u0020pay.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003AtoFieldList\u0028\u0029",
+            "name": "toFieldList",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020a\u0020field\u0020list.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#method_toFieldList"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024grossSalary",
+            "name": "grossSalary",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_grossSalary"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024grossSalaryYtd",
+            "name": "grossSalaryYtd",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_grossSalaryYtd"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024incomeTaxRate",
+            "name": "incomeTaxRate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_incomeTaxRate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024incomeTaxWithheld",
+            "name": "incomeTaxWithheld",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_incomeTaxWithheld"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024netPaid",
+            "name": "netPaid",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_netPaid"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024netPaidBeforeTax",
+            "name": "netPaidBeforeTax",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_netPaidBeforeTax"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024netTaxable",
+            "name": "netTaxable",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_netTaxable"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024netTaxableYtd",
+            "name": "netTaxableYtd",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_netTaxableYtd"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024totalCostEmployer",
+            "name": "totalCostEmployer",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_totalCostEmployer"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayDetail\u003A\u003A\u0024totalTaxesAndDeductions",
+            "name": "totalTaxesAndDeductions",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayDetail.html#property_totalTaxesAndDeductions"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod",
+            "name": "PayslipV3PayPeriod",
+            "summary": "Information\u0020about\u0020the\u0020pay\u0020period.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003AtoFieldList\u0028\u0029",
+            "name": "toFieldList",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020a\u0020field\u0020list.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#method_toFieldList"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A\u0024endDate",
+            "name": "endDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#property_endDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A\u0024month",
+            "name": "month",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#property_month"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A\u0024paymentDate",
+            "name": "paymentDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#property_paymentDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A\u0024startDate",
+            "name": "startDate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#property_startDate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3PayPeriod\u003A\u003A\u0024year",
+            "name": "year",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3PayPeriod.html#property_year"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail",
+            "name": "PayslipV3SalaryDetail",
+            "summary": "Detailed\u0020information\u0020about\u0020the\u0020earnings.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A\u0024amount",
+            "name": "amount",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#property_amount"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A\u0024base",
+            "name": "base",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#property_base"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A\u0024description",
+            "name": "description",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#property_description"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A\u0024number",
+            "name": "number",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#property_number"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetail\u003A\u003A\u0024rate",
+            "name": "rate",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetail.html#property_rate"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetails",
+            "name": "PayslipV3SalaryDetails",
+            "summary": "Detailed\u0020information\u0020about\u0020the\u0020earnings.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetails.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetails\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetails.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetails\u003A\u003AsalaryDetailsSeparator\u0028\u0029",
+            "name": "salaryDetailsSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetails.html#method_salaryDetailsSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\Payslip\\PayslipV3SalaryDetails\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-Fr-Payslip-PayslipV3SalaryDetails.html#method___toString"
+        },                {
             "fqsen": "\\Mindee\\Product\\Generated\\GeneratedV1",
             "name": "GeneratedV1",
             "summary": "Generated\u0020document\u0020\u0028API\u0020Builder\u0029\u0020v1\u0020inference\u0020results.",
@@ -5698,7 +6678,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document",
             "name": "IndianPassportV1Document",
-            "summary": "Passport\u0020\u002D\u0020India\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "summary": "Passport\u0020\u002D\u0020India\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Ind-IndianPassport-IndianPassportV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Ind\\IndianPassport\\IndianPassportV1Document\u003A\u003A__construct\u0028\u0029",
@@ -7478,7 +8458,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document",
             "name": "ResumeV1Document",
-            "summary": "Resume\u0020API\u0020version\u00201.1\u0020document\u0020data.",
+            "summary": "Resume\u0020API\u0020version\u00201.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Resume-ResumeV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Resume\\ResumeV1Document\u003A\u003A__construct\u0028\u0029",
@@ -8686,6 +9666,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-product-deliverynote.html"
         },                {
+            "fqsen": "\\Mindee\\Product\\DriverLicense",
+            "name": "DriverLicense",
+            "summary": "",
+            "url": "namespaces/mindee-product-driverlicense.html"
+        },                {
             "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense",
             "name": "DriverLicense",
             "summary": "",
@@ -8730,6 +9715,11 @@ Search.appendIndex(
             "name": "EnergyBill",
             "summary": "",
             "url": "namespaces/mindee-product-fr-energybill.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\HealthCard",
+            "name": "HealthCard",
+            "summary": "",
+            "url": "namespaces/mindee-product-fr-healthcard.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\IdCard",
             "name": "IdCard",

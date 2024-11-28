@@ -131,6 +131,9 @@
         <h2 class="phpdocumentor-content__title">
     PredictOptions
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/Mindee-Input-CommonOptions.html"><abbr title="\Mindee\Input\CommonOptions">CommonOptions</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -191,7 +194,7 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-PredictOptions.html#property_fullText">$fullText</a>
+    <a class="" href="classes/Mindee-Input-CommonOptions.html#property_fullText">$fullText</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
@@ -224,7 +227,7 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Input-PredictOptions.html#method_setFullText">setFullText()</a>
+    <a class="" href="classes/Mindee-Input-CommonOptions.html#method_setFullText">setFullText()</a>
     <span>
                                 &nbsp;: $this    </span>
 </dt>
@@ -265,7 +268,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -296,15 +299,15 @@ This performs a cropping operation on the server and may increase response time.
 >
     <h4 class="phpdocumentor-element__name" id="property_fullText">
         $fullText
-        <a href="classes/Mindee-Input-PredictOptions.html#property_fullText" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Input-CommonOptions.html#property_fullText" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/CommonOptions.php"><a href="files/src-input-commonoptions.html"><abbr title="src/Input/CommonOptions.php">CommonOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -387,7 +390,7 @@ This performs a full OCR operation on the server and will increase response time
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -395,13 +398,46 @@ This performs a full OCR operation on the server and will increase response time
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fullText</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$includeWords</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cropper</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$fullText</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether to include the full OCR text response in compatible APIs.
+This performs a full OCR operation on the server and will increase response time.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$includeWords</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether to include the full text for each page.
+This performs a full OCR operation on the server and will increase response time.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$cropper</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether to include cropper results for each page.
+This performs a cropping operation on the server and may increase response time.</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
     
@@ -422,7 +458,7 @@ This performs a full OCR operation on the server and will increase response time
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
@@ -466,13 +502,13 @@ This performs a full OCR operation on the server and will increase response time
 >
     <h4 class="phpdocumentor-element__name" id="method_setFullText">
         setFullText()
-        <a href="classes/Mindee-Input-PredictOptions.html#method_setFullText" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Input-CommonOptions.html#method_setFullText" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/CommonOptions.php"><a href="files/src-input-commonoptions.html"><abbr title="src/Input/CommonOptions.php">CommonOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -522,7 +558,7 @@ This performs a full OCR operation on the server and will increase response time
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -672,7 +708,7 @@ This performs a full OCR operation on the server and will increase response time
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/Mindee-Input-PredictOptions.html#property_cropper">$cropper</a></li>
-                                                    <li class=""><a href="classes/Mindee-Input-PredictOptions.html#property_fullText">$fullText</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-CommonOptions.html#property_fullText">$fullText</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-PredictOptions.html#property_includeWords">$includeWords</a></li>
                                             </ul>
                 </li>
@@ -682,7 +718,7 @@ This performs a full OCR operation on the server and will increase response time
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-Input-PredictOptions.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-PredictOptions.html#method_setCropper">setCropper()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-PredictOptions.html#method_setFullText">setFullText()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-CommonOptions.html#method_setFullText">setFullText()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-PredictOptions.html#method_setIncludeWords">setIncludeWords()</a></li>
                                     </ul>
             </li>
