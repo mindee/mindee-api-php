@@ -7,7 +7,7 @@ use Mindee\Input\WorkflowOptions;
 $workflowId = "workflow-id";
 
 // Init a new client
-$mindeeClient = new Client();
+$mindeeClient = new Client("my-api-key");
 
 // Load a file from disk
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
