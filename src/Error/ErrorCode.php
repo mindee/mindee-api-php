@@ -8,6 +8,7 @@ namespace Mindee\Error;
 class ErrorCode
 {
     public const FILE_CANT_PROCESS = 2001;
+    public const FILE_CANT_SAVE = 2002;
     public const IMAGE_CANT_PROCESS = 2011;
     public const PDF_CANT_PROCESS = 2021;
     public const PDF_CANT_CREATE = 2022;
