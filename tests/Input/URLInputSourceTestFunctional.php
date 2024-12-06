@@ -14,8 +14,8 @@ class URLInputSourceTestFunctional extends TestCase
 
     protected function setUp(): void
     {
-        $client = new Client();
-        $referenceFilePath = "https://github.com/mindee/client-lib-test-data/blob/main/products/invoice_splitter/invoice_5p.pdf?raw=true";
+        $this->client = new Client();
+        $this->referenceFilePath = "https://github.com/mindee/client-lib-test-data/blob/main/products/invoice_splitter/invoice_5p.pdf?raw=true";
     }
     public function testLoadLocalFile(){
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
