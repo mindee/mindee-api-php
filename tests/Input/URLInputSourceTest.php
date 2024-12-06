@@ -37,5 +37,17 @@ class URLInputSourceTest extends TestCase
         $this->expectException(MindeeSourceException::class);
         $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
     }
-
+    public function testDownloadFileFails(){
+        $dummyAddress = "addressthatdoesntworkforcipurposes";
+        $urlSource = $this->dummyClient->sourceFromUrl("https://$dummyAddress");
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage("Failed to download file: Could not resolve host: $dummyAddress");
+        $urlSource->asLocalInputSource("test.pdf");
+    }
+    public function testInvalidFileName(){
+        $urlSource = $this->dummyClient->sourceFromUrl("https://addressthatdoesntworkforcipurposes");
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage("Filename must end with an extension.");
+        $urlSource->asLocalInputSource("toto");
+    }
 }
