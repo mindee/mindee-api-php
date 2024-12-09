@@ -174,10 +174,18 @@ $inputSource = $mindeeClient->sourceFromBytes($rawBytes, "receipt.jpg");
 
 Allows sending a URL directly.
 
-**Note**: No local operations can be performed on the input (such as removing pages from a PDF).
+```php
+$remoteInputSource = $mindeeClient->sourceFromUrl("https://www.example.com/invoice.pdf");
+```
+
+**Note:** The server will reject files behind a private URL or a redirection, so you can also download those file into
+a byte object before loading them as a local input source. 
+
+This also allows you to apply transformations to files before sending them.
 
 ```php
-$inputSource = $mindeeClient->sourceFromUrl("https://www.example.com/invoice.pdf");
+$remoteInputSource = $mindeeClient->sourceFromUrl("https://www.example.com/invoice.pdf");
+$localInputSource = $remoteInputSource->asLocalInputSource();
 ```
 
 ## Sending a File
