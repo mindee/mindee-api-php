@@ -50,14 +50,14 @@ class URLInputSourceTestFunctional extends TestCase
     public function testSaveFile()
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
-        $urlSource->saveFileTo($this->outputFilePath);
+        $urlSource->saveToFile($this->outputFilePath);
         $this->assertFileExists($this->outputFilePath . "invoice_5p.pdf");
     }
 
     public function testSaveFileWithFilename()
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
-        $urlSource->saveFileTo($this->outputFilePath, "customFileName.pdf");
+        $urlSource->saveToFile($this->outputFilePath, "customFileName.pdf");
         $this->assertFileExists($this->outputFilePath . "customFileName.pdf");
     }
 }

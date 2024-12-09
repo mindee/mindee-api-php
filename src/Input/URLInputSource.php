@@ -99,7 +99,7 @@ class URLInputSource extends InputSource
      * @return void
      * @throws MindeeSourceException    Throws if the file can't be accessed, downloaded or saved.
      */
-    public function saveFileTo(
+    public function saveToFile(
         string $path,
         ?string $filename = null,
         ?string $username = null,
