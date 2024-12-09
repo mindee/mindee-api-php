@@ -84,7 +84,7 @@ class URLInputSource extends InputSource
     {
         $extension ??= ".tmp";
         $random = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), 1, 8);
-        return "mindee_temp_" . date('Y-m-d_H-i-s') . "_$random . $extension";
+        return "mindee_temp_" . date('Y-m-d_H-i-s') . "_$random.$extension";
     }
 
     /**
