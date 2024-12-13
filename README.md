@@ -82,11 +82,11 @@ $apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
 echo strval($apiResponse->document);
 ```
 
-#### Custom Document (API Builder)
+#### Custom Documents (docTI & Custom APIs)
 
 ```php
 use Mindee\Client;
-use Mindee\Product\Us\BankCheck\BankCheckV1;
+use Mindee\Product\Generated\GeneratedV1;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");
@@ -95,7 +95,7 @@ $mindeeClient = new Client("my-api-key");
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
 // Parse the file
-$apiResponse = $mindeeClient->parse(BankCheckV1::class, $inputSource);
+$apiResponse = $mindeeClient->parse(GeneratedV1::class, $inputSource);
 
 // Print a brief summary of the parsed data
 echo strval($apiResponse->document);
@@ -168,7 +168,7 @@ Complete details on the working of the library are available in the following gu
 * [PHP EU Driver License OCR](https://developers.mindee.com/docs/php-eu-driver-license-ocr)
 * [PHP FR Bank Account Detail OCR](https://developers.mindee.com/docs/php-fr-bank-account-details-ocr)
 * [PHP FR Carte Grise OCR](https://developers.mindee.com/docs/php-fr-carte-grise-ocr)
-* [PHP FR Carte Vitale OCR](https://developers.mindee.com/docs/php-fr-carte-vitale-ocr)
+* [PHP FR Health Card OCR](https://developers.mindee.com/docs/php-fr-health-card-ocr)
 * [PHP FR ID Card OCR](https://developers.mindee.com/docs/php-fr-carte-nationale-didentite-ocr)
 * [PHP US Bank Check OCR](https://developers.mindee.com/docs/php-us-bank-check-ocr)
 * [PHP US W9 OCR](https://developers.mindee.com/docs/php-us-w9-ocr)

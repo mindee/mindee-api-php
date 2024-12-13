@@ -209,9 +209,9 @@ Simply setting the correct class and passing the input document is enough:
 $result = $mindeeClient->parse(InvoiceV4::class, $inputSource);
 ```
 
-### Custom Documents
+### Custom Documents (docTI & Custom APIs)
 
-The endpoint to use must be created beforehands and subsequently passed to the `endpoint` argument of the `parse` method:
+The endpoint to use must be created beforehand and subsequently passed to the `endpoint` argument of the `enqueueAndParse` method:
 
 ```php
 // Create a custom endpoint
@@ -226,10 +226,10 @@ $predictOptions = new PredictMethodOptions();
 $predictOptions->setEndpoint($customEndpoint);
 
 // Parse the file
-$apiResponse = $mindeeClient->parse(CustomV1::class, $inputSource, $predictOptions);
+$apiResponse = $mindeeClient->enqueueAndParse(GeneratedV1::class, $inputSource, $predictOptions);
 ```
 
-This is because the `CustomV1` class is enough to handle the return processing, but the actual endpoint needs to be specified.
+This is because the `GeneratedV1` class is enough to handle the return processing, but the actual endpoint needs to be specified.
 
 
 ## Processing the Response
