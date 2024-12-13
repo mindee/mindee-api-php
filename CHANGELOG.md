@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+## v1.15.0 - 2024-12-13
+### Changes
+* :sparkles: allow local downloading of remote sources
+* :coffin: remove support for (FR) Carte Vitale V1 in favor of French Health Card V1
+
+
 ## v1.14.0 - 2024-11-28
 ### Changes
 * :sparkles: add support for workflows

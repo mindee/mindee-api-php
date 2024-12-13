@@ -23,7 +23,7 @@ export MINDEE_API_KEY=xxxxxx
 ./mindee invoice /path/to/invoice.pdf
 ```
 
-### Example parse command for a generated document (DocTI)
+### Example parse command for a generated document (docTI)
 
 ```shell
 ./mindee generated -a pikachu -k xxxxxxx pokemon_card /path/to/card.jpg -A

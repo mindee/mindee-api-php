@@ -4,7 +4,7 @@ category: 622b805aaec68102ea7fcbc2
 slug: php-api-builder
 parentDoc: 658193df8e029d002ad9c89b
 ---
-> 🚧 This product is still supported, but is considered to be deprecated. If you are looking for the DocTI API documentation, you can find it [here](https://developers.mindee.com/docs/php-generated-api).
+> 🚧 This product is still supported, but is considered to be deprecated. If you are looking for the docTI API documentation, you can find it [here](https://developers.mindee.com/docs/php-generated-api).
 
 # Quick-Start
 
