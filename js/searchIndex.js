@@ -131,6 +131,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Error-ErrorCode.html#constant_FILE_CANT_PROCESS"
         },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AFILE_CANT_SAVE",
+            "name": "FILE_CANT_SAVE",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_FILE_CANT_SAVE"
+        },                {
             "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AIMAGE_CANT_PROCESS",
             "name": "IMAGE_CANT_PROCESS",
             "summary": "",
@@ -186,6 +191,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Error-ErrorCode.html#constant_API_REQUEST_FAILED"
         },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003ANETWORK_ERROR",
+            "name": "NETWORK_ERROR",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_NETWORK_ERROR"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AEXCEPTION_BUILD_FAILED",
+            "name": "EXCEPTION_BUILD_FAILED",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorCode.html#constant_EXCEPTION_BUILD_FAILED"
+        },                {
             "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AAPI_TIMEOUT",
             "name": "API_TIMEOUT",
             "summary": "",
@@ -195,11 +210,6 @@ Search.appendIndex(
             "name": "API_UNPROCESSABLE_ENTITY",
             "summary": "",
             "url": "classes/Mindee-Error-ErrorCode.html#constant_API_UNPROCESSABLE_ENTITY"
-        },                {
-            "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AEXCEPTION_BUILD_FAILED",
-            "name": "EXCEPTION_BUILD_FAILED",
-            "summary": "",
-            "url": "classes/Mindee-Error-ErrorCode.html#constant_EXCEPTION_BUILD_FAILED"
         },                {
             "fqsen": "\\Mindee\\Error\\ErrorCode\u003A\u003AINTERNAL_LIBRARY_ERROR",
             "name": "INTERNAL_LIBRARY_ERROR",
@@ -1470,6 +1480,31 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/Mindee-Input-URLInputSource.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\URLInputSource\u003A\u003AasLocalInputSource\u0028\u0029",
+            "name": "asLocalInputSource",
+            "summary": "Downloads\u0020the\u0020file\u0020from\u0020the\u0020url,\u0020and\u0020returns\u0020a\u0020BytesInput\u0020wrapper\u0020object\u0020for\u0020it.",
+            "url": "classes/Mindee-Input-URLInputSource.html#method_asLocalInputSource"
+        },                {
+            "fqsen": "\\Mindee\\Input\\URLInputSource\u003A\u003AgetFileExtension\u0028\u0029",
+            "name": "getFileExtension",
+            "summary": "Attempts\u0020to\u0020grab\u0020a\u0020file\u0027s\u0020extension.",
+            "url": "classes/Mindee-Input-URLInputSource.html#method_getFileExtension"
+        },                {
+            "fqsen": "\\Mindee\\Input\\URLInputSource\u003A\u003AgenerateFileName\u0028\u0029",
+            "name": "generateFileName",
+            "summary": "Generates\u0020a\u0020unique\u0020filename.",
+            "url": "classes/Mindee-Input-URLInputSource.html#method_generateFileName"
+        },                {
+            "fqsen": "\\Mindee\\Input\\URLInputSource\u003A\u003AsaveToFile\u0028\u0029",
+            "name": "saveToFile",
+            "summary": "Downloads\u0020the\u0020file\u0020and\u0020saves\u0020it\u0020to\u0020the\u0020specified\u0020path.",
+            "url": "classes/Mindee-Input-URLInputSource.html#method_saveToFile"
+        },                {
+            "fqsen": "\\Mindee\\Input\\URLInputSource\u003A\u003AdownloadFile\u0028\u0029",
+            "name": "downloadFile",
+            "summary": "Downloads\u0020the\u0020file\u0020from\u0020the\u0020URL.",
+            "url": "classes/Mindee-Input-URLInputSource.html#method_downloadFile"
         },                {
             "fqsen": "\\Mindee\\Input\\URLInputSource\u003A\u003A\u0024url",
             "name": "url",
@@ -4585,61 +4620,6 @@ Search.appendIndex(
             "name": "y6",
             "summary": "",
             "url": "classes/Mindee-Product-Fr-CarteGrise-CarteGriseV1Document.html#property_y6"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1",
-            "name": "CarteVitaleV1",
-            "summary": "Carte\u0020Vitale\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document",
-            "name": "CarteVitaleV1Document",
-            "summary": "Carte\u0020Vitale\u0020API\u0020version\u00201.1\u0020document\u0020data.",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A\u0024givenNames",
-            "name": "givenNames",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html#property_givenNames"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A\u0024issuanceDate",
-            "name": "issuanceDate",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html#property_issuanceDate"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A\u0024socialSecurity",
-            "name": "socialSecurity",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html#property_socialSecurity"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale\\CarteVitaleV1Document\u003A\u003A\u0024surname",
-            "name": "surname",
-            "summary": "",
-            "url": "classes/Mindee-Product-Fr-CarteVitale-CarteVitaleV1Document.html#property_surname"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1",
             "name": "EnergyBillV1",
@@ -9705,11 +9685,6 @@ Search.appendIndex(
             "name": "CarteGrise",
             "summary": "",
             "url": "namespaces/mindee-product-fr-cartegrise.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Fr\\CarteVitale",
-            "name": "CarteVitale",
-            "summary": "",
-            "url": "namespaces/mindee-product-fr-cartevitale.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill",
             "name": "EnergyBill",
