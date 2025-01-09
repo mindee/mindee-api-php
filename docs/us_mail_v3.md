@@ -14,7 +14,7 @@ Using the [sample below](https://github.com/mindee/client-lib-test-data/blob/mai
 <?php
 
 use Mindee\Client;
-use Mindee\Product\Us\UsMail\UsMailV2;
+use Mindee\Product\Us\UsMail\UsMailV3;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");
@@ -23,14 +23,27 @@ $mindeeClient = new Client("my-api-key");
 $inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
 
 // Parse the file asynchronously
-$apiResponse = $mindeeClient->enqueueAndParse(UsMailV2::class, $inputSource);
+$apiResponse = $mindeeClient->enqueueAndParse(UsMailV3::class, $inputSource);
 
 echo $apiResponse->document;
 ```
 
 **Output (RST):**
 ```rst
-:Sender Name: zed
+########
+Document
+########
+:Mindee ID: f9c36f59-977d-4ddc-9f2d-31c294c456ac
+:Filename: default_sample.jpg
+
+Inference
+#########
+:Product: mindee/us_mail v3.0
+:Rotation applied: Yes
+
+Prediction
+==========
+:Sender Name: company zed
 :Sender Address:
   :City: Dallas
   :Complete Address: 54321 Elm Street, Dallas, Texas 54321
@@ -39,11 +52,12 @@ echo $apiResponse->document;
   :Street: 54321 Elm Street
 :Recipient Names: Jane Doe
 :Recipient Addresses:
-  +-----------------+-------------------------------------+-------------------+-------------+------------------------+-------+---------------------------+
-  | City            | Complete Address                    | Is Address Change | Postal Code | Private Mailbox Number | State | Street                    |
-  +=================+=====================================+===================+=============+========================+=======+===========================+
-  | Detroit         | 1234 Market Street PMB 4321, Det... |                   | 12345       | 4321                   | MI    | 1234 Market Street        |
-  +-----------------+-------------------------------------+-------------------+-------------+------------------------+-------+---------------------------+
+  +-----------------+-------------------------------------+-------------------+-------------+------------------------+-------+---------------------------+-----------------+
+  | City            | Complete Address                    | Is Address Change | Postal Code | Private Mailbox Number | State | Street                    | Unit            |
+  +=================+=====================================+===================+=============+========================+=======+===========================+=================+
+  | Detroit         | 1234 Market Street PMB 4321, Det... | False             | 12345       | 4321                   | MI    | 1234 Market Street        |                 |
+  +-----------------+-------------------------------------+-------------------+-------------+------------------------+-------+---------------------------+-----------------+
+:Return to Sender: False
 ```
 
 # Field Types
@@ -71,13 +85,16 @@ The text field `StringField` implements the following:
 * **value** (`string`): represents the value of the field as a string.
 * **rawValue** (`string`): the value of the string as it appears on the document.
 
+### BooleanField
+The boolean field `BooleanField` only has one constraint: its **value** is an optional `?bool`.
+
 ## Specific Fields
 Fields which are specific to this product; they are not used in any other product.
 
 ### Recipient Addresses Field
 The addresses of the recipients.
 
-A `UsMailV2RecipientAddress` implements the following attributes:
+A `UsMailV3RecipientAddress` implements the following attributes:
 
 * **city** (`string`): The city of the recipient's address.
 * **complete** (`string`): The complete address of the recipient.
@@ -86,12 +103,13 @@ A `UsMailV2RecipientAddress` implements the following attributes:
 * **privateMailboxNumber** (`string`): The private mailbox number of the recipient's address.
 * **state** (`string`): Second part of the ISO 3166-2 code, consisting of two letters indicating the US State.
 * **street** (`string`): The street of the recipient's address.
+* **unit** (`string`): The unit number of the recipient's address.
 Fields which are specific to this product; they are not used in any other product.
 
 ### Sender Address Field
 The address of the sender.
 
-A `UsMailV2SenderAddress` implements the following attributes:
+A `UsMailV3SenderAddress` implements the following attributes:
 
 * **city** (`string`): The city of the sender's address.
 * **complete** (`string`): The complete address of the sender.
@@ -100,10 +118,17 @@ A `UsMailV2SenderAddress` implements the following attributes:
 * **street** (`string`): The street of the sender's address.
 
 # Attributes
-The following fields are extracted for US Mail V2:
+The following fields are extracted for US Mail V3:
+
+## Return to Sender
+**isReturnToSender** : Whether the mailing is marked as return to sender.
+
+```php
+echo $result->document->inference->prediction->isReturnToSender->value;
+```
 
 ## Recipient Addresses
-**recipientAddresses** ([[UsMailV2RecipientAddress](#recipient-addresses-field)]): The addresses of the recipients.
+**recipientAddresses** ([[UsMailV3RecipientAddress](#recipient-addresses-field)]): The addresses of the recipients.
 
 ```php
 foreach ($result->document->inference->prediction->recipientAddresses as $recipientAddressesElem)
@@ -123,7 +148,7 @@ foreach ($result->document->inference->prediction->recipientNames as $recipientN
 ```
 
 ## Sender Address
-**senderAddress** ([UsMailV2SenderAddress](#sender-address-field)): The address of the sender.
+**senderAddress** ([UsMailV3SenderAddress](#sender-address-field)): The address of the sender.
 
 ```php
 echo $result->document->inference->prediction->senderAddress->value;
