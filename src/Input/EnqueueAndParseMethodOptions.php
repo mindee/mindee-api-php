@@ -72,14 +72,14 @@ class EnqueueAndParseMethodOptions
     }
 
     /**
-     * @param integer $maxRetries Maximum allowed retries. Will default to 30 if an invalid number is provided.
+     * @param integer $maxRetries Maximum allowed retries. Will default to 80 if an invalid number is provided.
      * @return $this
      */
     public function setMaxRetries(int $maxRetries): EnqueueAndParseMethodOptions
     {
         if (!$maxRetries || $maxRetries < 0) {
             $this->maxRetries = 80;
-            error_log("Notice: setting the amount of retries for auto-parsing to 30.");
+            error_log("Notice: setting the amount of retries for auto-parsing to 80.");
         } else {
             $this->delaySec = $maxRetries;
         }
