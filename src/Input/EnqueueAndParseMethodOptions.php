@@ -33,7 +33,7 @@ class EnqueueAndParseMethodOptions
     {
         $this->initialDelaySec = 2;
         $this->delaySec = 1.5;
-        $this->maxRetries = 30;
+        $this->maxRetries = 80;
     }
 
 
@@ -78,7 +78,7 @@ class EnqueueAndParseMethodOptions
     public function setMaxRetries(int $maxRetries): EnqueueAndParseMethodOptions
     {
         if (!$maxRetries || $maxRetries < 0) {
-            $this->maxRetries = 30;
+            $this->maxRetries = 80;
             error_log("Notice: setting the amount of retries for auto-parsing to 30.");
         } else {
             $this->delaySec = $maxRetries;
