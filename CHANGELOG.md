@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+## v1.16.0 - 2025-01-14
+### Changes
+* :sparkles: add support for US Mail V3
+* :recycle: increase async retry timers
+
+
 ## v1.15.0 - 2024-12-13
 ### Changes
 * :sparkles: allow local downloading of remote sources

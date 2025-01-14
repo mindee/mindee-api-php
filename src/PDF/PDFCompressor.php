@@ -51,7 +51,7 @@ class PDFCompressor
                     if (!$disableSourceText) {
                         error_log("[WARNING] Re-writing PDF source-text is an EXPERIMENTAL feature.");
                     } else {
-                        error_log("[WARNING] Source-file '$pdfPath' contains text, but disable_source_text flag"
+                        error_log("[WARNING] Source file '$pdfPath' contains text, but disable_source_text flag"
                             . " is set to false. Resulting file will not contain any embedded text.");
                     }
                 } else {
