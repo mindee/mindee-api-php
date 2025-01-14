@@ -124,13 +124,18 @@
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee.html">Mindee</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-input.html">Input</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-product.html">Product</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-product-us.html">Us</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-product-us-usmail.html">UsMail</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    EnqueueAndParseMethodOptions
+    UsMailV3Document
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/Mindee-Parsing-Common-Prediction.html"><abbr title="\Mindee\Parsing\Common\Prediction">Prediction</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -148,13 +153,13 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Handles options tied to asynchronous parsing.</p>
+            <p class="phpdocumentor-summary">US Mail API version 3.0 document data.</p>
 
 
 
@@ -166,7 +171,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -180,58 +185,58 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_delaySec">$delaySec</a>
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_isReturnToSender">$isReturnToSender</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: <a href="classes/Mindee-Parsing-Standard-BooleanField.html"><abbr title="\Mindee\Parsing\Standard\BooleanField">BooleanField</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_initialDelaySec">$initialDelaySec</a>
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_recipientAddresses">$recipientAddresses</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: <a href="classes/Mindee-Product-Us-UsMail-UsMailV3RecipientAddresses.html"><abbr title="\Mindee\Product\Us\UsMail\UsMailV3RecipientAddresses">UsMailV3RecipientAddresses</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_maxRetries">$maxRetries</a>
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_recipientNames">$recipientNames</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_senderAddress">$senderAddress</a>
+    <span>
+                        &nbsp;: <a href="classes/Mindee-Product-Us-UsMail-UsMailV3SenderAddress.html"><abbr title="\Mindee\Product\Us\UsMail\UsMailV3SenderAddress">UsMailV3SenderAddress</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_senderName">$senderName</a>
+    <span>
+                        &nbsp;: <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method___construct">__construct()</a>
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setDelaySec">setDelaySec()</a>
+    <a class="" href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___toString">__toString()</a>
     <span>
-                                &nbsp;: $this    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setInitialDelaySec">setInitialDelaySec()</a>
-    <span>
-                                &nbsp;: $this    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setMaxRetries">setMaxRetries()</a>
-    <span>
-                                &nbsp;: $this    </span>
+                                &nbsp;: string    </span>
 </dt>
 
     </dl>
@@ -244,7 +249,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -254,53 +259,15 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_delaySec">
-        $delaySec
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_delaySec" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_isReturnToSender">
+        $isReturnToSender
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_isReturnToSender" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">23</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$delaySec</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>Delay (in seconds) between successive attempts to poll a queue.</p>
-</section>
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_initialDelaySec">
-        $initialDelaySec
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_initialDelaySec" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
@@ -310,12 +277,12 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$initialDelaySec</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-BooleanField.html"><abbr title="\Mindee\Parsing\Standard\BooleanField">BooleanField</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$isReturnToSender</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Initial delay (in seconds) before attempting to poll a queue.</p>
+        <section class="phpdocumentor-description"><p>Whether the mailing is marked as return to sender.</p>
 </section>
 
     
@@ -330,15 +297,53 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_maxRetries">
-        $maxRetries
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_maxRetries" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_recipientAddresses">
+        $recipientAddresses
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_recipientAddresses" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Product-Us-UsMail-UsMailV3RecipientAddresses.html"><abbr title="\Mindee\Product\Us\UsMail\UsMailV3RecipientAddresses">UsMailV3RecipientAddresses</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$recipientAddresses</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>The addresses of the recipients.</p>
+</section>
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_recipientNames">
+        $recipientNames
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_recipientNames" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">27</span>
 
@@ -348,12 +353,88 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$maxRetries</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>&gt;</span>
+    <span class="phpdocumentor-signature__name">$recipientNames</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Maximum amount of retries for a queue.</p>
+        <section class="phpdocumentor-description"><p>The names of the recipients.</p>
+</section>
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_senderAddress">
+        $senderAddress
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_senderAddress" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">31</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Product-Us-UsMail-UsMailV3SenderAddress.html"><abbr title="\Mindee\Product\Us\UsMail\UsMailV3SenderAddress">UsMailV3SenderAddress</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$senderAddress</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>The address of the sender.</p>
+</section>
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_senderName">
+        $senderName
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_senderName" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$senderName</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>The name of the sender.</p>
 </section>
 
     
@@ -366,7 +447,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -377,54 +458,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setDelaySec">
-        setDelaySec()
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setDelaySec" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">62</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setDelaySec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawPrediction</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageId</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -433,11 +480,20 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$delay</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                <span class="phpdocumentor-signature__argument__name">$rawPrediction</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Delay between successive attempts to poll a queue.</p>
+                    <section class="phpdocumentor-description"><p>Raw prediction from HTTP response.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$pageId</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Page number for multi pages document.</p>
 </section>
 
             </dd>
@@ -446,7 +502,7 @@
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setDelaySec#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___construct#tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -454,9 +510,9 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeApiException.html"><abbr title="\Mindee\Error\MindeeApiException">MindeeApiException</abbr></a></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeUnsetException.html"><abbr title="\Mindee\Error\MindeeUnsetException">MindeeUnsetException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Throws if the delay is too low.</p>
+                                                 <section class="phpdocumentor-description"><p>Throws if a field doesn't appear in the response.</p>
 </section>
 
                                     </dd>
@@ -464,11 +520,7 @@
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">$this</span>
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -476,114 +528,39 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setInitialDelaySec">
-        setInitialDelaySec()
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setInitialDelaySec" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___toString">
+        __toString()
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Us/UsMail/UsMailV3Document.php"><a href="files/src-product-us-usmail-usmailv3document.html"><abbr title="src/Product/Us/UsMail/UsMailV3Document.php">UsMailV3Document.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setInitialDelaySec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$initialDelay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
+                    <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$initialDelay</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Delay between polls.</p>
-</section>
-
-            </dd>
-            </dl>
-
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setInitialDelaySec#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeApiException.html"><abbr title="\Mindee\Error\MindeeApiException">MindeeApiException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>Throws if the initial parsing delay is less than 4 seconds.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">$this</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setMaxRetries">
-        setMaxRetries()
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setMaxRetries" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">78</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setMaxRetries</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxRetries</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">$this</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$maxRetries</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Maximum allowed retries. Will default to 80 if an invalid number is provided.</p>
-</section>
-
-            </dd>
-            </dl>
-
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">$this</span>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>String representation.</p>
+</section>
+
             </section>
 
 </article>
@@ -593,7 +570,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Input/EnqueueAndParseMethodOptions.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Product/Us/UsMail/UsMailV3Document.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -692,27 +669,27 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_delaySec">$delaySec</a></li>
-                                                    <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_initialDelaySec">$initialDelaySec</a></li>
-                                                    <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_maxRetries">$maxRetries</a></li>
+                                                    <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_isReturnToSender">$isReturnToSender</a></li>
+                                                    <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_recipientAddresses">$recipientAddresses</a></li>
+                                                    <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_recipientNames">$recipientNames</a></li>
+                                                    <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_senderAddress">$senderAddress</a></li>
+                                                    <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#property_senderName">$senderName</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setDelaySec">setDelaySec()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setInitialDelaySec">setInitialDelaySec()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setMaxRetries">setMaxRetries()</a></li>
+                                            <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#method___toString">__toString()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -732,7 +709,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Mindee-Input-EnqueueAndParseMethodOptions.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Mindee-Product-Us-UsMail-UsMailV3Document.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
