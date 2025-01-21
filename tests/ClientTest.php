@@ -22,6 +22,7 @@ class ClientTest extends TestCase
     private string $oldKey;
     private string $fileTypesDir;
     private string $invoicePath;
+    private string $failedJobPath;
 
 
     protected function setUp(): void
@@ -38,6 +39,9 @@ class ClientTest extends TestCase
         $this->invoicePath = (
             getenv('GITHUB_WORKSPACE') ?: "."
             ) . "/tests/resources/products/invoices/response_v4/complete.json";
+        $this->failedJobPath = (
+            getenv('GITHUB_WORKSPACE') ?: "."
+            ) . "/tests/resources/async/get_failed_job_error.json";
     }
 
 
@@ -140,5 +144,14 @@ class ClientTest extends TestCase
         $localResponse = new LocalResponse($this->invoicePath);
         $res = $this->dummyClient->loadPrediction(InvoiceV4::class, $localResponse);
         $this->assertNotNull($res);
+        $this->assertEquals(2, $res->document->nPages);
+    }
+
+    public function testLoadFailedLocalResponse()
+    {
+        $localResponse = new LocalResponse($this->failedJobPath);
+        $res = $this->dummyClient->loadPrediction(InvoiceV4::class, $localResponse);
+        $this->assertNotNull($res);
+        $this->assertEquals("failed", $res->job->status);
     }
 }
