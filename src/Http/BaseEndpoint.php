@@ -2,6 +2,8 @@
 
 namespace Mindee\Http;
 
+use const Mindee\VERSION;
+
 /**
  * Abstract class for endpoints.
  */
@@ -18,6 +20,22 @@ abstract class BaseEndpoint
     public function __construct($settings)
     {
         $this->settings = $settings;
+    }
+
+    /**
+     * Get the User Agent to send for API calls.
+     * @return string
+     */
+    protected function getUserAgent(): string
+    {
+        switch (PHP_OS_FAMILY) {
+            case "Darwin":
+                $os = "macos";
+                break;
+            default:
+                $os = strtolower(PHP_OS_FAMILY);
+        }
+        return 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . $os;
     }
 
     /**
@@ -44,7 +62,7 @@ abstract class BaseEndpoint
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
 
         $resp = [
             'data' => curl_exec($ch),
@@ -68,7 +86,7 @@ abstract class BaseEndpoint
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
         $resp = [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),

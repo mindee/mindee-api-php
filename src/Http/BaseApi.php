@@ -6,8 +6,6 @@
 
 namespace Mindee\Http;
 
-use const Mindee\VERSION;
-
 /**
  * Default key name for the API key entry in environment variables.
  */
@@ -34,7 +32,6 @@ const TIMEOUT_DEFAULT = 120;
 // phpcs:disable
 include_once(dirname(__DIR__) . '/version.php');
 // phpcs:enable
-const USER_AGENT = 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . PHP_OS;
 
 
 /**
