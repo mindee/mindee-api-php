@@ -33,6 +33,23 @@ const TIMEOUT_DEFAULT = 120;
 include_once(dirname(__DIR__) . '/version.php');
 // phpcs:enable
 
+use const Mindee\VERSION;
+
+/**
+ * Get the User Agent to send for API calls.
+ * @return string
+ */
+function getUserAgent(): string
+{
+    switch (PHP_OS_FAMILY) {
+        case "Darwin":
+            $os = "macos";
+            break;
+        default:
+            $os = strtolower(PHP_OS_FAMILY);
+    }
+    return 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . $os;
+}
 
 /**
  * Base class for API settings.
