@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.16.1 - 2025-02-17
+### Fixes
+* :bug: harmonize OS names across client libraries
+
+
 ## v1.16.0 - 2025-01-14
 ### Changes
 * :sparkles: add support for US Mail V3
