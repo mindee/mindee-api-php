@@ -806,10 +806,10 @@ Search.appendIndex(
             "summary": "Default\u0020timeout\u0020value\u0020for\u0020curl\u0020requests.",
             "url": "namespaces/mindee-http.html#constant_TIMEOUT_DEFAULT"
         },                {
-            "fqsen": "\\Mindee\\Http\\USER_AGENT",
-            "name": "USER_AGENT",
-            "summary": "",
-            "url": "namespaces/mindee-http.html#constant_USER_AGENT"
+            "fqsen": "\\Mindee\\Http\\getUserAgent\u0028\u0029",
+            "name": "getUserAgent",
+            "summary": "Get\u0020the\u0020User\u0020Agent\u0020to\u0020send\u0020for\u0020API\u0020calls.",
+            "url": "namespaces/mindee-http.html#function_getUserAgent"
         },                {
             "fqsen": "\\Mindee\\Http\\BaseApi",
             "name": "BaseApi",
