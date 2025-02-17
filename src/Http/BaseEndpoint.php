@@ -44,7 +44,7 @@ abstract class BaseEndpoint
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
 
         $resp = [
             'data' => curl_exec($ch),
@@ -68,7 +68,7 @@ abstract class BaseEndpoint
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, USER_AGENT);
+        curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
         $resp = [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
