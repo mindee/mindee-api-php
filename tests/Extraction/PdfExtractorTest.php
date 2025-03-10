@@ -4,6 +4,7 @@
 namespace Extraction;
 
 use Mindee\Client;
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;

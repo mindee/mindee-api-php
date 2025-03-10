@@ -2,29 +2,34 @@
 
 namespace Mindee\Product\InvoiceSplitter;
 
+use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
+use Mindee\Parsing\Common\SummaryHelper;
 
 /**
- * Document data for Invoice Splitter, API version 1.
+ * Invoice Splitter API version 1.2 document data.
  */
 class InvoiceSplitterV1Document extends Prediction
 {
     /**
-     * @var array Page groups linked to an invoice.
+     * @var InvoiceSplitterV1InvoicePageGroups List of page groups. Each group represents a single invoice within a
+     * multi-invoice document.
      */
-    public array $invoicePageGroups;
-
+    public InvoiceSplitterV1InvoicePageGroups $invoicePageGroups;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array        $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId        Page number for multi pages document.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
-    public function __construct(array $rawPrediction)
+    public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        $this->invoicePageGroups = [];
-        if (array_key_exists("invoice_page_groups", $rawPrediction)) {
-            foreach ($rawPrediction['invoice_page_groups'] as $prediction) {
-                $this->invoicePageGroups[] = new InvoiceSplitterV1PageGroup($prediction);
-            }
+        if (!isset($rawPrediction["invoice_page_groups"])) {
+            throw new MindeeUnsetException();
         }
+        $this->invoicePageGroups = new InvoiceSplitterV1InvoicePageGroups(
+            $rawPrediction["invoice_page_groups"],
+            $pageId
+        );
     }
 
     /**
@@ -32,10 +37,10 @@ class InvoiceSplitterV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $outStr = ":Invoice Page Groups:";
-        foreach ($this->invoicePageGroups as $pageGroup) {
-            $outStr .= "\n  $pageGroup";
-        }
-        return trim($outStr);
+        $invoicePageGroupsSummary = strval($this->invoicePageGroups);
+
+        $outStr = ":Invoice Page Groups: $invoicePageGroupsSummary
+";
+        return SummaryHelper::cleanOutString($outStr);
     }
 }
