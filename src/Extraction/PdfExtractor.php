@@ -7,7 +7,8 @@ use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\LocalInputSource;
 use Mindee\Parsing\DependencyChecker;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1PageGroup;
+use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroup;
+use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use setasign\Fpdi\PdfParser\Filter\FilterException;
@@ -130,19 +131,19 @@ class PdfExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array   $pageIndexes List of sub-lists of pages to keep.
-     * @param boolean $strict      Whether to trust confidence scores of 1.0 only or not.
+     * @param array| InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param boolean                                   $strict      Whether to trust confidence scores or not.
      * @return array A list of extracted invoices.
      */
-    public function extractInvoices(array $pageIndexes, bool $strict = false): array
+    public function extractInvoices($pageIndexes, bool $strict = false): array
     {
         if (empty($pageIndexes)) {
             return [];
         }
-        if ($pageIndexes[0] instanceof InvoiceSplitterV1PageGroup && !$strict) {
+        if (!$strict) {
             $indexes = array_map(function ($invoicePageIndexes) {
                 return $invoicePageIndexes->pageIndexes;
-            }, $pageIndexes);
+            }, (array)$pageIndexes);
             return $this->extractSubDocuments($indexes);
         } elseif (is_array($pageIndexes[0])) {
             return $this->extractSubDocuments($pageIndexes);
