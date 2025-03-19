@@ -167,8 +167,8 @@ echo $result->document->inference->prediction->fileNumber->value;
 **gender** : The gender of the passport holder.
 
 #### Possible values include:
- - M
- - F
+ - 'M'
+ - 'F'
 
 ```php
 echo $result->document->inference->prediction->gender->value;
@@ -262,8 +262,8 @@ echo $result->document->inference->prediction->oldPassportPlaceOfIssue->value;
 **pageNumber** : The page number of the passport document.
 
 #### Possible values include:
- - 1
- - 2
+ - '1'
+ - '2'
 
 ```php
 echo $result->document->inference->prediction->pageNumber->value;

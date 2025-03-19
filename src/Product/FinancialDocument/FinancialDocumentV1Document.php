@@ -24,7 +24,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $billingAddress;
     /**
-     * @var ClassificationField The purchase category among predefined classes.
+     * @var ClassificationField The purchase category, only for receipts.
      */
     public ClassificationField $category;
     /**
@@ -32,7 +32,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $customerAddress;
     /**
-     * @var CompanyRegistrationField[] List of company registrations associated to the customer.
+     * @var CompanyRegistrationField[] List of company registration numbers associated to the customer.
      */
     public array $customerCompanyRegistrations;
     /**
@@ -48,11 +48,12 @@ class FinancialDocumentV1Document extends Prediction
      */
     public DateField $date;
     /**
-     * @var StringField The document number or identifier.
+     * @var StringField The document number or identifier (invoice number or receipt number).
      */
     public StringField $documentNumber;
     /**
-     * @var ClassificationField One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+     * @var ClassificationField The type of the document: INVOICE or CREDIT NOTE if it is an invoice, CREDIT CARD
+     * RECEIPT or EXPENSE RECEIPT if it is a receipt.
      */
     public ClassificationField $documentType;
     /**
@@ -64,11 +65,11 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $invoiceNumber;
     /**
-     * @var FinancialDocumentV1LineItems List of line item details.
+     * @var FinancialDocumentV1LineItems List of line item present on the document.
      */
     public FinancialDocumentV1LineItems $lineItems;
     /**
-     * @var LocaleField The locale detected on the document.
+     * @var LocaleField The locale of the document.
      */
     public LocaleField $locale;
     /**
@@ -76,7 +77,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public DateField $paymentDate;
     /**
-     * @var StringField The purchase order number.
+     * @var StringField The purchase order number, only if the document is an invoice.
      */
     public StringField $poNumber;
     /**
@@ -84,7 +85,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $receiptNumber;
     /**
-     * @var StringField[] List of Reference numbers, including PO number.
+     * @var StringField[] List of Reference numbers, including PO number, only if the document is an invoice.
      */
     public array $referenceNumbers;
     /**
@@ -92,7 +93,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $shippingAddress;
     /**
-     * @var ClassificationField The purchase subcategory among predefined classes for transport and food.
+     * @var ClassificationField The purchase subcategory for transport and food, only for receipts.
      */
     public ClassificationField $subcategory;
     /**
@@ -100,7 +101,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $supplierAddress;
     /**
-     * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
+     * @var CompanyRegistrationField[] List of company registration numbers associated to the supplier.
      */
     public array $supplierCompanyRegistrations;
     /**
@@ -112,7 +113,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $supplierName;
     /**
-     * @var PaymentDetailsField[] List of payment details associated to the supplier.
+     * @var PaymentDetailsField[] List of payment details associated to the supplier (only for invoices).
      */
     public array $supplierPaymentDetails;
     /**
@@ -124,11 +125,11 @@ class FinancialDocumentV1Document extends Prediction
      */
     public StringField $supplierWebsite;
     /**
-     * @var Taxes List of tax lines information.
+     * @var Taxes List of all taxes on the document.
      */
     public Taxes $taxes;
     /**
-     * @var StringField The time the purchase was made.
+     * @var StringField The time the purchase was made (only for receipts).
      */
     public StringField $time;
     /**
@@ -144,7 +145,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public AmountField $totalNet;
     /**
-     * @var AmountField The total amount of taxes.
+     * @var AmountField The sum of all taxes present on the document.
      */
     public AmountField $totalTax;
     /**

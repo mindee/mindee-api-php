@@ -197,7 +197,7 @@ The `Taxes` field represents a list-like collection of `TaxField` objects. As it
 Fields which are specific to this product; they are not used in any other product.
 
 ### Line Items Field
-List of line item details.
+List of all line items on the receipt.
 
 A `ReceiptV5LineItem` implements the following attributes:
 
@@ -210,17 +210,17 @@ A `ReceiptV5LineItem` implements the following attributes:
 The following fields are extracted for Receipt V5:
 
 ## Purchase Category
-**category** : The purchase category among predefined classes.
+**category** : The purchase category of the receipt.
 
 #### Possible values include:
- - toll
- - food
- - parking
- - transport
- - accommodation
- - gasoline
- - telecom
- - miscellaneous
+ - 'toll'
+ - 'food'
+ - 'parking'
+ - 'transport'
+ - 'accommodation'
+ - 'gasoline'
+ - 'telecom'
+ - 'miscellaneous'
 
 ```php
 echo $result->document->inference->prediction->category->value;
@@ -234,18 +234,18 @@ echo $result->document->inference->prediction->date->value;
 ```
 
 ## Document Type
-**documentType** : One of: 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+**documentType** : The type of receipt: EXPENSE RECEIPT or CREDIT CARD RECEIPT.
 
 #### Possible values include:
- - expense_receipt
- - credit_card_receipt
+ - 'EXPENSE RECEIPT'
+ - 'CREDIT CARD RECEIPT'
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
 ```
 
 ## Line Items
-**lineItems** ([[ReceiptV5LineItem](#line-items-field)]): List of line item details.
+**lineItems** ([[ReceiptV5LineItem](#line-items-field)]): List of all line items on the receipt.
 
 ```php
 foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
@@ -255,7 +255,7 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 ```
 
 ## Expense Locale
-**locale** : The locale detected on the document.
+**locale** : The locale of the document.
 
 ```php
 echo $result->document->inference->prediction->locale->value;
@@ -269,14 +269,15 @@ echo $result->document->inference->prediction->receiptNumber->value;
 ```
 
 ## Purchase Subcategory
-**subcategory** : The purchase subcategory among predefined classes for transport and food.
+**subcategory** : The purchase subcategory of the receipt for transport and food.
 
 #### Possible values include:
- - plane
- - taxi
- - train
- - restaurant
- - shopping
+ - 'plane'
+ - 'taxi'
+ - 'train'
+ - 'restaurant'
+ - 'shopping'
+ - null
 
 ```php
 echo $result->document->inference->prediction->subcategory->value;
@@ -290,7 +291,7 @@ echo $result->document->inference->prediction->supplierAddress->value;
 ```
 
 ## Supplier Company Registrations
-**supplierCompanyRegistrations** : List of company registrations associated to the supplier.
+**supplierCompanyRegistrations** : List of company registration numbers associated to the supplier.
 
 ```php
 foreach ($result->document->inference->prediction->supplierCompanyRegistrations as $supplierCompanyRegistrationsElem)
@@ -314,7 +315,7 @@ echo $result->document->inference->prediction->supplierPhoneNumber->value;
 ```
 
 ## Taxes
-**taxes** : List of tax lines information.
+**taxes** : The list of taxes present on the receipt.
 
 ```php
 foreach ($result->document->inference->prediction->taxes as $taxesElem)
@@ -352,7 +353,7 @@ echo $result->document->inference->prediction->totalNet->value;
 ```
 
 ## Total Tax
-**totalTax** : The total amount of taxes.
+**totalTax** : The sum of all taxes.
 
 ```php
 echo $result->document->inference->prediction->totalTax->value;

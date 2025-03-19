@@ -10,7 +10,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Delivery note API version 1.1 document data.
+ * Delivery note API version 1.2 document data.
  */
 class DeliveryNoteV1Document extends Prediction
 {

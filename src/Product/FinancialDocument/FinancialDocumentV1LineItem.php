@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * List of line item details.
+ * List of line item present on the document.
  */
 class FinancialDocumentV1LineItem
 {

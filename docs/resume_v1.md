@@ -239,9 +239,9 @@ echo $result->document->inference->prediction->documentLanguage->value;
 **documentType** : The type of the document sent.
 
 #### Possible values include:
- - RESUME
- - MOTIVATION_LETTER
- - RECOMMENDATION_LETTER
+ - 'RESUME'
+ - 'MOTIVATION_LETTER'
+ - 'RECOMMENDATION_LETTER'
 
 ```php
 echo $result->document->inference->prediction->documentType->value;

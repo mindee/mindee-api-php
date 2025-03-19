@@ -3,7 +3,7 @@
 namespace Mindee\Product\Invoice;
 
 /**
- * List of line item details.
+ * List of all the line items present on the invoice.
  */
 class InvoiceV4LineItems extends \ArrayObject
 {

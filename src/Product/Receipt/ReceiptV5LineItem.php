@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * List of line item details.
+ * List of all line items on the receipt.
  */
 class ReceiptV5LineItem
 {

@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * List of line item details.
+ * List of all the line items present on the invoice.
  */
 class InvoiceV4LineItem
 {
@@ -19,7 +19,7 @@ class InvoiceV4LineItem
      */
     public ?string $description;
     /**
-     * @var string|null The product code referring to the item.
+     * @var string|null The product code of the item.
      */
     public ?string $productCode;
     /**
