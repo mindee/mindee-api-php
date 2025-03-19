@@ -19,7 +19,7 @@ use Mindee\Parsing\Standard\Taxes;
 class ReceiptV5Document extends Prediction
 {
     /**
-     * @var ClassificationField The purchase category among predefined classes.
+     * @var ClassificationField The purchase category of the receipt.
      */
     public ClassificationField $category;
     /**
@@ -27,15 +27,15 @@ class ReceiptV5Document extends Prediction
      */
     public DateField $date;
     /**
-     * @var ClassificationField One of: 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+     * @var ClassificationField The type of receipt: EXPENSE RECEIPT or CREDIT CARD RECEIPT.
      */
     public ClassificationField $documentType;
     /**
-     * @var ReceiptV5LineItems List of line item details.
+     * @var ReceiptV5LineItems List of all line items on the receipt.
      */
     public ReceiptV5LineItems $lineItems;
     /**
-     * @var LocaleField The locale detected on the document.
+     * @var LocaleField The locale of the document.
      */
     public LocaleField $locale;
     /**
@@ -43,7 +43,7 @@ class ReceiptV5Document extends Prediction
      */
     public StringField $receiptNumber;
     /**
-     * @var ClassificationField The purchase subcategory among predefined classes for transport and food.
+     * @var ClassificationField The purchase subcategory of the receipt for transport and food.
      */
     public ClassificationField $subcategory;
     /**
@@ -51,7 +51,7 @@ class ReceiptV5Document extends Prediction
      */
     public StringField $supplierAddress;
     /**
-     * @var CompanyRegistrationField[] List of company registrations associated to the supplier.
+     * @var CompanyRegistrationField[] List of company registration numbers associated to the supplier.
      */
     public array $supplierCompanyRegistrations;
     /**
@@ -63,7 +63,7 @@ class ReceiptV5Document extends Prediction
      */
     public StringField $supplierPhoneNumber;
     /**
-     * @var Taxes List of tax lines information.
+     * @var Taxes The list of taxes present on the receipt.
      */
     public Taxes $taxes;
     /**
@@ -83,7 +83,7 @@ class ReceiptV5Document extends Prediction
      */
     public AmountField $totalNet;
     /**
-     * @var AmountField The total amount of taxes.
+     * @var AmountField The sum of all taxes.
      */
     public AmountField $totalTax;
     /**

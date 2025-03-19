@@ -229,12 +229,12 @@ The `Taxes` field represents a list-like collection of `TaxField` objects. As it
 Fields which are specific to this product; they are not used in any other product.
 
 ### Line Items Field
-List of line item details.
+List of all the line items present on the invoice.
 
 A `InvoiceV4LineItem` implements the following attributes:
 
 * **description** (`string`): The item description.
-* **productCode** (`string`): The product code referring to the item.
+* **productCode** (`string`): The product code of the item.
 * **quantity** (`float`): The item quantity
 * **taxAmount** (`float`): The item tax amount.
 * **taxRate** (`float`): The item tax rate in percentage.
@@ -246,7 +246,7 @@ A `InvoiceV4LineItem` implements the following attributes:
 The following fields are extracted for Invoice V4:
 
 ## Billing Address
-**billingAddress** : The customer's address used for billing.
+**billingAddress** : The customer billing address.
 
 ```php
 echo $result->document->inference->prediction->billingAddress->value;
@@ -260,7 +260,7 @@ echo $result->document->inference->prediction->customerAddress->value;
 ```
 
 ## Customer Company Registrations
-**customerCompanyRegistrations** : List of company registrations associated to the customer.
+**customerCompanyRegistrations** : List of company registration numbers associated to the customer.
 
 ```php
 foreach ($result->document->inference->prediction->customerCompanyRegistrations as $customerCompanyRegistrationsElem)
@@ -291,11 +291,11 @@ echo $result->document->inference->prediction->date->value;
 ```
 
 ## Document Type
-**documentType** : One of: 'INVOICE', 'CREDIT NOTE'.
+**documentType** : Document type: INVOICE or CREDIT NOTE.
 
 #### Possible values include:
- - INVOICE
- - CREDIT NOTE
+ - 'INVOICE'
+ - 'CREDIT NOTE'
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
@@ -316,7 +316,7 @@ echo $result->document->inference->prediction->invoiceNumber->value;
 ```
 
 ## Line Items
-**lineItems** ([[InvoiceV4LineItem](#line-items-field)]): List of line item details.
+**lineItems** ([[InvoiceV4LineItem](#line-items-field)]): List of all the line items present on the invoice.
 
 ```php
 foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
@@ -326,14 +326,14 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 ```
 
 ## Locale
-**locale** : The locale detected on the document.
+**locale** : The locale of the document.
 
 ```php
 echo $result->document->inference->prediction->locale->value;
 ```
 
 ## Payment Date
-**paymentDate** : The date on which the payment is due/ was full-filled.
+**paymentDate** : The date on which the payment is due / was full-filled.
 
 ```php
 echo $result->document->inference->prediction->paymentDate->value;
@@ -347,7 +347,7 @@ echo $result->document->inference->prediction->poNumber->value;
 ```
 
 ## Reference Numbers
-**referenceNumbers** : List of Reference numbers, including PO number.
+**referenceNumbers** : List of all reference numbers on the invoice, including the purchase order number.
 
 ```php
 foreach ($result->document->inference->prediction->referenceNumbers as $referenceNumbersElem)
@@ -371,7 +371,7 @@ echo $result->document->inference->prediction->supplierAddress->value;
 ```
 
 ## Supplier Company Registrations
-**supplierCompanyRegistrations** : List of company registrations associated to the supplier.
+**supplierCompanyRegistrations** : List of company registration numbers associated to the supplier.
 
 ```php
 foreach ($result->document->inference->prediction->supplierCompanyRegistrations as $supplierCompanyRegistrationsElem)
@@ -381,7 +381,7 @@ foreach ($result->document->inference->prediction->supplierCompanyRegistrations 
 ```
 
 ## Supplier Email
-**supplierEmail** : The email of the supplier or merchant.
+**supplierEmail** : The email address of the supplier or merchant.
 
 ```php
 echo $result->document->inference->prediction->supplierEmail->value;
@@ -395,7 +395,7 @@ echo $result->document->inference->prediction->supplierName->value;
 ```
 
 ## Supplier Payment Details
-**supplierPaymentDetails** : List of payment details associated to the supplier.
+**supplierPaymentDetails** : List of payment details associated to the supplier of the invoice.
 
 ```php
 foreach ($result->document->inference->prediction->supplierPaymentDetails as $supplierPaymentDetailsElem)
@@ -422,7 +422,7 @@ echo $result->document->inference->prediction->supplierWebsite->value;
 ```
 
 ## Taxes
-**taxes** : List of tax line details.
+**taxes** : List of taxes. Each item contains the detail of the tax.
 
 ```php
 foreach ($result->document->inference->prediction->taxes as $taxesElem)
@@ -432,21 +432,21 @@ foreach ($result->document->inference->prediction->taxes as $taxesElem)
 ```
 
 ## Total Amount
-**totalAmount** : The total amount paid: includes taxes, tips, fees, and other charges.
+**totalAmount** : The total amount of the invoice: includes taxes, tips, fees, and other charges.
 
 ```php
 echo $result->document->inference->prediction->totalAmount->value;
 ```
 
 ## Total Net
-**totalNet** : The net amount paid: does not include taxes, fees, and discounts.
+**totalNet** : The net amount of the invoice: does not include taxes, fees, and discounts.
 
 ```php
 echo $result->document->inference->prediction->totalNet->value;
 ```
 
 ## Total Tax
-**totalTax** : The total tax: includes all the taxes paid for this invoice.
+**totalTax** : The total tax: the sum of all the taxes for this invoice.
 
 ```php
 echo $result->document->inference->prediction->totalTax->value;

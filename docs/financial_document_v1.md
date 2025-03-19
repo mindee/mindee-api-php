@@ -241,7 +241,7 @@ The `Taxes` field represents a list-like collection of `TaxField` objects. As it
 Fields which are specific to this product; they are not used in any other product.
 
 ### Line Items Field
-List of line item details.
+List of line item present on the document.
 
 A `FinancialDocumentV1LineItem` implements the following attributes:
 
@@ -265,17 +265,17 @@ echo $result->document->inference->prediction->billingAddress->value;
 ```
 
 ## Purchase Category
-**category** : The purchase category among predefined classes.
+**category** : The purchase category, only for receipts.
 
 #### Possible values include:
- - toll
- - food
- - parking
- - transport
- - accommodation
- - gasoline
- - telecom
- - miscellaneous
+ - 'toll'
+ - 'food'
+ - 'parking'
+ - 'transport'
+ - 'accommodation'
+ - 'gasoline'
+ - 'telecom'
+ - 'miscellaneous'
 
 ```php
 echo $result->document->inference->prediction->category->value;
@@ -289,7 +289,7 @@ echo $result->document->inference->prediction->customerAddress->value;
 ```
 
 ## Customer Company Registrations
-**customerCompanyRegistrations** : List of company registrations associated to the customer.
+**customerCompanyRegistrations** : List of company registration numbers associated to the customer.
 
 ```php
 foreach ($result->document->inference->prediction->customerCompanyRegistrations as $customerCompanyRegistrationsElem)
@@ -320,20 +320,20 @@ echo $result->document->inference->prediction->date->value;
 ```
 
 ## Document Number
-**documentNumber** : The document number or identifier.
+**documentNumber** : The document number or identifier (invoice number or receipt number).
 
 ```php
 echo $result->document->inference->prediction->documentNumber->value;
 ```
 
 ## Document Type
-**documentType** : One of: 'INVOICE', 'CREDIT NOTE', 'CREDIT CARD RECEIPT', 'EXPENSE RECEIPT'.
+**documentType** : The type of the document: INVOICE or CREDIT NOTE if it is an invoice, CREDIT CARD RECEIPT or EXPENSE RECEIPT if it is a receipt.
 
 #### Possible values include:
- - INVOICE
- - CREDIT NOTE
- - CREDIT CARD RECEIPT
- - EXPENSE RECEIPT
+ - 'INVOICE'
+ - 'CREDIT NOTE'
+ - 'CREDIT CARD RECEIPT'
+ - 'EXPENSE RECEIPT'
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
@@ -354,7 +354,7 @@ echo $result->document->inference->prediction->invoiceNumber->value;
 ```
 
 ## Line Items
-**lineItems** ([[FinancialDocumentV1LineItem](#line-items-field)]): List of line item details.
+**lineItems** ([[FinancialDocumentV1LineItem](#line-items-field)]): List of line item present on the document.
 
 ```php
 foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
@@ -364,7 +364,7 @@ foreach ($result->document->inference->prediction->lineItems as $lineItemsElem)
 ```
 
 ## Locale
-**locale** : The locale detected on the document.
+**locale** : The locale of the document.
 
 ```php
 echo $result->document->inference->prediction->locale->value;
@@ -378,7 +378,7 @@ echo $result->document->inference->prediction->paymentDate->value;
 ```
 
 ## Purchase Order Number
-**poNumber** : The purchase order number.
+**poNumber** : The purchase order number, only if the document is an invoice.
 
 ```php
 echo $result->document->inference->prediction->poNumber->value;
@@ -392,7 +392,7 @@ echo $result->document->inference->prediction->receiptNumber->value;
 ```
 
 ## Reference Numbers
-**referenceNumbers** : List of Reference numbers, including PO number.
+**referenceNumbers** : List of Reference numbers, including PO number, only if the document is an invoice.
 
 ```php
 foreach ($result->document->inference->prediction->referenceNumbers as $referenceNumbersElem)
@@ -409,14 +409,15 @@ echo $result->document->inference->prediction->shippingAddress->value;
 ```
 
 ## Purchase Subcategory
-**subcategory** : The purchase subcategory among predefined classes for transport and food.
+**subcategory** : The purchase subcategory for transport and food, only for receipts.
 
 #### Possible values include:
- - plane
- - taxi
- - train
- - restaurant
- - shopping
+ - 'plane'
+ - 'taxi'
+ - 'train'
+ - 'restaurant'
+ - 'shopping'
+ - null
 
 ```php
 echo $result->document->inference->prediction->subcategory->value;
@@ -430,7 +431,7 @@ echo $result->document->inference->prediction->supplierAddress->value;
 ```
 
 ## Supplier Company Registrations
-**supplierCompanyRegistrations** : List of company registrations associated to the supplier.
+**supplierCompanyRegistrations** : List of company registration numbers associated to the supplier.
 
 ```php
 foreach ($result->document->inference->prediction->supplierCompanyRegistrations as $supplierCompanyRegistrationsElem)
@@ -454,7 +455,7 @@ echo $result->document->inference->prediction->supplierName->value;
 ```
 
 ## Supplier Payment Details
-**supplierPaymentDetails** : List of payment details associated to the supplier.
+**supplierPaymentDetails** : List of payment details associated to the supplier (only for invoices).
 
 ```php
 foreach ($result->document->inference->prediction->supplierPaymentDetails as $supplierPaymentDetailsElem)
@@ -481,7 +482,7 @@ echo $result->document->inference->prediction->supplierWebsite->value;
 ```
 
 ## Taxes
-**taxes** : List of tax lines information.
+**taxes** : List of all taxes on the document.
 
 ```php
 foreach ($result->document->inference->prediction->taxes as $taxesElem)
@@ -491,7 +492,7 @@ foreach ($result->document->inference->prediction->taxes as $taxesElem)
 ```
 
 ## Purchase Time
-**time** : The time the purchase was made.
+**time** : The time the purchase was made (only for receipts).
 
 ```php
 echo $result->document->inference->prediction->time->value;
@@ -519,7 +520,7 @@ echo $result->document->inference->prediction->totalNet->value;
 ```
 
 ## Total Tax
-**totalTax** : The total amount of taxes.
+**totalTax** : The sum of all taxes present on the document.
 
 ```php
 echo $result->document->inference->prediction->totalTax->value;

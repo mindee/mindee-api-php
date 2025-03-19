@@ -173,9 +173,9 @@ echo $result->document->inference->prediction->documentNumber->value;
 [📄](#page-level-fields "This field is only present on individual pages.")**documentSide** : The sides of the document which are visible.
 
 #### Possible values include:
- - RECTO
- - VERSO
- - RECTO & VERSO
+ - 'RECTO'
+ - 'VERSO'
+ - 'RECTO & VERSO'
 
 ```php
 foreach($result->document->inference->prediction->documentSide as $documentSideElem)
@@ -188,8 +188,8 @@ foreach($result->document->inference->prediction->documentSide as $documentSideE
 [📄](#page-level-fields "This field is only present on individual pages.")**documentType** : The document type or format.
 
 #### Possible values include:
- - NEW
- - OLD
+ - 'NEW'
+ - 'OLD'
 
 ```php
 foreach($result->document->inference->prediction->documentType as $documentTypeElem)

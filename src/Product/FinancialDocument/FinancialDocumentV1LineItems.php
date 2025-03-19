@@ -3,7 +3,7 @@
 namespace Mindee\Product\FinancialDocument;
 
 /**
- * List of line item details.
+ * List of line item present on the document.
  */
 class FinancialDocumentV1LineItems extends \ArrayObject
 {
