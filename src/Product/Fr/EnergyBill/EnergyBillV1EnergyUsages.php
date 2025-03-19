@@ -29,11 +29,13 @@ class EnergyBillV1EnergyUsages extends \ArrayObject
     public static function energyUsageSeparator(string $char): string
     {
         $outStr = "  ";
+        $outStr .= "+" . str_repeat($char, 13);
         $outStr .= "+" . str_repeat($char, 38);
         $outStr .= "+" . str_repeat($char, 12);
         $outStr .= "+" . str_repeat($char, 12);
         $outStr .= "+" . str_repeat($char, 10);
         $outStr .= "+" . str_repeat($char, 11);
+        $outStr .= "+" . str_repeat($char, 17);
         $outStr .= "+" . str_repeat($char, 12);
         return $outStr . "+";
     }
@@ -57,11 +59,13 @@ class EnergyBillV1EnergyUsages extends \ArrayObject
             $iterator->next();
         }
         $outStr = "\n" . self::energyUsageSeparator('-') . "\n ";
+        $outStr .= " | Consumption";
         $outStr .= " | Description                         ";
         $outStr .= " | End Date  ";
         $outStr .= " | Start Date";
         $outStr .= " | Tax Rate";
         $outStr .= " | Total    ";
+        $outStr .= " | Unit of Measure";
         $outStr .= " | Unit Price";
         $outStr .= " |\n" . self::energyUsageSeparator('=');
         $outStr .= $lines;

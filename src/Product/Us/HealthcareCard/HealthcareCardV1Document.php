@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Healthcare Card API version 1.0 document data.
+ * Healthcare Card API version 1.1 document data.
  */
 class HealthcareCardV1Document extends Prediction
 {

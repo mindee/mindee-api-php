@@ -10,7 +10,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Energy Bill API version 1.0 document data.
+ * Energy Bill API version 1.2 document data.
  */
 class EnergyBillV1Document extends Prediction
 {

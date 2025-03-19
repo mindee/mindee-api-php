@@ -15,6 +15,10 @@ class EnergyBillV1EnergyUsage
     use FieldConfidenceMixin;
 
     /**
+     * @var float|null The price per unit of energy consumed.
+     */
+    public ?float $consumption;
+    /**
      * @var string|null Description or details of the energy usage.
      */
     public ?string $description;
@@ -35,6 +39,10 @@ class EnergyBillV1EnergyUsage
      */
     public ?float $total;
     /**
+     * @var string|null The unit of measurement for energy consumption.
+     */
+    public ?string $unit;
+    /**
      * @var float|null The price per unit of energy consumed.
      */
     public ?float $unitPrice;
@@ -47,6 +55,8 @@ class EnergyBillV1EnergyUsage
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->consumption = isset($rawPrediction["consumption"]) ?
+            floatval($rawPrediction["consumption"]) : null;
         $this->description = $rawPrediction["description"] ?? null;
         $this->endDate = $rawPrediction["end_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
@@ -54,6 +64,7 @@ class EnergyBillV1EnergyUsage
             floatval($rawPrediction["tax_rate"]) : null;
         $this->total = isset($rawPrediction["total"]) ?
             floatval($rawPrediction["total"]) : null;
+        $this->unit = $rawPrediction["unit"] ?? null;
         $this->unitPrice = isset($rawPrediction["unit_price"]) ?
             floatval($rawPrediction["unit_price"]) : null;
     }
@@ -66,11 +77,13 @@ class EnergyBillV1EnergyUsage
     private function tablePrintableValues(): array
     {
         $outArr = [];
+        $outArr["consumption"] = SummaryHelper::formatFloat($this->consumption);
         $outArr["description"] = SummaryHelper::formatForDisplay($this->description, 36);
         $outArr["endDate"] = SummaryHelper::formatForDisplay($this->endDate, 10);
         $outArr["startDate"] = SummaryHelper::formatForDisplay($this->startDate);
         $outArr["taxRate"] = SummaryHelper::formatFloat($this->taxRate);
         $outArr["total"] = SummaryHelper::formatFloat($this->total);
+        $outArr["unit"] = SummaryHelper::formatForDisplay($this->unit);
         $outArr["unitPrice"] = SummaryHelper::formatFloat($this->unitPrice);
         return $outArr;
     }
@@ -83,11 +96,13 @@ class EnergyBillV1EnergyUsage
     private function printableValues(): array
     {
         $outArr = [];
+        $outArr["consumption"] = SummaryHelper::formatFloat($this->consumption);
         $outArr["description"] = SummaryHelper::formatForDisplay($this->description);
         $outArr["endDate"] = SummaryHelper::formatForDisplay($this->endDate);
         $outArr["startDate"] = SummaryHelper::formatForDisplay($this->startDate);
         $outArr["taxRate"] = SummaryHelper::formatFloat($this->taxRate);
         $outArr["total"] = SummaryHelper::formatFloat($this->total);
+        $outArr["unit"] = SummaryHelper::formatForDisplay($this->unit);
         $outArr["unitPrice"] = SummaryHelper::formatFloat($this->unitPrice);
         return $outArr;
     }
@@ -100,11 +115,13 @@ class EnergyBillV1EnergyUsage
     {
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
+        $outStr .= SummaryHelper::padString($printable["consumption"], 11);
         $outStr .= SummaryHelper::padString($printable["description"], 36);
         $outStr .= SummaryHelper::padString($printable["endDate"], 10);
         $outStr .= SummaryHelper::padString($printable["startDate"], 10);
         $outStr .= SummaryHelper::padString($printable["taxRate"], 8);
         $outStr .= SummaryHelper::padString($printable["total"], 9);
+        $outStr .= SummaryHelper::padString($printable["unit"], 15);
         $outStr .= SummaryHelper::padString($printable["unitPrice"], 10);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
