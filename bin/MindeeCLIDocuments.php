@@ -14,14 +14,10 @@ class MindeeCLIDocuments
     {
         require __DIR__ . '/DocumentCommandConfig.php';
         return [
-            "barcode-reader" => new DocumentCommandConfig(
-                "Barcode-reader tool",
-                \Mindee\Product\BarcodeReader\BarcodeReaderV1::class,
-                true
-            ),
-            "cropper" => new DocumentCommandConfig(
-                "Cropper tool",
-                \Mindee\Product\Cropper\CropperV1::class,
+            "generated" => new DocumentCommandConfig(
+                "Custom document type from docTI",
+                \Mindee\Product\Generated\GeneratedV1::class,
+                false,
                 true
             ),
             "custom" => new DocumentCommandConfig(
@@ -30,19 +26,44 @@ class MindeeCLIDocuments
                 true,
                 false
             ),
+            "barcode-reader" => new DocumentCommandConfig(
+                "Barcode Reader",
+                \Mindee\Product\BarcodeReader\BarcodeReaderV1::class,
+                true,
+                false
+            ),
+            "bill-of-lading" => new DocumentCommandConfig(
+                "Bill of Lading",
+                \Mindee\Product\BillOfLading\BillOfLadingV1::class,
+                false,
+                true
+            ),
+            "business-card" => new DocumentCommandConfig(
+                "Business Card",
+                \Mindee\Product\BusinessCard\BusinessCardV1::class,
+                false,
+                true
+            ),
+            "cropper" => new DocumentCommandConfig(
+                "Cropper",
+                \Mindee\Product\Cropper\CropperV1::class,
+                true,
+                false
+            ),
+            "delivery-note" => new DocumentCommandConfig(
+                "Delivery note",
+                \Mindee\Product\DeliveryNote\DeliveryNoteV1::class,
+                false,
+                true
+            ),
             "driver-license" => new DocumentCommandConfig(
                 "Driver License",
                 \Mindee\Product\DriverLicense\DriverLicenseV1::class,
                 false,
                 true
             ),
-            "eu-license-plate" => new DocumentCommandConfig(
-                "EU License Plate",
-                \Mindee\Product\Eu\LicensePlate\LicensePlateV1::class,
-                true
-            ),
             "financial-document" => new DocumentCommandConfig(
-                "Financial Document (receipt or invoice)",
+                "Financial Document",
                 \Mindee\Product\FinancialDocument\FinancialDocumentV1::class,
                 true,
                 true
@@ -50,11 +71,19 @@ class MindeeCLIDocuments
             "fr-bank-account-details" => new DocumentCommandConfig(
                 "FR Bank Account Details",
                 \Mindee\Product\Fr\BankAccountDetails\BankAccountDetailsV2::class,
-                true
+                true,
+                false
             ),
             "fr-carte-grise" => new DocumentCommandConfig(
                 "FR Carte Grise",
                 \Mindee\Product\Fr\CarteGrise\CarteGriseV1::class,
+                true,
+                false
+            ),
+            "fr-energy-bill" => new DocumentCommandConfig(
+                "FR Energy Bill",
+                \Mindee\Product\Fr\EnergyBill\EnergyBillV1::class,
+                false,
                 true
             ),
             "fr-health-card" => new DocumentCommandConfig(
@@ -63,19 +92,26 @@ class MindeeCLIDocuments
                 false,
                 true
             ),
-            "fr-id-card" => new DocumentCommandConfig(
-                "FR ID Card",
+            "fr-carte-nationale-d-identite" => new DocumentCommandConfig(
+                "FR Carte Nationale d'Identité",
                 \Mindee\Product\Fr\IdCard\IdCardV2::class,
+                true,
+                false
+            ),
+            "fr-payslip" => new DocumentCommandConfig(
+                "FR Payslip",
+                \Mindee\Product\Fr\Payslip\PayslipV3::class,
+                false,
                 true
             ),
-            "generated" => new DocumentCommandConfig(
-                "Custom document type from docTI",
-                \Mindee\Product\Generated\GeneratedV1::class,
+            "ind-passport-india" => new DocumentCommandConfig(
+                "IND Passport - India",
+                \Mindee\Product\Ind\IndianPassport\IndianPassportV1::class,
                 false,
                 true
             ),
             "international-id" => new DocumentCommandConfig(
-                "International Id",
+                "International ID",
                 \Mindee\Product\InternationalId\InternationalIdV2::class,
                 false,
                 true
@@ -92,18 +128,26 @@ class MindeeCLIDocuments
                 false,
                 true
             ),
-            "multi-receipts" => new DocumentCommandConfig(
-                "Multi-receipts detector",
+            "multi-receipts-detector" => new DocumentCommandConfig(
+                "Multi Receipts Detector",
                 \Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1::class,
+                true,
+                false
+            ),
+            "nutrition-facts-label" => new DocumentCommandConfig(
+                "Nutrition Facts Label",
+                \Mindee\Product\NutritionFactsLabel\NutritionFactsLabelV1::class,
+                false,
                 true
             ),
             "passport" => new DocumentCommandConfig(
                 "Passport",
                 \Mindee\Product\Passport\PassportV1::class,
-                true
+                true,
+                false
             ),
             "receipt" => new DocumentCommandConfig(
-                "Expense Receipt",
+                "Receipt",
                 \Mindee\Product\Receipt\ReceiptV5::class,
                 true,
                 true
@@ -117,7 +161,8 @@ class MindeeCLIDocuments
             "us-bank-check" => new DocumentCommandConfig(
                 "US Bank Check",
                 \Mindee\Product\Us\BankCheck\BankCheckV1::class,
-                true
+                true,
+                false
             ),
             "us-healthcare-card" => new DocumentCommandConfig(
                 "US Healthcare Card",
@@ -125,10 +170,17 @@ class MindeeCLIDocuments
                 false,
                 true
             ),
+            "us-us-mail" => new DocumentCommandConfig(
+                "US US Mail",
+                \Mindee\Product\Us\UsMail\UsMailV3::class,
+                false,
+                true
+            ),
             "us-w9" => new DocumentCommandConfig(
                 "US W9",
                 \Mindee\Product\Us\W9\W9V1::class,
-                true
+                true,
+                false
             ),
         ];
     }
