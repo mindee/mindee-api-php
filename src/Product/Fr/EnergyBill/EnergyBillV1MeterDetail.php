@@ -23,7 +23,7 @@ class EnergyBillV1MeterDetail
      */
     public ?string $meterType;
     /**
-     * @var string|null The unit of measurement for energy consumption, which can be kW, m³, or L.
+     * @var string|null The unit of power for energy consumption.
      */
     public ?string $unit;
 
@@ -78,7 +78,7 @@ class EnergyBillV1MeterDetail
         $outStr = "";
         $outStr .= "\n  :Meter Number: " . $printable["meterNumber"];
         $outStr .= "\n  :Meter Type: " . $printable["meterType"];
-        $outStr .= "\n  :Unit of Measure: " . $printable["unit"];
+        $outStr .= "\n  :Unit of Power: " . $printable["unit"];
         return rtrim($outStr);
     }
 
