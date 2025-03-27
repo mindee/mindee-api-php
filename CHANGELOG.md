@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.17.1 - 2025-03-27
+### Fixes
+* :bug: fix null objects being returned in extras
+
+
 ## v1.17.0 - 2025-03-27
 ### Changes
 * :sparkles: update structure for InvoiceSplitterV1
