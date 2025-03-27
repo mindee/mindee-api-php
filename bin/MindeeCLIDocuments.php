@@ -176,12 +176,6 @@ class MindeeCLIDocuments
                 false,
                 true
             ),
-            "us-w9" => new DocumentCommandConfig(
-                "US W9",
-                \Mindee\Product\Us\W9\W9V1::class,
-                true,
-                false
-            ),
         ];
     }
 }
