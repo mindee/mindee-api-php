@@ -21,7 +21,7 @@ class CropperExtra
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
         $this->croppings = [];
-        if (array_key_exists("cropping", $rawPrediction)) {
+        if (array_key_exists("cropping", $rawPrediction) && isset($rawPrediction['cropping'])) {
             foreach ($rawPrediction['cropping'] as $cropping) {
                 $this->croppings[] = new PositionField($cropping, $pageId);
             }

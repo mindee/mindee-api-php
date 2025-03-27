@@ -43,9 +43,9 @@ class Extras
     public function __construct(array $rawPrediction)
     {
         foreach ($rawPrediction as $key => $extra) {
-            if ($key == 'cropper') {
+            if ($key == 'cropper' && isset($rawPrediction['cropper'])) {
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
-            } elseif ($key == 'full_text_ocr') {
+            } elseif ($key == 'full_text_ocr' && isset($rawPrediction['full_text_ocr'])) {
                 $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
             } else {
                 $this->__set($key, $extra);
