@@ -3633,7 +3633,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document",
             "name": "DeliveryNoteV1Document",
-            "summary": "Delivery\u0020note\u0020API\u0020version\u00201.1\u0020document\u0020data.",
+            "summary": "Delivery\u0020note\u0020API\u0020version\u00201.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-DeliveryNote-DeliveryNoteV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3780,166 +3780,6 @@ Search.appendIndex(
             "name": "state",
             "summary": "",
             "url": "classes/Mindee-Product-DriverLicense-DriverLicenseV1Document.html#property_state"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1",
-            "name": "DriverLicenseV1",
-            "summary": "Driver\u0020License\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document",
-            "name": "DriverLicenseV1Document",
-            "summary": "Driver\u0020License\u0020API\u0020version\u00201.0\u0020document\u0020data.",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024address",
-            "name": "address",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_address"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024category",
-            "name": "category",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_category"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024countryCode",
-            "name": "countryCode",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_countryCode"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024dateOfBirth",
-            "name": "dateOfBirth",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_dateOfBirth"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024documentId",
-            "name": "documentId",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_documentId"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024expiryDate",
-            "name": "expiryDate",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_expiryDate"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024firstName",
-            "name": "firstName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_firstName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issueAuthority",
-            "name": "issueAuthority",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_issueAuthority"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issueDate",
-            "name": "issueDate",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_issueDate"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024lastName",
-            "name": "lastName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_lastName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024mrz",
-            "name": "mrz",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_mrz"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024placeOfBirth",
-            "name": "placeOfBirth",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Document.html#property_placeOfBirth"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page",
-            "name": "DriverLicenseV1Page",
-            "summary": "Driver\u0020License\u0020API\u0020version\u00201.0\u0020page\u0020data.",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A\u0024photo",
-            "name": "photo",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#property_photo"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense\\DriverLicenseV1Page\u003A\u003A\u0024signature",
-            "name": "signature",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-DriverLicense-DriverLicenseV1Page.html#property_signature"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1",
-            "name": "LicensePlateV1",
-            "summary": "License\u0020Plate\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1Document",
-            "name": "LicensePlateV1Document",
-            "summary": "License\u0020Plate\u0020API\u0020version\u00201.1\u0020document\u0020data.",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate\\LicensePlateV1Document\u003A\u003A\u0024licensePlates",
-            "name": "licensePlates",
-            "summary": "",
-            "url": "classes/Mindee-Product-Eu-LicensePlate-LicensePlateV1Document.html#property_licensePlates"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1",
             "name": "FinancialDocumentV1",
@@ -4138,7 +3978,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItem",
             "name": "FinancialDocumentV1LineItem",
-            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "summary": "List\u0020of\u0020line\u0020item\u0020present\u0020on\u0020the\u0020document.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItem.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItem\u003A\u003A__construct\u0028\u0029",
@@ -4208,7 +4048,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItems",
             "name": "FinancialDocumentV1LineItems",
-            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "summary": "List\u0020of\u0020line\u0020item\u0020present\u0020on\u0020the\u0020document.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1LineItems.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1LineItems\u003A\u003A__construct\u0028\u0029",
@@ -4643,7 +4483,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1Document",
             "name": "EnergyBillV1Document",
-            "summary": "Energy\u0020Bill\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "summary": "Energy\u0020Bill\u0020API\u0020version\u00201.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1Document\u003A\u003A__construct\u0028\u0029",
@@ -4836,6 +4676,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1EnergyUsage.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1EnergyUsage\u003A\u003A\u0024consumption",
+            "name": "consumption",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1EnergyUsage.html#property_consumption"
+        },                {
             "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1EnergyUsage\u003A\u003A\u0024description",
             "name": "description",
             "summary": "",
@@ -4860,6 +4705,11 @@ Search.appendIndex(
             "name": "total",
             "summary": "",
             "url": "classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1EnergyUsage.html#property_total"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1EnergyUsage\u003A\u003A\u0024unit",
+            "name": "unit",
+            "summary": "",
+            "url": "classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1EnergyUsage.html#property_unit"
         },                {
             "fqsen": "\\Mindee\\Product\\Fr\\EnergyBill\\EnergyBillV1EnergyUsage\u003A\u003A\u0024unitPrice",
             "name": "unitPrice",
@@ -7073,7 +6923,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItem",
             "name": "InvoiceV4LineItem",
-            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "summary": "List\u0020of\u0020all\u0020the\u0020line\u0020items\u0020present\u0020on\u0020the\u0020invoice.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItem.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItem\u003A\u003A__construct\u0028\u0029",
@@ -7143,7 +6993,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems",
             "name": "InvoiceV4LineItems",
-            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "summary": "List\u0020of\u0020all\u0020the\u0020line\u0020items\u0020present\u0020on\u0020the\u0020invoice.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4LineItems.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4LineItems\u003A\u003A__construct\u0028\u0029",
@@ -7163,7 +7013,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1",
             "name": "InvoiceSplitterV1",
-            "summary": "Inference\u0020prediction\u0020for\u0020Invoice\u0020Splitter,\u0020API\u0020version\u00201.",
+            "summary": "Invoice\u0020Splitter\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
             "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1\u003A\u003A__construct\u0028\u0029",
@@ -7183,7 +7033,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1Document",
             "name": "InvoiceSplitterV1Document",
-            "summary": "Document\u0020data\u0020for\u0020Invoice\u0020Splitter,\u0020API\u0020version\u00201.",
+            "summary": "Invoice\u0020Splitter\u0020API\u0020version\u00201.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1Document\u003A\u003A__construct\u0028\u0029",
@@ -7201,30 +7051,60 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1Document.html#property_invoicePageGroups"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1PageGroup",
-            "name": "InvoiceSplitterV1PageGroup",
-            "summary": "Pages\u0020indexes\u0020in\u0020a\u0020group\u0020for\u0020Invoice\u0020Splitter\u0020V1.",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1PageGroup.html"
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup",
+            "name": "InvoiceSplitterV1InvoicePageGroup",
+            "summary": "List\u0020of\u0020page\u0020groups.\u0020Each\u0020group\u0020represents\u0020a\u0020single\u0020invoice\u0020within\u0020a\u0020multi\u002Dinvoice\u0020document.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1PageGroup\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1PageGroup.html#method___construct"
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1PageGroup\u003A\u003A__toString\u0028\u0029",
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup\u003A\u003AtablePrintableValues\u0028\u0029",
+            "name": "tablePrintableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020inside\u0020an\u0020RST\u0020table.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html#method_tablePrintableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup\u003A\u003AprintableValues\u0028\u0029",
+            "name": "printableValues",
+            "summary": "Return\u0020values\u0020for\u0020printing\u0020as\u0020an\u0020array.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html#method_printableValues"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup\u003A\u003AtoTableLine\u0028\u0029",
+            "name": "toTableLine",
+            "summary": "Output\u0020in\u0020a\u0020format\u0020suitable\u0020for\u0020inclusion\u0020in\u0020an\u0020rST\u0020table.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html#method_toTableLine"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1PageGroup.html#method___toString"
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html#method___toString"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1PageGroup\u003A\u003A\u0024pageIndexes",
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroup\u003A\u003A\u0024pageIndexes",
             "name": "pageIndexes",
             "summary": "",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1PageGroup.html#property_pageIndexes"
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html#property_pageIndexes"
         },                {
-            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1PageGroup\u003A\u003A\u0024confidence",
-            "name": "confidence",
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroups",
+            "name": "InvoiceSplitterV1InvoicePageGroups",
+            "summary": "List\u0020of\u0020page\u0020groups.\u0020Each\u0020group\u0020represents\u0020a\u0020single\u0020invoice\u0020within\u0020a\u0020multi\u002Dinvoice\u0020document.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroups\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1PageGroup.html#property_confidence"
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroups\u003A\u003AinvoicePageGroupsSeparator\u0028\u0029",
+            "name": "invoicePageGroupsSeparator",
+            "summary": "Creates\u0020a\u0020line\u0020of\u0020rST\u0020table\u002Dcompliant\u0020string\u0020separators.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html#method_invoicePageGroupsSeparator"
+        },                {
+            "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1InvoicePageGroups\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "String\u0020representation.",
+            "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html#method___toString"
         },                {
             "fqsen": "\\Mindee\\Product\\MultiReceiptsDetector\\MultiReceiptsDetectorV1",
             "name": "MultiReceiptsDetectorV1",
@@ -8076,86 +7956,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Passport-PassportV1Document.html#property_surname"
         },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1",
-            "name": "ProofOfAddressV1",
-            "summary": "Proof\u0020of\u0020Address\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document",
-            "name": "ProofOfAddressV1Document",
-            "summary": "Proof\u0020of\u0020Address\u0020API\u0020version\u00201.1\u0020document\u0020data.",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024date",
-            "name": "date",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_date"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024dates",
-            "name": "dates",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_dates"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024issuerAddress",
-            "name": "issuerAddress",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_issuerAddress"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024issuerCompanyRegistration",
-            "name": "issuerCompanyRegistration",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_issuerCompanyRegistration"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024issuerName",
-            "name": "issuerName",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_issuerName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024locale",
-            "name": "locale",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_locale"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024recipientAddress",
-            "name": "recipientAddress",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_recipientAddress"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024recipientCompanyRegistration",
-            "name": "recipientCompanyRegistration",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_recipientCompanyRegistration"
-        },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress\\ProofOfAddressV1Document\u003A\u003A\u0024recipientName",
-            "name": "recipientName",
-            "summary": "",
-            "url": "classes/Mindee-Product-ProofOfAddress-ProofOfAddressV1Document.html#property_recipientName"
-        },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5",
             "name": "ReceiptV5",
             "summary": "Receipt\u0020API\u0020version\u00205\u0020inference\u0020prediction.",
@@ -8278,7 +8078,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5LineItem",
             "name": "ReceiptV5LineItem",
-            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "summary": "List\u0020of\u0020all\u0020line\u0020items\u0020on\u0020the\u0020receipt.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5LineItem.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5LineItem\u003A\u003A__construct\u0028\u0029",
@@ -8328,7 +8128,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5LineItems",
             "name": "ReceiptV5LineItems",
-            "summary": "List\u0020of\u0020line\u0020item\u0020details.",
+            "summary": "List\u0020of\u0020all\u0020line\u0020items\u0020on\u0020the\u0020receipt.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5LineItems.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5LineItems\u003A\u003A__construct\u0028\u0029",
@@ -8926,151 +8726,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Us-BankCheck-BankCheckV1Page.html#property_signaturesPositions"
         },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1",
-            "name": "DriverLicenseV1",
-            "summary": "Driver\u0020License\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document",
-            "name": "DriverLicenseV1Document",
-            "summary": "Driver\u0020License\u0020API\u0020version\u00201.1\u0020document\u0020data.",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024address",
-            "name": "address",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_address"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024dateOfBirth",
-            "name": "dateOfBirth",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_dateOfBirth"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024ddNumber",
-            "name": "ddNumber",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_ddNumber"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024dlClass",
-            "name": "dlClass",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_dlClass"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024driverLicenseId",
-            "name": "driverLicenseId",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_driverLicenseId"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024endorsements",
-            "name": "endorsements",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_endorsements"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024expiryDate",
-            "name": "expiryDate",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_expiryDate"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024eyeColor",
-            "name": "eyeColor",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_eyeColor"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024firstName",
-            "name": "firstName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_firstName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024hairColor",
-            "name": "hairColor",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_hairColor"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024height",
-            "name": "height",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_height"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024issuedDate",
-            "name": "issuedDate",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_issuedDate"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024lastName",
-            "name": "lastName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_lastName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024restrictions",
-            "name": "restrictions",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_restrictions"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024sex",
-            "name": "sex",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_sex"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024state",
-            "name": "state",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_state"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Document\u003A\u003A\u0024weight",
-            "name": "weight",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Document.html#property_weight"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page",
-            "name": "DriverLicenseV1Page",
-            "summary": "Driver\u0020License\u0020API\u0020version\u00201.1\u0020page\u0020data.",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page\u003A\u003A\u0024photo",
-            "name": "photo",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html#property_photo"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense\\DriverLicenseV1Page\u003A\u003A\u0024signature",
-            "name": "signature",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-DriverLicense-DriverLicenseV1Page.html#property_signature"
-        },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1",
             "name": "HealthcareCardV1",
             "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
@@ -9153,7 +8808,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document",
             "name": "HealthcareCardV1Document",
-            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.0\u0020document\u0020data.",
+            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.1\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A__construct\u0028\u0029",
@@ -9626,111 +9281,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Product-Us-UsMail-UsMailV3SenderAddress.html#property_street"
         },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1",
-            "name": "W9V1",
-            "summary": "W9\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-Product-Us-W9-W9V1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Document",
-            "name": "W9V1Document",
-            "summary": "W9\u0020API\u0020version\u00201.0\u0020document\u0020data.",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page",
-            "name": "W9V1Page",
-            "summary": "W9\u0020API\u0020version\u00201.0\u0020page\u0020data.",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024address",
-            "name": "address",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_address"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024businessName",
-            "name": "businessName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_businessName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024cityStateZip",
-            "name": "cityStateZip",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_cityStateZip"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024ein",
-            "name": "ein",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_ein"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_name"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024signatureDatePosition",
-            "name": "signatureDatePosition",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_signatureDatePosition"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024signaturePosition",
-            "name": "signaturePosition",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_signaturePosition"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024ssn",
-            "name": "ssn",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_ssn"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024taxClassification",
-            "name": "taxClassification",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_taxClassification"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024taxClassificationLlc",
-            "name": "taxClassificationLlc",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_taxClassificationLlc"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024taxClassificationOtherDetails",
-            "name": "taxClassificationOtherDetails",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_taxClassificationOtherDetails"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9\\W9V1Page\u003A\u003A\u0024w9RevisionDate",
-            "name": "w9RevisionDate",
-            "summary": "",
-            "url": "classes/Mindee-Product-Us-W9-W9V1Page.html#property_w9RevisionDate"
-        },                {
             "fqsen": "\\Mindee\\VERSION",
             "name": "VERSION",
             "summary": "",
@@ -9856,21 +9406,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-product-driverlicense.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\DriverLicense",
-            "name": "DriverLicense",
-            "summary": "",
-            "url": "namespaces/mindee-product-eu-driverlicense.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu",
-            "name": "Eu",
-            "summary": "",
-            "url": "namespaces/mindee-product-eu.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Eu\\LicensePlate",
-            "name": "LicensePlate",
-            "summary": "",
-            "url": "namespaces/mindee-product-eu-licenseplate.html"
-        },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument",
             "name": "FinancialDocument",
             "summary": "",
@@ -9956,11 +9491,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-product-passport.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\ProofOfAddress",
-            "name": "ProofOfAddress",
-            "summary": "",
-            "url": "namespaces/mindee-product-proofofaddress.html"
-        },                {
             "fqsen": "\\Mindee\\Product\\Receipt",
             "name": "Receipt",
             "summary": "",
@@ -9981,11 +9511,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-product-us.html"
         },                {
-            "fqsen": "\\Mindee\\Product\\Us\\DriverLicense",
-            "name": "DriverLicense",
-            "summary": "",
-            "url": "namespaces/mindee-product-us-driverlicense.html"
-        },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard",
             "name": "HealthcareCard",
             "summary": "",
@@ -9995,10 +9520,5 @@ Search.appendIndex(
             "name": "UsMail",
             "summary": "",
             "url": "namespaces/mindee-product-us-usmail.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Us\\W9",
-            "name": "W9",
-            "summary": "",
-            "url": "namespaces/mindee-product-us-w9.html"
         }            ]
 );
