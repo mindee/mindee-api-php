@@ -1,0 +1,14 @@
+name: Publish Release
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  publish_docs:
+    uses: mindee/mindee-api-php/.github/workflows/_publish-docs.yml@main
+    secrets: inherit
+  publish_guide:
+    uses: mindee/mindee-api-php/.github/workflows/_publish-guide.yml@main
+    needs: publish_docs
+    secrets: inherit
