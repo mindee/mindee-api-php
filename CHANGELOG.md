@@ -1,5 +1,18 @@
 # Mindee PHP API Library Changelog
 
+## v1.17.0 - 2025-03-27
+### Changes
+* :sparkles: update structure for InvoiceSplitterV1
+* :sparkles: update FR EnegryBillV1 to V1.2
+* :sparkles: update US HealthcareCardV1 to V1.1
+* :coffin: remove support for EU Driver License
+* :coffin: remove support for License Plates
+* :coffin: remove support for ReceiptV4
+* :coffin: remove support for Proof of Address
+* :coffin: remove support for US Driver License
+* :coffin: remove support for US W9V1
+
+
 ## v1.16.1 - 2025-02-17
 ### Fixes
 * :bug: harmonize OS names across client libraries
