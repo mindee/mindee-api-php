@@ -1,14 +1,10 @@
-name: Functional Tests
+#
+# Run integration tests.
+#
+name: Integration Test
 
 on:
-  pull_request:
-  workflow_run:
-    workflows: ["Test Code Samples"]
-    branches:
-      - '*'
-    types:
-      - completed
-  # Allows running this workflow manually from the Actions tab
+  workflow_call:
   workflow_dispatch:
 
 env:
@@ -17,8 +13,8 @@ env:
   MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
   WORKFLOW_ID: ${{ secrets.WORKFLOW_ID_SE_TESTS }}
 jobs:
-  functional-tests-ubuntu:
-    name: Run Functional Tests on Ubuntu
+  integration-tests-ubuntu:
+    name: Run Integration Tests on Ubuntu
     timeout-minutes: 30
     strategy:
       max-parallel: 2
@@ -51,8 +47,8 @@ jobs:
         run: |
           ./vendor/bin/phpunit -c tests/functional.xml
 
-  functional-tests-macos:
-    name: Run Functional Tests on MacOS
+  integration-tests-macos:
+    name: Run Integration Tests on MacOS
     timeout-minutes: 30
     strategy:
       max-parallel: 2
@@ -82,8 +78,8 @@ jobs:
           ./vendor/bin/phpunit -c tests/functional.xml
 
 
-  functional-tests-windows:
-    name: Run Functional Tests on Windows
+  integration-tests-windows:
+    name: Run Integration Tests on Windows
     timeout-minutes: 30
     strategy:
       max-parallel: 2

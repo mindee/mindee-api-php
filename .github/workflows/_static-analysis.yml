@@ -1,7 +1,7 @@
 name: Static Analysis
 
 on:
-  - push
+  workflow_call:
 
 jobs:
   static-check:

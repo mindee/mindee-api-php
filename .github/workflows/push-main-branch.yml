@@ -6,5 +6,16 @@ on:
       - main
 
 jobs:
+  static-analysis:
+    uses: mindee/mindee-api-php/.github/workflows/_static-analysis.yml@main
+  test-units:
+    uses: mindee/mindee-api-php/.github/workflows/_test-units.yml@main
+    needs: static-analysis
+    secrets: inherit
   tag:
     uses: mindee/client-lib-actions/.github/workflows/tag-version.yml@main
+    needs: test-units
+  release:
+    uses: mindee/client-lib-actions/.github/workflows/create-release.yml@main
+    needs: tag
+    secrets: inherit

@@ -1,15 +1,14 @@
 #
 # Make sure dependencies are all properly integrated and used in the package
 #
-name: Check for unused dependencies
+name: Analyze Dependencies
 
 on:
-  - pull_request
-  - workflow_dispatch
+  workflow_call:
 
 jobs:
-  dependencies-check:
-    name: Check for unused depdencies
+  analyze-dependencies:
+    name: Run dependencies analysis
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,5 +26,9 @@ jobs:
         run: curl -OL https://github.com/composer-unused/composer-unused/releases/latest/download/composer-unused.phar
 
       # symfony/console is mistakenly flagged as unused since it is only used in the CLI, not the main app, so we ignore it.
-      - name: run check unused
+      - name: check unused dependencies
         run: php composer-unused.phar --excludePackage=symfony/console
+
+      - name: License check
+        run: |
+          vendor/bin/license-checker check
