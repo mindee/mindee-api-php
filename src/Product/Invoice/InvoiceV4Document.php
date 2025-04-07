@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Invoice API version 4.9 document data.
+ * Invoice API version 4.10 document data.
  */
 class InvoiceV4Document extends Prediction
 {
@@ -47,6 +47,10 @@ class InvoiceV4Document extends Prediction
      * @var ClassificationField Document type: INVOICE or CREDIT NOTE.
      */
     public ClassificationField $documentType;
+    /**
+     * @var ClassificationField Document type extended.
+     */
+    public ClassificationField $documentTypeExtended;
     /**
      * @var DateField The date on which the payment is due.
      */
@@ -177,6 +181,13 @@ class InvoiceV4Document extends Prediction
         }
         $this->documentType = new ClassificationField(
             $rawPrediction["document_type"],
+            $pageId
+        );
+        if (!isset($rawPrediction["document_type_extended"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->documentTypeExtended = new ClassificationField(
+            $rawPrediction["document_type_extended"],
             $pageId
         );
         if (!isset($rawPrediction["due_date"])) {
@@ -362,6 +373,7 @@ class InvoiceV4Document extends Prediction
 :Shipping Address: $this->shippingAddress
 :Billing Address: $this->billingAddress
 :Document Type: $this->documentType
+:Document Type Extended: $this->documentTypeExtended
 :Line Items: $lineItemsSummary
 ";
         return SummaryHelper::cleanOutString($outStr);

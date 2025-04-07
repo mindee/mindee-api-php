@@ -41,6 +41,7 @@ class HealthcareCardV1Test extends TestCase
         $this->assertNull($prediction->groupNumber->value);
         $this->assertNull($prediction->payerId->value);
         $this->assertNull($prediction->rxBin->value);
+        $this->assertNull($prediction->rxId->value);
         $this->assertNull($prediction->rxGrp->value);
         $this->assertNull($prediction->rxPcn->value);
         $this->assertEquals(0, count($prediction->copays));

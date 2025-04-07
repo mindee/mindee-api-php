@@ -53,7 +53,7 @@ echo $apiResponse->document;
 ########
 Document
 ########
-:Mindee ID: f469a24d-3875-4a83-ad43-e0d5aa9da604
+:Mindee ID: a80ac0ee-26f6-4e2e-988a-960b240d5ba7
 :Filename: default_sample.jpg
 
 Inference
@@ -78,7 +78,7 @@ Prediction
   +---------------+--------+----------+---------------+
   | Base          | Code   | Rate (%) | Amount        |
   +===============+========+==========+===============+
-  |               |        | 5.00     | 9.75          |
+  | 195.00        |        | 5.00     | 9.75          |
   +---------------+--------+----------+---------------+
 :Supplier Payment Details:
 :Supplier Name: JOHN SMITH
@@ -130,7 +130,7 @@ Page 0
   +---------------+--------+----------+---------------+
   | Base          | Code   | Rate (%) | Amount        |
   +===============+========+==========+===============+
-  |               |        | 5.00     | 9.75          |
+  | 195.00        |        | 5.00     | 9.75          |
   +---------------+--------+----------+---------------+
 :Supplier Payment Details:
 :Supplier Name: JOHN SMITH
@@ -338,6 +338,24 @@ echo $result->document->inference->prediction->documentNumber->value;
 
 ```php
 echo $result->document->inference->prediction->documentType->value;
+```
+
+## Document Type Extended
+**documentTypeExtended** : Document type extended.
+
+#### Possible values include:
+ - 'CREDIT NOTE'
+ - 'INVOICE'
+ - 'OTHER'
+ - 'OTHER_FINANCIAL'
+ - 'PAYSLIP'
+ - 'PURCHASE ORDER'
+ - 'QUOTE'
+ - 'RECEIPT'
+ - 'STATEMENT'
+
+```php
+echo $result->document->inference->prediction->documentTypeExtended->value;
 ```
 
 ## Due Date

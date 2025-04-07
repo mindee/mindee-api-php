@@ -112,6 +112,15 @@ A `HealthcareCardV1Copay` implements the following attributes:
 * **serviceFees** (`float`): The price of service.
 * **serviceName** (`string`): The name of service of the copay.
 
+#### Possible values include:
+ - primary_care
+ - emergency_room
+ - urgent_care
+ - specialist
+ - office_visit
+ - prescription
+
+
 # Attributes
 The following fields are extracted for Healthcare Card V1:
 
@@ -196,6 +205,13 @@ echo $result->document->inference->prediction->rxBin->value;
 
 ```php
 echo $result->document->inference->prediction->rxGrp->value;
+```
+
+## RX ID
+**rxId** : The ID number for prescription drug coverage.
+
+```php
+echo $result->document->inference->prediction->rxId->value;
 ```
 
 ## RX PCN

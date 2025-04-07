@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Healthcare Card API version 1.1 document data.
+ * Healthcare Card API version 1.2 document data.
  */
 class HealthcareCardV1Document extends Prediction
 {
@@ -57,6 +57,10 @@ class HealthcareCardV1Document extends Prediction
      * @var StringField The group number for prescription drug coverage.
      */
     public StringField $rxGrp;
+    /**
+     * @var StringField The ID number for prescription drug coverage.
+     */
+    public StringField $rxId;
     /**
      * @var StringField The PCN number for prescription drug coverage.
      */
@@ -145,6 +149,13 @@ class HealthcareCardV1Document extends Prediction
             $rawPrediction["rx_grp"],
             $pageId
         );
+        if (!isset($rawPrediction["rx_id"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->rxId = new StringField(
+            $rawPrediction["rx_id"],
+            $pageId
+        );
         if (!isset($rawPrediction["rx_pcn"])) {
             throw new MindeeUnsetException();
         }
@@ -173,6 +184,7 @@ class HealthcareCardV1Document extends Prediction
 :Group Number: $this->groupNumber
 :Payer ID: $this->payerId
 :RX BIN: $this->rxBin
+:RX ID: $this->rxId
 :RX GRP: $this->rxGrp
 :RX PCN: $this->rxPcn
 :copays: $copaysSummary
