@@ -2,8 +2,6 @@
 
 namespace Mindee\Parsing\Common\Ocr;
 
-use function Sodium\add;
-
 /**
  * OCR extraction from the entire document.
  */
