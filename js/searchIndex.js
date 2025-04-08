@@ -3803,7 +3803,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.11\u0020document\u0020data.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.12\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -3860,6 +3860,11 @@ Search.appendIndex(
             "name": "documentType",
             "summary": "",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024documentTypeExtended",
+            "name": "documentTypeExtended",
+            "summary": "",
+            "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html#property_documentTypeExtended"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A\u0024dueDate",
             "name": "dueDate",
@@ -6778,7 +6783,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
             "name": "InvoiceV4Document",
-            "summary": "Invoice\u0020API\u0020version\u00204.9\u0020document\u0020data.",
+            "summary": "Invoice\u0020API\u0020version\u00204.10\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
@@ -6825,6 +6830,11 @@ Search.appendIndex(
             "name": "documentType",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024documentTypeExtended",
+            "name": "documentTypeExtended",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_documentTypeExtended"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024dueDate",
             "name": "dueDate",
@@ -8808,7 +8818,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document",
             "name": "HealthcareCardV1Document",
-            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.1\u0020document\u0020data.",
+            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A__construct\u0028\u0029",
@@ -8875,6 +8885,11 @@ Search.appendIndex(
             "name": "rxGrp",
             "summary": "",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_rxGrp"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024rxId",
+            "name": "rxId",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_rxId"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024rxPcn",
             "name": "rxPcn",
