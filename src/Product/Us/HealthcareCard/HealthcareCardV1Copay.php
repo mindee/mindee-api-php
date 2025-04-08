@@ -45,7 +45,7 @@ class HealthcareCardV1Copay
     {
         $outArr = [];
         $outArr["serviceFees"] = SummaryHelper::formatFloat($this->serviceFees);
-        $outArr["serviceName"] = SummaryHelper::formatForDisplay($this->serviceName);
+        $outArr["serviceName"] = SummaryHelper::formatForDisplay($this->serviceName, 20);
         return $outArr;
     }
 
@@ -71,7 +71,7 @@ class HealthcareCardV1Copay
         $printable = $this->tablePrintableValues();
         $outStr = "| ";
         $outStr .= SummaryHelper::padString($printable["serviceFees"], 12);
-        $outStr .= SummaryHelper::padString($printable["serviceName"], 12);
+        $outStr .= SummaryHelper::padString($printable["serviceName"], 20);
         return rtrim(SummaryHelper::cleanOutString($outStr));
     }
 

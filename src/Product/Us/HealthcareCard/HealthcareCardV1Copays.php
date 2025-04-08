@@ -30,7 +30,7 @@ class HealthcareCardV1Copays extends \ArrayObject
     {
         $outStr = "  ";
         $outStr .= "+" . str_repeat($char, 14);
-        $outStr .= "+" . str_repeat($char, 14);
+        $outStr .= "+" . str_repeat($char, 22);
         return $outStr . "+";
     }
 
@@ -54,7 +54,7 @@ class HealthcareCardV1Copays extends \ArrayObject
         }
         $outStr = "\n" . self::copaysSeparator('-') . "\n ";
         $outStr .= " | Service Fees";
-        $outStr .= " | Service Name";
+        $outStr .= " | Service Name        ";
         $outStr .= " |\n" . self::copaysSeparator('=');
         $outStr .= $lines;
         return $outStr;

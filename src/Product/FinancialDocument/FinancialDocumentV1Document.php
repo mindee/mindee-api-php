@@ -15,7 +15,7 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Financial Document API version 1.11 document data.
+ * Financial Document API version 1.12 document data.
  */
 class FinancialDocumentV1Document extends Prediction
 {
@@ -56,6 +56,10 @@ class FinancialDocumentV1Document extends Prediction
      * RECEIPT or EXPENSE RECEIPT if it is a receipt.
      */
     public ClassificationField $documentType;
+    /**
+     * @var ClassificationField Document type extended.
+     */
+    public ClassificationField $documentTypeExtended;
     /**
      * @var DateField The date on which the payment is due.
      */
@@ -216,6 +220,13 @@ class FinancialDocumentV1Document extends Prediction
         }
         $this->documentType = new ClassificationField(
             $rawPrediction["document_type"],
+            $pageId
+        );
+        if (!isset($rawPrediction["document_type_extended"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->documentTypeExtended = new ClassificationField(
+            $rawPrediction["document_type_extended"],
             $pageId
         );
         if (!isset($rawPrediction["due_date"])) {
@@ -430,6 +441,7 @@ class FinancialDocumentV1Document extends Prediction
 :Shipping Address: $this->shippingAddress
 :Billing Address: $this->billingAddress
 :Document Type: $this->documentType
+:Document Type Extended: $this->documentTypeExtended
 :Purchase Subcategory: $this->subcategory
 :Purchase Category: $this->category
 :Total Tax: $this->totalTax
