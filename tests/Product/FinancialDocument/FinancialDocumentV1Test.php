@@ -68,6 +68,14 @@ class FinancialDocumentV1Test extends TestCase
         $this->assertEquals(0, count($prediction->customerCompanyRegistrations));
         $this->assertNull($prediction->customerAddress->value);
         $this->assertEquals(0, count($prediction->lineItems));
+        $this->assertNull($prediction->totalTax->value);
+        $this->assertNull($prediction->billingAddress->value);
+        $this->assertNull($prediction->documentNumber->value);
+        $this->assertEquals("EXPENSE RECEIPT", $prediction->documentType->value);
+        $this->assertEquals("EXPENSE RECEIPT", $prediction->documentTypeExtended->value);
+        $this->assertNull($prediction->customerId->value);
+        $this->assertNull($prediction->tip->value);
+        $this->assertNull($prediction->time->value);
     }
 
     public function testCompletePage0Invoice()
