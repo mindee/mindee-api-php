@@ -2,4 +2,4 @@
 
 namespace Mindee;
 
-const VERSION = '1.17.1';
+const VERSION = '1.18.0';
