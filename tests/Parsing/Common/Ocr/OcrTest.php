@@ -39,7 +39,7 @@ class OcrTest extends TestCase
         );
     }
 
-    public function testFindTwoLinesByRegex()
+    public function testFindMultipleLinesByRegex()
     {
         $regexFilter = '/^.*\$.*$/m';
         $matchingLines = $this->ocrObject->findLineByRegex($regexFilter);
