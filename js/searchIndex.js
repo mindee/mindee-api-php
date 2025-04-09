@@ -1981,6 +1981,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Ocr-Ocr.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\Ocr\u003A\u003AfindLineByRegex\u0028\u0029",
+            "name": "findLineByRegex",
+            "summary": "Finds\u0020all\u0020lines\u0020matching\u0020the\u0020given\u0020regex\u0020in\u0020the\u0020OCR\u0020data,\u0020indexed\u0020by\u0020their\u0020page.",
+            "url": "classes/Mindee-Parsing-Common-Ocr-Ocr.html#method_findLineByRegex"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Ocr\\Ocr\u003A\u003A\u0024mvisionV1",
             "name": "mvisionV1",
             "summary": "",
