@@ -27,4 +27,27 @@ class Ocr
     {
         return strval($this->mvisionV1);
     }
+
+    /**
+     * Finds all lines matching the given regex in the OCR data, indexed by their page.
+     *
+     * @param string $regex The regular expression to match against.
+     * @return array All lines that match the regex, indexed by their page.
+     */
+    public function findLineByRegex(string $regex): array
+    {
+        $matches = [];
+        for ($i = 0; $i < count($this->mvisionV1->pages); $i++) {
+            $page = $this->mvisionV1->pages[$i];
+            foreach ($page->getAllLines() as $line) {
+                if (preg_match($regex, strval($line))) {
+                    if (!array_key_exists($i, $matches)) {
+                        $matches[$i] = [];
+                    }
+                    $matches[$i][] = $line;
+                }
+            }
+        }
+        return $matches;
+    }
 }
