@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.19.0 - 2025-04-09
+### Changes
+* :sparkles: add ocr line extraction from regex
+
+
 ## v1.18.0 - 2025-04-08
 ### Changes
 * :sparkles: add support for Financial Document V1.12
