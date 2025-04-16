@@ -52,6 +52,7 @@ class WorkflowEndpoint extends BaseEndpoint
      * @param boolean     $fullTextOcr Whether to include the full OCR text response in compatible APIs.
      *                              This performs a full OCR operation on the server and may increase response time.
      * @param string|null $publicUrl   One time use encrypted URL for authentication.
+     * @param boolean     $rag         Whether to enable Retrieval-Augmented Generation.
      * @return array
      */
     private function initCurlSessionPost(
