@@ -24,7 +24,13 @@ class WorkflowTestFunctional extends TestCase
             (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/products/financial_document/default_sample.jpg"
         );
         $currentDateTime = date('Y-m-d-H:i:s');
-        $options = new WorkflowOptions("php-" . $currentDateTime, "low");
+        $options = new WorkflowOptions(
+            "php-" . $currentDateTime,
+            "low",
+            false,
+            null,
+            true
+        );
         $response = $this->mindeeClient->executeWorkflow($inputSource, $this->workflowId, $options);
         $this->assertEquals(202, $response->apiRequest->statusCode);
         $this->assertEquals("php-$currentDateTime", $response->execution->file->alias);

@@ -27,8 +27,8 @@ class WorkflowEndpoint extends BaseEndpoint
      * @param string|null $alias     Alias to give to the document.
      * @param string|null $priority  Priority to give to the document.
      * @param boolean     $fullText  Whether to include the full OCR text response in compatible APIs.
-     *                          This performs a full OCR operation on the server and may increase response time.
-     *                          This performs a cropping operation on the server and will increase response time.
+     *                               This performs a full OCR operation on the server and may increase response time.
+     *                               This performs a cropping operation on the server and will increase response time.
      * @param string|null $publicUrl One time use encrypted URL for authentication.
      * @return array
      */
@@ -46,20 +46,21 @@ class WorkflowEndpoint extends BaseEndpoint
     /**
      * Starts a CURL session, using POST.
      *
-     * @param InputSource $fileCurl  File to upload.
-     * @param string|null $alias     Whether to include the full text for each page.
-     * @param string|null $priority  Whether to include the full text for each page.
-     * @param boolean     $fullText  Whether to include the full OCR text response in compatible APIs.
-     *                          This performs a full OCR operation on the server and may increase response time.
-     * @param string|null $publicUrl One time use encrypted URL for authentication.
+     * @param InputSource $fileCurl    File to upload.
+     * @param string|null $alias       Whether to include the full text for each page.
+     * @param string|null $priority    Whether to include the full text for each page.
+     * @param boolean     $fullTextOcr Whether to include the full OCR text response in compatible APIs.
+     *                              This performs a full OCR operation on the server and may increase response time.
+     * @param string|null $publicUrl   One time use encrypted URL for authentication.
      * @return array
      */
     private function initCurlSessionPost(
         InputSource $fileCurl,
         ?string $alias,
         ?string $priority,
-        bool $fullText,
-        ?string $publicUrl
+        bool $fullTextOcr,
+        ?string $publicUrl,
+        bool $rag
     ): array {
         $ch = curl_init();
         curl_setopt(
@@ -89,8 +90,12 @@ class WorkflowEndpoint extends BaseEndpoint
         if (!empty($priority)) {
             $postFields['priority'] = $priority;
         }
-        if ($fullText) {
+        if ($fullTextOcr && !$rag) {
             $suffix .= '?full_text_ocr=true';
+        } elseif ($rag && !$fullTextOcr) {
+            $suffix .= '?rag=true';
+        } elseif ($rag && $fullTextOcr) {
+            $suffix .= '?full_text_ocr=true&rag=true';
         }
         return $this->setFinalCurlOpts($ch, $suffix, $postFields);
     }
