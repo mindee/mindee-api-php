@@ -91,12 +91,18 @@ class WorkflowEndpoint extends BaseEndpoint
         if (!empty($priority)) {
             $postFields['priority'] = $priority;
         }
-        if ($fullTextOcr && !$rag) {
-            $suffix .= '?full_text_ocr=true';
-        } elseif ($rag && !$fullTextOcr) {
-            $suffix .= '?rag=true';
-        } elseif ($rag && $fullTextOcr) {
-            $suffix .= '?full_text_ocr=true&rag=true';
+        $params = [];
+
+        if ($fullTextOcr) {
+            $params['full_text_ocr'] = 'true';
+        }
+
+        if ($rag) {
+            $params['rag'] = 'true';
+        }
+
+        if (!empty($params)) {
+            $suffix .= '?' . http_build_query($params);
         }
         return $this->setFinalCurlOpts($ch, $suffix, $postFields);
     }
