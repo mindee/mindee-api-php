@@ -1013,7 +1013,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Http\\WorkflowEndpoint\u003A\u003AinitCurlSessionPost\u0028\u0029",
             "name": "initCurlSessionPost",
-            "summary": "Starts\u0020a\u0020CURL\u0020session,\u0020using\u0020POST.",
+            "summary": "Starts\u0020a\u0020CURL\u0020session\u0020using\u0020POST.",
             "url": "classes/Mindee-Http-WorkflowEndpoint.html#method_initCurlSessionPost"
         },                {
             "fqsen": "\\Mindee\\Image\\ImageCompressor",
@@ -1535,6 +1535,11 @@ Search.appendIndex(
             "name": "publicUrl",
             "summary": "",
             "url": "classes/Mindee-Input-WorkflowOptions.html#property_publicUrl"
+        },                {
+            "fqsen": "\\Mindee\\Input\\WorkflowOptions\u003A\u003A\u0024rag",
+            "name": "rag",
+            "summary": "",
+            "url": "classes/Mindee-Input-WorkflowOptions.html#property_rag"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\ApiRequest",
             "name": "ApiRequest",

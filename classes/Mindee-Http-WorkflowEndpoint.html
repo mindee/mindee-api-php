@@ -153,7 +153,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/WorkflowEndpoint.php"><a href="files/src-http-workflowendpoint.html"><abbr title="src/Http/WorkflowEndpoint.php">WorkflowEndpoint.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -232,7 +232,7 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Starts a CURL session, using POST.</dd>
+<dd>Starts a CURL session using POST.</dd>
 
     </dl>
 
@@ -307,7 +307,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/WorkflowEndpoint.php"><a href="files/src-http-workflowendpoint.html"><abbr title="src/Http/WorkflowEndpoint.php">WorkflowEndpoint.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -353,7 +353,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/WorkflowEndpoint.php"><a href="files/src-http-workflowendpoint.html"><abbr title="src/Http/WorkflowEndpoint.php">WorkflowEndpoint.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -361,7 +361,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">executeWorkflowRequestPost</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileCurl</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fullText</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$publicUrl</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">executeWorkflowRequestPost</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileCurl</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-WorkflowOptions.html"><abbr title="\Mindee\Input\WorkflowOptions">WorkflowOptions</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$workflowOptions</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -379,40 +379,11 @@
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$alias</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                <span class="phpdocumentor-signature__argument__name">$workflowOptions</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-WorkflowOptions.html"><abbr title="\Mindee\Input\WorkflowOptions">WorkflowOptions</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Alias to give to the document.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$priority</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Priority to give to the document.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$fullText</span>
-                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Whether to include the full OCR text response in compatible APIs.
-This performs a full OCR operation on the server and may increase response time.
-This performs a cropping operation on the server and will increase response time.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$publicUrl</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>One time use encrypted URL for authentication.</p>
+                    <section class="phpdocumentor-description"><p>Workflow options.</p>
 </section>
 
             </dd>
@@ -561,15 +532,15 @@ This performs a cropping operation on the server and will increase response time
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/WorkflowEndpoint.php"><a href="files/src-http-workflowendpoint.html"><abbr title="src/Http/WorkflowEndpoint.php">WorkflowEndpoint.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Starts a CURL session, using POST.</p>
+        <p class="phpdocumentor-summary">Starts a CURL session using POST.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">initCurlSessionPost</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileCurl</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fullText</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$publicUrl</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">initCurlSessionPost</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileCurl</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-WorkflowOptions.html"><abbr title="\Mindee\Input\WorkflowOptions">WorkflowOptions</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$workflowOptions</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -587,39 +558,11 @@ This performs a cropping operation on the server and will increase response time
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$alias</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                <span class="phpdocumentor-signature__argument__name">$workflowOptions</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-WorkflowOptions.html"><abbr title="\Mindee\Input\WorkflowOptions">WorkflowOptions</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Whether to include the full text for each page.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$priority</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Whether to include the full text for each page.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$fullText</span>
-                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Whether to include the full OCR text response in compatible APIs.
-This performs a full OCR operation on the server and may increase response time.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$publicUrl</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>One time use encrypted URL for authentication.</p>
+                    <section class="phpdocumentor-description"><p>Workflow options.</p>
 </section>
 
             </dd>
