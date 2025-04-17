@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v1.20.0 - 2025-04-17
+### Changes
+* :sparkles: add support for RAG parameter in workflow executions
+
+
 ## v1.19.0 - 2025-04-09
 ### Changes
 * :sparkles: add ocr line extraction from regex
