@@ -24,20 +24,28 @@ class WorkflowOptions extends CommonOptions
     public ?string $publicUrl;
 
     /**
+     * @var boolean|null Whether to enable Retrieval-Augmented Generation.
+     */
+    public ?bool $rag;
+
+    /**
      * @param string|null $alias       Alias for the document.
      * @param string|null $priority    Priority for the document.
      * @param boolean     $fullTextOcr Whether to retrieve the full ocr text.
      * @param string|null $publicUrl   Priority for the document.
+     * @param boolean     $rag         Whether to enable Retrieval-Augmented Generation.
      */
     public function __construct(
         ?string $alias = null,
         ?string $priority = null,
         bool $fullTextOcr = false,
-        ?string $publicUrl = null
+        ?string $publicUrl = null,
+        bool $rag = false
     ) {
         parent::__construct($fullTextOcr);
         $this->alias = $alias;
         $this->priority = $priority;
         $this->publicUrl = $publicUrl;
+        $this->rag = $rag;
     }
 }

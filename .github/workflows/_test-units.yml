@@ -97,47 +97,48 @@ jobs:
         run: |
           ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
-  with-pdf-macos:
-    name: Unit Tests on MacOS with PDF support
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        php-version:
-          - 7.4
-          - 8.0
-          - 8.1
-          - 8.2
-          - 8.3
-    runs-on: "macos-latest"
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Install Homebrew
-        run: |
-          brew update
-          brew upgrade
-          brew uninstall -f imagemagick || true
-          brew uninstall -f pkg-config || true
-          brew cleanup
-      - name: Install Imagemagick
-        run: |
-          brew install pkg-config imagemagick@7
-          export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
-      - name: Set up php ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
-        with:
-          php-version: ${{ matrix.php-version }}
-      - name: Install Imagick
-        run: pecl install imagick
-      - uses: ramsey/composer-install@v2
-      - name: Unit testing with phpunit
-        env:
-          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/phpunit.xml
+# Note: Disabled because brew formula for imagemagick keeps breaking
+#  with-pdf-macos:
+#    name: Unit Tests on MacOS with PDF support
+#    timeout-minutes: 30
+#    strategy:
+#      matrix:
+#        php-version:
+#          - 7.4
+#          - 8.0
+#          - 8.1
+#          - 8.2
+#          - 8.3
+#    runs-on: "macos-latest"
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          submodules: recursive
+#      - name: Install Homebrew
+#        run: |
+#          brew update
+#          brew upgrade
+#          brew uninstall -f imagemagick || true
+#          brew uninstall -f pkg-config || true
+#          brew cleanup
+#      - name: Install Imagemagick
+#        run: |
+#          brew install pkg-config ghostscript imagemagick@7
+#          export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
+#      - name: Set up php ${{ matrix.php-version }}
+#        uses: shivammathur/setup-php@v2
+#        env:
+#          phpts: zts
+#        with:
+#          php-version: ${{ matrix.php-version }}
+#      - name: Install Imagick
+#        run: pecl install imagick
+#      - uses: ramsey/composer-install@v2
+#      - name: Unit testing with phpunit
+#        env:
+#          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
+#        run: |
+#          ./vendor/bin/phpunit -c tests/phpunit.xml
 
   no-pdf-windows:
     name: Unit Tests on Windows without PDF support

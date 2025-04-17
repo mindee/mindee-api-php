@@ -5,6 +5,7 @@ namespace Mindee\Http;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
+use Mindee\Input\WorkflowOptions;
 
 /**
  * Workflow router endpoint substitute.
@@ -23,43 +24,28 @@ class WorkflowEndpoint extends BaseEndpoint
     /**
      * Sends a document for synchronous enqueuing.
      *
-     * @param InputSource $fileCurl  File to upload.
-     * @param string|null $alias     Alias to give to the document.
-     * @param string|null $priority  Priority to give to the document.
-     * @param boolean     $fullText  Whether to include the full OCR text response in compatible APIs.
-     *                          This performs a full OCR operation on the server and may increase response time.
-     *                          This performs a cropping operation on the server and will increase response time.
-     * @param string|null $publicUrl One time use encrypted URL for authentication.
+     * @param InputSource     $fileCurl        File to upload.
+     * @param WorkflowOptions $workflowOptions Workflow options.
      * @return array
      */
     public function executeWorkflowRequestPost(
         InputSource $fileCurl,
-        ?string $alias,
-        ?string $priority,
-        bool $fullText,
-        ?string $publicUrl
+        WorkflowOptions $workflowOptions
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $alias, $priority, $fullText, $publicUrl);
+        return $this->initCurlSessionPost($fileCurl, $workflowOptions);
     }
 
 
     /**
-     * Starts a CURL session, using POST.
+     * Starts a CURL session using POST.
      *
-     * @param InputSource $fileCurl  File to upload.
-     * @param string|null $alias     Whether to include the full text for each page.
-     * @param string|null $priority  Whether to include the full text for each page.
-     * @param boolean     $fullText  Whether to include the full OCR text response in compatible APIs.
-     *                          This performs a full OCR operation on the server and may increase response time.
-     * @param string|null $publicUrl One time use encrypted URL for authentication.
+     * @param InputSource     $fileCurl        File to upload.
+     * @param WorkflowOptions $workflowOptions Workflow options.
      * @return array
      */
     private function initCurlSessionPost(
         InputSource $fileCurl,
-        ?string $alias,
-        ?string $priority,
-        bool $fullText,
-        ?string $publicUrl
+        WorkflowOptions $workflowOptions
     ): array {
         $ch = curl_init();
         curl_setopt(
@@ -80,17 +66,27 @@ class WorkflowEndpoint extends BaseEndpoint
         } elseif ($fileCurl instanceof LocalInputSource) {
             $postFields = ['document' => $fileCurl->fileObject];
         }
-        if (!empty($alias)) {
-            $postFields['alias'] = $alias;
+        if (!empty($workflowOptions->alias)) {
+            $postFields['alias'] = $workflowOptions->alias;
         }
-        if (!empty($publicUrl)) {
-            $postFields['public_url'] = $publicUrl;
+        if (!empty($workflowOptions->publicUrl)) {
+            $postFields['public_url'] = $workflowOptions->publicUrl;
         }
-        if (!empty($priority)) {
-            $postFields['priority'] = $priority;
+        if (!empty($workflowOptions->priority)) {
+            $postFields['priority'] = $workflowOptions->priority;
         }
-        if ($fullText) {
-            $suffix .= '?full_text_ocr=true';
+        $params = [];
+
+        if ($workflowOptions->fullText) {
+            $params['full_text_ocr'] = 'true';
+        }
+
+        if ($workflowOptions->rag) {
+            $params['rag'] = 'true';
+        }
+
+        if (!empty($params)) {
+            $suffix .= '?' . http_build_query($params);
         }
         return $this->setFinalCurlOpts($ch, $suffix, $postFields);
     }

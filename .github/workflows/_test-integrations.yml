@@ -47,36 +47,37 @@ jobs:
         run: |
           ./vendor/bin/phpunit -c tests/functional.xml
 
-  integration-tests-macos:
-    name: Run Integration Tests on MacOS
-    timeout-minutes: 30
-    strategy:
-      max-parallel: 2
-      matrix:
-        php-version:
-          - 7.4
-          - 8.3
-    runs-on: "macos-latest"
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Set up php ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
-        with:
-          php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
-      - name: Install ImageMagick
-        run: |
-          brew update
-          brew install imagemagick
-      - uses: ramsey/composer-install@v2
-      - name: Unit testing with phpunit
-        run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
-
+# MacOS testing disabled because of capricious GS/ImageMagick/Homebrew behaviors
+#  integration-tests-macos:
+#    name: Run Integration Tests on MacOS
+#    timeout-minutes: 30
+#    strategy:
+#      max-parallel: 2
+#      matrix:
+#        php-version:
+#          - 7.4
+#          - 8.3
+#    runs-on: "macos-latest"
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          submodules: recursive
+#      - name: Set up php ${{ matrix.php-version }}
+#        uses: shivammathur/setup-php@v2
+#        env:
+#          phpts: zts
+#        with:
+#          php-version: ${{ matrix.php-version }}
+#          extensions: curl, fileinfo, json, imagick
+#      - name: Install ImageMagick
+#        run: |
+#          brew update
+#          brew install imagemagick
+#      - uses: ramsey/composer-install@v2
+#      - name: Unit testing with phpunit
+#        run: |
+#          ./vendor/bin/phpunit -c tests/functional.xml
+#
 
   integration-tests-windows:
     name: Run Integration Tests on Windows
