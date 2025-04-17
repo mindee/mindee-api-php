@@ -326,10 +326,7 @@ class Client
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->executeWorkflowRequestPost(
             $inputDoc,
-            $options->workflowOptions->alias,
-            $options->workflowOptions->priority,
-            $options->workflowOptions->fullText,
-            $options->workflowOptions->publicUrl,
+            $options->workflowOptions
         ));
         if (!ResponseValidation::isValidWorkflowResponse($response)) {
             throw MindeeHttpException::handleError(

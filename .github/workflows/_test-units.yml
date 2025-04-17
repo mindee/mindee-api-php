@@ -97,6 +97,7 @@ jobs:
         run: |
           ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
+# Note: Disabled because brew formula for imagemagick keeps breaking
 #  with-pdf-macos:
 #    name: Unit Tests on MacOS with PDF support
 #    timeout-minutes: 30
