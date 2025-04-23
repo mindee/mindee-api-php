@@ -280,10 +280,7 @@ class Client
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->predictAsyncRequestPost(
             $inputDoc,
-            $options->predictOptions->includeWords,
-            $options->predictOptions->fullText,
-            $options->closeFile,
-            $options->predictOptions->cropper
+            $options
         ));
         if (!ResponseValidation::isValidAsyncResponse($response)) {
             throw MindeeHttpException::handleError(
@@ -371,10 +368,7 @@ class Client
         }
         $response = ResponseValidation::cleanRequestData($options->endpoint->predictRequestPost(
             $inputDoc,
-            $options->predictOptions->includeWords,
-            $options->predictOptions->fullText,
-            $options->closeFile,
-            $options->predictOptions->cropper
+            $options,
         ));
         if (!ResponseValidation::isValidSyncResponse($response)) {
             throw MindeeHttpException::handleError(

@@ -4,9 +4,8 @@ namespace Mindee\Http;
 
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
+use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\URLInputSource;
-
-use const Mindee\VERSION;
 
 /**
  * Endpoint management.
@@ -58,71 +57,48 @@ class Endpoint extends BaseEndpoint
     /**
      * Sends a document for asynchronous enqueuing.
      *
-     * @param InputSource $fileCurl     File to upload.
-     * @param boolean     $includeWords Whether to include the full text for each page.
-     *                        This performs a full OCR operation on the server and will increase response time.
-     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-     *                             This performs a full OCR operation on the server and may increase response time.
-     * @param boolean     $closeFile    Whether to close the file after parsing it.
-     * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                             This performs a cropping operation on the server and will increase response time.
+     * @param InputSource          $fileCurl File to upload.
+     * @param PredictMethodOptions $options  Prediction Options.
      * @return array
      */
     public function predictRequestPost(
         InputSource $fileCurl,
-        bool $includeWords,
-        bool $fullText,
-        bool $closeFile,
-        bool $cropper
+        PredictMethodOptions $options
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, false, $closeFile);
+        return $this->initCurlSessionPost($fileCurl, $options, false);
     }
 
     /**
      * Sends a document for synchronous enqueuing.
      *
-     * @param InputSource $fileCurl     File to upload.
-     * @param boolean     $includeWords Whether to include the full text for each page.
-     *                        This performs a full OCR operation on the server and will increase response time.
-     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-*                             This performs a full OCR operation on the server and may increase response time.
-     * @param boolean     $closeFile    Whether to close the file after parsing it.
-     * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                             This performs a cropping operation on the server and will increase response time.
+     * @param InputSource          $fileCurl File to upload.
+     * @param PredictMethodOptions $options  Prediction Options.
      * @return array
      */
     public function predictAsyncRequestPost(
         InputSource $fileCurl,
-        bool $includeWords,
-        bool $fullText,
-        bool $closeFile,
-        bool $cropper
+        PredictMethodOptions $options
     ): array {
-        return $this->initCurlSessionPost($fileCurl, $includeWords, $fullText, $cropper, 'async', $closeFile);
+        return $this->initCurlSessionPost(
+            $fileCurl,
+            $options,
+            true
+        );
     }
 
 
     /**
      * Starts a CURL session, using POST.
      *
-     * @param InputSource $fileCurl     File to upload.
-     * @param boolean     $includeWords Whether to include the full text for each page.
-     *                        This performs a full OCR operation on the server and will increase response time.
-     * @param boolean     $fullText     Whether to include the full OCR text response in compatible APIs.
-     *                             This performs a full OCR operation on the server and may increase response time.
-     * @param boolean     $cropper      Whether to include cropper results for each page.
-     *                             This performs a cropping operation on the server and will increase response time.
-     * @param boolean     $async        Whether the query is in async mode.
-     * @param boolean     $closeFile    Close file.
+     * @param InputSource          $fileCurl File to upload.
+     * @param PredictMethodOptions $options  Prediction Options.
+     * @param boolean              $async    Whether to use the async endpoint.
      * @return array
      */
     private function initCurlSessionPost(
         InputSource $fileCurl,
-        bool $includeWords,
-        bool $fullText,
-        bool $cropper,
-        bool $async,
-        bool $closeFile
+        PredictMethodOptions $options,
+        bool $async
     ): array {
         $ch = curl_init();
         curl_setopt(
@@ -142,24 +118,30 @@ class Endpoint extends BaseEndpoint
         if ($fileCurl instanceof URLInputSource) {
             $postFields = ['document' => $fileCurl->url];
         } elseif ($fileCurl instanceof LocalInputSource) {
-            if ($closeFile) {
+            if ($options->closeFile) {
                 $fileCurl->close();
             }
             $postFields = ['document' => $fileCurl->fileObject];
         }
-        if ($includeWords) {
+        if ($options->predictOptions->includeWords) {
             $postFields['include_mvision'] = 'true';
         }
-        if ($fullText && $cropper) {
-            $suffix .= '?full_text_ocr=true&cropper=true';
-        } else {
-            if ($fullText) {
-                $suffix .= '?full_text_ocr=true';
-            }
-            if ($cropper) {
-                $suffix .= '?cropper=true';
-            }
+
+        if ($options->predictOptions->fullText) {
+            $params['full_text_ocr'] = 'true';
         }
-        return $this->setFinalCurlOpts($ch, $suffix, $postFields);
+
+        if ($options->rag) {
+            $params['rag'] = 'true';
+        }
+
+        if ($options->predictOptions->cropper) {
+            $params['cropper'] = 'true';
+        }
+
+        if (!empty($params)) {
+            $suffix .= '?' . http_build_query($params);
+        }
+        return $this->setFinalCurlOpts($ch, $suffix, $postFields, $options->workflowId);
     }
 }
