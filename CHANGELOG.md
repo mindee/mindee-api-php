@@ -6,7 +6,6 @@
 * :sparkles: add extras accessor from inference
 
 
-
 ## v1.20.0 - 2025-04-17
 ### Changes
 * :sparkles: add support for RAG parameter in workflow executions
