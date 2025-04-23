@@ -841,6 +841,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Http-BaseApi.html#method___construct"
         },                {
+            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AupdateUrlRoot\u0028\u0029",
+            "name": "updateUrlRoot",
+            "summary": "Sets\u0020the\u0020URL\u0020root.",
+            "url": "classes/Mindee-Http-BaseApi.html#method_updateUrlRoot"
+        },                {
             "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A\u0024apiKey",
             "name": "apiKey",
             "summary": "",
@@ -1411,10 +1416,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-PredictMethodOptions.html#method_setEndpoint"
         },                {
-            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003AsetCloseFile\u0028\u0029",
-            "name": "setCloseFile",
+            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003AsetRag\u0028\u0029",
+            "name": "setRag",
             "summary": "",
-            "url": "classes/Mindee-Input-PredictMethodOptions.html#method_setCloseFile"
+            "url": "classes/Mindee-Input-PredictMethodOptions.html#method_setRag"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003AsetWorkflowId\u0028\u0029",
+            "name": "setWorkflowId",
+            "summary": "Sets\u0020the\u0020workflow\u0020ID\u0020for\u0020the\u0020prediction\u0020method\u0020options.",
+            "url": "classes/Mindee-Input-PredictMethodOptions.html#method_setWorkflowId"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024predictOptions",
             "name": "predictOptions",
@@ -1440,6 +1450,16 @@ Search.appendIndex(
             "name": "closeFile",
             "summary": "",
             "url": "classes/Mindee-Input-PredictMethodOptions.html#property_closeFile"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024rag",
+            "name": "rag",
+            "summary": "",
+            "url": "classes/Mindee-Input-PredictMethodOptions.html#property_rag"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024workflowId",
+            "name": "workflowId",
+            "summary": "",
+            "url": "classes/Mindee-Input-PredictMethodOptions.html#property_workflowId"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictOptions",
             "name": "PredictOptions",
@@ -1826,6 +1846,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Extras-Extras.html#property_fullTextOcr"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\Extras\u003A\u003A\u0024rag",
+            "name": "rag",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Extras-Extras.html#property_rag"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\Extras\u003A\u003A\u0024data",
             "name": "data",
             "summary": "",
@@ -1855,6 +1880,26 @@ Search.appendIndex(
             "name": "language",
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Extras-FullTextOcrExtra.html#property_language"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\RAGExtra",
+            "name": "RAGExtra",
+            "summary": "Contains\u0020information\u0020on\u0020the\u0020Retrieval\u002DAugmented\u002DGeneration\u0020of\u0020a\u0020prediction.",
+            "url": "classes/Mindee-Parsing-Common-Extras-RAGExtra.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\RAGExtra\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Extras-RAGExtra.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\RAGExtra\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Extras-RAGExtra.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Extras\\RAGExtra\u003A\u003A\u0024matchingDocumentId",
+            "name": "matchingDocumentId",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Extras-RAGExtra.html#property_matchingDocumentId"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Inference",
             "name": "Inference",
@@ -1905,6 +1950,11 @@ Search.appendIndex(
             "name": "pageId",
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-Inference.html#property_pageId"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Common\\Inference\u003A\u003A\u0024extras",
+            "name": "extras",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Common-Inference.html#property_extras"
         },                {
             "fqsen": "\\Mindee\\Parsing\\Common\\Job",
             "name": "Job",
