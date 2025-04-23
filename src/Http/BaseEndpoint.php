@@ -36,7 +36,6 @@ abstract class BaseEndpoint
                 'Authorization: Token ' . $this->settings->apiKey,
             ]
         );
-
         curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . "/documents/queue/$queueId");
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -56,14 +55,23 @@ abstract class BaseEndpoint
     }
 
     /**
-     * @param resource   $ch         Curl Channel.
-     * @param string     $suffix     Optional suffix for the url call.
-     * @param array|null $postFields Post fields.
+     * @param resource    $ch         Curl Channel.
+     * @param string      $suffix     Optional suffix for the url call.
+     * @param array|null  $postFields Post fields.
+     * @param string|null $workflowId Optional ID of the workflow.
      * @return array
      */
-    public function setFinalCurlOpts($ch, string $suffix, ?array $postFields): array
-    {
-        curl_setopt($ch, CURLOPT_URL, $this->settings->urlRoot . $suffix);
+    public function setFinalCurlOpts(
+        $ch,
+        string $suffix,
+        ?array $postFields,
+        ?string $workflowId = null
+    ): array {
+        $url = $this->settings->urlRoot . $suffix;
+        if (isset($workflowId)) {
+            $url = $this->settings->baseUrl . "/workflows/" . $workflowId . $suffix;
+        }
+        curl_setopt($ch, CURLOPT_URL, $url);
         if ($postFields !== null) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }

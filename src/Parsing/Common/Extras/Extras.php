@@ -16,9 +16,13 @@ class Extras
      */
     public ?CropperExtra $cropper;
     /**
-     * @var \Mindee\Parsing\Common\Extras\CropperExtra|null Cropper extra.
+     * @var \Mindee\Parsing\Common\Extras\CropperExtra|null Full text OCR extra.
      */
     public ?FullTextOcrExtra $fullTextOcr;
+    /**
+     * @var \Mindee\Parsing\Common\Extras\RagExtra|null Rag Extra.
+     */
+    public ?RagExtra $rag;
     /**
      * @var array Other extras.
      */
@@ -47,6 +51,8 @@ class Extras
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
             } elseif ($key == 'full_text_ocr' && isset($rawPrediction['full_text_ocr'])) {
                 $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
+            } elseif ($key = 'rag' && isset($rawPrediction['rag'])) {
+                $this->rag = new RAGExtra($rawPrediction['rag']);
             } else {
                 $this->__set($key, $extra);
             }
@@ -82,6 +88,9 @@ class Extras
         }
         if ($this->fullTextOcr) {
             $resStr .= ":full_text_ocr:" . $this->fullTextOcr . "\n";
+        }
+        if ($this->rag) {
+            $resStr .= ":rag:" . $this->rag . "\n";
         }
         return $resStr;
     }

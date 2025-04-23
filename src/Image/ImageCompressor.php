@@ -42,7 +42,7 @@ class ImageCompressor
 
             $finalImageSize = $image->getImageLength();
             if ($initialFileSize < $finalImageSize) {
-                echo "\033[33m[WARNING] Output image would be larger than input. Aborting operation.\033[0m\n";
+                error_log("\033[33m[WARNING] Output image would be larger than input. Aborting operation.\033[0m\n");
                 return ImageUtils::toCURLFile($initialImage);
             }
             return ImageUtils::toCURLFile($image);

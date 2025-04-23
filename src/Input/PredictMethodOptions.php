@@ -33,6 +33,15 @@ class PredictMethodOptions
      */
     public bool $closeFile;
 
+    /**
+     * @var boolean If set, will enable Retrieval-Augmented Generation (only works if a valid WorkflowId is set).
+     */
+    public bool $rag;
+
+    /**
+     * @var string|null Workflow ID.
+     */
+    public ?string $workflowId;
 
     /**
      * Prediction method options.
@@ -43,6 +52,8 @@ class PredictMethodOptions
         $this->pageOptions = new PageOptions();
         $this->endpoint = null;
         $this->closeFile = false;
+        $this->rag = false;
+        $this->workflowId = null;
     }
 
     /**
@@ -86,12 +97,24 @@ class PredictMethodOptions
     }
 
     /**
-     * @param boolean $closeFile Close file.
+     * @param boolean $rag Whether to enable Retrieval-Augmented Generation.
      * @return $this
      */
-    public function setCloseFile(bool $closeFile): PredictMethodOptions
+    public function setRag(bool $rag): PredictMethodOptions
     {
-        $this->closeFile = $closeFile;
+        $this->rag = $rag;
+        return $this;
+    }
+
+    /**
+     * Sets the workflow ID for the prediction method options.
+     *
+     * @param string $workflowId The unique workflow ID to be set.
+     * @return $this
+     */
+    public function setWorkflowId(string $workflowId): PredictMethodOptions
+    {
+        $this->workflowId = $workflowId;
         return $this;
     }
 }

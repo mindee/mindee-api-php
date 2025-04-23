@@ -57,11 +57,11 @@ class Document
                 $e
             );
         }
-        if (array_key_exists("ocr", $rawResponse) && $rawResponse['ocr']) {
+        if (array_key_exists('ocr', $rawResponse) && $rawResponse['ocr']) {
             $this->ocr = new Ocr($rawResponse['ocr']);
         }
-        if (array_key_exists("extras", $rawResponse["inference"]) && $rawResponse["inference"]['extras']) {
-            $this->extras = new Extras($rawResponse["inference"]['extras']);
+        if (array_key_exists("extras", $rawResponse['inference']) && $rawResponse['inference']['extras']) {
+            $this->extras = new Extras($rawResponse['inference']['extras']);
         }
         $this->injectFullTextOcr($rawResponse);
     }

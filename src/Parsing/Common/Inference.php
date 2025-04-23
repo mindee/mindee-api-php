@@ -2,7 +2,7 @@
 
 namespace Mindee\Parsing\Common;
 
-use Mindee\Error\MindeeApiException;
+use Mindee\Parsing\Common\Extras\Extras;
 
 /**
  * Base Inference class for all predictions.
@@ -37,6 +37,11 @@ abstract class Inference
      * @var integer|null Optional page id for page-level predictions.
      */
     public ?int $pageId;
+    /**
+     * @var \Mindee\Parsing\Common\Extras\Extras|null Potential Extras fields sent back along with the prediction.
+     */
+    public ?Extras $extras;
+
 
     /**
      * @param array        $rawInference Raw inference array.
@@ -52,6 +57,7 @@ abstract class Inference
         if (isset($pageId)) {
             $this->pageId = $pageId;
         }
+        $this->extras = new Extras($rawInference['extras']);
     }
 
 
