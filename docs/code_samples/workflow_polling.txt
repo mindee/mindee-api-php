@@ -1,0 +1,29 @@
+<?php
+
+
+use Mindee\Client;
+use Mindee\Input\PredictMethodOptions;
+use Mindee\Product\Generated\GeneratedV1;
+
+$workflowId = "workflow-id";
+
+// Init a new client
+$mindeeClient = new Client("my-api-key");
+
+// Load a file from disk
+$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+
+$customEndpoint = $mindeeClient->createEndpoint(
+    "my-endpoint",
+    "my-account",
+    "my-version"
+);
+
+$options = new PredictMethodOptions();
+$options->setRAG(true)->setWorkflowId($workflowId)->setEndpoint($customEndpoint);
+
+// Enqueue the file to the workflow
+$response = $mindeeClient->enqueueAndParse(GeneratedV1::Class, $inputSource, $options);
+
+
+echo $response->document;
