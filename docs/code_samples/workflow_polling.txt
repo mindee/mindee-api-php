@@ -19,11 +19,13 @@ $customEndpoint = $mindeeClient->createEndpoint(
     "my-version"
 );
 
+// Set the workflow options
 $options = new PredictMethodOptions();
 $options->setRAG(true)->setWorkflowId($workflowId)->setEndpoint($customEndpoint);
 
 // Enqueue the file to the workflow
-$response = $mindeeClient->enqueueAndParse(GeneratedV1::Class, $inputSource, $options);
-
+$response = $mindeeClient->enqueueAndParse(
+    GeneratedV1::Class, $inputSource, $options
+);
 
 echo $response->document;
