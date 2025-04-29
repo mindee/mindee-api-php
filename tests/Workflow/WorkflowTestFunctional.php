@@ -15,13 +15,16 @@ class WorkflowTestFunctional extends TestCase
     private $workflowId;
     private $mindeeClient;
     private $inputSource;
+    private $predictionType;
 
     protected function setUp(): void
     {
+        $rootPath = (getenv('GITHUB_WORKSPACE') ?: ".");
         $this->mindeeClient = new Client();
         $this->workflowId = getenv('WORKFLOW_ID') ?: '';
+        $this->predictionType = FinancialDocumentV1::class;
         $this->inputSource = $this->mindeeClient->sourceFromPath(
-            (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/products/financial_document/default_sample.jpg"
+            $rootPath . "/tests/resources/products/financial_document/default_sample.jpg"
         );
     }
 
@@ -34,7 +37,9 @@ class WorkflowTestFunctional extends TestCase
             null,
             true
         );
-        $response = $this->mindeeClient->executeWorkflow($this->inputSource, $this->workflowId, $options);
+        $response = $this->mindeeClient->executeWorkflow(
+            $this->inputSource, $this->workflowId, $options
+        );
         $this->assertEquals(202, $response->apiRequest->statusCode);
         $this->assertEquals("php-$currentDateTime", $response->execution->file->alias);
         $this->assertEquals("low", $response->execution->priority);
@@ -44,7 +49,7 @@ class WorkflowTestFunctional extends TestCase
         $options = new PredictMethodOptions();
         $options->setRAG(true)->setWorkflowId($this->workflowId);
         $response = $this->mindeeClient->enqueueAndParse(
-            FinancialDocumentV1::class,
+            $this->predictionType,
             $this->inputSource,
             $options
         );
@@ -57,7 +62,7 @@ class WorkflowTestFunctional extends TestCase
         $options = new PredictMethodOptions();
         $options->setWorkflowId($this->workflowId);
         $response = $this->mindeeClient->enqueueAndParse(
-            FinancialDocumentV1::class,
+            $this->predictionType,
             $this->inputSource,
             $options
         );

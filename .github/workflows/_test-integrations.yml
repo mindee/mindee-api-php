@@ -12,6 +12,7 @@ env:
   MINDEE_ENDPOINT_SE_TESTS: ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
   MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
   WORKFLOW_ID: ${{ secrets.WORKFLOW_ID_SE_TESTS }}
+
 jobs:
   integration-tests-ubuntu:
     name: Run Integration Tests on Ubuntu

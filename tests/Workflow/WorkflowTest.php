@@ -13,12 +13,13 @@ class WorkflowTest extends TestCase
 
     protected function setUp(): void
     {
+        $rootPath = (getenv('GITHUB_WORKSPACE') ?: ".");
         $this->findocSamplePath = (
-            getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/products/financial_document/default_sample.jpg";
+            $rootPath . "/tests/resources/products/financial_document/default_sample.jpg"
+        );
         $this->workflowDir = (
-            getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/workflows/";
+            $rootPath . "/tests/resources/workflows/"
+        );
     }
 
     public function testDeserializeWorkflow()

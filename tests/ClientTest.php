@@ -27,6 +27,7 @@ class ClientTest extends TestCase
 
     protected function setUp(): void
     {
+        $rootPath = (getenv('GITHUB_WORKSPACE') ?: ".");
         $this->oldKey = getenv('MINDEE_API_KEY');
         $this->dummyClient = new Client("dummy-key");
         putenv('MINDEE_API_KEY=');
@@ -34,14 +35,14 @@ class ClientTest extends TestCase
         putenv('MINDEE_API_KEY=dummy-env-key');
         $this->envClient = new Client();
         $this->fileTypesDir = (
-            getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/file_types/";
+            $rootPath . "/tests/resources/file_types/"
+        );
         $this->invoicePath = (
-            getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/products/invoices/response_v4/complete.json";
+            $rootPath . "/tests/resources/products/invoices/response_v4/complete.json"
+        );
         $this->failedJobPath = (
-            getenv('GITHUB_WORKSPACE') ?: "."
-            ) . "/tests/resources/async/get_failed_job_error.json";
+            $rootPath . "/tests/resources/async/get_failed_job_error.json"
+        );
     }
 
 

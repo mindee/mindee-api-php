@@ -67,9 +67,10 @@ abstract class BaseEndpoint
         ?array $postFields,
         ?string $workflowId = null
     ): array {
-        $url = $this->settings->urlRoot . $suffix;
         if (isset($workflowId)) {
             $url = $this->settings->baseUrl . "/workflows/" . $workflowId . $suffix;
+        } else {
+            $url = $this->settings->urlRoot . $suffix;
         }
         curl_setopt($ch, CURLOPT_URL, $url);
         if ($postFields !== null) {
