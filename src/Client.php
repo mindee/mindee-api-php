@@ -278,10 +278,12 @@ class Client
                 );
             }
         }
-        $response = ResponseValidation::cleanRequestData($options->endpoint->predictAsyncRequestPost(
-            $inputDoc,
-            $options
-        ));
+        $response = ResponseValidation::cleanRequestData(
+            $options->endpoint->predictAsyncRequestPost(
+                $inputDoc,
+                $options
+            )
+        );
         if (!ResponseValidation::isValidAsyncResponse($response)) {
             throw MindeeHttpException::handleError(
                 $options->endpoint->settings->endpointName,
@@ -436,7 +438,13 @@ class Client
         $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
             $predictionType,
         );
-        $enqueueResponse = $this->enqueue($predictionType, $inputDoc, $options, $pageOptions);
+
+        $enqueueResponse = $this->enqueue(
+            $predictionType,
+            $inputDoc,
+            $options,
+            $pageOptions
+        );
         error_log("Successfully enqueued document with job id: " . $enqueueResponse->job->id);
 
         sleep($asyncOptions->initialDelaySec);
@@ -455,7 +463,7 @@ class Client
         if ($pollResults->job->status != "completed") {
             throw new MindeeApiException(
                 "Couldn't retrieve document " . $enqueueResponse->job->id . " after $retryCounter tries.",
-                ErrorCode::API_TIMEOUT
+                ErrorCode::API_TIMEOUT,
             );
         }
         return $pollResults;
