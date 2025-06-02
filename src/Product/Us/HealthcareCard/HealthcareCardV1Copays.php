@@ -3,7 +3,7 @@
 namespace Mindee\Product\Us\HealthcareCard;
 
 /**
- * Is a fixed amount for a covered service.
+ * Copayments for covered services.
  */
 class HealthcareCardV1Copays extends \ArrayObject
 {

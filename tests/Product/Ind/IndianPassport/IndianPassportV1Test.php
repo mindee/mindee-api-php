@@ -49,10 +49,10 @@ class IndianPassportV1Test extends TestCase
         $this->assertNull($prediction->nameOfMother->value);
         $this->assertNull($prediction->oldPassportDateOfIssue->value);
         $this->assertNull($prediction->oldPassportNumber->value);
+        $this->assertNull($prediction->oldPassportPlaceOfIssue->value);
         $this->assertNull($prediction->address1->value);
         $this->assertNull($prediction->address2->value);
         $this->assertNull($prediction->address3->value);
-        $this->assertNull($prediction->oldPassportPlaceOfIssue->value);
         $this->assertNull($prediction->fileNumber->value);
     }
 }

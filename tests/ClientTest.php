@@ -11,6 +11,7 @@ use Mindee\Input\PredictMethodOptions;
 use Mindee\Product\Custom\CustomV1;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +22,7 @@ class ClientTest extends TestCase
     private Client $envClient;
     private string $oldKey;
     private string $fileTypesDir;
-    private string $invoicePath;
+    private string $multiReceiptsDetectorPath;
     private string $failedJobPath;
 
 
@@ -37,8 +38,8 @@ class ClientTest extends TestCase
         $this->fileTypesDir = (
             $rootPath . "/tests/resources/file_types/"
         );
-        $this->invoicePath = (
-            $rootPath . "/tests/resources/products/invoices/response_v4/complete.json"
+        $this->multiReceiptsDetectorPath = (
+            $rootPath . "/tests/resources/products/multi_receipts_detector/response_v1/complete.json"
         );
         $this->failedJobPath = (
             $rootPath . "/tests/resources/async/get_failed_job_error.json"
@@ -142,10 +143,10 @@ class ClientTest extends TestCase
 
     public function testLoadLocalResponse()
     {
-        $localResponse = new LocalResponse($this->invoicePath);
-        $res = $this->dummyClient->loadPrediction(InvoiceV4::class, $localResponse);
+        $localResponse = new LocalResponse($this->multiReceiptsDetectorPath);
+        $res = $this->dummyClient->loadPrediction(MultiReceiptsDetectorV1::class, $localResponse);
         $this->assertNotNull($res);
-        $this->assertEquals(2, $res->document->nPages);
+        $this->assertEquals(1, $res->document->nPages);
     }
 
     public function testLoadFailedLocalResponse()

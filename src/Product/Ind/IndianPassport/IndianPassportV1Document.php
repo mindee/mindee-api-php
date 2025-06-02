@@ -300,10 +300,10 @@ class IndianPassportV1Document extends Prediction
 :Name of Mother: $this->nameOfMother
 :Old Passport Date of Issue: $this->oldPassportDateOfIssue
 :Old Passport Number: $this->oldPassportNumber
+:Old Passport Place of Issue: $this->oldPassportPlaceOfIssue
 :Address Line 1: $this->address1
 :Address Line 2: $this->address2
 :Address Line 3: $this->address3
-:Old Passport Place of Issue: $this->oldPassportPlaceOfIssue
 :File Number: $this->fileNumber
 ";
         return SummaryHelper::cleanOutString($outStr);

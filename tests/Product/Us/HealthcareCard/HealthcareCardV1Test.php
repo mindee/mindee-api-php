@@ -34,6 +34,7 @@ class HealthcareCardV1Test extends TestCase
     {
         $prediction = $this->emptyDoc->inference->prediction;
         $this->assertNull($prediction->companyName->value);
+        $this->assertNull($prediction->planName->value);
         $this->assertNull($prediction->memberName->value);
         $this->assertNull($prediction->memberId->value);
         $this->assertNull($prediction->issuer80840->value);
