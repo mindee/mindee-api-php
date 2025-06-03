@@ -5,6 +5,7 @@ namespace Mindee\Product\FinancialDocument;
 use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
+use Mindee\Parsing\Standard\AddressField;
 use Mindee\Parsing\Standard\AmountField;
 use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\CompanyRegistrationField;
@@ -15,22 +16,22 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Financial Document API version 1.12 document data.
+ * Financial Document API version 1.14 document data.
  */
 class FinancialDocumentV1Document extends Prediction
 {
     /**
-     * @var StringField The customer's address used for billing.
+     * @var AddressField The customer's address used for billing.
      */
-    public StringField $billingAddress;
+    public AddressField $billingAddress;
     /**
-     * @var ClassificationField The purchase category, only for receipts.
+     * @var ClassificationField The purchase category.
      */
     public ClassificationField $category;
     /**
-     * @var StringField The address of the customer.
+     * @var AddressField The address of the customer.
      */
-    public StringField $customerAddress;
+    public AddressField $customerAddress;
     /**
      * @var CompanyRegistrationField[] List of company registration numbers associated to the customer.
      */
@@ -93,17 +94,17 @@ class FinancialDocumentV1Document extends Prediction
      */
     public array $referenceNumbers;
     /**
-     * @var StringField The customer's address used for shipping.
+     * @var AddressField The customer's address used for shipping.
      */
-    public StringField $shippingAddress;
+    public AddressField $shippingAddress;
     /**
-     * @var ClassificationField The purchase subcategory for transport and food, only for receipts.
+     * @var ClassificationField The purchase subcategory for transport, food and shooping.
      */
     public ClassificationField $subcategory;
     /**
-     * @var StringField The address of the supplier or merchant.
+     * @var AddressField The address of the supplier or merchant.
      */
-    public StringField $supplierAddress;
+    public AddressField $supplierAddress;
     /**
      * @var CompanyRegistrationField[] List of company registration numbers associated to the supplier.
      */
@@ -162,7 +163,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["billing_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->billingAddress = new StringField(
+        $this->billingAddress = new AddressField(
             $rawPrediction["billing_address"],
             $pageId
         );
@@ -176,7 +177,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["customer_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->customerAddress = new StringField(
+        $this->customerAddress = new AddressField(
             $rawPrediction["customer_address"],
             $pageId
         );
@@ -288,7 +289,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["shipping_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->shippingAddress = new StringField(
+        $this->shippingAddress = new AddressField(
             $rawPrediction["shipping_address"],
             $pageId
         );
@@ -302,7 +303,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["supplier_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierAddress = new StringField(
+        $this->supplierAddress = new AddressField(
             $rawPrediction["supplier_address"],
             $pageId
         );

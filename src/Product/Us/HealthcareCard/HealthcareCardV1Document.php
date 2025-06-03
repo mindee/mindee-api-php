@@ -9,7 +9,7 @@ use Mindee\Parsing\Standard\DateField;
 use Mindee\Parsing\Standard\StringField;
 
 /**
- * Healthcare Card API version 1.2 document data.
+ * Healthcare Card API version 1.3 document data.
  */
 class HealthcareCardV1Document extends Prediction
 {
@@ -18,7 +18,7 @@ class HealthcareCardV1Document extends Prediction
      */
     public StringField $companyName;
     /**
-     * @var HealthcareCardV1Copays Is a fixed amount for a covered service.
+     * @var HealthcareCardV1Copays Copayments for covered services.
      */
     public HealthcareCardV1Copays $copays;
     /**
@@ -49,6 +49,10 @@ class HealthcareCardV1Document extends Prediction
      * @var StringField The unique identifier for the payer in the healthcare system.
      */
     public StringField $payerId;
+    /**
+     * @var StringField The name of the healthcare plan.
+     */
+    public StringField $planName;
     /**
      * @var StringField The BIN number for prescription drug coverage.
      */
@@ -135,6 +139,13 @@ class HealthcareCardV1Document extends Prediction
             $rawPrediction["payer_id"],
             $pageId
         );
+        if (!isset($rawPrediction["plan_name"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->planName = new StringField(
+            $rawPrediction["plan_name"],
+            $pageId
+        );
         if (!isset($rawPrediction["rx_bin"])) {
             throw new MindeeUnsetException();
         }
@@ -177,6 +188,7 @@ class HealthcareCardV1Document extends Prediction
         $copaysSummary = strval($this->copays);
 
         $outStr = ":Company Name: $this->companyName
+:Plan Name: $this->planName
 :Member Name: $this->memberName
 :Member ID: $this->memberId
 :Issuer 80840: $this->issuer80840
@@ -187,7 +199,7 @@ class HealthcareCardV1Document extends Prediction
 :RX ID: $this->rxId
 :RX GRP: $this->rxGrp
 :RX PCN: $this->rxPcn
-:copays: $copaysSummary
+:Copays: $copaysSummary
 :Enrollment Date: $this->enrollmentDate
 ";
         return SummaryHelper::cleanOutString($outStr);

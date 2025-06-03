@@ -22,6 +22,6 @@ class PredictResponseTest extends TestCase
         foreach ($parsedResponse->document->inference->pages as $page) {
             $this->assertInstanceOf(InvoiceV4Document::class, $page->prediction);
         }
-        $this->assertEquals(2, $parsedResponse->document->nPages);
+        $this->assertEquals(1, $parsedResponse->document->nPages);
     }
 }

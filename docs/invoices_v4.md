@@ -53,12 +53,12 @@ echo $apiResponse->document;
 ########
 Document
 ########
-:Mindee ID: b55db8f9-ae3b-4f05-b2f1-ec0ced5e5b70
+:Mindee ID: 744748d5-9051-461c-b70c-bbf81f5ff943
 :Filename: default_sample.jpg
 
 Inference
 #########
-:Product: mindee/invoices v4.9
+:Product: mindee/invoices v4.11
 :Rotation applied: Yes
 
 Prediction
@@ -93,6 +93,9 @@ Prediction
 :Shipping Address:
 :Billing Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
 :Document Type: INVOICE
+:Document Type Extended: INVOICE
+:Purchase Subcategory:
+:Purchase Category: miscellaneous
 :Line Items:
   +--------------------------------------+--------------+----------+------------+--------------+--------------+-----------------+------------+
   | Description                          | Product code | Quantity | Tax Amount | Tax Rate (%) | Total Amount | Unit of measure | Unit Price |
@@ -139,6 +142,9 @@ Page 0
 :Shipping Address:
 :Billing Address: 1954 Bloor Street West Toronto, ON, M6P 3K9 Canada
 :Document Type: INVOICE
+:Document Type Extended: INVOICE
+:Purchase Subcategory:
+:Purchase Category: miscellaneous
 :Line Items:
   +--------------------------------------+--------------+----------+------------+--------------+--------------+-----------------+------------+
   | Description                          | Product code | Quantity | Tax Amount | Tax Rate (%) | Total Amount | Unit of measure | Unit Price |
@@ -170,6 +176,20 @@ A typical `BaseField` object will have the following attributes:
 
 
 Aside from the previous attributes, all basic fields have access to a custom `__toString` method that can be used to print their value as a string.
+
+### AddressField
+Aside from the basic `BaseField` attributes, the address field `AddressField` also implements the following:
+
+* **streetNumber** (`?string`): String representation of the street number. Can be `null`.
+* **streetName** (`?string`): Name of the street. Can be `null`.
+* **poBox** (`?string`): String representation of the PO Box number. Can be `null`.
+* **addressComplement** (`?string`): Address complement. Can be `null`.
+* **city** (`?string`): City name. Can be `null`.
+* **postalCode** (`?string`): String representation of the postal code. Can be `null`.
+* **state** (`?string`): State name. Can be `null`.
+* **country** (`?string`): Country name. Can be `null`.
+
+Note: The `value` field of an AddressField should be a concatenation of the rest of the values.
 
 
 ### AmountField
@@ -251,6 +271,25 @@ The following fields are extracted for Invoice V4:
 
 ```php
 echo $result->document->inference->prediction->billingAddress->value;
+```
+
+## Purchase Category
+**category** : The purchase category.
+
+#### Possible values include:
+ - 'toll'
+ - 'food'
+ - 'parking'
+ - 'transport'
+ - 'accommodation'
+ - 'telecom'
+ - 'miscellaneous'
+ - 'software'
+ - 'shopping'
+ - 'energy'
+
+```php
+echo $result->document->inference->prediction->category->value;
 ```
 
 ## Customer Address
@@ -380,6 +419,30 @@ foreach ($result->document->inference->prediction->referenceNumbers as $referenc
 
 ```php
 echo $result->document->inference->prediction->shippingAddress->value;
+```
+
+## Purchase Subcategory
+**subcategory** : The purchase subcategory for transport, food and shopping.
+
+#### Possible values include:
+ - 'plane'
+ - 'taxi'
+ - 'train'
+ - 'restaurant'
+ - 'shopping'
+ - 'other'
+ - 'groceries'
+ - 'cultural'
+ - 'electronics'
+ - 'office_supplies'
+ - 'micromobility'
+ - 'car_rental'
+ - 'public'
+ - 'delivery'
+ - null
+
+```php
+echo $result->document->inference->prediction->subcategory->value;
 ```
 
 ## Supplier Address

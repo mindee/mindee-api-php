@@ -7,7 +7,7 @@ use Mindee\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\Parsing\Standard\FieldPositionMixin;
 
 /**
- * Is a fixed amount for a covered service.
+ * Copayments for covered services.
  */
 class HealthcareCardV1Copay
 {
@@ -15,11 +15,11 @@ class HealthcareCardV1Copay
     use FieldConfidenceMixin;
 
     /**
-     * @var float|null The price of service.
+     * @var float|null The price of the service.
      */
     public ?float $serviceFees;
     /**
-     * @var string|null The name of service of the copay.
+     * @var string|null The name of the service.
      */
     public ?string $serviceName;
 

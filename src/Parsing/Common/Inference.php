@@ -57,7 +57,9 @@ abstract class Inference
         if (isset($pageId)) {
             $this->pageId = $pageId;
         }
-        $this->extras = new Extras($rawInference['extras']);
+        if (array_key_exists('extras', $rawInference)) {
+            $this->extras = new Extras($rawInference['extras']);
+        }
     }
 
 

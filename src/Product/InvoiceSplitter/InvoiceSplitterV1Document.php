@@ -7,7 +7,7 @@ use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 
 /**
- * Invoice Splitter API version 1.2 document data.
+ * Invoice Splitter API version 1.4 document data.
  */
 class InvoiceSplitterV1Document extends Prediction
 {

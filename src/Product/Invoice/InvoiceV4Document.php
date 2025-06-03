@@ -5,6 +5,7 @@ namespace Mindee\Product\Invoice;
 use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
+use Mindee\Parsing\Standard\AddressField;
 use Mindee\Parsing\Standard\AmountField;
 use Mindee\Parsing\Standard\ClassificationField;
 use Mindee\Parsing\Standard\CompanyRegistrationField;
@@ -15,18 +16,22 @@ use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Standard\Taxes;
 
 /**
- * Invoice API version 4.10 document data.
+ * Invoice API version 4.11 document data.
  */
 class InvoiceV4Document extends Prediction
 {
     /**
-     * @var StringField The customer billing address.
+     * @var AddressField The customer billing address.
      */
-    public StringField $billingAddress;
+    public AddressField $billingAddress;
     /**
-     * @var StringField The address of the customer.
+     * @var ClassificationField The purchase category.
      */
-    public StringField $customerAddress;
+    public ClassificationField $category;
+    /**
+     * @var AddressField The address of the customer.
+     */
+    public AddressField $customerAddress;
     /**
      * @var CompanyRegistrationField[] List of company registration numbers associated to the customer.
      */
@@ -80,13 +85,17 @@ class InvoiceV4Document extends Prediction
      */
     public array $referenceNumbers;
     /**
-     * @var StringField Customer's delivery address.
+     * @var AddressField Customer's delivery address.
      */
-    public StringField $shippingAddress;
+    public AddressField $shippingAddress;
     /**
-     * @var StringField The address of the supplier or merchant.
+     * @var ClassificationField The purchase subcategory for transport, food and shopping.
      */
-    public StringField $supplierAddress;
+    public ClassificationField $subcategory;
+    /**
+     * @var AddressField The address of the supplier or merchant.
+     */
+    public AddressField $supplierAddress;
     /**
      * @var CompanyRegistrationField[] List of company registration numbers associated to the supplier.
      */
@@ -137,14 +146,21 @@ class InvoiceV4Document extends Prediction
         if (!isset($rawPrediction["billing_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->billingAddress = new StringField(
+        $this->billingAddress = new AddressField(
             $rawPrediction["billing_address"],
+            $pageId
+        );
+        if (!isset($rawPrediction["category"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->category = new ClassificationField(
+            $rawPrediction["category"],
             $pageId
         );
         if (!isset($rawPrediction["customer_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->customerAddress = new StringField(
+        $this->customerAddress = new AddressField(
             $rawPrediction["customer_address"],
             $pageId
         );
@@ -242,14 +258,21 @@ class InvoiceV4Document extends Prediction
         if (!isset($rawPrediction["shipping_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->shippingAddress = new StringField(
+        $this->shippingAddress = new AddressField(
             $rawPrediction["shipping_address"],
+            $pageId
+        );
+        if (!isset($rawPrediction["subcategory"])) {
+            throw new MindeeUnsetException();
+        }
+        $this->subcategory = new ClassificationField(
+            $rawPrediction["subcategory"],
             $pageId
         );
         if (!isset($rawPrediction["supplier_address"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierAddress = new StringField(
+        $this->supplierAddress = new AddressField(
             $rawPrediction["supplier_address"],
             $pageId
         );
@@ -374,6 +397,8 @@ class InvoiceV4Document extends Prediction
 :Billing Address: $this->billingAddress
 :Document Type: $this->documentType
 :Document Type Extended: $this->documentTypeExtended
+:Purchase Subcategory: $this->subcategory
+:Purchase Category: $this->category
 :Line Items: $lineItemsSummary
 ";
         return SummaryHelper::cleanOutString($outStr);
