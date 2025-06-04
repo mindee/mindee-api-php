@@ -2551,6 +2551,61 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_printableValues"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField",
+            "name": "AddressField",
+            "summary": "A\u0020field\u0020representing\u0020an\u0020address.",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Prettier\u0020string\u0020representation\u0020\u0028same\u0020semantics\u0020as\u0020StringField\u0029.",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024streetNumber",
+            "name": "streetNumber",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_streetNumber"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024streetName",
+            "name": "streetName",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_streetName"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024poBox",
+            "name": "poBox",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_poBox"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024addressComplement",
+            "name": "addressComplement",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_addressComplement"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024city",
+            "name": "city",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_city"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024postalCode",
+            "name": "postalCode",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_postalCode"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024state",
+            "name": "state",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_state"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\Standard\\AddressField\u003A\u003A\u0024country",
+            "name": "country",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-Standard-AddressField.html#property_country"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\Standard\\AmountField",
             "name": "AmountField",
             "summary": "A\u0020field\u0020containing\u0020an\u0020amount\u0020value.",
@@ -3863,7 +3918,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document",
             "name": "FinancialDocumentV1Document",
-            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.12\u0020document\u0020data.",
+            "summary": "Financial\u0020Document\u0020API\u0020version\u00201.14\u0020document\u0020data.",
             "url": "classes/Mindee-Product-FinancialDocument-FinancialDocumentV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\FinancialDocument\\FinancialDocumentV1Document\u003A\u003A__construct\u0028\u0029",
@@ -6723,7 +6778,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document",
             "name": "InternationalIdV2Document",
-            "summary": "International\u0020ID\u0020API\u0020version\u00202.1\u0020document\u0020data.",
+            "summary": "International\u0020ID\u0020API\u0020version\u00202.2\u0020document\u0020data.",
             "url": "classes/Mindee-Product-InternationalId-InternationalIdV2Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InternationalId\\InternationalIdV2Document\u003A\u003A__construct\u0028\u0029",
@@ -6843,7 +6898,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document",
             "name": "InvoiceV4Document",
-            "summary": "Invoice\u0020API\u0020version\u00204.10\u0020document\u0020data.",
+            "summary": "Invoice\u0020API\u0020version\u00204.11\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A__construct\u0028\u0029",
@@ -6860,6 +6915,11 @@ Search.appendIndex(
             "name": "billingAddress",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_billingAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024category",
+            "name": "category",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_category"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024customerAddress",
             "name": "customerAddress",
@@ -6935,6 +6995,11 @@ Search.appendIndex(
             "name": "shippingAddress",
             "summary": "",
             "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_shippingAddress"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024subcategory",
+            "name": "subcategory",
+            "summary": "",
+            "url": "classes/Mindee-Product-Invoice-InvoiceV4Document.html#property_subcategory"
         },                {
             "fqsen": "\\Mindee\\Product\\Invoice\\InvoiceV4Document\u003A\u003A\u0024supplierAddress",
             "name": "supplierAddress",
@@ -7103,7 +7168,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1Document",
             "name": "InvoiceSplitterV1Document",
-            "summary": "Invoice\u0020Splitter\u0020API\u0020version\u00201.2\u0020document\u0020data.",
+            "summary": "Invoice\u0020Splitter\u0020API\u0020version\u00201.4\u0020document\u0020data.",
             "url": "classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\InvoiceSplitter\\InvoiceSplitterV1Document\u003A\u003A__construct\u0028\u0029",
@@ -8048,7 +8113,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document",
             "name": "ReceiptV5Document",
-            "summary": "Receipt\u0020API\u0020version\u00205.3\u0020document\u0020data.",
+            "summary": "Receipt\u0020API\u0020version\u00205.4\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Receipt-ReceiptV5Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Receipt\\ReceiptV5Document\u003A\u003A__construct\u0028\u0029",
@@ -8818,7 +8883,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay",
             "name": "HealthcareCardV1Copay",
-            "summary": "Is\u0020a\u0020fixed\u0020amount\u0020for\u0020a\u0020covered\u0020service.",
+            "summary": "Copayments\u0020for\u0020covered\u0020services.",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copay.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copay\u003A\u003A__construct\u0028\u0029",
@@ -8858,7 +8923,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copays",
             "name": "HealthcareCardV1Copays",
-            "summary": "Is\u0020a\u0020fixed\u0020amount\u0020for\u0020a\u0020covered\u0020service.",
+            "summary": "Copayments\u0020for\u0020covered\u0020services.",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Copays.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Copays\u003A\u003A__construct\u0028\u0029",
@@ -8878,7 +8943,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document",
             "name": "HealthcareCardV1Document",
-            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.2\u0020document\u0020data.",
+            "summary": "Healthcare\u0020Card\u0020API\u0020version\u00201.3\u0020document\u0020data.",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A__construct\u0028\u0029",
@@ -8935,6 +9000,11 @@ Search.appendIndex(
             "name": "payerId",
             "summary": "",
             "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_payerId"
+        },                {
+            "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024planName",
+            "name": "planName",
+            "summary": "",
+            "url": "classes/Mindee-Product-Us-HealthcareCard-HealthcareCardV1Document.html#property_planName"
         },                {
             "fqsen": "\\Mindee\\Product\\Us\\HealthcareCard\\HealthcareCardV1Document\u003A\u003A\u0024rxBin",
             "name": "rxBin",
