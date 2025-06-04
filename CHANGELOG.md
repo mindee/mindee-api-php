@@ -1,6 +1,5 @@
 # Mindee PHP API Library Changelog
 
-
 ## v1.22.0 - 2025-06-03
 ### Changes
 * :sparkles: add support for address fields
