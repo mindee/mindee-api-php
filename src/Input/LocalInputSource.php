@@ -398,4 +398,23 @@ abstract class LocalInputSource extends InputSource
         }
         return PDFUtils::hasSourceText($this->filePath);
     }
+
+
+    /**
+     * Applies PDF-specific operations on the current file based on the specified PageOptions.
+     *
+     * @param PageOptions|null $pageOptions The options specifying which pages to modify or retain in the PDF file.
+     * @return void
+     * @throws MindeePDFException If a PDF processing error occurs during the operation.
+     */
+    public function applyPageOptions(?PageOptions $pageOptions): void
+    {
+        if ($pageOptions !== null && $this->isPDF()) {
+            $this->processPDF(
+                $pageOptions->operation,
+                $pageOptions->onMinPage,
+                $pageOptions->pageIndexes
+            );
+        }
+    }
 }

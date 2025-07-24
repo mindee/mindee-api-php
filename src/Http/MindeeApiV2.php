@@ -14,11 +14,11 @@ use Mindee\Error\MindeeException;
 include_once(dirname(__DIR__) . '/version.php');
 // phpcs:enable
 
+use Mindee\Error\MindeeV2HttpException;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
-use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\V2\InferenceResponse;
 use Mindee\Parsing\V2\JobResponse;
 
@@ -163,6 +163,7 @@ class MindeeApiV2
      * @param string $responseType Class name of the response type to instantiate.
      * @return JobResponse|InferenceResponse The processed response object.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
+     * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
      */
     private function processResponse(array $result, string $responseType)
     {
@@ -172,16 +173,14 @@ class MindeeApiV2
             $responseData = json_decode($result['data'], true);
 
             if ($responseData && isset($responseData['status'])) {
-                throw new MindeeException(
-                    "HTTP {$responseData['status']}: " . ($responseData['detail'] ?? 'Unknown error.'),
-                    ErrorCode::API_REQUEST_FAILED
+                throw new MindeeV2HttpException(
+                    $responseData['status'],
+                    $responseData['detail'] ?? 'Unknown error.'
                 );
             }
 
-            throw new MindeeException(
-                "HTTP {$statusCode}: " . ($result['data'] ?? 'Unknown error.'),
-                ErrorCode::API_REQUEST_FAILED
-            );
+            $detail = $responseData && $responseData['detail'] ? $responseData['detail'] : 'Unknown Error';
+            throw new MindeeException($result['code'] ?? -1, $detail);
         }
 
         try {

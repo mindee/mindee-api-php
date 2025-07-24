@@ -2,8 +2,10 @@
 
 namespace Mindee\Input;
 
+use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
+use Mindee\Parsing\V2\InferenceResponse;
 
 /**
  * Local response loaded from a file.
@@ -113,5 +115,27 @@ class LocalResponse
     public function isValidHMACSignature(string $secretKey, string $signature): bool
     {
         return $signature === $this->getHMACSignature($secretKey);
+    }
+    /**
+     * Deserialize the loaded local response into the requested CommonResponse-derived class.
+     *
+     * Typically used when dealing with V2 webhook callbacks.
+     *
+     * @param string $responseClass The class name into which the payload should be deserialized.
+     * @return mixed An instance of responseClass populated with the file content.
+     * @throws MindeeException If the provided class cannot be instantiated.
+     */
+    public function deserializeResponse(string $responseClass)
+    {
+        try {
+            $data = $this->toArray();
+            return new $responseClass($data);
+        } catch (Exception $e) {
+            throw new MindeeException(
+                "Invalid class specified for deserialization: " . $e->getMessage(),
+                ErrorCode::INTERNAL_LIBRARY_ERROR,
+                $e
+            );
+        }
     }
 }

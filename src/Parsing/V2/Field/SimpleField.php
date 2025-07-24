@@ -27,6 +27,16 @@ class SimpleField extends BaseField
      */
     public function __toString(): string
     {
-        return $this->value !== null ? (string) $this->value : '';
+        if (is_bool($this->value)) {
+            return $this->value ? 'True' : 'False';
+        }
+        if (is_numeric($this->value)) {
+            $value = (float)$this->value;
+            return $value == (int)$value ?
+                number_format($value, 1, '.', '') :
+                rtrim(rtrim(number_format($value, 5, '.', ''), '0'), '.');
+        }
+
+        return $this->value !== null ? (string)$this->value : '';
     }
 }

@@ -3,12 +3,12 @@
 namespace Mindee\Parsing\V2\Field;
 
 use ArrayIterator;
-use IteratorAggregate;
+use ArrayObject;
 
 /**
  * Collection of inference fields.
  */
-class InferenceFields implements IteratorAggregate
+class InferenceFields extends ArrayObject
 {
     /**
      * @var array<string, SimpleField|ObjectField|ListField>
@@ -31,6 +31,7 @@ class InferenceFields implements IteratorAggregate
         foreach ($serverResponse as $key => $value) {
             $this->fields[$key] = BaseField::createField($value, 1);
         }
+        parent::__construct($this->fields);
     }
 
     /**
@@ -88,8 +89,8 @@ class InferenceFields implements IteratorAggregate
             } elseif ($fieldValue instanceof ObjectField) {
                 $line .= $fieldValue->__toString();
             } elseif ($fieldValue instanceof SimpleField) {
-                $value = $fieldValue->value;
-                if ($value !== null) {
+                $value = $fieldValue->__toString();
+                if ($value != '') {
                     $line .= ' ' . $value;
                 }
             }

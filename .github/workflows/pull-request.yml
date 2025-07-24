@@ -3,21 +3,25 @@ name: Pull Request
 on:
   pull_request:
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   static-analysis:
-    uses: mindee/mindee-api-php/.github/workflows/_static-analysis.yml@main
+    uses: ./.github/workflows/_static-analysis.yml@main
   static-dependency-checks:
-    uses: mindee/mindee-api-php/.github/workflows/_static-dependency-checks.yml@main
+    uses: ./.github/workflows/_static-dependency-checks.yml@main
     needs: static-analysis
   test-units:
-    uses: mindee/mindee-api-php/.github/workflows/_test-units.yml@main
+    uses: ./.github/workflows/_test-units.yml@main
     needs: static-analysis
     secrets: inherit
   test-integrations:
-    uses: mindee/mindee-api-php/.github/workflows/_test-integrations.yml@main
+    uses: ./.github/workflows/_test-integrations.yml@main
     needs: test-units
     secrets: inherit
   test-code-samples:
-    uses: mindee/mindee-api-php/.github/workflows/_test-code-samples.yml@main
+    uses: ./.github/workflows/_test-code-samples.yml@main
     needs: test-units
     secrets: inherit
