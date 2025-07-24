@@ -6,6 +6,7 @@
 
 namespace Mindee\Http;
 
+use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
 
@@ -52,6 +53,21 @@ const API_V2_TIMEOUT_DEFAULT = 120;
  */
 class MindeeApiV2
 {
+    /**
+     * Get the User Agent to send for API calls.
+     * @return string
+     */
+    private function getUserAgent(): string
+    {
+        switch (PHP_OS_FAMILY) {
+            case "Darwin":
+                $os = "macos";
+                break;
+            default:
+                $os = strtolower(PHP_OS_FAMILY);
+        }
+        return 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . $os;
+    }
     /**
      * @var string|null API key.
      */
@@ -136,9 +152,50 @@ class MindeeApiV2
             throw new MindeeException("Model ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
         $response = $this->documentEnqueuePost($inputDoc, $params);
-        return new JobResponse($response['data']);
+        return $this->processResponse($response, JobResponse::class);
     }
 
+
+    /**
+     * Process the HTTP response and return the appropriate response object.
+     *
+     * @param array  $result       Raw HTTP response array with 'data' and 'code' keys.
+     * @param string $responseType Class name of the response type to instantiate.
+     * @return JobResponse|InferenceResponse The processed response object.
+     * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
+     */
+    private function processResponse(array $result, string $responseType)
+    {
+        $statusCode = $result['code'] ?? -1;
+
+        if ($statusCode > 399 || $statusCode < 200) {
+            $responseData = json_decode($result['data'], true);
+
+            if ($responseData && isset($responseData['status'])) {
+                throw new MindeeException(
+                    "HTTP {$responseData['status']}: " . ($responseData['detail'] ?? 'Unknown error.'),
+                    ErrorCode::API_REQUEST_FAILED
+                );
+            }
+
+            throw new MindeeException(
+                "HTTP {$statusCode}: " . ($result['data'] ?? 'Unknown error.'),
+                ErrorCode::API_REQUEST_FAILED
+            );
+        }
+
+        try {
+            $responseData = json_decode($result['data'], true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new MindeeException('JSON decode error: ' . json_last_error_msg());
+            }
+
+            return new $responseType($responseData);
+        } catch (Exception $e) {
+            error_log("Raised '{$e->getMessage()}' Couldn't deserialize response object:\n" . $result['data']);
+            throw new MindeeException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
+        }
+    }
 
     /**
      * Requests the job of a queued document from the API.
@@ -154,9 +211,8 @@ class MindeeApiV2
             throw new MindeeException("Inference ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
         $response = $this->inferenceGetRequest($inferenceId);
-        return new InferenceResponse($response['data']);
+        return $this->processResponse($response, InferenceResponse::class);
     }
-
 
     /**
      * Requests the job of a queued document from the API.
@@ -172,7 +228,7 @@ class MindeeApiV2
             throw new MindeeException("Inference ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
         $response = $this->jobGetRequest($jobId);
-        return new JobResponse($response['data']);
+        return $this->processResponse($response, JobResponse::class);
     }
 
     /**
@@ -193,7 +249,7 @@ class MindeeApiV2
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->requestTimeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
+        curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
         return $ch;
     }
 
@@ -248,12 +304,12 @@ class MindeeApiV2
         $ch = $this->initChannel();
         $postFields = ['model_id' => $params->modelId];
         if ($inputSource instanceof URLInputSource) {
-            $postFields = ['url' => $inputSource->url];
+            $postFields['url'] = $inputSource->url;
         } elseif ($inputSource instanceof LocalInputSource) {
             if ($params->closeFile) {
                 $inputSource->close();
             }
-            $postFields = ['file' => $inputSource->fileObject];
+            $postFields['file'] = $inputSource->fileObject;
         }
 
         if ($params->rag) {

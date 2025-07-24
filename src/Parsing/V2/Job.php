@@ -36,9 +36,9 @@ class Job
     public string $filename;
 
     /**
-     * @var string Optional alias for the file.
+     * @var string|null Optional alias for the file.
      */
-    public string $alias;
+    public ?string $alias;
 
     /**
      * @var string Status of the job.

@@ -13,9 +13,9 @@ class InferenceResultFile
     public string $name;
 
     /**
-     * @var string Optional alias for the file.
+     * @var string|null Optional alias for the file.
      */
-    public string $alias;
+    public ?string $alias;
 
     /**
      * @param array $serverResponse Raw server response array.
