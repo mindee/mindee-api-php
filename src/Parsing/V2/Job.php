@@ -41,9 +41,9 @@ class Job
     public string $alias;
 
     /**
-     * @var string|null Status of the job.
+     * @var string Status of the job.
      */
-    public ?string $status;
+    public string $status;
 
     /**
      * @var string URL to poll for the job status.
@@ -67,7 +67,7 @@ class Job
     {
         $this->id = $serverResponse['id'];
 
-        $this->status = $serverResponse['status'] ?? null;
+        $this->status = $serverResponse['status'];
 
         $this->error = null;
         if (
