@@ -147,6 +147,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mindee-parsing-custom.html"><abbr title="\Mindee\Parsing\Custom">Custom</abbr></a></dt>
             <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mindee-parsing-generated.html"><abbr title="\Mindee\Parsing\Generated">Generated</abbr></a></dt>
             <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mindee-parsing-standard.html"><abbr title="\Mindee\Parsing\Standard">Standard</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -namespace"><a href="namespaces/mindee-parsing-v2.html"><abbr title="\Mindee\Parsing\V2">V2</abbr></a></dt>
     </dl>
 
 
@@ -204,6 +205,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

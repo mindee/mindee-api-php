@@ -190,14 +190,14 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Returns true if ghostscript is available on the system.</dd>
+<dd>Throws if GhostScript isn&#039;t available on the system.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Parsing-DependencyChecker.html#method_isImageMagickAvailable">isImageMagickAvailable()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Returns true if ImageMagick is available on the system.</dd>
+<dd>Throws if ImageMagick isn&#039;t available on the system.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Parsing-DependencyChecker.html#method_isImageMagickPolicyAllowed">isImageMagickPolicyAllowed()</a>
@@ -238,7 +238,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Returns true if ghostscript is available on the system.</p>
+        <p class="phpdocumentor-summary">Throws if GhostScript isn&#039;t available on the system.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -286,11 +286,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/DependencyChecker.php"><a href="files/src-parsing-dependencychecker.html"><abbr title="src/Parsing/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Returns true if ImageMagick is available on the system.</p>
+        <p class="phpdocumentor-summary">Throws if ImageMagick isn&#039;t available on the system.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -338,7 +338,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/DependencyChecker.php"><a href="files/src-parsing-dependencychecker.html"><abbr title="src/Parsing/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -414,6 +414,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

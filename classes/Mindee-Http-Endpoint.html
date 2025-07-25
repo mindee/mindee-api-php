@@ -284,14 +284,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_owner">
         $owner
         <a href="classes/Mindee-Http-Endpoint.html#property_owner" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Endpoint.php"><a href="files/src-http-endpoint.html"><abbr title="src/Http/Endpoint.php">Endpoint.php</abbr></a></abbr>
@@ -303,8 +303,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$owner</span>
     </code>
 
@@ -316,20 +316,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_settings">
         $settings
         <a href="classes/Mindee-Http-BaseEndpoint.html#property_settings" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/BaseEndpoint.php"><a href="files/src-http-baseendpoint.html"><abbr title="src/Http/BaseEndpoint.php">BaseEndpoint.php</abbr></a></abbr>
@@ -341,8 +343,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Http-MindeeApi.html"><abbr title="\Mindee\Http\MindeeApi">MindeeApi</abbr></a>|<a href="classes/Mindee-Http-MindeeWorkflowApi.html"><abbr title="\Mindee\Http\MindeeWorkflowApi">MindeeWorkflowApi</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Http-MindeeApi.html"><abbr title="\Mindee\Http\MindeeApi">MindeeApi</abbr></a>|<a href="classes/Mindee-Http-MindeeWorkflowApi.html"><abbr title="\Mindee\Http\MindeeWorkflowApi">MindeeWorkflowApi</abbr></a></span>
     <span class="phpdocumentor-signature__name">$settings</span>
     </code>
 
@@ -354,20 +356,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_urlName">
         $urlName
         <a href="classes/Mindee-Http-Endpoint.html#property_urlName" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Endpoint.php"><a href="files/src-http-endpoint.html"><abbr title="src/Http/Endpoint.php">Endpoint.php</abbr></a></abbr>
@@ -379,8 +383,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$urlName</span>
     </code>
 
@@ -392,20 +396,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_version">
         $version
         <a href="classes/Mindee-Http-Endpoint.html#property_version" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Http/Endpoint.php"><a href="files/src-http-endpoint.html"><abbr title="src/Http/Endpoint.php">Endpoint.php</abbr></a></abbr>
@@ -417,14 +423,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$version</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Version of the endpoint.</p>
 </section>
+
+    
 
     
 
@@ -918,6 +926,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

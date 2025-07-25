@@ -263,14 +263,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_confidence">
         $confidence
         <a href="classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_confidence" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Generated/GeneratedObjectField.php"><a href="files/src-parsing-generated-generatedobjectfield.html"><abbr title="src/Parsing/Generated/GeneratedObjectField.php">GeneratedObjectField.php</abbr></a></abbr>
@@ -282,8 +282,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">float|null</span>
     <span class="phpdocumentor-signature__name">$confidence</span>
     </code>
 
@@ -295,20 +295,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_pageId">
         $pageId
         <a href="classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_pageId" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Generated/GeneratedObjectField.php"><a href="files/src-parsing-generated-generatedobjectfield.html"><abbr title="src/Parsing/Generated/GeneratedObjectField.php">GeneratedObjectField.php</abbr></a></abbr>
@@ -320,8 +322,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">int|null</span>
     <span class="phpdocumentor-signature__name">$pageId</span>
     </code>
 
@@ -333,20 +335,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_printableValues">
         $printableValues
         <a href="classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_printableValues" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Generated/GeneratedObjectField.php"><a href="files/src-parsing-generated-generatedobjectfield.html"><abbr title="src/Parsing/Generated/GeneratedObjectField.php">GeneratedObjectField.php</abbr></a></abbr>
@@ -358,8 +362,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$printableValues</span>
     </code>
 
@@ -371,20 +375,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_rawValue">
         $rawValue
         <a href="classes/Mindee-Parsing-Generated-GeneratedObjectField.html#property_rawValue" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Generated/GeneratedObjectField.php"><a href="files/src-parsing-generated-generatedobjectfield.html"><abbr title="src/Parsing/Generated/GeneratedObjectField.php">GeneratedObjectField.php</abbr></a></abbr>
@@ -396,14 +402,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$rawValue</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Raw unprocessed value, as it was sent by the server</p>
 </section>
+
+    
 
     
 
@@ -667,6 +675,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

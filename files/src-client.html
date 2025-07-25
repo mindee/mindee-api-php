@@ -130,16 +130,14 @@
 
             <p class="phpdocumentor-summary">Mindee Client.</p>
 
-
-    <section class="phpdocumentor-description"><p>Handles most basic operations of the library.</p>
+        
+            <section class="phpdocumentor-description"><p>Handles most basic operations of the library.</p>
 </section>
 
+        
 
 
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-client.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -156,7 +154,6 @@
     </h4>
     <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Client.html"><abbr title="\Mindee\Client">Client</abbr></a></dt><dd>Main entrypoint for Mindee operations.</dd>    </dl>
-
 
 
 
@@ -205,6 +202,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

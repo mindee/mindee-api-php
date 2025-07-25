@@ -129,14 +129,12 @@
         <h2 class="phpdocumentor-content__title">EnergyBillV1EnergyUsages.php</h2>
 
         
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-product-fr-energybill-energybillv1energyusages.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -153,7 +151,6 @@
     </h4>
     <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Product-Fr-EnergyBill-EnergyBillV1EnergyUsages.html"><abbr title="\Mindee\Product\Fr\EnergyBill\EnergyBillV1EnergyUsages">EnergyBillV1EnergyUsages</abbr></a></dt><dd>Details of energy consumption.</dd>    </dl>
-
 
 
 
@@ -202,6 +199,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

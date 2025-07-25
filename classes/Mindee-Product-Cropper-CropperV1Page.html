@@ -232,14 +232,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_cropping">
         $cropping
         <a href="classes/Mindee-Product-Cropper-CropperV1Page.html#property_cropping" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Cropper/CropperV1Page.php"><a href="files/src-product-cropper-cropperv1page.html"><abbr title="src/Product/Cropper/CropperV1Page.php">CropperV1Page.php</abbr></a></abbr>
@@ -251,14 +251,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-PositionField.html"><abbr title="\Mindee\Parsing\Standard\PositionField">PositionField</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-PositionField.html"><abbr title="\Mindee\Parsing\Standard\PositionField">PositionField</abbr></a>&gt;</span>
     <span class="phpdocumentor-signature__name">$cropping</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>List of documents found in the image.</p>
 </section>
+
+    
 
     
 
@@ -408,6 +410,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

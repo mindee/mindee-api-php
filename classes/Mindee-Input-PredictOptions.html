@@ -256,14 +256,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_cropper">
         $cropper
         <a href="classes/Mindee-Input-PredictOptions.html#property_cropper" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
@@ -275,8 +275,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">bool</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
     <span class="phpdocumentor-signature__name">$cropper</span>
     </code>
 
@@ -289,20 +289,22 @@ This performs a cropping operation on the server and may increase response time.
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_fullText">
         $fullText
         <a href="classes/Mindee-Input-CommonOptions.html#property_fullText" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/CommonOptions.php"><a href="files/src-input-commonoptions.html"><abbr title="src/Input/CommonOptions.php">CommonOptions.php</abbr></a></abbr>
@@ -314,8 +316,8 @@ This performs a cropping operation on the server and may increase response time.
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">bool</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
     <span class="phpdocumentor-signature__name">$fullText</span>
     </code>
 
@@ -328,20 +330,22 @@ This performs a full OCR operation on the server and will increase response time
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_includeWords">
         $includeWords
         <a href="classes/Mindee-Input-PredictOptions.html#property_includeWords" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/PredictOptions.php"><a href="files/src-input-predictoptions.html"><abbr title="src/Input/PredictOptions.php">PredictOptions.php</abbr></a></abbr>
@@ -353,8 +357,8 @@ This performs a full OCR operation on the server and will increase response time
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">bool</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
     <span class="phpdocumentor-signature__name">$includeWords</span>
     </code>
 
@@ -362,6 +366,8 @@ This performs a full OCR operation on the server and will increase response time
         <section class="phpdocumentor-description"><p>Whether to include the full text for each page.
 This performs a full OCR operation on the server and will increase response time.</p>
 </section>
+
+    
 
     
 
@@ -632,6 +638,8 @@ This performs a cropping operation on the server and may increase response time.
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

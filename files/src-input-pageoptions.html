@@ -130,14 +130,12 @@
 
             <p class="phpdocumentor-summary">Page options &amp; related constants.</p>
 
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-input-pageoptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -178,7 +176,6 @@
 <dd>Remove the selected pages.</dd>
 
     </dl>
-
 
 
 
@@ -295,6 +292,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

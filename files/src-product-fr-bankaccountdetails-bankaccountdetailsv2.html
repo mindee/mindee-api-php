@@ -130,14 +130,12 @@
 
             <p class="phpdocumentor-summary">Bank Account Details V2.</p>
 
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv2.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -154,7 +152,6 @@
     </h4>
     <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV2.html"><abbr title="\Mindee\Product\Fr\BankAccountDetails\BankAccountDetailsV2">BankAccountDetailsV2</abbr></a></dt><dd>Bank Account Details API version 2 inference prediction.</dd>    </dl>
-
 
 
 
@@ -203,6 +200,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

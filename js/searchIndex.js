@@ -121,6 +121,41 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Client.html#property_apiKey"
         },                {
+            "fqsen": "\\Mindee\\ClientV2",
+            "name": "ClientV2",
+            "summary": "Mindee\u0020Client\u0020V2.",
+            "url": "classes/Mindee-ClientV2.html"
+        },                {
+            "fqsen": "\\Mindee\\ClientV2\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Mindee\u0020Client\u0020V2.",
+            "url": "classes/Mindee-ClientV2.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\ClientV2\u003A\u003AenqueueInference\u0028\u0029",
+            "name": "enqueueInference",
+            "summary": "Send\u0020the\u0020document\u0020to\u0020an\u0020asynchronous\u0020endpoint\u0020and\u0020return\u0020its\u0020ID\u0020in\u0020the\u0020queue.",
+            "url": "classes/Mindee-ClientV2.html#method_enqueueInference"
+        },                {
+            "fqsen": "\\Mindee\\ClientV2\u003A\u003AgetInference\u0028\u0029",
+            "name": "getInference",
+            "summary": "Retrieves\u0020an\u0020inference.",
+            "url": "classes/Mindee-ClientV2.html#method_getInference"
+        },                {
+            "fqsen": "\\Mindee\\ClientV2\u003A\u003AgetJob\u0028\u0029",
+            "name": "getJob",
+            "summary": "Get\u0020the\u0020status\u0020of\u0020an\u0020inference\u0020that\u0020was\u0020previously\u0020enqueued.",
+            "url": "classes/Mindee-ClientV2.html#method_getJob"
+        },                {
+            "fqsen": "\\Mindee\\ClientV2\u003A\u003AenqueueAndGetInference\u0028\u0029",
+            "name": "enqueueAndGetInference",
+            "summary": "Send\u0020a\u0020document\u0020to\u0020an\u0020endpoint\u0020and\u0020poll\u0020the\u0020server\u0020until\u0020the\u0020result\u0020is\u0020sent\u0020or\nuntil\u0020the\u0020maximum\u0020number\u0020of\u0020tries\u0020is\u0020reached.",
+            "url": "classes/Mindee-ClientV2.html#method_enqueueAndGetInference"
+        },                {
+            "fqsen": "\\Mindee\\ClientV2\u003A\u003A\u0024mindeeApi",
+            "name": "mindeeApi",
+            "summary": "",
+            "url": "classes/Mindee-ClientV2.html#property_mindeeApi"
+        },                {
             "fqsen": "\\Mindee\\Error\\ErrorCode",
             "name": "ErrorCode",
             "summary": "Enum\u0020class\u0020holding\u0020error\u0020codes\u0020for\u0020exceptions.",
@@ -325,6 +360,26 @@ Search.appendIndex(
             "name": "message",
             "summary": "",
             "url": "classes/Mindee-Error-MindeeUnsetException.html#property_message"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException",
+            "name": "MindeeV2HttpException",
+            "summary": "Exceptions\u0020relating\u0020to\u0020HTTP\u0020errors\u0020for\u0020the\u0020V2\u0020API.",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException\u003A\u003A\u0024detail",
+            "name": "detail",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_detail"
         },                {
             "fqsen": "\\Mindee\\Extraction\\ExtractedImage",
             "name": "ExtractedImage",
@@ -828,7 +883,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AsetFromEnv\u0028\u0029",
             "name": "setFromEnv",
-            "summary": "Sets\u0020values\u0020from\u0020environment\u0020if\u0020needed.",
+            "summary": "Sets\u0020values\u0020from\u0020environment,\u0020if\u0020needed.",
             "url": "classes/Mindee-Http-BaseApi.html#method_setFromEnv"
         },                {
             "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AsetApiKey\u0028\u0029",
@@ -840,11 +895,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/Mindee-Http-BaseApi.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003AupdateUrlRoot\u0028\u0029",
-            "name": "updateUrlRoot",
-            "summary": "Sets\u0020the\u0020URL\u0020root.",
-            "url": "classes/Mindee-Http-BaseApi.html#method_updateUrlRoot"
         },                {
             "fqsen": "\\Mindee\\Http\\BaseApi\u003A\u003A\u0024apiKey",
             "name": "apiKey",
@@ -960,6 +1010,111 @@ Search.appendIndex(
             "name": "accountName",
             "summary": "",
             "url": "classes/Mindee-Http-MindeeApi.html#property_accountName"
+        },                {
+            "fqsen": "\\Mindee\\Http\\API_V2_KEY_ENV_NAME",
+            "name": "API_V2_KEY_ENV_NAME",
+            "summary": "Default\u0020key\u0020name\u0020for\u0020the\u0020API\u0020key\u0020entry\u0020in\u0020environment\u0020variables.",
+            "url": "namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME"
+        },                {
+            "fqsen": "\\Mindee\\Http\\API_V2_BASE_URL_ENV_NAME",
+            "name": "API_V2_BASE_URL_ENV_NAME",
+            "summary": "Default\u0020key\u0020name\u0020for\u0020the\u0020Base\u0020URL\u0020in\u0020environment\u0020variables.",
+            "url": "namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME"
+        },                {
+            "fqsen": "\\Mindee\\Http\\API_V2_BASE_URL_DEFAULT",
+            "name": "API_V2_BASE_URL_DEFAULT",
+            "summary": "Default\u0020URL\u0020prefix\u0020for\u0020API\u0020calls.",
+            "url": "namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT"
+        },                {
+            "fqsen": "\\Mindee\\Http\\API_V2_REQUEST_TIMEOUT_ENV_NAME",
+            "name": "API_V2_REQUEST_TIMEOUT_ENV_NAME",
+            "summary": "Default\u0020key\u0020name\u0020for\u0020CURL\u0020request\u0020timeout\u0020in\u0020environment\u0020variables.",
+            "url": "namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME"
+        },                {
+            "fqsen": "\\Mindee\\Http\\API_V2_TIMEOUT_DEFAULT",
+            "name": "API_V2_TIMEOUT_DEFAULT",
+            "summary": "Default\u0020timeout\u0020value\u0020for\u0020curl\u0020requests.",
+            "url": "namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2",
+            "name": "MindeeApiV2",
+            "summary": "Data\u0020class\u0020containing\u0020settings\u0020for\u0020endpoints.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AgetUserAgent\u0028\u0029",
+            "name": "getUserAgent",
+            "summary": "Get\u0020the\u0020User\u0020Agent\u0020to\u0020send\u0020for\u0020API\u0020calls.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_getUserAgent"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AsetFromEnv\u0028\u0029",
+            "name": "setFromEnv",
+            "summary": "Sets\u0020values\u0020from\u0020environment,\u0020if\u0020needed.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_setFromEnv"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AsetApiKey\u0028\u0029",
+            "name": "setApiKey",
+            "summary": "Sets\u0020the\u0020API\u0020key.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_setApiKey"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AreqPostInferenceEnqueue\u0028\u0029",
+            "name": "reqPostInferenceEnqueue",
+            "summary": "",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_reqPostInferenceEnqueue"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AprocessResponse\u0028\u0029",
+            "name": "processResponse",
+            "summary": "Process\u0020the\u0020HTTP\u0020response\u0020and\u0020return\u0020the\u0020appropriate\u0020response\u0020object.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_processResponse"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AreqGetInference\u0028\u0029",
+            "name": "reqGetInference",
+            "summary": "Requests\u0020the\u0020job\u0020of\u0020a\u0020queued\u0020document\u0020from\u0020the\u0020API.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_reqGetInference"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AreqGetJob\u0028\u0029",
+            "name": "reqGetJob",
+            "summary": "Requests\u0020the\u0020job\u0020of\u0020a\u0020queued\u0020document\u0020from\u0020the\u0020API.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_reqGetJob"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AinitChannel\u0028\u0029",
+            "name": "initChannel",
+            "summary": "Init\u0020a\u0020CURL\u0020channel\u0020with\u0020common\u0020params.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_initChannel"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AjobGetRequest\u0028\u0029",
+            "name": "jobGetRequest",
+            "summary": "Makes\u0020a\u0020GET\u0020call\u0020to\u0020retrieve\u0020a\u0020job.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_jobGetRequest"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AinferenceGetRequest\u0028\u0029",
+            "name": "inferenceGetRequest",
+            "summary": "Makes\u0020a\u0020GET\u0020call\u0020to\u0020retrieve\u0020an\u0020inference.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_inferenceGetRequest"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AdocumentEnqueuePost\u0028\u0029",
+            "name": "documentEnqueuePost",
+            "summary": "Starts\u0020a\u0020CURL\u0020session\u0020using\u0020POST.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_documentEnqueuePost"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003A\u0024apiKey",
+            "name": "apiKey",
+            "summary": "",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#property_apiKey"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003A\u0024requestTimeout",
+            "name": "requestTimeout",
+            "summary": "",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#property_requestTimeout"
+        },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003A\u0024baseUrl",
+            "name": "baseUrl",
+            "summary": "",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#property_baseUrl"
         },                {
             "fqsen": "\\Mindee\\Http\\MindeeWorkflowApi",
             "name": "MindeeWorkflowApi",
@@ -1116,55 +1271,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-CommonOptions.html#property_fullText"
         },                {
-            "fqsen": "\\Mindee\\Input\\MINIMUM_INITIAL_DELAY_SECONDS",
-            "name": "MINIMUM_INITIAL_DELAY_SECONDS",
-            "summary": "",
-            "url": "namespaces/mindee-input.html#constant_MINIMUM_INITIAL_DELAY_SECONDS"
-        },                {
-            "fqsen": "\\Mindee\\Input\\MINIMUM_DELAY_SECONDS",
-            "name": "MINIMUM_DELAY_SECONDS",
-            "summary": "",
-            "url": "namespaces/mindee-input.html#constant_MINIMUM_DELAY_SECONDS"
-        },                {
             "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions",
             "name": "EnqueueAndParseMethodOptions",
             "summary": "Handles\u0020options\u0020tied\u0020to\u0020asynchronous\u0020parsing.",
             "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003AsetInitialDelaySec\u0028\u0029",
-            "name": "setInitialDelaySec",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setInitialDelaySec"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003AsetDelaySec\u0028\u0029",
-            "name": "setDelaySec",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setDelaySec"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003AsetMaxRetries\u0028\u0029",
-            "name": "setMaxRetries",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#method_setMaxRetries"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003A\u0024initialDelaySec",
-            "name": "initialDelaySec",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_initialDelaySec"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003A\u0024delaySec",
-            "name": "delaySec",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_delaySec"
-        },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions\u003A\u003A\u0024maxRetries",
-            "name": "maxRetries",
-            "summary": "",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html#property_maxRetries"
         },                {
             "fqsen": "\\Mindee\\Input\\FileInput",
             "name": "FileInput",
@@ -1195,6 +1305,46 @@ Search.appendIndex(
             "name": "file",
             "summary": "",
             "url": "classes/Mindee-Input-FileInput.html#property_file"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters",
+            "name": "InferenceParameters",
+            "summary": "Parameters\u0020accepted\u0020by\u0020the\u0020asynchronous\u0020\u002A\u002Ainference\u002A\u002A\u0020v2\u0020endpoint.",
+            "url": "classes/Mindee-Input-InferenceParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024rag",
+            "name": "rag",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_rag"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024alias",
+            "name": "alias",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_alias"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024webhooksIds",
+            "name": "webhooksIds",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_webhooksIds"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024pollingOptions",
+            "name": "pollingOptions",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_pollingOptions"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024closeFile",
+            "name": "closeFile",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_closeFile"
         },                {
             "fqsen": "\\Mindee\\Input\\InputSource",
             "name": "InputSource",
@@ -1281,6 +1431,11 @@ Search.appendIndex(
             "summary": "Checks\u0020the\u0020source\u0020file\u0020for\u0020source\u0020text.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_hasSourceText"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AapplyPageOptions\u0028\u0029",
+            "name": "applyPageOptions",
+            "summary": "Applies\u0020PDF\u002Dspecific\u0020operations\u0020on\u0020the\u0020current\u0020file\u0020based\u0020on\u0020the\u0020specified\u0020PageOptions.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_applyPageOptions"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024fileObject",
             "name": "fileObject",
             "summary": "",
@@ -1330,6 +1485,11 @@ Search.appendIndex(
             "name": "isValidHMACSignature",
             "summary": "",
             "url": "classes/Mindee-Input-LocalResponse.html#method_isValidHMACSignature"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003AdeserializeResponse\u0028\u0029",
+            "name": "deserializeResponse",
+            "summary": "Deserialize\u0020the\u0020loaded\u0020local\u0020response\u0020into\u0020the\u0020requested\u0020CommonResponse\u002Dderived\u0020class.",
+            "url": "classes/Mindee-Input-LocalResponse.html#method_deserializeResponse"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalResponse\u003A\u003A\u0024file",
             "name": "file",
@@ -1385,6 +1545,56 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Base\u0020constructor,\u0020mostly\u0020used\u0020for\u0020Mime\u0020type\u0020checking.",
             "url": "classes/Mindee-Input-PathInput.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\MINIMUM_INITIAL_DELAY_SECONDS",
+            "name": "MINIMUM_INITIAL_DELAY_SECONDS",
+            "summary": "",
+            "url": "namespaces/mindee-input.html#constant_MINIMUM_INITIAL_DELAY_SECONDS"
+        },                {
+            "fqsen": "\\Mindee\\Input\\MINIMUM_DELAY_SECONDS",
+            "name": "MINIMUM_DELAY_SECONDS",
+            "summary": "",
+            "url": "namespaces/mindee-input.html#constant_MINIMUM_DELAY_SECONDS"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions",
+            "name": "PollingOptions",
+            "summary": "Handles\u0020options\u0020tied\u0020to\u0020asynchronous\u0020parsing.",
+            "url": "classes/Mindee-Input-PollingOptions.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Polling\u0020Options.",
+            "url": "classes/Mindee-Input-PollingOptions.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003AsetInitialDelaySec\u0028\u0029",
+            "name": "setInitialDelaySec",
+            "summary": "",
+            "url": "classes/Mindee-Input-PollingOptions.html#method_setInitialDelaySec"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003AsetDelaySec\u0028\u0029",
+            "name": "setDelaySec",
+            "summary": "",
+            "url": "classes/Mindee-Input-PollingOptions.html#method_setDelaySec"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003AsetMaxRetries\u0028\u0029",
+            "name": "setMaxRetries",
+            "summary": "",
+            "url": "classes/Mindee-Input-PollingOptions.html#method_setMaxRetries"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003A\u0024initialDelaySec",
+            "name": "initialDelaySec",
+            "summary": "",
+            "url": "classes/Mindee-Input-PollingOptions.html#property_initialDelaySec"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003A\u0024delaySec",
+            "name": "delaySec",
+            "summary": "",
+            "url": "classes/Mindee-Input-PollingOptions.html#property_delaySec"
+        },                {
+            "fqsen": "\\Mindee\\Input\\PollingOptions\u003A\u003A\u0024maxRetries",
+            "name": "maxRetries",
+            "summary": "",
+            "url": "classes/Mindee-Input-PollingOptions.html#property_maxRetries"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictMethodOptions",
             "name": "PredictMethodOptions",
@@ -2458,12 +2668,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Parsing\\DependencyChecker\u003A\u003AisGhostscriptAvailable\u0028\u0029",
             "name": "isGhostscriptAvailable",
-            "summary": "Returns\u0020true\u0020if\u0020ghostscript\u0020is\u0020available\u0020on\u0020the\u0020system.",
+            "summary": "Throws\u0020if\u0020GhostScript\u0020isn\u0027t\u0020available\u0020on\u0020the\u0020system.",
             "url": "classes/Mindee-Parsing-DependencyChecker.html#method_isGhostscriptAvailable"
         },                {
             "fqsen": "\\Mindee\\Parsing\\DependencyChecker\u003A\u003AisImageMagickAvailable\u0028\u0029",
             "name": "isImageMagickAvailable",
-            "summary": "Returns\u0020true\u0020if\u0020ImageMagick\u0020is\u0020available\u0020on\u0020the\u0020system.",
+            "summary": "Throws\u0020if\u0020ImageMagick\u0020isn\u0027t\u0020available\u0020on\u0020the\u0020system.",
             "url": "classes/Mindee-Parsing-DependencyChecker.html#method_isImageMagickAvailable"
         },                {
             "fqsen": "\\Mindee\\Parsing\\DependencyChecker\u003A\u003AisImageMagickPolicyAllowed\u0028\u0029",
@@ -3000,6 +3210,566 @@ Search.appendIndex(
             "name": "basis",
             "summary": "",
             "url": "classes/Mindee-Parsing-Standard-TaxField.html#property_basis"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\CommonResponse",
+            "name": "CommonResponse",
+            "summary": "Common\u0020response\u0020base\u0020class\u0020for\u0020V2.",
+            "url": "classes/Mindee-Parsing-V2-CommonResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\CommonResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-CommonResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\CommonResponse\u003A\u003AgetRawHttp\u0028\u0029",
+            "name": "getRawHttp",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-CommonResponse.html#method_getRawHttp"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\CommonResponse\u003A\u003A\u0024rawHttp",
+            "name": "rawHttp",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-CommonResponse.html#property_rawHttp"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse",
+            "name": "ErrorResponse",
+            "summary": "Error\u0020response\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse\u003A\u003A\u0024detail",
+            "name": "detail",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#property_detail"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField",
+            "name": "BaseField",
+            "summary": "Base\u0020class\u0020for\u0020V2\u0020fields.",
+            "url": "classes/Mindee-Parsing-V2-Field-BaseField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-BaseField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField\u003A\u003AcreateField\u0028\u0029",
+            "name": "createField",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-BaseField.html#method_createField"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField\u003A\u003A\u0024indentLevel",
+            "name": "indentLevel",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-BaseField.html#property_indentLevel"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField\u003A\u003A\u0024locations",
+            "name": "locations",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-BaseField.html#property_locations"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField\u003A\u003A\u0024confidence",
+            "name": "confidence",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-BaseField.html#property_confidence"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\DynamicField",
+            "name": "DynamicField",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-DynamicField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\DynamicField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-DynamicField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\DynamicField\u003A\u003A\u0024locations",
+            "name": "locations",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-DynamicField.html#property_locations"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence",
+            "name": "FieldConfidence",
+            "summary": "Confidence\u0020level\u0020of\u0020a\u0020field\u0020as\u0020returned\u0020by\u0020the\u0020V2\u0020API.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AisValid\u0028\u0029",
+            "name": "isValid",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_isValid"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AgetValidValues\u0028\u0029",
+            "name": "getValidValues",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_getValidValues"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AgetValue\u0028\u0029",
+            "name": "getValue",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_getValue"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ACERTAIN",
+            "name": "CERTAIN",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_CERTAIN"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AHIGH",
+            "name": "HIGH",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_HIGH"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AMEDIUM",
+            "name": "MEDIUM",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_MEDIUM"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ALOW",
+            "name": "LOW",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_LOW"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#property_value"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldLocation",
+            "name": "FieldLocation",
+            "summary": "Location\u0020of\u0020a\u0020field.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldLocation.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldLocation\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldLocation.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldLocation\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldLocation.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldLocation\u003A\u003A\u0024polygon",
+            "name": "polygon",
+            "summary": "Free\u0020polygon\u0020made\u0020up\u0020of\u0020points\u0020\u0028can\u0020be\u0020null\u0020when\u0020not\u0020provided\u0029.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldLocation.html#property_polygon"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldLocation\u003A\u003A\u0024page",
+            "name": "page",
+            "summary": "Page\u0020ID.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldLocation.html#property_page"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields",
+            "name": "InferenceFields",
+            "summary": "Collection\u0020of\u0020inference\u0020fields.",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Get\u0020a\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method_get"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003AtoString\u0028\u0029",
+            "name": "toString",
+            "summary": "Convert\u0020the\u0020fields\u0020to\u0020a\u0020string\u0020representation.",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method_toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003A\u0024indentLevel",
+            "name": "indentLevel",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#property_indentLevel"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ListField",
+            "name": "ListField",
+            "summary": "A\u0020field\u0020containing\u0020a\u0020list\u0020of\u0020other\u0020fields.",
+            "url": "classes/Mindee-Parsing-V2-Field-ListField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ListField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-ListField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ListField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-ListField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ListField\u003A\u003A\u0024items",
+            "name": "items",
+            "summary": "Items\u0020contained\u0020in\u0020the\u0020list.",
+            "url": "classes/Mindee-Parsing-V2-Field-ListField.html#property_items"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField",
+            "name": "ObjectField",
+            "summary": "A\u0020field\u0020containing\u0020a\u0020nested\u0020set\u0020of\u0020inference\u0020fields.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AtoStringFromList\u0028\u0029",
+            "name": "toStringFromList",
+            "summary": "Returns\u0020a\u0020string\u0020representation\u0020suitable\u0020for\u0020list\u0020display.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_toStringFromList"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\SimpleField",
+            "name": "SimpleField",
+            "summary": "A\u0020simple\u0020field\u0020with\u0020a\u0020scalar\u0020value.",
+            "url": "classes/Mindee-Parsing-V2-Field-SimpleField.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\SimpleField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-SimpleField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\SimpleField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-SimpleField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\SimpleField\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-SimpleField.html#property_value"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference",
+            "name": "Inference",
+            "summary": "Inference\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-Inference.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003AtoString\u0028\u0029",
+            "name": "toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#method_toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_model"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_file"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024result",
+            "name": "result",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_result"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResponse",
+            "name": "InferenceResponse",
+            "summary": "Inference\u0020response\u0020class\u0020for\u0020V2.",
+            "url": "classes/Mindee-Parsing-V2-InferenceResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResponse\u003A\u003A\u0024inference",
+            "name": "inference",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResponse.html#property_inference"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult",
+            "name": "InferenceResult",
+            "summary": "Inference\u0020result\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003AtoString\u0028\u0029",
+            "name": "toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#method_toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A\u0024options",
+            "name": "options",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_options"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultFile",
+            "name": "InferenceResultFile",
+            "summary": "Inference\u0020result\u0020file\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultFile.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultFile\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultFile.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultFile\u003A\u003AtoString\u0028\u0029",
+            "name": "toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultFile.html#method_toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultFile\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultFile.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultFile\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultFile.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultFile\u003A\u003A\u0024alias",
+            "name": "alias",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultFile.html#property_alias"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultModel",
+            "name": "InferenceResultModel",
+            "summary": "Inference\u0020result\u0020model\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultModel.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultModel\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultModel.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultModel\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultModel.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions",
+            "name": "InferenceResultOptions",
+            "summary": "Inference\u0020result\u0020options\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003AtoString\u0028\u0029",
+            "name": "toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#method_toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003A\u0024rawTexts",
+            "name": "rawTexts",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#property_rawTexts"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job",
+            "name": "Job",
+            "summary": "Job\u0020information\u0020for\u0020a\u0020V2\u0020polling\u0020attempt.",
+            "url": "classes/Mindee-Parsing-V2-Job.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003AparseDate\u0028\u0029",
+            "name": "parseDate",
+            "summary": "Parse\u0020a\u0020date\u0020string\u0020into\u0020a\u0020DateTime\u0020object.",
+            "url": "classes/Mindee-Parsing-V2-Job.html#method_parseDate"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024error",
+            "name": "error",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_error"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024createdAt",
+            "name": "createdAt",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_createdAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024alias",
+            "name": "alias",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_alias"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024pollingUrl",
+            "name": "pollingUrl",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_pollingUrl"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024resultUrl",
+            "name": "resultUrl",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_resultUrl"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024webhooks",
+            "name": "webhooks",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_webhooks"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponse",
+            "name": "JobResponse",
+            "summary": "Job\u0020response\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-JobResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponse\u003A\u003A\u0024job",
+            "name": "job",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponse.html#property_job"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook",
+            "name": "JobResponseWebhook",
+            "summary": "JobResponseWebhook\u0020information.",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook\u003A\u003AparseDate\u0028\u0029",
+            "name": "parseDate",
+            "summary": "Parse\u0020a\u0020date\u0020string\u0020into\u0020a\u0020DateTime\u0020object.",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html#method_parseDate"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook\u003A\u003A\u0024createdAt",
+            "name": "createdAt",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html#property_createdAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\JobResponseWebhook\u003A\u003A\u0024error",
+            "name": "error",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-JobResponseWebhook.html#property_error"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText",
+            "name": "RawText",
+            "summary": "Raw\u0020text\u0020class.",
+            "url": "classes/Mindee-Parsing-V2-RawText.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RawText.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003AtoString\u0028\u0029",
+            "name": "toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RawText.html#method_toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RawText.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A\u0024page",
+            "name": "page",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RawText.html#property_page"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A\u0024content",
+            "name": "content",
+            "summary": "The\u0020text\u0020content\u0020found\u0020on\u0020the\u0020page.",
+            "url": "classes/Mindee-Parsing-V2-RawText.html#property_content"
         },                {
             "fqsen": "\\Mindee\\PDF\\CustomFPDI",
             "name": "CustomFPDI",
@@ -9505,6 +10275,16 @@ Search.appendIndex(
             "name": "Standard",
             "summary": "",
             "url": "namespaces/mindee-parsing-standard.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2",
+            "name": "V2",
+            "summary": "",
+            "url": "namespaces/mindee-parsing-v2.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field",
+            "name": "Field",
+            "summary": "",
+            "url": "namespaces/mindee-parsing-v2-field.html"
         },                {
             "fqsen": "\\Mindee\\PDF",
             "name": "PDF",

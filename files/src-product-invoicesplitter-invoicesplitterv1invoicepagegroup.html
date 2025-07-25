@@ -129,14 +129,12 @@
         <h2 class="phpdocumentor-content__title">InvoiceSplitterV1InvoicePageGroup.php</h2>
 
         
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-product-invoicesplitter-invoicesplitterv1invoicepagegroup.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -153,7 +151,6 @@
     </h4>
     <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroup.html"><abbr title="\Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroup">InvoiceSplitterV1InvoicePageGroup</abbr></a></dt><dd>List of page groups. Each group represents a single invoice within a multi-invoice document.</dd>    </dl>
-
 
 
 
@@ -202,6 +199,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

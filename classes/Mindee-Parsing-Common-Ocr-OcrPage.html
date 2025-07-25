@@ -278,14 +278,14 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_allWords">
         $allWords
         <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#property_allWords" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
@@ -297,8 +297,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$allWords</span>
     </code>
 
@@ -310,20 +310,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_lines">
         $lines
         <a href="classes/Mindee-Parsing-Common-Ocr-OcrPage.html#property_lines" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/Ocr/OcrPage.php"><a href="files/src-parsing-common-ocr-ocrpage.html"><abbr title="src/Parsing/Common/Ocr/OcrPage.php">OcrPage.php</abbr></a></abbr>
@@ -335,14 +337,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$lines</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>List of lines.</p>
 </section>
+
+    
 
     
 
@@ -780,6 +784,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

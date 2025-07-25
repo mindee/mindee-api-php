@@ -160,7 +160,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Client.html"><abbr title="\Mindee\Client">Client</abbr></a></dt><dd>Main entrypoint for Mindee operations.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Client.html"><abbr title="\Mindee\Client">Client</abbr></a></dt><dd>Main entrypoint for Mindee operations.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-ClientV2.html"><abbr title="\Mindee\ClientV2">ClientV2</abbr></a></dt><dd>Mindee Client V2.</dd>    </dl>
 
 
 
@@ -173,7 +173,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="namespaces/mindee.html#constant_VERSION">VERSION</a>
     <span>
-        &nbsp;= &#039;1.22.0&#039;                            </span>
+        &nbsp;= &#039;1.23.0-rc1&#039;                            </span>
 </dt>
 
     </dl>
@@ -209,7 +209,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">VERSION</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;1.22.0&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;1.23.0-rc1&#039;</span>
 </code>
 
 
@@ -259,6 +259,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

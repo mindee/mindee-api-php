@@ -218,14 +218,14 @@
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_code">
         $code
         <a href="classes/Mindee-Error-MindeeUnsetException.html#property_code" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Error/MindeeUnsetException.php"><a href="files/src-error-mindeeunsetexception.html"><abbr title="src/Error/MindeeUnsetException.php">MindeeUnsetException.php</abbr></a></abbr>
@@ -237,8 +237,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">int</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$code</span>
      = <span class="phpdocumentor-signature__default-value">\Mindee\Error\ErrorCode::API_UNPROCESSABLE_ENTITY</span></code>
 
@@ -250,20 +250,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_message">
         $message
         <a href="classes/Mindee-Error-MindeeUnsetException.html#property_message" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Error/MindeeUnsetException.php"><a href="files/src-error-mindeeunsetexception.html"><abbr title="src/Error/MindeeUnsetException.php">MindeeUnsetException.php</abbr></a></abbr>
@@ -275,14 +277,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$message</span>
      = <span class="phpdocumentor-signature__default-value">&quot;Improper field value in response.&quot;</span></code>
 
     
         <section class="phpdocumentor-description"><p>Message is the same for all erroneous fields.</p>
 </section>
+
+    
 
     
 
@@ -328,6 +332,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

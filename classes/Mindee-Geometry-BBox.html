@@ -275,14 +275,14 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_maxX">
         $maxX
         <a href="classes/Mindee-Geometry-BBox.html#property_maxX" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/BBox.php"><a href="files/src-geometry-bbox.html"><abbr title="src/Geometry/BBox.php">BBox.php</abbr></a></abbr>
@@ -294,8 +294,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">float</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">float</span>
     <span class="phpdocumentor-signature__name">$maxX</span>
     </code>
 
@@ -307,20 +307,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_maxY">
         $maxY
         <a href="classes/Mindee-Geometry-BBox.html#property_maxY" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/BBox.php"><a href="files/src-geometry-bbox.html"><abbr title="src/Geometry/BBox.php">BBox.php</abbr></a></abbr>
@@ -332,8 +334,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">float</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">float</span>
     <span class="phpdocumentor-signature__name">$maxY</span>
     </code>
 
@@ -345,20 +347,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_minX">
         $minX
         <a href="classes/Mindee-Geometry-BBox.html#property_minX" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/BBox.php"><a href="files/src-geometry-bbox.html"><abbr title="src/Geometry/BBox.php">BBox.php</abbr></a></abbr>
@@ -370,8 +374,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">float</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">float</span>
     <span class="phpdocumentor-signature__name">$minX</span>
     </code>
 
@@ -383,20 +387,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_minY">
         $minY
         <a href="classes/Mindee-Geometry-BBox.html#property_minY" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/BBox.php"><a href="files/src-geometry-bbox.html"><abbr title="src/Geometry/BBox.php">BBox.php</abbr></a></abbr>
@@ -408,14 +414,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">float</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">float</span>
     <span class="phpdocumentor-signature__name">$minY</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Minimum Y coordinate.</p>
 </section>
+
+    
 
     
 
@@ -744,6 +752,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

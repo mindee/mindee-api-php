@@ -129,14 +129,12 @@
         <h2 class="phpdocumentor-content__title">InvoiceV4LineItem.php</h2>
 
         
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-product-invoice-invoicev4lineitem.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -153,7 +151,6 @@
     </h4>
     <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Product-Invoice-InvoiceV4LineItem.html"><abbr title="\Mindee\Product\Invoice\InvoiceV4LineItem">InvoiceV4LineItem</abbr></a></dt><dd>List of all the line items present on the invoice.</dd>    </dl>
-
 
 
 
@@ -202,6 +199,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

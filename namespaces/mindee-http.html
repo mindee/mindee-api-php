@@ -145,7 +145,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-BaseApi.html"><abbr title="\Mindee\Http\BaseApi">BaseApi</abbr></a></dt><dd>Base class for API settings.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-BaseEndpoint.html"><abbr title="\Mindee\Http\BaseEndpoint">BaseEndpoint</abbr></a></dt><dd>Abstract class for endpoints.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-Endpoint.html"><abbr title="\Mindee\Http\Endpoint">Endpoint</abbr></a></dt><dd>Endpoint management.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-MindeeApi.html"><abbr title="\Mindee\Http\MindeeApi">MindeeApi</abbr></a></dt><dd>Data class containing settings for endpoints.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-MindeeWorkflowApi.html"><abbr title="\Mindee\Http\MindeeWorkflowApi">MindeeWorkflowApi</abbr></a></dt><dd>Data class containing settings for workflows.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-ResponseValidation.html"><abbr title="\Mindee\Http\ResponseValidation">ResponseValidation</abbr></a></dt><dd>Wrapper class for http requests/responses validation handling.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-WorkflowEndpoint.html"><abbr title="\Mindee\Http\WorkflowEndpoint">WorkflowEndpoint</abbr></a></dt><dd>Workflow router endpoint substitute.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-BaseApi.html"><abbr title="\Mindee\Http\BaseApi">BaseApi</abbr></a></dt><dd>Base class for API settings.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-BaseEndpoint.html"><abbr title="\Mindee\Http\BaseEndpoint">BaseEndpoint</abbr></a></dt><dd>Abstract class for endpoints.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-Endpoint.html"><abbr title="\Mindee\Http\Endpoint">Endpoint</abbr></a></dt><dd>Endpoint management.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-MindeeApi.html"><abbr title="\Mindee\Http\MindeeApi">MindeeApi</abbr></a></dt><dd>Data class containing settings for endpoints.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-MindeeApiV2.html"><abbr title="\Mindee\Http\MindeeApiV2">MindeeApiV2</abbr></a></dt><dd>Data class containing settings for endpoints.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-MindeeWorkflowApi.html"><abbr title="\Mindee\Http\MindeeWorkflowApi">MindeeWorkflowApi</abbr></a></dt><dd>Data class containing settings for workflows.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-ResponseValidation.html"><abbr title="\Mindee\Http\ResponseValidation">ResponseValidation</abbr></a></dt><dd>Wrapper class for http requests/responses validation handling.</dd>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-WorkflowEndpoint.html"><abbr title="\Mindee\Http\WorkflowEndpoint">WorkflowEndpoint</abbr></a></dt><dd>Workflow router endpoint substitute.</dd>    </dl>
 
 
 
@@ -161,6 +161,41 @@
         &nbsp;= &#039;MINDEE_API_KEY&#039;                            </span>
 </dt>
 <dd>Default key name for the API key entry in environment variables.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT">API_V2_BASE_URL_DEFAULT</a>
+    <span>
+        &nbsp;= &#039;https://api-v2.mindee.net/v2&#039;                            </span>
+</dt>
+<dd>Default URL prefix for API calls.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME">API_V2_BASE_URL_ENV_NAME</a>
+    <span>
+        &nbsp;= &#039;MINDEE_V2_BASE_URL&#039;                            </span>
+</dt>
+<dd>Default key name for the Base URL in environment variables.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME">API_V2_KEY_ENV_NAME</a>
+    <span>
+        &nbsp;= &#039;MINDEE_V2_API_KEY&#039;                            </span>
+</dt>
+<dd>Default key name for the API key entry in environment variables.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME">API_V2_REQUEST_TIMEOUT_ENV_NAME</a>
+    <span>
+        &nbsp;= &#039;MINDEE_V2_REQUEST_TIMEOUT&#039;                            </span>
+</dt>
+<dd>Default key name for CURL request timeout in environment variables.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT">API_V2_TIMEOUT_DEFAULT</a>
+    <span>
+        &nbsp;= 120                            </span>
+</dt>
+<dd>Default timeout value for curl requests.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="namespaces/mindee-http.html#constant_BASE_URL_DEFAULT">BASE_URL_DEFAULT</a>
@@ -239,6 +274,166 @@
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">API_KEY_ENV_NAME</span>
     = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_API_KEY&#039;</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_API_V2_BASE_URL_DEFAULT">
+        API_V2_BASE_URL_DEFAULT
+        <a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">40</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Default URL prefix for API calls.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">API_V2_BASE_URL_DEFAULT</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;https://api-v2.mindee.net/v2&#039;</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_API_V2_BASE_URL_ENV_NAME">
+        API_V2_BASE_URL_ENV_NAME
+        <a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Default key name for the Base URL in environment variables.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">API_V2_BASE_URL_ENV_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_V2_BASE_URL&#039;</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_API_V2_KEY_ENV_NAME">
+        API_V2_KEY_ENV_NAME
+        <a href="namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">30</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Default key name for the API key entry in environment variables.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">API_V2_KEY_ENV_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_V2_API_KEY&#039;</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_API_V2_REQUEST_TIMEOUT_ENV_NAME">
+        API_V2_REQUEST_TIMEOUT_ENV_NAME
+        <a href="namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Default key name for CURL request timeout in environment variables.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">API_V2_REQUEST_TIMEOUT_ENV_NAME</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_V2_REQUEST_TIMEOUT&#039;</span>
+</code>
+
+
+    
+    
+    
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_API_V2_TIMEOUT_DEFAULT">
+        API_V2_TIMEOUT_DEFAULT
+        <a href="namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Default timeout value for curl requests.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">API_V2_TIMEOUT_DEFAULT</span>
+    = <span class="phpdocumentor-signature__default-value">120</span>
 </code>
 
 
@@ -453,6 +648,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -530,6 +727,11 @@
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="namespaces/mindee-http.html#constant_API_KEY_ENV_NAME">API_KEY_ENV_NAME</a></li>
+                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT">API_V2_BASE_URL_DEFAULT</a></li>
+                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME">API_V2_BASE_URL_ENV_NAME</a></li>
+                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME">API_V2_KEY_ENV_NAME</a></li>
+                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME">API_V2_REQUEST_TIMEOUT_ENV_NAME</a></li>
+                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT">API_V2_TIMEOUT_DEFAULT</a></li>
                                                     <li class=""><a href="namespaces/mindee-http.html#constant_BASE_URL_DEFAULT">BASE_URL_DEFAULT</a></li>
                                                     <li class=""><a href="namespaces/mindee-http.html#constant_BASE_URL_ENV_NAME">BASE_URL_ENV_NAME</a></li>
                                                     <li class=""><a href="namespaces/mindee-http.html#constant_REQUEST_TIMEOUT_ENV_NAME">REQUEST_TIMEOUT_ENV_NAME</a></li>

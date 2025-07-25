@@ -237,14 +237,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_apiRequest">
         $apiRequest
         <a href="classes/Mindee-Parsing-Common-ApiResponse.html#property_apiRequest" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/ApiResponse.php"><a href="files/src-parsing-common-apiresponse.html"><abbr title="src/Parsing/Common/ApiResponse.php">ApiResponse.php</abbr></a></abbr>
@@ -256,8 +256,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Common-ApiRequest.html"><abbr title="\Mindee\Parsing\Common\ApiRequest">ApiRequest</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Common-ApiRequest.html"><abbr title="\Mindee\Parsing\Common\ApiRequest">ApiRequest</abbr></a></span>
     <span class="phpdocumentor-signature__name">$apiRequest</span>
     </code>
 
@@ -269,20 +269,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_rawHttp">
         $rawHttp
         <a href="classes/Mindee-Parsing-Common-ApiResponse.html#property_rawHttp" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Common/ApiResponse.php"><a href="files/src-parsing-common-apiresponse.html"><abbr title="src/Parsing/Common/ApiResponse.php">ApiResponse.php</abbr></a></abbr>
@@ -294,14 +296,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$rawHttp</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Raw http result. Used for debugging purposes.</p>
 </section>
+
+    
 
     
 
@@ -442,6 +446,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

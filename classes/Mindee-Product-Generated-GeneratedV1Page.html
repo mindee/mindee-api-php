@@ -261,14 +261,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_fields">
         $fields
         <a href="classes/Mindee-Product-Generated-GeneratedV1Page.html#property_fields" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Generated/GeneratedV1Page.php"><a href="files/src-product-generated-generatedv1page.html"><abbr title="src/Product/Generated/GeneratedV1Page.php">GeneratedV1Page.php</abbr></a></abbr>
@@ -280,14 +280,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
     <span class="phpdocumentor-signature__name">$fields</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Dictionary of all fields in the document</p>
 </section>
+
+    
 
     
 
@@ -594,6 +596,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

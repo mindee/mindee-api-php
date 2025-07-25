@@ -416,14 +416,14 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_apiKey">
         $apiKey
         <a href="classes/Mindee-Client.html#property_apiKey" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Client.php"><a href="files/src-client.html"><abbr title="src/Client.php">Client.php</abbr></a></abbr>
@@ -435,14 +435,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$apiKey</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>API key for a given client.</p>
 </section>
+
+    
 
     
 
@@ -2052,6 +2054,8 @@ or if the prediction type isn't recognized or if a field can't be deserialized.<
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

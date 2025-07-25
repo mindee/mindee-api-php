@@ -129,14 +129,12 @@
         <h2 class="phpdocumentor-content__title">version.php</h2>
 
         
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-version.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -158,11 +156,10 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="namespaces/mindee.html#constant_VERSION">VERSION</a>
     <span>
-        &nbsp;= &#039;1.22.0&#039;                            </span>
+        &nbsp;= &#039;1.23.0-rc1&#039;                            </span>
 </dt>
 
     </dl>
-
 
 
 
@@ -196,7 +193,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">VERSION</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;1.22.0&#039;</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;1.23.0-rc1&#039;</span>
 </code>
 
 
@@ -246,6 +243,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

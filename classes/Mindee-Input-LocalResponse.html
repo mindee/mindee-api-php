@@ -150,7 +150,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -205,6 +205,13 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Input-LocalResponse.html#method_deserializeResponse">deserializeResponse()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Deserialize the loaded local response into the requested CommonResponse-derived class.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Input-LocalResponse.html#method_getHMACSignature">getHMACSignature()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -240,33 +247,35 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_file">
         $file
         <a href="classes/Mindee-Input-LocalResponse.html#property_file" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$file</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>File object of the local response.</p>
 </section>
+
+    
 
     
 
@@ -295,7 +304,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -350,6 +359,80 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_deserializeResponse">
+        deserializeResponse()
+        <a href="classes/Mindee-Input-LocalResponse.html#method_deserializeResponse" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">128</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Deserialize the loaded local response into the requested CommonResponse-derived class.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">deserializeResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Typically used when dealing with V2 webhook callbacks.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The class name into which the payload should be deserialized.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Input-LocalResponse.html#method_deserializeResponse#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If the provided class cannot be instantiated.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>An instance of responseClass populated with the file content.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getHMACSignature">
         getHMACSignature()
         <a href="classes/Mindee-Input-LocalResponse.html#method_getHMACSignature" class="headerlink"><i class="fas fa-link"></i></a>
@@ -358,7 +441,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
@@ -429,7 +512,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">113</span>
+    <span class="phpdocumentor-element-found-in__line">114</span>
 
     </aside>
 
@@ -488,7 +571,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalResponse.php"><a href="files/src-input-localresponse.html"><abbr title="src/Input/LocalResponse.php">LocalResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -567,6 +650,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -650,6 +735,7 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-Input-LocalResponse.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-LocalResponse.html#method_deserializeResponse">deserializeResponse()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalResponse.html#method_getHMACSignature">getHMACSignature()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalResponse.html#method_isValidHMACSignature">isValidHMACSignature()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalResponse.html#method_toArray">toArray()</a></li>

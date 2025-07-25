@@ -258,14 +258,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_apiCode">
         $apiCode
         <a href="classes/Mindee-Error-MindeeHttpException.html#property_apiCode" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Error/MindeeHttpException.php"><a href="files/src-error-mindeehttpexception.html"><abbr title="src/Error/MindeeHttpException.php">MindeeHttpException.php</abbr></a></abbr>
@@ -277,8 +277,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|mixed|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string|mixed|null</span>
     <span class="phpdocumentor-signature__name">$apiCode</span>
     </code>
 
@@ -290,20 +290,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_apiDetails">
         $apiDetails
         <a href="classes/Mindee-Error-MindeeHttpException.html#property_apiDetails" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Error/MindeeHttpException.php"><a href="files/src-error-mindeehttpexception.html"><abbr title="src/Error/MindeeHttpException.php">MindeeHttpException.php</abbr></a></abbr>
@@ -315,8 +317,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">mixed|null</span>
     <span class="phpdocumentor-signature__name">$apiDetails</span>
     </code>
 
@@ -328,20 +330,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_apiMessage">
         $apiMessage
         <a href="classes/Mindee-Error-MindeeHttpException.html#property_apiMessage" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Error/MindeeHttpException.php"><a href="files/src-error-mindeehttpexception.html"><abbr title="src/Error/MindeeHttpException.php">MindeeHttpException.php</abbr></a></abbr>
@@ -353,8 +357,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|mixed|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string|mixed|null</span>
     <span class="phpdocumentor-signature__name">$apiMessage</span>
     </code>
 
@@ -366,20 +370,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_statusCode">
         $statusCode
         <a href="classes/Mindee-Error-MindeeHttpException.html#property_statusCode" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Error/MindeeHttpException.php"><a href="files/src-error-mindeehttpexception.html"><abbr title="src/Error/MindeeHttpException.php">MindeeHttpException.php</abbr></a></abbr>
@@ -391,14 +397,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$statusCode</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Status code as sent by the server.</p>
 </section>
+
+    
 
     
 
@@ -642,6 +650,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

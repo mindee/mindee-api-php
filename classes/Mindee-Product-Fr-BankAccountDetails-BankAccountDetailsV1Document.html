@@ -245,14 +245,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_accountHolderName">
         $accountHolderName
         <a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#property_accountHolderName" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV1Document.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv1document.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV1Document.php">BankAccountDetailsV1Document.php</abbr></a></abbr>
@@ -264,8 +264,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
     <span class="phpdocumentor-signature__name">$accountHolderName</span>
     </code>
 
@@ -277,20 +277,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_iban">
         $iban
         <a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#property_iban" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV1Document.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv1document.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV1Document.php">BankAccountDetailsV1Document.php</abbr></a></abbr>
@@ -302,8 +304,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
     <span class="phpdocumentor-signature__name">$iban</span>
     </code>
 
@@ -315,20 +317,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_swift">
         $swift
         <a href="classes/Mindee-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#property_swift" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV1Document.php"><a href="files/src-product-fr-bankaccountdetails-bankaccountdetailsv1document.html"><abbr title="src/Product/Fr/BankAccountDetails/BankAccountDetailsV1Document.php">BankAccountDetailsV1Document.php</abbr></a></abbr>
@@ -340,14 +344,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a></span>
     <span class="phpdocumentor-signature__name">$swift</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>The bank's SWIFT Business Identifier Code (BIC).</p>
 </section>
+
+    
 
     
 
@@ -514,6 +520,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

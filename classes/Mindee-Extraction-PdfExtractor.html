@@ -255,14 +255,14 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_fileName">
         $fileName
         <a href="classes/Mindee-Extraction-PdfExtractor.html#property_fileName" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
@@ -274,8 +274,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$fileName</span>
     </code>
 
@@ -287,20 +287,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_pdfBytes">
         $pdfBytes
         <a href="classes/Mindee-Extraction-PdfExtractor.html#property_pdfBytes" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
@@ -312,14 +314,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$pdfBytes</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Bytes representation of a file.</p>
 </section>
+
+    
 
     
 
@@ -684,6 +688,8 @@ or if the file can't be read, respectively.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

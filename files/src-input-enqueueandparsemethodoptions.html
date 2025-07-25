@@ -129,14 +129,12 @@
         <h2 class="phpdocumentor-content__title">EnqueueAndParseMethodOptions.php</h2>
 
         
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-input-enqueueandparsemethodoptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -156,26 +154,6 @@
 
 
 
-<h4 id="toc-constants">
-    Constants
-    <a href="files/src-input-enqueueandparsemethodoptions.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-input.html#constant_MINIMUM_DELAY_SECONDS">MINIMUM_DELAY_SECONDS</a>
-    <span>
-        &nbsp;= 1.0                            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-input.html#constant_MINIMUM_INITIAL_DELAY_SECONDS">MINIMUM_INITIAL_DELAY_SECONDS</a>
-    <span>
-        &nbsp;= 1.0                            </span>
-</dt>
-
-    </dl>
-
 
 
 
@@ -183,75 +161,6 @@
 
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="files/src-input-enqueueandparsemethodoptions.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_MINIMUM_DELAY_SECONDS">
-        MINIMUM_DELAY_SECONDS
-        <a href="namespaces/mindee-input.html#constant_MINIMUM_DELAY_SECONDS" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">9</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">MINIMUM_DELAY_SECONDS</span>
-    = <span class="phpdocumentor-signature__default-value">1.0</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_MINIMUM_INITIAL_DELAY_SECONDS">
-        MINIMUM_INITIAL_DELAY_SECONDS
-        <a href="namespaces/mindee-input.html#constant_MINIMUM_INITIAL_DELAY_SECONDS" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/EnqueueAndParseMethodOptions.php"><a href="files/src-input-enqueueandparsemethodoptions.html"><abbr title="src/Input/EnqueueAndParseMethodOptions.php">EnqueueAndParseMethodOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">8</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">MINIMUM_INITIAL_DELAY_SECONDS</span>
-    = <span class="phpdocumentor-signature__default-value">1.0</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
         
         <div class="phpdocumentor-modal" id="source-view">
@@ -290,6 +199,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -358,17 +269,9 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                                                                                         <li><a href="files/src-input-enqueueandparsemethodoptions.html#toc-classes">Classes</a></li>
-                                                                                                        <li><a href="files/src-input-enqueueandparsemethodoptions.html#toc-constants">Constants</a></li>
-                                                        </ul>
+                                                                                                                    </ul>
             </li>
 
-                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="namespaces/mindee-input.html#constant_MINIMUM_DELAY_SECONDS">MINIMUM_DELAY_SECONDS</a></li>
-                                                    <li class=""><a href="namespaces/mindee-input.html#constant_MINIMUM_INITIAL_DELAY_SECONDS">MINIMUM_INITIAL_DELAY_SECONDS</a></li>
-                                            </ul>
-                </li>
             
                     </ul>
     </section>

@@ -238,14 +238,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_codes1D">
         $codes1D
         <a href="classes/Mindee-Product-BarcodeReader-BarcodeReaderV1Document.html#property_codes1D" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/BarcodeReader/BarcodeReaderV1Document.php"><a href="files/src-product-barcodereader-barcodereaderv1document.html"><abbr title="src/Product/BarcodeReader/BarcodeReaderV1Document.php">BarcodeReaderV1Document.php</abbr></a></abbr>
@@ -257,8 +257,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>&gt;</span>
     <span class="phpdocumentor-signature__name">$codes1D</span>
     </code>
 
@@ -270,20 +270,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_codes2D">
         $codes2D
         <a href="classes/Mindee-Product-BarcodeReader-BarcodeReaderV1Document.html#property_codes2D" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Product/BarcodeReader/BarcodeReaderV1Document.php"><a href="files/src-product-barcodereader-barcodereaderv1document.html"><abbr title="src/Product/BarcodeReader/BarcodeReaderV1Document.php">BarcodeReaderV1Document.php</abbr></a></abbr>
@@ -295,14 +297,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>&gt;</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-Standard-StringField.html"><abbr title="\Mindee\Parsing\Standard\StringField">StringField</abbr></a>&gt;</span>
     <span class="phpdocumentor-signature__name">$codes2D</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>List of decoded 2D barcodes.</p>
 </section>
+
+    
 
     
 
@@ -469,6 +473,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -239,6 +239,13 @@
 <dd>Base constructor, mostly used for Mime type checking.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Input-LocalInputSource.html#method_applyPageOptions">applyPageOptions()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Applies PDF-specific operations on the current file based on the specified PageOptions.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Input-LocalInputSource.html#method_close">close()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -294,7 +301,7 @@
 <dd>Create a new PDF from pages and set it as the main file object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Input-LocalInputSource.html#method_processPDF">processPDF()</a>
+    <a class="-deprecated" href="classes/Mindee-Input-LocalInputSource.html#method_processPDF">processPDF()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -306,26 +313,6 @@
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>Reads the contents of the file.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-Input-LocalInputSource.html#method_checkMimeType">checkMimeType()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Checks the mimetype integrity of a file.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-Input-LocalInputSource.html#method_fixPDF">fixPDF()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Attempts to fix a PDF file.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-Input-LocalInputSource.html#method_saveBytesAsFile">saveBytesAsFile()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
 
     </dl>
 
@@ -345,14 +332,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_fileMimetype">
         $fileMimetype
         <a href="classes/Mindee-Input-LocalInputSource.html#property_fileMimetype" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
@@ -364,8 +351,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$fileMimetype</span>
     </code>
 
@@ -377,20 +364,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_fileName">
         $fileName
         <a href="classes/Mindee-Input-LocalInputSource.html#property_fileName" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
@@ -402,8 +391,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$fileName</span>
     </code>
 
@@ -415,20 +404,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_fileObject">
         $fileObject
         <a href="classes/Mindee-Input-LocalInputSource.html#property_fileObject" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
@@ -440,8 +431,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\CURLFile">CURLFile</abbr></span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\CURLFile">CURLFile</abbr></span>
     <span class="phpdocumentor-signature__name">$fileObject</span>
     </code>
 
@@ -453,20 +444,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_filePath">
         $filePath
         <a href="classes/Mindee-Input-LocalInputSource.html#property_filePath" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
@@ -478,8 +471,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
     <span class="phpdocumentor-signature__name">$filePath</span>
     </code>
 
@@ -491,20 +484,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -protected
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_throwsOnClose">
         $throwsOnClose
         <a href="classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
@@ -516,8 +511,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">bool</span>
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">bool</span>
     <span class="phpdocumentor-signature__name">$throwsOnClose</span>
     </code>
 
@@ -529,20 +524,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_tempFile">
         $tempFile
         <a href="classes/Mindee-Input-Base64Input.html#property_tempFile" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/Base64Input.php"><a href="files/src-input-base64input.html"><abbr title="src/Input/Base64Input.php">Base64Input.php</abbr></a></abbr>
@@ -554,14 +551,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$tempFile</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>Temporary file.</p>
 </section>
+
+    
 
     
 
@@ -647,6 +646,70 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_applyPageOptions">
+        applyPageOptions()
+        <a href="classes/Mindee-Input-LocalInputSource.html#method_applyPageOptions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">364</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Applies PDF-specific operations on the current file based on the specified PageOptions.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">applyPageOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-PageOptions.html"><abbr title="\Mindee\Input\PageOptions">PageOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageOptions</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$pageOptions</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-PageOptions.html"><abbr title="\Mindee\Input\PageOptions">PageOptions</abbr></a>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The options specifying which pages to modify or retain in the PDF file.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Input-LocalInputSource.html#method_applyPageOptions#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeePDFException.html"><abbr title="\Mindee\Error\MindeePDFException">MindeePDFException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If a PDF processing error occurs during the operation.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_close">
         close()
         <a href="classes/Mindee-Input-LocalInputSource.html#method_close" class="headerlink"><i class="fas fa-link"></i></a>
@@ -655,7 +718,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">322</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 
     </aside>
 
@@ -707,7 +770,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">358</span>
+    <span class="phpdocumentor-element-found-in__line">312</span>
 
     </aside>
 
@@ -860,7 +923,7 @@ original or not. Needs force_source_text to work.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">340</span>
+    <span class="phpdocumentor-element-found-in__line">294</span>
 
     </aside>
 
@@ -897,7 +960,7 @@ original or not. Needs force_source_text to work.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">394</span>
+    <span class="phpdocumentor-element-found-in__line">348</span>
 
     </aside>
 
@@ -996,7 +1059,7 @@ original or not. Needs force_source_text to work.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">241</span>
+    <span class="phpdocumentor-element-found-in__line">195</span>
 
     </aside>
 
@@ -1064,7 +1127,7 @@ original or not. Needs force_source_text to work.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">214</span>
+    <span class="phpdocumentor-element-found-in__line">168</span>
 
     </aside>
 
@@ -1118,7 +1181,7 @@ original or not. Needs force_source_text to work.</p>
         class="phpdocumentor-element
             -method
             -public
-                                                        "
+            -deprecated                                            "
 >
     <h4 class="phpdocumentor-element__name" id="method_processPDF">
         processPDF()
@@ -1128,17 +1191,24 @@ original or not. Needs force_source_text to work.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">144</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">Processes a PDF file.</p>
 
-    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <code class="phpdocumentor-code phpdocumentor-signature -deprecated">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">processPDF</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$behavior</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$onMinPages</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndexes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
+        </div>
+                <div class="phpdocumentor-admonition">
+        <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <article>
+                <p>Use applyPageOptions() instead.</p>
+
+            </article>
         </div>
     
         <section class="phpdocumentor-description"><p>To be implemented.</p>
@@ -1237,156 +1307,6 @@ original or not. Needs force_source_text to work.</p>
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_checkMimeType">
-        checkMimeType()
-        <a href="classes/Mindee-Input-LocalInputSource.html#method_checkMimeType" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">71</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Checks the mimetype integrity of a file.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">checkMimeType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/Mindee-Input-LocalInputSource.html#method_checkMimeType#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeMimeTypeException.html"><abbr title="\Mindee\Error\MindeeMimeTypeException">MindeeMimeTypeException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>Throws if the Mime type isn't allowed.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_fixPDF">
-        fixPDF()
-        <a href="classes/Mindee-Input-LocalInputSource.html#method_fixPDF" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">288</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Attempts to fix a PDF file.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">fixPDF</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/Mindee-Input-LocalInputSource.html#method_fixPDF#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeSourceException.html"><abbr title="\Mindee\Error\MindeeSourceException">MindeeSourceException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>Throws if the file couldn't be fixed.</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_saveBytesAsFile">
-        saveBytesAsFile()
-        <a href="classes/Mindee-Input-LocalInputSource.html#method_saveBytesAsFile" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/LocalInputSource.php"><a href="files/src-input-localinputsource.html"><abbr title="src/Input/LocalInputSource.php">LocalInputSource.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">200</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">saveBytesAsFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileBytes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$fileBytes</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw data as bytes.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
@@ -1425,6 +1345,8 @@ original or not. Needs force_source_text to work.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
@@ -1513,6 +1435,7 @@ original or not. Needs force_source_text to work.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-Input-Base64Input.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_applyPageOptions">applyPageOptions()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_close">close()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_compress">compress()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_countDocPages">countDocPages()</a></li>
@@ -1521,11 +1444,8 @@ original or not. Needs force_source_text to work.</p>
                                             <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_isPDF">isPDF()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_isPDFEmpty">isPDFEmpty()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_mergePDFPages">mergePDFPages()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_processPDF">processPDF()</a></li>
+                                            <li class="-deprecated"><a href="classes/Mindee-Input-LocalInputSource.html#method_processPDF">processPDF()</a></li>
                                             <li class=""><a href="classes/Mindee-Input-Base64Input.html#method_readContents">readContents()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_checkMimeType">checkMimeType()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_fixPDF">fixPDF()</a></li>
-                                            <li class=""><a href="classes/Mindee-Input-LocalInputSource.html#method_saveBytesAsFile">saveBytesAsFile()</a></li>
                                     </ul>
             </li>
                     </ul>

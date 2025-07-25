@@ -235,14 +235,14 @@
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_confidence">
         $confidence
         <a href="classes/Mindee-Parsing-Custom-ClassificationField.html#property_confidence" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Custom/ClassificationField.php"><a href="files/src-parsing-custom-classificationfield.html"><abbr title="src/Parsing/Custom/ClassificationField.php">ClassificationField.php</abbr></a></abbr>
@@ -254,8 +254,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">float|mixed</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">float|mixed</span>
     <span class="phpdocumentor-signature__name">$confidence</span>
     </code>
 
@@ -267,20 +267,22 @@
 
     
 
+    
+
 </article>
                     <article
         class="
             phpdocumentor-element
             -property
             -public
-                                                        "
+                                                                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_value">
         $value
         <a href="classes/Mindee-Parsing-Custom-ClassificationField.html#property_value" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                                            </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/Custom/ClassificationField.php"><a href="files/src-parsing-custom-classificationfield.html"><abbr title="src/Parsing/Custom/ClassificationField.php">ClassificationField.php</abbr></a></abbr>
@@ -292,14 +294,16 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string|mixed|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string|mixed|null</span>
     <span class="phpdocumentor-signature__name">$value</span>
     </code>
 
     
         <section class="phpdocumentor-description"><p>The classification value.</p>
 </section>
+
+    
 
     
 
@@ -440,6 +444,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
