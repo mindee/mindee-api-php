@@ -9,19 +9,19 @@ permissions:
 
 jobs:
   static-analysis:
-    uses: ./.github/workflows/_static-analysis.yml@main
+    uses: ./.github/workflows/_static-analysis.yml
   static-dependency-checks:
-    uses: ./.github/workflows/_static-dependency-checks.yml@main
+    uses: ./.github/workflows/_static-dependency-checks.yml
     needs: static-analysis
   test-units:
-    uses: ./.github/workflows/_test-units.yml@main
+    uses: ./.github/workflows/_test-units.yml
     needs: static-analysis
     secrets: inherit
   test-integrations:
-    uses: ./.github/workflows/_test-integrations.yml@main
+    uses: ./.github/workflows/_test-integrations.yml
     needs: test-units
     secrets: inherit
   test-code-samples:
-    uses: ./.github/workflows/_test-code-samples.yml@main
+    uses: ./.github/workflows/_test-code-samples.yml
     needs: test-units
     secrets: inherit
