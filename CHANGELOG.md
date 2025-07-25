@@ -1,5 +1,14 @@
 # Mindee PHP API Library Changelog
 
+## v1.23.0-rc1 - 2025-07-25
+### Changes
+* :sparkles: add support for Client V2
+* :recycle: deprecate `processPDF()` in favor of `applyPageOptions()`
+### Fixes
+* :recycle: bump CI to target local branch workflows instead of main
+* :bug: fix dependency checker to return expected types
+
+
 ## v1.22.0 - 2025-06-03
 ### Changes
 * :sparkles: add support for address fields

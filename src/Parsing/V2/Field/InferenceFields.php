@@ -2,7 +2,6 @@
 
 namespace Mindee\Parsing\V2\Field;
 
-use ArrayIterator;
 use ArrayObject;
 
 /**
