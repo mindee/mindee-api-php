@@ -96,7 +96,7 @@ abstract class BaseApi
     }
 
     /**
-     * Sets values from environment if needed.
+     * Sets values from environment, if needed.
      *
      * @return void
      */
@@ -114,7 +114,6 @@ abstract class BaseApi
             }
         }
     }
-
 
     /**
      * Sets the API key.
@@ -143,19 +142,5 @@ abstract class BaseApi
         $this->baseUrl = BASE_URL_DEFAULT;
         $this->requestTimeout = TIMEOUT_DEFAULT;
         $this->setFromEnv();
-    }
-
-    /**
-     * Sets the URL root.
-     *
-     * @param string $urlSuffix The URL suffix to be added after the root url.
-     * @return void
-     */
-    public function updateUrlRoot(string $urlSuffix): void
-    {
-        $this->urlRoot = rtrim(
-            $this->baseUrl,
-            "/"
-        ) . $urlSuffix;
     }
 }

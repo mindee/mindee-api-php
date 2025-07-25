@@ -27,7 +27,7 @@ class FullTextOCRTest extends TestCase
         $document = $this->loadDocument();
         $fullTextOcr = $document->extras->fullTextOcr;
 
-        $this->assertEquals(trim($expectedText), trim($fullTextOcr->__toString()));
+        $this->assertEquals(trim($expectedText), trim(strval($fullTextOcr)));
     }
 
     // NOTE: disabled due to the current system used to manage pages of some APIs.

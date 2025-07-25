@@ -226,7 +226,7 @@ class Client
      */
     private function cutDocPages(LocalInputSource $inputDoc, PageOptions $pageOptions)
     {
-        $inputDoc->processPDF($pageOptions->operation, $pageOptions->onMinPage, $pageOptions->pageIndexes);
+        $inputDoc->applyPageOptions($pageOptions);
     }
 
     /**

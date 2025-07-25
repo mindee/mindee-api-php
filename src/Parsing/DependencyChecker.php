@@ -12,7 +12,7 @@ use Mindee\Error\MindeeUnhandledException;
 class DependencyChecker
 {
     /**
-     * Returns true if ghostscript is available on the system.
+     * Throws if GhostScript isn't available on the system.
      *
      * @return void
      * @throws MindeeUnhandledException Throws if the GhostScript command cannot be found on the system.
@@ -20,6 +20,7 @@ class DependencyChecker
     public static function isGhostscriptAvailable(): void
     {
         try {
+            $commandWasExecuted = false;
             if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                 $possiblePaths = [
                     'C:\Program Files\gs\gs*\bin\gswin64c.exe',
@@ -59,7 +60,7 @@ class DependencyChecker
     }
 
     /**
-     * Returns true if ImageMagick is available on the system.
+     * Throws if ImageMagick isn't available on the system.
      *
      * @return void
      * @throws MindeeUnhandledException Throws if ImageMagick isn't loaded.
