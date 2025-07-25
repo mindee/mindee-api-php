@@ -7,8 +7,10 @@ namespace Mindee\Parsing\V2\Field;
  */
 class SimpleField extends BaseField
 {
+    use DynamicField;
+
     /**
-     * @var string | int | float | boolean | null Value contained in the field.
+     * @var string | integer | float | boolean | null Value contained in the field.
      */
     public $value;
 

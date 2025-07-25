@@ -103,7 +103,7 @@ class InferenceTest extends TestCase
         $baseTax = $taxItemObj->fields->get('base');
         $this->assertInstanceOf(SimpleField::class, $baseTax);
         $this->assertEquals(31.5, $baseTax->value, "'taxes.base' value mismatch");
-        $this->assertNotNull($taxes->__toString(), "'taxes'.__toString() must not be null");
+        $this->assertNotNull(strval($taxes), "'taxes'.__toString() must not be null");
 
         $supplierAddress = $fields->get('supplier_address');
         $this->assertNotNull($supplierAddress, "'supplier_address' field must exist");
@@ -113,8 +113,8 @@ class InferenceTest extends TestCase
         $this->assertNotNull($country, "'supplier_address.country' must exist");
         $this->assertInstanceOf(SimpleField::class, $country);
         $this->assertEquals('USA', $country->value, 'Country mismatch');
-        $this->assertEquals('USA', $country->__toString(), "'country'.__toString() mismatch");
-        $this->assertNotNull($supplierAddress->__toString(), "'supplier_address'.__toString() must not be null");
+        $this->assertEquals('USA', strval($country), "'country'.__toString() mismatch");
+        $this->assertNotNull(strval($supplierAddress), "'supplier_address'.__toString() must not be null");
 
         $customerAddr = $fields->get('customer_address');
         $this->assertInstanceOf(ObjectField::class, $customerAddr);
@@ -270,6 +270,6 @@ class InferenceTest extends TestCase
         $rstRef = $this->readFileAsString('v2/inference/standard_field_types.rst');
         $inf = $resp->inference;
         $this->assertNotNull($inf);
-        $this->assertEquals($rstRef, $resp->inference->__toString());
+        $this->assertEquals($rstRef, strval($resp->inference));
     }
 }

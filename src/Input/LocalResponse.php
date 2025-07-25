@@ -5,7 +5,6 @@ namespace Mindee\Input;
 use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
-use Mindee\Parsing\V2\InferenceResponse;
 
 /**
  * Local response loaded from a file.
@@ -116,6 +115,7 @@ class LocalResponse
     {
         return $signature === $this->getHMACSignature($secretKey);
     }
+
     /**
      * Deserialize the loaded local response into the requested CommonResponse-derived class.
      *

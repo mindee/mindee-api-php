@@ -140,57 +140,11 @@ abstract class LocalInputSource extends InputSource
      * @param array   $pageIndexes Indexes of the pages to apply the operation to.
      * @return void
      * @throws MindeePDFException Throws if the operation is unknown, or if the resulting PDF can't be processed.
+     * @deprecated Use applyPageOptions() instead.
      */
     public function processPDF(string $behavior, int $onMinPages, array $pageIndexes)
     {
-        if ($this->isPDFEmpty()) {
-            throw new MindeePDFException(
-                "Pages are empty in PDF file.",
-                ErrorCode::USER_INPUT_ERROR
-            );
-        }
-        if ($this->countDocPages() < $onMinPages) {
-            return;
-        }
-        $allPages = range(0, $this->countDocPages() - 1);
-        $pagesToKeep = [];
-        if ($behavior == KEEP_ONLY) {
-            foreach ($pageIndexes as $pageId) {
-                if ($pageId < 0) {
-                    $pageId = $this->countDocPages() + $pageId;
-                }
-                if (!in_array($pageId, $allPages)) {
-                    error_log("Page index '" . $pageId . "' is not present in source document");
-                } else {
-                    $pagesToKeep[] = $pageId;
-                }
-            }
-        } elseif ($behavior == REMOVE) {
-            $pagesToRemove = [];
-            foreach ($pageIndexes as $pageId) {
-                if ($pageId < 0) {
-                    $pageId = $this->countDocPages() + $pageId;
-                }
-                if (!in_array($pageId, $allPages)) {
-                    error_log("Page index '" . $pageId . "' is not present in source document");
-                } else {
-                    $pagesToRemove[] = $pageId;
-                }
-            }
-            $pagesToKeep = array_diff($allPages, $pagesToRemove);
-        } else {
-            throw new MindeePDFException(
-                "Unknown operation '" . $behavior . "'.",
-                ErrorCode::USER_OPERATION_ERROR
-            );
-        }
-        if (count($pagesToKeep) < 1) {
-            throw new MindeePDFException(
-                "Resulting PDF would have no pages left.",
-                ErrorCode::USER_OPERATION_ERROR
-            );
-        }
-        $this->mergePDFPages($pagesToKeep);
+        $this->applyPageOptions(new PageOptions($pageIndexes, $behavior, $onMinPages));
     }
 
     /**
@@ -409,12 +363,53 @@ abstract class LocalInputSource extends InputSource
      */
     public function applyPageOptions(?PageOptions $pageOptions): void
     {
-        if ($pageOptions !== null && $this->isPDF()) {
-            $this->processPDF(
-                $pageOptions->operation,
-                $pageOptions->onMinPage,
-                $pageOptions->pageIndexes
+        if ($this->isPDFEmpty()) {
+            throw new MindeePDFException(
+                "Pages are empty in PDF file.",
+                ErrorCode::USER_INPUT_ERROR
             );
         }
+        if ($this->countDocPages() < $pageOptions->onMinPage) {
+            return;
+        }
+        $allPages = range(0, $this->countDocPages() - 1);
+        $pagesToKeep = [];
+        if ($pageOptions->operation == KEEP_ONLY) {
+            foreach ($pageOptions->pageIndexes as $pageId) {
+                if ($pageId < 0) {
+                    $pageId = $this->countDocPages() + $pageId;
+                }
+                if (!in_array($pageId, $allPages)) {
+                    error_log("Page index '" . $pageId . "' is not present in source document");
+                } else {
+                    $pagesToKeep[] = $pageId;
+                }
+            }
+        } elseif ($pageOptions->operation == REMOVE) {
+            $pagesToRemove = [];
+            foreach ($pageOptions->pageIndexes as $pageId) {
+                if ($pageId < 0) {
+                    $pageId = $this->countDocPages() + $pageId;
+                }
+                if (!in_array($pageId, $allPages)) {
+                    error_log("Page index '" . $pageId . "' is not present in source document");
+                } else {
+                    $pagesToRemove[] = $pageId;
+                }
+            }
+            $pagesToKeep = array_diff($allPages, $pagesToRemove);
+        } else {
+            throw new MindeePDFException(
+                "Unknown operation '" . $pageOptions->operation . "'.",
+                ErrorCode::USER_OPERATION_ERROR
+            );
+        }
+        if (count($pagesToKeep) < 1) {
+            throw new MindeePDFException(
+                "Resulting PDF would have no pages left.",
+                ErrorCode::USER_OPERATION_ERROR
+            );
+        }
+        $this->mergePDFPages($pagesToKeep);
     }
 }

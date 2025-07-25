@@ -27,7 +27,7 @@ class PollingOptions
     public int $maxRetries;
 
     /**
-     *
+     * Polling Options.
      */
     public function __construct()
     {

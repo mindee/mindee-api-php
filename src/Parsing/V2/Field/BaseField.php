@@ -30,12 +30,6 @@ abstract class BaseField
     public function __construct(array $rawPrediction, int $indentLevel = 0)
     {
         $this->indentLevel = $indentLevel;
-        if (array_key_exists("locations", $rawPrediction)) {
-            $this->locations = [];
-            foreach ($rawPrediction["locations"] as $location) {
-                $this->locations[] = new FieldLocation($location);
-            }
-        }
         $this->confidence = null;
     }
 

@@ -7,6 +7,7 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Image\ImageCompressor;
+use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
 use Mindee\PDF\PDFCompressor;
 use Mindee\PDF\PDFUtils;
@@ -81,7 +82,7 @@ class LocalInputSourceTest extends TestCase
     public function testPDFReconstructOK()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]);
+        $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
         $this->assertEquals(5, $inputObj->countDocPages());
     }
 
@@ -98,7 +99,7 @@ class LocalInputSourceTest extends TestCase
     public function testPDFCutNPages(array $indexes)
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(KEEP_ONLY, 2, $indexes);
+        $inputObj->applyPageOptions(new PageOptions($indexes, KEEP_ONLY, 2));
         try {
             $basePdf = new FPDI();
             $cutPdf = new FPDI();
@@ -143,14 +144,14 @@ class LocalInputSourceTest extends TestCase
     public function testPDFKeep5FirstPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 2, 3, 4]);
+        $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
         $this->assertEquals(5, $inputObj->countDocPages());
     }
 
     public function testPDFKeepInvalidPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(KEEP_ONLY, 2, [0, 1, 17]);
+        $inputObj->applyPageOptions(new PageOptions([0, 1, 17], KEEP_ONLY, 2));
         $this->assertEquals(2, $inputObj->countDocPages());
     }
 
@@ -158,21 +159,21 @@ class LocalInputSourceTest extends TestCase
     {
 
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(REMOVE, 2, [-5, -4, -3, -2, -1]);
+        $inputObj->applyPageOptions(new PageOptions([-5, -4, -3, -2, -1], REMOVE, 2));
         $this->assertEquals(7, $inputObj->countDocPages());
     }
 
     public function testPDFRemove5FirstPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(REMOVE, 2, [0, 1, 2, 3, 4]);
+        $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], REMOVE, 2));
         $this->assertEquals(7, $inputObj->countDocPages());
     }
 
     public function testPDFRemoveInvalidPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $inputObj->processPDF(REMOVE, 2, [16]);
+        $inputObj->applyPageOptions(new PageOptions([16], REMOVE, 2));
         $this->assertEquals(12, $inputObj->countDocPages());
     }
 
@@ -180,14 +181,14 @@ class LocalInputSourceTest extends TestCase
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $this->expectException(MindeePDFException::class);
-        $inputObj->processPDF(KEEP_ONLY, 2, []);
+        $inputObj->applyPageOptions(new PageOptions([], KEEP_ONLY, 2));
     }
 
     public function testPDFRemoveAllPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $this->expectException(MindeePDFException::class);
-        $inputObj->processPDF(REMOVE, 2, range(0, $inputObj->countDocPages() - 1));
+        $inputObj->applyPageOptions(new PageOptions(range(0, $inputObj->countDocPages() - 1), REMOVE, 2));
     }
 
     public function testPDFInputFromFile()

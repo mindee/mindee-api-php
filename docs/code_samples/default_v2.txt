@@ -14,9 +14,10 @@ $mindeeClient = new ClientV2($apiKey);
 
 // Set inference parameters
 // Note: modelId is mandatory.
-$options = new InferenceParameters(
+$inferenceParams = new InferenceParameters(
     $modelId,
-    false // If set to `true`, will enable Retrieval-Augmented Generation.
+    // If set to `true`, will enable Retrieval-Augmented Generation.
+    false
 );
 
 // Load a file from disk
@@ -25,7 +26,7 @@ $inputSource = new PathInput($filePath);
 // Upload the file
 $response = $mindeeClient->enqueueAndGetInference(
     $inputSource,
-    $options
+    $inferenceParams
 );
 
 // Print a summary of the response

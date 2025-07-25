@@ -35,24 +35,6 @@ class InferenceFields extends ArrayObject
     }
 
     /**
-     * @return ArrayIterator
-     */
-    public function getIterator(): ArrayIterator
-    {
-        return new ArrayIterator($this->fields);
-    }
-
-    /**
-     * Get the size of the collection.
-     *
-     * @return integer
-     */
-    public function count(): int
-    {
-        return count($this->fields);
-    }
-
-    /**
      * Get a field by key.
      *
      * @param string $key Field key to retrieve.
@@ -99,13 +81,5 @@ class InferenceFields extends ArrayObject
         }
 
         return rtrim(implode("\n", $lines));
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->toString();
     }
 }
