@@ -14,13 +14,13 @@ const MINIMUM_DELAY_SECONDS = 1.0;
 class PollingOptions
 {
     /**
-     * @var integer Initial delay (in seconds) before attempting to poll a queue.
+     * @var float Initial delay (in seconds) before attempting to poll a queue.
      */
-    public int $initialDelaySec;
+    public float $initialDelaySec;
     /**
-     * @var integer Delay (in seconds) between successive attempts to poll a queue.
+     * @var float Delay (in seconds) between successive attempts to poll a queue.
      */
-    public int $delaySec;
+    public float $delaySec;
     /**
      * @var integer Maximum number of retries for a queue.
      */
@@ -31,7 +31,7 @@ class PollingOptions
      */
     public function __construct()
     {
-        $this->initialDelaySec = 2;
+        $this->initialDelaySec = 2.0;
         $this->delaySec = 1.5;
         $this->maxRetries = 80;
     }
