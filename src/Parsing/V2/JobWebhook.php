@@ -6,12 +6,12 @@ use DateTime;
 use Exception;
 
 /**
- * JobResponseWebhook information.
+ * JobWebhook information.
  */
-class JobResponseWebhook
+class JobWebhook
 {
     /**
-     * @var string JobResponseWebhook ID.
+     * @var string JobWebhook ID.
      */
     public string $id;
 

@@ -56,7 +56,7 @@ class Job
     public ?string $resultUrl;
 
     /**
-     * @var JobResponseWebhook[] ID of webhooks associated with the job.
+     * @var JobWebhook[] ID of webhooks associated with the job.
      */
     public array $webhooks;
 

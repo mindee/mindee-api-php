@@ -82,6 +82,8 @@ class InferenceTest extends TestCase
         $file = $inf->file;
         $this->assertNotNull($file, 'File must not be null');
         $this->assertEquals('complete.jpg', $file->name, 'File name mismatch');
+        $this->assertEquals(1, $file->pageCount, 'File page count mismatch');
+        $this->assertEquals('image/jpeg', $file->mimeType, 'File MIME type mismatch');
         $this->assertNull($file->alias ?? null, 'File alias must be null for this payload');
 
         $fields = $inf->result->fields;
