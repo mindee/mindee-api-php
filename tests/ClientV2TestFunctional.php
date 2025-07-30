@@ -95,7 +95,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testUrlInputSourceMustNotRaiseErrors(): void
     {
-        $urlSource = new URLInputSource('https://upload.wikimedia.org/wikipedia/commons/1/1d/Blank_Page.pdf');
+        $urlSource = new URLInputSource(getenv('MINDEE_V2_SE_TESTS_BLANK_PDF_URL'));
 
         $options = new InferenceParameters($this->modelId);
 

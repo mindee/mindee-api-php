@@ -5,7 +5,7 @@ namespace Mindee\Parsing\V2;
 /**
  * Inference result model class.
  */
-class InferenceResultModel
+class InferenceModel
 {
     /**
      * @var string ID of the model.

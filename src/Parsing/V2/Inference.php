@@ -8,14 +8,14 @@ namespace Mindee\Parsing\V2;
 class Inference
 {
     /**
-     * @var InferenceResultModel Model info for the inference.
+     * @var InferenceModel Model info for the inference.
      */
-    public InferenceResultModel $model;
+    public InferenceModel $model;
 
     /**
-     * @var InferenceResultFile File info for the inference.
+     * @var InferenceFile File info for the inference.
      */
-    public InferenceResultFile $file;
+    public InferenceFile $file;
 
     /**
      * @var InferenceResult Result of the inference.
@@ -32,8 +32,8 @@ class Inference
      */
     public function __construct(array $serverResponse)
     {
-        $this->model = new InferenceResultModel($serverResponse['model']);
-        $this->file = new InferenceResultFile($serverResponse['file']);
+        $this->model = new InferenceModel($serverResponse['model']);
+        $this->file = new InferenceFile($serverResponse['file']);
         $this->result = new InferenceResult($serverResponse['result']);
         $this->id = $serverResponse['id'] ?? null;
     }
