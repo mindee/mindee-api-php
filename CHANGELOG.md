@@ -1,5 +1,12 @@
 # Mindee PHP API Library Changelog
 
+## v1.23.0-rc2 - 2025-08-01
+### Changes
+* :sparkles: add support for page count & mimetype + rename internals
+### Fixes
+* :bug: fix for type documentation in PollingOptions
+
+
 ## v1.23.0-rc1 - 2025-07-25
 ### Changes
 * :sparkles: add support for Client V2
