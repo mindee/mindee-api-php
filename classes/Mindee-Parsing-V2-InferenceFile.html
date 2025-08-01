@@ -130,7 +130,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Job
+    InferenceFile
 
     
             <div class="phpdocumentor-element__package">
@@ -149,13 +149,13 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Job information for a V2 polling attempt.</p>
+            <p class="phpdocumentor-summary">Inference result file class.</p>
 
 
 
@@ -167,7 +167,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Mindee-Parsing-V2-Job.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Parsing-V2-InferenceFile.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -181,90 +181,59 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Mindee-Parsing-V2-Job.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Parsing-V2-InferenceFile.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_alias">$alias</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#property_alias">$alias</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_createdAt">$createdAt</a>
-    <span>
-                        &nbsp;: <abbr title="\DateTime">DateTime</abbr>|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_error">$error</a>
-    <span>
-                        &nbsp;: <a href="classes/Mindee-Parsing-V2-ErrorResponse.html"><abbr title="\Mindee\Parsing\V2\ErrorResponse">ErrorResponse</abbr></a>|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_filename">$filename</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#property_mimeType">$mimeType</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_id">$id</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#property_name">$name</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_modelId">$modelId</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#property_pageCount">$pageCount</a>
     <span>
-                        &nbsp;: string            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_pollingUrl">$pollingUrl</a>
-    <span>
-                        &nbsp;: string            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_resultUrl">$resultUrl</a>
-    <span>
-                        &nbsp;: string|null            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_status">$status</a>
-    <span>
-                        &nbsp;: string            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#property_webhooks">$webhooks</a>
-    <span>
-                        &nbsp;: array&lt;string|int, <a href="classes/Mindee-Parsing-V2-JobWebhook.html"><abbr title="\Mindee\Parsing\V2\JobWebhook">JobWebhook</abbr></a>&gt;            </span>
+                        &nbsp;: int            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Mindee-Parsing-V2-Job.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Parsing-V2-InferenceFile.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#method___construct">__construct()</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-Parsing-V2-Job.html#method_parseDate">parseDate()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#method___toString">__toString()</a>
     <span>
-                                &nbsp;: <abbr title="\DateTime">DateTime</abbr>|null    </span>
+                                &nbsp;: string    </span>
 </dt>
-<dd>Parse a date string into a DateTime object.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceFile.html#method_toString">toString()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
 
     </dl>
 
@@ -276,7 +245,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Mindee-Parsing-V2-Job.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Parsing-V2-InferenceFile.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -288,15 +257,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_alias">
         $alias
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_alias" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_alias" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -326,97 +295,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_createdAt">
-        $createdAt
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_createdAt" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_mimeType">
+        $mimeType
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_mimeType" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type"><abbr title="\DateTime">DateTime</abbr>|null</span>
-    <span class="phpdocumentor-signature__name">$createdAt</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>Timestamp of the job creation.</p>
-</section>
-
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_error">
-        $error
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_error" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">21</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-V2-ErrorResponse.html"><abbr title="\Mindee\Parsing\V2\ErrorResponse">ErrorResponse</abbr></a>|null</span>
-    <span class="phpdocumentor-signature__name">$error</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>Error response if any.</p>
-</section>
-
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_filename">
-        $filename
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_filename" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -425,11 +314,11 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$filename</span>
+    <span class="phpdocumentor-signature__name">$mimeType</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Name for the file.</p>
+        <section class="phpdocumentor-description"><p>MIME type.</p>
 </section>
 
     
@@ -446,17 +335,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_id">
-        $id
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_id" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_name">
+        $name
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -465,11 +354,11 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$id</span>
+    <span class="phpdocumentor-signature__name">$name</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Job ID.</p>
+        <section class="phpdocumentor-description"><p>Name of the file.</p>
 </section>
 
     
@@ -486,17 +375,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_modelId">
-        $modelId
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_modelId" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_pageCount">
+        $pageCount
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_pageCount" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -504,172 +393,12 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$modelId</span>
+            <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$pageCount</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>ID of the model.</p>
-</section>
-
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_pollingUrl">
-        $pollingUrl
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_pollingUrl" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">51</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$pollingUrl</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>URL to poll for the job status.</p>
-</section>
-
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_resultUrl">
-        $resultUrl
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_resultUrl" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">56</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$resultUrl</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>URL to poll for the job result, redirects to the result if available.</p>
-</section>
-
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_status">
-        $status
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_status" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">46</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$status</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>Status of the job.</p>
-</section>
-
-    
-
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                                    "
->
-    <h4 class="phpdocumentor-element__name" id="property_webhooks">
-        $webhooks
-        <a href="classes/Mindee-Parsing-V2-Job.html#property_webhooks" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">61</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-JobWebhook.html"><abbr title="\Mindee\Parsing\V2\JobWebhook">JobWebhook</abbr></a>&gt;</span>
-    <span class="phpdocumentor-signature__name">$webhooks</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>ID of webhooks associated with the job.</p>
+        <section class="phpdocumentor-description"><p>Page count.</p>
 </section>
 
     
@@ -684,7 +413,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Mindee-Parsing-V2-Job.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Parsing-V2-InferenceFile.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -695,13 +424,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Mindee-Parsing-V2-Job.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
@@ -736,51 +465,84 @@
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_parseDate">
-        parseDate()
-        <a href="classes/Mindee-Parsing-V2-Job.html#method_parseDate" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___toString">
+        __toString()
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Job.php"><a href="files/src-parsing-v2-job.html"><abbr title="src/Parsing/V2/Job.php">Job.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Parse a date string into a DateTime object.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">parseDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dateString</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\DateTime">DateTime</abbr>|null</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$dateString</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Date string to parse.</p>
-</section>
-
-            </dd>
-            </dl>
-
+    
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\DateTime">DateTime</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>String representation.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toString">
+        toString()
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#method_toString" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceFile.php"><a href="files/src-parsing-v2-inferencefile.html"><abbr title="src/Parsing/V2/InferenceFile.php">InferenceFile.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">44</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>String representation.</p>
+</section>
+
             </section>
 
 </article>
@@ -790,7 +552,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsing/V2/Job.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsing/V2/InferenceFile.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -891,32 +653,27 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-Parsing-V2-Job.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-Parsing-V2-Job.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceFile.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceFile.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_alias">$alias</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_createdAt">$createdAt</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_error">$error</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_filename">$filename</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_id">$id</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_modelId">$modelId</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_pollingUrl">$pollingUrl</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_resultUrl">$resultUrl</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_status">$status</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#property_webhooks">$webhooks</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_alias">$alias</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_mimeType">$mimeType</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_name">$name</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#property_pageCount">$pageCount</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-Job.html#method_parseDate">parseDate()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#method___toString">__toString()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceFile.html#method_toString">toString()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -936,7 +693,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Mindee-Parsing-V2-Job.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Mindee-Parsing-V2-InferenceFile.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
