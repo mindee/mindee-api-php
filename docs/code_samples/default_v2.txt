@@ -3,7 +3,6 @@
 use Mindee\ClientV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
-use Mindee\Error\MindeeException;
 
 $apiKey = "MY_API_KEY";
 $filePath = "/path/to/the/file.ext";

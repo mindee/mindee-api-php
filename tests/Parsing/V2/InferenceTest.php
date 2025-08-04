@@ -1,7 +1,7 @@
-
 <?php
 
 use Mindee\Input\LocalResponse;
+use Mindee\Parsing\V2\Field\FieldConfidence;
 use Mindee\Parsing\V2\Field\ListField;
 use Mindee\Parsing\V2\Field\ObjectField;
 use Mindee\Parsing\V2\Field\SimpleField;
@@ -273,5 +273,40 @@ class InferenceTest extends TestCase
         $inf = $resp->inference;
         $this->assertNotNull($inf);
         $this->assertEquals($rstRef, strval($resp->inference));
+    }
+
+    /**
+     * Coordinates & location data must be parsed and exposed.
+     */
+    public function testCoordinatesAndLocationDataMustBeAccessible(): void
+    {
+        $resp = $this->loadFromResource('v2/products/financial_document/complete_with_coordinates.json');
+        $inf = $resp->inference;
+        $this->assertNotNull($inf);
+        $this->assertNotNull($inf->result->fields->get('date')->locations);
+        $this->assertNotNull($inf->result->fields->get('date')->locations[0]);
+        $this->assertEquals(0, $inf->result->fields->get('date')->locations[0]->page);
+        $this->assertEquals(
+            0.948979073166918,
+            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[0][0]
+        );
+        $this->assertEquals(
+            0.23097924535067715,
+            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[0][1]
+        );
+        $this->assertEquals(0.85422, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[1][0]);
+        $this->assertEquals(0.230072, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[1][1]);
+        $this->assertEquals(
+            0.8540899268330819,
+            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[2][0]
+        );
+        $this->assertEquals(
+            0.24365775464932288,
+            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[2][1]
+        );
+        $this->assertEquals(0.948849, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[3][0]);
+        $this->assertEquals(0.244565, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[3][1]);
+        $this->assertEquals(FieldConfidence::MEDIUM, $inf->result->fields->get('date')->confidence);
+        $this->assertEquals("Medium", $inf->result->fields->get('date')->confidence->getValue());
     }
 }
