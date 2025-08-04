@@ -7,8 +7,6 @@ namespace Mindee\Parsing\V2\Field;
  */
 class ObjectField extends BaseField
 {
-    use DynamicField;
-
     /**
      * @var InferenceFields
      */

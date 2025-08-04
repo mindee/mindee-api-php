@@ -10,7 +10,7 @@ class Polygon
     /**
      * @var array|null Vertices of the polygon.
      */
-    private ?array $coordinates;
+    public ?array $coordinates;
 
     /**
      * @param array|null $coordinates Coordinates of the polygon as a set of Points.
@@ -23,7 +23,7 @@ class Polygon
     /**
      * Retrieves the centroid of the polygon.
      *
-     * @return \Mindee\Geometry\Point
+     * @return Point
      */
     public function getCentroid(): Point
     {
