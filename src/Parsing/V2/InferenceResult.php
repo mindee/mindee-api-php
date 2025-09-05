@@ -15,9 +15,9 @@ class InferenceResult
     public InferenceFields $fields;
 
     /**
-     * @var InferenceResultOptions|null Potential options retrieved alongside the inference.
+     * @var RawText|null Potential options retrieved alongside the inference.
      */
-    public ?InferenceResultOptions $options;
+    public ?RawText $rawText;
 
     /**
      * @param array $serverResponse Raw server response array.
@@ -25,29 +25,9 @@ class InferenceResult
     public function __construct(array $serverResponse)
     {
         $this->fields = new InferenceFields($serverResponse['fields']);
-        $this->options = isset($serverResponse['options'])
-            ? new InferenceResultOptions($serverResponse['options'])
+        $this->rawText = isset($serverResponse['raw_text'])
+            ? new RawText($serverResponse['raw_text'])
             : null;
-    }
-
-    /**
-     * @return string String representation.
-     */
-    public function toString(): string
-    {
-        $parts = [
-            "Fields",
-            "======",
-            $this->fields->toString(),
-        ];
-
-        if ($this->options) {
-            $parts[] = "Options";
-            $parts[] = "=======";
-            $parts[] = $this->options->toString();
-        }
-
-        return implode("\n", $parts);
     }
 
     /**
@@ -55,6 +35,12 @@ class InferenceResult
      */
     public function __toString(): string
     {
-        return $this->toString();
+        $parts = [
+            "Fields",
+            "======",
+            $this->fields->toString(),
+        ];
+
+        return implode("\n", $parts);
     }
 }

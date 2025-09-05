@@ -3,37 +3,27 @@
 namespace Mindee\Parsing\V2;
 
 /**
- * Raw text class.
+ * Raw text as found in the document.
  */
 class RawText
 {
     /**
-     * @var integer The page number the text was found on.
+     * @var RawTextPage[] list of pages found in the document.
      */
-    public int $page;
-
-    /**
-     * The text content found on the page.
-     *
-     * @var string
-     */
-    public string $content;
+    public array $pages;
 
     /**
      * @param array $serverResponse JSON response from the server.
      */
     public function __construct(array $serverResponse)
     {
-        $this->page = $serverResponse['page'];
-        $this->content = $serverResponse['content'];
-    }
-
-    /**
-     * @return string String representation.
-     */
-    public function toString(): string
-    {
-        return "Page $this->page: $this->content";
+        if (array_key_exists('pages', $serverResponse)) {
+            foreach ($serverResponse['pages'] as $page) {
+                $this->pages[] = new RawTextPage($page);
+            }
+        } else {
+            $this->pages = [];
+        }
     }
 
     /**
@@ -41,6 +31,9 @@ class RawText
      */
     public function __toString(): string
     {
-        return $this->toString();
+        if (empty($this->pages)) {
+            return '';
+        }
+        return implode("\n\n", $this->pages);
     }
 }

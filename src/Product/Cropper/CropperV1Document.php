@@ -2,9 +2,7 @@
 
 namespace Mindee\Product\Cropper;
 
-use Mindee\Error\MindeeUnsetException;
 use Mindee\Parsing\Common\Prediction;
-use Mindee\Parsing\Common\SummaryHelper;
 
 /**
  * Cropper API version 1.1 document data.

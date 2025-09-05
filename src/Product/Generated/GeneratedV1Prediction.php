@@ -9,8 +9,8 @@ namespace Mindee\Product\Generated;
 use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Generated\GeneratedListField;
-use Mindee\Parsing\Standard\StringField;
 use Mindee\Parsing\Generated\GeneratedObjectField;
+use Mindee\Parsing\Standard\StringField;
 
 /**
  * Generated V1 document prediction results.
