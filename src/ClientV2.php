@@ -110,7 +110,7 @@ class ClientV2
 
             error_log(
                 "Polling server for parsing result with queueId: " . $queueId .
-                ". Attempt n°" . $retryCounter . "/" . $pollingOptions->maxRetries .
+                ". Attempt number " . $retryCounter . " of " . $pollingOptions->maxRetries .
                 ". Job status: " . $pollResults->job->status
             );
 

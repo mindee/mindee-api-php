@@ -70,23 +70,23 @@ class InferenceTest extends TestCase
     public function testAsyncPredictWhenCompleteMustExposeAllProperties(): void
     {
         $response = $this->loadFromResource('v2/products/financial_document/complete.json');
-        $inf = $response->inference;
+        $inference = $response->inference;
 
-        $this->assertNotNull($inf, 'Inference must not be null');
-        $this->assertEquals('12345678-1234-1234-1234-123456789abc', $inf->id, 'Inference ID mismatch');
+        $this->assertNotNull($inference, 'Inference must not be null');
+        $this->assertEquals('12345678-1234-1234-1234-123456789abc', $inference->id, 'Inference ID mismatch');
 
-        $model = $inf->model;
+        $model = $inference->model;
         $this->assertNotNull($model, 'Model must not be null');
         $this->assertEquals('12345678-1234-1234-1234-123456789abc', $model->id, 'Model ID mismatch');
 
-        $file = $inf->file;
+        $file = $inference->file;
         $this->assertNotNull($file, 'File must not be null');
         $this->assertEquals('complete.jpg', $file->name, 'File name mismatch');
         $this->assertEquals(1, $file->pageCount, 'File page count mismatch');
         $this->assertEquals('image/jpeg', $file->mimeType, 'File MIME type mismatch');
         $this->assertNull($file->alias ?? null, 'File alias must be null for this payload');
 
-        $fields = $inf->result->fields;
+        $fields = $inference->result->fields;
         $this->assertCount(21, $fields, 'Expected 21 fields in the payload');
 
         $date = $fields->get('date');
@@ -124,7 +124,7 @@ class InferenceTest extends TestCase
         $this->assertInstanceOf(SimpleField::class, $city);
         $this->assertEquals('New York', $city->value, 'City mismatch');
 
-        $this->assertNull($inf->result->options ?? null, 'Options must be null');
+        $this->assertNull($inference->result->options ?? null, 'Options must be null');
     }
 
     /**
@@ -132,11 +132,11 @@ class InferenceTest extends TestCase
      */
     public function testDeepNestedFieldsMustExposeCorrectTypes(): void
     {
-        $resp = $this->loadFromResource('v2/inference/deep_nested_fields.json');
-        $inf = $resp->inference;
-        $this->assertNotNull($inf);
+        $response = $this->loadFromResource('v2/inference/deep_nested_fields.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
 
-        $root = $inf->result->fields;
+        $root = $inference->result->fields;
         $this->assertInstanceOf(SimpleField::class, $root->get('field_simple'));
         $this->assertInstanceOf(ObjectField::class, $root->get('field_object'));
 
@@ -247,19 +247,21 @@ class InferenceTest extends TestCase
      */
     public function testRawTextsMustBeAccessible(): void
     {
-        $resp = $this->loadFromResource('v2/inference/raw_texts.json');
-        $inf = $resp->inference;
-        $this->assertNotNull($inf);
+        $response = $this->loadFromResource('v2/inference/raw_texts.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
 
-        $opts = $inf->result->options ?? null;
-        $this->assertNotNull($opts, 'Options should not be null');
+        $activeOptions = $inference->activeOptions;
+        $this->assertTrue($activeOptions->rawText);
+        $this->assertFalse($activeOptions->polygon);
+        $this->assertFalse($activeOptions->confidence);
+        $this->assertFalse($activeOptions->rag);
 
-        $rawTexts = $opts->rawTexts ?? null;
-        $this->assertNotNull($rawTexts, 'Raw texts should not be null');
-        $this->assertCount(2, $rawTexts);
+        $rawText = $inference->result->rawText ?? null;
+        $this->assertNotNull($rawText);
+        $this->assertCount(2, $rawText->pages);
 
-        $first = $rawTexts[0];
-        $this->assertEquals(0, $first->page);
+        $first = $rawText->pages[0];
         $this->assertEquals('This is the raw text of the first page...', $first->content);
     }
 

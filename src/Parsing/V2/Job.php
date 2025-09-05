@@ -85,7 +85,13 @@ class Job
         $this->filename = $serverResponse['filename'];
         $this->resultUrl = $serverResponse['result_url'] ?? null;
         $this->alias = $serverResponse['alias'];
-        $this->webhooks = $serverResponse['webhooks'] ?? [];
+        if (array_key_exists("webhooks", $serverResponse)) {
+            foreach ($serverResponse['webhooks'] as $webhook) {
+                $this->webhooks[] = new JobWebhook($webhook);
+            }
+        } else {
+            $this->webhooks = [];
+        }
     }
 
     /**

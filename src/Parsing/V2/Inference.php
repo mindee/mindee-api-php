@@ -18,6 +18,11 @@ class Inference
     public InferenceFile $file;
 
     /**
+     * @var InferenceActiveOptions Active options for the inference.
+     */
+    public InferenceActiveOptions $activeOptions;
+
+    /**
      * @var InferenceResult Result of the inference.
      */
     public InferenceResult $result;
@@ -34,6 +39,7 @@ class Inference
     {
         $this->model = new InferenceModel($serverResponse['model']);
         $this->file = new InferenceFile($serverResponse['file']);
+        $this->activeOptions = new InferenceActiveOptions($serverResponse['active_options']);
         $this->result = new InferenceResult($serverResponse['result']);
         $this->id = $serverResponse['id'] ?? null;
     }
@@ -41,22 +47,12 @@ class Inference
     /**
      * @return string String representation.
      */
-    public function toString(): string
-    {
-        return "Inference\n" .
-            "#########\n" .
-            "Model\n" .
-            "=====\n" .
-            ":ID: {$this->model->id}\n\n" .
-            $this->file->toString() . "\n" .
-            $this->result . "\n";
-    }
-
-    /**
-     * @return string String representation.
-     */
     public function __toString(): string
     {
-        return $this->toString();
+        return "Inference\n#########\n"
+            . "{$this->model}\n"
+            . "{$this->file}\n"
+            . "{$this->activeOptions}\n"
+            . "{$this->result}\n";
     }
 }

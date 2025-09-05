@@ -9,6 +9,9 @@ use Mindee\Error\MindeeSourceException;
 use Mindee\Image\ImageCompressor;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
+use Mindee\Input\FileInput;
+use Mindee\Input\BytesInput;
+use Mindee\Input\Base64Input;
 use Mindee\PDF\PDFCompressor;
 use Mindee\PDF\PDFUtils;
 use PHPUnit\Framework\TestCase;
@@ -195,7 +198,7 @@ class LocalInputSourceTest extends TestCase
     {
         $fileContents = file_get_contents($this->fileTypesDir . "/pdf/multipage.pdf");
         $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
-        $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
+        $inputDoc = new FileInput($fileRef);
         $contents = $inputDoc->readContents();
         $this->assertEquals("multipage.pdf", $contents[0]);
         $this->assertEquals($fileContents, $contents[1]);
@@ -204,7 +207,7 @@ class LocalInputSourceTest extends TestCase
     public function testPDFInputFromBytes()
     {
         $pdfBytes = file_get_contents($this->fileTypesDir . "/pdf/multipage.pdf");
-        $inputDoc = $this->dummyClient->sourceFromBytes($pdfBytes, "dummy.pdf");
+        $inputDoc = new BytesInput($pdfBytes, "dummy.pdf");
         $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
         $this->assertEquals($pdfBytes, $contents[1]);
@@ -213,7 +216,7 @@ class LocalInputSourceTest extends TestCase
     public function testInputFromRawb64String()
     {
         $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
-        $inputDoc = $this->dummyClient->sourceFromB64String($pdfBytes, "dummy.pdf");
+        $inputDoc = new Base64Input($pdfBytes, "dummy.pdf");
         $contents = $inputDoc->readContents();
         $this->assertEquals("dummy.pdf", $contents[0]);
         $this->assertEquals(str_replace("\n", "", $pdfBytes), str_replace("\n", "", base64_encode($contents[1])));

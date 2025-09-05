@@ -41,21 +41,12 @@ class InferenceFile
     /**
      * @return string String representation.
      */
-    public function toString(): string
-    {
-        return "File\n" .
-            "====\n" .
-            ":Name: $this->name\n" .
-            ":Alias:" . ($this->alias ? " $this->alias" : "") . "\n" .
-            ":Page Count: $this->pageCount\n" .
-            ":MIME Type: $this->mimeType\n";
-    }
-
-    /**
-     * @return string String representation.
-     */
     public function __toString(): string
     {
-        return $this->toString();
+        return "File\n====\n"
+            . ":Name: $this->name\n"
+            . ":Alias:" . ($this->alias ? " $this->alias" : '') . "\n"
+            . ":Page Count: $this->pageCount\n"
+            . ":MIME Type: $this->mimeType\n";
     }
 }

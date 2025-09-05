@@ -2,7 +2,6 @@
 
 namespace Mindee\Product\Custom;
 
-use Mindee\Parsing\Common\Prediction;
 use Mindee\Parsing\Common\SummaryHelper;
 use Mindee\Parsing\Custom\ListField;
 
