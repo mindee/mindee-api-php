@@ -5,12 +5,16 @@ namespace Mindee\Parsing\V2;
 use Mindee\Parsing\Common\SummaryHelper;
 
 /**
- * Inference result options class.
+ * Options which were activated during the inference.
+ *
+ * Options can be activated or deactivated:
+ * - By setting their default values on the Platform UI
+ * - By explicitly setting them in the inference request
  */
 class InferenceActiveOptions
 {
     /**
-     * @var boolean Whether the RAG feature was activated.
+     * @var boolean Whether the Retrieval-Augmented Generation feature was activated.
      */
     public bool $rag;
 

@@ -40,26 +40,44 @@ class InferenceTest extends TestCase
 
         $this->assertCount(21, $fields, 'Expected 21 fields');
 
-        $taxes = $fields->get('taxes');
-        $this->assertNotNull($taxes, "'taxes' field must exist");
-        $this->assertInstanceOf(ListField::class, $taxes, "'taxes' must be a ListField");
-        $this->assertEmpty($taxes->items, "'taxes' list must be empty");
+        $this->assertInstanceOf(
+            SimpleField::class,
+            $fields['total_amount'],
+            "Field 'total_amount' must be a SimpleField"
+        );
+        $totalAmount = $fields->getSimpleField('total_amount');
+        $this->assertEmpty($totalAmount->value);
 
-        $supplierAddress = $fields->get('supplier_address');
-        $this->assertNotNull($supplierAddress, "'supplier_address' field must exist");
-        $this->assertInstanceOf(ObjectField::class, $supplierAddress, "'supplier_address' must be an ObjectField");
+        $this->assertInstanceOf(
+            ListField::class,
+            $fields['taxes'],
+            "Field 'taxes' must be a ListField"
+        );
+        $taxes = $fields->getListField('taxes');
+        $this->assertEmpty($taxes->items);
 
-        foreach ($fields as $key => $value) {
-            if ($value === null) {
+        $this->assertInstanceOf(
+            ObjectField::class,
+            $fields['supplier_address'],
+            "Field 'supplier_address' must be an ObjectField"
+        );
+        $supplierAddress = $fields->getObjectField('supplier_address');
+        $this->assertCount(9, $supplierAddress->fields);
+
+        foreach ($fields as $fieldName => $field) {
+            if ($field === null) {
                 continue;
             }
-
-            if ($value instanceof ListField) {
-                $this->assertInstanceOf(ListField::class, $value, "$key – ListField expected");
-            } elseif ($value instanceof ObjectField) {
-                $this->assertInstanceOf(ObjectField::class, $value, "$key – ObjectField expected");
+            if ($field instanceof ListField) {
+                $this->assertEmpty($field->items, "Field $fieldName.items must be empty");
+            } elseif ($field instanceof ObjectField) {
+                foreach ($field->fields as $subFieldName => $subField) {
+                    $this->assertEmpty($subField->value, "Field $fieldName.$subFieldName must be empty");
+                }
+            } elseif ($field instanceof SimpleField) {
+                $this->assertIsNotObject($field->value, "Field $fieldName must be a scalar value");
             } else {
-                $this->assertInstanceOf(SimpleField::class, $value, "$key – SimpleField expected");
+                $this->fail("Unknown field type: $fieldName");
             }
         }
     }
@@ -93,7 +111,7 @@ class InferenceTest extends TestCase
         $this->assertInstanceOf(SimpleField::class, $date);
         $this->assertEquals('2019-11-02', $date->value, "'date' value mismatch");
 
-        $taxes = $fields->get('taxes');
+        $taxes = $fields->getListField('taxes');
         $this->assertNotNull($taxes, "'taxes' field must exist");
         $this->assertInstanceOf(ListField::class, $taxes, "'taxes' must be a ListField");
         $this->assertCount(1, $taxes->items, "'taxes' list must contain exactly one item");
@@ -107,7 +125,7 @@ class InferenceTest extends TestCase
         $this->assertEquals(31.5, $baseTax->value, "'taxes.base' value mismatch");
         $this->assertNotNull(strval($taxes), "'taxes'.__toString() must not be null");
 
-        $supplierAddress = $fields->get('supplier_address');
+        $supplierAddress = $fields->getObjectField('supplier_address');
         $this->assertNotNull($supplierAddress, "'supplier_address' field must exist");
         $this->assertInstanceOf(ObjectField::class, $supplierAddress, "'supplier_address' must be an ObjectField");
 
@@ -270,11 +288,11 @@ class InferenceTest extends TestCase
      */
     public function testRstDisplayMustBeAccessible(): void
     {
-        $resp = $this->loadFromResource('v2/inference/standard_field_types.json');
-        $rstRef = $this->readFileAsString('v2/inference/standard_field_types.rst');
-        $inf = $resp->inference;
-        $this->assertNotNull($inf);
-        $this->assertEquals($rstRef, strval($resp->inference));
+        $response = $this->loadFromResource('v2/inference/standard_field_types.json');
+        $expectedRst = $this->readFileAsString('v2/inference/standard_field_types.rst');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+        $this->assertEquals($expectedRst, strval($response->inference));
     }
 
     /**
@@ -282,33 +300,34 @@ class InferenceTest extends TestCase
      */
     public function testCoordinatesAndLocationDataMustBeAccessible(): void
     {
-        $resp = $this->loadFromResource('v2/products/financial_document/complete_with_coordinates.json');
-        $inf = $resp->inference;
-        $this->assertNotNull($inf);
-        $this->assertNotNull($inf->result->fields->get('date')->locations);
-        $this->assertNotNull($inf->result->fields->get('date')->locations[0]);
-        $this->assertEquals(0, $inf->result->fields->get('date')->locations[0]->page);
+        $response = $this->loadFromResource('v2/products/financial_document/complete_with_coordinates.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+        $dateField = $inference->result->fields->getSimpleField('date');
+        $this->assertNotNull($dateField->locations);
+        $this->assertNotNull($dateField->locations[0]);
+        $this->assertEquals(0, $dateField->locations[0]->page);
         $this->assertEquals(
             0.948979073166918,
-            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[0][0]
+            $dateField->locations[0]->polygon->coordinates[0]->x
         );
         $this->assertEquals(
             0.23097924535067715,
-            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[0][1]
+            $dateField->locations[0]->polygon->coordinates[0][1]
         );
-        $this->assertEquals(0.85422, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[1][0]);
-        $this->assertEquals(0.230072, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[1][1]);
+        $this->assertEquals(0.85422, $dateField->locations[0]->polygon->coordinates[1][0]);
+        $this->assertEquals(0.230072, $dateField->locations[0]->polygon->coordinates[1][1]);
         $this->assertEquals(
             0.8540899268330819,
-            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[2][0]
+            $dateField->locations[0]->polygon->coordinates[2][0]
         );
         $this->assertEquals(
             0.24365775464932288,
-            $inf->result->fields->get('date')->locations[0]->polygon->coordinates[2][1]
+            $dateField->locations[0]->polygon->coordinates[2][1]
         );
-        $this->assertEquals(0.948849, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[3][0]);
-        $this->assertEquals(0.244565, $inf->result->fields->get('date')->locations[0]->polygon->coordinates[3][1]);
-        $this->assertEquals(FieldConfidence::MEDIUM, $inf->result->fields->get('date')->confidence);
-        $this->assertEquals("Medium", $inf->result->fields->get('date')->confidence->getValue());
+        $this->assertEquals(0.948849, $dateField->locations[0]->polygon->coordinates[3][0]);
+        $this->assertEquals(0.244565, $dateField->locations[0]->polygon->coordinates[3][1]);
+        $this->assertEquals(FieldConfidence::MEDIUM, $dateField->confidence);
+        $this->assertEquals('Medium', $dateField->confidence->getValue());
     }
 }
