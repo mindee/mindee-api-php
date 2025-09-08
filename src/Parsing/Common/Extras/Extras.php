@@ -12,15 +12,15 @@ use function PHPUnit\Framework\isEmpty;
 class Extras
 {
     /**
-     * @var \Mindee\Parsing\Common\Extras\CropperExtra|null Cropper extra.
+     * @var CropperExtra|null Cropper extra.
      */
     public ?CropperExtra $cropper;
     /**
-     * @var \Mindee\Parsing\Common\Extras\CropperExtra|null Full text OCR extra.
+     * @var FullTextOcrExtra|null Full text OCR extra.
      */
     public ?FullTextOcrExtra $fullTextOcr;
     /**
-     * @var \Mindee\Parsing\Common\Extras\RagExtra|null Rag Extra.
+     * @var RagExtra|null Rag Extra.
      */
     public ?RagExtra $rag;
     /**
@@ -28,15 +28,14 @@ class Extras
      */
     private array $data;
 
-
     /**
      * Sets a field.
      *
-     * @param mixed $varName Name of the field to set.
-     * @param mixed $value   Value to set the field with.
+     * @param string $varName Name of the field to set.
+     * @param mixed  $value   Value to set the field with.
      * @return void
      */
-    public function __set($varName, $value)
+    public function __set(string $varName, $value)
     {
         $this->data[$varName] = $value;
     }

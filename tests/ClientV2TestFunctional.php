@@ -24,22 +24,33 @@ class ClientV2TestFunctional extends TestCase
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
         $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
-
-        $options = new InferenceParameters($this->modelId);
+        $options = new InferenceParameters($this->modelId, false, true);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $options);
-
         $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
 
-        $this->assertNotNull($response->inference->file);
-        $this->assertEquals('multipage_cut-2.pdf', $response->inference->file->name);
+        $file = $inference->file;
+        $this->assertNotNull($file);
+        $this->assertEquals('multipage_cut-2.pdf', $file->name);
+        $this->assertEquals(2, $file->pageCount);
 
-        $this->assertNotNull($response->inference->model);
-        $this->assertEquals($this->modelId, $response->inference->model->id);
+        $this->assertNotNull($inference->model);
+        $this->assertEquals($this->modelId, $inference->model->id);
 
-        $this->assertNotNull($response->inference->result);
-        $this->assertNull($response->inference->result->options ?? null);
+        $activeOptions = $inference->activeOptions;
+        $this->assertTrue($activeOptions->rawText, "Raw text must be enabled");
+        $this->assertFalse($activeOptions->polygon, "Polygon must be disabled by default");
+        $this->assertFalse($activeOptions->confidence, "Confidence must be disabled by default");
+        $this->assertFalse($activeOptions->rag, "RAG must be disabled by default");
+
+        $result = $inference->result;
+        $this->assertNotNull($result);
+
+        $rawText = $result->rawText;
+        $this->assertNotNull($rawText);
+        $this->assertCount(2, $rawText->pages);
     }
 
     /**
@@ -52,21 +63,25 @@ class ClientV2TestFunctional extends TestCase
         $options = new InferenceParameters($this->modelId, false);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $options);
-
         $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
 
-        $this->assertNotNull($response->inference->file);
-        $this->assertEquals('default_sample.jpg', $response->inference->file->name);
+        $file = $inference->file;
+        $this->assertNotNull($file);
+        $this->assertEquals('default_sample.jpg', $file->name);
+        $this->assertEquals(1, $file->pageCount);
 
-        $this->assertNotNull($response->inference->model);
-        $this->assertEquals($this->modelId, $response->inference->model->id);
+        $this->assertNotNull($inference->model);
+        $this->assertEquals($this->modelId, $inference->model->id);
 
-        $this->assertNotNull($response->inference->result);
-        $this->assertNotNull($response->inference->result->fields);
-        $this->assertNotNull($response->inference->result->fields['supplier_name'] ?? null);
+        $result = $inference->result;
+        $this->assertNotNull($result);
 
-        $supplierName = $response->inference->result->fields['supplier_name']->value ?? null;
+        $this->assertNotNull($result->fields);
+        $this->assertNotNull($result->fields['supplier_name'] ?? null);
+
+        $supplierName = $result->fields['supplier_name']->value ?? null;
         $this->assertEquals(
             'John Smith',
             $supplierName
@@ -100,8 +115,14 @@ class ClientV2TestFunctional extends TestCase
         $options = new InferenceParameters($this->modelId);
 
         $response = $this->mindeeClient->enqueueAndGetInference($urlSource, $options);
-
         $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+
+        $file = $inference->file;
+        $this->assertNotNull($file);
+
+        $result = $inference->result;
+        $this->assertNotNull($result);
     }
 }

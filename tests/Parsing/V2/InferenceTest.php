@@ -1,5 +1,6 @@
 <?php
 
+use Mindee\Geometry\Point;
 use Mindee\Input\LocalResponse;
 use Mindee\Parsing\V2\Field\FieldConfidence;
 use Mindee\Parsing\V2\Field\ListField;
@@ -275,7 +276,7 @@ class InferenceTest extends TestCase
         $this->assertFalse($activeOptions->confidence);
         $this->assertFalse($activeOptions->rag);
 
-        $rawText = $inference->result->rawText ?? null;
+        $rawText = $inference->result->rawText;
         $this->assertNotNull($rawText);
         $this->assertCount(2, $rawText->pages);
 
@@ -303,30 +304,37 @@ class InferenceTest extends TestCase
         $response = $this->loadFromResource('v2/products/financial_document/complete_with_coordinates.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
+
         $dateField = $inference->result->fields->getSimpleField('date');
-        $this->assertNotNull($dateField->locations);
-        $this->assertNotNull($dateField->locations[0]);
-        $this->assertEquals(0, $dateField->locations[0]->page);
+        $this->assertCount(1, $dateField->locations);
+
+        $location = $dateField->locations[0];
+        $this->assertNotNull($location);
+        $this->assertEquals(0, $location->page);
         $this->assertEquals(
             0.948979073166918,
-            $dateField->locations[0]->polygon->coordinates[0]->x
+            $location->polygon->coordinates[0]->getX()
         );
         $this->assertEquals(
             0.23097924535067715,
-            $dateField->locations[0]->polygon->coordinates[0][1]
+            $location->polygon->coordinates[0]->getY()
         );
-        $this->assertEquals(0.85422, $dateField->locations[0]->polygon->coordinates[1][0]);
-        $this->assertEquals(0.230072, $dateField->locations[0]->polygon->coordinates[1][1]);
+        $this->assertEquals(0.85422, $location->polygon->coordinates[1][0]);
+        $this->assertEquals(0.230072, $location->polygon->coordinates[1][1]);
         $this->assertEquals(
             0.8540899268330819,
-            $dateField->locations[0]->polygon->coordinates[2][0]
+            $location->polygon->coordinates[2][0]
         );
         $this->assertEquals(
             0.24365775464932288,
-            $dateField->locations[0]->polygon->coordinates[2][1]
+            $location->polygon->coordinates[2][1]
         );
-        $this->assertEquals(0.948849, $dateField->locations[0]->polygon->coordinates[3][0]);
-        $this->assertEquals(0.244565, $dateField->locations[0]->polygon->coordinates[3][1]);
+        $this->assertEquals(0.948849, $location->polygon->coordinates[3][0]);
+        $this->assertEquals(0.244565, $location->polygon->coordinates[3][1]);
+        $this->assertEquals(
+            new Point(0.9015345, 0.23731850000000002),
+            $location->polygon->getCentroid()
+        );
         $this->assertEquals(FieldConfidence::MEDIUM, $dateField->confidence);
         $this->assertEquals('Medium', $dateField->confidence->getValue());
     }
