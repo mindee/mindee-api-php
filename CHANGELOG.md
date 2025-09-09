@@ -1,5 +1,16 @@
 # Mindee PHP API Library Changelog
 
+## v1.23.0-rc3 - 2025-09-09
+### Changes
+* :sparkles: allow inference options to be set
+* :sparkles: add more functions to Polygon class
+* :recycle: remove unused DynamicField & put location data into BaseField
+### ¡Breaking Changes!
+* :recycle: :boom: update options and raw text to new format
+### Fixes
+* :bug: fix for polygon points not being init correctly
+
+
 ## v1.23.0-rc2 - 2025-08-01
 ### Changes
 * :sparkles: add support for page count & mimetype + rename internals
