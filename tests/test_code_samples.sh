@@ -52,10 +52,10 @@ do
   sed "s/my-api-key/$API_KEY/" "${f}" > $OUTPUT_FILE
   sed -i "s/\/path\/to\/the\/file.ext/..\/mindee-api-php\/tests\/resources\/file_types\/pdf\/blank_1.pdf/" $OUTPUT_FILE
 
+  # Only keeping the sample for display in the UI
   if echo "$f" | grep -q "custom_v1.txt"
   then
-    sed -i "s/my-account/$ACCOUNT/g" $OUTPUT_FILE
-    sed -i "s/my-endpoint/$ENDPOINT/g" $OUTPUT_FILE
+    continue
   fi
 
   if echo "${f}" | grep -q "default.txt"

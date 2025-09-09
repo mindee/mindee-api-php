@@ -20,12 +20,6 @@ class MindeeCLIDocuments
                 false,
                 true
             ),
-            "custom" => new DocumentCommandConfig(
-                "Custom document type from API builder",
-                \Mindee\Product\Custom\CustomV1::class,
-                true,
-                false
-            ),
             "barcode-reader" => new DocumentCommandConfig(
                 "Barcode Reader",
                 \Mindee\Product\BarcodeReader\BarcodeReaderV1::class,
