@@ -13,13 +13,13 @@ class FileInput extends LocalInputSource
     /**
      * @var mixed $file A file-like object compatible with CURLFile.
      */
-    private $file;
+    private mixed $file;
 
     /**
      * @param mixed   &$file  File reference.
      * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
-    public function __construct(&$file, bool $fixPDF = false)
+    public function __construct(mixed &$file, bool $fixPDF = false)
     {
         $this->file = &$file;
         $this->filePath = stream_get_meta_data($this->file)['uri'];

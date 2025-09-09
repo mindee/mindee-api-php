@@ -16,7 +16,7 @@ class ImageUtils
      * The resulting image is formatted to jpeg.
      * @throws MindeeImageException Throws if something goes wrong during image conversion.
      */
-    public static function toMagickImage($image): \Imagick
+    public static function toMagickImage(mixed $image): \Imagick
     {
         try {
             if ($image instanceof \Imagick) {

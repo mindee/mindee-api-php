@@ -35,7 +35,7 @@ class Extras
      * @param mixed  $value   Value to set the field with.
      * @return void
      */
-    public function __set(string $varName, $value)
+    public function __set(string $varName, mixed $value)
     {
         $this->data[$varName] = $value;
     }

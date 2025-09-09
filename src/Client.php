@@ -83,7 +83,7 @@ class Client
      * @param boolean $fixPDF Whether the PDF should be fixed or not.
      * @return FileInput
      */
-    public function sourceFromFile($file, bool $fixPDF = false): FileInput
+    public function sourceFromFile(mixed $file, bool $fixPDF = false): FileInput
     {
         return new FileInput($file, $fixPDF);
     }

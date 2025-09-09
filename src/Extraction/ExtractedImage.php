@@ -40,7 +40,7 @@ class ExtractedImage
      * @param string $saveFormat The format to save the image.
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
-    public function __construct($image, string $filename, string $saveFormat)
+    public function __construct(mixed $image, string $filename, string $saveFormat)
     {
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
