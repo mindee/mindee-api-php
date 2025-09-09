@@ -9,13 +9,10 @@ namespace Mindee\Input;
 use CURLFile;
 use Exception;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
-use Mindee\Error\MindeeUnhandledException;
 use Mindee\Image\ImageCompressor;
-use Mindee\Parsing\DependencyChecker;
 use Mindee\PDF\PDFCompressor;
 use Mindee\PDF\PDFUtils;
 use setasign\Fpdi\Fpdi;
@@ -33,6 +30,7 @@ const ALLOWED_MIME_TYPES = [
     'image/jpeg',
     'image/tiff',
     'image/webp',
+    'application/octet-stream',
 ];
 
 /**
@@ -63,6 +61,21 @@ abstract class LocalInputSource extends InputSource
     protected bool $throwsOnClose;
 
     /**
+     * Checks if the file needs fixing.
+     * @return void
+     */
+    public function checkNeedsFix(): void
+    {
+        if ($this->fileMimetype == 'application/octet-stream') {
+            trigger_error(
+                'File type application/octet-stream is probably incorrect. '
+                . 'Try to run fixPDF() on the file.',
+                E_USER_WARNING
+            );
+        }
+    }
+
+    /**
      * Checks the mimetype integrity of a file.
      *
      * @return void
@@ -83,13 +96,9 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Base constructor, mostly used for Mime type checking.
-     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
-    public function __construct(bool $fixPDF = false)
+    public function __construct()
     {
-        if ($fixPDF) {
-            $this->fixPDF();
-        }
         $this->checkMimeType();
         $this->throwsOnClose = false;
     }
@@ -101,6 +110,7 @@ abstract class LocalInputSource extends InputSource
      */
     public function isPDF(): bool
     {
+        $this->checkMimeType();
         return $this->fileMimetype == 'application/pdf';
     }
 
@@ -132,26 +142,10 @@ abstract class LocalInputSource extends InputSource
     }
 
     /**
-     * Processes a PDF file.
-     * To be implemented.
-     *
-     * @param string  $behavior    Behaviors available: KEEP_ONLY, REMOVE.
-     * @param integer $onMinPages  Minimum of pages to apply the operation.
-     * @param array   $pageIndexes Indexes of the pages to apply the operation to.
-     * @return void
-     * @throws MindeePDFException Throws if the operation is unknown, or if the resulting PDF can't be processed.
-     * @deprecated Use applyPageOptions() instead.
-     */
-    public function processPDF(string $behavior, int $onMinPages, array $pageIndexes)
-    {
-        $this->applyPageOptions(new PageOptions($pageIndexes, $behavior, $onMinPages));
-    }
-
-    /**
      * @param string $fileBytes Raw data as bytes.
      * @return void
      */
-    private function saveBytesAsFile(string $fileBytes)
+    private function saveBytesAsFile(string $fileBytes): void
     {
         $cutPdfTempFile = tempnam(sys_get_temp_dir(), 'mindee_cut_pdf_');
         file_put_contents($cutPdfTempFile, $fileBytes);
@@ -165,7 +159,7 @@ abstract class LocalInputSource extends InputSource
      * @return void
      * @throws MindeePDFException Throws if the pdf file can't be processed.
      */
-    public function mergePDFPages(array $pageNumbers)
+    public function mergePDFPages(array $pageNumbers): void
     {
         try {
             $pdf = new FPDI();
@@ -232,14 +226,13 @@ abstract class LocalInputSource extends InputSource
         return [basename($this->fileObject->getFilename()), $strContents];
     }
 
-
     /**
      * Attempts to fix a PDF file.
      *
      * @return void
      * @throws MindeeSourceException Throws if the file couldn't be fixed.
      */
-    private function fixPDF(): void
+    public function fixPDF(): void
     {
         if (str_starts_with($this->fileMimetype, "image/")) {
             error_log("Input file is an image, skipping PDF fix.");
@@ -260,7 +253,6 @@ abstract class LocalInputSource extends InputSource
             $this->fileObject = new CURLFile($tempFile, $this->fileMimetype, $this->fileName);
             return;
         }
-
         throw new MindeeSourceException(
             "PDF file could not be fixed.",
             ErrorCode::FILE_OPERATION_ERROR

@@ -17,7 +17,7 @@ class StringField extends BaseField
     /**
      * @var string|null The value as it appears on the document.
      */
-    public $rawValue;
+    public string|null $rawValue;
 
 
     /**

@@ -10,11 +10,10 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
           - 8.2
           - 8.3
+          - 8.4
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4
@@ -37,11 +36,10 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
           - 8.2
           - 8.3
+          - 8.4
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4
@@ -74,11 +72,10 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
           - 8.2
           - 8.3
+          - 8.4
     runs-on: "macos-latest"
     steps:
       - uses: actions/checkout@v4
@@ -104,11 +101,10 @@ jobs:
 #    strategy:
 #      matrix:
 #        php-version:
-#          - 7.4
-#          - 8.0
 #          - 8.1
 #          - 8.2
 #          - 8.3
+#          - 8.4
 #    runs-on: "macos-latest"
 #    steps:
 #      - uses: actions/checkout@v4
@@ -146,11 +142,10 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
           - 8.2
           - 8.3
+          - 8.4
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v4
@@ -176,22 +171,21 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - 7.4
-          - 8.0
           - 8.1
           - 8.2
           - 8.3
+          - 8.4
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Install Ghostscript
-        run: choco install ghostscript --version 10.03.1 -y
+        run: choco install ghostscript --version 10.04.0 -y
       - name: Create Ghostscript alias
         run: |
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.03.1\bin\gswin64c.exe"
+          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
+          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
         shell: powershell
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2

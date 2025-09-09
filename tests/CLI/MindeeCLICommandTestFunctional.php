@@ -3,8 +3,8 @@
 namespace CLI;
 
 require_once(__DIR__ . "/../../vendor/autoload.php");
-require_once(__DIR__."/../../bin/MindeeCLIDocuments.php");
-require_once(__DIR__."/MindeeCLITestingUtilities.php");
+require_once(__DIR__ . "/../../bin/MindeeCLIDocuments.php");
+require_once(__DIR__ . "/MindeeCLITestingUtilities.php");
 
 use Mindee\CLI\MindeeCLIDocuments;
 use PHPUnit\Framework\TestCase;
@@ -35,9 +35,6 @@ class MindeeCLICommandTestFunctional extends TestCase
     public function productDataProvider()
     {
         $data = [];
-        $account = getenv('MINDEE_ACCOUNT_SE_TESTS');
-        $endpoint = getenv('MINDEE_ENDPOINT_SE_TESTS');
-        $data[] = ["custom", false, ["-a", $account, "-e", $endpoint, "-d", "1"]];
         $data[] = ["generated", true, ["-a", "mindee", "-e", "invoice_splitter", "-d", "1"]];
         foreach (MindeeCLIDocuments::getSpecs() as $productName => $productSpecs) {
             if ($productName != "custom" && $productName != "generated") {
@@ -59,6 +56,9 @@ class MindeeCLICommandTestFunctional extends TestCase
     {
         $cmdOutput = $this->runValidCall($productName, $async, $additionnalArgs);
         $this->assertEquals(0, $cmdOutput["code"], $productName . ($async ? " async" : " sync") . " test (code).");
-        $this->assertTrue(str_contains($cmdOutput["output"][1], "Document"), $productName . ($async ? " async" : " sync") . " test (string return).");
+        $this->assertTrue(
+            str_contains($cmdOutput["output"][1], "Document"),
+            $productName . ($async ? " async" : " sync") . " test (string return)."
+        );
     }
 }

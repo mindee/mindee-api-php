@@ -2,11 +2,11 @@
 
 namespace Geometry;
 
-use Mindee\Error\MindeeGeometryException;
 use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Geometry\PolygonUtils;
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 class PolygonUtilsTest extends TestCase
 {
@@ -36,47 +36,47 @@ class PolygonUtilsTest extends TestCase
 
     public function testGivenAValidPolygonMustGetTheMinX()
     {
-        $this->assertEquals(0.123, PolygonUtils::getMinXCoordinate($this->polygonWhichIsNotRectangle));
+        $this->assertEquals(0.123, $this->polygonWhichIsNotRectangle->getMinX());
     }
 
     public function testGivenAValidPolygonMustGetTheMinY()
     {
-        $this->assertEquals(0.53, PolygonUtils::getMinYCoordinate($this->polygonWhichIsNotRectangle));
+        $this->assertEquals(0.53, $this->polygonWhichIsNotRectangle->getMinY());
     }
 
     public function testGivenAValidPolygonMustGetTheMaxX()
     {
-        $this->assertEquals(0.175, PolygonUtils::getMaxXCoordinate($this->polygonWhichIsNotRectangle));
+        $this->assertEquals(0.175, $this->polygonWhichIsNotRectangle->getMaxX());
     }
 
     public function testGivenAValidPolygonMustGetTheMaxY()
     {
-        $this->assertEquals(0.546, PolygonUtils::getMaxYCoordinate($this->polygonWhichIsNotRectangle));
+        $this->assertEquals(0.546, $this->polygonWhichIsNotRectangle->getMaxY());
     }
 
     public function testMergePolygonsWithTwoNotNullMustGetAValidPolygon()
     {
         $mergedPolygon = PolygonUtils::merge($this->polygon1, $this->polygon2);
 
-        $this->assertEquals(0.442, PolygonUtils::getMinYCoordinate($mergedPolygon));
-        $this->assertEquals(0.081, PolygonUtils::getMinXCoordinate($mergedPolygon));
-        $this->assertEquals(0.451, PolygonUtils::getMaxYCoordinate($mergedPolygon));
-        $this->assertEquals(0.26, PolygonUtils::getMaxXCoordinate($mergedPolygon));
+        $this->assertEquals(0.442, $mergedPolygon->getMinY());
+        $this->assertEquals(0.081, $mergedPolygon->getMinX());
+        $this->assertEquals(0.451, $mergedPolygon->getMaxY());
+        $this->assertEquals(0.26, $mergedPolygon->getMaxX());
     }
 
     public function testMergeWithNullPolygonMustThrow()
     {
-        $this->expectException(MindeeGeometryException::class);
+        $this->expectException(TypeError::class);
         PolygonUtils::merge(null, null);
     }
 
     public function testMergeWith1PolygonAndANullPolygonMustGetPolygon()
     {
-        $mergedPolygon = PolygonUtils::merge($this->polygon1, null);
+        $mergedPolygon = PolygonUtils::merge($this->polygon1, new Polygon([]));
 
-        $this->assertEquals(0.442, PolygonUtils::getMinYCoordinate($mergedPolygon));
-        $this->assertEquals(0.081, PolygonUtils::getMinXCoordinate($mergedPolygon));
-        $this->assertEquals(0.451, PolygonUtils::getMaxYCoordinate($mergedPolygon));
-        $this->assertEquals(0.15, PolygonUtils::getMaxXCoordinate($mergedPolygon));
+        $this->assertEquals(0.442, $mergedPolygon->getMinY());
+        $this->assertEquals(0.081, $mergedPolygon->getMinX());
+        $this->assertEquals(0.451, $mergedPolygon->getMaxY());
+        $this->assertEquals(0.15, $mergedPolygon->getMaxX());
     }
 }

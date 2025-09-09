@@ -24,7 +24,7 @@ class ClientV2TestFunctional extends TestCase
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
         $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
-        $inferenceParams = new InferenceParameters($this->modelId, false, true);
+        $inferenceParams = new InferenceParameters($this->modelId, rag: false, rawText: true);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
         $this->assertNotNull($response);
@@ -60,7 +60,7 @@ class ClientV2TestFunctional extends TestCase
     {
         $source = new PathInput(__DIR__ . '/resources/products/financial_document/default_sample.jpg');
 
-        $inferenceParams = new InferenceParameters($this->modelId, false);
+        $inferenceParams = new InferenceParameters($this->modelId, rag: false);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
         $this->assertNotNull($response);

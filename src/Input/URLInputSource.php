@@ -21,7 +21,7 @@ class URLInputSource extends InputSource
      */
     public function __construct(string $url)
     {
-        if ((substr($url, 0, 8) !== 'https://')) {
+        if ((!str_starts_with($url, 'https://'))) {
             throw new MindeeSourceException(
                 'URL must be HTTPS',
                 ErrorCode::USER_INPUT_ERROR

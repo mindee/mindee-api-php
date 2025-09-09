@@ -40,7 +40,7 @@ class ExtractedImage
      * @param string $saveFormat The format to save the image.
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
-    public function __construct($image, string $filename, string $saveFormat)
+    public function __construct(mixed $image, string $filename, string $saveFormat)
     {
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
@@ -86,17 +86,12 @@ class ExtractedImage
      */
     private function getEncodedImageFormat(string $saveFormat): string
     {
-        switch (strtolower($saveFormat)) {
-            case 'png':
-                return 'png';
-            case 'bmp':
-                return 'bmp';
-            case 'gif':
-                return 'gif';
-            case 'webp':
-                return 'webp';
-            default:
-                return 'jpeg';
-        }
+        return match (strtolower($saveFormat)) {
+            'png' => 'png',
+            'bmp', => 'bmp',
+            'gif' => 'gif',
+            'webp' => 'webp',
+            default => 'jpeg',
+        };
     }
 }

@@ -85,10 +85,10 @@ class BBox
     /**
      * Extends the BBox with the provided points.
      *
-     * @param Polygon|array $points Series of points to add to the BBox.
+     * @param array|Polygon $points Series of points to add to the BBox.
      * @return void
      */
-    public function extendWith($points)
+    public function extendWith(Polygon|array $points): void
     {
         if ($points instanceof Polygon) {
             $sequence = $points->getCoordinates();

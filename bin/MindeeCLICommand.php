@@ -441,7 +441,7 @@ Available products:";
         PredictMethodOptions $predictMethodOptions,
         string $product
     ): bool {
-        if (in_array($product, ["custom", "generated"])) {
+        if ($product == "generated") {
             $accountName = $input->getOption('account_name');
             $endpointName = $input->getOption('endpoint_name');
             $endpointVersion = $input->getOption('endpoint_version') ?? '1';
@@ -459,7 +459,6 @@ Available products:";
                     "<comment>No version provided for \"$endpointName\", version 1 will be used by default.</comment>"
                 );
             }
-
             $endpoint = $client->createEndpoint($endpointName, $accountName, $endpointVersion);
             $predictMethodOptions->setEndpoint($endpoint);
         }

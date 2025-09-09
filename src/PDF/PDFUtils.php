@@ -21,7 +21,7 @@ class PDFUtils
      * @return string Path of the file.
      * @throws MindeePDFException Throws if a path can't be extracted from the input.
      */
-    public static function extractFilePath($input): string
+    public static function extractFilePath(mixed $input): string
     {
         if (is_string($input) && file_exists($input) && is_file($input)) {
             return $input;

@@ -12,11 +12,11 @@ use Mindee\Geometry\PolygonUtils;
 trait FieldPositionMixin
 {
     /**
-     * @var \Mindee\Geometry\Polygon A polygon containing the word in the document.
+     * @var Polygon A polygon containing the word in the document.
      */
     public Polygon $polygon;
     /**
-     * @var \Mindee\Geometry\Polygon|null A right rectangle containing the word in the document.
+     * @var Polygon|null A right rectangle containing the word in the document.
      */
     public ?Polygon $boundingBox;
 
@@ -26,16 +26,12 @@ trait FieldPositionMixin
      * @param array $rawPrediction Raw prediction array.
      * @return void
      */
-    protected function setPosition(array $rawPrediction)
+    protected function setPosition(array $rawPrediction): void
     {
         $this->boundingBox = null;
         $this->polygon = new Polygon();
         if (array_key_exists('polygon', $rawPrediction) and isset($rawPrediction['polygon'])) {
-            $points = [];
-            foreach ($rawPrediction['polygon'] as $point) {
-                $points[] = new Point($point[0], $point[1]);
-            }
-            $this->polygon = new Polygon($points);
+            $this->polygon = new Polygon($rawPrediction['polygon']);
         }
         if ($this->polygon->getCoordinates()) {
             $this->boundingBox = PolygonUtils::createBoundingBoxFrom($this->polygon);

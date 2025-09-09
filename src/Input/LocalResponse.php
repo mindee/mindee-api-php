@@ -20,7 +20,7 @@ class LocalResponse
      * @param mixed $inputFile A string, path or file-like object to load as a local response.
      * @throws MindeeException Throws if the input file isn't acceptable.
      */
-    public function __construct($inputFile)
+    public function __construct(mixed $inputFile)
     {
         if (is_resource($inputFile) && get_resource_type($inputFile) === 'file') {
             $content = fread($inputFile, filesize($inputFile));

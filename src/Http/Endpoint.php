@@ -90,13 +90,13 @@ class Endpoint extends BaseEndpoint
     /**
      * Starts a CURL session, using POST.
      *
-     * @param InputSource          $fileCurl File to upload.
-     * @param PredictMethodOptions $options  Prediction Options.
-     * @param boolean              $async    Whether to use the async endpoint.
+     * @param InputSource          $inputSource File to upload.
+     * @param PredictMethodOptions $options     Prediction Options.
+     * @param boolean              $async       Whether to use the async endpoint.
      * @return array
      */
     private function initCurlSessionPost(
-        InputSource $fileCurl,
+        InputSource $inputSource,
         PredictMethodOptions $options,
         bool $async
     ): array {
@@ -115,13 +115,14 @@ class Endpoint extends BaseEndpoint
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         $postFields = null;
-        if ($fileCurl instanceof URLInputSource) {
-            $postFields = ['document' => $fileCurl->url];
-        } elseif ($fileCurl instanceof LocalInputSource) {
+        if ($inputSource instanceof URLInputSource) {
+            $postFields = ['document' => $inputSource->url];
+        } elseif ($inputSource instanceof LocalInputSource) {
+            $inputSource->checkNeedsFix();
             if ($options->closeFile) {
-                $fileCurl->close();
+                $inputSource->close();
             }
-            $postFields = ['document' => $fileCurl->fileObject];
+            $postFields = ['document' => $inputSource->fileObject];
         }
         if ($options->predictOptions->includeWords) {
             $postFields['include_mvision'] = 'true';

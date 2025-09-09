@@ -2,6 +2,8 @@
 
 namespace Mindee\Geometry;
 
+use Mindee\Error\MindeeGeometryException;
+
 /**
  * Polygon represented as a set of coordinates (vertices/points).
  */
@@ -11,6 +13,16 @@ class Polygon
      * @var Point[]|null Vertices of the polygon.
      */
     public ?array $coordinates;
+
+    /**
+     * @var MinMax Min and max Y values of the polygon.
+     */
+    private MinMax $minMaxY;
+
+    /**
+     * @var MinMax Min and max X values of the polygon.
+     */
+    private MinMax $minMaxX;
 
     /**
      * @param array|null $coordinates Coordinates of the polygon as a set of Points.
@@ -44,7 +56,10 @@ class Polygon
      */
     public function getMinMaxY(): MinMax
     {
-        return MinMaxUtils::getMinMaxY($this->coordinates);
+        if (!isset($this->minMaxY)) {
+            $this->minMaxY = MinMaxUtils::getMinMaxY($this->coordinates);
+        }
+        return $this->minMaxY;
     }
 
     /**
@@ -54,7 +69,10 @@ class Polygon
      */
     public function getMinMaxX(): MinMax
     {
-        return MinMaxUtils::getMinMaxX($this->coordinates);
+        if (!isset($this->minMaxX)) {
+            $this->minMaxX = MinMaxUtils::getMinMaxX($this->coordinates);
+        }
+        return $this->minMaxX;
     }
 
     /**
@@ -79,6 +97,46 @@ class Polygon
     {
         $minMax = $this->getMinMaxX();
         return PolygonUtils::isPointInX($point, $minMax->getMin(), $minMax->getMax());
+    }
+
+    /**
+     * Retrieves the minimum X coordinate.
+     *
+     * @return float
+     */
+    public function getMinX(): float
+    {
+        return $this->getMinMaxX()->getMin();
+    }
+
+    /**
+     * Retrieves the maximum X coordinate.
+     *
+     * @return float
+     */
+    public function getMaxX(): float
+    {
+        return $this->getMinMaxX()->getMax();
+    }
+
+    /**
+     * Retrieves the minimum Y coordinate.
+     *
+     * @return float
+     */
+    public function getMinY(): float
+    {
+        return $this->getMinMaxY()->getMin();
+    }
+
+    /**
+     * Retrieves the maximum Y coordinate.
+     *
+     * @return float
+     */
+    public function getMaxY(): float
+    {
+        return $this->getMinMaxY()->getMax();
     }
 
     /**

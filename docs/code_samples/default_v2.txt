@@ -20,14 +20,14 @@ $inferenceParams = new InferenceParameters(
     // Options: set to `true` or `false` to override defaults
 
     // Enhance extraction accuracy with Retrieval-Augmented Generation.
-    false,
+    rag: null,
     // Extract the full text content from the document as strings.
-    false,
+    rawText: null,
     // Calculate bounding box polygons for all fields.
-    false,
+    polygon: null,
     // Boost the precision and accuracy of all extractions.
     // Calculate confidence scores for all fields.
-    false
+    confidence: null
 );
 
 // Load a file from disk

@@ -2,12 +2,6 @@
 
 namespace Mindee\Parsing\Standard;
 
-use Mindee\Geometry\BBox;
-use Mindee\Geometry\Point;
-use Mindee\Geometry\Polygon;
-
-use function Mindee\Geometry\createBoundingBoxFrom;
-
 /**
  * Base class for most fields.
  */
@@ -57,7 +51,7 @@ abstract class BaseField
     /**
      * Compares with the value of another field.
      *
-     * @param \Mindee\Parsing\Standard\BaseField $obj Field to compare.
+     * @param BaseField $obj Field to compare.
      * @return boolean
      */
     public function __compare(BaseField $obj): bool

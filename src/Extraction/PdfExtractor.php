@@ -180,8 +180,6 @@ class PdfExtractor
             $previousConfidence = $confidence;
             $i++;
         }
-
-
         return $this->extractSubDocuments($correctPageIndexes);
     }
 
