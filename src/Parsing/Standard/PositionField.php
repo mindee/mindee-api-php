@@ -57,7 +57,7 @@ class PositionField extends BaseField
     private static function getPolygon(array $rawPrediction, string $key): ?Polygon
     {
         if (array_key_exists($key, $rawPrediction)) {
-            return PolygonUtils::polygonFromPrediction($rawPrediction[$key]);
+            return new Polygon($rawPrediction[$key]);
         }
 
         return null;

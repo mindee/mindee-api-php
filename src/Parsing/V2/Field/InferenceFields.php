@@ -3,6 +3,7 @@
 namespace Mindee\Parsing\V2\Field;
 
 use ArrayObject;
+use InvalidArgumentException;
 
 /**
  * Collection of inference fields.
@@ -36,12 +37,65 @@ class InferenceFields extends ArrayObject
     /**
      * Get a field by key.
      *
-     * @param string $key Field key to retrieve.
-     * @return SimpleField|ObjectField|ListField|null
+     * @param string $fieldName Field key to retrieve.
+     * @return SimpleField|ObjectField|ListField
+     * @throws InvalidArgumentException When the field does not exist.
      */
-    public function get(string $key)
+    public function get(string $fieldName)
     {
-        return $this->fields[$key] ?? null;
+        $field = $this->fields[$fieldName];
+        if ($field == null) {
+            throw new InvalidArgumentException("Field $fieldName does not exist.");
+        }
+        return $field;
+    }
+
+    /**
+     * Get a simple field by key.
+     *
+     * @param string $fieldName Field key to retrieve.
+     * @return SimpleField
+     * @throws InvalidArgumentException When the field does not exist or is not a simple field.
+     */
+    public function getSimpleField(string $fieldName)
+    {
+        $field = $this->get($fieldName);
+        if ($field instanceof SimpleField) {
+            return $field;
+        }
+        throw new InvalidArgumentException("Field $fieldName is not a simple field.");
+    }
+
+    /**
+     * Get a list field by key.
+     *
+     * @param string $fieldName Field key to retrieve.
+     * @return ListField
+     * @throws InvalidArgumentException When the field does not exist or is not a list field.
+     */
+    public function getListField(string $fieldName)
+    {
+        $field = $this->get($fieldName);
+        if ($field instanceof ListField) {
+            return $field;
+        }
+        throw new InvalidArgumentException("Field $fieldName is not a list field.");
+    }
+
+    /**
+     * Get a simple field by key.
+     *
+     * @param string $fieldName Field key to retrieve.
+     * @return ObjectField
+     * @throws InvalidArgumentException When the field does not exist or is not an object field.
+     */
+    public function getObjectField(string $fieldName)
+    {
+        $field = $this->get($fieldName);
+        if ($field instanceof ObjectField) {
+            return $field;
+        }
+        throw new InvalidArgumentException("Field $fieldName is not an object field.");
     }
 
     /**

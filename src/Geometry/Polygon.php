@@ -8,7 +8,7 @@ namespace Mindee\Geometry;
 class Polygon
 {
     /**
-     * @var array|null Vertices of the polygon.
+     * @var Point[]|null Vertices of the polygon.
      */
     public ?array $coordinates;
 
@@ -17,7 +17,14 @@ class Polygon
      */
     public function __construct(?array $coordinates = null)
     {
-        $this->coordinates = $coordinates;
+        if (!is_null($coordinates)) {
+            $this->coordinates = [];
+            foreach ($coordinates as $point) {
+                $this->coordinates[] = new Point($point[0], $point[1]);
+            }
+        } else {
+            $this->coordinates = null;
+        }
     }
 
     /**
@@ -28,6 +35,50 @@ class Polygon
     public function getCentroid(): Point
     {
         return PolygonUtils::getCentroid($this->coordinates);
+    }
+
+    /**
+     * Retrieves the upper and lower bounds of the y-axis.
+     *
+     * @return MinMax
+     */
+    public function getMinMaxY(): MinMax
+    {
+        return MinMaxUtils::getMinMaxY($this->coordinates);
+    }
+
+    /**
+     * Retrieves the upper and lower bounds of the x-axis.
+     *
+     * @return MinMax
+     */
+    public function getMinMaxX(): MinMax
+    {
+        return MinMaxUtils::getMinMaxX($this->coordinates);
+    }
+
+    /**
+     * Checks whether a point is located within the polygon's y-axis.
+     *
+     * @param Point $point Point to check.
+     * @return boolean
+     */
+    public function isPointInY(Point $point): bool
+    {
+        $minMax = $this->getMinMaxY();
+        return PolygonUtils::isPointInY($point, $minMax->getMin(), $minMax->getMax());
+    }
+
+    /**
+     * Checks whether a point is located within the polygon's x-axis.
+     *
+     * @param Point $point Point to check.
+     * @return boolean
+     */
+    public function isPointInX(Point $point): bool
+    {
+        $minMax = $this->getMinMaxX();
+        return PolygonUtils::isPointInX($point, $minMax->getMin(), $minMax->getMax());
     }
 
     /**
@@ -58,7 +109,6 @@ class Polygon
         if (!$this->isEmpty()) {
             return 'Polygon with ' . count($this->getCoordinates()) . ' points.';
         }
-
         return '';
     }
 }

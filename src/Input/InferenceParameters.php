@@ -13,9 +13,25 @@ class InferenceParameters
     public string $modelId;
 
     /**
-     * @var boolean Whether to enable Retrieval-Augmented Generation.
+     * @var boolean|null Enhance extraction accuracy with Retrieval-Augmented Generation..
      */
-    public bool $rag;
+    public ?bool $rag;
+
+    /**
+     * @var boolean|null Extract the full text content from the document as strings.
+     */
+    public ?bool $rawText;
+
+    /**
+     * @var boolean|null Calculate bounding box polygons for all fields.
+     */
+    public ?bool $polygon;
+
+    /**
+     * @var boolean|null Boost the precision and accuracy of all extractions.
+     *      Calculate confidence scores for all fields.
+     */
+    public ?bool $confidence;
 
     /**
      * @var string|null Optional file alias.
@@ -40,6 +56,9 @@ class InferenceParameters
     /**
      * @param string              $modelId        ID of the model.
      * @param boolean|null        $rag            Whether to enable Retrieval-Augmented Generation.
+     * @param boolean|null        $rawText        Whether to extract the full text content from the document as strings.
+     * @param boolean|null        $polygon        Whether to calculate bounding box polygons for all fields.
+     * @param boolean|null        $confidence     Whether to calculate confidence scores for all fields.
      * @param string|null         $alias          Optional file alias.
      * @param array<string>|null  $webhooksIds    List of webhook IDs.
      * @param PollingOptions|null $pollingOptions Polling options.
@@ -48,6 +67,9 @@ class InferenceParameters
     public function __construct(
         string $modelId,
         ?bool $rag = null,
+        ?bool $rawText = null,
+        ?bool $polygon = null,
+        ?bool $confidence = null,
         ?string $alias = null,
         ?array $webhooksIds = null,
         ?PollingOptions $pollingOptions = null,
@@ -58,7 +80,11 @@ class InferenceParameters
             $pollingOptions = new PollingOptions();
         }
         $this->pollingOptions = $pollingOptions;
-        $this->rag = (bool) $rag;
+        $this->rag = $rag;
+        $this->rawText = $rawText;
+        $this->polygon = $polygon;
+        $this->confidence = $confidence;
+
         $this->closeFile = (bool) $closeFile;
         if (isset($alias)) {
             $this->alias = $alias;

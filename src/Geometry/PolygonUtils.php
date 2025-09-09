@@ -219,6 +219,7 @@ abstract class PolygonUtils
     /**
      * Generates a Polygon from a given prediction.
      *
+     * @deprecated construct a new Polygon() instead.
      * @param array $prediction Raw prediction array.
      * @return Polygon
      */
@@ -228,7 +229,6 @@ abstract class PolygonUtils
         foreach ($prediction as $point) {
             $points[] = new Point($point[0], $point[1]);
         }
-
         return new Polygon($points);
     }
 
