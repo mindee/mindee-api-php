@@ -24,9 +24,9 @@ class ClientV2TestFunctional extends TestCase
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
         $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
-        $options = new InferenceParameters($this->modelId, false, true);
+        $inferenceParams = new InferenceParameters($this->modelId, false, true);
 
-        $response = $this->mindeeClient->enqueueAndGetInference($source, $options);
+        $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -60,9 +60,9 @@ class ClientV2TestFunctional extends TestCase
     {
         $source = new PathInput(__DIR__ . '/resources/products/financial_document/default_sample.jpg');
 
-        $options = new InferenceParameters($this->modelId, false);
+        $inferenceParams = new InferenceParameters($this->modelId, false);
 
-        $response = $this->mindeeClient->enqueueAndGetInference($source, $options);
+        $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -92,12 +92,12 @@ class ClientV2TestFunctional extends TestCase
     {
         $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
 
-        $options = new InferenceParameters('INVALID MODEL ID');
+        $inferenceParams = new InferenceParameters('INVALID MODEL ID');
 
         $this->expectException(MindeeV2HttpException::class);
         $this->expectExceptionMessage('422');
 
-        $this->mindeeClient->enqueueInference($source, $options);
+        $this->mindeeClient->enqueueInference($source, $inferenceParams);
     }
 
     public function testInvalidJobMustThrowError(): void
@@ -112,9 +112,9 @@ class ClientV2TestFunctional extends TestCase
     {
         $urlSource = new URLInputSource(getenv('MINDEE_V2_SE_TESTS_BLANK_PDF_URL'));
 
-        $options = new InferenceParameters($this->modelId);
+        $inferenceParams = new InferenceParameters($this->modelId);
 
-        $response = $this->mindeeClient->enqueueAndGetInference($urlSource, $options);
+        $response = $this->mindeeClient->enqueueAndGetInference($urlSource, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);

@@ -311,17 +311,17 @@ class MindeeApiV2
             $postFields['file'] = $inputSource->fileObject;
         }
 
-        if ($params->rawText != null) {
-            $postFields['raw_text'] = strtolower($params->rawText);
+        if (isset($params->rawText)) {
+            $postFields['raw_text'] = $params->rawText ? 'true' : 'false';
         }
-        if ($params->polygon != null) {
-            $postFields['polygon'] = strtolower($params->polygon);
+        if (isset($params->polygon)) {
+            $postFields['polygon'] = $params->polygon ? 'true' : 'false';
         }
-        if ($params->confidence != null) {
-            $postFields['confidence'] = strtolower($params->confidence);
+        if (isset($params->confidence)) {
+            $postFields['confidence'] = $params->confidence ? 'true' : 'false';
         }
-        if ($params->rag != null) {
-            $postFields['rag'] = strtolower($params->rag);
+        if (isset($params->rag)) {
+            $postFields['rag'] = $params->rag ? 'true' : 'false';
         }
 
         $url = $this->baseUrl . '/inferences/enqueue';
