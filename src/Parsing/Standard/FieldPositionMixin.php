@@ -12,11 +12,11 @@ use Mindee\Geometry\PolygonUtils;
 trait FieldPositionMixin
 {
     /**
-     * @var \Mindee\Geometry\Polygon A polygon containing the word in the document.
+     * @var Polygon A polygon containing the word in the document.
      */
     public Polygon $polygon;
     /**
-     * @var \Mindee\Geometry\Polygon|null A right rectangle containing the word in the document.
+     * @var Polygon|null A right rectangle containing the word in the document.
      */
     public ?Polygon $boundingBox;
 

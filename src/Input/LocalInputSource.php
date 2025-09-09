@@ -9,13 +9,10 @@ namespace Mindee\Input;
 use CURLFile;
 use Exception;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
-use Mindee\Error\MindeeUnhandledException;
 use Mindee\Image\ImageCompressor;
-use Mindee\Parsing\DependencyChecker;
 use Mindee\PDF\PDFCompressor;
 use Mindee\PDF\PDFUtils;
 use setasign\Fpdi\Fpdi;
@@ -132,26 +129,10 @@ abstract class LocalInputSource extends InputSource
     }
 
     /**
-     * Processes a PDF file.
-     * To be implemented.
-     *
-     * @param string  $behavior    Behaviors available: KEEP_ONLY, REMOVE.
-     * @param integer $onMinPages  Minimum of pages to apply the operation.
-     * @param array   $pageIndexes Indexes of the pages to apply the operation to.
-     * @return void
-     * @throws MindeePDFException Throws if the operation is unknown, or if the resulting PDF can't be processed.
-     * @deprecated Use applyPageOptions() instead.
-     */
-    public function processPDF(string $behavior, int $onMinPages, array $pageIndexes)
-    {
-        $this->applyPageOptions(new PageOptions($pageIndexes, $behavior, $onMinPages));
-    }
-
-    /**
      * @param string $fileBytes Raw data as bytes.
      * @return void
      */
-    private function saveBytesAsFile(string $fileBytes)
+    private function saveBytesAsFile(string $fileBytes): void
     {
         $cutPdfTempFile = tempnam(sys_get_temp_dir(), 'mindee_cut_pdf_');
         file_put_contents($cutPdfTempFile, $fileBytes);

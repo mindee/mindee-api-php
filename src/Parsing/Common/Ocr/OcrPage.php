@@ -2,9 +2,6 @@
 
 namespace Mindee\Parsing\Common\Ocr;
 
-use Mindee\Geometry\MinMaxUtils;
-use Mindee\Geometry\PolygonUtils;
-
 /**
  * OCR extraction for a single page.
  */
@@ -22,28 +19,28 @@ class OcrPage
     /**
      * Checks whether the words are on the same line.
      *
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $currentWord Reference word to compare.
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $nextWord    Next word to compare.
+     * @param OcrWord $currentWord Reference word to compare.
+     * @param OcrWord $nextWord    Next word to compare.
      * @return boolean
      */
     private static function areWordsOnSameLine(OcrWord $currentWord, OcrWord $nextWord): bool
     {
-        $currentInNext = PolygonUtils::isPointInPolygonY($currentWord->polygon->getCentroid(), $nextWord->polygon);
-        $nextInCurrent = PolygonUtils::isPointInPolygonY($nextWord->polygon->getCentroid(), $currentWord->polygon);
+        $currentInNext = $nextWord->polygon->isPointInY($currentWord->polygon->getCentroid());
+        $nextInCurrent = $currentWord->polygon->isPointInY($nextWord->polygon->getCentroid());
         return $currentInNext || $nextInCurrent;
     }
 
     /**
      * Compares word positions on the X axis. Returns a sort-compliant result (0;-1;1).
      *
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word1 First word.
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word2 Second word.
+     * @param OcrWord $word1 First word.
+     * @param OcrWord $word2 Second word.
      * @return integer
      */
     public static function getMinMaxX(OcrWord $word1, OcrWord $word2): int
     {
-        $word1X = MinMaxUtils::getMinMaxX($word1->polygon->getCoordinates())->getMin();
-        $word2X = MinMaxUtils::getMinMaxX($word2->polygon->getCoordinates())->getMin();
+        $word1X = $word1->polygon->getMinMaxX()->getMin();
+        $word2X = $word2->polygon->getMinMaxX()->getMin();
         if ($word1X == $word2X) {
             return 0;
         }
@@ -53,14 +50,14 @@ class OcrPage
     /**
      * Compares word positions on the Y axis. Returns a sort-compliant result (0;-1;1).
      *
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word1 First word.
-     * @param \Mindee\Parsing\Common\Ocr\OcrWord $word2 Second word.
+     * @param OcrWord $word1 First word.
+     * @param OcrWord $word2 Second word.
      * @return integer
      */
     public static function getMinMaxY(OcrWord $word1, OcrWord $word2): int
     {
-        $word1Y = MinMaxUtils::getMinMaxY($word1->polygon->getCoordinates())->getMin();
-        $word2Y = MinMaxUtils::getMinMaxY($word2->polygon->getCoordinates())->getMin();
+        $word1Y = $word1->polygon->getMinMaxY()->getMin();
+        $word2Y = $word2->polygon->getMinMaxY()->getMin();
         if ($word1Y == $word2Y) {
             return 0;
         }
