@@ -184,10 +184,10 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Geometry-Polygon.html#property_coordinates">$coordinates</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
+                        &nbsp;: array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;|null            </span>
 </dt>
 
     </dl>
@@ -225,11 +225,39 @@
 <dd>Retrieves the coordinates of the polygon.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Geometry-Polygon.html#method_getMinMaxX">getMinMaxX()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Geometry-MinMax.html"><abbr title="\Mindee\Geometry\MinMax">MinMax</abbr></a>    </span>
+</dt>
+<dd>Retrieves the upper and lower bounds of the x-axis.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Geometry-Polygon.html#method_getMinMaxY">getMinMaxY()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Geometry-MinMax.html"><abbr title="\Mindee\Geometry\MinMax">MinMax</abbr></a>    </span>
+</dt>
+<dd>Retrieves the upper and lower bounds of the y-axis.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Geometry-Polygon.html#method_isEmpty">isEmpty()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Checks whether the Polygon has coordinates.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Geometry-Polygon.html#method_isPointInX">isPointInX()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Checks whether a point is located within the polygon&#039;s x-axis.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Geometry-Polygon.html#method_isPointInY">isPointInY()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Checks whether a point is located within the polygon&#039;s y-axis.</dd>
 
     </dl>
 
@@ -248,7 +276,7 @@
         class="
             phpdocumentor-element
             -property
-            -private
+            -public
                                                                     "
 >
     <h4 class="phpdocumentor-element__name" id="property_coordinates">
@@ -268,8 +296,8 @@
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">private</span>
-            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;|null</span>
     <span class="phpdocumentor-signature__name">$coordinates</span>
     </code>
 
@@ -352,7 +380,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -394,7 +422,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -433,7 +461,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -464,6 +492,84 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getMinMaxX">
+        getMinMaxX()
+        <a href="classes/Mindee-Geometry-Polygon.html#method_getMinMaxX" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">55</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Retrieves the upper and lower bounds of the x-axis.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMinMaxX</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Geometry-MinMax.html"><abbr title="\Mindee\Geometry\MinMax">MinMax</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Geometry-MinMax.html"><abbr title="\Mindee\Geometry\MinMax">MinMax</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getMinMaxY">
+        getMinMaxY()
+        <a href="classes/Mindee-Geometry-Polygon.html#method_getMinMaxY" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Retrieves the upper and lower bounds of the y-axis.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMinMaxY</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Geometry-MinMax.html"><abbr title="\Mindee\Geometry\MinMax">MinMax</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Geometry-MinMax.html"><abbr title="\Mindee\Geometry\MinMax">MinMax</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_isEmpty">
         isEmpty()
         <a href="classes/Mindee-Geometry-Polygon.html#method_isEmpty" class="headerlink"><i class="fas fa-link"></i></a>
@@ -472,7 +578,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -487,6 +593,108 @@
     
     
     
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isPointInX">
+        isPointInX()
+        <a href="classes/Mindee-Geometry-Polygon.html#method_isPointInX" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">78</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Checks whether a point is located within the polygon&#039;s x-axis.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isPointInX</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$point</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$point</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Point to check.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isPointInY">
+        isPointInY()
+        <a href="classes/Mindee-Geometry-Polygon.html#method_isPointInY" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Geometry/Polygon.php"><a href="files/src-geometry-polygon.html"><abbr title="src/Geometry/Polygon.php">Polygon.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">66</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Checks whether a point is located within the polygon&#039;s y-axis.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isPointInY</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$point</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$point</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Point to check.</p>
+</section>
+
+            </dd>
+            </dl>
+
     
 
     
@@ -623,7 +831,11 @@
                                             <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_getCentroid">getCentroid()</a></li>
                                             <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_getCoordinates">getCoordinates()</a></li>
+                                            <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_getMinMaxX">getMinMaxX()</a></li>
+                                            <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_getMinMaxY">getMinMaxY()</a></li>
                                             <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_isEmpty">isEmpty()</a></li>
+                                            <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_isPointInX">isPointInX()</a></li>
+                                            <li class=""><a href="classes/Mindee-Geometry-Polygon.html#method_isPointInY">isPointInY()</a></li>
                                     </ul>
             </li>
                     </ul>

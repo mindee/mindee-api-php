@@ -3,7 +3,6 @@
 use Mindee\ClientV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
-use Mindee\Error\MindeeException;
 
 $apiKey = "MY_API_KEY";
 $filePath = "/path/to/the/file.ext";
@@ -15,8 +14,19 @@ $mindeeClient = new ClientV2($apiKey);
 // Set inference parameters
 // Note: modelId is mandatory.
 $inferenceParams = new InferenceParameters(
+    // ID of the model, required.
     $modelId,
-    // If set to `true`, will enable Retrieval-Augmented Generation.
+
+    // Options: set to `true` or `false` to override defaults
+
+    // Enhance extraction accuracy with Retrieval-Augmented Generation.
+    false,
+    // Extract the full text content from the document as strings.
+    false,
+    // Calculate bounding box polygons for all fields.
+    false,
+    // Boost the precision and accuracy of all extractions.
+    // Calculate confidence scores for all fields.
     false
 );
 

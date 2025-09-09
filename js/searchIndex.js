@@ -716,6 +716,26 @@ Search.appendIndex(
             "summary": "Retrieves\u0020the\u0020y\u0020coordinate.",
             "url": "classes/Mindee-Geometry-Point.html#method_getY"
         },                {
+            "fqsen": "\\Mindee\\Geometry\\Point\u003A\u003AoffsetExists\u0028\u0029",
+            "name": "offsetExists",
+            "summary": "Whether\u0020an\u0020offset\u0020exists.",
+            "url": "classes/Mindee-Geometry-Point.html#method_offsetExists"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Point\u003A\u003AoffsetGet\u0028\u0029",
+            "name": "offsetGet",
+            "summary": "Get\u0020an\u0020offset\u0020value.",
+            "url": "classes/Mindee-Geometry-Point.html#method_offsetGet"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Point\u003A\u003AoffsetSet\u0028\u0029",
+            "name": "offsetSet",
+            "summary": "Set\u0020an\u0020offset\u0020value.",
+            "url": "classes/Mindee-Geometry-Point.html#method_offsetSet"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Point\u003A\u003AoffsetUnset\u0028\u0029",
+            "name": "offsetUnset",
+            "summary": "Get\u0020an\u0020offset\u0020value.",
+            "url": "classes/Mindee-Geometry-Point.html#method_offsetUnset"
+        },                {
             "fqsen": "\\Mindee\\Geometry\\Point\u003A\u003A\u0024x",
             "name": "x",
             "summary": "",
@@ -740,6 +760,26 @@ Search.appendIndex(
             "name": "getCentroid",
             "summary": "Retrieves\u0020the\u0020centroid\u0020of\u0020the\u0020polygon.",
             "url": "classes/Mindee-Geometry-Polygon.html#method_getCentroid"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AgetMinMaxY\u0028\u0029",
+            "name": "getMinMaxY",
+            "summary": "Retrieves\u0020the\u0020upper\u0020and\u0020lower\u0020bounds\u0020of\u0020the\u0020y\u002Daxis.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_getMinMaxY"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AgetMinMaxX\u0028\u0029",
+            "name": "getMinMaxX",
+            "summary": "Retrieves\u0020the\u0020upper\u0020and\u0020lower\u0020bounds\u0020of\u0020the\u0020x\u002Daxis.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_getMinMaxX"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AisPointInY\u0028\u0029",
+            "name": "isPointInY",
+            "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020located\u0020within\u0020the\u0020polygon\u0027s\u0020y\u002Daxis.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_isPointInY"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AisPointInX\u0028\u0029",
+            "name": "isPointInX",
+            "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020located\u0020within\u0020the\u0020polygon\u0027s\u0020x\u002Daxis.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_isPointInX"
         },                {
             "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AisEmpty\u0028\u0029",
             "name": "isEmpty",
@@ -1325,6 +1365,21 @@ Search.appendIndex(
             "name": "rag",
             "summary": "",
             "url": "classes/Mindee-Input-InferenceParameters.html#property_rag"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024rawText",
+            "name": "rawText",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_rawText"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024polygon",
+            "name": "polygon",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_polygon"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024confidence",
+            "name": "confidence",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_confidence"
         },                {
             "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024alias",
             "name": "alias",
@@ -3281,21 +3336,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Field-BaseField.html#property_confidence"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\DynamicField",
-            "name": "DynamicField",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-DynamicField.html"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\DynamicField\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-DynamicField.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\DynamicField\u003A\u003A\u0024locations",
-            "name": "locations",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-DynamicField.html#property_locations"
-        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence",
             "name": "FieldConfidence",
             "summary": "Confidence\u0020level\u0020of\u0020a\u0020field\u0020as\u0020returned\u0020by\u0020the\u0020V2\u0020API.",
@@ -3391,6 +3431,21 @@ Search.appendIndex(
             "summary": "Get\u0020a\u0020field\u0020by\u0020key.",
             "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method_get"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003AgetSimpleField\u0028\u0029",
+            "name": "getSimpleField",
+            "summary": "Get\u0020a\u0020simple\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method_getSimpleField"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003AgetListField\u0028\u0029",
+            "name": "getListField",
+            "summary": "Get\u0020a\u0020list\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method_getListField"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003AgetObjectField\u0028\u0029",
+            "name": "getObjectField",
+            "summary": "Get\u0020a\u0020simple\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-InferenceFields.html#method_getObjectField"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\InferenceFields\u003A\u003AtoString\u0028\u0029",
             "name": "toString",
             "summary": "Convert\u0020the\u0020fields\u0020to\u0020a\u0020string\u0020representation.",
@@ -3481,11 +3536,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Inference.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003AtoString\u0028\u0029",
-            "name": "toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Inference.html#method_toString"
-        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "",
@@ -3501,6 +3551,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Inference.html#property_file"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024activeOptions",
+            "name": "activeOptions",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_activeOptions"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024result",
             "name": "result",
             "summary": "",
@@ -3511,6 +3566,41 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Inference.html#property_id"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions",
+            "name": "InferenceActiveOptions",
+            "summary": "Options\u0020which\u0020were\u0020activated\u0020during\u0020the\u0020inference.",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A\u0024rag",
+            "name": "rag",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A\u0024rawText",
+            "name": "rawText",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A\u0024polygon",
+            "name": "polygon",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A\u0024confidence",
+            "name": "confidence",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceFile",
             "name": "InferenceFile",
             "summary": "Inference\u0020result\u0020file\u0020class.",
@@ -3520,11 +3610,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceFile.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceFile\u003A\u003AtoString\u0028\u0029",
-            "name": "toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceFile.html#method_toString"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceFile\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
@@ -3561,6 +3646,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceModel.html#method___construct"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceModel\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceModel.html#method___toString"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceModel\u003A\u003A\u0024id",
             "name": "id",
             "summary": "",
@@ -3591,11 +3681,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceResult.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003AtoString\u0028\u0029",
-            "name": "toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#method_toString"
-        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "",
@@ -3606,35 +3691,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_fields"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A\u0024options",
-            "name": "options",
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A\u0024rawText",
+            "name": "rawText",
             "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_options"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions",
-            "name": "InferenceResultOptions",
-            "summary": "Inference\u0020result\u0020options\u0020class.",
-            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003AtoString\u0028\u0029",
-            "name": "toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#method_toString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResultOptions\u003A\u003A\u0024rawTexts",
-            "name": "rawTexts",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-InferenceResultOptions.html#property_rawTexts"
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_rawText"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Job",
             "name": "Job",
@@ -3753,7 +3813,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\RawText",
             "name": "RawText",
-            "summary": "Raw\u0020text\u0020class.",
+            "summary": "Raw\u0020text\u0020as\u0020found\u0020in\u0020the\u0020document.",
             "url": "classes/Mindee-Parsing-V2-RawText.html"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A__construct\u0028\u0029",
@@ -3761,25 +3821,35 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-RawText.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003AtoString\u0028\u0029",
-            "name": "toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-RawText.html#method_toString"
-        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-RawText.html#method___toString"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A\u0024page",
-            "name": "page",
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A\u0024pages",
+            "name": "pages",
             "summary": "",
-            "url": "classes/Mindee-Parsing-V2-RawText.html#property_page"
+            "url": "classes/Mindee-Parsing-V2-RawText.html#property_pages"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\RawText\u003A\u003A\u0024content",
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawTextPage",
+            "name": "RawTextPage",
+            "summary": "Raw\u0020text\u0020extracted\u0020from\u0020the\u0020page.",
+            "url": "classes/Mindee-Parsing-V2-RawTextPage.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawTextPage\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RawTextPage.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawTextPage\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RawTextPage.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RawTextPage\u003A\u003A\u0024content",
             "name": "content",
-            "summary": "The\u0020text\u0020content\u0020found\u0020on\u0020the\u0020page.",
-            "url": "classes/Mindee-Parsing-V2-RawText.html#property_content"
+            "summary": "Page\u0020content\u0020as\u0020a\u0020single\u0020string.",
+            "url": "classes/Mindee-Parsing-V2-RawTextPage.html#property_content"
         },                {
             "fqsen": "\\Mindee\\PDF\\CustomFPDI",
             "name": "CustomFPDI",

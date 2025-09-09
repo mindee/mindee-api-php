@@ -130,7 +130,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    InferenceResultOptions
+    InferenceActiveOptions
 
     
             <div class="phpdocumentor-element__package">
@@ -149,15 +149,21 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResultOptions.php"><a href="files/src-parsing-v2-inferenceresultoptions.html"><abbr title="src/Parsing/V2/InferenceResultOptions.php">InferenceResultOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Inference result options class.</p>
+            <p class="phpdocumentor-summary">Options which were activated during the inference.</p>
 
 
+    <section class="phpdocumentor-description"><p>Options can be activated or deactivated:</p>
+<ul>
+<li>By setting their default values on the Platform UI</li>
+<li>By explicitly setting them in the inference request</li>
+</ul>
+</section>
 
 
 
@@ -167,7 +173,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -181,38 +187,50 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#property_rawTexts">$rawTexts</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence">$confidence</a>
     <span>
-                        &nbsp;: array&lt;string|int, <a href="classes/Mindee-Parsing-V2-RawText.html"><abbr title="\Mindee\Parsing\V2\RawText">RawText</abbr></a>&gt;            </span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon">$polygon</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag">$rag</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText">$rawText</a>
+    <span>
+                        &nbsp;: bool            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___construct">__construct()</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___toString">__toString()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method_toString">toString()</a>
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString">__toString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
@@ -227,7 +245,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -237,17 +255,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_rawTexts">
-        $rawTexts
-        <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#property_rawTexts" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_confidence">
+        $confidence
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResultOptions.php"><a href="files/src-parsing-v2-inferenceresultoptions.html"><abbr title="src/Parsing/V2/InferenceResultOptions.php">InferenceResultOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -255,12 +273,132 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-RawText.html"><abbr title="\Mindee\Parsing\V2\RawText">RawText</abbr></a>&gt;</span>
-    <span class="phpdocumentor-signature__name">$rawTexts</span>
+            <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$confidence</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>List of texts found per page.</p>
+        <section class="phpdocumentor-description"><p>Whether the confidence feature was activated.</p>
+</section>
+
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_polygon">
+        $polygon
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">29</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$polygon</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Whether the polygon feature was activated.</p>
+</section>
+
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_rag">
+        $rag
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$rag</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Whether the Retrieval-Augmented Generation feature was activated.</p>
+</section>
+
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_rawText">
+        $rawText
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$rawText</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Whether the Raw Text feature was activated.</p>
 </section>
 
     
@@ -275,7 +413,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -286,13 +424,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResultOptions.php"><a href="files/src-parsing-v2-inferenceresultoptions.html"><abbr title="src/Parsing/V2/InferenceResultOptions.php">InferenceResultOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -332,13 +470,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
-        <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResultOptions.php"><a href="files/src-parsing-v2-inferenceresultoptions.html"><abbr title="src/Parsing/V2/InferenceResultOptions.php">InferenceResultOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -366,55 +504,13 @@
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_toString">
-        toString()
-        <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method_toString" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResultOptions.php"><a href="files/src-parsing-v2-inferenceresultoptions.html"><abbr title="src/Parsing/V2/InferenceResultOptions.php">InferenceResultOptions.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">28</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>String representation.</p>
-</section>
-
-            </section>
-
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsing/V2/InferenceResultOptions.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsing/V2/InferenceActiveOptions.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -515,24 +611,26 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#property_rawTexts">$rawTexts</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence">$confidence</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon">$polygon</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag">$rag</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText">$rawText</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method___toString">__toString()</a></li>
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#method_toString">toString()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString">__toString()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -552,7 +650,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Mindee-Parsing-V2-InferenceResultOptions.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
