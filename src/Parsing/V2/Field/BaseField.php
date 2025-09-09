@@ -37,30 +37,27 @@ abstract class BaseField
             }
         }
         if (array_key_exists("confidence", $rawPrediction) && $rawPrediction["confidence"]) {
-            $this->confidence = new FieldConfidence($rawPrediction["confidence"]);
+            $this->confidence = FieldConfidence::from($rawPrediction["confidence"]);
         }
     }
 
     /**
      * @param array   $rawPrediction Raw prediction array.
      * @param integer $indentLevel   Level of indentation for rst display.
-     * @return BaseField
+     * @return ListField|ObjectField|SimpleField
      * @throws MindeeApiException Throws if the field type isn't recognized.
      */
-    public static function createField(array $rawPrediction, int $indentLevel = 0)
+    public static function createField(array $rawPrediction, int $indentLevel = 0): ListField|ObjectField|SimpleField
     {
         if (array_key_exists('items', $rawPrediction)) {
             return new ListField($rawPrediction, $indentLevel);
         }
-
         if (array_key_exists('fields', $rawPrediction)) {
             return new ObjectField($rawPrediction, $indentLevel);
         }
-
         if (array_key_exists('value', $rawPrediction)) {
             return new SimpleField($rawPrediction, $indentLevel);
         }
-
         throw new MindeeApiException(
             sprintf('Unrecognized field format in %s.', json_encode($rawPrediction))
         );

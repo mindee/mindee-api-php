@@ -335,7 +335,7 @@ class InferenceTest extends TestCase
             new Point(0.9015345, 0.23731850000000002),
             $location->polygon->getCentroid()
         );
-        $this->assertEquals(FieldConfidence::MEDIUM, $dateField->confidence);
-        $this->assertEquals('Medium', $dateField->confidence->getValue());
+        $this->assertEquals(FieldConfidence::Medium, $dateField->confidence);
+        $this->assertEquals('Medium', $dateField->confidence->value);
     }
 }
