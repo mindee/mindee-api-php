@@ -86,17 +86,12 @@ class ExtractedImage
      */
     private function getEncodedImageFormat(string $saveFormat): string
     {
-        switch (strtolower($saveFormat)) {
-            case 'png':
-                return 'png';
-            case 'bmp':
-                return 'bmp';
-            case 'gif':
-                return 'gif';
-            case 'webp':
-                return 'webp';
-            default:
-                return 'jpeg';
-        }
+        return match (strtolower($saveFormat)) {
+            'png' => 'png',
+            'bmp', => 'bmp',
+            'gif' => 'gif',
+            'webp' => 'webp',
+            default => 'jpeg',
+        };
     }
 }

@@ -18,12 +18,11 @@ abstract class BBoxUtils
         if (!$polygon || !$polygon->getCoordinates()) {
             return null;
         }
-
         return new BBox(
-            PolygonUtils::getMinXCoordinate($polygon),
-            PolygonUtils::getMaxXCoordinate($polygon),
-            PolygonUtils::getMinYCoordinate($polygon),
-            PolygonUtils::getMaxYCoordinate($polygon),
+            $polygon->getMinX(),
+            $polygon->getMaxX(),
+            $polygon->getMinY(),
+            $polygon->getMaxY(),
         );
     }
 
@@ -38,19 +37,17 @@ abstract class BBoxUtils
         if (!$polygons) {
             return null;
         }
-
         $merged = $polygons[0];
         foreach ($polygons as $polygon) {
-            if ($merged !== $polygon) {
+            if ($polygon && $merged !== $polygon) {
                 $merged = PolygonUtils::merge($merged, $polygon);
             }
         }
-
         return new BBox(
-            PolygonUtils::getMinXCoordinate($merged),
-            PolygonUtils::getMaxXCoordinate($merged),
-            PolygonUtils::getMinYCoordinate($merged),
-            PolygonUtils::getMaxYCoordinate($merged),
+            $merged->getMinX(),
+            $merged->getMaxX(),
+            $merged->getMinY(),
+            $merged->getMaxY(),
         );
     }
 
@@ -83,7 +80,6 @@ abstract class BBoxUtils
                 $maxY = $bbox->getMaxY();
             }
         }
-
         return new BBox((float)$minX, (float)$maxX, (float)$minY, (float)$maxY);
     }
 }
