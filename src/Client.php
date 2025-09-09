@@ -73,7 +73,11 @@ class Client
      */
     public function sourceFromPath(string $filePath, bool $fixPDF = false): PathInput
     {
-        return new PathInput($filePath, $fixPDF);
+        $input = new PathInput($filePath);
+        if ($fixPDF) {
+            $input->fixPDF();
+        }
+        return $input;
     }
 
     /**
@@ -85,7 +89,11 @@ class Client
      */
     public function sourceFromFile(mixed $file, bool $fixPDF = false): FileInput
     {
-        return new FileInput($file, $fixPDF);
+        $input = new FileInput($file);
+        if ($fixPDF) {
+            $input->fixPDF();
+        }
+        return $input;
     }
 
     /**
@@ -98,7 +106,11 @@ class Client
      */
     public function sourceFromBytes(string $fileBytes, string $fileName, bool $fixPDF = false): BytesInput
     {
-        return new BytesInput($fileBytes, $fileName, $fixPDF);
+        $input = new BytesInput($fileBytes, $fileName);
+        if ($fixPDF) {
+            $input->fixPDF();
+        }
+        return $input;
     }
 
     /**
@@ -111,7 +123,11 @@ class Client
      */
     public function sourceFromB64String(string $fileB64, string $fileName, bool $fixPDF = false): Base64Input
     {
-        return new Base64Input($fileB64, $fileName, $fixPDF);
+        $input = new Base64Input($fileB64, $fileName);
+        if ($fixPDF) {
+            $input->fixPDF();
+        }
+        return $input;
     }
 
     /**
@@ -515,7 +531,6 @@ class Client
         return $this->makeParseQueuedRequest($predictionType, $queueId, $endpoint);
     }
 
-
     /**
      * @param string        $predictionType Name of the product's class.
      * @param LocalResponse $localResponse  Local response to load.
@@ -539,7 +554,6 @@ class Client
             );
         }
     }
-
 
     /**
      * Sends a document to a workflow.

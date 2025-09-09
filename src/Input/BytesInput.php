@@ -13,11 +13,10 @@ class BytesInput extends LocalInputSource
     private string $tempFile;
 
     /**
-     * @param string  $fileBytes Raw data as bytes.
-     * @param string  $fileName  File name of the input.
-     * @param boolean $fixPDF    Whether the PDF should be fixed or not.
+     * @param string $fileBytes Raw data as bytes.
+     * @param string $fileName  File name of the input.
      */
-    public function __construct(string $fileBytes, string $fileName, bool $fixPDF = false)
+    public function __construct(string $fileBytes, string $fileName)
     {
         $this->tempFile = tempnam(sys_get_temp_dir(), 'b64_');
         $this->fileName = $fileName;
@@ -26,7 +25,7 @@ class BytesInput extends LocalInputSource
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $this->fileMimetype = finfo_buffer($finfo, $fileBytes);
         $this->fileObject = new \CURLFile($this->tempFile, $this->fileMimetype, $this->fileName);
-        parent::__construct($fixPDF);
+        parent::__construct();
     }
 
 

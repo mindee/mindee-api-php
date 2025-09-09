@@ -30,6 +30,7 @@ const ALLOWED_MIME_TYPES = [
     'image/jpeg',
     'image/tiff',
     'image/webp',
+    'application/octet-stream',
 ];
 
 /**
@@ -60,6 +61,21 @@ abstract class LocalInputSource extends InputSource
     protected bool $throwsOnClose;
 
     /**
+     * Checks if the file needs fixing.
+     * @return void
+     */
+    public function checkNeedsFix(): void
+    {
+        if ($this->fileMimetype == 'application/octet-stream') {
+            trigger_error(
+                'File type application/octet-stream is probably incorrect. '
+                . 'Try to run fixPDF() on the file.',
+                E_USER_WARNING
+            );
+        }
+    }
+
+    /**
      * Checks the mimetype integrity of a file.
      *
      * @return void
@@ -80,13 +96,9 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Base constructor, mostly used for Mime type checking.
-     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
-    public function __construct(bool $fixPDF = false)
+    public function __construct()
     {
-        if ($fixPDF) {
-            $this->fixPDF();
-        }
         $this->checkMimeType();
         $this->throwsOnClose = false;
     }
@@ -98,6 +110,7 @@ abstract class LocalInputSource extends InputSource
      */
     public function isPDF(): bool
     {
+        $this->checkMimeType();
         return $this->fileMimetype == 'application/pdf';
     }
 
@@ -146,7 +159,7 @@ abstract class LocalInputSource extends InputSource
      * @return void
      * @throws MindeePDFException Throws if the pdf file can't be processed.
      */
-    public function mergePDFPages(array $pageNumbers)
+    public function mergePDFPages(array $pageNumbers): void
     {
         try {
             $pdf = new FPDI();
@@ -213,14 +226,13 @@ abstract class LocalInputSource extends InputSource
         return [basename($this->fileObject->getFilename()), $strContents];
     }
 
-
     /**
      * Attempts to fix a PDF file.
      *
      * @return void
      * @throws MindeeSourceException Throws if the file couldn't be fixed.
      */
-    private function fixPDF(): void
+    public function fixPDF(): void
     {
         if (str_starts_with($this->fileMimetype, "image/")) {
             error_log("Input file is an image, skipping PDF fix.");
@@ -241,7 +253,6 @@ abstract class LocalInputSource extends InputSource
             $this->fileObject = new CURLFile($tempFile, $this->fileMimetype, $this->fileName);
             return;
         }
-
         throw new MindeeSourceException(
             "PDF file could not be fixed.",
             ErrorCode::FILE_OPERATION_ERROR
