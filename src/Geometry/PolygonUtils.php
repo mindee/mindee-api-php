@@ -2,6 +2,7 @@
 
 namespace Mindee\Geometry;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
 
 /**
@@ -57,8 +58,11 @@ abstract class PolygonUtils
      */
     public static function merge(Polygon $base, Polygon $target): Polygon
     {
-        if ((!$base->getCoordinates()) && (!$target || !$target->getCoordinates())) {
-            throw new MindeeGeometryException('Cannot merge two empty polygons.');
+        if ((!$base->getCoordinates()) && (!$target->getCoordinates())) {
+            throw new MindeeGeometryException(
+                'Cannot merge two empty polygons.',
+                ErrorCode::GEOMETRIC_OPERATION_FAILED
+            );
         }
         if (!$base->getCoordinates()) {
             return $target;

@@ -2,6 +2,7 @@
 
 namespace Mindee\Geometry;
 
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
 
 /**
@@ -20,7 +21,8 @@ class MinMaxUtils
     {
         if (count($points) < 1) {
             throw new MindeeGeometryException(
-                'The provided point array must have at least 1 point to calculate the Y bounds.'
+                'The provided point array must have at least 1 point to calculate the Y bounds.',
+                ErrorCode::GEOMETRIC_OPERATION_FAILED
             );
         }
         $yCoords = [];
@@ -41,7 +43,8 @@ class MinMaxUtils
     {
         if (count($points) < 1) {
             throw new MindeeGeometryException(
-                'The provided point array must have at least 1 point to calculate the X bounds.'
+                'The provided point array must have at least 1 point to calculate the X bounds.',
+                ErrorCode::GEOMETRIC_OPERATION_FAILED
             );
         }
         $xCoords = [];
