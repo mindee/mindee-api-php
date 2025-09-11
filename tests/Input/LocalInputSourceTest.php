@@ -222,37 +222,6 @@ class LocalInputSourceTest extends TestCase
         $this->assertEquals(str_replace("\n", "", $pdfBytes), str_replace("\n", "", base64_encode($contents[1])));
     }
 
-
-    public function testFileCloseValid()
-    {
-        $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
-        $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
-        $this->assertTrue(is_resource($inputDoc->getFilePtr()));
-        $inputDoc->close();
-        $this->assertFalse(is_resource($inputDoc->getFilePtr()));
-    }
-
-    public function testFileCloseInvalid()
-    {
-        $fileRef = fopen($this->fileTypesDir . "/pdf/multipage.pdf", "r");
-        $inputDoc = $this->dummyClient->sourceFromFile($fileRef);
-        $inputDoc->enableStrictMode();
-        fclose($fileRef);
-        $this->expectException(MindeeSourceException::class);
-        $this->expectExceptionMessage("File is already closed.");
-        $inputDoc->close();
-    }
-
-    public function testFileCloseNotImplemented()
-    {
-        $pdfBytes = file_get_contents($this->fileTypesDir . "/receipt.txt");
-        $inputDoc = $this->dummyClient->sourceFromb64String($pdfBytes, "dummy.pdf");
-        $inputDoc->enableStrictMode();
-        $this->expectException(MindeeSourceException::class);
-        $this->expectExceptionMessage("Closing is not implemented on this type of local input source.");
-        $inputDoc->close();
-    }
-
     public function testShouldNotRaiseMimeErrorForBrokenFixablePdf()
     {
         $this->expectNotToPerformAssertions();

@@ -119,9 +119,6 @@ class Endpoint extends BaseEndpoint
             $postFields = ['document' => $inputSource->url];
         } elseif ($inputSource instanceof LocalInputSource) {
             $inputSource->checkNeedsFix();
-            if ($options->closeFile) {
-                $inputSource->close();
-            }
             $postFields = ['document' => $inputSource->fileObject];
         }
         if ($options->predictOptions->includeWords) {

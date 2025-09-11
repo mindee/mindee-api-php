@@ -56,11 +56,6 @@ abstract class LocalInputSource extends InputSource
     public ?string $filePath;
 
     /**
-     * @var boolean Sets the input mode to debug. Only used in unit tests.
-     */
-    protected bool $throwsOnClose;
-
-    /**
      * Checks if the file needs fixing.
      * @return void
      */
@@ -100,7 +95,6 @@ abstract class LocalInputSource extends InputSource
     public function __construct()
     {
         $this->checkMimeType();
-        $this->throwsOnClose = false;
     }
 
     /**
@@ -257,35 +251,6 @@ abstract class LocalInputSource extends InputSource
             "PDF file could not be fixed.",
             ErrorCode::FILE_OPERATION_ERROR
         );
-    }
-
-    /**
-     * Closes the handle/stream, if the input type supports it.
-     *
-     * @return void
-     * @throws MindeeSourceException Throws when strict mode is enabled.
-     */
-    public function close(): void
-    {
-        if ($this->throwsOnClose) {
-            throw new MindeeSourceException(
-                "Closing is not implemented on this type of local input source.",
-                ErrorCode::USER_OPERATION_ERROR
-            );
-        } else {
-            error_log("Closing is not implemented on this type of local input source.");
-        }
-    }
-
-    /**
-     * Enables strict mode.
-     * Currently only used to throw on misuse of close().
-     *
-     * @return void
-     */
-    public function enableStrictMode()
-    {
-        $this->throwsOnClose = true;
     }
 
     /**

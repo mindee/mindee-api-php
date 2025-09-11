@@ -29,11 +29,6 @@ class PredictMethodOptions
     public $endpoint;
 
     /**
-     * @var boolean Whether to close the file after parsing it.
-     */
-    public bool $closeFile;
-
-    /**
      * @var boolean If set, will enable Retrieval-Augmented Generation (only works if a valid WorkflowId is set).
      */
     public bool $rag;
@@ -51,7 +46,6 @@ class PredictMethodOptions
         $this->predictOptions = new PredictOptions();
         $this->pageOptions = new PageOptions();
         $this->endpoint = null;
-        $this->closeFile = false;
         $this->rag = false;
         $this->workflowId = null;
     }

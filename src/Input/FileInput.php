@@ -40,27 +40,6 @@ class FileInput extends LocalInputSource
     }
 
     /**
-     * Closes the file.
-     *
-     * @return void
-     * @throws MindeeSourceException Throws when strict mode is enabled.
-     */
-    public function close(): void
-    {
-        if (!is_resource($this->file)) {
-            if ($this->throwsOnClose) {
-                throw new MindeeSourceException(
-                    "File is already closed.",
-                    ErrorCode::USER_OPERATION_ERROR
-                );
-            }
-            error_log("File is already closed.");
-        } else {
-            fclose($this->file);
-        }
-    }
-
-    /**
      * Returns the reference to the file object. Only used for testing purposes.
      *
      * @return mixed
