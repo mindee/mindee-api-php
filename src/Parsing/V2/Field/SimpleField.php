@@ -8,7 +8,7 @@ namespace Mindee\Parsing\V2\Field;
 class SimpleField extends BaseField
 {
     /**
-     * @var string | integer | float | boolean | null Value contained in the field.
+     * @var string|float|boolean|null Value contained in the field.
      */
     public $value;
 
@@ -20,6 +20,9 @@ class SimpleField extends BaseField
     {
         parent::__construct($serverResponse, $indentLevel);
         $this->value = array_key_exists('value', $serverResponse) ? $serverResponse['value'] : null;
+        if (is_int($this->value)) {
+            $this->value = (float) $this->value;
+        }
     }
 
     /**
@@ -31,12 +34,8 @@ class SimpleField extends BaseField
             return $this->value ? 'True' : 'False';
         }
         if (is_numeric($this->value)) {
-            $value = (float)$this->value;
-            return $value == (int)$value ?
-                number_format($value, 1, '.', '') :
-                rtrim(rtrim(number_format($value, 5, '.', ''), '0'), '.');
+            return number_format($this->value, 1, '.', '');
         }
-
         return $this->value !== null ? (string)$this->value : '';
     }
 }
