@@ -204,11 +204,11 @@ class InferenceTest extends TestCase
 
         $fieldSimpleInt = $fields->get('field_simple_int');
         $this->assertInstanceOf(SimpleField::class, $fieldSimpleInt);
-        $this->assertIsNumeric($fieldSimpleInt->value);
+        $this->assertIsFloat($fieldSimpleInt->value);
 
         $fieldSimpleZero = $fields->get('field_simple_zero');
         $this->assertInstanceOf(SimpleField::class, $fieldSimpleZero);
-        $this->assertIsNumeric($fieldSimpleZero->value);
+        $this->assertIsFloat($fieldSimpleZero->value);
 
         $fieldSimpleBool = $fields->get('field_simple_bool');
         $this->assertInstanceOf(SimpleField::class, $fieldSimpleBool);
@@ -236,8 +236,11 @@ class InferenceTest extends TestCase
         $this->assertInstanceOf(ObjectField::class, $fieldObject);
         $fieldObjectFields = $fieldObject->fields;
         $this->assertCount(2, $fieldObjectFields);
+        foreach ($fieldObjectFields as $fieldName => $subField) {
+            $this->assertInstanceOf(SimpleField::class, $subField);
+        }
 
-        $subfield1 = $fieldObjectFields->get('subfield_1');
+        $subfield1 = $fieldObjectFields->getSimpleField('subfield_1');
         $this->assertInstanceOf(SimpleField::class, $subfield1);
         $this->assertIsString($subfield1->value);
 
