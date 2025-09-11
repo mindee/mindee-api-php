@@ -49,11 +49,6 @@ class InferenceParameters
     public PollingOptions $pollingOptions;
 
     /**
-     * @var boolean Whether to close the file after enqueuing.
-     */
-    public bool $closeFile;
-
-    /**
      * @param string              $modelId        ID of the model.
      * @param boolean|null        $rag            Whether to enable Retrieval-Augmented Generation.
      * @param boolean|null        $rawText        Whether to extract the full text content from the document as strings.
@@ -62,7 +57,6 @@ class InferenceParameters
      * @param string|null         $alias          Optional file alias.
      * @param array<string>|null  $webhooksIds    List of webhook IDs.
      * @param PollingOptions|null $pollingOptions Polling options.
-     * @param boolean|null        $closeFile      Whether to close the file after enqueuing.
      */
     public function __construct(
         string $modelId,
@@ -73,7 +67,6 @@ class InferenceParameters
         ?string $alias = null,
         ?array $webhooksIds = null,
         ?PollingOptions $pollingOptions = null,
-        ?bool $closeFile = null
     ) {
         $this->modelId = $modelId;
         if (!$pollingOptions) {
@@ -85,7 +78,6 @@ class InferenceParameters
         $this->polygon = $polygon;
         $this->confidence = $confidence;
 
-        $this->closeFile = (bool) $closeFile;
         if (isset($alias)) {
             $this->alias = $alias;
         }

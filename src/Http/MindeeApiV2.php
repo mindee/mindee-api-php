@@ -306,9 +306,6 @@ class MindeeApiV2
             $postFields['url'] = $inputSource->url;
         } elseif ($inputSource instanceof LocalInputSource) {
             $inputSource->checkNeedsFix();
-            if ($params->closeFile) {
-                $inputSource->close();
-            }
             $postFields['file'] = $inputSource->fileObject;
         }
 
