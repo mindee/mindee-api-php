@@ -2,8 +2,6 @@
 
 namespace Mindee\Geometry;
 
-use Mindee\Error\MindeeGeometryException;
-
 /**
  * Polygon represented as a set of coordinates (vertices/points).
  */
