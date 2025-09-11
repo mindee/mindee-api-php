@@ -1,14 +1,29 @@
 # Mindee PHP API Library Changelog
 
+## v2.0.0 - 2025-09-11
+### Changes
+* :sparkles: add support for V2 Mindee API
+* :sparkles: add support for PHP 8.4
+* :sparkles: add more functions to Polygon class
+* :recycle: prohibit nulls in some functions
+### ¡Breaking Changes!
+* :coffin: **remove support for PHP 7.4 and 8.0**
+* :recycle: remove useless class `EnqueueAndParseMethodOptions`, replace with `PollingOptions`
+* :coffin: remove some static methods from the `PolygonUtils` class, use directly from `Polygon` class instead
+* :recycle: remove `processPDF()` in favor of `applyPageOptions()`
+### Fixes
+* :bug: fix for polygon points not correctly initialized
+
+
 ## v1.23.0-rc3 - 2025-09-09
 ### Changes
-* :sparkles: allow inference options to be set
+* :sparkles: allow v2 inference options to be set
 * :sparkles: add more functions to Polygon class
 * :recycle: remove unused DynamicField & put location data into BaseField
 ### ¡Breaking Changes!
-* :recycle: :boom: update options and raw text to new format
+* :recycle: :boom: update v2 options and raw text to the new format
 ### Fixes
-* :bug: fix for polygon points not being init correctly
+* :bug: fix for polygon points not correctly initialized
 
 
 ## v1.23.0-rc2 - 2025-08-01
