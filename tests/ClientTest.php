@@ -4,11 +4,11 @@ use Mindee\Client;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
-use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
+use Mindee\Input\PollingOptions;
 use Mindee\Input\PredictMethodOptions;
-use Mindee\Product\Custom\CustomV1;
+use Mindee\Product\Generated\GeneratedV1;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
@@ -91,7 +91,11 @@ class ClientTest extends TestCase
         $this->assertEquals("1.1", $dummyEndpoint->settings->version);
 
         $this->expectException(MindeeHTTPClientException::class);
-        $this->dummyClient->parse(CustomV1::class, $inputDoc, $predictOptions->setEndpoint($dummyEndpoint));
+        $this->dummyClient->parse(
+            GeneratedV1::class,
+            $inputDoc,
+            $predictOptions->setEndpoint($dummyEndpoint),
+        );
     }
 
     public function testCutOptions()
@@ -106,14 +110,14 @@ class ClientTest extends TestCase
     public function testAsyncWrongInitialDelay()
     {
         $this->expectException(MindeeApiException::class);
-        $asyncParseOptions = new EnqueueAndParseMethodOptions();
+        $asyncParseOptions = new PollingOptions();
         $asyncParseOptions->setInitialDelaySec(0);
     }
 
     public function testAsyncWrongPollingDelay()
     {
         $this->expectException(MindeeApiException::class);
-        $asyncParseOptions = new EnqueueAndParseMethodOptions();
+        $asyncParseOptions = new PollingOptions();
         $asyncParseOptions->setDelaySec(0);
     }
 

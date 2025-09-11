@@ -13,7 +13,6 @@ abstract class CommonOptions
      */
     public bool $fullText;
 
-
     /**
      * Prediction options.
      * @param boolean $fullText Whether to include the full OCR text response in compatible APIs.
