@@ -10,12 +10,12 @@ abstract class BBoxUtils
     /**
      * Generates a BBox from a polygon. Returns null if no polygon is provided.
      *
-     * @param \Mindee\Geometry\Polygon|null $polygon Polygon to get the BBox of.
-     * @return \Mindee\Geometry\BBox|null
+     * @param Polygon $polygon Polygon to get the BBox of.
+     * @return BBox|null
      */
-    public static function generateBBoxFromPolygon(?Polygon $polygon): ?BBox
+    public static function generateBBoxFromPolygon(Polygon $polygon): ?BBox
     {
-        if (!$polygon || !$polygon->getCoordinates()) {
+        if (!$polygon->getCoordinates()) {
             return null;
         }
         return new BBox(
@@ -30,7 +30,7 @@ abstract class BBoxUtils
      * Generates a BBox from an array of polygons. Returns null if no polygons are provided.
      *
      * @param array $polygons Series of polygons to get the BBox of.
-     * @return \Mindee\Geometry\BBox|null
+     * @return BBox|null
      */
     public static function generateBBoxFromPolygons(array $polygons): ?BBox
     {
@@ -55,7 +55,7 @@ abstract class BBoxUtils
      * Merges an array of bboxes.
      *
      * @param array $bboxes BBoxes to merge.
-     * @return \Mindee\Geometry\BBox|null
+     * @return BBox|null
      */
     public static function mergeBBoxes(array $bboxes): ?BBox
     {
