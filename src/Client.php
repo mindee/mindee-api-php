@@ -21,13 +21,13 @@ use Mindee\Http\ResponseValidation;
 use Mindee\Http\WorkflowEndpoint;
 use Mindee\Input\Base64Input;
 use Mindee\Input\BytesInput;
-use Mindee\Input\EnqueueAndParseMethodOptions;
 use Mindee\Input\FileInput;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
+use Mindee\Input\PollingOptions;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\URLInputSource;
 use Mindee\Input\WorkflowOptions;
@@ -429,11 +429,11 @@ class Client
     /**
      * Enqueues a document and automatically polls the response. Asynchronous calls only.
      *
-     * @param string                            $predictionType Name of the product's class.
-     * @param InputSource                       $inputDoc       Input file.
-     * @param PredictMethodOptions|null         $options        Prediction Options.
-     * @param EnqueueAndParseMethodOptions|null $asyncOptions   Async Options. Manages timers.
-     * @param PageOptions|null                  $pageOptions    Options to apply to the PDF file.
+     * @param string                    $predictionType Name of the product's class.
+     * @param InputSource               $inputDoc       Input file.
+     * @param PredictMethodOptions|null $options        Prediction Options.
+     * @param PollingOptions|null       $asyncOptions   Async Options. Manages timers.
+     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
      * @return AsyncPredictResponse
      * @throws MindeeApiException Throws if the document couldn't be retrieved in time.
      */
@@ -441,14 +441,14 @@ class Client
         string $predictionType,
         InputSource $inputDoc,
         ?PredictMethodOptions $options = null,
-        ?EnqueueAndParseMethodOptions $asyncOptions = null,
+        ?PollingOptions $asyncOptions = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
         if ($options == null) {
             $options = new PredictMethodOptions();
         }
         if ($asyncOptions == null) {
-            $asyncOptions = new EnqueueAndParseMethodOptions();
+            $asyncOptions = new PollingOptions();
         }
 
         $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(

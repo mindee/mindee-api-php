@@ -36,13 +36,12 @@ class PollingOptions
         $this->maxRetries = 80;
     }
 
-
     /**
      * @param integer $initialDelay Delay between polls.
      * @return $this
      * @throws MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
      */
-    public function setInitialDelaySec(int $initialDelay): EnqueueAndParseMethodOptions
+    public function setInitialDelaySec(int $initialDelay): PollingOptions
     {
         if ($initialDelay < MINIMUM_INITIAL_DELAY_SECONDS) {
             throw new MindeeApiException(
@@ -59,7 +58,7 @@ class PollingOptions
      * @return $this
      * @throws MindeeApiException Throws if the delay is too low.
      */
-    public function setDelaySec(int $delay): EnqueueAndParseMethodOptions
+    public function setDelaySec(int $delay): PollingOptions
     {
         if ($delay < MINIMUM_DELAY_SECONDS) {
             throw new MindeeApiException(
@@ -75,7 +74,7 @@ class PollingOptions
      * @param integer $maxRetries Maximum allowed retries. Will default to 80 if an invalid number is provided.
      * @return $this
      */
-    public function setMaxRetries(int $maxRetries): EnqueueAndParseMethodOptions
+    public function setMaxRetries(int $maxRetries): PollingOptions
     {
         if (!$maxRetries || $maxRetries < 0) {
             $this->maxRetries = 80;

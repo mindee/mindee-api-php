@@ -107,7 +107,7 @@ class MindeeApiV2
      *
      * @return void
      */
-    private function setFromEnv()
+    private function setFromEnv(): void
     {
         $envVars = [
             API_V2_BASE_URL_ENV_NAME => [$this, 'setBaseUrl'],
@@ -129,7 +129,7 @@ class MindeeApiV2
      * @param string|null $apiKey Optional API key.
      * @return void
      */
-    protected function setApiKey(?string $apiKey = null)
+    protected function setApiKey(?string $apiKey = null): void
     {
         $envVal = !getenv(API_V2_KEY_ENV_NAME) ? '' : getenv(API_V2_KEY_ENV_NAME);
         if (!$apiKey) {
