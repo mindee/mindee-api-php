@@ -23,20 +23,24 @@ class URLInputSourceTest extends TestCase
             getenv('GITHUB_WORKSPACE') ?: "."
         ) . "/tests/resources/file_types/";
     }
+
     protected function tearDown(): void
     {
         putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
+
     public function testInputFromHTTPShouldNotThrow()
     {
         $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
         $this->assertInstanceOf(URLInputSource::class, $inputDoc);
     }
+
     public function testInputFromHTTPShouldThrow()
     {
         $this->expectException(MindeeSourceException::class);
-        $this->dummyClient->sourceFromUrl("http://example.com/invoice.pdf");
+        new URLInputSource(url: "http://example.com/invoice.pdf");
     }
+
     public function testDownloadFileFails(){
         $dummyAddress = "addressthatdoesntworkforcipurposes";
         $urlSource = $this->dummyClient->sourceFromUrl("https://$dummyAddress");
@@ -44,6 +48,7 @@ class URLInputSourceTest extends TestCase
         $this->expectExceptionMessage("Failed to download file: Could not resolve host: $dummyAddress");
         $urlSource->asLocalInputSource("test.pdf");
     }
+
     public function testInvalidFileName(){
         $urlSource = $this->dummyClient->sourceFromUrl("https://addressthatdoesntworkforcipurposes");
         $this->expectException(MindeeSourceException::class);

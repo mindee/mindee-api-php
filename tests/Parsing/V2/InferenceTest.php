@@ -282,6 +282,10 @@ class InferenceTest extends TestCase
 
         $first = $rawText->pages[0];
         $this->assertEquals('This is the raw text of the first page...', $first->content);
+
+        foreach ($rawText->pages as $page) {
+            $this->assertEquals('string', gettype($page->content));
+        }
     }
 
     /**
@@ -305,7 +309,9 @@ class InferenceTest extends TestCase
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
-        $dateField = $inference->result->fields->getSimpleField('date');
+        $fields = $response->inference->result->fields;
+
+        $dateField = $fields->getSimpleField('date');
         $this->assertCount(1, $dateField->locations);
 
         $location = $dateField->locations[0];
