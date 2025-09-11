@@ -1,5 +1,11 @@
 <?php
 
+//
+// DEPRECATED API
+// Support removed in version 2.0 of the Mindee PHP library.
+// Use only with version 1.x of the library.
+//
+
 use Mindee\Client;
 use Mindee\Product\Custom\CustomV1;
 use Mindee\Input\PredictMethodOptions;

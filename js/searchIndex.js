@@ -781,6 +781,26 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020located\u0020within\u0020the\u0020polygon\u0027s\u0020x\u002Daxis.",
             "url": "classes/Mindee-Geometry-Polygon.html#method_isPointInX"
         },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AgetMinX\u0028\u0029",
+            "name": "getMinX",
+            "summary": "Retrieves\u0020the\u0020minimum\u0020X\u0020coordinate.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_getMinX"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AgetMaxX\u0028\u0029",
+            "name": "getMaxX",
+            "summary": "Retrieves\u0020the\u0020maximum\u0020X\u0020coordinate.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_getMaxX"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AgetMinY\u0028\u0029",
+            "name": "getMinY",
+            "summary": "Retrieves\u0020the\u0020minimum\u0020Y\u0020coordinate.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_getMinY"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AgetMaxY\u0028\u0029",
+            "name": "getMaxY",
+            "summary": "Retrieves\u0020the\u0020maximum\u0020Y\u0020coordinate.",
+            "url": "classes/Mindee-Geometry-Polygon.html#method_getMaxY"
+        },                {
             "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003AisEmpty\u0028\u0029",
             "name": "isEmpty",
             "summary": "Checks\u0020whether\u0020the\u0020Polygon\u0020has\u0020coordinates.",
@@ -801,6 +821,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Geometry-Polygon.html#property_coordinates"
         },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003A\u0024minMaxY",
+            "name": "minMaxY",
+            "summary": "",
+            "url": "classes/Mindee-Geometry-Polygon.html#property_minMaxY"
+        },                {
+            "fqsen": "\\Mindee\\Geometry\\Polygon\u003A\u003A\u0024minMaxX",
+            "name": "minMaxX",
+            "summary": "",
+            "url": "classes/Mindee-Geometry-Polygon.html#property_minMaxX"
+        },                {
             "fqsen": "\\Mindee\\Geometry\\PolygonUtils",
             "name": "PolygonUtils",
             "summary": "Utility\u0020class\u0020for\u0020Polygon.",
@@ -810,26 +840,6 @@ Search.appendIndex(
             "name": "getCentroid",
             "summary": "Gets\u0020the\u0020centroid\u0020\u0028Point\u0029\u0020of\u0020a\u0020set\u0020of\u0020points.",
             "url": "classes/Mindee-Geometry-PolygonUtils.html#method_getCentroid"
-        },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AgetMinYCoordinate\u0028\u0029",
-            "name": "getMinYCoordinate",
-            "summary": "Retrieves\u0020the\u0020minimum\u0020y\u0020coordinate\u0020of\u0020a\u0020Polygon.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_getMinYCoordinate"
-        },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AgetMinXCoordinate\u0028\u0029",
-            "name": "getMinXCoordinate",
-            "summary": "Retrieves\u0020the\u0020minimum\u0020x\u0020coordinate\u0020of\u0020a\u0020Polygon.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_getMinXCoordinate"
-        },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AgetMaxYCoordinate\u0028\u0029",
-            "name": "getMaxYCoordinate",
-            "summary": "Retrieves\u0020the\u0020maximum\u0020y\u0020coordinate\u0020of\u0020a\u0020Polygon.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_getMaxYCoordinate"
-        },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AgetMaxXCoordinate\u0028\u0029",
-            "name": "getMaxXCoordinate",
-            "summary": "Retrieves\u0020the\u0020maximum\u0020x\u0020coordinate\u0020of\u0020a\u0020Polygon.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_getMaxXCoordinate"
         },                {
             "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AcompareOnY\u0028\u0029",
             "name": "compareOnY",
@@ -851,30 +861,15 @@ Search.appendIndex(
             "summary": "Generates\u0020a\u0020quadrilateral\u0020Polygon\u0020from\u0020a\u0020given\u0020prediction.",
             "url": "classes/Mindee-Geometry-PolygonUtils.html#method_quadrilateralFromPrediction"
         },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003ApolygonFromPrediction\u0028\u0029",
-            "name": "polygonFromPrediction",
-            "summary": "Generates\u0020a\u0020Polygon\u0020from\u0020a\u0020given\u0020prediction.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_polygonFromPrediction"
-        },                {
             "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AisPointInX\u0028\u0029",
             "name": "isPointInX",
             "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020located\u0020within\u0020a\u0020coordinate\u0020range\u0020on\u0020the\u0020x\u002Daxis.",
             "url": "classes/Mindee-Geometry-PolygonUtils.html#method_isPointInX"
         },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AisPointInPolygonX\u0028\u0029",
-            "name": "isPointInPolygonX",
-            "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020in\u0020a\u0020polygon\u0027s\u0020x\u002Daxis\u0020range.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_isPointInPolygonX"
-        },                {
             "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AisPointInY\u0028\u0029",
             "name": "isPointInY",
             "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020located\u0020within\u0020a\u0020coordinate\u0020range\u0020on\u0020the\u0020y\u002Daxis.",
             "url": "classes/Mindee-Geometry-PolygonUtils.html#method_isPointInY"
-        },                {
-            "fqsen": "\\Mindee\\Geometry\\PolygonUtils\u003A\u003AisPointInPolygonY\u0028\u0029",
-            "name": "isPointInPolygonY",
-            "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020in\u0020a\u0020polygon\u0027s\u0020y\u002Daxis\u0020range.",
-            "url": "classes/Mindee-Geometry-PolygonUtils.html#method_isPointInPolygonY"
         },                {
             "fqsen": "\\Mindee\\Http\\API_KEY_ENV_NAME",
             "name": "API_KEY_ENV_NAME",
@@ -1311,11 +1306,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-CommonOptions.html#property_fullText"
         },                {
-            "fqsen": "\\Mindee\\Input\\EnqueueAndParseMethodOptions",
-            "name": "EnqueueAndParseMethodOptions",
-            "summary": "Handles\u0020options\u0020tied\u0020to\u0020asynchronous\u0020parsing.",
-            "url": "classes/Mindee-Input-EnqueueAndParseMethodOptions.html"
-        },                {
             "fqsen": "\\Mindee\\Input\\FileInput",
             "name": "FileInput",
             "summary": "Binary\u0020file\u0020input.",
@@ -1330,11 +1320,6 @@ Search.appendIndex(
             "name": "readContents",
             "summary": "Reads\u0020the\u0020contents\u0020of\u0020the\u0020file.",
             "url": "classes/Mindee-Input-FileInput.html#method_readContents"
-        },                {
-            "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003Aclose\u0028\u0029",
-            "name": "close",
-            "summary": "Closes\u0020the\u0020file.",
-            "url": "classes/Mindee-Input-FileInput.html#method_close"
         },                {
             "fqsen": "\\Mindee\\Input\\FileInput\u003A\u003AgetFilePtr\u0028\u0029",
             "name": "getFilePtr",
@@ -1396,11 +1381,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-InferenceParameters.html#property_pollingOptions"
         },                {
-            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024closeFile",
-            "name": "closeFile",
-            "summary": "",
-            "url": "classes/Mindee-Input-InferenceParameters.html#property_closeFile"
-        },                {
             "fqsen": "\\Mindee\\Input\\InputSource",
             "name": "InputSource",
             "summary": "Base\u0020class\u0020for\u0020input\u0020sources.",
@@ -1415,6 +1395,11 @@ Search.appendIndex(
             "name": "LocalInputSource",
             "summary": "Base\u0020class\u0020for\u0020all\u0020input\u0020sources\u0020coming\u0020from\u0020the\u0020local\u0020machine.",
             "url": "classes/Mindee-Input-LocalInputSource.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AcheckNeedsFix\u0028\u0029",
+            "name": "checkNeedsFix",
+            "summary": "Checks\u0020if\u0020the\u0020file\u0020needs\u0020fixing.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_checkNeedsFix"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AcheckMimeType\u0028\u0029",
             "name": "checkMimeType",
@@ -1435,11 +1420,6 @@ Search.appendIndex(
             "name": "countDocPages",
             "summary": "Counts\u0020the\u0020amount\u0020of\u0020pages\u0020in\u0020a\u0020PDF.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_countDocPages"
-        },                {
-            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AprocessPDF\u0028\u0029",
-            "name": "processPDF",
-            "summary": "Processes\u0020a\u0020PDF\u0020file.",
-            "url": "classes/Mindee-Input-LocalInputSource.html#method_processPDF"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AsaveBytesAsFile\u0028\u0029",
             "name": "saveBytesAsFile",
@@ -1465,16 +1445,6 @@ Search.appendIndex(
             "name": "fixPDF",
             "summary": "Attempts\u0020to\u0020fix\u0020a\u0020PDF\u0020file.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_fixPDF"
-        },                {
-            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003Aclose\u0028\u0029",
-            "name": "close",
-            "summary": "Closes\u0020the\u0020handle\/stream,\u0020if\u0020the\u0020input\u0020type\u0020supports\u0020it.",
-            "url": "classes/Mindee-Input-LocalInputSource.html#method_close"
-        },                {
-            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AenableStrictMode\u0028\u0029",
-            "name": "enableStrictMode",
-            "summary": "Enables\u0020strict\u0020mode.",
-            "url": "classes/Mindee-Input-LocalInputSource.html#method_enableStrictMode"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003Acompress\u0028\u0029",
             "name": "compress",
@@ -1510,11 +1480,6 @@ Search.appendIndex(
             "name": "filePath",
             "summary": "",
             "url": "classes/Mindee-Input-LocalInputSource.html#property_filePath"
-        },                {
-            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024throwsOnClose",
-            "name": "throwsOnClose",
-            "summary": "",
-            "url": "classes/Mindee-Input-LocalInputSource.html#property_throwsOnClose"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalResponse",
             "name": "LocalResponse",
@@ -1710,11 +1675,6 @@ Search.appendIndex(
             "name": "endpoint",
             "summary": "",
             "url": "classes/Mindee-Input-PredictMethodOptions.html#property_endpoint"
-        },                {
-            "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024closeFile",
-            "name": "closeFile",
-            "summary": "",
-            "url": "classes/Mindee-Input-PredictMethodOptions.html#property_closeFile"
         },                {
             "fqsen": "\\Mindee\\Input\\PredictMethodOptions\u003A\u003A\u0024rag",
             "name": "rag",
@@ -2571,151 +2531,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-Common-WorkflowResponse.html#property_execution"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField",
-            "name": "ClassificationField",
-            "summary": "A\u0020classification\u0020field.",
-            "url": "classes/Mindee-Parsing-Custom-ClassificationField.html"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ClassificationField.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ClassificationField.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField\u003A\u003A\u0024value",
-            "name": "value",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ClassificationField.html#property_value"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ClassificationField\u003A\u003A\u0024confidence",
-            "name": "confidence",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ClassificationField.html#property_confidence"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine",
-            "name": "CustomLine",
-            "summary": "Represents\u0020a\u0020single\u0020line.",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003AupdateField\u0028\u0029",
-            "name": "updateField",
-            "summary": "Updates\u0020a\u0020field\u0027s\u0020value.",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method_updateField"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003AisBBoxInLine\u0028\u0029",
-            "name": "isBBoxInLine",
-            "summary": "Checks\u0020if\u0020a\u0020BBox\u0020is\u0020in\u0020a\u0020given\u0020line.",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method_isBBoxInLine"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003Aprepare\u0028\u0029",
-            "name": "prepare",
-            "summary": "Prepares\u0020the\u0020line\u0020items\u0020before\u0020filling\u0020them.",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method_prepare"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003AfindBestAnchor\u0028\u0029",
-            "name": "findBestAnchor",
-            "summary": "Finds\u0020the\u0020best\u0020anchor\u0020for\u0020a\u0020given\u0020array\u0020of\u0020fields.",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method_findBestAnchor"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003AgetLineItems\u0028\u0029",
-            "name": "getLineItems",
-            "summary": "Creates\u0020the\u0020line\u0020items.",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#method_getLineItems"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A\u0024rowNumber",
-            "name": "rowNumber",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#property_rowNumber"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A\u0024fields",
-            "name": "fields",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#property_fields"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\CustomLine\u003A\u003A\u0024bbox",
-            "name": "bbox",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-CustomLine.html#property_bbox"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField",
-            "name": "ListField",
-            "summary": "A\u0020list\u0020of\u0020value\u0020or\u0020words.",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003AcontentsList\u0028\u0029",
-            "name": "contentsList",
-            "summary": "Returns\u0020the\u0020contents\u0020of\u0020the\u0020list\u0020as\u0020an\u0020array\u0020of\u0020values.",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#method_contentsList"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003AcontentsString\u0028\u0029",
-            "name": "contentsString",
-            "summary": "Returns\u0020the\u0020contents\u0020of\u0020a\u0020list\u0020as\u0020a\u0020concatenated\u0020string.",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#method_contentsString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003A\u0024confidence",
-            "name": "confidence",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#property_confidence"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003A\u0024reconstructed",
-            "name": "reconstructed",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#property_reconstructed"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListField\u003A\u003A\u0024values",
-            "name": "values",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListField.html#property_values"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue",
-            "name": "ListFieldValue",
-            "summary": "A\u0020single\u0020Value\u0020or\u0020word.",
-            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue\u003A\u003A\u0024content",
-            "name": "content",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_content"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue\u003A\u003A\u0024confidence",
-            "name": "confidence",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_confidence"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom\\ListFieldValue\u003A\u003A\u0024pageId",
-            "name": "pageId",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-Custom-ListFieldValue.html#property_pageId"
-        },                {
             "fqsen": "\\Mindee\\Parsing\\DependencyChecker",
             "name": "DependencyChecker",
             "summary": "Utility\u0020class\u0020to\u0020check\u0020the\u0020availability\u0020of\u0020potentially\u0020incompatible\u0020libraries.",
@@ -3338,58 +3153,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence",
             "name": "FieldConfidence",
-            "summary": "Confidence\u0020level\u0020of\u0020a\u0020field\u0020as\u0020returned\u0020by\u0020the\u0020V2\u0020API.",
+            "summary": "",
             "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ACertain",
+            "name": "Certain",
             "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method___construct"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#enumcase_Certain"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AisValid\u0028\u0029",
-            "name": "isValid",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AHigh",
+            "name": "High",
             "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_isValid"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#enumcase_High"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AgetValidValues\u0028\u0029",
-            "name": "getValidValues",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AMedium",
+            "name": "Medium",
             "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_getValidValues"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#enumcase_Medium"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AgetValue\u0028\u0029",
-            "name": "getValue",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ALow",
+            "name": "Low",
             "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_getValue"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ACERTAIN",
-            "name": "CERTAIN",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_CERTAIN"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AHIGH",
-            "name": "HIGH",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_HIGH"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AMEDIUM",
-            "name": "MEDIUM",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_MEDIUM"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ALOW",
-            "name": "LOW",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#constant_LOW"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003A\u0024value",
-            "name": "value",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#property_value"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#enumcase_Low"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldLocation",
             "name": "FieldLocation",
@@ -4505,76 +4290,6 @@ Search.appendIndex(
             "name": "cropping",
             "summary": "",
             "url": "classes/Mindee-Product-Cropper-CropperV1Page.html#property_cropping"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1",
-            "name": "CustomV1",
-            "summary": "Custom\u0020document\u0020\u0028API\u0020Builder\u0029\u0020v1\u0020inference\u0020results.",
-            "url": "classes/Mindee-Product-Custom-CustomV1.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document",
-            "name": "CustomV1Document",
-            "summary": "Custom\u0020V1\u0020document\u0020prediction\u0020results.",
-            "url": "classes/Mindee-Product-Custom-CustomV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document\u003A\u003AcolumnsToLineItems\u0028\u0029",
-            "name": "columnsToLineItems",
-            "summary": "Order\u0020column\u0020fields\u0020into\u0020line\u0020items.",
-            "url": "classes/Mindee-Product-Custom-CustomV1Document.html#method_columnsToLineItems"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document\u003A\u003A\u0024fields",
-            "name": "fields",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Document.html#property_fields"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Document\u003A\u003A\u0024classifications",
-            "name": "classifications",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Document.html#property_classifications"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Page",
-            "name": "CustomV1Page",
-            "summary": "Custom\u0020V1\u0020page\u0020prediction\u0020results.",
-            "url": "classes/Mindee-Product-Custom-CustomV1Page.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Page\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Page.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Page\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Page.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom\\CustomV1Page\u003A\u003A\u0024fields",
-            "name": "fields",
-            "summary": "",
-            "url": "classes/Mindee-Product-Custom-CustomV1Page.html#property_fields"
         },                {
             "fqsen": "\\Mindee\\Product\\DeliveryNote\\DeliveryNoteV1",
             "name": "DeliveryNoteV1",
@@ -10336,11 +10051,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-parsing-common-ocr.html"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\Custom",
-            "name": "Custom",
-            "summary": "",
-            "url": "namespaces/mindee-parsing-custom.html"
-        },                {
             "fqsen": "\\Mindee\\Parsing",
             "name": "Parsing",
             "summary": "",
@@ -10395,11 +10105,6 @@ Search.appendIndex(
             "name": "Cropper",
             "summary": "",
             "url": "namespaces/mindee-product-cropper.html"
-        },                {
-            "fqsen": "\\Mindee\\Product\\Custom",
-            "name": "Custom",
-            "summary": "",
-            "url": "namespaces/mindee-product-custom.html"
         },                {
             "fqsen": "\\Mindee\\Product\\DeliveryNote",
             "name": "DeliveryNote",
