@@ -156,7 +156,7 @@ Requires a base64 encoded string.
 
 ```php
 $b64String = "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLD....";
-$inputSource = $mindeeClient->sourceFromB64($b64String, "receipt.jpg");
+$inputSource = $mindeeClient->sourceFromB64String($b64String, "receipt.jpg");
 ```
 
 ### Bytes
