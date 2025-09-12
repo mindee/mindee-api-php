@@ -5,6 +5,7 @@
 * :bug: int values should be cast to float
 * :memo: fix getting started doc entry
 
+
 ## v2.0.0 - 2025-09-11
 ### Changes
 * :sparkles: add support for V2 Mindee API
