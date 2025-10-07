@@ -58,7 +58,7 @@ class Job
         }
         $this->id = $rawResponse['id'];
         $this->status = $rawResponse['status'];
-        if (array_key_exists('available_at', $rawResponse) && strtotime($rawResponse['available_at'])) {
+        if (array_key_exists('available_at', $rawResponse) && null !== $rawResponse['available_at'] && strtotime($rawResponse['available_at'])) {
             try {
                 $this->availableAt = new DateTimeImmutable($rawResponse['available_at']);
             } catch (\Exception $e) {
