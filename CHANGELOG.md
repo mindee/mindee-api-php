@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.0.2 - 2025-10-08
+### Fixes
+* :bug: Add check for null before passing available_at field to strtotime
+
+
 ## v2.0.1 - 2025-09-12
 ### Fixes
 * :bug: int values should be cast to float
