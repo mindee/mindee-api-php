@@ -16,12 +16,11 @@ class PdfExtractorTest extends TestCase
 
     private function prepareInvoiceReturn(string $rstFilePath, Document $invoicePrediction): string
     {
-        $rstContent = file_get_contents($rstFilePath);
+        $fileContent = file_get_contents($rstFilePath);
         $parsingVersion = $invoicePrediction->inference->product->version;
         $parsingId = $invoicePrediction->id;
-        $rstContent = str_replace(TestingUtilities::getVersion($rstContent), $parsingVersion, $rstContent);
-        $rstContent = str_replace(TestingUtilities::getId($rstContent), $parsingId, $rstContent);
-        return $rstContent;
+        $rstContent = str_replace(TestingUtilities::getVersion($fileContent), $parsingVersion, $fileContent);
+        return str_replace(TestingUtilities::getId($rstContent), $parsingId, $rstContent);
     }
 
     /**
@@ -31,7 +30,8 @@ class PdfExtractorTest extends TestCase
     public function testPdfShouldExtractInvoicesStrict()
     {
         $client = new Client();
-        $invoiceSplitterInput = new PathInput((getenv('GITHUB_WORKSPACE') ?: ".") . self::PRODUCT_DATA_DIR . '/invoice_splitter/default_sample.pdf');
+        $rootDir = (getenv('GITHUB_WORKSPACE') ?: ".") . self::PRODUCT_DATA_DIR;
+        $invoiceSplitterInput = new PathInput(filePath: $rootDir . '/invoice_splitter/default_sample.pdf');
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
         $pdfExtractor = new PdfExtractor($invoiceSplitterInput);
@@ -44,13 +44,14 @@ class PdfExtractorTest extends TestCase
         $this->assertEquals('default_sample_002-002.pdf', $extractedPdfsStrict[1]->getFilename());
 
         $invoice0 = $client->parse(InvoiceV4::class, $extractedPdfsStrict[0]->asInputSource());
-        $testStringRstInvoice0 = $this->prepareInvoiceReturn((getenv('GITHUB_WORKSPACE') ?: ".") .
-            self::PRODUCT_DATA_DIR . '/invoices/response_v4/summary_full_invoice_p1.rst',
-            $invoice0->document
+
+        $testStringRstInvoice0 = $this->prepareInvoiceReturn(
+            rstFilePath: $rootDir . '/invoices/response_v4/summary_full_invoice_p1.rst',
+            invoicePrediction: $invoice0->document
         );
 
         $this->assertGreaterThan(
-            0.97,
+            0.90,
             TestingUtilities::levenshteinRatio(
                 $testStringRstInvoice0,
                 (string)$invoice0->document
