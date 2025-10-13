@@ -104,7 +104,7 @@ class ClientTest extends TestCase
         $this->expectException(MindeeHttpClientException::class);
         $pageOptions = new PageOptions(range(0, 4));
         $this->dummyClient->parse(ReceiptV5::class, $inputDoc, null, $pageOptions);
-        $this->assertEquals(5, $inputDoc->countDocPages());
+        $this->assertEquals(5, $inputDoc->getPageCount());
     }
 
     public function testAsyncWrongInitialDelay()

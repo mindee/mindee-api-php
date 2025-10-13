@@ -115,7 +115,7 @@ abstract class LocalInputSource extends InputSource
      * @throws MindeePDFException Throws if the source pdf can't be properly processed.
      * @throws MindeeSourceException Throws if the source isn't a pdf.
      */
-    public function countDocPages(): int
+    public function getPageCount(): int
     {
         if (!$this->isPDF()) {
             throw new MindeeSourceException(
@@ -133,6 +133,15 @@ abstract class LocalInputSource extends InputSource
                 $e
             );
         }
+    }
+
+    /**
+     * @return integer
+     * @deprecated
+     */
+    public function countDocPages(): int
+    {
+        return $this->getPageCount();
     }
 
     /**
@@ -326,15 +335,15 @@ abstract class LocalInputSource extends InputSource
                 ErrorCode::USER_INPUT_ERROR
             );
         }
-        if ($this->countDocPages() < $pageOptions->onMinPage) {
+        if ($this->getPageCount() < $pageOptions->onMinPage) {
             return;
         }
-        $allPages = range(0, $this->countDocPages() - 1);
+        $allPages = range(0, $this->getPageCount() - 1);
         $pagesToKeep = [];
         if ($pageOptions->operation == KEEP_ONLY) {
             foreach ($pageOptions->pageIndexes as $pageId) {
                 if ($pageId < 0) {
-                    $pageId = $this->countDocPages() + $pageId;
+                    $pageId = $this->getPageCount() + $pageId;
                 }
                 if (!in_array($pageId, $allPages)) {
                     error_log("Page index '" . $pageId . "' is not present in source document");
@@ -346,7 +355,7 @@ abstract class LocalInputSource extends InputSource
             $pagesToRemove = [];
             foreach ($pageOptions->pageIndexes as $pageId) {
                 if ($pageId < 0) {
-                    $pageId = $this->countDocPages() + $pageId;
+                    $pageId = $this->getPageCount() + $pageId;
                 }
                 if (!in_array($pageId, $allPages)) {
                     error_log("Page index '" . $pageId . "' is not present in source document");

@@ -10,7 +10,7 @@ function parseInvoice(string $filePath, Client $mindeeClient)
 {
     $inputSource = new PathInput($filePath);
 
-    if ($inputSource->isPdf() && $inputSource->countDocPages() > 1) {
+    if ($inputSource->isPdf() && $inputSource->getPageCount() > 1) {
         parseMultiPage($inputSource, $mindeeClient);
     } else {
         parseSinglePage($inputSource, $mindeeClient);

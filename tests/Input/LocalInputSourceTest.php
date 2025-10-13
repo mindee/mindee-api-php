@@ -79,14 +79,14 @@ class LocalInputSourceTest extends TestCase
     public function testPDFCountPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
-        $this->assertEquals(12, $inputObj->countDocPages());
+        $this->assertEquals(12, $inputObj->getPageCount());
     }
 
     public function testPDFReconstructOK()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
-        $this->assertEquals(5, $inputObj->countDocPages());
+        $this->assertEquals(5, $inputObj->getPageCount());
     }
 
     public function testPDFReadContents()
@@ -112,7 +112,7 @@ class LocalInputSourceTest extends TestCase
             $pageCountBasePdf = $basePdf->setSourceFile($inputObj->fileObject->getFilename());
             $basePdf->Close();
             $cutPdf->Close();
-            $this->assertEquals(count($indexes), $inputObj->countDocPages());
+            $this->assertEquals(count($indexes), $inputObj->getPageCount());
             $this->assertEquals($pageCountCutPdf, $pageCountBasePdf);
 
             $basePdf = new FPDI();
@@ -148,14 +148,14 @@ class LocalInputSourceTest extends TestCase
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
-        $this->assertEquals(5, $inputObj->countDocPages());
+        $this->assertEquals(5, $inputObj->getPageCount());
     }
 
     public function testPDFKeepInvalidPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 17], KEEP_ONLY, 2));
-        $this->assertEquals(2, $inputObj->countDocPages());
+        $this->assertEquals(2, $inputObj->getPageCount());
     }
 
     public function testPDFRemove5LastPages()
@@ -163,21 +163,21 @@ class LocalInputSourceTest extends TestCase
 
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([-5, -4, -3, -2, -1], REMOVE, 2));
-        $this->assertEquals(7, $inputObj->countDocPages());
+        $this->assertEquals(7, $inputObj->getPageCount());
     }
 
     public function testPDFRemove5FirstPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], REMOVE, 2));
-        $this->assertEquals(7, $inputObj->countDocPages());
+        $this->assertEquals(7, $inputObj->getPageCount());
     }
 
     public function testPDFRemoveInvalidPages()
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([16], REMOVE, 2));
-        $this->assertEquals(12, $inputObj->countDocPages());
+        $this->assertEquals(12, $inputObj->getPageCount());
     }
 
     public function testPDFKeepNoPages()
@@ -191,7 +191,8 @@ class LocalInputSourceTest extends TestCase
     {
         $inputObj = new PathInput($this->fileTypesDir . "pdf/multipage.pdf");
         $this->expectException(MindeePDFException::class);
-        $inputObj->applyPageOptions(new PageOptions(range(0, $inputObj->countDocPages() - 1), REMOVE, 2));
+        $pageOptions = new PageOptions(range(0, $inputObj->getPageCount() - 1), REMOVE, 2);
+        $inputObj->applyPageOptions(pageOptions: $pageOptions);
     }
 
     public function testPDFInputFromFile()

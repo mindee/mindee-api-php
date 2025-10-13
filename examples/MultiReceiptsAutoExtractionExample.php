@@ -16,7 +16,7 @@ function processReceipts($client, $inputPath) {
     $imageExtractor = new ImageExtractor($inputSource);
 
     $multiReceiptsResult = $client->parse(MultiReceiptsDetectorV1::class, $inputSource);
-    $pageCount = $inputSource->countDocPages();
+    $pageCount = $inputSource->getPageCount();
 
     $totalExtractedReceipts = [];
 
