@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.0.3 - 2025-10-14
+### Changes
+* :recycle: harmonize getting page count from a local input source
+
+
 ## v2.0.2 - 2025-10-08
 ### Fixes
 * :bug: Add check for null before passing available_at field to strtotime
