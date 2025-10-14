@@ -1416,9 +1416,14 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020the\u0020file\u0020type\u0020is\u0020a\u0020PDF.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_isPDF"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AgetPageCount\u0028\u0029",
+            "name": "getPageCount",
+            "summary": "Counts\u0020the\u0020amount\u0020of\u0020pages\u0020in\u0020a\u0020PDF.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method_getPageCount"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AcountDocPages\u0028\u0029",
             "name": "countDocPages",
-            "summary": "Counts\u0020the\u0020amount\u0020of\u0020pages\u0020in\u0020a\u0020PDF.",
+            "summary": "",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_countDocPages"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AsaveBytesAsFile\u0028\u0029",
