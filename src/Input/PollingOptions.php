@@ -5,8 +5,8 @@ namespace Mindee\Input;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 
-const MINIMUM_INITIAL_DELAY_SECONDS = 1.0;
-const MINIMUM_DELAY_SECONDS = 1.0;
+const MINIMUM_INITIAL_DELAY_SECONDS = 1;
+const MINIMUM_DELAY_SECONDS = 1;
 
 /**
  * Handles options tied to asynchronous parsing.
