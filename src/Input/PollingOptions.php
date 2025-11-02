@@ -14,11 +14,11 @@ const MINIMUM_DELAY_SECONDS = 1;
 class PollingOptions
 {
     /**
-     * @var int Initial delay (in seconds) before attempting to poll a queue.
+     * @var integer Initial delay (in seconds) before attempting to poll a queue.
      */
     public int $initialDelaySec;
     /**
-     * @var int Delay (in seconds) between successive attempts to poll a queue.
+     * @var integer Delay (in seconds) between successive attempts to poll a queue.
      */
     public int $delaySec;
     /**
