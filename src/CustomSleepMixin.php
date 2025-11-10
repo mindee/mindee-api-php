@@ -16,7 +16,7 @@ trait CustomSleepMixin
         }
 
         $seconds = intval($delay);
-        $nanoseconds = abs((float) $seconds - $delay);
+        $nanoseconds = (int) abs((float) $seconds - $delay);
         time_nanosleep($seconds, $nanoseconds * 1_000_000_000);
     }
 }

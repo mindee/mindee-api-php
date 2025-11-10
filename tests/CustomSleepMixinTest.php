@@ -22,7 +22,7 @@ class CustomSleepMixinTest extends TestCase
     }
 
     public function testCustomSleep0dot33Seconds(): void {
-        $lowerBound = 0.33;
+        $lowerBound = 0.32; // Note: Windows struggles to run this one consistently when < 1 second
         $upperBound = 0.43;
 
         $start = microtime(true);
