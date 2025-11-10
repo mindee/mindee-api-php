@@ -18,7 +18,7 @@ trait CustomSleepMixin
         $seconds = intval($delay);
         $micros = $delay - $seconds;
         if ($seconds > 0) {
-            sleep($delay);
+            sleep($seconds);
         }
         if ($micros > 0) {
             usleep($micros * 1_000_000);
