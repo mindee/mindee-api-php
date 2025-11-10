@@ -20,7 +20,7 @@ trait CustomSleepMixin
         if (
             strtoupper(substr(PHP_OS_FAMILY, 0, 7)) === 'WINDOWS'
         ) {
-            usleep(100_000);
+            usleep(1000);
         }
         time_nanosleep($seconds, (int) ($nanoseconds * 1_000_000_000));
     }
