@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
  * Custom delay tests.
  * Note: Timers are purposefully kept loose due to frequent CI issues.
  */
-class ClientUtilityMixinTest extends TestCase
+class CustomSleepMixinTest extends TestCase
 {
-    use Mindee\ClientUtilityMixin;
+    use Mindee\CustomSleepMixin;
 
     public function testCustomSleep1Second(): void {
         $lowerBound = 1;

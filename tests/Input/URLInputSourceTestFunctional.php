@@ -18,7 +18,7 @@ class URLInputSourceTestFunctional extends TestCase
         $this->client = new Client();
         $this->outputFilePath = (getenv('GITHUB_WORKSPACE') ?: ".") .
             "/tests/resources/output/";
-        $this->referenceFilePath = "https://github.com/mindee/client-lib-test-data/blob/main/products/invoice_splitter/invoice_5p.pdf?raw=true";
+        $this->referenceFilePath = "https://github.com/mindee/client-lib-test-data/blob/main/v1/products/invoice_splitter/invoice_5p.pdf?raw=true";
     }
 
     public static function tearDownAfterClass(): void

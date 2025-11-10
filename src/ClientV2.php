@@ -14,7 +14,7 @@ use Mindee\Parsing\V2\JobResponse;
  */
 class ClientV2
 {
-    use ClientUtilityMixin;
+    use CustomSleepMixin;
 
     /**
      * @var MindeeApiV2 Mindee API V2.

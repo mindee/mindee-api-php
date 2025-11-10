@@ -2,7 +2,7 @@
 
 namespace Mindee;
 
-trait ClientUtilityMixin
+trait CustomSleepMixin
 {
     /**
      * Waits for a custom amount of time from either a float or an integer.

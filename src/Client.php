@@ -43,7 +43,7 @@ use ReflectionException;
  */
 class Client
 {
-    use ClientUtilityMixin;
+    use CustomSleepMixin;
 
     /**
      * Default owner for API products.
