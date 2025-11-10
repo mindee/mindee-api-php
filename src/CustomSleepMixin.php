@@ -17,6 +17,12 @@ trait CustomSleepMixin
 
         $seconds = intval($delay);
         $nanoseconds = abs($seconds - (float) $delay);
+        if (
+            strtoupper(substr(PHP_OS_FAMILY, 0, 7)) === 'WINDOWS' &&
+            $nanoseconds > 0.000000001
+        ) {
+            usleep(100000);
+        }
         time_nanosleep($seconds, (int) ($nanoseconds * 1_000_000_000));
     }
 }
