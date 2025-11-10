@@ -21,6 +21,17 @@ class ClientUtilityMixinTest extends TestCase
         $this->assertLessThanOrEqual($upperBound, $elapsed);
     }
 
+    public function testCustomSleep0dot33Seconds(): void {
+        $lowerBound = 0.33;
+        $upperBound = 0.43;
+
+        $start = microtime(true);
+        $this->customSleep(0.33);
+        $elapsed = microtime(true) - $start;
+        $this->assertGreaterThanOrEqual($lowerBound, $elapsed);
+        $this->assertLessThanOrEqual($upperBound, $elapsed);
+    }
+
     public function testCustomSleep2Seconds(): void {
         $lowerBound = 2;
         $upperBound = 2.1;
