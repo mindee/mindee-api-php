@@ -43,6 +43,8 @@ use ReflectionException;
  */
 class Client
 {
+    use ClientUtilityMixin;
+
     /**
      * Default owner for API products.
      *
@@ -463,7 +465,7 @@ class Client
         );
         error_log("Successfully enqueued document with job id: " . $enqueueResponse->job->id);
 
-        sleep($asyncOptions->initialDelaySec);
+        $this->customSleep($asyncOptions->initialDelaySec);
         $retryCounter = 1;
         $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
 
@@ -473,7 +475,7 @@ class Client
             }
             error_log("Polling server for parsing result with job id: " . $enqueueResponse->job->id);
             $retryCounter++;
-            sleep($asyncOptions->delaySec);
+            $this->customSleep($asyncOptions->delaySec);
             $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
         }
         if ($pollResults->job->status != "completed") {
@@ -540,7 +542,7 @@ class Client
     public function loadPrediction(
         string $predictionType,
         LocalResponse $localResponse
-    ) {
+    ): AsyncPredictResponse|PredictResponse {
         try {
             $json = $localResponse->toArray();
             if (isset($json['job'])) {
