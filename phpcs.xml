@@ -23,12 +23,6 @@
         </properties>
     </rule>
 
-    <!-- All PHP files MUST end with a non-blank line, terminated with a single LF. -->
-    <rule ref="PSR2.Files.EndFileNewline"/>
-
-    <!-- The closing ?> tag MUST be omitted from files containing only PHP. -->
-    <rule ref="PSR2.Files.ClosingTag"/>
-
     <!-- 2.3 Lines -->
 
     <!--Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD be split into multiple subsequent lines of no more than 80 characters each. -->
@@ -117,13 +111,6 @@
 
     <!-- 4.1 Extends and Implements -->
 
-    <!-- The extends and implements keywords MUST be declared on the same line as the class name. -->
-    <!-- The opening brace for the class MUST go on its own line; the closing brace for the class MUST go on the next line after the body. -->
-    <!-- Opening braces MUST be on their own line and MUST NOT be preceded or followed by a blank line. -->
-    <!-- Closing braces MUST be on their own line and MUST NOT be preceded by a blank line. -->
-    <!-- Lists of implements and, in the case of interfaces, extends MAY be split across multiple lines, where each subsequent line is indented once. When doing so, the first item in the list MUST be on the next line, and there MUST be only one interface per line. -->
-    <!-- checked by PSR12.Classes.OpeningBraceSpace -->
-    <rule ref="PSR2.Classes.ClassDeclaration"/>
 
     <!-- 4.2 Using traits -->
 
@@ -135,16 +122,8 @@
 
     <!-- 4.3 Properties and Constants -->
 
-    <!-- Visibility MUST be declared on all properties. -->
-    <!-- The var keyword MUST NOT be used to declare a property. -->
-    <!-- There MUST NOT be more than one property declared per statement. -->
-    <!-- Property names MUST NOT be prefixed with a single underscore to indicate protected or private visibility.
-    That is, an underscore prefix explicitly has no meaning. -->
-    <!-- There MUST be a space between type declaration and property name. -->
-    <rule ref="PSR2.Classes.PropertyDeclaration"/>
 
-    <!-- Visibility MUST be declared on all constants if your project PHP minimum version supports constant visibilities (PHP 7.1 or later). -->
-    <!-- checked by PSR12.Properties.ConstantVisibility -->
+    <rule ref="PSR12.Properties.ConstantVisibility"/>
 
     <!-- 4.4 Methods and Functions -->
 
@@ -155,15 +134,6 @@
     <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
     <exclude name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"/>
 
-    <!-- Method names MUST NOT be prefixed with a single underscore to indicate protected or private visibility. That is, an underscore prefix explicitly has no meaning. -->
-    <rule ref="PSR2.Methods.MethodDeclaration"/>
-    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
-        <type>error</type>
-        <message>Method name "%s" must not be prefixed with an underscore to indicate visibility</message>
-    </rule>
-
-    <!-- Method and function names MUST NOT be declared with space after the method name. The opening brace MUST go on its own line, and the closing brace MUST go on the next line following the body. There MUST NOT be a space after the opening parenthesis, and there MUST NOT be a space before the closing parenthesis. -->
-    <rule ref="PSR2.Methods.FunctionClosingBrace"/>
     <rule ref="Squiz.Functions.FunctionDeclaration"/>
     <rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
 
@@ -196,20 +166,12 @@
 
     <!-- When present, the abstract and final declarations MUST precede the visibility declaration. -->
     <!-- When present, the static declaration MUST come after the visibility declaration. -->
-    <!-- checked by PSR2.Methods.MethodDeclaration included above -->
 
     <!-- 4.7 Method and Function Calls -->
 
     <!-- When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis, there MUST NOT be a space after the opening parenthesis, and there MUST NOT be a space before the closing parenthesis. In the argument list, there MUST NOT be a space before each comma, and there MUST be one space after each comma. -->
     <!-- Argument lists MAY be split across multiple lines, where each subsequent line is indented once. When doing so, the first item in the list MUST be on the next line, and there MUST be only one argument per line. A single argument being split across multiple lines (as might be the case with an anonymous function or array) does not constitute splitting the argument list itself. -->
     <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
-    <rule ref="PSR2.Methods.FunctionCallSignature"/>
-    <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
-        <severity>0</severity>
-    </rule>
-    <rule ref="PSR2.Methods.FunctionCallSignature.OpeningIndent">
-        <severity>0</severity>
-    </rule>
 
     <!-- 5. Control Structures -->
 
@@ -251,8 +213,6 @@
     <!-- else and elseif are on the same line as the closing brace from the earlier body. -->
     <!-- checked by Squiz.ControlStructures.ControlSignature included above -->
 
-    <!-- The keyword elseif SHOULD be used instead of else if so that all control keywords look like single words. -->
-    <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
 
     <!-- Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once. When doing so, the first condition MUST be on the next line. The closing parenthesis and opening brace MUST be placed together on their own line with one space between them. Boolean operators between conditions MUST always be at the beginning or at the end of the line, not a mix of both. -->
     <!-- checked by PSR12.ControlStructures.ControlStructureSpacing -->
@@ -260,9 +220,6 @@
     <!-- checked by Squiz.ControlStructures.ControlSignature -->
 
     <!-- 5.2 switch, case -->
-
-    <!-- The case statement MUST be indented once from switch, and the break keyword (or other terminating keywords) MUST be indented at the same level as the case body. There MUST be a comment such as // no break when fall-through is intentional in a non-empty case body. -->
-    <rule ref="PSR2.ControlStructures.SwitchDeclaration"/>
 
     <!-- Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once. When doing so, the first condition MUST be on the next line. The closing parenthesis and opening brace MUST be placed together on their own line with one space between them. Boolean operators between conditions MUST always be at the beginning or at the end of the line, not a mix of both. -->
     <!-- checked by PSR12.ControlStructures.ControlStructureSpacing -->
@@ -291,14 +248,6 @@
     <!-- checked by Squiz.ControlStructures.ControlSignature -->
 
     <!-- 5.5 foreach -->
-
-    <!-- exclude these messages as they are already checked by PSR2.ControlStructures.ControlStructureSpacing -->
-    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration.SpaceAfterOpen">
-        <severity>0</severity>
-    </rule>
-    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration.SpaceBeforeClose">
-        <severity>0</severity>
-    </rule>
 
     <!-- 5.6 try, catch, finally -->
 

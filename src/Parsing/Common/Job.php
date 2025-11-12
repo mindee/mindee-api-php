@@ -37,6 +37,7 @@ class Job
      * @var array|null Information about an error that occurred during the job processing.
      */
     public ?array $error;
+
     /**
      * @param array $rawResponse Raw prediction array.
      * @throws MindeeApiException Throws if a date is faulty.
@@ -58,7 +59,10 @@ class Job
         }
         $this->id = $rawResponse['id'];
         $this->status = $rawResponse['status'];
-        if (array_key_exists('available_at', $rawResponse) && $rawResponse['available_at'] !== null && strtotime($rawResponse['available_at'])) {
+        if (
+            array_key_exists('available_at', $rawResponse) &&
+            $rawResponse['available_at'] !== null && strtotime($rawResponse['available_at'])
+        ) {
             try {
                 $this->availableAt = new DateTimeImmutable($rawResponse['available_at']);
             } catch (\Exception $e) {

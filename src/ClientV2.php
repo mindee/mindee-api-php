@@ -14,6 +14,8 @@ use Mindee\Parsing\V2\JobResponse;
  */
 class ClientV2
 {
+    use CustomSleepMixin;
+
     /**
      * @var MindeeApiV2 Mindee API V2.
      */
@@ -96,7 +98,7 @@ class ClientV2
         $queueId = $enqueueResponse->job->id;
         error_log("Successfully enqueued document with job id: " . $queueId);
 
-        sleep($pollingOptions->initialDelaySec);
+        $this->customSleep($pollingOptions->initialDelaySec);
         $retryCounter = 1;
         $pollResults = $this->getJob($queueId);
 
@@ -114,7 +116,7 @@ class ClientV2
                 ". Job status: " . $pollResults->job->status
             );
 
-            sleep($pollingOptions->delaySec);
+            $this->customSleep($pollingOptions->delaySec);
             $pollResults = $this->getJob($queueId);
             $retryCounter++;
         }
