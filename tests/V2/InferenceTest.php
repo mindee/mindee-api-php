@@ -350,6 +350,12 @@ class InferenceTest extends TestCase
             $location->polygon->getCentroid()
         );
         $this->assertEquals(FieldConfidence::Medium, $dateField->confidence);
+        $this->assertEquals(FieldConfidence::Medium->rank(), $dateField->confidence->rank());
+        $this->assertTrue(FieldConfidence::Medium->eq($dateField->confidence));
+        $this->assertLessThan(FieldConfidence::High->rank(), $dateField->confidence->rank());
+        $this->assertTrue(FieldConfidence::High->gt($dateField->confidence));
+        $this->assertGreaterThan(FieldConfidence::Low->rank(), $dateField->confidence->rank());
+        $this->assertTrue(FieldConfidence::Low->lt($dateField->confidence));
         $this->assertEquals('Medium', $dateField->confidence->value);
     }
 }
