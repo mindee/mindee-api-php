@@ -2,6 +2,8 @@
 
 namespace Mindee\Error;
 
+use Mindee\Parsing\V2\ErrorResponse;
+
 /**
  * Exceptions relating to HTTP errors for the V2 API.
  */
@@ -15,15 +17,25 @@ class MindeeV2HttpException extends MindeeException
      * @var string|null Details on the exception.
      */
     public ?string $detail;
+    /**
+     * @var string|null Title of the error.
+     */
+    public ?string $title;
+    /**
+     * @var string|null Error code.
+     * Note: PHP's `RuntimeException` class uses `$code` for the error code.
+     */
+    public ?string $errorCode;
 
     /**
-     * @param integer     $status HTTP status code, defaults to -1 if not set.
-     * @param string|null $detail Optional details on the exception.
+     * @param ErrorResponse $response Server Error response.
      */
-    public function __construct(int $status, string $detail = null)
+    public function __construct(ErrorResponse $response)
     {
-        parent::__construct("HTTP Error $status - $detail");
-        $this->status = $status;
-        $this->detail = $detail;
+        parent::__construct("HTTP $response->status - $response->title :: $response->code - $response->detail");
+        $this->status = $response->status;
+        $this->detail = $response->detail;
+        $this->errorCode = $response->code;
+        $this->title = $response->title;
     }
 }
