@@ -21,7 +21,7 @@ class URLInputSourceTestFunctional extends TestCase
 
     public static function tearDownAfterClass(): void
     {
-        unlink(\TestingUtilities::getRootDataDir() . "/output/invoice_5p.pdf");
+        unlink(\TestingUtilities::getRootDataDir() . "/output/blank_1.pdf");
         unlink(\TestingUtilities::getRootDataDir() . "/output/customFileName.pdf");
     }
 
@@ -30,8 +30,8 @@ class URLInputSourceTestFunctional extends TestCase
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $localSource = $urlSource->asLocalInputSource();
         $result = $this->client->parse(InvoiceV4::class, $localSource);
-        $this->assertEquals(5, $result->document->nPages);
-        $this->assertEquals("invoice_5p.pdf", $result->document->filename);
+        $this->assertEquals(1, $result->document->nPages);
+        $this->assertEquals("blank_1.pdf", $result->document->filename);
     }
 
     public function testCustomFileName()
@@ -39,7 +39,7 @@ class URLInputSourceTestFunctional extends TestCase
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $localSource = $urlSource->asLocalInputSource("customName.pdf");
         $result = $this->client->parse(InvoiceV4::class, $localSource);
-        $this->assertEquals(5, $result->document->nPages);
+        $this->assertEquals(1, $result->document->nPages);
         $this->assertEquals("customName.pdf", $result->document->filename);
     }
 
@@ -47,7 +47,7 @@ class URLInputSourceTestFunctional extends TestCase
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $urlSource->saveToFile($this->outputFilePath);
-        $this->assertFileExists($this->outputFilePath . "invoice_5p.pdf");
+        $this->assertFileExists($this->outputFilePath . "blank_1.pdf");
     }
 
     public function testSaveFileWithFilename()
