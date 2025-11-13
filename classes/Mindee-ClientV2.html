@@ -139,6 +139,9 @@
         </div>
     
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <a href="classes/Mindee-CustomSleepMixin.html"><abbr title="\Mindee\CustomSleepMixin">CustomSleepMixin</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -233,6 +236,13 @@ until the maximum number of tries is reached.</dd>
 </dt>
 <dd>Get the status of an inference that was previously enqueued.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Mindee-CustomSleepMixin.html#method_customSleep">customSleep()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Waits for a custom amount of time from either a float or an integer.</dd>
+
     </dl>
 
 
@@ -263,7 +273,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -308,7 +318,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -355,7 +365,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -446,7 +456,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -536,7 +546,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -607,7 +617,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
@@ -665,6 +675,55 @@ until the maximum number of tries is reached.</p>
 
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_customSleep">
+        customSleep()
+        <a href="classes/Mindee-CustomSleepMixin.html#method_customSleep" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/CustomSleepMixin.php"><a href="files/src-customsleepmixin.html"><abbr title="src/CustomSleepMixin.php">CustomSleepMixin.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Waits for a custom amount of time from either a float or an integer.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">customSleep</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">float|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Purposefully waits for one more millisecond on windows due to flakiness in delays between OS.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$delay</span>
+                : <span class="phpdocumentor-signature__argument__return-type">float|int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Delay in seconds.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
 </article>
             </section>
 
@@ -793,6 +852,7 @@ until the maximum number of tries is reached.</p>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_enqueueInference">enqueueInference()</a></li>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_getInference">getInference()</a></li>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_getJob">getJob()</a></li>
+                                            <li class=""><a href="classes/Mindee-CustomSleepMixin.html#method_customSleep">customSleep()</a></li>
                                     </ul>
             </li>
                     </ul>

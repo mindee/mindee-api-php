@@ -156,6 +156,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-ClientV2.html#property_mindeeApi"
         },                {
+            "fqsen": "\\Mindee\\CustomSleepMixin",
+            "name": "CustomSleepMixin",
+            "summary": "",
+            "url": "classes/Mindee-CustomSleepMixin.html"
+        },                {
+            "fqsen": "\\Mindee\\CustomSleepMixin\u003A\u003AcustomSleep\u0028\u0029",
+            "name": "customSleep",
+            "summary": "Waits\u0020for\u0020a\u0020custom\u0020amount\u0020of\u0020time\u0020from\u0020either\u0020a\u0020float\u0020or\u0020an\u0020integer.",
+            "url": "classes/Mindee-CustomSleepMixin.html#method_customSleep"
+        },                {
             "fqsen": "\\Mindee\\Error\\ErrorCode",
             "name": "ErrorCode",
             "summary": "Enum\u0020class\u0020holding\u0020error\u0020codes\u0020for\u0020exceptions.",
@@ -3160,6 +3170,36 @@ Search.appendIndex(
             "name": "FieldConfidence",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Arank\u0028\u0029",
+            "name": "rank",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_rank"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Alte\u0028\u0029",
+            "name": "lte",
+            "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003C\u003D\u0027\u0020operator.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_lte"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Agte\u0028\u0029",
+            "name": "gte",
+            "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003E\u003D\u0027\u0020operator.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_gte"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Alt\u0028\u0029",
+            "name": "lt",
+            "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003C\u0027\u0020operator.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_lt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Agt\u0028\u0029",
+            "name": "gt",
+            "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003E\u0027\u0020operator.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_gt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Aeq\u0028\u0029",
+            "name": "eq",
+            "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003D\u003D\u0027\u0020operator.",
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_eq"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ACertain",
             "name": "Certain",
