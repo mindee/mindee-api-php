@@ -58,7 +58,9 @@ class ClientV2TestFunctional extends TestCase
      */
     public function testParseFileFilledSinglePageMustSucceed(): void
     {
-        $source = new PathInput(__DIR__ . '/resources/products/financial_document/default_sample.jpg');
+        $source = new PathInput(
+            TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
+        );
 
         $inferenceParams = new InferenceParameters($this->modelId, rag: false);
 

@@ -5,6 +5,7 @@ namespace V1\CLI;
 require_once(__DIR__ . "/../../../vendor/autoload.php");
 require_once(__DIR__ . "/../../../bin/MindeeCLIDocuments.php");
 require_once(__DIR__ . "/../../TestingUtilities.php");
+require_once(__DIR__ . "/MindeeCLITestingUtilities.php");
 
 use Mindee\CLI\MindeeCLIDocuments;
 use PHPUnit\Framework\TestCase;

@@ -33,8 +33,9 @@ class PdfExtractorTest extends TestCase
     public function testPdfShouldExtractInvoicesStrict()
     {
         $client = new Client();
-        $rootDir = \TestingUtilities::getV1DataDir() . self::PRODUCT_DATA_DIR;
-        $invoiceSplitterInput = new PathInput(filePath: $rootDir . '/invoice_splitter/default_sample.pdf');
+        $invoiceSplitterInput = new PathInput(
+            filePath: TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf'
+        );
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
         $pdfExtractor = new PdfExtractor($invoiceSplitterInput);
@@ -49,7 +50,7 @@ class PdfExtractorTest extends TestCase
         $invoice0 = $client->parse(InvoiceV4::class, $extractedPdfsStrict[0]->asInputSource());
 
         $testStringRstInvoice0 = $this->prepareInvoiceReturn(
-            rstFilePath: $rootDir . '/invoices/response_v4/summary_full_invoice_p1.rst',
+            rstFilePath: TestingUtilities::getV1DataDir() . '/products/invoices/response_v4/summary_full_invoice_p1.rst',
             invoicePrediction: $invoice0->document
         );
 
