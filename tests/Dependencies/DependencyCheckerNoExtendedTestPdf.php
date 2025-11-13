@@ -1,5 +1,7 @@
 <?php
 
+namespace Dependencies;
+
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Extraction\ExtractedImage;
 use Mindee\Extraction\ExtractedPdf;
@@ -7,6 +9,8 @@ use Mindee\Extraction\ImageExtractor;
 use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
+
+require_once(__DIR__ . "/../TestingUtilities.php");
 
 class DependencyCheckerNoExtendedTestPdf extends TestCase
 {
