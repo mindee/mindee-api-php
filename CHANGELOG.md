@@ -1,5 +1,14 @@
 # Mindee PHP API Library Changelog
 
+## v2.1.0 - 2025-11-13
+### Changes
+* :sparkles: add confidence scores comparison operators
+* :recycle: update test suite to latest format
+### Fixes
+* :bug: fix sleep timers not properly taking floats into account
+* :bug: fix SDK not working when running in strict types
+
+
 ## v2.0.3 - 2025-10-14
 ### Changes
 * :recycle: harmonize getting page count from a local input source
