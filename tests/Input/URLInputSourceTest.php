@@ -13,15 +13,11 @@ class URLInputSourceTest extends TestCase
 {
     private string $oldKey;
     protected Client $dummyClient;
-    protected string $fileTypesDir;
 
     protected function setUp(): void
     {
         $this->oldKey = getEnv(API_KEY_ENV_NAME);
         $this->dummyClient = new Client("dummy-key");
-        $this->fileTypesDir = (
-            getenv('GITHUB_WORKSPACE') ?: "."
-        ) . "/tests/resources/file_types/";
     }
 
     protected function tearDown(): void

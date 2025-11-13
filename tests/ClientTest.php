@@ -21,28 +21,23 @@ class ClientTest extends TestCase
     private Client $dummyClient;
     private Client $envClient;
     private string $oldKey;
-    private string $fileTypesDir;
     private string $multiReceiptsDetectorPath;
     private string $failedJobPath;
 
 
     protected function setUp(): void
     {
-        $rootPath = (getenv('GITHUB_WORKSPACE') ?: ".");
         $this->oldKey = getenv('MINDEE_API_KEY');
         $this->dummyClient = new Client("dummy-key");
         putenv('MINDEE_API_KEY=');
         $this->emptyClient = new Client();
         putenv('MINDEE_API_KEY=dummy-env-key');
         $this->envClient = new Client();
-        $this->fileTypesDir = (
-            $rootPath . "/tests/resources/file_types/"
-        );
         $this->multiReceiptsDetectorPath = (
-            $rootPath . "/tests/resources/products/multi_receipts_detector/response_v1/complete.json"
+            \TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/response_v1/complete.json"
         );
         $this->failedJobPath = (
-            $rootPath . "/tests/resources/async/get_failed_job_error.json"
+            \TestingUtilities::getV1DataDir() . "/async/get_failed_job_error.json"
         );
     }
 
@@ -56,7 +51,7 @@ class ClientTest extends TestCase
     {
         $this->expectException(MindeeHttpClientException::class);
 
-        $inputDoc = $this->emptyClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");
+        $inputDoc = $this->emptyClient->sourceFromPath(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->emptyClient->parse(InvoiceV4::class, $inputDoc);
     }
 
@@ -64,7 +59,7 @@ class ClientTest extends TestCase
     {
         $this->expectException(MindeeHttpException::class);
 
-        $inputDoc = $this->envClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");
+        $inputDoc = $this->envClient->sourceFromPath(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->envClient->parse(InvoiceV4::class, $inputDoc);
     }
 
@@ -72,21 +67,21 @@ class ClientTest extends TestCase
     {
         $this->expectException(Mindee\Error\MindeeMimeTypeException::class);
 
-        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "receipt.txt");
+        $inputDoc = $this->dummyClient->sourceFromPath(\TestingUtilities::getFileTypesDir() ."/receipt.txt");
     }
 
     public function testParsePathWithWrongToken()
     {
         $this->expectException(MindeeHttpClientException::class);
 
-        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");
+        $inputDoc = $this->dummyClient->sourceFromPath(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->dummyClient->parse(InvoiceV4::class, $inputDoc);
     }
 
     public function testInterfaceVersion()
     {
         $dummyEndpoint = $this->dummyClient->createEndpoint("dummy", "dummy", "1.1");
-        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");
+        $inputDoc = $this->dummyClient->sourceFromPath(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $predictOptions = new PredictMethodOptions();
         $this->assertEquals("1.1", $dummyEndpoint->settings->version);
 
@@ -100,7 +95,7 @@ class ClientTest extends TestCase
 
     public function testCutOptions()
     {
-        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/multipage.pdf");
+        $inputDoc = $this->dummyClient->sourceFromPath(\TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $this->expectException(MindeeHttpClientException::class);
         $pageOptions = new PageOptions(range(0, 4));
         $this->dummyClient->parse(ReceiptV5::class, $inputDoc, null, $pageOptions);
@@ -138,7 +133,7 @@ class ClientTest extends TestCase
     {
         $predictOptions = new PredictMethodOptions();
         $this->assertTrue($predictOptions->pageOptions->isEmpty());
-        $inputDoc = $this->dummyClient->sourceFromPath($this->fileTypesDir . "pdf/blank.pdf");
+        $inputDoc = $this->dummyClient->sourceFromPath(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->expectException(MindeeHttpClientException::class);
         $this->dummyClient->parse(InvoiceV4::class, $inputDoc, $predictOptions);
         $this->expectException(MindeeHttpClientException::class);

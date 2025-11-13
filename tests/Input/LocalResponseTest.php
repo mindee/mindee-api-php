@@ -13,7 +13,7 @@ class LocalResponseTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->filePath = (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources/async/get_completed_empty.json";
+        $this->filePath = \TestingUtilities::getV1DataDir() . '/async/get_completed_empty.json';
         $this->signature = "5ed1673e34421217a5dbfcad905ee62261a3dd66c442f3edd19302072bbf70d0";
         $this->dummyKey = "ogNjY44MhvKPGTtVsI8zG82JqWQa68woYQH";
     }

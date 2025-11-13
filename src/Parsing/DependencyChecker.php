@@ -90,8 +90,7 @@ class DependencyChecker
         $imagick = new \Imagick();
         try {
             $imagick->readImage(
-                (getenv('GITHUB_WORKSPACE') ?: ".") .
-                "/tests/resources/products/expense_receipts/default_sample.jpg"
+                \TestingUtilities::getV1DataDir() . "/products/expense_receipts/default_sample.jpg"
             );
         } catch (\Exception $e) {
             throw new MindeeUnhandledException(
