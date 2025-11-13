@@ -6,6 +6,37 @@
 class TestingUtilities
 {
     /**
+     * @return string Return the root of the testing library.
+     */
+    public static function getRootDataDir(): string
+    {
+        return (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources";
+    }
+
+    /**
+     * @return string Return the root of the v1 data directory.
+     */
+    public static function getV1DataDir(): string
+    {
+        return TestingUtilities::getRootDataDir() . "/v1";
+    }
+
+    /**
+     * @return string Return the root of the v2 data directory.
+     */
+    public static function getV2DataDir(): string
+    {
+        return TestingUtilities::getRootDataDir() . "/v2";
+    }
+
+    /**
+     * @return string Return the root of the file types directory.
+     */
+    public static function getFileTypesDir(): string
+    {
+        return TestingUtilities::getRootDataDir() . "/file_types";
+    }
+    /**
      * Retrieves the version in a string of a prediction's RST.
      *
      * @param string $rstStr The input string.

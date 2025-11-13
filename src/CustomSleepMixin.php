@@ -6,6 +6,7 @@ trait CustomSleepMixin
 {
     /**
      * Waits for a custom amount of time from either a float or an integer.
+     * Purposefully waits for one more millisecond on windows due to flakiness in delays between OS.
      * @param float|integer $delay Delay in seconds.
      * @return void
      */
