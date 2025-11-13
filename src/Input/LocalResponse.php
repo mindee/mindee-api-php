@@ -125,7 +125,7 @@ class LocalResponse
      * @return mixed An instance of responseClass populated with the file content.
      * @throws MindeeException If the provided class cannot be instantiated.
      */
-    public function deserializeResponse(string $responseClass)
+    public function deserializeResponse(string $responseClass): mixed
     {
         try {
             $data = $this->toArray();

@@ -1,5 +1,6 @@
-
 <?php
+
+namespace V2;
 
 use Mindee\ClientV2;
 use Mindee\Error\MindeeV2HttpException;
@@ -23,7 +24,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
-        $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
+        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
         $inferenceParams = new InferenceParameters($this->modelId, rag: false, rawText: true);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
@@ -92,22 +93,30 @@ class ClientV2TestFunctional extends TestCase
 
     public function testInvalidModelMustThrowError(): void
     {
-        $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
+        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
         $inferenceParams = new InferenceParameters('INVALID MODEL ID');
 
-        $this->expectException(MindeeV2HttpException::class);
-        $this->expectExceptionMessage('422');
-
-        $this->mindeeClient->enqueueInference($source, $inferenceParams);
+        try {
+            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+        } catch (MindeeV2HttpException $e) {
+            $this->assertEquals(404, $e->getCode());
+            $this->assertStringStartsWith('404-', $e->errorCode);
+            $this->assertNotEmpty($e->title);
+            $this->assertIsArray($e->errors);
+        }
     }
 
     public function testInvalidJobMustThrowError(): void
     {
-        $this->expectException(MindeeV2HttpException::class);
-        $this->expectExceptionMessage('422');
-
-        $this->mindeeClient->getInference('not-a-valid-job-ID');
+        try {
+            $this->mindeeClient->getInference('not-a-valid-job-ID');
+        } catch (MindeeV2HttpException $e) {
+            $this->assertEquals(422, $e->getCode());
+            $this->assertStringStartsWith('422-', $e->errorCode);
+            $this->assertNotEmpty($e->title);
+            $this->assertIsArray($e->errors);
+        }
     }
 
     public function testUrlInputSourceMustNotRaiseErrors(): void

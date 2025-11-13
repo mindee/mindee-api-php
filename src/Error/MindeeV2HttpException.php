@@ -26,6 +26,10 @@ class MindeeV2HttpException extends MindeeException
      * Note: PHP's `RuntimeException` class uses `$code` for the error code.
      */
     public ?string $errorCode;
+    /**
+     * @var array List of associated errors.
+     */
+    public array $errors;
 
     /**
      * @param ErrorResponse $response Server Error response.
@@ -37,5 +41,6 @@ class MindeeV2HttpException extends MindeeException
         $this->detail = $response->detail;
         $this->errorCode = $response->code;
         $this->title = $response->title;
+        $this->errors = $response->errors;
     }
 }

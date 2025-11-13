@@ -17,12 +17,11 @@ class ErrorItem
     public string $detail;
 
     /**
-     * @param string      $detail  Explicit information on the issue.
-     * @param string|null $pointer A JSON Pointer to the location of the body property.
+     * @param array $rawResponse Raw error response from the API.
      */
-    public function __construct(string $detail, ?string $pointer = null)
+    public function __construct(array $rawResponse)
     {
-        $this->detail = $detail;
-        $this->pointer = $pointer;
+        $this->detail = $rawResponse['detail'];
+        $this->pointer = $rawResponse['pointer'];
     }
 }

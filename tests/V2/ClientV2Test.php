@@ -1,5 +1,7 @@
 <?php
 
+namespace V2;
+
 use Mindee\ClientV2;
 use Mindee\Http\MindeeApiV2;
 use Mindee\Input\InferenceParameters;
@@ -10,7 +12,6 @@ use Mindee\Parsing\V2\InferenceResponse;
 use Mindee\Parsing\V2\JobResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-
 
 class ClientV2Test extends TestCase
 {
@@ -27,7 +28,7 @@ class ClientV2Test extends TestCase
     public function testEnqueuePostAsync(): void
     {
         $predictable = $this->createMock(MindeeApiV2::class);
-        $syntheticResponse = file_get_contents(__DIR__ . '/resources/v2/job/ok_processing.json');
+        $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $predictable->expects($this->once())
             ->method('reqPostInferenceEnqueue')
             ->with(
@@ -38,7 +39,7 @@ class ClientV2Test extends TestCase
 
         $mindeeClient = self::makeClientWithMockedApi($predictable);
 
-        $input = new PathInput(__DIR__ . '/resources/file_types/pdf/blank_1.pdf');
+        $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
         $params = new InferenceParameters('dummy-model-id');
 
         $response = $mindeeClient->enqueueInference($input, $params);
@@ -52,7 +53,7 @@ class ClientV2Test extends TestCase
         /** @var MindeeApiV2&MockObject $predictable */
         $predictable = $this->createMock(MindeeApiV2::class);
 
-        $syntheticResponse = file_get_contents(__DIR__ . '/resources/v2/job/ok_processing.json');
+        $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $processing = new JobResponse(json_decode($syntheticResponse, true));
 
         $predictable->expects($this->once())
@@ -73,7 +74,7 @@ class ClientV2Test extends TestCase
         /** @var MindeeApiV2&MockObject $predictable */
         $predictable = $this->createMock(MindeeApiV2::class);
 
-        $jsonFile = __DIR__ . '/resources/v2/products/financial_document/complete.json';
+        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/financial_document/complete.json';
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
 
         $json = json_decode(file_get_contents($jsonFile), true);
@@ -108,7 +109,7 @@ class ClientV2Test extends TestCase
 
     public function testInferenceLoadsLocally(): void
     {
-        $jsonFile = __DIR__ . '/resources/v2/products/financial_document/complete.json';
+        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/financial_document/complete.json';
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
 
         $localResponse = new LocalResponse($jsonFile);
