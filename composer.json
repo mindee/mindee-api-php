@@ -10,7 +10,7 @@
     "ext-json": "*",
     "symfony/console": ">=6.0",
     "setasign/fpdf": "^1.8",
-    "setasign/fpdi": "^2.6",
+    "setasign/fpdi": "^2.6.4",
     "smalot/pdfparser": "^2.12"
   },
   "require-dev": {
