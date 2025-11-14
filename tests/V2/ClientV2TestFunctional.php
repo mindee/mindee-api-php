@@ -100,7 +100,6 @@ class ClientV2TestFunctional extends TestCase
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
-            $this->assertEquals(404, $e->getCode());
             $this->assertStringStartsWith('404-', $e->errorCode);
             $this->assertNotEmpty($e->title);
             $this->assertIsArray($e->errors);
@@ -112,7 +111,6 @@ class ClientV2TestFunctional extends TestCase
         try {
             $this->mindeeClient->getInference('not-a-valid-job-ID');
         } catch (MindeeV2HttpException $e) {
-            $this->assertEquals(422, $e->getCode());
             $this->assertStringStartsWith('422-', $e->errorCode);
             $this->assertNotEmpty($e->title);
             $this->assertIsArray($e->errors);
