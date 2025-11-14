@@ -261,6 +261,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Error-ErrorCode.html#constant_INTERNAL_LIBRARY_ERROR"
         },                {
+            "fqsen": "\\Mindee\\Error\\ErrorItem",
+            "name": "ErrorItem",
+            "summary": "Explicit\u0020details\u0020on\u0020a\u0020problem.",
+            "url": "classes/Mindee-Error-ErrorItem.html"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorItem\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorItem.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorItem\u003A\u003A\u0024pointer",
+            "name": "pointer",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorItem.html#property_pointer"
+        },                {
+            "fqsen": "\\Mindee\\Error\\ErrorItem\u003A\u003A\u0024detail",
+            "name": "detail",
+            "summary": "",
+            "url": "classes/Mindee-Error-ErrorItem.html#property_detail"
+        },                {
             "fqsen": "\\Mindee\\Error\\MindeeApiException",
             "name": "MindeeApiException",
             "summary": "Exceptions\u0020relating\u0020to\u0020library\u0020issues.",
@@ -390,6 +410,31 @@ Search.appendIndex(
             "name": "detail",
             "summary": "",
             "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_detail"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException\u003A\u003A\u0024title",
+            "name": "title",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_title"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException\u003A\u003A\u0024errorCode",
+            "name": "errorCode",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_errorCode"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpException\u003A\u003A\u0024errors",
+            "name": "errors",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_errors"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpUnknownError",
+            "name": "MindeeV2HttpUnknownError",
+            "summary": "Unknown\u0020HTTP\u0020error\u0020for\u0020the\u0020V2\u0020API.",
+            "url": "classes/Mindee-Error-MindeeV2HttpUnknownError.html"
+        },                {
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpUnknownError\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Error-MindeeV2HttpUnknownError.html#method___construct"
         },                {
             "fqsen": "\\Mindee\\Extraction\\ExtractedImage",
             "name": "ExtractedImage",
@@ -3136,6 +3181,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#property_detail"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse\u003A\u003A\u0024title",
+            "name": "title",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#property_title"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse\u003A\u003A\u0024code",
+            "name": "code",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#property_code"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse\u003A\u003A\u0024errors",
+            "name": "errors",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-ErrorResponse.html#property_errors"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\BaseField",
             "name": "BaseField",
             "summary": "Base\u0020class\u0020for\u0020V2\u0020fields.",
@@ -3526,6 +3586,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_rawText"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceResult\u003A\u003A\u0024rag",
+            "name": "rag",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceResult.html#property_rag"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Job",
             "name": "Job",
             "summary": "Job\u0020information\u0020for\u0020a\u0020V2\u0020polling\u0020attempt.",
@@ -3640,6 +3705,21 @@ Search.appendIndex(
             "name": "error",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-JobWebhook.html#property_error"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RagMetadata",
+            "name": "RagMetadata",
+            "summary": "Metadata\u0020about\u0020the\u0020RAG\u0020operation.",
+            "url": "classes/Mindee-Parsing-V2-RagMetadata.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RagMetadata\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RagMetadata.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\RagMetadata\u003A\u003A\u0024retrievedDocumentId",
+            "name": "retrievedDocumentId",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-RagMetadata.html#property_retrievedDocumentId"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\RawText",
             "name": "RawText",

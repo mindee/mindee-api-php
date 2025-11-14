@@ -126,10 +126,9 @@
     </ul>
 
     <article class="phpdocumentor-element -file">
-        <h2 class="phpdocumentor-content__title">MindeeApiV2.php</h2>
+        <h2 class="phpdocumentor-content__title">ErrorItem.php</h2>
 
-            <p class="phpdocumentor-summary">Settings and variables linked to endpoint calling &amp; API usage.</p>
-
+        
         
         
         
@@ -138,7 +137,7 @@
         
 <h3 id="toc">
     Table of Contents
-    <a href="files/src-http-mindeeapiv2.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="files/src-error-erroritem.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -147,56 +146,14 @@
 
     <h4 id="toc-classes">
         Classes
-        <a href="files/src-http-mindeeapiv2.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="files/src-error-erroritem.html#toc-classes" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Http-MindeeApiV2.html"><abbr title="\Mindee\Http\MindeeApiV2">MindeeApiV2</abbr></a></dt><dd>Data class containing settings for endpoints.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Mindee-Error-ErrorItem.html"><abbr title="\Mindee\Error\ErrorItem">ErrorItem</abbr></a></dt><dd>Explicit details on a problem.</dd>    </dl>
 
 
 
-<h4 id="toc-constants">
-    Constants
-    <a href="files/src-http-mindeeapiv2.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT">API_V2_BASE_URL_DEFAULT</a>
-    <span>
-        &nbsp;= &#039;https://api-v2.mindee.net/v2&#039;                            </span>
-</dt>
-<dd>Default URL prefix for API calls.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME">API_V2_BASE_URL_ENV_NAME</a>
-    <span>
-        &nbsp;= &#039;MINDEE_V2_BASE_URL&#039;                            </span>
-</dt>
-<dd>Default key name for the Base URL in environment variables.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME">API_V2_KEY_ENV_NAME</a>
-    <span>
-        &nbsp;= &#039;MINDEE_V2_API_KEY&#039;                            </span>
-</dt>
-<dd>Default key name for the API key entry in environment variables.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME">API_V2_REQUEST_TIMEOUT_ENV_NAME</a>
-    <span>
-        &nbsp;= &#039;MINDEE_V2_REQUEST_TIMEOUT&#039;                            </span>
-</dt>
-<dd>Default key name for CURL request timeout in environment variables.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a class="" href="namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT">API_V2_TIMEOUT_DEFAULT</a>
-    <span>
-        &nbsp;= 120                            </span>
-</dt>
-<dd>Default timeout value for curl requests.</dd>
-
-    </dl>
 
 
 
@@ -204,180 +161,13 @@
 
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="files/src-http-mindeeapiv2.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_API_V2_BASE_URL_DEFAULT">
-        API_V2_BASE_URL_DEFAULT
-        <a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">43</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Default URL prefix for API calls.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">API_V2_BASE_URL_DEFAULT</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;https://api-v2.mindee.net/v2&#039;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_API_V2_BASE_URL_ENV_NAME">
-        API_V2_BASE_URL_ENV_NAME
-        <a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">38</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Default key name for the Base URL in environment variables.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">API_V2_BASE_URL_ENV_NAME</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_V2_BASE_URL&#039;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_API_V2_KEY_ENV_NAME">
-        API_V2_KEY_ENV_NAME
-        <a href="namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">33</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Default key name for the API key entry in environment variables.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">API_V2_KEY_ENV_NAME</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_V2_API_KEY&#039;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_API_V2_REQUEST_TIMEOUT_ENV_NAME">
-        API_V2_REQUEST_TIMEOUT_ENV_NAME
-        <a href="namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">48</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Default key name for CURL request timeout in environment variables.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">API_V2_REQUEST_TIMEOUT_ENV_NAME</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;MINDEE_V2_REQUEST_TIMEOUT&#039;</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_API_V2_TIMEOUT_DEFAULT">
-        API_V2_TIMEOUT_DEFAULT
-        <a href="namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Http/MindeeApiV2.php"><a href="files/src-http-mindeeapiv2.html"><abbr title="src/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">52</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Default timeout value for curl requests.</p>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">API_V2_TIMEOUT_DEFAULT</span>
-    = <span class="phpdocumentor-signature__default-value">120</span>
-</code>
-
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
         
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Http/MindeeApiV2.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Error/ErrorItem.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -478,21 +268,10 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                        <li><a href="files/src-http-mindeeapiv2.html#toc-classes">Classes</a></li>
-                                                                                                        <li><a href="files/src-http-mindeeapiv2.html#toc-constants">Constants</a></li>
-                                                        </ul>
+                                                                                                        <li><a href="files/src-error-erroritem.html#toc-classes">Classes</a></li>
+                                                                                                                    </ul>
             </li>
 
-                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_DEFAULT">API_V2_BASE_URL_DEFAULT</a></li>
-                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_BASE_URL_ENV_NAME">API_V2_BASE_URL_ENV_NAME</a></li>
-                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_KEY_ENV_NAME">API_V2_KEY_ENV_NAME</a></li>
-                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_REQUEST_TIMEOUT_ENV_NAME">API_V2_REQUEST_TIMEOUT_ENV_NAME</a></li>
-                                                    <li class=""><a href="namespaces/mindee-http.html#constant_API_V2_TIMEOUT_DEFAULT">API_V2_TIMEOUT_DEFAULT</a></li>
-                                            </ul>
-                </li>
             
                     </ul>
     </section>
@@ -511,7 +290,7 @@
     </section>
 </section>
         </div>
-        <a href="files/src-http-mindeeapiv2.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="files/src-error-erroritem.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
