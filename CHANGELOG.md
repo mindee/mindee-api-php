@@ -1,5 +1,13 @@
 # Mindee PHP API Library Changelog
 
+## v2.2.0 - 2025-11-14
+### Changes
+* :sparkles: add support for RAG metadata
+* :sparkles: add more details to HTTP errors
+### Fixes
+* :bug: fix file aliases and webhook IDs not being properly sent to server
+
+
 ## v2.1.0 - 2025-11-13
 ### Changes
 * :sparkles: add confidence scores comparison operators
