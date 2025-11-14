@@ -1,23 +1,26 @@
 <?php
 
-namespace V2;
+namespace V2\parsing;
 
+use Mindee\Error\ErrorItem;
 use Mindee\Geometry\Point;
 use Mindee\Input\LocalResponse;
+use Mindee\Parsing\V2\ErrorResponse;
 use Mindee\Parsing\V2\Field\FieldConfidence;
 use Mindee\Parsing\V2\Field\ListField;
 use Mindee\Parsing\V2\Field\ObjectField;
 use Mindee\Parsing\V2\Field\SimpleField;
 use Mindee\Parsing\V2\InferenceResponse;
+use Mindee\Parsing\V2\JobResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../TestingUtilities.php");
+require_once(__DIR__ . "/../../TestingUtilities.php");
 
 /**
  * InferenceV2 – field integrity checks
  */
-class InferenceTest extends TestCase
+class InferenceResponseTest extends TestCase
 {
     private function loadFromResource(string $resourcePath): InferenceResponse
     {
@@ -30,10 +33,9 @@ class InferenceTest extends TestCase
 
     private function readFileAsString(string $path): string
     {
-        $fullPath = TestingUtilities::getRootDataDir() . $path;
-        $this->assertFileExists($fullPath, "Resource file must exist: $path");
+        $this->assertFileExists($path, "Resource file must exist: $path");
 
-        return file_get_contents($fullPath);
+        return file_get_contents($path);
     }
 
     /**
@@ -292,7 +294,7 @@ class InferenceTest extends TestCase
         $this->assertEquals('This is the raw text of the first page...', $first->content);
 
         foreach ($rawText->pages as $page) {
-            $this->assertEquals('string', gettype($page->content));
+            $this->assertIsString($page->content);
         }
     }
 
@@ -301,8 +303,10 @@ class InferenceTest extends TestCase
      */
     public function testRstDisplayMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('/v2/inference/standard_field_types.json');
-        $expectedRst = $this->readFileAsString('/v2/inference/standard_field_types.rst');
+        $response = $this->loadFromResource('v2/inference/standard_field_types.json');
+        $expectedRst = $this->readFileAsString(
+            \TestingUtilities::getV2DataDir() . '/inference/standard_field_types.rst'
+        );
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $this->assertEquals($expectedRst, strval($response->inference));
@@ -357,5 +361,33 @@ class InferenceTest extends TestCase
         $this->assertGreaterThan(FieldConfidence::Low->rank(), $dateField->confidence->rank());
         $this->assertTrue(FieldConfidence::Low->lt($dateField->confidence));
         $this->assertEquals('Medium', $dateField->confidence->value);
+    }
+
+    public function testRagMetadataWhenMatched()
+    {
+        $response = $this->loadFromResource('v2/inference/rag_matched.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+        $this->assertEquals('12345abc-1234-1234-1234-123456789abc', $inference->result->rag->retrievedDocumentId);
+    }
+
+    public function testRagMetadataWhenNotMatched()
+    {
+        $response = $this->loadFromResource('v2/inference/rag_not_matched.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+        $this->assertNull($inference->result->rag->retrievedDocumentId);
+    }
+
+    public function testShouldLoadWith422Error()
+    {
+        $jsonResponse = json_decode(file_get_contents(\TestingUtilities::getV2DataDir() . '/job/fail_422.json'), true);
+        $response = new JobResponse($jsonResponse);
+        $this->assertNotNull($response->job);
+        $this->assertInstanceOf(ErrorResponse::class, $response->job->error);
+        $this->assertEquals(422, $response->job->error->status);
+        $this->assertStringStartsWith("422-", $response->job->error->code);
+        $this->assertEquals(1, count($response->job->error->errors));
+        $this->assertInstanceOf(ErrorItem::class, $response->job->error->errors[0]);
     }
 }

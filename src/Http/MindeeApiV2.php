@@ -12,13 +12,16 @@ use Mindee\Error\MindeeException;
 
 // phpcs:disable
 include_once(dirname(__DIR__) . '/version.php');
+
 // phpcs:enable
 
 use Mindee\Error\MindeeV2HttpException;
+use Mindee\Error\MindeeV2HttpUnknownError;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
+use Mindee\Parsing\V2\ErrorResponse;
 use Mindee\Parsing\V2\InferenceResponse;
 use Mindee\Parsing\V2\JobResponse;
 
@@ -68,6 +71,7 @@ class MindeeApiV2
         }
         return 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . $os;
     }
+
     /**
      * @var string|null API key.
      */
@@ -164,8 +168,9 @@ class MindeeApiV2
      * @return JobResponse|InferenceResponse The processed response object.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
+     * @throws MindeeV2HttpUnknownError Throws if the server sends an unexpected reply.
      */
-    private function processResponse(array $result, string $responseType)
+    private function processResponse(array $result, string $responseType): InferenceResponse|JobResponse
     {
         $statusCode = $result['code'] ?? -1;
 
@@ -173,14 +178,9 @@ class MindeeApiV2
             $responseData = json_decode($result['data'], true);
 
             if ($responseData && isset($responseData['status'])) {
-                throw new MindeeV2HttpException(
-                    $responseData['status'],
-                    $responseData['detail'] ?? 'Unknown error.'
-                );
+                throw new MindeeV2HttpException(new ErrorResponse($responseData));
             }
-
-            $detail = $responseData && $responseData['detail'] ? $responseData['detail'] : 'Unknown Error';
-            throw new MindeeException($result['code'] ?? -1, $detail);
+            throw new MindeeV2HttpUnknownError(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         }
 
         try {
@@ -320,6 +320,19 @@ class MindeeApiV2
         }
         if (isset($params->rag)) {
             $postFields['rag'] = $params->rag ? 'true' : 'false';
+        }
+        if (isset($params->webhooksIds) && count($params->webhooksIds) > 0) {
+            if (PHP_VERSION_ID < 80200 && count($params->webhooksIds) > 1) {
+                # NOTE: see https://bugs.php.net/bug.php?id=51634
+                error_log("PHP version is too low to support webbook array destructuring.
+                \nOnly the first webhook ID will be sent to the server.");
+                $postFields['webhook_ids'] = $params->webhooksIds[0];
+            } else {
+                $postFields['webhook_ids'] = $params->webhooksIds;
+            }
+        }
+        if (isset($params->alias)) {
+            $postFields['alias'] = $params->alias;
         }
 
         $url = $this->baseUrl . '/inferences/enqueue';

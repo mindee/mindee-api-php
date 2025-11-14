@@ -277,8 +277,8 @@ abstract class LocalInputSource extends InputSource
      */
     public function compress(
         int $quality = 85,
-        int $maxWidth = null,
-        int $maxHeight = null,
+        ?int $maxWidth = null,
+        ?int $maxHeight = null,
         bool $forceSourceTextCompression = false,
         bool $disableSourceText = true
     ): void {

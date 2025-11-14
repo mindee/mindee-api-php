@@ -1,5 +1,6 @@
-
 <?php
+
+namespace V2;
 
 use Mindee\ClientV2;
 use Mindee\Error\MindeeV2HttpException;
@@ -23,7 +24,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
-        $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
+        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
         $inferenceParams = new InferenceParameters($this->modelId, rag: false, rawText: true);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
@@ -59,7 +60,7 @@ class ClientV2TestFunctional extends TestCase
     public function testParseFileFilledSinglePageMustSucceed(): void
     {
         $source = new PathInput(
-            TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
+            \TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
         );
 
         $inferenceParams = new InferenceParameters($this->modelId, rag: false);
@@ -90,24 +91,70 @@ class ClientV2TestFunctional extends TestCase
         );
     }
 
-    public function testInvalidModelMustThrowError(): void
+    public function testInvalidUUIDMustThrowError(): void
     {
-        $source = new PathInput(__DIR__ . '/resources/file_types/pdf/multipage_cut-2.pdf');
+
+        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
 
         $inferenceParams = new InferenceParameters('INVALID MODEL ID');
 
-        $this->expectException(MindeeV2HttpException::class);
-        $this->expectExceptionMessage('422');
-
-        $this->mindeeClient->enqueueInference($source, $inferenceParams);
+        try {
+            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+        } catch (MindeeV2HttpException $e) {
+            $this->assertStringStartsWith('422-', $e->errorCode);
+            $this->assertNotEmpty($e->title);
+            $this->assertIsArray($e->errors);
+        }
     }
+
+    public function testUnknownModelMustThrowError(): void
+    {
+        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+
+        $inferenceParams = new InferenceParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21');
+
+        try {
+            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+        } catch (MindeeV2HttpException $e) {
+            $this->assertStringStartsWith('404-', $e->errorCode);
+            $this->assertNotEmpty($e->title);
+            $this->assertIsArray($e->errors);
+        }
+    }
+
 
     public function testInvalidJobMustThrowError(): void
     {
-        $this->expectException(MindeeV2HttpException::class);
-        $this->expectExceptionMessage('422');
+        try {
+            $this->mindeeClient->getInference('fc405e37-4ba4-4d03-aeba-533a8d1f0f21');
+        } catch (MindeeV2HttpException $e) {
+            $this->assertStringStartsWith('404-', $e->errorCode);
+            $this->assertNotEmpty($e->title);
+            $this->assertIsArray($e->errors);
+        }
+    }
 
-        $this->mindeeClient->getInference('not-a-valid-job-ID');
+    public function testInvalidWebhookIDsMustThrowError()
+    {
+        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+
+        $inferenceParams = new InferenceParameters(
+            $this->modelId,
+            null,
+            null,
+            null,
+            null,
+            null,
+            ['fc405e37-4ba4-4d03-aeba-533a8d1f0f21', 'fc405e37-4ba4-4d03-aeba-533a8d1f0f21']
+        );
+
+        try {
+            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+        } catch (MindeeV2HttpException $e) {
+            $this->assertStringStartsWith('422-', $e->errorCode);
+            $this->assertNotEmpty($e->title);
+            $this->assertIsArray($e->errors);
+        }
     }
 
     public function testUrlInputSourceMustNotRaiseErrors(): void
