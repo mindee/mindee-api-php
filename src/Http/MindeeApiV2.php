@@ -321,12 +321,12 @@ class MindeeApiV2
         if (isset($params->rag)) {
             $postFields['rag'] = $params->rag ? 'true' : 'false';
         }
-        if (isset($params->webhooksIds)) {
+        if (isset($params->webhooksIds) && count($params->webhooksIds) > 0) {
             if (PHP_VERSION_ID < 80200 && count($params->webhooksIds) > 1) {
                 # NOTE: see https://bugs.php.net/bug.php?id=51634
                 error_log("PHP version is too low to support webbook array destructuring.
                 \nOnly the first webhook ID will be sent to the server.");
-                $params->webhooksIds = $params->webhooksIds[0];
+                $postFields['webhook_ids'] = $params->webhooksIds[0];
             } else {
                 $postFields['webhook_ids'] = $params->webhooksIds;
             }
