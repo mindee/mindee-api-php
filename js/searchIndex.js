@@ -3236,30 +3236,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_rank"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Alte\u0028\u0029",
-            "name": "lte",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AlessThanOrEqual\u0028\u0029",
+            "name": "lessThanOrEqual",
             "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003C\u003D\u0027\u0020operator.",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_lte"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_lessThanOrEqual"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Agte\u0028\u0029",
-            "name": "gte",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AgreaterThanOrEqual\u0028\u0029",
+            "name": "greaterThanOrEqual",
             "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003E\u003D\u0027\u0020operator.",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_gte"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_greaterThanOrEqual"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Alt\u0028\u0029",
-            "name": "lt",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AlessThan\u0028\u0029",
+            "name": "lessThan",
             "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003C\u0027\u0020operator.",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_lt"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_lessThan"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Agt\u0028\u0029",
-            "name": "gt",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003AgreaterThan\u0028\u0029",
+            "name": "greaterThan",
             "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003E\u0027\u0020operator.",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_gt"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_greaterThan"
         },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Aeq\u0028\u0029",
-            "name": "eq",
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003Aequal\u0028\u0029",
+            "name": "equal",
             "summary": "Shorthand\u0020for\u0020the\u0020\u0027\u003D\u003D\u0027\u0020operator.",
-            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_eq"
+            "url": "classes/Mindee-Parsing-V2-Field-FieldConfidence.html#method_equal"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\FieldConfidence\u003A\u003ACertain",
             "name": "Certain",
