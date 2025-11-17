@@ -25,7 +25,6 @@ class ErrorResponse
     public ?string $title;
     /**
      * @var string|null A machine-readable code specific to the occurrence of the problem.
-     * Note: PHP's `RuntimeException` class uses `$code` for the error code.
      */
     public ?string $code;
     /**
