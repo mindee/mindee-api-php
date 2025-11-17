@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.2.1 - 2025-11-17
+### Fixes
+* :wrench: normalize comparator names for confidence scores
+
+
 ## v2.2.0 - 2025-11-14
 ### Changes
 * :sparkles: add support for RAG metadata
