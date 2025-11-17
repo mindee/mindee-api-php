@@ -27,7 +27,7 @@ enum FieldConfidence: string
      * @param FieldConfidence $other Other confidence value.
      * @return boolean True if this confidence is lower than or equal to the other.
      */
-    public function lte(FieldConfidence $other): bool
+    public function lessThanOrEqual(FieldConfidence $other): bool
     {
         return $this->rank() <= $other->rank();
     }
@@ -37,7 +37,7 @@ enum FieldConfidence: string
      * @param FieldConfidence $other Other confidence value.
      * @return boolean True if this confidence is greater than or equal to the other.
      */
-    public function gte(FieldConfidence $other): bool
+    public function greaterThanOrEqual(FieldConfidence $other): bool
     {
         return $this->rank() >= $other->rank();
     }
@@ -47,7 +47,7 @@ enum FieldConfidence: string
      * @param FieldConfidence $other Other confidence value.
      * @return boolean True if this confidence is lower than the other.
      */
-    public function lt(FieldConfidence $other): bool
+    public function lessThan(FieldConfidence $other): bool
     {
         return $this->rank() < $other->rank();
     }
@@ -58,7 +58,7 @@ enum FieldConfidence: string
      * @param FieldConfidence $other Other confidence value.
      * @return boolean True if this confidence is greater than the other.
      */
-    public function gt(FieldConfidence $other): bool
+    public function greaterThan(FieldConfidence $other): bool
     {
         return $this->rank() > $other->rank();
     }
@@ -69,7 +69,7 @@ enum FieldConfidence: string
      * @param FieldConfidence $other Other confidence value.
      * @return boolean True if this confidence is equal to the other.
      */
-    public function eq(FieldConfidence $other): bool
+    public function equal(FieldConfidence $other): bool
     {
         return $this === $other;
     }
