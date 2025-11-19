@@ -63,7 +63,7 @@ class ClientV2TestFunctional extends TestCase
             \TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
         );
 
-        $inferenceParams = new InferenceParameters($this->modelId, rag: false);
+        $inferenceParams = new InferenceParameters($this->modelId, rag: false, textContext: 'this is an invoice');
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
         $this->assertNotNull($response);
@@ -111,7 +111,7 @@ class ClientV2TestFunctional extends TestCase
     {
         $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
-        $inferenceParams = new InferenceParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21');
+        $inferenceParams = new InferenceParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21', textContext: 'this is invalid');
 
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
@@ -145,7 +145,8 @@ class ClientV2TestFunctional extends TestCase
             null,
             null,
             null,
-            ['fc405e37-4ba4-4d03-aeba-533a8d1f0f21', 'fc405e37-4ba4-4d03-aeba-533a8d1f0f21']
+            ['fc405e37-4ba4-4d03-aeba-533a8d1f0f21', 'fc405e37-4ba4-4d03-aeba-533a8d1f0f21'],
+            null
         );
 
         try {

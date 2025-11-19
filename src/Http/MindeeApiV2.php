@@ -334,6 +334,9 @@ class MindeeApiV2
         if (isset($params->alias)) {
             $postFields['alias'] = $params->alias;
         }
+        if (isset($params->textContext)) {
+            $postFields['text_context'] = $params->textContext;
+        }
 
         $url = $this->baseUrl . '/inferences/enqueue';
         curl_setopt($ch, CURLOPT_URL, $url);
