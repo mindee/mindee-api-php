@@ -44,6 +44,12 @@ class InferenceParameters
     public array $webhooksIds;
 
     /**
+     * @var string|null Additional text context used by the model during inference.
+     * Not recommended, for specific use only.
+     */
+    public ?string $textContext;
+
+    /**
      * @var PollingOptions Polling options.
      */
     public PollingOptions $pollingOptions;
@@ -56,6 +62,7 @@ class InferenceParameters
      * @param boolean|null        $confidence     Whether to calculate confidence scores for all fields.
      * @param string|null         $alias          Optional file alias.
      * @param array<string>|null  $webhooksIds    List of webhook IDs.
+     * @param string|null         $textContext    Additional text context used by the model during inference.
      * @param PollingOptions|null $pollingOptions Polling options.
      */
     public function __construct(
@@ -66,6 +73,7 @@ class InferenceParameters
         ?bool $confidence = null,
         ?string $alias = null,
         ?array $webhooksIds = null,
+        ?string $textContext = null,
         ?PollingOptions $pollingOptions = null,
     ) {
         $this->modelId = $modelId;
@@ -80,6 +88,9 @@ class InferenceParameters
 
         if (isset($alias)) {
             $this->alias = $alias;
+        }
+        if (isset($textContext)) {
+            $this->textContext = $textContext;
         }
         if (isset($webhooksIds)) {
             $this->webhooksIds = $webhooksIds;

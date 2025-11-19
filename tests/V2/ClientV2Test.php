@@ -40,7 +40,7 @@ class ClientV2Test extends TestCase
         $mindeeClient = self::makeClientWithMockedApi($predictable);
 
         $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
-        $params = new InferenceParameters('dummy-model-id');
+        $params = new InferenceParameters('dummy-model-id', textContext: 'dummy text context');
 
         $response = $mindeeClient->enqueueInference($input, $params);
 
