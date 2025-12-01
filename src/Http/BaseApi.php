@@ -79,7 +79,7 @@ abstract class BaseApi
      * @param string $value Value for the base Url.
      * @return void
      */
-    protected function setBaseUrl(string $value)
+    protected function setBaseUrl(string $value): void
     {
         $this->baseUrl = $value;
     }
