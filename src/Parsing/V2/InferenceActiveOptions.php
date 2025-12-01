@@ -15,6 +15,7 @@ class InferenceActiveOptions
 {
     /**
      * @var boolean Whether the Retrieval-Augmented Generation feature was activated.
+     * When this feature is activated, the RAG pipeline is used to increase result accuracy.
      */
     public bool $rag;
 
@@ -24,14 +25,21 @@ class InferenceActiveOptions
     public bool $rawText;
 
     /**
-     * @var boolean Whether the polygon feature was activated.
+     * @var boolean Whether the Raw Text feature was activated.
+     * When this feature is activated, the raw text extracted from the document is returned in the result.
      */
     public bool $polygon;
 
     /**
      * @var boolean Whether the confidence feature was activated.
+     * When this feature is activated, a confidence score for each field is returned in the result.
      */
     public bool $confidence;
+    /**
+     * @var boolean Whether the text context feature was activated.
+     * When this feature is activated, the provided context is used to improve the accuracy of the inference.
+     */
+    public bool $textContext;
 
     /**
      * @param array $serverResponse Raw server response array.
@@ -42,6 +50,7 @@ class InferenceActiveOptions
         $this->rawText = $serverResponse['raw_text'];
         $this->polygon = $serverResponse['polygon'];
         $this->confidence = $serverResponse['confidence'];
+        $this->textContext = $serverResponse['text_context'];
     }
 
     /**
