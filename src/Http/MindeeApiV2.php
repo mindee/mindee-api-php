@@ -307,6 +307,7 @@ class MindeeApiV2
      * @param InputSource         $inputSource File to upload.
      * @param InferenceParameters $params      Inference parameters.
      * @return array
+     * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
