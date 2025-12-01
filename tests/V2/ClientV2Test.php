@@ -3,6 +3,7 @@
 namespace V2;
 
 use Mindee\ClientV2;
+use Mindee\Error\MindeeException;
 use Mindee\Http\MindeeApiV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\LocalInputSource;
@@ -131,5 +132,25 @@ class ClientV2Test extends TestCase
             $supplierName,
             'Supplier name mismatch'
         );
+    }
+    public function testInvalidBaseUrlRaisesMindeeException(): void
+    {
+        $this->expectException(MindeeException::class);
+
+        $original = getenv('MINDEE_V2_BASE_URL') ?: null;
+        putenv('MINDEE_V2_BASE_URL=https://invalid-v2.mindee.net');
+
+        try {
+            $client = new ClientV2('dummy-key');
+            $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+            $params = new InferenceParameters('dummy-model-id');
+            $client->enqueueAndGetInference($input, $params);
+        } finally {
+            if ($original === null) {
+                putenv('MINDEE_V2_BASE_URL');
+            } else {
+                putenv('MINDEE_V2_BASE_URL=' . $original);
+            }
+        }
     }
 }

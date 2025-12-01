@@ -16,7 +16,7 @@ include_once(dirname(__DIR__) . '/version.php');
 // phpcs:enable
 
 use Mindee\Error\MindeeV2HttpException;
-use Mindee\Error\MindeeV2HttpUnknownError;
+use Mindee\Error\MindeeV2HttpUnknownException;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
@@ -107,6 +107,17 @@ class MindeeApiV2
     }
 
     /**
+     * Sets the base url.
+     *
+     * @param string $value Value for the base Url.
+     * @return void
+     */
+    protected function setBaseUrl(string $value): void
+    {
+        $this->baseUrl = $value;
+    }
+
+    /**
      * Sets values from environment, if needed.
      *
      * @return void
@@ -168,7 +179,7 @@ class MindeeApiV2
      * @return JobResponse|InferenceResponse The processed response object.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
-     * @throws MindeeV2HttpUnknownError Throws if the server sends an unexpected reply.
+     * @throws MindeeV2HttpUnknownException Throws if the server sends an unexpected reply.
      */
     private function processResponse(array $result, string $responseType): InferenceResponse|JobResponse
     {
@@ -180,7 +191,7 @@ class MindeeApiV2
             if ($responseData && isset($responseData['status'])) {
                 throw new MindeeV2HttpException(new ErrorResponse($responseData));
             }
-            throw new MindeeV2HttpUnknownError(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+            throw new MindeeV2HttpUnknownException(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         }
 
         try {
@@ -248,6 +259,7 @@ class MindeeApiV2
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->requestTimeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
         curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
         return $ch;
     }
@@ -295,6 +307,7 @@ class MindeeApiV2
      * @param InputSource         $inputSource File to upload.
      * @param InferenceParameters $params      Inference parameters.
      * @return array
+     * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
@@ -345,6 +358,11 @@ class MindeeApiV2
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
+        $curlError = curl_error($ch);
+        if (!empty($curlError)) {
+            throw new MindeeException("cURL error:\n$curlError");
+        }
+
         curl_close($ch);
 
         return $resp;
