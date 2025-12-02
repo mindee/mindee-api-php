@@ -162,10 +162,8 @@
 
 
 
-
-
-
-
+    
+    
 <h3 id="toc">
     Table of Contents
     <a href="classes/Mindee-ClientV2.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -291,9 +289,8 @@ until the maximum number of tries is reached.</dd>
 
     
 
-    
-
-    
+        
+        
 
 </article>
             </section>
@@ -326,7 +323,7 @@ until the maximum number of tries is reached.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$apiKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$apiKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -335,9 +332,9 @@ until the maximum number of tries is reached.</dd>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$apiKey</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$apiKey</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Optional API key. Will fall back to environment variable if not provided.</p>
 </section>
@@ -347,8 +344,8 @@ until the maximum number of tries is reached.</dd>
 
     
 
+        
     
-
     
 </article>
                     <article
@@ -374,7 +371,7 @@ until the maximum number of tries is reached.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">enqueueAndGetInference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">enqueueAndGetInference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -383,8 +380,8 @@ until the maximum number of tries is reached.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$inputDoc</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$inputDoc</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Input document to parse.</p>
@@ -392,8 +389,8 @@ until the maximum number of tries is reached.</p>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$params</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Parameters relating to prediction options.</p>
@@ -430,8 +427,8 @@ until the maximum number of tries is reached.</p>
                                     </dd>
                                             </dl>
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span>
@@ -464,7 +461,7 @@ until the maximum number of tries is reached.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">enqueueInference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">enqueueInference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -473,8 +470,8 @@ until the maximum number of tries is reached.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$inputSource</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$inputSource</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>File to parse.</p>
@@ -482,8 +479,8 @@ until the maximum number of tries is reached.</p>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$params</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InferenceParameters.html"><abbr title="\Mindee\Input\InferenceParameters">InferenceParameters</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Parameters relating to prediction options.</p>
@@ -520,8 +517,8 @@ until the maximum number of tries is reached.</p>
                                     </dd>
                                             </dl>
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span>
@@ -554,7 +551,7 @@ until the maximum number of tries is reached.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getInference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inferenceId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getInference</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inferenceId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -563,8 +560,8 @@ until the maximum number of tries is reached.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$inferenceId</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-argument-list__argument__name">$inferenceId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>ID of the queue to poll.</p>
@@ -591,8 +588,8 @@ until the maximum number of tries is reached.</p>
                                     </dd>
                                             </dl>
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span>
@@ -625,7 +622,7 @@ until the maximum number of tries is reached.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -636,8 +633,8 @@ until the maximum number of tries is reached.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$jobId</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-argument-list__argument__name">$jobId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>ID of the queue to poll.</p>
@@ -664,8 +661,8 @@ until the maximum number of tries is reached.</p>
                                     </dd>
                                             </dl>
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span>
@@ -698,7 +695,7 @@ until the maximum number of tries is reached.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">customSleep</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">float|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">customSleep</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -709,8 +706,8 @@ until the maximum number of tries is reached.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$delay</span>
-                : <span class="phpdocumentor-signature__argument__return-type">float|int</span>
+                <span class="phpdocumentor-argument-list__argument__name">$delay</span>
+                : <span class="phpdocumentor-argument-list__argument__type">float|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Delay in seconds.</p>
@@ -721,8 +718,8 @@ until the maximum number of tries is reached.</p>
 
     
 
+        
     
-
     
 </article>
             </section>

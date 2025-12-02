@@ -167,10 +167,8 @@
 
 
 
-
-
-
-
+    
+    
 <h3 id="toc">
     Table of Contents
     <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -211,6 +209,12 @@
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText">$rawText</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext">$textContext</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
@@ -265,7 +269,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -278,14 +282,14 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the confidence feature was activated.</p>
+        <section class="phpdocumentor-description"><p>Whether the confidence feature was activated.
+When this feature is activated, a confidence score for each field is returned in the result.</p>
 </section>
 
     
 
-    
-
-    
+        
+        
 
 </article>
                     <article
@@ -305,7 +309,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -318,14 +322,14 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the polygon feature was activated.</p>
+        <section class="phpdocumentor-description"><p>Whether the Raw Text feature was activated.
+When this feature is activated, the raw text extracted from the document is returned in the result.</p>
 </section>
 
     
 
-    
-
-    
+        
+        
 
 </article>
                     <article
@@ -345,7 +349,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -358,14 +362,14 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the Retrieval-Augmented Generation feature was activated.</p>
+        <section class="phpdocumentor-description"><p>Whether the Retrieval-Augmented Generation feature was activated.
+When this feature is activated, the RAG pipeline is used to increase result accuracy.</p>
 </section>
 
     
 
-    
-
-    
+        
+        
 
 </article>
                     <article
@@ -385,7 +389,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -403,9 +407,48 @@
 
     
 
-    
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_textContext">
+        $textContext
+        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
 
     
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$textContext</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Whether the text context feature was activated.
+When this feature is activated, the provided context is used to improve the accuracy of the inference.</p>
+</section>
+
+    
+
+        
+        
 
 </article>
             </section>
@@ -430,14 +473,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$serverResponse</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$serverResponse</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -446,8 +489,8 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$serverResponse</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-argument-list__argument__name">$serverResponse</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Raw server response array.</p>
@@ -458,8 +501,8 @@
 
     
 
+        
     
-
     
 </article>
                     <article
@@ -476,7 +519,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -492,8 +535,8 @@
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
@@ -623,6 +666,7 @@
                                                     <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon">$polygon</a></li>
                                                     <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag">$rag</a></li>
                                                     <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText">$rawText</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext">$textContext</a></li>
                                             </ul>
                 </li>
             

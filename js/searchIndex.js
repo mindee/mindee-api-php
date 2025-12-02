@@ -426,15 +426,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Error-MindeeV2HttpException.html#property_errors"
         },                {
-            "fqsen": "\\Mindee\\Error\\MindeeV2HttpUnknownError",
-            "name": "MindeeV2HttpUnknownError",
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpUnknownException",
+            "name": "MindeeV2HttpUnknownException",
             "summary": "Unknown\u0020HTTP\u0020error\u0020for\u0020the\u0020V2\u0020API.",
-            "url": "classes/Mindee-Error-MindeeV2HttpUnknownError.html"
+            "url": "classes/Mindee-Error-MindeeV2HttpUnknownException.html"
         },                {
-            "fqsen": "\\Mindee\\Error\\MindeeV2HttpUnknownError\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Mindee\\Error\\MindeeV2HttpUnknownException\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-Error-MindeeV2HttpUnknownError.html#method___construct"
+            "url": "classes/Mindee-Error-MindeeV2HttpUnknownException.html#method___construct"
         },                {
             "fqsen": "\\Mindee\\Extraction\\ExtractedImage",
             "name": "ExtractedImage",
@@ -1141,6 +1141,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Http-MindeeApiV2.html#method___construct"
         },                {
+            "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AsetBaseUrl\u0028\u0029",
+            "name": "setBaseUrl",
+            "summary": "Sets\u0020the\u0020base\u0020url.",
+            "url": "classes/Mindee-Http-MindeeApiV2.html#method_setBaseUrl"
+        },                {
             "fqsen": "\\Mindee\\Http\\MindeeApiV2\u003A\u003AsetFromEnv\u0028\u0029",
             "name": "setFromEnv",
             "summary": "Sets\u0020values\u0020from\u0020environment,\u0020if\u0020needed.",
@@ -1430,6 +1435,11 @@ Search.appendIndex(
             "name": "webhooksIds",
             "summary": "",
             "url": "classes/Mindee-Input-InferenceParameters.html#property_webhooksIds"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024textContext",
+            "name": "textContext",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_textContext"
         },                {
             "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024pollingOptions",
             "name": "pollingOptions",
@@ -3490,6 +3500,11 @@ Search.appendIndex(
             "name": "confidence",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A\u0024textContext",
+            "name": "textContext",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceFile",
             "name": "InferenceFile",
