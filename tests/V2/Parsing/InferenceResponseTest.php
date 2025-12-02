@@ -365,6 +365,13 @@ class InferenceResponseTest extends TestCase
         $this->assertTrue(FieldConfidence::Low->lessThanOrEqual($dateField->confidence));
         $this->assertTrue(FieldConfidence::Medium->lessThanOrEqual($dateField->confidence));
         $this->assertEquals('Medium', $dateField->confidence->value);
+
+        $activeOptions = $inference->activeOptions;
+        $this->assertTrue($activeOptions->polygon);
+        $this->assertFalse($activeOptions->confidence);
+        $this->assertFalse($activeOptions->rag);
+        $this->assertFalse($activeOptions->rawText);
+        $this->assertFalse($activeOptions->textContext);
     }
 
     public function testRagMetadataWhenMatched()
@@ -393,5 +400,31 @@ class InferenceResponseTest extends TestCase
         $this->assertStringStartsWith("422-", $response->job->error->code);
         $this->assertEquals(1, count($response->job->error->errors));
         $this->assertInstanceOf(ErrorItem::class, $response->job->error->errors[0]);
+    }
+
+    public function testTextContextIsTrue(): void
+    {
+        $response = $this->loadFromResource('v2/inference/text_context_enabled.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+        $activeOptions = $inference->activeOptions;
+        $this->assertFalse($activeOptions->polygon);
+        $this->assertFalse($activeOptions->confidence);
+        $this->assertFalse($activeOptions->rag);
+        $this->assertFalse($activeOptions->rawText);
+        $this->assertTrue($activeOptions->textContext);
+    }
+
+    public function testTextContextIsFalse(): void
+    {
+        $response = $this->loadFromResource('v2/products/financial_document/complete.json');
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+        $activeOptions = $inference->activeOptions;
+        $this->assertFalse($activeOptions->polygon);
+        $this->assertFalse($activeOptions->confidence);
+        $this->assertFalse($activeOptions->rag);
+        $this->assertFalse($activeOptions->rawText);
+        $this->assertFalse($activeOptions->textContext);
     }
 }

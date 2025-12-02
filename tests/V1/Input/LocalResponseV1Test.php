@@ -1,11 +1,11 @@
 <?php
 
-namespace Input;
+namespace V1\Input;
 
 use Mindee\Input\LocalResponse;
 use PHPUnit\Framework\TestCase;
 
-class LocalResponseTest extends TestCase
+class LocalResponseV1Test extends TestCase
 {
     private string $signature;
     private string $dummyKey;
