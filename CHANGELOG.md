@@ -1,5 +1,12 @@
 # Mindee PHP API Library Changelog
 
+## v2.3.0 - 2025-12-02
+### Changes
+* :sparkles: add support for text context
+### Fixes
+* :bug: fix API call format & error management for V2
+
+
 ## v2.2.1 - 2025-11-17
 ### Fixes
 * :wrench: normalize comparator names for confidence scores
