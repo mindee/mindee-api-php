@@ -350,6 +350,9 @@ class MindeeApiV2
         if (isset($params->textContext)) {
             $postFields['text_context'] = $params->textContext;
         }
+        if (isset($params->dataSchema)) {
+            $postFields['data_schema'] = strval($params->dataSchema);
+        }
 
         $url = $this->baseUrl . '/inferences/enqueue';
         curl_setopt($ch, CURLOPT_URL, $url);

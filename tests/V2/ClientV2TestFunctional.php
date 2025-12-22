@@ -8,6 +8,7 @@ use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
 use Mindee\Input\URLInputSource;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class ClientV2TestFunctional extends TestCase
 {
@@ -24,7 +25,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
-        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
         $inferenceParams = new InferenceParameters($this->modelId, rag: false, rawText: true);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
@@ -60,7 +61,7 @@ class ClientV2TestFunctional extends TestCase
     public function testParseFileFilledSinglePageMustSucceed(): void
     {
         $source = new PathInput(
-            \TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
+            TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
         );
 
         $inferenceParams = new InferenceParameters($this->modelId, rag: false, textContext: 'this is an invoice');
@@ -94,7 +95,7 @@ class ClientV2TestFunctional extends TestCase
     public function testInvalidUUIDMustThrowError(): void
     {
 
-        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
 
         $inferenceParams = new InferenceParameters('INVALID MODEL ID');
 
@@ -109,7 +110,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testUnknownModelMustThrowError(): void
     {
-        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
         $inferenceParams = new InferenceParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21', textContext: 'this is invalid');
 
@@ -136,7 +137,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testInvalidWebhookIDsMustThrowError()
     {
-        $source = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
         $inferenceParams = new InferenceParameters(
             $this->modelId,
@@ -174,5 +175,43 @@ class ClientV2TestFunctional extends TestCase
 
         $result = $inference->result;
         $this->assertNotNull($result);
+    }
+
+    public function testDataSchemaMustSucceed(): void {
+
+        $source = new PathInput(
+            TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
+        );
+        $dataSchemaReplace = file_get_contents(
+            TestingUtilities::getV2DataDir() . '/inference/data_schema_replace_param.json'
+        );
+
+        $inferenceParams = new InferenceParameters($this->modelId, rag: false, textContext: 'this is an invoice');
+
+        $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
+        $this->assertNotNull($response);
+        $inference = $response->inference;
+        $this->assertNotNull($inference);
+
+        $file = $inference->file;
+        $this->assertNotNull($file);
+        $this->assertEquals('blank_1.pdf', $file->name);
+        $this->assertEquals(1, $file->pageCount);
+
+        $this->assertNotNull($inference->model);
+        $this->assertEquals($this->modelId, $inference->model->id);
+        $this->assertNotNull($inference->activeOptions);
+        $this->assertNotNull($inference->activeOptions->dataSchema);
+
+        $result = $inference->result;
+        $this->assertNotNull($result);
+
+        $this->assertNotNull($result->fields);
+        $this->assertNotNull($result->fields['test_replace'] ?? null);
+
+        $this->assertEquals(
+            $dataSchemaReplace,
+            $result->fields['test_replace']->value
+        );
     }
 }

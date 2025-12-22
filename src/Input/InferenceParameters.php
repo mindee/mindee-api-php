@@ -50,20 +50,30 @@ class InferenceParameters
     public ?string $textContext;
 
     /**
+     * @var DataSchema|null Data schema for inference.
+     */
+    public ?DataSchema $dataSchema;
+
+    /**
      * @var PollingOptions Polling options.
      */
     public PollingOptions $pollingOptions;
 
     /**
-     * @param string              $modelId        ID of the model.
-     * @param boolean|null        $rag            Whether to enable Retrieval-Augmented Generation.
-     * @param boolean|null        $rawText        Whether to extract the full text content from the document as strings.
-     * @param boolean|null        $polygon        Whether to calculate bounding box polygons for all fields.
-     * @param boolean|null        $confidence     Whether to calculate confidence scores for all fields.
-     * @param string|null         $alias          Optional file alias.
-     * @param array<string>|null  $webhooksIds    List of webhook IDs.
-     * @param string|null         $textContext    Additional text context used by the model during inference.
-     * @param PollingOptions|null $pollingOptions Polling options.
+     * @param string                       $modelId        ID of the model.
+     * @param boolean|null                 $rag            Whether to enable Retrieval-Augmented Generation.
+     * @param boolean|null                 $rawText        Whether to extract the full text content from the
+     * document as strings.
+     * @param boolean|null                 $polygon        Whether to calculate bounding box polygons for all
+     * fields.
+     * @param boolean|null                 $confidence     Whether to calculate confidence scores for all fields.
+     * @param string|null                  $alias          Optional file alias.
+     * @param array<string>|null           $webhooksIds    List of webhook IDs.
+     * @param string|null                  $textContext    Additional text context used by the model during
+     * inference.
+     * @param DataSchema|string|array|null $dataSchema     Additional text context used by the model during
+     * inference.
+     * @param PollingOptions|null          $pollingOptions Polling options.
      */
     public function __construct(
         string $modelId,
@@ -74,6 +84,7 @@ class InferenceParameters
         ?string $alias = null,
         ?array $webhooksIds = null,
         ?string $textContext = null,
+        DataSchema|string|array|null $dataSchema = null,
         ?PollingOptions $pollingOptions = null,
     ) {
         $this->modelId = $modelId;
@@ -96,6 +107,9 @@ class InferenceParameters
             $this->webhooksIds = $webhooksIds;
         } else {
             $this->webhooksIds = [];
+        }
+        if (isset($dataSchema)) {
+            $this->dataSchema = new DataSchema($dataSchema);
         }
     }
 }
