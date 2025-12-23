@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.4.0 - 2025-12-23
+### Changes
+* :sparkles: add support for data schema
+
+
 ## v2.3.0 - 2025-12-02
 ### Changes
 * :sparkles: add support for text context
