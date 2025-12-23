@@ -42,6 +42,11 @@ class InferenceActiveOptions
     public bool $textContext;
 
     /**
+     * @var DataSchemaActiveOption Data schema options provided for the inference.
+     */
+    public DataSchemaActiveOption $dataSchema;
+
+    /**
      * @param array $serverResponse Raw server response array.
      */
     public function __construct(array $serverResponse)
@@ -51,6 +56,7 @@ class InferenceActiveOptions
         $this->polygon = $serverResponse['polygon'];
         $this->confidence = $serverResponse['confidence'];
         $this->textContext = $serverResponse['text_context'];
+        $this->dataSchema = new DataSchemaActiveOption($serverResponse['data_schema']);
     }
 
     /**
@@ -62,6 +68,8 @@ class InferenceActiveOptions
             . ':Raw Text: ' . SummaryHelper::formatForDisplay($this->rawText) . "\n"
             . ':Polygon: ' . SummaryHelper::formatForDisplay($this->polygon) . "\n"
             . ':Confidence: ' . SummaryHelper::formatForDisplay($this->confidence) . "\n"
-            . ':RAG: ' . SummaryHelper::formatForDisplay($this->rag) . "\n";
+            . ':RAG: ' . SummaryHelper::formatForDisplay($this->rag) . "\n"
+            . ':Text Context: ' . SummaryHelper::formatForDisplay($this->textContext) . "\n\n"
+            . $this->dataSchema . "\n";
     }
 }
