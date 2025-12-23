@@ -186,7 +186,7 @@ class ClientV2TestFunctional extends TestCase
             TestingUtilities::getV2DataDir() . '/inference/data_schema_replace_param.json'
         );
 
-        $inferenceParams = new InferenceParameters($this->modelId, rag: false, textContext: 'this is an invoice');
+        $inferenceParams = new InferenceParameters($this->modelId, dataSchema: $dataSchemaReplace);
 
         $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
         $this->assertNotNull($response);
@@ -201,7 +201,7 @@ class ClientV2TestFunctional extends TestCase
         $this->assertNotNull($inference->model);
         $this->assertEquals($this->modelId, $inference->model->id);
         $this->assertNotNull($inference->activeOptions);
-        $this->assertNotNull($inference->activeOptions->dataSchema);
+        $this->assertTrue($inference->activeOptions->dataSchema->replace);
 
         $result = $inference->result;
         $this->assertNotNull($result);
@@ -210,7 +210,7 @@ class ClientV2TestFunctional extends TestCase
         $this->assertNotNull($result->fields['test_replace'] ?? null);
 
         $this->assertEquals(
-            $dataSchemaReplace,
+            'a test value',
             $result->fields['test_replace']->value
         );
     }
