@@ -1366,6 +1366,131 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-CommonOptions.html#property_fullText"
         },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema",
+            "name": "DataSchema",
+            "summary": "Modify\u0020the\u0020Data\u0020Schema.",
+            "url": "classes/Mindee-Input-DataSchema.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchema.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema\u003A\u003AtoJson\u0028\u0029",
+            "name": "toJson",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchema.html#method_toJson"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema\u003A\u003AfixLineSpaces\u0028\u0029",
+            "name": "fixLineSpaces",
+            "summary": "Doubles\u0020the\u0020number\u0020of\u0020spaces\u0020in\u0020front\u0020of\u0020each\u0020line\u0020if\u0020it\u0020has\u0020at\u0020least\u0020two.",
+            "url": "classes/Mindee-Input-DataSchema.html#method_fixLineSpaces"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema\u003A\u003AtoJsonStringProperSpacing\u0028\u0029",
+            "name": "toJsonStringProperSpacing",
+            "summary": "Ensures\u0020proper\u0020spacing\u0020in\u0020JSON\u0020string.",
+            "url": "classes/Mindee-Input-DataSchema.html#method_toJsonStringProperSpacing"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchema.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchema\u003A\u003A\u0024replace",
+            "name": "replace",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchema.html#property_replace"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField",
+            "name": "DataSchemaField",
+            "summary": "Data\u0020Schema\u0020Field.",
+            "url": "classes/Mindee-Input-DataSchemaField.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003AtoJson\u0028\u0029",
+            "name": "toJson",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#method_toJson"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024title",
+            "name": "title",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_title"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024isArray",
+            "name": "isArray",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_isArray"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_type"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024description",
+            "name": "description",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_description"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024guidelines",
+            "name": "guidelines",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_guidelines"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024uniqueValues",
+            "name": "uniqueValues",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_uniqueValues"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024nestedFields",
+            "name": "nestedFields",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_nestedFields"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaField\u003A\u003A\u0024classificationValues",
+            "name": "classificationValues",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaField.html#property_classificationValues"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaReplace",
+            "name": "DataSchemaReplace",
+            "summary": "The\u0020structure\u0020to\u0020completely\u0020replace\u0020the\u0020data\u0020schema\u0020of\u0020the\u0020model.",
+            "url": "classes/Mindee-Input-DataSchemaReplace.html"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaReplace\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaReplace.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaReplace\u003A\u003AtoJson\u0028\u0029",
+            "name": "toJson",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaReplace.html#method_toJson"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaReplace\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaReplace.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Input\\DataSchemaReplace\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-Input-DataSchemaReplace.html#property_fields"
+        },                {
             "fqsen": "\\Mindee\\Input\\FileInput",
             "name": "FileInput",
             "summary": "Binary\u0020file\u0020input.",
@@ -1440,6 +1565,11 @@ Search.appendIndex(
             "name": "textContext",
             "summary": "",
             "url": "classes/Mindee-Input-InferenceParameters.html#property_textContext"
+        },                {
+            "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024dataSchema",
+            "name": "dataSchema",
+            "summary": "",
+            "url": "classes/Mindee-Input-InferenceParameters.html#property_dataSchema"
         },                {
             "fqsen": "\\Mindee\\Input\\InferenceParameters\u003A\u003A\u0024pollingOptions",
             "name": "pollingOptions",
@@ -3171,6 +3301,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-CommonResponse.html#property_rawHttp"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\DataSchemaActiveOption",
+            "name": "DataSchemaActiveOption",
+            "summary": "Data\u0020schema\u0020options\u0020activated\u0020during\u0020the\u0020inference.",
+            "url": "classes/Mindee-Parsing-V2-DataSchemaActiveOption.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\DataSchemaActiveOption\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-DataSchemaActiveOption.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\DataSchemaActiveOption\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-DataSchemaActiveOption.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\DataSchemaActiveOption\u003A\u003A\u0024replace",
+            "name": "replace",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-DataSchemaActiveOption.html#property_replace"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\ErrorResponse",
             "name": "ErrorResponse",
             "summary": "Error\u0020response\u0020class.",
@@ -3505,6 +3655,11 @@ Search.appendIndex(
             "name": "textContext",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions\u003A\u003A\u0024dataSchema",
+            "name": "dataSchema",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_dataSchema"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceFile",
             "name": "InferenceFile",

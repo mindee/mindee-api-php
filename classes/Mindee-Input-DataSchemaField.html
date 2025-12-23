@@ -124,13 +124,12 @@
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee.html">Mindee</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-parsing.html">Parsing</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-parsing-v2.html">V2</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-input.html">Input</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    InferenceActiveOptions
+    DataSchemaField
 
     
             <div class="phpdocumentor-element__package">
@@ -149,21 +148,15 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Options which were activated during the inference.</p>
+            <p class="phpdocumentor-summary">Data Schema Field.</p>
 
 
-    <section class="phpdocumentor-description"><p>Options can be activated or deactivated:</p>
-<ul>
-<li>By setting their default values on the Platform UI</li>
-<li>By explicitly setting them in the inference request</li>
-</ul>
-</section>
 
 
 
@@ -171,7 +164,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Input-DataSchemaField.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -185,64 +178,88 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Input-DataSchemaField.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence">$confidence</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_classificationValues">$classificationValues</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_description">$description</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_guidelines">$guidelines</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_isArray">$isArray</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_dataSchema">$dataSchema</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_name">$name</a>
     <span>
-                        &nbsp;: <a href="classes/Mindee-Parsing-V2-DataSchemaActiveOption.html"><abbr title="\Mindee\Parsing\V2\DataSchemaActiveOption">DataSchemaActiveOption</abbr></a>            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon">$polygon</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_nestedFields">$nestedFields</a>
     <span>
-                        &nbsp;: bool            </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag">$rag</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_title">$title</a>
     <span>
-                        &nbsp;: bool            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText">$rawText</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_type">$type</a>
     <span>
-                        &nbsp;: bool            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext">$textContext</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#property_uniqueValues">$uniqueValues</a>
     <span>
-                        &nbsp;: bool            </span>
+                        &nbsp;: bool|null            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-Input-DataSchemaField.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct">__construct()</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString">__toString()</a>
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#method___toString">__toString()</a>
     <span>
                                 &nbsp;: string    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Input-DataSchemaField.html#method_toJson">toJson()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
     </dl>
@@ -255,7 +272,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Input-DataSchemaField.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -265,17 +282,134 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_confidence">
-        $confidence
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_classificationValues">
+        $classificationValues
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_classificationValues" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__name">$classificationValues</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Allowed values when type is <code class="prettyprint">classification</code>. Leave empty for other types.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_description">
+        $description
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_description" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">29</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$description</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Detailed description of what this field represents.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_guidelines">
+        $guidelines
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_guidelines" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">33</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$guidelines</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Optional extraction guidelines.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_isArray">
+        $isArray
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_isArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -284,12 +418,11 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$confidence</span>
+    <span class="phpdocumentor-signature__name">$isArray</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the confidence feature was activated.
-When this feature is activated, a confidence score for each field is returned in the result.</p>
+        <section class="phpdocumentor-description"><p>Whether this field can contain multiple values.</p>
 </section>
 
     
@@ -305,17 +438,17 @@ When this feature is activated, a confidence score for each field is returned in
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_dataSchema">
-        $dataSchema
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_dataSchema" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_name">
+        $name
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -323,12 +456,12 @@ When this feature is activated, a confidence score for each field is returned in
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/Mindee-Parsing-V2-DataSchemaActiveOption.html"><abbr title="\Mindee\Parsing\V2\DataSchemaActiveOption">DataSchemaActiveOption</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$dataSchema</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$name</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Data schema options provided for the inference.</p>
+        <section class="phpdocumentor-description"><p>Name of the field in the data schema.</p>
 </section>
 
     
@@ -344,17 +477,17 @@ When this feature is activated, a confidence score for each field is returned in
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_polygon">
-        $polygon
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_nestedFields">
+        $nestedFields
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_nestedFields" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -362,13 +495,12 @@ When this feature is activated, a confidence score for each field is returned in
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$polygon</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;|null</span>
+    <span class="phpdocumentor-signature__name">$nestedFields</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the Raw Text feature was activated.
-When this feature is activated, the raw text extracted from the document is returned in the result.</p>
+        <section class="phpdocumentor-description"><p>Subfields when type is <code class="prettyprint">nested_object</code>. Leave empty for other types.</p>
 </section>
 
     
@@ -384,17 +516,17 @@ When this feature is activated, the raw text extracted from the document is retu
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_rag">
-        $rag
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_title">
+        $title
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_title" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -402,13 +534,12 @@ When this feature is activated, the raw text extracted from the document is retu
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$rag</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$title</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the Retrieval-Augmented Generation feature was activated.
-When this feature is activated, the RAG pipeline is used to increase result accuracy.</p>
+        <section class="phpdocumentor-description"><p>Display name for the field. Also impacts inference results.</p>
 </section>
 
     
@@ -424,15 +555,15 @@ When this feature is activated, the RAG pipeline is used to increase result accu
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_rawText">
-        $rawText
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_type">
+        $type
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_type" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">25</span>
 
@@ -442,12 +573,12 @@ When this feature is activated, the RAG pipeline is used to increase result accu
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$rawText</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$type</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the Raw Text feature was activated.</p>
+        <section class="phpdocumentor-description"><p>Data type of the field.</p>
 </section>
 
     
@@ -463,17 +594,17 @@ When this feature is activated, the RAG pipeline is used to increase result accu
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_textContext">
-        $textContext
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_uniqueValues">
+        $uniqueValues
+        <a href="classes/Mindee-Input-DataSchemaField.html#property_uniqueValues" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -481,13 +612,12 @@ When this feature is activated, the RAG pipeline is used to increase result accu
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">bool</span>
-    <span class="phpdocumentor-signature__name">$textContext</span>
+            <span class="phpdocumentor-signature__type">bool|null</span>
+    <span class="phpdocumentor-signature__name">$uniqueValues</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Whether the text context feature was activated.
-When this feature is activated, the provided context is used to improve the accuracy of the inference.</p>
+        <section class="phpdocumentor-description"><p>Whether to remove duplicate values in the array.</p>
 </section>
 
     
@@ -501,7 +631,7 @@ When this feature is activated, the provided context is used to improve the accu
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-Input-DataSchemaField.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -512,13 +642,13 @@ When this feature is activated, the provided context is used to improve the accu
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Input-DataSchemaField.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -558,13 +688,13 @@ When this feature is activated, the provided context is used to improve the accu
 >
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Input-DataSchemaField.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceActiveOptions.php"><a href="files/src-parsing-v2-inferenceactiveoptions.html"><abbr title="src/Parsing/V2/InferenceActiveOptions.php">InferenceActiveOptions.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
@@ -592,13 +722,55 @@ When this feature is activated, the provided context is used to improve the accu
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toJson">
+        toJson()
+        <a href="classes/Mindee-Input-DataSchemaField.html#method_toJson" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/DataSchemaField.php"><a href="files/src-input-dataschemafield.html"><abbr title="src/Input/DataSchemaField.php">DataSchemaField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">72</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toJson</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>JSON representation.</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsing/V2/InferenceActiveOptions.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Input/DataSchemaField.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -699,28 +871,32 @@ When this feature is activated, the provided context is used to improve the accu
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Mindee-Input-DataSchemaField.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Mindee-Input-DataSchemaField.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_confidence">$confidence</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_dataSchema">$dataSchema</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_polygon">$polygon</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rag">$rag</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_rawText">$rawText</a></li>
-                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#property_textContext">$textContext</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_classificationValues">$classificationValues</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_description">$description</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_guidelines">$guidelines</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_isArray">$isArray</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_name">$name</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_nestedFields">$nestedFields</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_title">$title</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_type">$type</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#property_uniqueValues">$uniqueValues</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#method___toString">__toString()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#method___toString">__toString()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-DataSchemaField.html#method_toJson">toJson()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -740,7 +916,7 @@ When this feature is activated, the provided context is used to improve the accu
     </section>
 </section>
         </div>
-        <a href="classes/Mindee-Parsing-V2-InferenceActiveOptions.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Mindee-Input-DataSchemaField.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
