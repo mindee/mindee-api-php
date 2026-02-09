@@ -14,7 +14,7 @@ class InferenceParameterTest extends TestCase
     private DataSchema $expectedSchemaObject;
 
     protected function setUp(): void {
-        $fileContents = file_get_contents(\TestingUtilities::getV2DataDir() . '/inference/data_schema_replace_param.json');
+        $fileContents = file_get_contents(\TestingUtilities::getV2DataDir() . '/products/extraction/data_schema_replace_param.json');
         $this->expectedSchemaString = $fileContents;
         $this->expectedSchemaDict = json_decode($fileContents, true);
         $this->expectedSchemaObject = new DataSchema($fileContents);

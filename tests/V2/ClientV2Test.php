@@ -75,7 +75,7 @@ class ClientV2Test extends TestCase
         /** @var MindeeApiV2&MockObject $predictable */
         $predictable = $this->createMock(MindeeApiV2::class);
 
-        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/financial_document/complete.json';
+        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
 
         $json = json_decode(file_get_contents($jsonFile), true);
@@ -110,7 +110,7 @@ class ClientV2Test extends TestCase
 
     public function testInferenceLoadsLocally(): void
     {
-        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/financial_document/complete.json';
+        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
 
         $localResponse = new LocalResponse($jsonFile);

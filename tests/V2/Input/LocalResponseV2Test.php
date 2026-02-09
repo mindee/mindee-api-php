@@ -12,13 +12,13 @@ class LocalResponseV2Test extends TestCase
 
     protected function setUp(): void
     {
-        $this->filePath = \TestingUtilities::getV2DataDir() . '/inference/standard_field_types.json';
+        $this->filePath = \TestingUtilities::getV2DataDir() . '/products/extraction/standard_field_types.json';
     }
 
     protected function assertLocalResponse(LocalResponse $localResponse): void
     {
         $fakeHMACSigning = "ogNjY44MhvKPGTtVsI8zG82JqWQa68woYQH";
-        $signature = "1df388c992d87897fe61dfc56c444c58fc3c7369c31e2b5fd20d867695e93e85";
+        $signature = "e51bdf80f1a08ed44ee161100fc30a25cb35b4ede671b0a575dc9064a3f5dbf1";
         $reflectedLocalResponse = new \ReflectionClass($localResponse);
         $reflectedFile = $reflectedLocalResponse->getProperty('file');
         $reflectedFile->setAccessible(true);
