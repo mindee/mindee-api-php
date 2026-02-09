@@ -43,7 +43,7 @@ class InferenceResponseTest extends TestCase
      */
     public function testAsyncPredictWhenEmptyMustHaveValidProperties(): void
     {
-        $response = $this->loadFromResource('v2/products/financial_document/blank.json');
+        $response = $this->loadFromResource('v2/products/extraction/financial_document/blank.json');
         $fields = $response->inference->result->fields;
 
         $this->assertCount(21, $fields, 'Expected 21 fields');
@@ -95,7 +95,7 @@ class InferenceResponseTest extends TestCase
      */
     public function testAsyncPredictWhenCompleteMustExposeAllProperties(): void
     {
-        $response = $this->loadFromResource('v2/products/financial_document/complete.json');
+        $response = $this->loadFromResource('v2/products/extraction/financial_document/complete.json');
         $inference = $response->inference;
 
         $this->assertNotNull($inference, 'Inference must not be null');
@@ -158,7 +158,7 @@ class InferenceResponseTest extends TestCase
      */
     public function testDeepNestedFieldsMustExposeCorrectTypes(): void
     {
-        $response = $this->loadFromResource('v2/inference/deep_nested_fields.json');
+        $response = $this->loadFromResource('v2/products/extraction/deep_nested_fields.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -168,7 +168,14 @@ class InferenceResponseTest extends TestCase
 
         $fieldObject = $root->get('field_object');
         $this->assertInstanceOf(ObjectField::class, $fieldObject);
+        $this->assertInstanceOf(SimpleField::class, $fieldObject->getSimpleField('sub_object_simple'));
+        $this->assertInstanceOf(ListField::class, $fieldObject->getListField('sub_object_list'));
+        $this->assertInstanceOf(ObjectField::class, $fieldObject->getObjectField('sub_object_object'));
+        $this->assertEquals(1, count($fieldObject->getSimpleFields()));
+        $this->assertEquals(1, count($fieldObject->getListFields()));
+        $this->assertEquals(1, count($fieldObject->getObjectFields()));
         $lvl1 = $fieldObject->fields;
+        $this->assertInstanceOf(SimpleField::class, $lvl1->get('sub_object_simple'));
         $this->assertInstanceOf(ListField::class, $lvl1->get('sub_object_list'));
         $this->assertInstanceOf(ObjectField::class, $lvl1->get('sub_object_object'));
 
@@ -195,7 +202,7 @@ class InferenceResponseTest extends TestCase
      */
     public function testStandardFieldTypesMustExposeCorrectTypes(): void
     {
-        $response = $this->loadFromResource('v2/inference/standard_field_types.json');
+        $response = $this->loadFromResource('v2/products/extraction/standard_field_types.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -276,7 +283,7 @@ class InferenceResponseTest extends TestCase
      */
     public function testRawTextsMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('v2/inference/raw_texts.json');
+        $response = $this->loadFromResource('v2/products/extraction/raw_texts.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -303,9 +310,9 @@ class InferenceResponseTest extends TestCase
      */
     public function testRstDisplayMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('v2/inference/standard_field_types.json');
+        $response = $this->loadFromResource('v2/products/extraction/standard_field_types.json');
         $expectedRst = $this->readFileAsString(
-            \TestingUtilities::getV2DataDir() . '/inference/standard_field_types.rst'
+            \TestingUtilities::getV2DataDir() . '/products/extraction/standard_field_types.rst'
         );
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -317,7 +324,7 @@ class InferenceResponseTest extends TestCase
      */
     public function testCoordinatesAndLocationDataMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('v2/products/financial_document/complete_with_coordinates.json');
+        $response = $this->loadFromResource('v2/products/extraction/financial_document/complete_with_coordinates.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -376,7 +383,7 @@ class InferenceResponseTest extends TestCase
 
     public function testRagMetadataWhenMatched()
     {
-        $response = $this->loadFromResource('v2/inference/rag_matched.json');
+        $response = $this->loadFromResource('v2/products/extraction/rag_matched.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $this->assertEquals('12345abc-1234-1234-1234-123456789abc', $inference->result->rag->retrievedDocumentId);
@@ -384,7 +391,7 @@ class InferenceResponseTest extends TestCase
 
     public function testRagMetadataWhenNotMatched()
     {
-        $response = $this->loadFromResource('v2/inference/rag_not_matched.json');
+        $response = $this->loadFromResource('v2/products/extraction/rag_not_matched.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $this->assertNull($inference->result->rag->retrievedDocumentId);
@@ -404,7 +411,7 @@ class InferenceResponseTest extends TestCase
 
     public function testTextContextIsTrue(): void
     {
-        $response = $this->loadFromResource('v2/inference/text_context_enabled.json');
+        $response = $this->loadFromResource('v2/products/extraction/text_context_enabled.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $activeOptions = $inference->activeOptions;
@@ -417,7 +424,7 @@ class InferenceResponseTest extends TestCase
 
     public function testTextContextIsFalse(): void
     {
-        $response = $this->loadFromResource('v2/products/financial_document/complete.json');
+        $response = $this->loadFromResource('v2/products/extraction/financial_document/complete.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $activeOptions = $inference->activeOptions;

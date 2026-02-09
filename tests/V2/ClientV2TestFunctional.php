@@ -183,7 +183,7 @@ class ClientV2TestFunctional extends TestCase
             TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
         );
         $dataSchemaReplace = file_get_contents(
-            TestingUtilities::getV2DataDir() . '/inference/data_schema_replace_param.json'
+            TestingUtilities::getV2DataDir() . '/products/extraction/data_schema_replace_param.json'
         );
 
         $inferenceParams = new InferenceParameters($this->modelId, dataSchema: $dataSchemaReplace);
