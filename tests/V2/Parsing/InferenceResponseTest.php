@@ -168,7 +168,14 @@ class InferenceResponseTest extends TestCase
 
         $fieldObject = $root->get('field_object');
         $this->assertInstanceOf(ObjectField::class, $fieldObject);
+        $this->assertInstanceOf(SimpleField::class, $fieldObject->getSimpleField('sub_object_simple'));
+        $this->assertInstanceOf(ListField::class, $fieldObject->getListField('sub_object_list'));
+        $this->assertInstanceOf(ObjectField::class, $fieldObject->getObjectField('sub_object_object'));
+        $this->assertEquals(1, count($fieldObject->getSimpleFields()));
+        $this->assertEquals(1, count($fieldObject->getListFields()));
+        $this->assertEquals(1, count($fieldObject->getObjectFields()));
         $lvl1 = $fieldObject->fields;
+        $this->assertInstanceOf(SimpleField::class, $lvl1->get('sub_object_simple'));
         $this->assertInstanceOf(ListField::class, $lvl1->get('sub_object_list'));
         $this->assertInstanceOf(ObjectField::class, $lvl1->get('sub_object_object'));
 
