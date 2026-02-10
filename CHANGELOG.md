@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.5.0 - 2026-02-09
+### Changes
+* :sparkles: add field types easy getters in `ObjectField`s
+
+
 ## v2.4.0 - 2025-12-23
 ### Changes
 * :sparkles: add support for data schema
