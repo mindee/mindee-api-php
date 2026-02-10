@@ -155,7 +155,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -238,6 +238,48 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListField">getListField()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Parsing-V2-Field-ListField.html"><abbr title="\Mindee\Parsing\V2\Field\ListField">ListField</abbr></a>    </span>
+</dt>
+<dd>Returns a ListField instance for the specified key.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListFields">getListFields()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-ListField.html"><abbr title="\Mindee\Parsing\V2\Field\ListField">ListField</abbr></a>&gt;    </span>
+</dt>
+<dd>Returns an array of ListField instances.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectField">getObjectField()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html"><abbr title="\Mindee\Parsing\V2\Field\ObjectField">ObjectField</abbr></a>    </span>
+</dt>
+<dd>Returns an ObjectField instance for the specified key.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectFields">getObjectFields()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html"><abbr title="\Mindee\Parsing\V2\Field\ObjectField">ObjectField</abbr></a>&gt;    </span>
+</dt>
+<dd>Returns an array of ObjectField instances.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleField">getSimpleField()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Parsing-V2-Field-SimpleField.html"><abbr title="\Mindee\Parsing\V2\Field\SimpleField">SimpleField</abbr></a>    </span>
+</dt>
+<dd>Returns a SimpleField instance for the specified key.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleFields">getSimpleFields()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-SimpleField.html"><abbr title="\Mindee\Parsing\V2\Field\SimpleField">SimpleField</abbr></a>&gt;    </span>
+</dt>
+<dd>Returns an array of SimpleField instances.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_toStringFromList">toStringFromList()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -313,7 +355,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -433,7 +475,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -488,7 +530,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -594,6 +636,378 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getListField">
+        getListField()
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListField" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">56</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns a ListField instance for the specified key.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getListField</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-Field-ListField.html"><abbr title="\Mindee\Parsing\V2\Field\ListField">ListField</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$key</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The key of the list field to retrieve.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListField#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When the field does not exist or is not a list field.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-Field-ListField.html"><abbr title="\Mindee\Parsing\V2\Field\ListField">ListField</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getListFields">
+        getListFields()
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListFields" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">120</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns an array of ListField instances.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getListFields</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-ListField.html"><abbr title="\Mindee\Parsing\V2\Field\ListField">ListField</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListFields#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When a field does not exist or is not a list field.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-ListField.html"><abbr title="\Mindee\Parsing\V2\Field\ListField">ListField</abbr></a>&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getObjectField">
+        getObjectField()
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectField" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">88</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns an ObjectField instance for the specified key.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getObjectField</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html"><abbr title="\Mindee\Parsing\V2\Field\ObjectField">ObjectField</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$key</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The key of the simple field to retrieve.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectField#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When the field does not exist or is not a simple field.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html"><abbr title="\Mindee\Parsing\V2\Field\ObjectField">ObjectField</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getObjectFields">
+        getObjectFields()
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectFields" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">137</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns an array of ObjectField instances.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getObjectFields</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html"><abbr title="\Mindee\Parsing\V2\Field\ObjectField">ObjectField</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectFields#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When a field does not exist or is not an object field.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html"><abbr title="\Mindee\Parsing\V2\Field\ObjectField">ObjectField</abbr></a>&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSimpleField">
+        getSimpleField()
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleField" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">72</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns a SimpleField instance for the specified key.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSimpleField</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-Field-SimpleField.html"><abbr title="\Mindee\Parsing\V2\Field\SimpleField">SimpleField</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$key</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The key of the simple field to retrieve.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleField#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When the field does not exist or is not a simple field.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-Field-SimpleField.html"><abbr title="\Mindee\Parsing\V2\Field\SimpleField">SimpleField</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSimpleFields">
+        getSimpleFields()
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleFields" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">103</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns an array of SimpleField instances.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSimpleFields</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-SimpleField.html"><abbr title="\Mindee\Parsing\V2\Field\SimpleField">SimpleField</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleFields#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When a field does not exist or is not a simple field.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Parsing-V2-Field-SimpleField.html"><abbr title="\Mindee\Parsing\V2\Field\SimpleField">SimpleField</abbr></a>&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_toStringFromList">
         toStringFromList()
         <a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_toStringFromList" class="headerlink"><i class="fas fa-link"></i></a>
@@ -602,7 +1016,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/Field/ObjectField.php"><a href="files/src-parsing-v2-field-objectfield.html"><abbr title="src/Parsing/V2/Field/ObjectField.php">ObjectField.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -755,6 +1169,12 @@
                                             <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/Mindee-Parsing-V2-Field-BaseField.html#method_createField">createField()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListField">getListField()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListFields">getListFields()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectField">getObjectField()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectFields">getObjectFields()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleField">getSimpleField()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleFields">getSimpleFields()</a></li>
                                             <li class=""><a href="classes/Mindee-Parsing-V2-Field-ObjectField.html#method_toStringFromList">toStringFromList()</a></li>
                                     </ul>
             </li>

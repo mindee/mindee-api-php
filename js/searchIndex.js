@@ -3551,6 +3551,36 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020string\u0020representation\u0020suitable\u0020for\u0020list\u0020display.",
             "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_toStringFromList"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AgetListField\u0028\u0029",
+            "name": "getListField",
+            "summary": "Returns\u0020a\u0020ListField\u0020instance\u0020for\u0020the\u0020specified\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListField"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AgetSimpleField\u0028\u0029",
+            "name": "getSimpleField",
+            "summary": "Returns\u0020a\u0020SimpleField\u0020instance\u0020for\u0020the\u0020specified\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleField"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AgetObjectField\u0028\u0029",
+            "name": "getObjectField",
+            "summary": "Returns\u0020an\u0020ObjectField\u0020instance\u0020for\u0020the\u0020specified\u0020key.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectField"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AgetSimpleFields\u0028\u0029",
+            "name": "getSimpleFields",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020SimpleField\u0020instances.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getSimpleFields"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AgetListFields\u0028\u0029",
+            "name": "getListFields",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020ListField\u0020instances.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getListFields"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003AgetObjectFields\u0028\u0029",
+            "name": "getObjectFields",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020ObjectField\u0020instances.",
+            "url": "classes/Mindee-Parsing-V2-Field-ObjectField.html#method_getObjectFields"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Field\\ObjectField\u003A\u003A\u0024fields",
             "name": "fields",
             "summary": "",
