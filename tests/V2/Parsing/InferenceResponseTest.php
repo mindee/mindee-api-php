@@ -1,6 +1,6 @@
 <?php
 
-namespace V2\parsing;
+namespace V2\Parsing;
 
 use Mindee\Error\ErrorItem;
 use Mindee\Geometry\Point;
@@ -24,7 +24,7 @@ class InferenceResponseTest extends TestCase
 {
     private function loadFromResource(string $resourcePath): InferenceResponse
     {
-        $fullPath = TestingUtilities::getRootDataDir() . "/$resourcePath";
+        $fullPath = TestingUtilities::getV2ProductDir() . "/$resourcePath";
         $this->assertFileExists($fullPath, "Resource file must exist: $resourcePath");
 
         $localResponse = new LocalResponse($fullPath);
@@ -39,11 +39,12 @@ class InferenceResponseTest extends TestCase
     }
 
     /**
-     * When the async prediction is blank - all properties must be valid
+     * When the async prediction is blank - all properties must be valid.
+     * @return void
      */
     public function testAsyncPredictWhenEmptyMustHaveValidProperties(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/financial_document/blank.json');
+        $response = $this->loadFromResource('extraction/financial_document/blank.json');
         $fields = $response->inference->result->fields;
 
         $this->assertCount(21, $fields, 'Expected 21 fields');
@@ -91,11 +92,12 @@ class InferenceResponseTest extends TestCase
     }
 
     /**
-     * When the async prediction is complete - every exposed property must be valid and consistent
+     * When the async prediction is complete - every exposed property must be valid and consistent.
+     * @return void
      */
     public function testAsyncPredictWhenCompleteMustExposeAllProperties(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/financial_document/complete.json');
+        $response = $this->loadFromResource('extraction/financial_document/complete.json');
         $inference = $response->inference;
 
         $this->assertNotNull($inference, 'Inference must not be null');
@@ -154,11 +156,12 @@ class InferenceResponseTest extends TestCase
     }
 
     /**
-     * Deep nested fields - all nested structures must be typed correctly
+     * Deep nested fields - all nested structures must be typed correctly.
+     * @return void
      */
     public function testDeepNestedFieldsMustExposeCorrectTypes(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/deep_nested_fields.json');
+        $response = $this->loadFromResource('extraction/deep_nested_fields.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -198,11 +201,12 @@ class InferenceResponseTest extends TestCase
     }
 
     /**
-     * Standard field types - simple / object / list variants must be recognised
+     * Standard field types - simple / object / list variants must be recognised.
+     * @return void
      */
     public function testStandardFieldTypesMustExposeCorrectTypes(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/standard_field_types.json');
+        $response = $this->loadFromResource('extraction/standard_field_types.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -279,11 +283,12 @@ class InferenceResponseTest extends TestCase
     }
 
     /**
-     * Raw texts option must be parsed and exposed
+     * Raw texts option must be parsed and exposed.
+     * @return void
      */
     public function testRawTextsMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/raw_texts.json');
+        $response = $this->loadFromResource('extraction/raw_texts.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -306,13 +311,14 @@ class InferenceResponseTest extends TestCase
     }
 
     /**
-     * RST display must be parsed and exposed
+     * RST display must be parsed and exposed.
+     * @return void
      */
     public function testRstDisplayMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/standard_field_types.json');
+        $response = $this->loadFromResource('extraction/standard_field_types.json');
         $expectedRst = $this->readFileAsString(
-            \TestingUtilities::getV2DataDir() . '/products/extraction/standard_field_types.rst'
+            \TestingUtilities::getV2ProductDir() . '/extraction/standard_field_types.rst'
         );
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -321,10 +327,11 @@ class InferenceResponseTest extends TestCase
 
     /**
      * Coordinates & location data must be parsed and exposed.
+     * @return void
      */
     public function testCoordinatesAndLocationDataMustBeAccessible(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/financial_document/complete_with_coordinates.json');
+        $response = $this->loadFromResource('extraction/financial_document/complete_with_coordinates.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
@@ -383,7 +390,7 @@ class InferenceResponseTest extends TestCase
 
     public function testRagMetadataWhenMatched()
     {
-        $response = $this->loadFromResource('v2/products/extraction/rag_matched.json');
+        $response = $this->loadFromResource('extraction/rag_matched.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $this->assertEquals('12345abc-1234-1234-1234-123456789abc', $inference->result->rag->retrievedDocumentId);
@@ -391,7 +398,7 @@ class InferenceResponseTest extends TestCase
 
     public function testRagMetadataWhenNotMatched()
     {
-        $response = $this->loadFromResource('v2/products/extraction/rag_not_matched.json');
+        $response = $this->loadFromResource('extraction/rag_not_matched.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $this->assertNull($inference->result->rag->retrievedDocumentId);
@@ -399,7 +406,9 @@ class InferenceResponseTest extends TestCase
 
     public function testShouldLoadWith422Error()
     {
-        $jsonResponse = json_decode(file_get_contents(\TestingUtilities::getV2DataDir() . '/job/fail_422.json'), true);
+        $jsonResponse = json_decode(
+            file_get_contents(\TestingUtilities::getV2DataDir() . '/job/fail_422.json'), true
+        );
         $response = new JobResponse($jsonResponse);
         $this->assertNotNull($response->job);
         $this->assertInstanceOf(ErrorResponse::class, $response->job->error);
@@ -411,7 +420,7 @@ class InferenceResponseTest extends TestCase
 
     public function testTextContextIsTrue(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/text_context_enabled.json');
+        $response = $this->loadFromResource('extraction/text_context_enabled.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $activeOptions = $inference->activeOptions;
@@ -424,7 +433,7 @@ class InferenceResponseTest extends TestCase
 
     public function testTextContextIsFalse(): void
     {
-        $response = $this->loadFromResource('v2/products/extraction/financial_document/complete.json');
+        $response = $this->loadFromResource('extraction/financial_document/complete.json');
         $inference = $response->inference;
         $this->assertNotNull($inference);
         $activeOptions = $inference->activeOptions;
