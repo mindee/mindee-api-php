@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.6.0 - 2026-02-25
+### Changes
+* :sparkles: add job information to inference object
+
+
 ## v2.5.0 - 2026-02-09
 ### Changes
 * :sparkles: add field types easy getters in `ObjectField`s
