@@ -3621,6 +3621,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Inference.html#method___toString"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024job",
+            "name": "job",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Inference.html#property_job"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024model",
             "name": "model",
             "summary": "",
@@ -3640,11 +3650,6 @@ Search.appendIndex(
             "name": "result",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Inference.html#property_result"
-        },                {
-            "fqsen": "\\Mindee\\Parsing\\V2\\Inference\u003A\u003A\u0024id",
-            "name": "id",
-            "summary": "",
-            "url": "classes/Mindee-Parsing-V2-Inference.html#property_id"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceActiveOptions",
             "name": "InferenceActiveOptions",
@@ -3725,6 +3730,26 @@ Search.appendIndex(
             "name": "mimeType",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-InferenceFile.html#property_mimeType"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceJob",
+            "name": "InferenceJob",
+            "summary": "Information\u0020on\u0020the\u0020Job\u0020associated\u0020to\u0020a\u0020given\u0020Inference.",
+            "url": "classes/Mindee-Parsing-V2-InferenceJob.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceJob\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceJob.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceJob\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceJob.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\InferenceJob\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-InferenceJob.html#property_id"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\InferenceModel",
             "name": "InferenceModel",
@@ -3820,6 +3845,11 @@ Search.appendIndex(
             "name": "createdAt",
             "summary": "",
             "url": "classes/Mindee-Parsing-V2-Job.html#property_createdAt"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024completedAt",
+            "name": "completedAt",
+            "summary": "",
+            "url": "classes/Mindee-Parsing-V2-Job.html#property_completedAt"
         },                {
             "fqsen": "\\Mindee\\Parsing\\V2\\Job\u003A\u003A\u0024modelId",
             "name": "modelId",
