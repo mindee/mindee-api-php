@@ -30,6 +30,14 @@ class TestingUtilities
     }
 
     /**
+     * @return string Return the root of the v2 products directory.
+     */
+    public static function getV2ProductDir(): string
+    {
+        return TestingUtilities::getV2DataDir() . "/products";
+    }
+
+    /**
      * @return string Return the root of the file types directory.
      */
     public static function getFileTypesDir(): string

@@ -21,9 +21,14 @@ class Job
     public ?ErrorResponse $error;
 
     /**
-     * @var DateTime|null Timestamp of the job creation.
+     * @var DateTime Date and time of the Job creation.
      */
-    public ?DateTime $createdAt;
+    public DateTime $createdAt;
+
+    /**
+     * @var DateTime|null Date and time of the Job completion. Filled once processing is finished.
+     */
+    public ?DateTime $completedAt;
 
     /**
      * @var string ID of the model.
@@ -76,8 +81,9 @@ class Job
             $this->error = new ErrorResponse($serverResponse['error']);
         }
 
-        $this->createdAt = isset($serverResponse['created_at'])
-            ? $this->parseDate($serverResponse['created_at'])
+        $this->createdAt = $this->parseDate($serverResponse['created_at']);
+        $this->completedAt = isset($serverResponse['completed_at'])
+            ? $this->parseDate($serverResponse['completed_at'])
             : null;
 
         $this->modelId = $serverResponse['model_id'];
