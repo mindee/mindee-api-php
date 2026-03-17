@@ -17,7 +17,7 @@ class ClassificationResult
      */
     public function __construct(array $rawResponse)
     {
-        $this->classification = new ClassificationClassifier($rawResponse['classifier']);
+        $this->classification = new ClassificationClassifier($rawResponse['classification']);
     }
 
     /**
