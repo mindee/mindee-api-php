@@ -5,7 +5,7 @@ namespace Mindee\Parsing\V2;
 /**
  * Job response class.
  */
-class JobResponse extends CommonResponse
+class JobResponse extends BaseResponse
 {
     /**
      * @var Job Job for the polling.
@@ -13,11 +13,11 @@ class JobResponse extends CommonResponse
     public Job $job;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        parent::__construct($serverResponse);
-        $this->job = new Job($serverResponse['job']);
+        parent::__construct($rawResponse);
+        $this->job = new Job($rawResponse['job']);
     }
 }

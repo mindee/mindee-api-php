@@ -117,7 +117,7 @@ class LocalResponse
     }
 
     /**
-     * Deserialize the loaded local response into the requested CommonResponse-derived class.
+     * Deserialize the loaded local response into the requested BaseResponse-derived class.
      *
      * Typically used when dealing with V2 webhook callbacks.
      *
