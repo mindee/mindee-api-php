@@ -31,7 +31,7 @@ class ClientV2Test extends TestCase
         $predictable = $this->createMock(MindeeApiV2::class);
         $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $predictable->expects($this->once())
-            ->method('reqPostInferenceEnqueue')
+            ->method('reqPostEnqueue')
             ->with(
                 $this->isInstanceOf(LocalInputSource::class),
                 $this->isInstanceOf(InferenceParameters::class)

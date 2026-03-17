@@ -47,6 +47,6 @@ class InferenceFile
             . ":Name: $this->name\n"
             . ":Alias:" . ($this->alias ? " $this->alias" : '') . "\n"
             . ":Page Count: $this->pageCount\n"
-            . ":MIME Type: $this->mimeType\n";
+            . ":MIME Type: $this->mimeType";
     }
 }
