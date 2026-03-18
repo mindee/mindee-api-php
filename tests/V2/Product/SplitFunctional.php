@@ -32,7 +32,7 @@ class SplitFunctional extends TestCase
     public function testSplitDefaultSampleMustSucceed(): void
     {
         $inputSource = new PathInput(
-            TestingUtilities::getV2ProductDir() . '/products/split/default_sample.pdf'
+            TestingUtilities::getV2ProductDir() . '/split/default_sample.pdf'
         );
 
         $productParams = new SplitParameters($this->splitModelId);
