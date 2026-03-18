@@ -15,6 +15,11 @@ class OcrResponse extends BaseResponse
     public OcrInference $inference;
 
     /**
+     * @var string Slug for the inference.
+     */
+    public static string $slug = "ocr";
+
+    /**
      * @param array $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)

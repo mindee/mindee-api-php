@@ -15,6 +15,11 @@ class SplitResponse extends BaseResponse
     public SplitInference $inference;
 
     /**
+     * @var string Slug for the inference.
+     */
+    public static string $slug = "split";
+
+    /**
      * @param array $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)

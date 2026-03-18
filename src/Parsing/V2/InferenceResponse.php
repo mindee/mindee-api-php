@@ -13,6 +13,11 @@ class InferenceResponse extends BaseResponse
     public Inference $inference;
 
     /**
+     * @var string Slug for the inference.
+     */
+    public static string $slug = "extraction";
+
+    /**
      * @param array $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)

@@ -15,6 +15,11 @@ class ClassificationResponse extends BaseResponse
     public ClassificationInference $inference;
 
     /**
+     * @var string Slug for the inference.
+     */
+    public static string $slug = "classification";
+
+    /**
      * @param array $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
