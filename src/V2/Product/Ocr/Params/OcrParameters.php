@@ -8,7 +8,7 @@ use Mindee\V2\ClientOptions\BaseParameters;
 /**
  * Parameters for an ocr utility inference.
  */
-class OcrParams extends BaseParameters
+class OcrParameters extends BaseParameters
 {
     /**
      * @var string Slug of the endpoint.

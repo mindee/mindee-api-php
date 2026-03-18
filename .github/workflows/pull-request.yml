@@ -22,6 +22,6 @@ jobs:
     needs: test-units
     secrets: inherit
   test-code-samples:
-    uses: ./.github/workflows/_test-code-samples.yml
+    uses: ./.github/workflows/_test-smoke.yml
     needs: test-units
     secrets: inherit
