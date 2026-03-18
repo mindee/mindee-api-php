@@ -284,7 +284,7 @@ class MindeeApiV2
         }
 
         try {
-            $slug = new ReflectionProperty($responseClass, 'slug');
+            $slugProperty = new ReflectionProperty($responseClass, 'slug');
         } catch (ReflectionException $e) {
             throw new MindeeApiException(
                 "Unable to access slug property of " . $responseClass,
@@ -292,7 +292,8 @@ class MindeeApiV2
                 $e
             );
         }
-        $response = $this->sendGetRequest($this->baseUrl . "/products/$resultId/results/$slug");
+        $url = $this->baseUrl . "/products/{$slugProperty->getValue()}/results/$resultId";
+        $response = $this->sendGetRequest($url);
         return $this->processResponse($responseClass, $response);
     }
 
