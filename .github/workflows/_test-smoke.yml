@@ -41,8 +41,8 @@ jobs:
 
       - name: Tests V1 code samples
         run: |
-          ./tests/test_v1_code_samples.sh ${{ secrets.MINDEE_ACCOUNT_SE_TESTS }} ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
+          ./tests/test_code_samples_v1.sh ${{ secrets.MINDEE_ACCOUNT_SE_TESTS }} ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
 
       - name: Tests V2 code samples
         run: |
-          ./tests/test_v2_code_samples.sh
+          ./tests/test_code_samples_v2.sh

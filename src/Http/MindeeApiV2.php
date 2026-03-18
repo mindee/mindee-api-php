@@ -407,7 +407,9 @@ class MindeeApiV2
                 \nOnly the first webhook ID will be sent to the server.");
                 $postFields['webhook_ids'] = $params->webhooksIds[0];
             } else {
-                $postFields['webhook_ids'] = $params->webhooksIds;
+                foreach ($params->webhooksIds as $webhookId) {
+                    $postFields['webhook_ids[]'] = $webhookId;
+                }
             }
         }
         if (isset($params->alias)) {
@@ -424,7 +426,6 @@ class MindeeApiV2
         if (!empty($curlError)) {
             throw new MindeeException("cURL error:\n$curlError");
         }
-
         curl_close($ch);
 
         return $resp;
