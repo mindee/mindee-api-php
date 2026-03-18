@@ -19,7 +19,7 @@ env:
 
 jobs:
   test:
-    name: Run Code Samples
+    name: Run Smoke Tests
     timeout-minutes: 30
     strategy:
       max-parallel: 2
