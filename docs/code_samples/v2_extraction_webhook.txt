@@ -16,6 +16,7 @@ $mindeeClient = new ClientV2($apiKey);
 $inferenceParams = new InferenceParameters(
     // ID of the model, required.
     $modelId,
+    webhookIds: ["MY_WEBHOOK_ID"],
 
     // Options: set to `true` or `false` to override defaults
 
