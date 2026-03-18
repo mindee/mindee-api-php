@@ -30,11 +30,6 @@ abstract class BaseParameters
     public PollingOptions $pollingOptions;
 
     /**
-     * @var string Slug of the product.
-     */
-    public static string $slug;
-
-    /**
      * @param string              $modelId        ID of the model.
      * @param string|null         $alias          Optional file alias.
      * @param array<string>|null  $webhooksIds    List of webhook IDs.

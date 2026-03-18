@@ -157,7 +157,7 @@ class ClientV2
                 break;
             }
             if ($pollResults->job->status === "Processed") {
-                return $this->getResultFromUrl($responseClass, $pollResults->job->pollingUrl);
+                return $this->getResultFromUrl($responseClass, $pollResults->job->resultUrl);
             }
 
             error_log(

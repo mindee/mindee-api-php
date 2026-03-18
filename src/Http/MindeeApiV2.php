@@ -412,7 +412,7 @@ class MindeeApiV2
         if (isset($params->alias)) {
             $postFields['alias'] = $params->alias;
         }
-        $url = $this->baseUrl . "products/{$params::$slug}/enqueue";
+        $url = $this->baseUrl . "/products/{$params::$slug}/enqueue";
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         $resp = [
