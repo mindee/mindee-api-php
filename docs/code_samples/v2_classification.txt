@@ -32,6 +32,5 @@ $response = $mindeeClient->enqueueAndGetResult(
 // Print a summary of the response
 echo strval($response->inference);
 
-
 // Access the classification results
 $classification = $response->inference->result->classification;

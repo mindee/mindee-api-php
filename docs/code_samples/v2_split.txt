@@ -32,6 +32,5 @@ $response = $mindeeClient->enqueueAndGetResult(
 // Print a summary of the response
 echo strval($response->inference);
 
-
 // Access the split results
 $splits = $response->inference->result->splits;

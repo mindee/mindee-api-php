@@ -39,10 +39,10 @@ jobs:
           php-version: ${{ matrix.php-version }}
       - uses: ramsey/composer-install@v2
 
-      - name: Tests V1 code samples
-        run: |
-          ./tests/test_code_samples_v1.sh ${{ secrets.MINDEE_ACCOUNT_SE_TESTS }} ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
-
       - name: Tests V2 code samples
         run: |
           ./tests/test_code_samples_v2.sh
+
+      - name: Tests V1 code samples
+        run: |
+          ./tests/test_code_samples_v1.sh ${{ secrets.MINDEE_ACCOUNT_SE_TESTS }} ${{ secrets.MINDEE_ENDPOINT_SE_TESTS }}
