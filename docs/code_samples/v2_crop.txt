@@ -22,7 +22,7 @@ $cropParams = new CropParameters(
 // Load a file from disk
 $inputSource = new PathInput($filePath);
 
-// Upload the file
+// Send for processing using polling
 $response = $mindeeClient->enqueueAndGetResult(
     CropResponse::class,
     $inputSource,
