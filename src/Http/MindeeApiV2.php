@@ -372,48 +372,13 @@ class MindeeApiV2
     ): array {
         /** @var CurlHandle $ch */
         $ch = $this->initChannel();
-        $postFields = ['model_id' => $params->modelId];
+        $postFields = $params->asHash();
+
         if ($inputSource instanceof URLInputSource) {
             $postFields['url'] = $inputSource->url;
         } elseif ($inputSource instanceof LocalInputSource) {
             $inputSource->checkNeedsFix();
             $postFields['file'] = $inputSource->fileObject;
-        }
-
-        if (is_a($params, InferenceParameters::class)) {
-            if (isset($params->rawText)) {
-                $postFields['raw_text'] = $params->rawText ? 'true' : 'false';
-            }
-            if (isset($params->polygon)) {
-                $postFields['polygon'] = $params->polygon ? 'true' : 'false';
-            }
-            if (isset($params->confidence)) {
-                $postFields['confidence'] = $params->confidence ? 'true' : 'false';
-            }
-            if (isset($params->rag)) {
-                $postFields['rag'] = $params->rag ? 'true' : 'false';
-            }
-            if (isset($params->textContext)) {
-                $postFields['text_context'] = $params->textContext;
-            }
-            if (isset($params->dataSchema)) {
-                $postFields['data_schema'] = strval($params->dataSchema);
-            }
-        }
-        if (isset($params->webhooksIds) && count($params->webhooksIds) > 0) {
-            if (PHP_VERSION_ID < 80200 && count($params->webhooksIds) > 1) {
-                // NOTE: see https://bugs.php.net/bug.php?id=51634
-                error_log("PHP version is too low to support webbook array destructuring.
-                \nOnly the first webhook ID will be sent to the server.");
-                $postFields['webhook_ids'] = $params->webhooksIds[0];
-            } else {
-                foreach ($params->webhooksIds as $webhookId) {
-                    $postFields['webhook_ids[]'] = $webhookId;
-                }
-            }
-        }
-        if (isset($params->alias)) {
-            $postFields['alias'] = $params->alias;
         }
         $url = $this->baseUrl . "/products/{$params::$slug}/enqueue";
         curl_setopt($ch, CURLOPT_URL, $url);

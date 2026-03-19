@@ -52,4 +52,29 @@ abstract class BaseParameters
         }
         $this->pollingOptions = $pollingOptions;
     }
+
+    /**
+     * @return array Hash representation.
+     */
+    public function asHash(): array
+    {
+        $outHash = ['model_id' => $this->modelId];
+        if (isset($this->alias)) {
+            $outHash['alias'] = $this->alias;
+        }
+
+        if (isset($this->webhooksIds) && count($this->webhooksIds) > 0) {
+            if (PHP_VERSION_ID < 80200 && count($this->webhooksIds) > 1) {
+                // NOTE: see https://bugs.php.net/bug.php?id=51634
+                error_log("PHP version is too low to support webbook array destructuring.
+                \nOnly the first webhook ID will be sent to the server.");
+                $outHash['webhook_ids'] = $this->webhooksIds[0];
+            } else {
+                foreach ($this->webhooksIds as $webhookId) {
+                    $outHash['webhook_ids[]'] = $webhookId;
+                }
+            }
+        }
+        return $outHash;
+    }
 }

@@ -80,14 +80,28 @@ class ClientV2
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param string $jobUrl        URL of the job.
+     * @param string $resultUrl     URL of the result.
      * @return T A response containing parsing results.
      */
     public function getResultFromUrl(
         string $responseClass,
-        string $jobUrl
+        string $resultUrl
     ): BaseResponse {
-        return $this->mindeeApi->reqGetResultFromUrl($responseClass, $jobUrl);
+        return $this->mindeeApi->reqGetResultFromUrl($responseClass, $resultUrl);
+    }
+
+    /**
+     * @template T of BaseResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $resultId      ID of the result.
+     * @return T A response containing parsing results.
+     */
+    public function getResult(
+        string $responseClass,
+        string $resultId
+    ): BaseResponse {
+        return $this->mindeeApi->reqGetResult($responseClass, $resultId);
     }
 
     /**

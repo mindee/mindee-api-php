@@ -88,4 +88,31 @@ class InferenceParameters extends BaseParameters
             $this->dataSchema = new DataSchema($dataSchema);
         }
     }
+
+    /**
+     * @return array Hash representation.
+     */
+    public function asHash(): array
+    {
+        $outHash = parent::asHash();
+        if (isset($this->rag)) {
+            $outHash['rag'] = $this->rag;
+        }
+        if (isset($this->rawText)) {
+            $outHash['raw_text'] = $this->rawText;
+        }
+        if (isset($this->polygon)) {
+            $outHash['polygon'] = $this->polygon;
+        }
+        if (isset($this->confidence)) {
+            $outHash['confidence'] = $this->confidence;
+        }
+        if (isset($this->textContext)) {
+            $outHash['text_context'] = $this->textContext;
+        }
+        if (isset($this->dataSchema)) {
+            $outHash['data_schema'] = strval($this->dataSchema);
+        }
+        return $outHash;
+    }
 }
