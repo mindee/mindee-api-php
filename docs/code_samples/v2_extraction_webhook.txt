@@ -41,6 +41,6 @@ $response = $mindeeClient->enqueue(
 );
 
 // Print the job ID
-echo strval($response->job->id);
+echo $response->job->id;
 
 // IMPORTANT: save a record of which job ID corresponds to which file.
