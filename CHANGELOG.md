@@ -1,5 +1,14 @@
 # Mindee PHP API Library Changelog
 
+## v2.7.0 - 2026-03-19
+### Changes
+* :sparkles: add support for new V2 products
+  * :sparkles: add support for Classification
+  * :sparkles: add support for Crop
+  * :sparkles: add support for OCR
+  * :sparkles: add support for Split
+* :coffin: remove unused PayslipV2 product
+
 ## v2.6.0 - 2026-02-25
 ### Changes
 * :sparkles: add job information to inference object
