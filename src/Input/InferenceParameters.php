@@ -96,16 +96,16 @@ class InferenceParameters extends BaseParameters
     {
         $outHash = parent::asHash();
         if (isset($this->rag)) {
-            $outHash['rag'] = $this->rag;
+            $outHash['rag'] = $this->rag ? 'true' : 'false';
         }
         if (isset($this->rawText)) {
-            $outHash['raw_text'] = $this->rawText;
+            $outHash['raw_text'] = $this->rawText ? 'true' : 'false';
         }
         if (isset($this->polygon)) {
-            $outHash['polygon'] = $this->polygon;
+            $outHash['polygon'] = $this->polygon ? 'true' : 'false';
         }
         if (isset($this->confidence)) {
-            $outHash['confidence'] = $this->confidence;
+            $outHash['confidence'] = $this->confidence ? 'true' : 'false';
         }
         if (isset($this->textContext)) {
             $outHash['text_context'] = $this->textContext;
