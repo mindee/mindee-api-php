@@ -6,8 +6,10 @@ use Mindee\Error\MindeeException;
 use Mindee\Http\MindeeApiV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\InputSource;
+use Mindee\Parsing\V2\BaseResponse;
 use Mindee\Parsing\V2\InferenceResponse;
 use Mindee\Parsing\V2\JobResponse;
+use Mindee\V2\ClientOptions\BaseParameters;
 
 /**
  * Mindee Client V2.
@@ -44,7 +46,22 @@ class ClientV2
         InputSource $inputSource,
         InferenceParameters $params
     ): JobResponse {
-        return $this->mindeeApi->reqPostInferenceEnqueue($inputSource, $params);
+        return $this->enqueue($inputSource, $params);
+    }
+
+    /**
+     * Send the document to an asynchronous endpoint and return its ID in the queue.
+     * @param InputSource    $inputSource File to parse.
+     * @param BaseParameters $params      Parameters relating to prediction options.
+     * @return JobResponse A JobResponse containing the job (queue) corresponding to a document.
+     * @throws MindeeException Throws if the input document is not provided.
+     * @category Asynchronous
+     */
+    public function enqueue(
+        InputSource $inputSource,
+        BaseParameters $params
+    ): JobResponse {
+        return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
     }
 
     /**
@@ -57,6 +74,34 @@ class ClientV2
     public function getInference(string $inferenceId): InferenceResponse
     {
         return $this->mindeeApi->reqGetInference($inferenceId);
+    }
+
+    /**
+     * @template T of BaseResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $resultUrl     URL of the result.
+     * @return T A response containing parsing results.
+     */
+    public function getResultFromUrl(
+        string $responseClass,
+        string $resultUrl
+    ): BaseResponse {
+        return $this->mindeeApi->reqGetResultFromUrl($responseClass, $resultUrl);
+    }
+
+    /**
+     * @template T of BaseResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $resultId      ID of the result.
+     * @return T A response containing parsing results.
+     */
+    public function getResult(
+        string $responseClass,
+        string $resultId
+    ): BaseResponse {
+        return $this->mindeeApi->reqGetResult($responseClass, $resultId);
     }
 
     /**
@@ -80,44 +125,63 @@ class ClientV2
      * @param InferenceParameters $params   Parameters relating to prediction options.
      * @return InferenceResponse A response containing parsing results.
      * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
-     * @category Synchronous
      */
     public function enqueueAndGetInference(
         InputSource $inputDoc,
         InferenceParameters $params
     ): InferenceResponse {
+        return $this->enqueueAndGetResult(InferenceResponse::class, $inputDoc, $params);
+    }
+
+    /**
+     * Send a document to an endpoint and poll the server until the result is sent or
+     * until the maximum number of tries is reached.
+     *
+     * @template T of BaseResponse
+     * @param string         $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param InputSource    $inputDoc      Input document to parse.
+     * @param BaseParameters $params        Parameters relating to prediction options.
+     * @return T A response containing parsing results.
+     * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
+     */
+    public function enqueueAndGetResult(
+        string $responseClass,
+        InputSource $inputDoc,
+        BaseParameters $params
+    ): BaseResponse {
         $pollingOptions = $params->pollingOptions;
 
-        $enqueueResponse = $this->enqueueInference($inputDoc, $params);
+        $enqueueResponse = $this->enqueue($inputDoc, $params);
 
         if (empty($enqueueResponse->job->id)) {
             error_log("Failed enqueueing:\n" . json_encode($enqueueResponse));
             throw new MindeeException("Enqueueing of the document failed.");
         }
 
-        $queueId = $enqueueResponse->job->id;
-        error_log("Successfully enqueued document with job id: " . $queueId);
+        $jobId = $enqueueResponse->job->id;
+        error_log("Successfully enqueued document with job ID: " . $jobId);
 
         $this->customSleep($pollingOptions->initialDelaySec);
         $retryCounter = 1;
-        $pollResults = $this->getJob($queueId);
+        $pollResults = $this->getJob($jobId);
 
         while ($retryCounter < $pollingOptions->maxRetries) {
             if ($pollResults->job->status === "Failed") {
                 break;
             }
             if ($pollResults->job->status === "Processed") {
-                return $this->getInference($pollResults->job->id);
+                return $this->getResultFromUrl($responseClass, $pollResults->job->resultUrl);
             }
 
             error_log(
-                "Polling server for parsing result with queueId: " . $queueId .
+                "Polling server for parsing result with job ID: " . $jobId .
                 ". Attempt number " . $retryCounter . " of " . $pollingOptions->maxRetries .
                 ". Job status: " . $pollResults->job->status
             );
 
             $this->customSleep($pollingOptions->delaySec);
-            $pollResults = $this->getJob($queueId);
+            $pollResults = $this->getJob($jobId);
             $retryCounter++;
         }
 

@@ -41,3 +41,6 @@ $response = $mindeeClient->enqueueAndGetInference(
 
 // Print a summary of the response
 echo strval($response->inference);
+
+// Access the extracted fields
+$fields = $response->inference->result->fields;

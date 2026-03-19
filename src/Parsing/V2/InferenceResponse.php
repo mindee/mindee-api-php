@@ -5,7 +5,7 @@ namespace Mindee\Parsing\V2;
 /**
  * Inference response class for V2.
  */
-class InferenceResponse extends CommonResponse
+class InferenceResponse extends BaseResponse
 {
     /**
      * @var Inference Inference result.
@@ -13,11 +13,16 @@ class InferenceResponse extends CommonResponse
     public Inference $inference;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @var string Slug for the inference.
      */
-    public function __construct(array $serverResponse)
+    public static string $slug = "extraction";
+
+    /**
+     * @param array $rawResponse Raw server response array.
+     */
+    public function __construct(array $rawResponse)
     {
-        parent::__construct($serverResponse);
-        $this->inference = new Inference($serverResponse['inference']);
+        parent::__construct($rawResponse);
+        $this->inference = new Inference($rawResponse['inference']);
     }
 }

@@ -6,8 +6,10 @@
 
 namespace Mindee\Http;
 
+use CurlHandle;
 use Exception;
 use Mindee\Error\ErrorCode;
+use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeException;
 
 // phpcs:disable
@@ -21,9 +23,14 @@ use Mindee\Input\InferenceParameters;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
+use Mindee\Parsing\V2\BaseResponse;
 use Mindee\Parsing\V2\ErrorResponse;
 use Mindee\Parsing\V2\InferenceResponse;
 use Mindee\Parsing\V2\JobResponse;
+use Mindee\V2\ClientOptions\BaseParameters;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionProperty;
 
 use const Mindee\VERSION;
 
@@ -62,13 +69,10 @@ class MindeeApiV2
      */
     private function getUserAgent(): string
     {
-        switch (PHP_OS_FAMILY) {
-            case "Darwin":
-                $os = "macos";
-                break;
-            default:
-                $os = strtolower(PHP_OS_FAMILY);
-        }
+        $os = match (PHP_OS_FAMILY) {
+            "Darwin" => "macos",
+            default => strtolower(PHP_OS_FAMILY),
+        };
         return 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . $os;
     }
 
@@ -156,43 +160,64 @@ class MindeeApiV2
     }
 
     /**
-     * @param InputSource         $inputDoc Input document.
-     * @param InferenceParameters $params   Parameters for the inference.
+     * @param InputSource    $inputDoc Input document.
+     * @param BaseParameters $params   Parameters for the inference.
      * @return JobResponse                  Server response wrapped in a JobResponse object.
      * @throws MindeeException Throws if the model ID is not provided.
      */
-    public function reqPostInferenceEnqueue(InputSource $inputDoc, InferenceParameters $params): JobResponse
+    public function reqPostEnqueue(InputSource $inputDoc, BaseParameters $params): JobResponse
     {
         if (!isset($params->modelId)) {
             throw new MindeeException("Model ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
         $response = $this->documentEnqueuePost($inputDoc, $params);
-        return $this->processResponse($response, JobResponse::class);
+        return $this->processJobResponse($response);
     }
 
 
     /**
      * Process the HTTP response and return the appropriate response object.
      *
-     * @param array  $result       Raw HTTP response array with 'data' and 'code' keys.
-     * @param string $responseType Class name of the response type to instantiate.
-     * @return JobResponse|InferenceResponse The processed response object.
+     * @template T of BaseResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param array  $result        Raw HTTP response array with 'data' and 'code' keys.
+     * @return T A response containing parsing results.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
-     * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
-     * @throws MindeeV2HttpUnknownException Throws if the server sends an unexpected reply.
      */
-    private function processResponse(array $result, string $responseType): InferenceResponse|JobResponse
-    {
-        $statusCode = $result['code'] ?? -1;
+    private function processResponse(
+        string $responseClass,
+        array $result
+    ): BaseResponse {
+        $this->checkValidResponse($result);
 
-        if ($statusCode > 399 || $statusCode < 200) {
+        try {
             $responseData = json_decode($result['data'], true);
-
-            if ($responseData && isset($responseData['status'])) {
-                throw new MindeeV2HttpException(new ErrorResponse($responseData));
+            $reflectionClass = new ReflectionClass($responseClass);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new MindeeException('JSON decode error: ' . json_last_error_msg());
             }
-            throw new MindeeV2HttpUnknownException(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
+            /** @var T $instance */
+            $instance = $reflectionClass->newInstance($responseData);
+            return $instance;
+        } catch (Exception $e) {
+            error_log("Raised '{$e->getMessage()}' Couldn't deserialize response object:\n" . $result['data']);
+            throw new MindeeException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
         }
+    }
+
+    /**
+     * Process the HTTP response and return the appropriate response object.
+     *
+     * @param array $result Raw HTTP response array with 'data' and 'code' keys.
+     * @return JobResponse The processed response object.
+     * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
+     * @throws MindeeApiException Throws if the response type is not recognized.
+     */
+    private function processJobResponse(array $result): JobResponse
+    {
+        $this->checkValidResponse($result);
 
         try {
             $responseData = json_decode($result['data'], true);
@@ -200,10 +225,10 @@ class MindeeApiV2
                 throw new MindeeException('JSON decode error: ' . json_last_error_msg());
             }
 
-            return new $responseType($responseData);
+            return new JobResponse($responseData);
         } catch (Exception $e) {
-            error_log("Raised '{$e->getMessage()}' Couldn't deserialize response object:\n" . $result['data']);
-            throw new MindeeException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
+            error_log("Raised '{$e->getMessage()}' Couldn't deserialize job response:\n" . $result['data']);
+            throw new MindeeApiException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -220,8 +245,7 @@ class MindeeApiV2
         if (!isset($inferenceId)) {
             throw new MindeeException("Inference ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
-        $response = $this->inferenceGetRequest($inferenceId);
-        return $this->processResponse($response, InferenceResponse::class);
+        return $this->reqGetResult(InferenceResponse::class, $inferenceId);
     }
 
     /**
@@ -237,8 +261,59 @@ class MindeeApiV2
         if (!isset($jobId)) {
             throw new MindeeException("Inference ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
-        $response = $this->jobGetRequest($jobId);
-        return $this->processResponse($response, JobResponse::class);
+        $response = $this->sendGetRequest($this->baseUrl . "/jobs/$jobId");
+        return $this->processJobResponse($response, JobResponse::class);
+    }
+
+
+    /**
+     * @template T of BaseResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $resultId      URL of the result.
+     * @return T A response containing parsing results.
+     * @throws MindeeException Throws if the server's response contains an error.
+     * @throws MindeeApiException Throws if the response class is not valid.
+     */
+    public function reqGetResult(
+        string $responseClass,
+        string $resultId
+    ): BaseResponse {
+        if (!isset($responseClass) || !isset($resultId)) {
+            throw new MindeeException("Response class and job ID must be provided.", ErrorCode::USER_INPUT_ERROR);
+        }
+
+        try {
+            $slugProperty = new ReflectionProperty($responseClass, 'slug');
+        } catch (ReflectionException $e) {
+            throw new MindeeApiException(
+                "Unable to access slug property of " . $responseClass,
+                ErrorCode::INTERNAL_LIBRARY_ERROR,
+                $e
+            );
+        }
+        $url = $this->baseUrl . "/products/{$slugProperty->getValue()}/results/$resultId";
+        $response = $this->sendGetRequest($url);
+        return $this->processResponse($responseClass, $response);
+    }
+
+    /**
+     * @template T of BaseResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $resultUrl     URL of the result.
+     * @return T A response containing parsing results.
+     * @throws MindeeException Throws if the server's response contains an error.
+     */
+    public function reqGetResultFromUrl(
+        string $responseClass,
+        string $resultUrl
+    ): BaseResponse {
+        if (!isset($responseClass) || !isset($resultUrl)) {
+            throw new MindeeException("Response class and result URL must be provided.", ErrorCode::USER_INPUT_ERROR);
+        }
+        $response = $this->sendGetRequest($resultUrl);
+        return $this->processResponse($responseClass, $response);
     }
 
     /**
@@ -266,32 +341,14 @@ class MindeeApiV2
 
     /**
      * Makes a GET call to retrieve a job.
-     * @param string $jobId ID of the job.
+     * @param string $url URL of the job.
      * @return array Server response.
      */
-    private function jobGetRequest(string $jobId): array
+    private function sendGetRequest(string $url): array
     {
+        /** @var CurlHandle $ch */
         $ch = $this->initChannel();
-        curl_setopt($ch, CURLOPT_URL, $this->baseUrl . "/jobs/$jobId");
-        $resp = [
-            'data' => curl_exec($ch),
-            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
-        ];
-        curl_close($ch);
-
-        return $resp;
-    }
-
-    /**
-     * Makes a GET call to retrieve an inference.
-     * @param string $inferenceId ID of the inference.
-     * @return array Server response.
-     */
-    private function inferenceGetRequest(string $inferenceId): array
-    {
-        $ch = $this->initChannel();
-        curl_setopt($ch, CURLOPT_URL, $this->baseUrl . "/inferences/$inferenceId");
-
+        curl_setopt($ch, CURLOPT_URL, $url);
         $resp = [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
@@ -304,57 +361,26 @@ class MindeeApiV2
     /**
      * Starts a CURL session using POST.
      *
-     * @param InputSource         $inputSource File to upload.
-     * @param InferenceParameters $params      Inference parameters.
+     * @param InputSource    $inputSource File to upload.
+     * @param BaseParameters $params      Inference parameters.
      * @return array
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
-        InferenceParameters $params
+        BaseParameters $params
     ): array {
+        /** @var CurlHandle $ch */
         $ch = $this->initChannel();
-        $postFields = ['model_id' => $params->modelId];
+        $postFields = $params->asHash();
+
         if ($inputSource instanceof URLInputSource) {
             $postFields['url'] = $inputSource->url;
         } elseif ($inputSource instanceof LocalInputSource) {
             $inputSource->checkNeedsFix();
             $postFields['file'] = $inputSource->fileObject;
         }
-
-        if (isset($params->rawText)) {
-            $postFields['raw_text'] = $params->rawText ? 'true' : 'false';
-        }
-        if (isset($params->polygon)) {
-            $postFields['polygon'] = $params->polygon ? 'true' : 'false';
-        }
-        if (isset($params->confidence)) {
-            $postFields['confidence'] = $params->confidence ? 'true' : 'false';
-        }
-        if (isset($params->rag)) {
-            $postFields['rag'] = $params->rag ? 'true' : 'false';
-        }
-        if (isset($params->webhooksIds) && count($params->webhooksIds) > 0) {
-            if (PHP_VERSION_ID < 80200 && count($params->webhooksIds) > 1) {
-                # NOTE: see https://bugs.php.net/bug.php?id=51634
-                error_log("PHP version is too low to support webbook array destructuring.
-                \nOnly the first webhook ID will be sent to the server.");
-                $postFields['webhook_ids'] = $params->webhooksIds[0];
-            } else {
-                $postFields['webhook_ids'] = $params->webhooksIds;
-            }
-        }
-        if (isset($params->alias)) {
-            $postFields['alias'] = $params->alias;
-        }
-        if (isset($params->textContext)) {
-            $postFields['text_context'] = $params->textContext;
-        }
-        if (isset($params->dataSchema)) {
-            $postFields['data_schema'] = strval($params->dataSchema);
-        }
-
-        $url = $this->baseUrl . '/inferences/enqueue';
+        $url = $this->baseUrl . "/products/{$params::$slug}/enqueue";
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         $resp = [
@@ -365,9 +391,28 @@ class MindeeApiV2
         if (!empty($curlError)) {
             throw new MindeeException("cURL error:\n$curlError");
         }
-
         curl_close($ch);
 
         return $resp;
+    }
+
+    /**
+     * @param array $result Raw HTTP response array with 'data' and 'code' keys.
+     * @return void
+     * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
+     * @throws MindeeV2HttpUnknownException Throws if the server sends an unexpected reply.
+     */
+    private function checkValidResponse(array $result): void
+    {
+        $statusCode = $result['code'] ?? -1;
+
+        if ($statusCode > 399 || $statusCode < 200) {
+            $responseData = json_decode($result['data'], true);
+
+            if ($responseData && isset($responseData['status'])) {
+                throw new MindeeV2HttpException(new ErrorResponse($responseData));
+            }
+            throw new MindeeV2HttpUnknownException(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+        }
     }
 }

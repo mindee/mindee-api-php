@@ -2,16 +2,13 @@
 
 namespace Mindee\Input;
 
+use Mindee\V2\ClientOptions\BaseParameters;
+
 /**
  * Parameters accepted by the asynchronous **inference** v2 endpoint.
  */
-class InferenceParameters
+class InferenceParameters extends BaseParameters
 {
-    /**
-     * @var string Model ID.
-     */
-    public string $modelId;
-
     /**
      * @var boolean|null Enhance extraction accuracy with Retrieval-Augmented Generation..
      */
@@ -33,15 +30,6 @@ class InferenceParameters
      */
     public ?bool $confidence;
 
-    /**
-     * @var string|null Optional file alias.
-     */
-    public ?string $alias;
-
-    /**
-     * @var array<string> Optional webhook IDs.
-     */
-    public array $webhooksIds;
 
     /**
      * @var string|null Additional text context used by the model during inference.
@@ -55,9 +43,9 @@ class InferenceParameters
     public ?DataSchema $dataSchema;
 
     /**
-     * @var PollingOptions Polling options.
+     * @var string Slug of the endpoint.
      */
-    public PollingOptions $pollingOptions;
+    public static string $slug = "extraction";
 
     /**
      * @param string                       $modelId        ID of the model.
@@ -87,29 +75,44 @@ class InferenceParameters
         DataSchema|string|array|null $dataSchema = null,
         ?PollingOptions $pollingOptions = null,
     ) {
-        $this->modelId = $modelId;
-        if (!$pollingOptions) {
-            $pollingOptions = new PollingOptions();
-        }
-        $this->pollingOptions = $pollingOptions;
+        parent::__construct($modelId, $alias, $webhooksIds, $pollingOptions);
+
         $this->rag = $rag;
         $this->rawText = $rawText;
         $this->polygon = $polygon;
         $this->confidence = $confidence;
-
-        if (isset($alias)) {
-            $this->alias = $alias;
-        }
         if (isset($textContext)) {
             $this->textContext = $textContext;
-        }
-        if (isset($webhooksIds)) {
-            $this->webhooksIds = $webhooksIds;
-        } else {
-            $this->webhooksIds = [];
         }
         if (isset($dataSchema)) {
             $this->dataSchema = new DataSchema($dataSchema);
         }
+    }
+
+    /**
+     * @return array Hash representation.
+     */
+    public function asHash(): array
+    {
+        $outHash = parent::asHash();
+        if (isset($this->rag)) {
+            $outHash['rag'] = $this->rag ? 'true' : 'false';
+        }
+        if (isset($this->rawText)) {
+            $outHash['raw_text'] = $this->rawText ? 'true' : 'false';
+        }
+        if (isset($this->polygon)) {
+            $outHash['polygon'] = $this->polygon ? 'true' : 'false';
+        }
+        if (isset($this->confidence)) {
+            $outHash['confidence'] = $this->confidence ? 'true' : 'false';
+        }
+        if (isset($this->textContext)) {
+            $outHash['text_context'] = $this->textContext;
+        }
+        if (isset($this->dataSchema)) {
+            $outHash['data_schema'] = strval($this->dataSchema);
+        }
+        return $outHash;
     }
 }

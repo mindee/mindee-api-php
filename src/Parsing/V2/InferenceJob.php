@@ -26,6 +26,6 @@ class InferenceJob
     public function __toString(): string
     {
         return "Job\n===\n"
-            . ":ID: {$this->id}\n" ;
+            . ":ID: $this->id" ;
     }
 }

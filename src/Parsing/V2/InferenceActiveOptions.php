@@ -70,6 +70,6 @@ class InferenceActiveOptions
             . ':Confidence: ' . SummaryHelper::formatForDisplay($this->confidence) . "\n"
             . ':RAG: ' . SummaryHelper::formatForDisplay($this->rag) . "\n"
             . ':Text Context: ' . SummaryHelper::formatForDisplay($this->textContext) . "\n\n"
-            . $this->dataSchema . "\n";
+            . $this->dataSchema;
     }
 }

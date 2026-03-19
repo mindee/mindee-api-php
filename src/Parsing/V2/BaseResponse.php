@@ -5,7 +5,7 @@ namespace Mindee\Parsing\V2;
 /**
  * Common response base class for V2.
  */
-abstract class CommonResponse
+abstract class BaseResponse
 {
     /**
      * @var array Raw HTTP response from the server.
@@ -13,11 +13,11 @@ abstract class CommonResponse
     private array $rawHttp;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array $rawResponse Raw server response array.
      */
-    protected function __construct(array $serverResponse)
+    protected function __construct(array $rawResponse)
     {
-        $this->rawHttp = $serverResponse;
+        $this->rawHttp = $rawResponse;
     }
 
     /**

@@ -26,6 +26,6 @@ class InferenceModel
     public function __toString(): string
     {
         return "Model\n=====\n"
-            . ":ID: {$this->id}\n" ;
+            . ":ID: $this->id" ;
     }
 }

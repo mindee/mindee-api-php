@@ -160,11 +160,11 @@ class Polygon
     /**
      * @return string String representation.
      */
-    public function __toString()
+    public function __toString(): string
     {
-        if (!$this->isEmpty()) {
-            return 'Polygon with ' . count($this->getCoordinates()) . ' points.';
-        }
-        return '';
+        $formattedPoints = array_map(fn ($p) => "({$p->getX()},{$p->getY()})", $this->coordinates);
+        $joinedPoints = implode(", ", $formattedPoints);
+
+        return "($joinedPoints)";
     }
 }

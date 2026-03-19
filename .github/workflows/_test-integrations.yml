@@ -13,8 +13,13 @@ env:
   MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
   WORKFLOW_ID: ${{ secrets.WORKFLOW_ID_SE_TESTS }}
   MINDEE_V2_API_KEY: ${{ secrets.MINDEE_V2_SE_TESTS_API_KEY }}
+  MINDEE_V2_FAILURE_WEBHOOK_ID: ${{ secrets.MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID }}
   MINDEE_V2_FINDOC_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_FINDOC_MODEL_ID }}
   MINDEE_V2_SE_TESTS_BLANK_PDF_URL: ${{ secrets.MINDEE_V2_SE_TESTS_BLANK_PDF_URL }}
+  MINDEE_V2_CLASSIFICATION_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_CLASSIFICATION_MODEL_ID }}
+  MINDEE_V2_CROP_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_CROP_MODEL_ID }}
+  MINDEE_V2_OCR_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_OCR_MODEL_ID }}
+  MINDEE_V2_SPLIT_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_SPLIT_MODEL_ID }}
 
 jobs:
   integration-tests-ubuntu:
@@ -25,7 +30,7 @@ jobs:
       matrix:
         php-version:
           - 8.1
-          - 8.4
+          - 8.5
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +65,7 @@ jobs:
 #      matrix:
 #        php-version:
 #          - 8.1
-#          - 8.4
+#          - 8.5
 #    runs-on: "macos-latest"
 #    steps:
 #      - uses: actions/checkout@v4
@@ -91,7 +96,7 @@ jobs:
       matrix:
         php-version:
           - 8.1
-          - 8.4
+          - 8.5
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v4

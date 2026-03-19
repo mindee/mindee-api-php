@@ -39,6 +39,6 @@ class FieldLocation
      */
     public function __toString(): string
     {
-        return $this->polygon ? (string)$this->polygon : '';
+        return $this->polygon ? $this->polygon . " on page $this->page" : '';
     }
 }
