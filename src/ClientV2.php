@@ -145,12 +145,12 @@ class ClientV2
             throw new MindeeException("Enqueueing of the document failed.");
         }
 
-        $queueId = $enqueueResponse->job->id;
-        error_log("Successfully enqueued document with job id: " . $queueId);
+        $jobId = $enqueueResponse->job->id;
+        error_log("Successfully enqueued document with job ID: " . $jobId);
 
         $this->customSleep($pollingOptions->initialDelaySec);
         $retryCounter = 1;
-        $pollResults = $this->getJob($queueId);
+        $pollResults = $this->getJob($jobId);
 
         while ($retryCounter < $pollingOptions->maxRetries) {
             if ($pollResults->job->status === "Failed") {
@@ -161,13 +161,13 @@ class ClientV2
             }
 
             error_log(
-                "Polling server for parsing result with queueId: " . $queueId .
+                "Polling server for parsing result with job ID: " . $jobId .
                 ". Attempt number " . $retryCounter . " of " . $pollingOptions->maxRetries .
                 ". Job status: " . $pollResults->job->status
             );
 
             $this->customSleep($pollingOptions->delaySec);
-            $pollResults = $this->getJob($queueId);
+            $pollResults = $this->getJob($jobId);
             $retryCounter++;
         }
 
