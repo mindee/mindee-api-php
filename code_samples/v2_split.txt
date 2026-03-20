@@ -1,0 +1,36 @@
+<?php
+
+use Mindee\ClientV2;
+use Mindee\V2\Product\Split\Params\SplitParameters;
+use Mindee\V2\Product\Split\SplitResponse;
+use Mindee\Input\PathInput;
+
+$apiKey = "MY_API_KEY";
+$filePath = "/path/to/the/file.ext";
+$modelId = "MY_MODEL_ID";
+
+// Init a new client
+$mindeeClient = new ClientV2($apiKey);
+
+// Set split parameters
+// Note: modelId is mandatory.
+$splitParams = new SplitParameters(
+    // ID of the model, required.
+    $modelId,
+);
+
+// Load a file from disk
+$inputSource = new PathInput($filePath);
+
+// Upload the file
+$response = $mindeeClient->enqueueAndGetResult(
+    SplitResponse::class,
+    $inputSource,
+    $splitParams
+);
+
+// Print a summary of the response
+echo strval($response->inference);
+
+// Access the split results
+$splits = $response->inference->result->splits;

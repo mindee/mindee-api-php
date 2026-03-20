@@ -1,0 +1,36 @@
+<?php
+
+use Mindee\ClientV2;
+use Mindee\V2\Product\Crop\Params\CropParameters;
+use Mindee\V2\Product\Crop\CropResponse;
+use Mindee\Input\PathInput;
+
+$apiKey = "MY_API_KEY";
+$filePath = "/path/to/the/file.ext";
+$modelId = "MY_MODEL_ID";
+
+// Init a new client
+$mindeeClient = new ClientV2($apiKey);
+
+// Set crop parameters
+// Note: modelId is mandatory.
+$cropParams = new CropParameters(
+    // ID of the model, required.
+    $modelId,
+);
+
+// Load a file from disk
+$inputSource = new PathInput($filePath);
+
+// Upload the file
+$response = $mindeeClient->enqueueAndGetResult(
+    CropResponse::class,
+    $inputSource,
+    $cropParams
+);
+
+// Print a summary of the response
+echo strval($response->inference);
+
+// Access the crop results
+$crops = $response->inference->result->crops;

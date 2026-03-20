@@ -96,6 +96,10 @@
                 <a href="namespaces/mindee-product.html" class="">Product</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/mindee-v2.html" class="">V2</a>
+                
+            </li>
             </ul>
 
                         </section>
@@ -133,7 +137,7 @@
     InferenceResponse
 
         <span class="phpdocumentor-element__extends">
-        extends <a href="classes/Mindee-Parsing-V2-CommonResponse.html"><abbr title="\Mindee\Parsing\V2\CommonResponse">CommonResponse</abbr></a>
+        extends <a href="classes/Mindee-Parsing-V2-BaseResponse.html"><abbr title="\Mindee\Parsing\V2\BaseResponse">BaseResponse</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -192,6 +196,12 @@
                         &nbsp;: <a href="classes/Mindee-Parsing-V2-Inference.html"><abbr title="\Mindee\Parsing\V2\Inference">Inference</abbr></a>            </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Parsing-V2-InferenceResponse.html#property_slug">$slug</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
     </dl>
 
 <h4 id="toc-methods">
@@ -207,7 +217,7 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Parsing-V2-CommonResponse.html#method_getRawHttp">getRawHttp()</a>
+    <a class="" href="classes/Mindee-Parsing-V2-BaseResponse.html#method_getRawHttp">getRawHttp()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
@@ -264,6 +274,45 @@
         
 
 </article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+            -static                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_slug">
+        $slug
+        <a href="classes/Mindee-Parsing-V2-InferenceResponse.html#property_slug" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResponse.php"><a href="files/src-parsing-v2-inferenceresponse.html"><abbr title="src/Parsing/V2/InferenceResponse.php">InferenceResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">18</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$slug</span>
+     = <span class="phpdocumentor-signature__default-value">&quot;extraction&quot;</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Slug for the inference.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
             </section>
 
             <section class="phpdocumentor-methods">
@@ -286,14 +335,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/InferenceResponse.php"><a href="files/src-parsing-v2-inferenceresponse.html"><abbr title="src/Parsing/V2/InferenceResponse.php">InferenceResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$serverResponse</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawResponse</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -302,7 +351,7 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$serverResponse</span>
+                <span class="phpdocumentor-argument-list__argument__name">$rawResponse</span>
                 : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -326,11 +375,11 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_getRawHttp">
         getRawHttp()
-        <a href="classes/Mindee-Parsing-V2-CommonResponse.html#method_getRawHttp" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Parsing-V2-BaseResponse.html#method_getRawHttp" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/CommonResponse.php"><a href="files/src-parsing-v2-commonresponse.html"><abbr title="src/Parsing/V2/CommonResponse.php">CommonResponse.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsing/V2/BaseResponse.php"><a href="files/src-parsing-v2-baseresponse.html"><abbr title="src/Parsing/V2/BaseResponse.php">BaseResponse.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">26</span>
 
@@ -476,6 +525,7 @@
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResponse.html#property_inference">$inference</a></li>
+                                                    <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResponse.html#property_slug">$slug</a></li>
                                             </ul>
                 </li>
             
@@ -483,7 +533,7 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-Parsing-V2-InferenceResponse.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-Parsing-V2-CommonResponse.html#method_getRawHttp">getRawHttp()</a></li>
+                                            <li class=""><a href="classes/Mindee-Parsing-V2-BaseResponse.html#method_getRawHttp">getRawHttp()</a></li>
                                     </ul>
             </li>
                     </ul>

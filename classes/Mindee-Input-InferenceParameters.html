@@ -96,6 +96,10 @@
                 <a href="namespaces/mindee-product.html" class="">Product</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/mindee-v2.html" class="">V2</a>
+                
+            </li>
             </ul>
 
                         </section>
@@ -131,6 +135,9 @@
         <h2 class="phpdocumentor-content__title">
     InferenceParameters
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -150,7 +157,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -183,7 +190,7 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-InferenceParameters.html#property_alias">$alias</a>
+    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias">$alias</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
@@ -201,13 +208,13 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-InferenceParameters.html#property_modelId">$modelId</a>
+    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId">$modelId</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-InferenceParameters.html#property_pollingOptions">$pollingOptions</a>
+    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_pollingOptions">$pollingOptions</a>
     <span>
                         &nbsp;: <a href="classes/Mindee-Input-PollingOptions.html"><abbr title="\Mindee\Input\PollingOptions">PollingOptions</abbr></a>            </span>
 </dt>
@@ -231,13 +238,19 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Mindee-Input-InferenceParameters.html#property_slug">$slug</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Mindee-Input-InferenceParameters.html#property_textContext">$textContext</a>
     <span>
                         &nbsp;: string|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-Input-InferenceParameters.html#property_webhooksIds">$webhooksIds</a>
+    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhooksIds">$webhooksIds</a>
     <span>
                         &nbsp;: array&lt;string|int, string&gt;            </span>
 </dt>
@@ -254,6 +267,12 @@
     <a class="" href="classes/Mindee-Input-InferenceParameters.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Input-InferenceParameters.html#method_asHash">asHash()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
     </dl>
@@ -278,15 +297,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_alias">
         $alias
-        <a href="classes/Mindee-Input-InferenceParameters.html#property_alias" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -325,7 +344,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -365,7 +384,7 @@ Calculate confidence scores for all fields.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -396,15 +415,15 @@ Calculate confidence scores for all fields.</p>
 >
     <h4 class="phpdocumentor-element__name" id="property_modelId">
         $modelId
-        <a href="classes/Mindee-Input-InferenceParameters.html#property_modelId" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -435,15 +454,15 @@ Calculate confidence scores for all fields.</p>
 >
     <h4 class="phpdocumentor-element__name" id="property_pollingOptions">
         $pollingOptions
-        <a href="classes/Mindee-Input-InferenceParameters.html#property_pollingOptions" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_pollingOptions" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
@@ -482,7 +501,7 @@ Calculate confidence scores for all fields.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -521,7 +540,7 @@ Calculate confidence scores for all fields.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -560,7 +579,7 @@ Calculate confidence scores for all fields.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -587,6 +606,45 @@ Calculate confidence scores for all fields.</p>
             phpdocumentor-element
             -property
             -public
+            -static                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_slug">
+        $slug
+        <a href="classes/Mindee-Input-InferenceParameters.html#property_slug" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$slug</span>
+     = <span class="phpdocumentor-signature__default-value">&quot;extraction&quot;</span></code>
+
+    
+        <section class="phpdocumentor-description"><p>Slug of the endpoint.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
                                                                     "
 >
     <h4 class="phpdocumentor-element__name" id="property_textContext">
@@ -599,7 +657,7 @@ Calculate confidence scores for all fields.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -631,15 +689,15 @@ Not recommended, for specific use only.</p>
 >
     <h4 class="phpdocumentor-element__name" id="property_webhooksIds">
         $webhooksIds
-        <a href="classes/Mindee-Input-InferenceParameters.html#property_webhooksIds" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhooksIds" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -683,7 +741,7 @@ Not recommended, for specific use only.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -800,6 +858,48 @@ inference.</p>
     
     
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_asHash">
+        asHash()
+        <a href="classes/Mindee-Input-InferenceParameters.html#method_asHash" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Input/InferenceParameters.php"><a href="files/src-input-inferenceparameters.html"><abbr title="src/Input/InferenceParameters.php">InferenceParameters.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">95</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">asHash</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Hash representation.</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
@@ -915,16 +1015,17 @@ inference.</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_alias">$alias</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias">$alias</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_confidence">$confidence</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_dataSchema">$dataSchema</a></li>
-                                                    <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_modelId">$modelId</a></li>
-                                                    <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_pollingOptions">$pollingOptions</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId">$modelId</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_pollingOptions">$pollingOptions</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_polygon">$polygon</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_rag">$rag</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_rawText">$rawText</a></li>
+                                                    <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_slug">$slug</a></li>
                                                     <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_textContext">$textContext</a></li>
-                                                    <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#property_webhooksIds">$webhooksIds</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhooksIds">$webhooksIds</a></li>
                                             </ul>
                 </li>
             
@@ -932,6 +1033,7 @@ inference.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-Input-InferenceParameters.html#method_asHash">asHash()</a></li>
                                     </ul>
             </li>
                     </ul>

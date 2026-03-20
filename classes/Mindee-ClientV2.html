@@ -96,6 +96,10 @@
                 <a href="namespaces/mindee-product.html" class="">Product</a>
                 
             </li>
+                    <li>
+                <a href="namespaces/mindee-v2.html" class="">V2</a>
+                
+            </li>
             </ul>
 
                         </section>
@@ -152,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -206,9 +210,24 @@
 <dd>Mindee Client V2.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-ClientV2.html#method_enqueue">enqueue()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a>    </span>
+</dt>
+<dd>Send the document to an asynchronous endpoint and return its ID in the queue.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-ClientV2.html#method_enqueueAndGetInference">enqueueAndGetInference()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a>    </span>
+</dt>
+<dd>Send a document to an endpoint and poll the server until the result is sent or
+until the maximum number of tries is reached.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-ClientV2.html#method_enqueueAndGetResult">enqueueAndGetResult()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\T">T</abbr>    </span>
 </dt>
 <dd>Send a document to an endpoint and poll the server until the result is sent or
 until the maximum number of tries is reached.</dd>
@@ -233,6 +252,18 @@ until the maximum number of tries is reached.</dd>
                                 &nbsp;: <a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a>    </span>
 </dt>
 <dd>Get the status of an inference that was previously enqueued.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-ClientV2.html#method_getResult">getResult()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\T">T</abbr>    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-ClientV2.html#method_getResultFromUrl">getResultFromUrl()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\T">T</abbr>    </span>
+</dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/Mindee-CustomSleepMixin.html#method_customSleep">customSleep()</a>
@@ -271,7 +302,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -315,7 +346,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -354,6 +385,96 @@ until the maximum number of tries is reached.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_enqueue">
+        enqueue()
+        <a href="classes/Mindee-ClientV2.html#method_enqueue" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Send the document to an asynchronous endpoint and return its ID in the queue.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">enqueue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$inputSource</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>File to parse.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Parameters relating to prediction options.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-ClientV2.html#method_enqueue#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Throws if the input document is not provided.</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">category</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Asynchronous</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A JobResponse containing the job (queue) corresponding to a document.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_enqueueAndGetInference">
         enqueueAndGetInference()
         <a href="classes/Mindee-ClientV2.html#method_enqueueAndGetInference" class="headerlink"><i class="fas fa-link"></i></a>
@@ -362,7 +483,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">129</span>
 
     </aside>
 
@@ -416,12 +537,110 @@ until the maximum number of tries is reached.</p>
 </section>
 
                                     </dd>
-                                                <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">category</span>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A response containing parsing results.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_enqueueAndGetResult">
+        enqueueAndGetResult()
+        <a href="classes/Mindee-ClientV2.html#method_enqueueAndGetResult" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">148</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Send a document to an endpoint and poll the server until the result is sent or
+until the maximum number of tries is reached.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">enqueueAndGetResult</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$inputDoc</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Input document to parse.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Parameters relating to prediction options.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-ClientV2.html#method_enqueueAndGetResult#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">template</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>Synchronous</p>
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">phpstan-param</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>Throws if enqueueing fails, job fails, or times out.</p>
 </section>
 
                                     </dd>
@@ -431,7 +650,7 @@ until the maximum number of tries is reached.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-InferenceResponse.html"><abbr title="\Mindee\Parsing\V2\InferenceResponse">InferenceResponse</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\T">T</abbr></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>A response containing parsing results.</p>
 </section>
@@ -453,7 +672,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -543,7 +762,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -614,7 +833,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -668,6 +887,178 @@ until the maximum number of tries is reached.</p>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Parsing-V2-JobResponse.html"><abbr title="\Mindee\Parsing\V2\JobResponse">JobResponse</abbr></a></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>A JobResponse containing a Job, which also contains a Document if the parsing is complete.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getResult">
+        getResult()
+        <a href="classes/Mindee-ClientV2.html#method_getResult" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">100</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getResult</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$resultId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$resultId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>ID of the result.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-ClientV2.html#method_getResult#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">template</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">phpstan-param</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\T">T</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A response containing parsing results.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getResultFromUrl">
+        getResultFromUrl()
+        <a href="classes/Mindee-ClientV2.html#method_getResultFromUrl" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/ClientV2.php"><a href="files/src-clientv2.html"><abbr title="src/ClientV2.php">ClientV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">86</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getResultFromUrl</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$resultUrl</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$resultUrl</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>URL of the result.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Mindee-ClientV2.html#method_getResultFromUrl#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">template</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">phpstan-param</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\T">T</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A response containing parsing results.</p>
 </section>
 
             </section>
@@ -845,10 +1236,14 @@ until the maximum number of tries is reached.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-ClientV2.html#method_enqueue">enqueue()</a></li>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_enqueueAndGetInference">enqueueAndGetInference()</a></li>
+                                            <li class=""><a href="classes/Mindee-ClientV2.html#method_enqueueAndGetResult">enqueueAndGetResult()</a></li>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_enqueueInference">enqueueInference()</a></li>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_getInference">getInference()</a></li>
                                             <li class=""><a href="classes/Mindee-ClientV2.html#method_getJob">getJob()</a></li>
+                                            <li class=""><a href="classes/Mindee-ClientV2.html#method_getResult">getResult()</a></li>
+                                            <li class=""><a href="classes/Mindee-ClientV2.html#method_getResultFromUrl">getResultFromUrl()</a></li>
                                             <li class=""><a href="classes/Mindee-CustomSleepMixin.html#method_customSleep">customSleep()</a></li>
                                     </ul>
             </li>

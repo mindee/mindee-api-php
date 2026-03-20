@@ -1,0 +1,46 @@
+<?php
+
+use Mindee\ClientV2;
+use Mindee\Input\InferenceParameters;
+use Mindee\Input\PathInput;
+
+$apiKey = "MY_API_KEY";
+$filePath = "/path/to/the/file.ext";
+$modelId = "MY_MODEL_ID";
+
+// Init a new client
+$mindeeClient = new ClientV2($apiKey);
+
+// Set inference parameters
+// Note: modelId is mandatory.
+$inferenceParams = new InferenceParameters(
+    // ID of the model, required.
+    $modelId,
+    webhooksIds: ["MY_WEBHOOK_ID"],
+
+    // Options: set to `true` or `false` to override defaults
+
+    // Enhance extraction accuracy with Retrieval-Augmented Generation.
+    rag: null,
+    // Extract the full text content from the document as strings.
+    rawText: null,
+    // Calculate bounding box polygons for all fields.
+    polygon: null,
+    // Boost the precision and accuracy of all extractions.
+    // Calculate confidence scores for all fields.
+    confidence: null
+);
+
+// Load a file from disk
+$inputSource = new PathInput($filePath);
+
+// Upload the file
+$response = $mindeeClient->enqueue(
+    $inputSource,
+    $inferenceParams
+);
+
+// Print the job ID
+echo $response->job->id;
+
+// IMPORTANT: save a record of which job ID corresponds to which file.
