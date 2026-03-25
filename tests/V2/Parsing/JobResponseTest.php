@@ -39,6 +39,8 @@ class TestJobResponse extends TestCase
         $this->assertSame('Processing', $response->job->status);
         $this->assertNull($response->job->completedAt);
         $this->assertNull($response->job->error);
+        $this->assertIsArray($response->job->webhooks);
+        $this->assertCount(0, $response->job->webhooks);
     }
 
     /**
