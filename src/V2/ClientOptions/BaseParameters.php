@@ -71,7 +71,7 @@ abstract class BaseParameters
                 $outHash['webhook_ids'] = $this->webhooksIds[0];
             } else {
                 foreach ($this->webhooksIds as $webhookId) {
-                    $outHash['webhook_ids[]'] = $webhookId;
+                    $outHash['webhook_ids'][] = $webhookId;
                 }
             }
         }
