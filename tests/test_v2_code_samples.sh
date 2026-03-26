@@ -41,28 +41,28 @@ do
 
     if echo "${f}" | grep -q "v2_classification"
     then
-      sed -i "s/MY_MODEL_ID/${MINDEE_V2_CLASSIFICATION_MODEL_ID}/" $OUTPUT_FILE
+      sed -i "s/MY_MODEL_ID/${MINDEE_V2_SE_TESTS_CLASSIFICATION_MODEL_ID}/" $OUTPUT_FILE
     fi
 
     if echo "${f}" | grep -q "v2_crop"
     then
-      sed -i "s/MY_MODEL_ID/${MINDEE_V2_CROP_MODEL_ID}/" $OUTPUT_FILE
+      sed -i "s/MY_MODEL_ID/${MINDEE_V2_SE_TESTS_CROP_MODEL_ID}/" $OUTPUT_FILE
     fi
 
     if echo "${f}" | grep -q "v2_extraction"
     then
-      sed -i "s/MY_MODEL_ID/${MINDEE_V2_FINDOC_MODEL_ID}/" $OUTPUT_FILE
-      sed -i "s/MY_WEBHOOK_ID/${MINDEE_V2_FAILURE_WEBHOOK_ID}/" $OUTPUT_FILE
+      sed -i "s/MY_MODEL_ID/${MINDEE_V2_SE_TESTS_FINDOC_MODEL_ID}/" $OUTPUT_FILE
+      sed -i "s/MY_WEBHOOK_ID/${MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID}/" $OUTPUT_FILE
     fi
 
     if echo "${f}" | grep -q "v2_ocr"
     then
-      sed -i "s/MY_MODEL_ID/${MINDEE_V2_OCR_MODEL_ID}/" $OUTPUT_FILE
+      sed -i "s/MY_MODEL_ID/${MINDEE_V2_SE_TESTS_OCR_MODEL_ID}/" $OUTPUT_FILE
     fi
 
     if echo "${f}" | grep -q "v2_split"
     then
-      sed -i "s/MY_MODEL_ID/${MINDEE_V2_SPLIT_MODEL_ID}/" $OUTPUT_FILE
+      sed -i "s/MY_MODEL_ID/${MINDEE_V2_SE_TESTS_SPLIT_MODEL_ID}/" $OUTPUT_FILE
     fi
 
     echo
