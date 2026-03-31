@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.7.1 - 2027-03-31
+### Fixes
+* :bug: fix multiple webhooks not registering correctly
+
+
 ## v2.7.0 - 2026-03-19
 ### Changes
 * :sparkles: add support for new V2 products
