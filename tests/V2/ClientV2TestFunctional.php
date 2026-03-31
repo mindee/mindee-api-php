@@ -177,7 +177,8 @@ class ClientV2TestFunctional extends TestCase
         $this->assertNotNull($result);
     }
 
-    public function testDataSchemaMustSucceed(): void {
+    public function testDataSchemaMustSucceed(): void
+    {
 
         $source = new PathInput(
             TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
@@ -213,5 +214,19 @@ class ClientV2TestFunctional extends TestCase
             'a test value',
             $result->fields['test_replace']->value
         );
+    }
+
+    public function testMultipleWebhooksMustSucceed(): void
+    {
+        $source = new PathInput(
+            TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
+        );
+
+        $inferenceParams = new InferenceParameters($this->modelId, webhooksIds: [
+            getenv('MINDEE_V2_FAILURE_WEBHOOK_ID'),
+            getenv('MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID')]
+        );
+        $response = $this->mindeeClient->enqueue($source, $inferenceParams);
+        $this->assertEquals(2, count($response->job->webhooks));
     }
 }
