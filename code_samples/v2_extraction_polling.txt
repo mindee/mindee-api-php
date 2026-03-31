@@ -3,6 +3,7 @@
 use Mindee\ClientV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
+use Mindee\Parsing\V2\InferenceResponse;
 
 $apiKey = "MY_API_KEY";
 $filePath = "/path/to/the/file.ext";
@@ -33,8 +34,9 @@ $inferenceParams = new InferenceParameters(
 // Load a file from disk
 $inputSource = new PathInput($filePath);
 
-// Upload the file
-$response = $mindeeClient->enqueueAndGetInference(
+// Send for processing using polling
+$response = $mindeeClient->enqueueAndGetResult(
+    InferenceResponse::class,
     $inputSource,
     $inferenceParams
 );
