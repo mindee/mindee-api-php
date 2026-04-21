@@ -5,7 +5,7 @@ namespace Dependencies;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Extraction\ExtractedImage;
 use Mindee\Extraction\ExtractedPdf;
-use Mindee\Extraction\ImageExtractor;
+use Mindee\V1\Image\ImageExtractor;
 use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
@@ -31,8 +31,8 @@ class DependencyCheckerNoExtendedTestPdf extends TestCase
         $this->expectException(MindeeUnhandledException::class);
         $inputImage = "";
         $filename = "dummy";
-        $saveFormat = "pdf;";
-        new ExtractedImage($inputImage, $filename, $saveFormat);
+        $saveFormat = "pdf";
+        new ExtractedImage($inputImage, $filename, $saveFormat, 0, 0);
     }
     public function testNoExtractedPdf()
     {

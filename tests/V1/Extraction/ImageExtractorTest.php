@@ -3,7 +3,7 @@
 namespace V1\Extraction;
 
 use Mindee\Client;
-use Mindee\Extraction\ImageExtractor;
+use Mindee\V1\Image\ImageExtractor;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\Product\BarcodeReader\BarcodeReaderV1;
@@ -39,7 +39,7 @@ class ImageExtractorTest extends TestCase
 
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
-                    sprintf("default_sample_page-001_%03d.jpg", $i + 1),
+                    sprintf("default_sample.jpg_page0-%d.jpg", $i),
                     $source->fileName
                 );
             }
@@ -68,7 +68,7 @@ class ImageExtractorTest extends TestCase
                 $this->assertNotNull($extractedImage->image);
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
-                    sprintf("barcodes_1D_page-001_%03d.jpg", $i + 1),
+                    sprintf("barcodes_1D.jpg_page0-%d.jpg", $i),
                     $source->fileName
                 );
                 $extractedImage->writeToFile(\TestingUtilities::getRootDataDir() . "/output");
@@ -103,7 +103,7 @@ class ImageExtractorTest extends TestCase
 
                 $source = $extractedImage->asInputSource();
                 $this->assertEquals(
-                    sprintf("multipage_sample_page-%03d_%03d.jpg", $page->id + 1, $i + 1),
+                    sprintf("multipage_sample.pdf_page%d-%d.jpg", $page->id, $i),
                     $source->fileName
                 );
             }

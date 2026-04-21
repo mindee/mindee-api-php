@@ -6,9 +6,9 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePDFException;
-use Mindee\Error\MindeeUnhandledException;
 use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
+use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
 use Mindee\Parsing\DependencyChecker;
 use Mindee\Parsing\Standard\BaseField;
@@ -19,36 +19,30 @@ use Mindee\Parsing\Standard\BaseField;
 class ImageExtractor
 {
     /**
-     * Array of extracted page images.
-     *
-     * @var array
+     * @var \Imagick[] Array of extracted page images.
      */
-    private array $pageImages = [];
+    protected array $pageImages = [];
+
     /**
-     * Name of the file.
-     *
-     * @var string
+     * @var string Name of the file.
      */
-    private string $filename;
+    protected string $filename;
+
     /**
-     * Format to save the image as.
-     *
-     * @var string
+     * @var string Format to save the image as.
      */
-    private string $saveFormat;
+    protected string $saveFormat;
+
     /**
-     * Local input object used by the ImageExtractor.
-     *
-     * @var LocalInputSource
+     * @var LocalInputSource Local input object used by the ImageExtractor.
      */
     protected LocalInputSource $inputSource;
 
-
     /**
-     * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
-     * @param string|null      $saveFormat Save format, will be coerced to jpg by default.
-     * @throws MindeeUnhandledException|MindeePDFException Throws if PDF operations aren't supported,
-     * or if the file can't be read, respectively.
+     * @param LocalInputSource $localInput Local input, accepts all compatible formats.
+     * @param null|string      $saveFormat Save format, will be coerced to jpg by default.
+     *
+     * @throws MindeePDFException Throws if PDF operations aren't supported, or if the file can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput, ?string $saveFormat = null)
     {
@@ -58,8 +52,8 @@ class ImageExtractor
         $this->inputSource = $localInput;
 
         $extension = pathinfo($localInput->fileName, PATHINFO_EXTENSION);
-        if ($saveFormat === null) {
-            if ($extension && strtolower($extension) !== 'pdf') {
+        if (null === $saveFormat) {
+            if ($extension && 'pdf' !== strtolower($extension)) {
                 $this->saveFormat = $extension;
             } else {
                 $this->saveFormat = 'jpg';
@@ -89,7 +83,9 @@ class ImageExtractor
      * Renders the input PDF's pages as individual images.
      *
      * @param string $fileBytes Input pdf.
-     * @return array A list of pages.
+     *
+     * @return \Imagick[] A list of pages.
+     *
      * @throws MindeeImageException Throws if the image can't be handled.
      */
     public static function pdfToImages(string $fileBytes): array
@@ -100,7 +96,7 @@ class ImageExtractor
             $imagick->readImageBlob($fileBytes);
 
             foreach ($imagick as $page) {
-                $page->setImageFormat('png');
+                $page->setImageFormat('jpg');
                 $images[] = $page;
             }
 
@@ -116,8 +112,7 @@ class ImageExtractor
 
     /**
      * Gets the number of pages in the file.
-     *
-     * @return integer
+     * @return integer Page count.
      */
     public function getPageCount(): int
     {
@@ -129,8 +124,9 @@ class ImageExtractor
      *
      * @param array       $fields     List of Fields to extract.
      * @param integer     $pageIndex  The page index to extract, begins at 0.
-     * @param string|null $outputName The base output filename, must have an image extension.
-     * @return array A list of extracted images.
+     * @param null|string $outputName The base output filename, must have an image extension.
+     *
+     * @return array a list of extracted images
      */
     public function extractImagesFromPage(array $fields, int $pageIndex, ?string $outputName = null): array
     {
@@ -141,27 +137,50 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array   $fields     List of Fields to extract.
-     * @param integer $pageIndex  The page index to extract, begins at 0.
-     * @param string  $outputName Name of the created file.
-     * @return array An array of created images.
+     * @param array       $polygons  List of polygons to extract.
+     * @param integer     $pageIndex The page index to extract, begins at 0.
+     * @param null|string $format    Save format for extracted images. Defaults to the original format.
+     *
+     * @return array an array of created images
      */
-    private function extractFromPage(array $fields, int $pageIndex, string $outputName): array
+    public function extractPolygonsFromPage(array $polygons, int $pageIndex, ?string $format = null): array
     {
-        $splitName = $this->splitNameStrict($outputName);
-        $filename = sprintf("%s_page-%03d.%s", $splitName[0], $pageIndex + 1, $this->saveFormat);
+        $saveFormat = $format ?? $this->saveFormat;
         $extractedImages = [];
 
-        $i = 0;
-        foreach ($fields as $field) {
-            $extractedImage = $this->extractImage($field, $pageIndex, $i + 1, $filename);
-            if ($extractedImage !== null) {
-                $extractedImages[] = $extractedImage;
-            }
-            $i++;
+        foreach ($polygons as $i => $polygon) {
+            $extractedImages[] = $this->extractPolygonFromPage($polygon, $pageIndex, $i, null, $format);
         }
 
         return $extractedImages;
+    }
+
+    /**
+     * Extracts a cropped portion from an image.
+     *
+     * @param Polygon     $polygon   Polygon to extract.
+     * @param integer     $pageIndex Page index to extract from.
+     * @param integer     $index     Index to use for naming the extracted image.
+     * @param null|string $filename  Output filename.
+     * @param null|string $format    Output format.
+     *
+     * @return ExtractedImage Extracted image data.
+     * @throws \ImagickException Throws if the image can't be processed.
+     */
+    public function extractPolygonFromPage(
+        Polygon $polygon,
+        int $pageIndex,
+        int $index,
+        ?string $filename = null,
+        ?string $format = null
+    ): ExtractedImage {
+        $bbox = BBoxUtils::generateBBoxFromPolygon($polygon);
+        $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex);
+        $filename ??= $this->filename;
+        $format ??= $this->saveFormat;
+        $filename ??= sprintf('%s.%s_page%d-%d.%s', $filename, $format, $pageIndex, $index, $format);
+
+        return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
     }
 
     /**
@@ -171,41 +190,43 @@ class ImageExtractor
      * @param integer   $pageIndex The page index to extract, begins at 0.
      * @param integer   $index     The index to use for naming the extracted image.
      * @param string    $filename  The output filename.
-     * @return ExtractedImage|null The extracted image, or null if the field does not have valid position data.
+     * @param string    $format    The output format.
+     *
+     * @return null|ExtractedImage The extracted image, or null if the field does not have valid position data.
+     *
      * @throws MindeeGeometryException Throws if a field does not contain positional data.
      */
-    public function extractImage(BaseField $field, int $pageIndex, int $index, string $filename): ?ExtractedImage
-    {
-        $splitName = $this->splitNameStrict($filename);
-        $boundingBox = null;
+    public function extractImage(
+        BaseField $field,
+        int $pageIndex,
+        int $index,
+        string $filename,
+        string $format
+    ): ?ExtractedImage {
+        $polygon = null;
 
         if (!empty($field->polygon)) {
-            $boundingBox = $field->polygon;
+            $polygon = $field->polygon;
         } elseif (!empty($field->boundingBox)) {
-            $boundingBox = $field->boundingBox;
+            $polygon = $field->boundingBox;
         } elseif (!empty($field->quadrangle)) {
-            $boundingBox = $field->quadrangle;
+            $polygon = $field->quadrangle;
         } elseif (!empty($field->rectangle)) {
-            $boundingBox = $field->rectangle;
+            $polygon = $field->rectangle;
         }
 
-        if ($boundingBox === null) {
+        if (null === $polygon) {
             throw new MindeeGeometryException(
-                "Provided field has no valid position data.",
+                'Provided field has no valid position data.',
                 ErrorCode::GEOMETRIC_OPERATION_FAILED
             );
         }
 
-        $bbox = BBoxUtils::generateBBoxFromPolygon($boundingBox);
-        $fieldFilename = sprintf("%s_%03d.%s", $splitName[0], $index, $this->saveFormat);
-        $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex);
-
-        return new ExtractedImage($extractedImageData, $fieldFilename, $this->saveFormat);
+        return $this->extractPolygonFromPage($polygon, $pageIndex, $index, $filename, $format);
     }
 
     /**
      * Getter for the local input source.
-     *
      * @return LocalInputSource
      */
     public function getInputSource(): LocalInputSource
@@ -214,13 +235,42 @@ class ImageExtractor
     }
 
     /**
+     * Extracts images from a page.
+     *
+     * @param array   $fields     List of Fields to extract.
+     * @param integer $pageIndex  The page index to extract, begins at 0.
+     * @param string  $outputName Name of the created file.
+     * @param string  $format     The output format.
+     *
+     * @return array an array of created images
+     */
+    protected function extractFromPage(array $fields, int $pageIndex, string $outputName, string $format = 'jpg'): array
+    {
+        $format ??= $this->saveFormat;
+        $extractedImages = [];
+
+        $i = 0;
+        foreach ($fields as $field) {
+            $filename = sprintf('%s_page%d-%d.%s', $outputName, $pageIndex, $i, $format);
+            $extractedImage = $this->extractImage($field, $pageIndex, $i, $filename, $format);
+            if (null !== $extractedImage) {
+                $extractedImages[] = $extractedImage;
+            }
+            ++$i;
+        }
+
+        return $extractedImages;
+    }
+
+    /**
      * Extracts an image from a set of coordinates.
      *
-     * @param BBox    $bbox      BBox coordinates.
-     * @param integer $pageIndex The page index to extract, begins at 0.
+     * @param BBox          $bbox      BBox coordinates.
+     * @param integer|float $pageIndex The page index to extract, begins at 0.
      * @return \Imagick
+     * @throws \ImagickException Throws if the image can't be processed.
      */
-    private function extractImageFromBbox(BBox $bbox, int $pageIndex): \Imagick
+    protected function extractImageFromBbox(BBox $bbox, int|float $pageIndex): \Imagick
     {
         $image = $this->pageImages[$pageIndex]->clone();
         $width = $image->getImageWidth();
@@ -231,7 +281,7 @@ class ImageExtractor
         $minY = round($bbox->getMinY() * $height);
         $maxY = round($bbox->getMaxY() * $height);
 
-        $image->cropImage($maxX - $minX, $maxY - $minY, $minX, $minY);
+        $image->cropImage((int)($maxX - $minX), (int)($maxY - $minY), (int)$minX, (int)$minY);
 
         return $image;
     }
@@ -240,13 +290,13 @@ class ImageExtractor
      * Splits the filename into name and extension.
      *
      * @param string $filename Name of the file.
-     * @return array
+     * @return array An array containing the name and extension of the file.
      */
-    private function splitNameStrict(string $filename): array
+    protected static function splitNameStrict(string $filename): array
     {
         return [
             pathinfo($filename, PATHINFO_FILENAME),
-            pathinfo($filename, PATHINFO_EXTENSION)
+            pathinfo($filename, PATHINFO_EXTENSION),
         ];
     }
 }
