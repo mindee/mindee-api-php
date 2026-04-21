@@ -21,17 +21,17 @@ class ExtractedPdf
     public string $filename;
 
     /**
-     * File object for an ExtractedPdf.
+     * @var string File object for an ExtractedPdf.
      */
     protected string $pdfBytes;
 
     /**
      * Initializes a new instance of the ExtractedPdf class.
      *
-     * @param string $pdfBytes a binary string representation of the PDF
-     * @param string $filename name of the original file
+     * @param string $pdfBytes A binary string representation of the PDF.
+     * @param string $filename Name of the original file.
      *
-     * @throws MindeeUnhandledException throws if PDF operations aren't supported
+     * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
     public function __construct(string $pdfBytes, string $filename)
     {
@@ -44,9 +44,9 @@ class ExtractedPdf
     /**
      * Wrapper for pdf GetPageCount().
      *
-     * @return int the number of pages in the file
+     * @return integer the number of pages in the file
      *
-     * @throws MindeePDFException throws if FPDI is unable to process the file
+     * @throws MindeePDFException Throws if FPDI is unable to process the file.
      */
     public function getPageCount(): int
     {
@@ -69,11 +69,12 @@ class ExtractedPdf
     /**
      * Write the PDF to a file.
      *
-     * @param string $outputPath the output directory (must exist)
+     * @param string $outputPath The output directory (must exist).
+     * @return void
      */
     public function writeToFile(string $outputPath): void
     {
-        $pdfPath = $outputPath.DIRECTORY_SEPARATOR.$this->filename;
+        $pdfPath = $outputPath . DIRECTORY_SEPARATOR . $this->filename;
         if ('' !== basename($outputPath)) {
             if (!($pdfPath = realpath($outputPath))) {
                 $pdfPath = $outputPath;

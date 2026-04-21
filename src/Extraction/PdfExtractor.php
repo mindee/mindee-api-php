@@ -3,7 +3,6 @@
 namespace Mindee\Extraction;
 
 use Mindee\Error\MindeePDFException;
-use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\LocalInputSource;
 use Mindee\Parsing\DependencyChecker;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups;
@@ -11,7 +10,6 @@ use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use setasign\Fpdi\PdfParser\Filter\FilterException;
 use setasign\Fpdi\PdfParser\PdfParserException;
-use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
 
 /**
@@ -30,10 +28,10 @@ class PdfExtractor
     private string $fileName;
 
     /**
-     * @param LocalInputSource $localInput local Input, accepts all compatible formats
+     * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      *
-     * @throws MindeePDFException|MindeeUnhandledException throws if PDF operations aren't supported,
-     *                                                     or if the file can't be read, respectively
+     * @throws MindeePDFException Throws if PDF operations aren't supported, or if the file
+     * can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
@@ -58,9 +56,9 @@ class PdfExtractor
     /**
      * Wrapper for pdf GetPageCount().
      *
-     * @return int the number of pages in the file
+     * @return integer The number of pages in the file.
      *
-     * @throws MindeePDFException throws if FPDI is unable to process the file
+     * @throws MindeePDFException Throws if FPDI is unable to process the file.
      */
     public function getPageCount(): int
     {
@@ -79,14 +77,14 @@ class PdfExtractor
     /**
      * Extracts sub-documents from the source document using list of page indexes.
      *
-     * @param array $pageIndexes list of sub-lists of pages to keep
+     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
      *
-     * @return array list of extracted documents
+     * @return ExtractedPdf[] list of extracted documents
      *
-     * @throws MindeePDFException        throws if FDPF/FPDI wasn't able to handle the pdf during the extraction
-     * @throws \InvalidArgumentException throws if invalid indexes are provided
+     * @throws MindeePDFException        Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
+     * @throws \InvalidArgumentException Throws if invalid indexes are provided.
      */
-    public function extractSubDocuments(array $pageIndexes): array
+    public function extractSubDocuments(mixed $pageIndexes): array
     {
         $extractedPdfs = [];
 
@@ -118,9 +116,12 @@ class PdfExtractor
 
                 $mergedPdfBytes = $pdf->Output('S');
             } catch (
-                CrossReferenceException|FilterException|PdfParserException|PdfReaderException|PdfTypeException $e
+                CrossReferenceException |
+                FilterException |
+                PdfParserException |
+                PdfReaderException $e
             ) {
-                throw new MindeePDFException("PDF file couldn't be processed during extraction.");
+                throw new MindeePDFException("PDF file couldn't be processed during extraction.", 0, $e);
             }
             $extractedPdfs[] = new ExtractedPdf($mergedPdfBytes, $fieldFilename);
         }
@@ -131,12 +132,12 @@ class PdfExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep
-     * @param bool                                     $strict      whether to trust confidence scores or not
+     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param boolean                                  $strict      Whether to trust confidence scores or not.
      *
-     * @return array a list of extracted invoices
+     * @return ExtractedPdf[] a list of extracted invoices
      */
-    public function extractInvoices($pageIndexes, bool $strict = false): array
+    public function extractInvoices(mixed $pageIndexes, bool $strict = false): array
     {
         if (empty($pageIndexes)) {
             return [];

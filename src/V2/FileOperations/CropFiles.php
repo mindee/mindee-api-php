@@ -25,12 +25,13 @@ class CropFiles extends \ArrayObject
     /**
      * Save all extracted crops to disk.
      *
-     * @param string      $path       the directory path to save the extracted crops to
-     * @param string      $prefix     prefix to add to the filename
-     * @param null|string $fileFormat file format to save the crops as
-     * @param int         $quality    quality of the saved image
+     * @param string      $path       The directory path to save the extracted crops to.
+     * @param string      $prefix     Prefix to add to the filename.
+     * @param null|string $fileFormat File format to save the crops as.
+     * @param integer     $quality    Quality of the saved image.
      *
-     * @throws MindeeException if directory creation fails
+     * @throws MindeeException If directory creation fails.
+     * @return void
      */
     public function saveAllToDisk(
         string $path,

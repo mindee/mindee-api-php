@@ -18,7 +18,7 @@ class Split
     private readonly LocalInputSource $localInput;
 
     /**
-     * @param LocalInputSource $inputSource localInputSource object
+     * @param LocalInputSource $inputSource LocalInputSource object.
      */
     public function __construct(LocalInputSource $inputSource)
     {
@@ -28,12 +28,12 @@ class Split
     /**
      * Expands a range to a list of integers.
      *
-     * @param int $start start of the range
-     * @param int $end   end of the range
+     * @param integer $start Start of the range.
+     * @param integer $end   End of the range.
      *
      * @return int[]
      *
-     * @throws MindeeInputException if the start page is greater than the end page
+     * @throws MindeeInputException If the start page is greater than the end page.
      */
     public static function expandRange(int $start, int $end): array
     {
@@ -47,7 +47,7 @@ class Split
     /**
      * Extracts a single split from the input file.
      *
-     * @param int[] $split split range to extract
+     * @param int[] $split Split range to extract.
      *
      * @return ExtractedPdf 2D array of extracted pages
      */
@@ -59,7 +59,7 @@ class Split
     /**
      * Extracts the splits from the input file.
      *
-     * @param int[][] $splits list of split ranges to extract
+     * @param int[][] $splits List of split ranges to extract.
      *
      * @return SplitFiles list of extracted files
      */
