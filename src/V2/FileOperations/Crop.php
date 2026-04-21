@@ -18,7 +18,7 @@ class Crop
     private readonly LocalInputSource $localInput;
 
     /**
-     * @param LocalInputSource $localInput localInputSource object
+     * @param LocalInputSource $localInput LocalInputSource object.
      */
     public function __construct(LocalInputSource $localInput)
     {
@@ -28,7 +28,7 @@ class Crop
     /**
      * Extracts a crop zone from a file.
      *
-     * @param CropItem $crop crop to extract
+     * @param CropItem $crop Crop to extract.
      *
      * @return ExtractedImage extracted image
      */
@@ -40,7 +40,8 @@ class Crop
     /**
      * Extracts multiple crop zones from a file.
      *
-     * @param CropItem[] $crops list of crops to extract
+     * @param CropItem[] $crops List of crops to extract.
+     * @return CropFiles list of extracted files
      */
     public function extractCrops(array $crops): CropFiles
     {

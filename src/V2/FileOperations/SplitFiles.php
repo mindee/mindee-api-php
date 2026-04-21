@@ -25,10 +25,11 @@ class SplitFiles extends \ArrayObject
     /**
      * Save all extracted splits to disk.
      *
-     * @param string $path   the directory path to save the extracted splits to
-     * @param string $prefix prefix to add to the filename
+     * @param string $path   The directory path to save the extracted splits to.
+     * @param string $prefix Prefix to add to the filename.
      *
-     * @throws MindeeException if directory creation fails
+     * @throws MindeeException If directory creation fails.
+     * @return void
      */
     public function saveAllToDisk(string $path, string $prefix = 'split'): void
     {
