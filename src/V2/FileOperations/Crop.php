@@ -55,10 +55,12 @@ class Crop
 
         foreach ($cropsPerPage as $page => $pageCrops) {
             $polygons = array_map(fn ($c) => $c->location->polygon, $pageCrops);
+            $filenamePrefix = sprintf('%s_page%d', $this->localInput->fileName, $page);
 
             $images = $imageExtractor->extractPolygonsFromPage(
                 $polygons,
-                $page
+                $page,
+                $filenamePrefix
             );
             array_push($extractedImages, ...$images);
         }

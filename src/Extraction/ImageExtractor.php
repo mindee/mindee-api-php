@@ -137,19 +137,37 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array       $polygons  List of polygons to extract.
-     * @param integer     $pageIndex The page index to extract, begins at 0.
-     * @param null|string $format    Save format for extracted images. Defaults to the original format.
+     * @param array       $polygons       List of polygons to extract.
+     * @param integer     $pageIndex      The page index to extract, begins at 0.
+     * @param null|string $filenamePrefix Output filename prefix.
+     * @param null|string $format         Save format for extracted images. Defaults to the original format.
      *
      * @return array an array of created images
+     * @throws MindeeImageException Throws if the image can't be processed.
      */
-    public function extractPolygonsFromPage(array $polygons, int $pageIndex, ?string $format = null): array
-    {
+    public function extractPolygonsFromPage(
+        array $polygons,
+        int $pageIndex,
+        ?string $filenamePrefix = null,
+        ?string $format = null
+    ): array {
         $saveFormat = $format ?? $this->saveFormat;
         $extractedImages = [];
 
-        foreach ($polygons as $i => $polygon) {
-            $extractedImages[] = $this->extractPolygonFromPage($polygon, $pageIndex, $i, null, $format);
+        try {
+            foreach ($polygons as $i => $polygon) {
+                $filenamePrefix ??= $this->filename;
+                $outputFilename = sprintf('%s-%d.%s', $filenamePrefix, $i, $saveFormat);
+                $extractedImages[] = $this->extractPolygonFromPage(
+                    $polygon,
+                    $pageIndex,
+                    $i,
+                    $outputFilename,
+                    $saveFormat
+                );
+            }
+        } catch (\ImagickException $e) {
+            throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $extractedImages;
@@ -165,7 +183,7 @@ class ImageExtractor
      * @param null|string $format    Output format.
      *
      * @return ExtractedImage Extracted image data.
-     * @throws \ImagickException Throws if the image can't be processed.
+     * @throws MindeeImageException Throws if the image can't be processed.
      */
     public function extractPolygonFromPage(
         Polygon $polygon,
@@ -175,11 +193,14 @@ class ImageExtractor
         ?string $format = null
     ): ExtractedImage {
         $bbox = BBoxUtils::generateBBoxFromPolygon($polygon);
-        $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex);
+        try {
+            $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex);
+        } catch (\ImagickException $e) {
+            throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
+        }
         $filename ??= $this->filename;
         $format ??= $this->saveFormat;
         $filename ??= sprintf('%s.%s_page%d-%d.%s', $filename, $format, $pageIndex, $index, $format);
-
         return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
     }
 

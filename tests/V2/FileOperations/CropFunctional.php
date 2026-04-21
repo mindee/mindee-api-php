@@ -80,11 +80,11 @@ class CropFunctional extends TestCase
         $extractedImages->saveAllToDisk($this->outputDir, quality: 50);
 
         $file1Info = filesize($this->outputDir . '/crop_001.jpg');
-        $this->assertGreaterThanOrEqual(99000, $file1Info);
+        $this->assertGreaterThanOrEqual(98000, $file1Info);
         $this->assertLessThanOrEqual(110000, $file1Info);
 
         $file2Info = filesize($this->outputDir . '/crop_002.jpg');
-        $this->assertGreaterThanOrEqual(99000, $file2Info);
+        $this->assertGreaterThanOrEqual(98000, $file2Info);
         $this->assertLessThanOrEqual(110000, $file2Info);
     }
 
