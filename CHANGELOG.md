@@ -1,5 +1,12 @@
 # Mindee PHP API Library Changelog
 
+## v2.8.0 - 2026-04-22
+### Changes
+* :sparkles: add support for V2 crop and split operations
+### Fixes
+* :bug: fix file names incoherent for PDF extractor
+
+
 ## v2.7.1 - 2027-03-31
 ### Fixes
 * :bug: fix multiple webhooks not registering correctly
