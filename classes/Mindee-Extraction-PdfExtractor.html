@@ -97,6 +97,10 @@
                 
             </li>
                     <li>
+                <a href="namespaces/mindee-v1.html" class="">V1</a>
+                
+            </li>
+                    <li>
                 <a href="namespaces/mindee-v2.html" class="">V2</a>
                 
             </li>
@@ -154,7 +158,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -215,14 +219,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Extraction-PdfExtractor.html#method_extractInvoices">extractInvoices()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>&gt;    </span>
 </dt>
 <dd>Extracts invoices as complete PDFs from the document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Extraction-PdfExtractor.html#method_extractSubDocuments">extractSubDocuments()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>&gt;    </span>
 </dt>
 <dd>Extracts sub-documents from the source document using list of page indexes.</dd>
 
@@ -269,7 +273,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -282,7 +286,7 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Name of the file.</p>
+        <section class="phpdocumentor-description"><p>name of the file</p>
 </section>
 
     
@@ -308,7 +312,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -321,7 +325,7 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Bytes representation of a file.</p>
+        <section class="phpdocumentor-description"><p>bytes representation of a file</p>
 </section>
 
     
@@ -352,7 +356,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -389,10 +393,10 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeUnhandledException.html"><abbr title="\Mindee\Error\MindeeUnhandledException">MindeeUnhandledException</abbr></a>|<a href="classes/Mindee-Error-MindeePDFException.html"><abbr title="\Mindee\Error\MindeePDFException">MindeePDFException</abbr></a></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeePDFException.html"><abbr title="\Mindee\Error\MindeePDFException">MindeePDFException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>Throws if PDF operations aren't supported,
-or if the file can't be read, respectively.</p>
+                                                 <section class="phpdocumentor-description"><p>Throws if PDF operations aren't supported, or if the file
+can't be read, respectively.</p>
 </section>
 
                                     </dd>
@@ -416,7 +420,7 @@ or if the file can't be read, respectively.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">140</span>
 
     </aside>
 
@@ -424,7 +428,7 @@ or if the file can't be read, respectively.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">extractInvoices</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;|<a href="classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html"><abbr title="\Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups">InvoiceSplitterV1InvoicePageGroups</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndexes</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strict</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">extractInvoices</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;|<a href="classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html"><abbr title="\Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups">InvoiceSplitterV1InvoicePageGroups</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndexes</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$strict</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -458,9 +462,9 @@ or if the file can't be read, respectively.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>A list of extracted invoices.</p>
+                <section class="phpdocumentor-description"><p>a list of extracted invoices</p>
 </section>
 
             </section>
@@ -480,7 +484,7 @@ or if the file can't be read, respectively.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -488,7 +492,7 @@ or if the file can't be read, respectively.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">extractSubDocuments</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndexes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">extractSubDocuments</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, mixed&gt;|<a href="classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html"><abbr title="\Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups">InvoiceSplitterV1InvoicePageGroups</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndexes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -498,7 +502,7 @@ or if the file can't be read, respectively.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$pageIndexes</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, mixed&gt;|<a href="classes/Mindee-Product-InvoiceSplitter-InvoiceSplitterV1InvoicePageGroups.html"><abbr title="\Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups">InvoiceSplitterV1InvoicePageGroups</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>List of sub-lists of pages to keep.</p>
@@ -540,9 +544,9 @@ or if the file can't be read, respectively.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>List of extracted documents.</p>
+                <section class="phpdocumentor-description"><p>list of extracted documents</p>
 </section>
 
             </section>
@@ -562,7 +566,7 @@ or if the file can't be read, respectively.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
@@ -584,7 +588,7 @@ or if the file can't be read, respectively.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Name of the file.</p>
+                <section class="phpdocumentor-description"><p>name of the file</p>
 </section>
 
             </section>
@@ -604,7 +608,7 @@ or if the file can't be read, respectively.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Extraction/PdfExtractor.php"><a href="files/src-extraction-pdfextractor.html"><abbr title="src/Extraction/PdfExtractor.php">PdfExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
