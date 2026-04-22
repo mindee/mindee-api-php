@@ -16,24 +16,21 @@ use setasign\Fpdi\PdfParser\PdfParserException;
 class ExtractedPdf
 {
     /**
-     * File object for an ExtractedPdf.
-     *
-     * @var string
+     * @var string name of the original file
      */
-    protected string $pdfBytes;
+    public string $filename;
 
     /**
-     * Name of the original file.
-     *
-     * @var string
+     * @var string File object for an ExtractedPdf.
      */
-    protected string $filename;
+    protected string $pdfBytes;
 
     /**
      * Initializes a new instance of the ExtractedPdf class.
      *
      * @param string $pdfBytes A binary string representation of the PDF.
      * @param string $filename Name of the original file.
+     *
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
     public function __construct(string $pdfBytes, string $filename)
@@ -47,16 +44,18 @@ class ExtractedPdf
     /**
      * Wrapper for pdf GetPageCount().
      *
-     * @return integer The number of pages in the file.
+     * @return integer the number of pages in the file
+     *
      * @throws MindeePDFException Throws if FPDI is unable to process the file.
      */
     public function getPageCount(): int
     {
         try {
-            $pdfHandle = new FPDI();
+            $pdfHandle = new Fpdi();
 
             $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
             file_put_contents($tempFilename, $this->pdfBytes);
+
             return $pdfHandle->setSourceFile($tempFilename);
         } catch (PdfParserException $e) {
             throw new MindeePDFException(
@@ -76,8 +75,13 @@ class ExtractedPdf
     public function writeToFile(string $outputPath): void
     {
         $pdfPath = $outputPath . DIRECTORY_SEPARATOR . $this->filename;
-        if (basename($outputPath) !== '') {
-            $pdfPath = realpath($outputPath);
+        if ('' !== basename($outputPath)) {
+            if (!($pdfPath = realpath($outputPath))) {
+                $pdfPath = $outputPath;
+            }
+        }
+        if (!str_ends_with(strtolower($pdfPath), 'pdf')) {
+            $pdfPath .= '.pdf';
         }
         file_put_contents($pdfPath, $this->pdfBytes);
     }
@@ -85,7 +89,7 @@ class ExtractedPdf
     /**
      * Return the file in a format suitable for sending to MindeeClient for parsing.
      *
-     * @return BytesInput Bytes input for the image.
+     * @return BytesInput bytes input for the image
      */
     public function asInputSource(): BytesInput
     {
@@ -93,7 +97,7 @@ class ExtractedPdf
     }
 
     /**
-     * @return string The pdf bytes.
+     * @return string the pdf bytes
      */
     public function getPdfBytes(): string
     {
@@ -101,7 +105,7 @@ class ExtractedPdf
     }
 
     /**
-     * @return string The name of the file.
+     * @return string the name of the file
      */
     public function getFilename(): string
     {

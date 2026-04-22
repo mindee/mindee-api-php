@@ -2,18 +2,14 @@
 
 namespace Mindee\Extraction;
 
-use InvalidArgumentException;
 use Mindee\Error\MindeePDFException;
-use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\LocalInputSource;
 use Mindee\Parsing\DependencyChecker;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroup;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use setasign\Fpdi\PdfParser\Filter\FilterException;
 use setasign\Fpdi\PdfParser\PdfParserException;
-use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
 
 /**
@@ -22,18 +18,20 @@ use setasign\Fpdi\PdfReader\PdfReaderException;
 class PdfExtractor
 {
     /**
-     * @var string Bytes representation of a file.
+     * @var string bytes representation of a file
      */
     private string $pdfBytes;
+
     /**
-     * @var string Name of the file.
+     * @var string name of the file
      */
     private string $fileName;
 
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
-     * @throws MindeeUnhandledException|MindeePDFException Throws if PDF operations aren't supported,
-     * or if the file can't be read, respectively.
+     *
+     * @throws MindeePDFException Throws if PDF operations aren't supported, or if the file
+     * can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
@@ -59,50 +57,54 @@ class PdfExtractor
      * Wrapper for pdf GetPageCount().
      *
      * @return integer The number of pages in the file.
+     *
      * @throws MindeePDFException Throws if FPDI is unable to process the file.
      */
     public function getPageCount(): int
     {
         try {
-            $pdfHandle = new FPDI();
+            $pdfHandle = new Fpdi();
 
             $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
             file_put_contents($tempFilename, $this->pdfBytes);
+
             return $pdfHandle->setSourceFile($tempFilename);
         } catch (PdfParserException $e) {
             throw new MindeePDFException("Couldn't open PDF file. FPDI sent the following: ", 0, $e);
         }
     }
 
-
     /**
      * Extracts sub-documents from the source document using list of page indexes.
      *
-     * @param array $pageIndexes List of sub-lists of pages to keep.
-     * @return array List of extracted documents.
-     * @throws MindeePDFException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
-     * @throws InvalidArgumentException Throws if invalid indexes are provided.
+     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     *
+     * @return ExtractedPdf[] list of extracted documents
+     *
+     * @throws MindeePDFException        Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
+     * @throws \InvalidArgumentException Throws if invalid indexes are provided.
      */
-    public function extractSubDocuments(array $pageIndexes): array
+    public function extractSubDocuments(mixed $pageIndexes): array
     {
         $extractedPdfs = [];
 
         foreach ($pageIndexes as $pageIndexElem) {
             if (empty($pageIndexElem)) {
-                throw new InvalidArgumentException("Empty indexes not allowed for extraction.");
+                throw new \InvalidArgumentException('Empty indexes not allowed for extraction.');
             }
 
             $extension = pathinfo($this->fileName, PATHINFO_EXTENSION);
             $prefix = pathinfo($this->fileName, PATHINFO_FILENAME);
             $fieldFilename = sprintf(
-                "%s_%03d-%03d.%s",
+                '%s_%03d-%03d.%s',
                 $prefix,
                 $pageIndexElem[0] + 1,
                 $pageIndexElem[count($pageIndexElem) - 1] + 1,
                 $extension
             );
+
             try {
-                $pdf = new FPDI();
+                $pdf = new Fpdi();
                 $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
                 file_put_contents($tempFilename, $this->pdfBytes);
                 $pdf->setSourceFile($tempFilename);
@@ -114,13 +116,12 @@ class PdfExtractor
 
                 $mergedPdfBytes = $pdf->Output('S');
             } catch (
-                PdfParserException |
                 CrossReferenceException |
                 FilterException |
-                PdfTypeException |
+                PdfParserException |
                 PdfReaderException $e
             ) {
-                throw new MindeePDFException("PDF file couldn't be processed during extraction.");
+                throw new MindeePDFException("PDF file couldn't be processed during extraction.", 0, $e);
             }
             $extractedPdfs[] = new ExtractedPdf($mergedPdfBytes, $fieldFilename);
         }
@@ -131,21 +132,22 @@ class PdfExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array| InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
-     * @param boolean                                   $strict      Whether to trust confidence scores or not.
-     * @return array A list of extracted invoices.
+     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param boolean                                  $strict      Whether to trust confidence scores or not.
+     *
+     * @return ExtractedPdf[] a list of extracted invoices
      */
-    public function extractInvoices($pageIndexes, bool $strict = false): array
+    public function extractInvoices(mixed $pageIndexes, bool $strict = false): array
     {
         if (empty($pageIndexes)) {
             return [];
         }
         if (!$strict) {
-            $indexes = array_map(function ($invoicePageIndexes) {
-                return $invoicePageIndexes->pageIndexes;
-            }, (array)$pageIndexes);
+            $indexes = array_map(fn ($invoicePageIndexes) => $invoicePageIndexes->pageIndexes, (array) $pageIndexes);
+
             return $this->extractSubDocuments($indexes);
-        } elseif (is_array($pageIndexes[0])) {
+        }
+        if (is_array($pageIndexes[0])) {
             return $this->extractSubDocuments($pageIndexes);
         }
 
@@ -158,7 +160,7 @@ class PdfExtractor
             $confidence = $pageIndex->confidence;
             $pageList = $pageIndex->pageIndexes;
 
-            if ($confidence >= 0.5 && $previousConfidence === null) {
+            if ($confidence >= 0.5 && null === $previousConfidence) {
                 $currentList = $pageList;
             } elseif ($confidence >= 0.5 && $i !== count($pageIndexes) - 1) {
                 if (!empty($currentList)) {
@@ -178,13 +180,14 @@ class PdfExtractor
             }
 
             $previousConfidence = $confidence;
-            $i++;
+            ++$i;
         }
+
         return $this->extractSubDocuments($correctPageIndexes);
     }
 
     /**
-     * @return string Name of the file.
+     * @return string name of the file
      */
     public function getFileName(): string
     {

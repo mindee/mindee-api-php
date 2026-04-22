@@ -1,7 +1,7 @@
 <?php
 
 use Mindee\Client;
-use Mindee\Extraction\ImageExtractor;
+use Mindee\V1\Image\ImageExtractor;
 use Mindee\Input\PathInput;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\Product\Receipt\ReceiptV5;

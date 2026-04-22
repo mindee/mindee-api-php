@@ -21,8 +21,6 @@ composer.lock
 .env.local
 _test.php
 .php-cs-fixer.cache
-local_test/
-LocalTest.php
 .phpunit*
 *.log
 /build
@@ -30,3 +28,8 @@ LocalTest.php
 .phpdoc
 docs/_build
 tests/LocalTestNotUnit.php
+
+# For local testing
+/output/
+local_test/
+LocalTest.php
