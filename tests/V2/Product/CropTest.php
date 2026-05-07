@@ -60,7 +60,7 @@ class CropTest extends TestCase
      */
     public function testCropWhenSingleMustHaveValidProperties(): void
     {
-        $jsonSample = self::getInference("crop/crop_single.json");
+        $jsonSample = self::getInference("crop/default_sample.json");
         $response = new CropResponse($jsonSample);
 
         $this->assertInferenceResponse($response);
@@ -77,20 +77,20 @@ class CropTest extends TestCase
 
         $crops = $inference->result->crops;
         $this->assertNotNull($crops);
-        $this->assertCount(1, $crops);
+        $this->assertCount(2, $crops);
 
         $firstCrop = $crops[0];
-        $this->assertSame("invoice", $firstCrop->objectType);
+        $this->assertSame("receipt", $firstCrop->objectType);
         $this->assertSame(0, $firstCrop->location->page);
 
         $polygon = $firstCrop->location->polygon;
         $this->assertCount(4, $polygon->getCoordinates());
 
         // Note: Using assertEquals here instead of assertSame to allow for object value comparison
-        $this->assertEquals(new Point(0.15, 0.254), $polygon->getCoordinates()[0]);
-        $this->assertEquals(new Point(0.85, 0.254), $polygon->getCoordinates()[1]);
-        $this->assertEquals(new Point(0.85, 0.947), $polygon->getCoordinates()[2]);
-        $this->assertEquals(new Point(0.15, 0.947), $polygon->getCoordinates()[3]);
+        $this->assertEquals(new Point(0.214, 0.036), $polygon->getCoordinates()[0]);
+        $this->assertEquals(new Point(0.476, 0.036), $polygon->getCoordinates()[1]);
+        $this->assertEquals(new Point(0.476, 0.949), $polygon->getCoordinates()[2]);
+        $this->assertEquals(new Point(0.214, 0.949), $polygon->getCoordinates()[3]);
     }
 
     /**

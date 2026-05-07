@@ -20,7 +20,7 @@ class ClassificationTest extends TestCase
      */
     private static function getInference(): array
     {
-        $fullPath = TestingUtilities::getV2ProductDir() . "/classification/classification_single.json";
+        $fullPath = TestingUtilities::getV2ProductDir() . "/classification/default_sample.json";
         $content = file_get_contents($fullPath);
         return json_decode($content, true);
     }
