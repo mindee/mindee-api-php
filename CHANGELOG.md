@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v2.9.0 - 2026-05-07
+### Changes
+* :sparkles: add support for extraction in crop, split, and classification
+
+
 ## v2.8.0 - 2026-04-22
 ### Changes
 * :sparkles: add support for V2 crop and split operations
