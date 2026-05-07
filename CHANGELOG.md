@@ -1,5 +1,13 @@
 # Mindee PHP API Library Changelog
 
+## v3.0.0-alpha1 - 2026-??-??
+### ¡Breaking Changes!
+*
+### Changes
+* 
+### Fixes
+*
+
 ## v2.8.0 - 2026-04-22
 ### Changes
 * :sparkles: add support for V2 crop and split operations
