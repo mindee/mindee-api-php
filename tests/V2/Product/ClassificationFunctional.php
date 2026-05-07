@@ -33,7 +33,7 @@ class ClassificationFunctional extends TestCase
     public function testClassificationDefaultSampleMustSucceed(): void
     {
         $inputSource = new PathInput(
-            TestingUtilities::getV2ProductDir() . '/classification/default_invoice.jpg'
+            TestingUtilities::getV2ProductDir() . '/classification/default_sample.jpg'
         );
 
         $productParams = new ClassificationParameters($this->classificationModelId);
@@ -44,7 +44,7 @@ class ClassificationFunctional extends TestCase
 
         $file = $response->inference->file;
         $this->assertNotNull($file);
-        $this->assertSame("default_invoice.jpg", $file->name);
+        $this->assertSame("default_sample.jpg", $file->name);
 
         $result = $response->inference->result;
         $this->assertNotNull($result);
