@@ -2,6 +2,8 @@
 
 namespace Mindee\V2\Product\Split;
 
+use Mindee\Parsing\V2\InferenceResponse;
+
 /**
  * A single document as identified when splitting a multi-document source file.
  */
@@ -19,12 +21,20 @@ class SplitRange
     public string $documentType;
 
     /**
+     * @var InferenceResponse|null $extractionResponse The extraction response associated with the split.
+     */
+    public ?InferenceResponse $extractionResponse;
+
+
+    /**
      * @param array $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {
         $this->pageRange = $rawResponse['page_range'];
         $this->documentType = $rawResponse['document_type'];
+        $this->extractionResponse = isset($rawResponse['extraction_response']) ?
+            new InferenceResponse($rawResponse['extraction_response']) : null;
     }
 
     /**
