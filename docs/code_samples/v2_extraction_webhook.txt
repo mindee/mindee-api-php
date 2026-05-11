@@ -1,7 +1,7 @@
 <?php
 
 use Mindee\V2\Client;
-use Mindee\Input\InferenceParameters;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use Mindee\Input\PathInput;
 
 $apiKey = "MY_API_KEY";
