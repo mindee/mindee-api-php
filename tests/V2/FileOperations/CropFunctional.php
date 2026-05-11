@@ -5,7 +5,7 @@ namespace V2\FileOperations;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Crop;
-use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\V2\Product\Crop\Params\CropParameters;
 use Mindee\V2\Product\Extraction\Params\InferenceParameters;
@@ -88,7 +88,7 @@ class CropFunctional extends TestCase
         $this->assertLessThanOrEqual(100000, $file2Info);
     }
 
-    public function testExtractCropsFromEachPdfPageCorrectly(): void
+    public function testExtractCropsFromEachPDFPageCorrectly(): void
     {
         $inputSource = new PathInput(\TestingUtilities::getV2ProductDir() . '/crop/multipage_sample.pdf');
         $cropParams = new CropParameters($this->cropModelId);

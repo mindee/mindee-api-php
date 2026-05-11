@@ -2,7 +2,7 @@
 
 namespace V1\Parsing\Common\Extras;
 
-use Mindee\Product\InternationalId\InternationalIdV2;
+use Mindee\V1\Product\InternationalId\InternationalIdV2;
 use PHPUnit\Framework\TestCase;
 
 class FullTextOCRTest extends TestCase

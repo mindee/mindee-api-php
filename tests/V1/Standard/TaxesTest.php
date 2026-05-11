@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\TaxField;
+use Mindee\V1\Parsing\Standard\TaxField;
 use PHPUnit\Framework\TestCase;
 
 class TaxesTest extends TestCase

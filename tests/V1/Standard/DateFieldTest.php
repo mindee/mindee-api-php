@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\DateField;
+use Mindee\V1\Parsing\Standard\DateField;
 use PHPUnit\Framework\TestCase;
 
 class DateFieldTest extends TestCase

@@ -5,7 +5,7 @@ namespace V2\FileOperations;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Split;
-use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
@@ -53,7 +53,7 @@ class SplitFunctional extends TestCase
         $this->assertGreaterThan(0, $totalAmount->value);
     }
 
-    public function testExtractSplitsFromPdfCorrectly(): void
+    public function testExtractSplitsFromPDFCorrectly(): void
     {
         $inputSource = new PathInput(\TestingUtilities::getV2ProductDir() . '/split/default_sample.pdf');
         $splitParams = new SplitParameters($this->splitModelId);

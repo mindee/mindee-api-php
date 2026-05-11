@@ -5,8 +5,8 @@ namespace V1\Error;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\PathInput;
-use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\V1\Client;
+use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
 
 class MindeeHttpExceptionTest extends TestCase

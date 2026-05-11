@@ -2,15 +2,15 @@
 
 namespace V2\Parsing;
 
-use Mindee\Error\ErrorItem;
 use Mindee\Geometry\Point;
 use Mindee\Input\LocalResponse;
+use Mindee\V2\Parsing\ErrorItem;
 use Mindee\V2\Parsing\ErrorResponse;
-use Mindee\V2\Parsing\Field\FieldConfidence;
-use Mindee\V2\Parsing\Field\ListField;
-use Mindee\V2\Parsing\Field\ObjectField;
-use Mindee\V2\Parsing\Field\SimpleField;
-use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\Inference\Field\FieldConfidence;
+use Mindee\V2\Parsing\Inference\Field\ListField;
+use Mindee\V2\Parsing\Inference\Field\ObjectField;
+use Mindee\V2\Parsing\Inference\Field\SimpleField;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;

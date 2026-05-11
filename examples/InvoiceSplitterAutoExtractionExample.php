@@ -1,10 +1,10 @@
 <?php
 
-use Mindee\Extraction\PdfExtractor;
+use Mindee\Extraction\PDFExtractor;
 use Mindee\Input\PathInput;
-use Mindee\Product\Invoice\InvoiceV4;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use Mindee\V1\Client;
+use Mindee\V1\Product\Invoice\InvoiceV4;
+use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 
 function parseInvoice(string $filePath, Client $mindeeClient)
 {
@@ -26,7 +26,7 @@ function parseSinglePage(PathInput $inputSource, Client $mindeeClient)
 function parseMultiPage(PathInput $inputSource, Client $mindeeClient)
 {
     global $mindeeClient;
-    $pdfExtractor = new PdfExtractor($inputSource);
+    $pdfExtractor = new PDFExtractor($inputSource);
     $invoiceSplitterResponse = $mindeeClient->enqueueAndParse(
         InvoiceSplitterV1::class,
         $inputSource

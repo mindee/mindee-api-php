@@ -3,7 +3,7 @@
 namespace Mindee\Parsing\Common;
 
 /**
- * Utility class to handle information display.
+ * Base utility class to handle information display.
  */
 class SummaryHelper
 {
@@ -48,7 +48,7 @@ class SummaryHelper
      * @param string|null $string The string to fix.
      * @return string|null The fixed string.
      */
-    private static function escapeSpecialChars(?string $string): ?string
+    protected static function escapeSpecialChars(?string $string): ?string
     {
         if ($string === null) {
             return null;
@@ -89,18 +89,5 @@ class SummaryHelper
             $maxColSize - 3,
             "UTF-8"
         ) . "...";
-    }
-
-    /**
-     * Pads and add separators to a string for rst table items.
-     *
-     * @param string  $inputString Input value, as an already printable string.
-     * @param integer $colSize     Column size assigned to the value.
-     * @param string  $separator   Optional custom separator for tables.
-     * @return string The string, with table separators.
-     */
-    public static function padString(string $inputString, int $colSize, string $separator = "|"): string
-    {
-        return mb_str_pad($inputString, $colSize, " ", STR_PAD_RIGHT, "UTF-8") . " $separator ";
     }
 }

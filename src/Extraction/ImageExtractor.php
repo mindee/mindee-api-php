@@ -2,6 +2,7 @@
 
 namespace Mindee\Extraction;
 
+use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
 use Mindee\Error\MindeeImageException;
@@ -10,8 +11,7 @@ use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
-use Mindee\Parsing\DependencyChecker;
-use Mindee\Parsing\Standard\BaseField;
+use Mindee\V1\Parsing\Standard\BaseField;
 
 /**
  * Extract sub-images from an image.

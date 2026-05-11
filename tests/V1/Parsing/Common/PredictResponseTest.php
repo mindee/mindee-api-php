@@ -2,9 +2,9 @@
 
 namespace V1\Parsing\Common;
 
-use Mindee\Parsing\Common\PredictResponse;
-use Mindee\Product\Invoice\InvoiceV4;
-use Mindee\Product\Invoice\InvoiceV4Document;
+use Mindee\V1\Parsing\Common\PredictResponse;
+use Mindee\V1\Product\Invoice\InvoiceV4;
+use Mindee\V1\Product\Invoice\InvoiceV4Document;
 use PHPUnit\Framework\TestCase;
 
 class PredictResponseTest extends TestCase

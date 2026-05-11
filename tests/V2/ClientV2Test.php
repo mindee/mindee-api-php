@@ -8,7 +8,7 @@ use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\HTTP\MindeeAPIV2;
-use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
 use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\MockObject\MockObject;

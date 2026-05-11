@@ -2,8 +2,6 @@
 
 namespace Mindee\V2\Parsing;
 
-use Mindee\Error\ErrorItem;
-
 /**
  * Error response class.
  */

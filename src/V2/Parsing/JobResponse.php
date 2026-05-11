@@ -2,6 +2,8 @@
 
 namespace Mindee\V2\Parsing;
 
+use Mindee\V2\Parsing\Inference\BaseResponse;
+
 /**
  * Job response class.
  */

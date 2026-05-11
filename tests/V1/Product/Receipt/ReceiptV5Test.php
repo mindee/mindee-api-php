@@ -2,8 +2,8 @@
 
 namespace V1\Product\Receipt;
 
-use Mindee\Parsing\Common\Document;
 use Mindee\Product\Receipt;
+use Mindee\V1\Parsing\Common\Document;
 use PHPUnit\Framework\TestCase;
 
 class ReceiptV5Test extends TestCase
@@ -19,8 +19,8 @@ class ReceiptV5Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(Receipt\ReceiptV5::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(Receipt\ReceiptV5::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Receipt\ReceiptV5::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Receipt\ReceiptV5::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 

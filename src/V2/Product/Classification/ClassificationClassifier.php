@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Classification;
 
-use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 
 /**
  * Classification of document type from the source file.

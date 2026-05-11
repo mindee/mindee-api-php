@@ -9,6 +9,7 @@
 namespace Mindee\V1;
 
 use Exception;
+use Mindee\ClientOptions\PollingOptions;
 use Mindee\CustomSleepMixin;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
@@ -23,12 +24,7 @@ use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\ClientOptions\PollingOptions;
 use Mindee\Input\URLInputSource;
-use Mindee\Parsing\Common\AsyncPredictResponse;
-use Mindee\Parsing\Common\PredictResponse;
-use Mindee\Parsing\Common\WorkflowResponse;
-use Mindee\Product\Generated\GeneratedV1;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\WorkflowOptions;
 use Mindee\V1\HTTP\Endpoint;
@@ -36,6 +32,10 @@ use Mindee\V1\HTTP\MindeeAPI;
 use Mindee\V1\HTTP\MindeeWorkflowAPI;
 use Mindee\V1\HTTP\ResponseValidation;
 use Mindee\V1\HTTP\WorkflowEndpoint;
+use Mindee\V1\Parsing\Common\AsyncPredictResponse;
+use Mindee\V1\Parsing\Common\PredictResponse;
+use Mindee\V1\Parsing\Common\WorkflowResponse;
+use Mindee\V1\Product\Generated\GeneratedV1;
 use ReflectionClass;
 use ReflectionException;
 

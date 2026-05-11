@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Split;
 
-use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 
 /**
  * A single document as identified when splitting a multi-document source file.

@@ -1,18 +1,18 @@
 <?php
 
+use Mindee\ClientOptions\PollingOptions;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
-use Mindee\ClientOptions\PollingOptions;
-use Mindee\Product\Generated\GeneratedV1;
-use Mindee\Product\Invoice\InvoiceV4;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
-use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
-use Mindee\Product\Receipt\ReceiptV5;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
+use Mindee\V1\Product\Generated\GeneratedV1;
+use Mindee\V1\Product\Invoice\InvoiceV4;
+use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
+use Mindee\V1\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase

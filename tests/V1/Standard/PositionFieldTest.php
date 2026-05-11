@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\PositionField;
+use Mindee\V1\Parsing\Standard\PositionField;
 use PHPUnit\Framework\TestCase;
 
 class PositionFieldTest extends TestCase

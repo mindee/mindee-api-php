@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\CompanyRegistrationField;
+use Mindee\V1\Parsing\Standard\CompanyRegistrationField;
 use PHPUnit\Framework\TestCase;
 
 class CompanyRegistrationFieldTest extends TestCase

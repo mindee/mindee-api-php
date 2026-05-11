@@ -2,10 +2,10 @@
 
 namespace Mindee\PDF;
 
+use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeUnhandledException;
-use Mindee\Parsing\DependencyChecker;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use Smalot\PdfParser\Config;
@@ -65,10 +65,10 @@ class PDFCompressor
             try {
                 $fpdi = new CustomFPDI();
                 $pageCount = $fpdi->setSourceFile($pdfPath);
-            } catch (CrossReferenceException $e) {
+            } catch (CrossReferenceException) {
                 error_log("[WARNING] PDF format for '$pdfPath' is not directly supported." .
                     " Output PDF will be rasterized and source text won't be available.");
-                $pdfPath = PDFUtils::downgradePdfVersion($pdfPath);
+                $pdfPath = PDFUtils::downgradePDFVersion($pdfPath);
                 $fpdi = new CustomFPDI();
                 $pdf = $parser->parseFile($pdfPath);
                 $pageCount = $fpdi->setSourceFile($pdfPath);
@@ -76,7 +76,7 @@ class PDFCompressor
 
             $outPdf = new CustomFPDI();
             for ($i = 1; $i <= $pageCount; $i++) {
-                list($tempJpegFile, $orientation) = static::processPdfPage($pdfPath, $i, $quality);
+                list($tempJpegFile, $orientation) = static::processPDFPage($pdfPath, $i, $quality);
                 list($width, $height) = getimagesize($tempJpegFile);
                 $outPdf->AddPage($orientation, [$width, $height]);
                 $outPdf->Image($tempJpegFile, 0, 0, $width, $height);
@@ -207,7 +207,7 @@ class PDFCompressor
      * @return array Path to the temporary JPEG file and orientation of the page.
      * @throws MindeePDFException If there's an error processing the page.
      */
-    private static function processPdfPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): array
+    private static function processPDFPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): array
     {
         try {
             $singlePagePdf = new FPDI();

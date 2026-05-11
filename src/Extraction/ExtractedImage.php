@@ -2,9 +2,9 @@
 
 namespace Mindee\Extraction;
 
+use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
-use Mindee\Parsing\DependencyChecker;
 
 /**
  * An extracted sub-image.

@@ -3,8 +3,8 @@
 namespace V1\Http;
 
 use Mindee\Error\MindeeException;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use Mindee\V1\HTTP\MindeeAPI;
+use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
 use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 

@@ -2,8 +2,8 @@
 
 namespace V1\Workflow;
 
-use Mindee\Parsing\Common\WorkflowResponse;
-use Mindee\Product\Generated\GeneratedV1;
+use Mindee\V1\Parsing\Common\WorkflowResponse;
+use Mindee\V1\Product\Generated\GeneratedV1;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 

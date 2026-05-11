@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\Standard\StringField;
 use PHPUnit\Framework\TestCase;
 
 class StringFieldTest extends TestCase
