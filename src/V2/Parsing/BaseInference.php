@@ -2,10 +2,10 @@
 
 namespace Mindee\V2\Parsing;
 
-use Mindee\Parsing\Common\SummaryHelper;
-use Mindee\Parsing\V2\InferenceFile;
-use Mindee\Parsing\V2\InferenceJob;
-use Mindee\Parsing\V2\InferenceModel;
+use Mindee\Parsing\SummaryHelper;
+use Mindee\V2\Parsing\Inference\InferenceFile;
+use Mindee\V2\Parsing\Inference\InferenceJob;
+use Mindee\V2\Parsing\Inference\InferenceModel;
 
 /**
  * Base for all inference-based V2 products.

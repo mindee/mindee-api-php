@@ -2,7 +2,7 @@
 
 namespace V1\Parsing\Common\Extras;
 
-use Mindee\Product\InternationalId\InternationalIdV2;
+use Mindee\V1\Product\InternationalId\InternationalIdV2;
 use PHPUnit\Framework\TestCase;
 
 class FullTextOCRTest extends TestCase
@@ -16,7 +16,7 @@ class FullTextOCRTest extends TestCase
 
     private function loadDocument()
     {
-        $dummyClient = new \Mindee\Client("dummy-key");
+        $dummyClient = new \Mindee\V1\Client("dummy-key");
         $localResponse = new \Mindee\Input\LocalResponse($this->extrasDir . '/full_text_ocr/complete.json');
         $response = $dummyClient->loadPrediction(InternationalIdV2::class, $localResponse);
         return $response->document;

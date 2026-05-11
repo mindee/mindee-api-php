@@ -2,14 +2,14 @@
 
 namespace V1\Product\Generated;
 
-use Mindee\Parsing\Common\Document;
-use Mindee\Parsing\Common\Page;
-use Mindee\Parsing\Generated\GeneratedListField;
-use Mindee\Parsing\Generated\GeneratedObjectField;
-use Mindee\Parsing\Standard\PositionField;
-use Mindee\Parsing\Standard\StringField;
-use Mindee\Product\Generated\GeneratedV1;
-use Mindee\Product\Generated\GeneratedV1Page;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Parsing\Common\Page;
+use Mindee\V1\Parsing\Generated\GeneratedListField;
+use Mindee\V1\Parsing\Generated\GeneratedObjectField;
+use Mindee\V1\Parsing\Standard\PositionField;
+use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Product\Generated\GeneratedV1;
+use Mindee\V1\Product\Generated\GeneratedV1Page;
 use PHPUnit\Framework\TestCase;
 
 

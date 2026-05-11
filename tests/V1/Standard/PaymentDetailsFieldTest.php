@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\PaymentDetailsField;
+use Mindee\V1\Parsing\Standard\PaymentDetailsField;
 use PHPUnit\Framework\TestCase;
 
 class PaymentDetailsFieldTest extends TestCase

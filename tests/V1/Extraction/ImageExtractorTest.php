@@ -2,12 +2,12 @@
 
 namespace V1\Extraction;
 
-use Mindee\Client;
-use Mindee\V1\Image\ImageExtractor;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
-use Mindee\Product\BarcodeReader\BarcodeReaderV1;
-use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
+use Mindee\V1\Client;
+use Mindee\V1\Image\ImageExtractor;
+use Mindee\V1\Product\BarcodeReader\BarcodeReaderV1;
+use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use PHPUnit\Framework\TestCase;
 
 class ImageExtractorTest extends TestCase
@@ -82,7 +82,7 @@ class ImageExtractorTest extends TestCase
         }
     }
 
-    public function testGivenAPdfShouldExtractPositionFields()
+    public function testGivenAPDFShouldExtractPositionFields()
     {
         $imageInput = new PathInput(
             \TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/multipage_sample.pdf"

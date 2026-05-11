@@ -1,7 +1,7 @@
 <?php
 
-use Mindee\Client;
-use Mindee\Product\Fr\Payslip\PayslipV3;
+use Mindee\V1\Client;
+use Mindee\V1\Product\Fr\Payslip\PayslipV3;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");

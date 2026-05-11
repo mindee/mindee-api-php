@@ -1,7 +1,7 @@
 <?php
 
-use Mindee\Client;
-use Mindee\Product\Us\UsMail\UsMailV3;
+use Mindee\V1\Client;
+use Mindee\V1\Product\Us\UsMail\UsMailV3;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");

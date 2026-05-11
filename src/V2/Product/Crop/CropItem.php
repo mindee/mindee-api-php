@@ -2,8 +2,8 @@
 
 namespace Mindee\V2\Product\Crop;
 
-use Mindee\Parsing\V2\Field\FieldLocation;
-use Mindee\Parsing\V2\InferenceResponse;
+use Mindee\V2\Parsing\Inference\Field\FieldLocation;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 
 /**
  * Result of a cropped document region.

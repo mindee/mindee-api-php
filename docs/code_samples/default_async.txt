@@ -1,8 +1,8 @@
 <?php
 
-use Mindee\Client;
-use Mindee\Product\Generated\GeneratedV1;
-use Mindee\Input\PredictMethodOptions;
+use Mindee\V1\Client;
+use Mindee\V1\Product\Generated\GeneratedV1;
+use Mindee\V1\ClientOptions\PredictMethodOptions;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");
