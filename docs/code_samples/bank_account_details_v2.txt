@@ -1,7 +1,7 @@
 <?php
 
-use Mindee\Client;
-use Mindee\Product\Fr\BankAccountDetails\BankAccountDetailsV2;
+use Mindee\V1\Client;
+use Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV2;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");

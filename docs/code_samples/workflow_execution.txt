@@ -1,7 +1,7 @@
 <?php
 
 
-use Mindee\Client;
+use Mindee\V1\Client;
 use Mindee\Input\WorkflowOptions;
 
 $workflowId = "workflow-id";
