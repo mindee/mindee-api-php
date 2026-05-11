@@ -3,8 +3,8 @@
 
 namespace V2\Product;
 
-use Mindee\ClientV2;
 use Mindee\Input\PathInput;
+use Mindee\V2\Client;
 use Mindee\V2\Product\Classification\ClassificationResponse;
 use Mindee\V2\Product\Classification\Params\ClassificationParameters;
 use PHPUnit\Framework\TestCase;
@@ -14,13 +14,13 @@ require_once(__DIR__ . "/../../TestingUtilities.php");
 
 class ClassificationFunctional extends TestCase
 {
-    private ClientV2 $client;
+    private Client $client;
     private string $classificationModelId;
 
     protected function setUp(): void
     {
         $apiKey = getenv('MINDEE_V2_API_KEY');
-        $this->client = new ClientV2($apiKey);
+        $this->client = new Client($apiKey);
 
         $this->classificationModelId = getenv('MINDEE_V2_CLASSIFICATION_MODEL_ID') ?: '';
     }

@@ -111,7 +111,7 @@ class PDFUtils
      * @throws MindeePDFException Throws if the file can't be handled through Imagick.
      * @throws Exception Will be thrown as MindeePDFException, this is just for PHPCS linting purposes.
      */
-    public static function downgradePdfVersion(string $inputPath): string
+    public static function downgradePDFVersion(string $inputPath): string
     {
         try {
             $outputPath = tempnam(sys_get_temp_dir(), 'downgrade_pdf_') . '.pdf';

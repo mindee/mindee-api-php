@@ -2,9 +2,9 @@
 
 namespace V1\Product\FinancialDocument;
 
-use Mindee\Parsing\Common\Document;
-use Mindee\Parsing\Common\Page;
 use Mindee\Product\FinancialDocument;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Parsing\Common\Page;
 use PHPUnit\Framework\TestCase;
 
 class FinancialDocumentV1Test extends TestCase
@@ -28,11 +28,11 @@ class FinancialDocumentV1Test extends TestCase
         $completeDocJSONInvoice = json_decode($completeDocFileInvoice, true);
         $completeDocJSONReceipt = json_decode($completeDocFileReceipt, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDocInvoice = new Document(FinancialDocument\FinancialDocumentV1::class, $completeDocJSONInvoice["document"]);
-        $this->completeDocReceipt = new Document(FinancialDocument\FinancialDocumentV1::class, $completeDocJSONReceipt["document"]);
-        $this->emptyDoc = new Document(FinancialDocument\FinancialDocumentV1::class, $emptyDocJSON["document"]);
-        $this->completePage0Invoice = new Page(FinancialDocument\FinancialDocumentV1Document::class, $completeDocJSONInvoice["document"]["inference"]["pages"][0]);
-        $this->completePage0Receipt = new Page(FinancialDocument\FinancialDocumentV1Document::class, $completeDocJSONReceipt["document"]["inference"]["pages"][0]);
+        $this->completeDocInvoice = new Document(\Mindee\V1\Product\FinancialDocument\FinancialDocumentV1::class, $completeDocJSONInvoice["document"]);
+        $this->completeDocReceipt = new Document(\Mindee\V1\Product\FinancialDocument\FinancialDocumentV1::class, $completeDocJSONReceipt["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\FinancialDocument\FinancialDocumentV1::class, $emptyDocJSON["document"]);
+        $this->completePage0Invoice = new Page(\Mindee\V1\Product\FinancialDocument\FinancialDocumentV1Document::class, $completeDocJSONInvoice["document"]["inference"]["pages"][0]);
+        $this->completePage0Receipt = new Page(\Mindee\V1\Product\FinancialDocument\FinancialDocumentV1Document::class, $completeDocJSONReceipt["document"]["inference"]["pages"][0]);
         $this->completeDocReferenceInvoice = file_get_contents($productDir . "summary_full_invoice.rst");
         $this->completeDocReferenceReceipt = file_get_contents($productDir . "summary_full_receipt.rst");
         $this->completePage0ReferenceInvoice = file_get_contents($productDir . "summary_page0_invoice.rst");

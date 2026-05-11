@@ -2,8 +2,8 @@
 
 namespace V2\Product;
 
-use Mindee\ClientV2;
 use Mindee\Input\PathInput;
+use Mindee\V2\Client;
 use Mindee\V2\Product\Ocr\OcrResponse;
 use Mindee\V2\Product\Ocr\Params\OcrParameters;
 use PHPUnit\Framework\TestCase;
@@ -13,13 +13,13 @@ require_once(__DIR__ . "/../../TestingUtilities.php");
 
 class OcrFunctional extends TestCase
 {
-    private ClientV2 $client;
+    private Client $client;
     private string $ocrModelId;
 
     protected function setUp(): void
     {
         $apiKey = getenv('MINDEE_V2_API_KEY');
-        $this->client = new ClientV2($apiKey);
+        $this->client = new Client($apiKey);
 
         $this->ocrModelId = getenv('MINDEE_V2_OCR_MODEL_ID') ?: '';
     }

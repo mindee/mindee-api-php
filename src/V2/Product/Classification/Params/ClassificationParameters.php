@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Classification\Params;
 
-use Mindee\Input\PollingOptions;
+use Mindee\ClientOptions\PollingOptions;
 use Mindee\V2\ClientOptions\BaseParameters;
 
 /**

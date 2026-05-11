@@ -2,8 +2,8 @@
 
 namespace V2\Product;
 
-use Mindee\ClientV2;
 use Mindee\Input\PathInput;
+use Mindee\V2\Client;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\V2\Product\Crop\Params\CropParameters;
 use PHPUnit\Framework\TestCase;
@@ -13,14 +13,14 @@ require_once(__DIR__ . "/../../TestingUtilities.php");
 
 class CropFunctional extends TestCase
 {
-    private ClientV2 $client;
+    private Client $client;
     private string $cropModelId;
     private string $cropExtractionModelId;
 
     protected function setUp(): void
     {
         $apiKey = getenv('MINDEE_V2_API_KEY');
-        $this->client = new ClientV2($apiKey);
+        $this->client = new Client($apiKey);
 
         $this->cropModelId = getenv('MINDEE_V2_CROP_MODEL_ID') ?: '';
         $this->cropExtractionModelId = getenv('MINDEE_V2_SE_TESTS_CROP_EXTRACTION_MODEL_ID') ?: '';

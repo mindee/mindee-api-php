@@ -2,8 +2,8 @@
 
 namespace V1\Product\Fr\BankAccountDetails;
 
-use Mindee\Parsing\Common\Document;
 use Mindee\Product\Fr\BankAccountDetails;
+use Mindee\V1\Parsing\Common\Document;
 use PHPUnit\Framework\TestCase;
 
 class BankAccountDetailsV2Test extends TestCase
@@ -19,8 +19,8 @@ class BankAccountDetailsV2Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(BankAccountDetails\BankAccountDetailsV2::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(BankAccountDetails\BankAccountDetailsV2::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV2::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV2::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 

@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Crop;
 
-use Mindee\Parsing\V2\BaseResponse;
+use Mindee\V2\Parsing\Inference\BaseResponse;
 
 /**
  * Represent a crop response from Mindee V2 API.

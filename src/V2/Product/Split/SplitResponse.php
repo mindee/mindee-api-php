@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Split;
 
-use Mindee\Parsing\V2\BaseResponse;
+use Mindee\V2\Parsing\Inference\BaseResponse;
 
 /**
  * Represent a split response from Mindee V2 API.

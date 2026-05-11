@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\AmountField;
+use Mindee\V1\Parsing\Standard\AmountField;
 use PHPUnit\Framework\TestCase;
 
 class AmountFieldTest extends TestCase

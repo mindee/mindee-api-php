@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\ClientOptions;
 
-use Mindee\Input\PollingOptions;
+use Mindee\ClientOptions\PollingOptions;
 
 /**
  * Base parameters for running an inference.

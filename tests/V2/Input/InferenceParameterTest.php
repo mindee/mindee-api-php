@@ -3,8 +3,8 @@
 namespace V2\Input;
 
 
-use Mindee\Input\DataSchema;
-use Mindee\Input\InferenceParameters;
+use Mindee\V2\Product\Extraction\Params\DataSchema;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\TestCase;
 
 class InferenceParameterTest extends TestCase

@@ -2,9 +2,9 @@
 
 namespace V1\Parsing\Common\Extras;
 
-use Mindee\Input\PredictOptions;
-use Mindee\Parsing\Common\Document;
-use Mindee\Product\Receipt\ReceiptV5;
+use Mindee\V1\ClientOptions\PredictOptions;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;
 
 class CropperExtraTest extends TestCase

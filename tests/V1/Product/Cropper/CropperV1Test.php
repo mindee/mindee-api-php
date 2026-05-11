@@ -2,9 +2,9 @@
 
 namespace V1\Product\Cropper;
 
-use Mindee\Parsing\Common\Document;
-use Mindee\Parsing\Common\Page;
 use Mindee\Product\Cropper;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Parsing\Common\Page;
 use PHPUnit\Framework\TestCase;
 
 class CropperV1Test extends TestCase
@@ -22,9 +22,9 @@ class CropperV1Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(Cropper\CropperV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(Cropper\CropperV1::class, $emptyDocJSON["document"]);
-        $this->completePage0 = new Page(Cropper\CropperV1Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Cropper\CropperV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Cropper\CropperV1::class, $emptyDocJSON["document"]);
+        $this->completePage0 = new Page(\Mindee\V1\Product\Cropper\CropperV1Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
         $this->completePage0Reference = file_get_contents($productDir . "summary_page0.rst");
     }
