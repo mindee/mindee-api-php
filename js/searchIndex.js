@@ -9806,6 +9806,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Product-Classification-ClassificationClassifier.html#property_documentType"
         },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Classification\\ClassificationClassifier\u003A\u003A\u0024extractionResponse",
+            "name": "extractionResponse",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Classification-ClassificationClassifier.html#property_extractionResponse"
+        },                {
             "fqsen": "\\Mindee\\V2\\Product\\Classification\\ClassificationInference",
             "name": "ClassificationInference",
             "summary": "Classification\u0020inference\u0020result.",
@@ -9925,6 +9930,11 @@ Search.appendIndex(
             "name": "objectType",
             "summary": "",
             "url": "classes/Mindee-V2-Product-Crop-CropItem.html#property_objectType"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Crop\\CropItem\u003A\u003A\u0024extractionResponse",
+            "name": "extractionResponse",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Crop-CropItem.html#property_extractionResponse"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Crop\\CropResponse",
             "name": "CropResponse",
@@ -10165,6 +10175,11 @@ Search.appendIndex(
             "name": "documentType",
             "summary": "",
             "url": "classes/Mindee-V2-Product-Split-SplitRange.html#property_documentType"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Split\\SplitRange\u003A\u003A\u0024extractionResponse",
+            "name": "extractionResponse",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Split-SplitRange.html#property_extractionResponse"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Split\\SplitResponse",
             "name": "SplitResponse",
