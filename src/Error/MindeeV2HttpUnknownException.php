@@ -2,7 +2,7 @@
 
 namespace Mindee\Error;
 
-use Mindee\Parsing\V2\ErrorResponse;
+use Mindee\V2\Parsing\ErrorResponse;
 
 /**
  * Unknown HTTP error for the V2 API.

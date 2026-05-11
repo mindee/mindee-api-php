@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Classification;
 
-use Mindee\Parsing\Common\SummaryHelper;
+use Mindee\Parsing\SummaryHelper;
 use Mindee\V2\Parsing\BaseInference;
 
 /**

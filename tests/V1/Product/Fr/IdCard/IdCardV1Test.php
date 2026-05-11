@@ -2,9 +2,9 @@
 
 namespace V1\Product\Fr\IdCard;
 
-use Mindee\Parsing\Common\Document;
-use Mindee\Parsing\Common\Page;
 use Mindee\Product\Fr\IdCard;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Parsing\Common\Page;
 use PHPUnit\Framework\TestCase;
 
 class IdCardV1Test extends TestCase
@@ -22,9 +22,9 @@ class IdCardV1Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(IdCard\IdCardV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(IdCard\IdCardV1::class, $emptyDocJSON["document"]);
-        $this->completePage0 = new Page(IdCard\IdCardV1Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\IdCard\IdCardV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\IdCard\IdCardV1::class, $emptyDocJSON["document"]);
+        $this->completePage0 = new Page(\Mindee\V1\Product\Fr\IdCard\IdCardV1Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
         $this->completePage0Reference = file_get_contents($productDir . "summary_page0.rst");
     }

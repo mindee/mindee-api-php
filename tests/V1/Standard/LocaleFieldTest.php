@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\LocaleField;
+use Mindee\V1\Parsing\Standard\LocaleField;
 use PHPUnit\Framework\TestCase;
 
 class LocaleFieldTest extends TestCase

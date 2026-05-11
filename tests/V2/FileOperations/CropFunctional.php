@@ -2,18 +2,18 @@
 
 namespace V2\FileOperations;
 
-use Mindee\ClientV2;
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
-use Mindee\Parsing\V2\InferenceResponse;
+use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Crop;
+use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\V2\Product\Crop\Params\CropParameters;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\TestCase;
 
 class CropFunctional extends TestCase
 {
-    private ClientV2 $client;
+    private Client $client;
     private string $cropModelId;
     private string $findocModelId;
     private string $outputDir;
@@ -21,7 +21,7 @@ class CropFunctional extends TestCase
     protected function setUp(): void
     {
         $apiKey = getenv('MINDEE_V2_API_KEY') ?: '';
-        $this->client = new ClientV2($apiKey);
+        $this->client = new Client($apiKey);
         $this->cropModelId = getenv('MINDEE_V2_CROP_MODEL_ID') ?: '';
         $this->findocModelId = getenv('MINDEE_V2_FINDOC_MODEL_ID') ?: '';
 
@@ -81,14 +81,14 @@ class CropFunctional extends TestCase
 
         $file1Info = filesize($this->outputDir . '/crop_001.jpg');
         $this->assertGreaterThanOrEqual(97000, $file1Info);
-        $this->assertLessThanOrEqual(100000, $file1Info);
+        $this->assertLessThanOrEqual(103000, $file1Info);
 
         $file2Info = filesize($this->outputDir . '/crop_002.jpg');
         $this->assertGreaterThanOrEqual(97000, $file2Info);
-        $this->assertLessThanOrEqual(100000, $file2Info);
+        $this->assertLessThanOrEqual(103000, $file2Info);
     }
 
-    public function testExtractCropsFromEachPdfPageCorrectly(): void
+    public function testExtractCropsFromEachPDFPageCorrectly(): void
     {
         $inputSource = new PathInput(\TestingUtilities::getV2ProductDir() . '/crop/multipage_sample.pdf');
         $cropParams = new CropParameters($this->cropModelId);

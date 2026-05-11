@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Ocr;
 
-use Mindee\Parsing\V2\BaseResponse;
+use Mindee\V2\Parsing\Inference\BaseResponse;
 
 /**
  * Response for an OCR utility inference.

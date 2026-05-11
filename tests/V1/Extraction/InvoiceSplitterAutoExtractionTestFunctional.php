@@ -2,18 +2,18 @@
 
 namespace V1\Extraction;
 
-use Mindee\Client;
-use Mindee\Extraction\PdfExtractor;
+use Mindee\Extraction\PDFExtractor;
 use Mindee\Input\PathInput;
-use Mindee\Parsing\Common\Document;
-use Mindee\Product\Invoice\InvoiceV4;
-use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\V1\Client;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Invoice\InvoiceV4;
+use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
-class PdfExtractorTest extends TestCase
+class PDFExtractorTest extends TestCase
 {
     private const PRODUCT_DATA_DIR = '/tests/resources/products';
 
@@ -30,7 +30,7 @@ class PdfExtractorTest extends TestCase
      * @test
      * @group functional
      */
-    public function testPdfShouldExtractInvoicesStrict()
+    public function testPDFShouldExtractInvoicesStrict()
     {
         $client = new Client();
         $invoiceSplitterInput = new PathInput(
@@ -38,7 +38,7 @@ class PdfExtractorTest extends TestCase
         );
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
-        $pdfExtractor = new PdfExtractor($invoiceSplitterInput);
+        $pdfExtractor = new PDFExtractor($invoiceSplitterInput);
         $this->assertEquals(2, $pdfExtractor->getPageCount());
 
         $extractedPdfsStrict = $pdfExtractor->extractInvoices($inference->prediction->invoicePageGroups);

@@ -2,8 +2,8 @@
 
 namespace V1\Product\Fr\Payslip;
 
-use Mindee\Parsing\Common\Document;
 use Mindee\Product\Fr\Payslip;
+use Mindee\V1\Parsing\Common\Document;
 use PHPUnit\Framework\TestCase;
 
 class PayslipV3Test extends TestCase
@@ -19,8 +19,8 @@ class PayslipV3Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(Payslip\PayslipV3::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(Payslip\PayslipV3::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\Payslip\PayslipV3::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\Payslip\PayslipV3::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 

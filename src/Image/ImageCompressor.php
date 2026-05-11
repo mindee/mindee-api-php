@@ -2,10 +2,10 @@
 
 namespace Mindee\Image;
 
+use Mindee\Dependency\DependencyChecker;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
-use Mindee\Parsing\DependencyChecker;
-use Mindee\Error\ErrorCode;
 
 /**
  * Image compressor class to handle image compression.

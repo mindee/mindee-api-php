@@ -1,6 +1,6 @@
 <?php
 
-use Mindee\ClientV2;
+use Mindee\V2\Client;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use Mindee\Input\PathInput;
@@ -10,7 +10,7 @@ $filePath = "/path/to/the/file.ext";
 $modelId = "MY_MODEL_ID";
 
 // Init a new client
-$mindeeClient = new ClientV2($apiKey);
+$mindeeClient = new Client($apiKey);
 
 // Set split parameters
 // Note: modelId is mandatory.

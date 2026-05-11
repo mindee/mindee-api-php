@@ -1,7 +1,7 @@
 <?php
 
-use Mindee\Client;
-use Mindee\Product\Fr\IdCard\IdCardV2;
+use Mindee\V1\Client;
+use Mindee\V1\Product\Fr\IdCard\IdCardV2;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");

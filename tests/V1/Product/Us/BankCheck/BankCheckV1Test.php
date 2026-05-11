@@ -2,9 +2,9 @@
 
 namespace V1\Product\Us\BankCheck;
 
-use Mindee\Parsing\Common\Document;
-use Mindee\Parsing\Common\Page;
 use Mindee\Product\Us\BankCheck;
+use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Parsing\Common\Page;
 use PHPUnit\Framework\TestCase;
 
 class BankCheckV1Test extends TestCase
@@ -22,9 +22,9 @@ class BankCheckV1Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(BankCheck\BankCheckV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(BankCheck\BankCheckV1::class, $emptyDocJSON["document"]);
-        $this->completePage0 = new Page(BankCheck\BankCheckV1Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Us\BankCheck\BankCheckV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Us\BankCheck\BankCheckV1::class, $emptyDocJSON["document"]);
+        $this->completePage0 = new Page(\Mindee\V1\Product\Us\BankCheck\BankCheckV1Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
         $this->completePage0Reference = file_get_contents($productDir . "summary_page0.rst");
     }

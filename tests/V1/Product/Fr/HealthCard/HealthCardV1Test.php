@@ -2,8 +2,8 @@
 
 namespace V1\Product\Fr\HealthCard;
 
-use Mindee\Parsing\Common\Document;
 use Mindee\Product\Fr\HealthCard;
+use Mindee\V1\Parsing\Common\Document;
 use PHPUnit\Framework\TestCase;
 
 class HealthCardV1Test extends TestCase
@@ -19,8 +19,8 @@ class HealthCardV1Test extends TestCase
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(HealthCard\HealthCardV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(HealthCard\HealthCardV1::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\HealthCard\HealthCardV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\HealthCard\HealthCardV1::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 

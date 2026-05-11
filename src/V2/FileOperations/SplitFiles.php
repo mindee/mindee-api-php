@@ -3,21 +3,21 @@
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeException;
-use Mindee\Extraction\ExtractedPdf;
+use Mindee\Extraction\ExtractedPDF;
 
 /**
  * Split files collection wrapper.
  *
- * * @extends \ArrayObject<int, ExtractedPdf>
+ * * @extends \ArrayObject<int, ExtractedPDF>
  */
 class SplitFiles extends \ArrayObject
 {
     /**
      * Builds a new SplitFiles collection.
      *
-     * @param ExtractedPdf ...$items Items.
+     * @param ExtractedPDF ...$items Items.
      */
-    public function __construct(ExtractedPdf ...$items)
+    public function __construct(ExtractedPDF ...$items)
     {
         parent::__construct($items);
     }

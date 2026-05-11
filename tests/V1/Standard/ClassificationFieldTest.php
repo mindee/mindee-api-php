@@ -2,7 +2,7 @@
 
 namespace V1\Standard;
 
-use Mindee\Parsing\Standard\ClassificationField;
+use Mindee\V1\Parsing\Standard\ClassificationField;
 use PHPUnit\Framework\TestCase;
 
 class ClassificationFieldTest extends TestCase

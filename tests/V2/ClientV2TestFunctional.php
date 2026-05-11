@@ -2,17 +2,17 @@
 
 namespace V2;
 
-use Mindee\ClientV2;
 use Mindee\Error\MindeeV2HttpException;
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
 use Mindee\Input\URLInputSource;
+use Mindee\V2\Client;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
 class ClientV2TestFunctional extends TestCase
 {
-    private ClientV2 $mindeeClient;
+    private Client $mindeeClient;
     private string $modelId;
 
     protected function setUp(): void
@@ -20,7 +20,7 @@ class ClientV2TestFunctional extends TestCase
         $apiKey = getenv('MINDEE_V2_API_KEY');
         $this->modelId = getenv('MINDEE_V2_FINDOC_MODEL_ID');
 
-        $this->mindeeClient = new ClientV2($apiKey);
+        $this->mindeeClient = new Client($apiKey);
     }
 
     public function testParseFileEmptyMultiPageMustSucceed(): void
