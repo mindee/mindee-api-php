@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindee\Input;
+namespace Mindee\V1\ClientOptions;
 
 /**
  * Handles options tied to Workflows.

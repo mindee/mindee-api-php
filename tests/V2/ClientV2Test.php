@@ -3,14 +3,14 @@
 namespace V2;
 
 use Mindee\Error\MindeeException;
-use Mindee\V2\HTTP\MindeeAPIV2;
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
+use Mindee\V2\HTTP\MindeeAPIV2;
 use Mindee\V2\Parsing\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

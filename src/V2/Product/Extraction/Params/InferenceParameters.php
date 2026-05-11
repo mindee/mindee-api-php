@@ -1,7 +1,8 @@
 <?php
 
-namespace Mindee\Input;
+namespace Mindee\V2\Product\Extraction\Params;
 
+use Mindee\ClientOptions\PollingOptions;
 use Mindee\V2\ClientOptions\BaseParameters;
 
 /**

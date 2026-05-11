@@ -2,11 +2,11 @@
 
 namespace V2\FileOperations;
 
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Split;
 use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;

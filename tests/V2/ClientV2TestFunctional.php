@@ -3,10 +3,10 @@
 namespace V2;
 
 use Mindee\Error\MindeeV2HttpException;
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
 use Mindee\Input\URLInputSource;
 use Mindee\V2\Client;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 

@@ -4,13 +4,13 @@ namespace Mindee\V2;
 
 use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
-use Mindee\V2\HTTP\MindeeAPIV2;
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\HTTP\MindeeAPIV2;
 use Mindee\V2\Parsing\BaseResponse;
 use Mindee\V2\Parsing\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 
 /**
  * Mindee Client V2.

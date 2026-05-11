@@ -5,7 +5,7 @@ namespace Mindee\V1\HTTP;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
-use Mindee\Input\WorkflowOptions;
+use Mindee\V1\ClientOptions\WorkflowOptions;
 
 /**
  * Workflow router endpoint substitute.

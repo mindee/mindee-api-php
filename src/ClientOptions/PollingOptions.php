@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindee\Input;
+namespace Mindee\ClientOptions;
 
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;

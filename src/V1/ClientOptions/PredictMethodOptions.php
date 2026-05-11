@@ -1,7 +1,8 @@
 <?php
 
-namespace Mindee\Input;
+namespace Mindee\V1\ClientOptions;
 
+use Mindee\Input\PageOptions;
 use Mindee\V1\HTTP\Endpoint;
 use Mindee\V1\HTTP\WorkflowEndpoint;
 

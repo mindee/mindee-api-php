@@ -4,8 +4,8 @@ namespace Mindee\V1\HTTP;
 
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
-use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\URLInputSource;
+use Mindee\V1\ClientOptions\PredictMethodOptions;
 
 /**
  * Endpoint management.

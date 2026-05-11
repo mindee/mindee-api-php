@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindee\Input;
+namespace Mindee\V1\ClientOptions;
 
 /**
  * Common base for regular prediction options and workflow options.

@@ -2,7 +2,7 @@
 
 
 use Mindee\V1\Client;
-use Mindee\Input\PredictMethodOptions;
+use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\Product\Generated\GeneratedV1;
 
 $workflowId = "workflow-id";

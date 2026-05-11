@@ -2,13 +2,13 @@
 
 namespace V2\FileOperations;
 
-use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Crop;
 use Mindee\V2\Parsing\InferenceResponse;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\V2\Product\Crop\Params\CropParameters;
+use Mindee\V2\Product\Extraction\Params\InferenceParameters;
 use PHPUnit\Framework\TestCase;
 
 class CropFunctional extends TestCase
