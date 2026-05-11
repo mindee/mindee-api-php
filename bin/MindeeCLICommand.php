@@ -2,7 +2,6 @@
 
 namespace Mindee\CLI;
 
-use Mindee\Client;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\InputSource;
 use Mindee\Input\PageOptions;
@@ -12,12 +11,12 @@ use Mindee\Input\PredictOptions;
 use Mindee\Input\URLInputSource;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Parsing\Common\PredictResponse;
+use Mindee\V1\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use const Mindee\Input\KEEP_ONLY;
 use const Mindee\Input\REMOVE;
 use const Mindee\VERSION;

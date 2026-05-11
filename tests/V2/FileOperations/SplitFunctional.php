@@ -2,18 +2,18 @@
 
 namespace V2\FileOperations;
 
-use Mindee\ClientV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\PathInput;
-use Mindee\Parsing\V2\InferenceResponse;
+use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Split;
-use Mindee\V2\Product\Split\SplitResponse;
+use Mindee\V2\Parsing\InferenceResponse;
 use Mindee\V2\Product\Split\Params\SplitParameters;
+use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
 
 class SplitFunctional extends TestCase
 {
-    private ClientV2 $client;
+    private Client $client;
     private string $splitModelId;
     private string $findocModelId;
     private string $outputDir;
@@ -21,7 +21,7 @@ class SplitFunctional extends TestCase
     protected function setUp(): void
     {
         $apiKey = getenv('MINDEE_V2_API_KEY') ?: '';
-        $this->client = new ClientV2($apiKey);
+        $this->client = new Client($apiKey);
         $this->splitModelId = getenv('MINDEE_V2_SPLIT_MODEL_ID') ?: '';
         $this->findocModelId = getenv('MINDEE_V2_FINDOC_MODEL_ID') ?: '';
 

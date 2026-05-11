@@ -2,12 +2,12 @@
 
 namespace V1\Extraction;
 
-use Mindee\Client;
 use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use Mindee\Parsing\Common\Document;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 

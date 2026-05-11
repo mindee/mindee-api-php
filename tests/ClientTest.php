@@ -1,6 +1,5 @@
 <?php
 
-use Mindee\Client;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
@@ -13,6 +12,7 @@ use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\Product\Receipt\ReceiptV5;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase

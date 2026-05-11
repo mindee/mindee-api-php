@@ -4,8 +4,8 @@ namespace V2\Parsing;
 
 use DateTime;
 use Mindee\Error\ErrorItem;
-use Mindee\Parsing\V2\ErrorResponse;
-use Mindee\Parsing\V2\JobResponse;
+use Mindee\V2\Parsing\ErrorResponse;
+use Mindee\V2\Parsing\JobResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 

@@ -2,9 +2,8 @@
 
 namespace Mindee\Input;
 
-use Mindee\Http\BaseEndpoint;
-use Mindee\Http\Endpoint;
-use Mindee\Http\WorkflowEndpoint;
+use Mindee\V1\HTTP\Endpoint;
+use Mindee\V1\HTTP\WorkflowEndpoint;
 
 /**
  * Handles options tied to prediction method.

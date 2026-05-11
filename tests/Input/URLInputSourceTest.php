@@ -2,12 +2,11 @@
 
 namespace Input;
 
-use Mindee\Client;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\URLInputSource;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
-
-use const Mindee\Http\API_KEY_ENV_NAME;
+use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 
 class URLInputSourceTest extends TestCase
 {

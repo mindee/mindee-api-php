@@ -2,23 +2,23 @@
 
 namespace V2;
 
-use Mindee\ClientV2;
 use Mindee\Error\MindeeException;
-use Mindee\Http\MindeeApiV2;
+use Mindee\V2\HTTP\MindeeAPIV2;
 use Mindee\Input\InferenceParameters;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
-use Mindee\Parsing\V2\InferenceResponse;
-use Mindee\Parsing\V2\JobResponse;
+use Mindee\V2\Client;
+use Mindee\V2\Parsing\InferenceResponse;
+use Mindee\V2\Parsing\JobResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class ClientV2Test extends TestCase
 {
-    private static function makeClientWithMockedApi(MindeeApiV2 $mockedApi): ClientV2
+    private static function makeClientWithMockedApi(MindeeAPIV2 $mockedApi): Client
     {
-        $client = new ClientV2("dummy");
+        $client = new Client("dummy");
         $reflection = new \ReflectionClass($client);
         $property = $reflection->getProperty('mindeeApi');
         $property->setAccessible(true);
@@ -28,7 +28,7 @@ class ClientV2Test extends TestCase
 
     public function testEnqueuePostAsync(): void
     {
-        $predictable = $this->createMock(MindeeApiV2::class);
+        $predictable = $this->createMock(MindeeAPIV2::class);
         $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $predictable->expects($this->once())
             ->method('reqPostEnqueue')
@@ -51,8 +51,8 @@ class ClientV2Test extends TestCase
 
     public function testDocumentGetJobAsync(): void
     {
-        /** @var MindeeApiV2&MockObject $predictable */
-        $predictable = $this->createMock(MindeeApiV2::class);
+        /** @var MindeeAPIV2&MockObject $predictable */
+        $predictable = $this->createMock(MindeeAPIV2::class);
 
         $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $processing = new JobResponse(json_decode($syntheticResponse, true));
@@ -72,8 +72,8 @@ class ClientV2Test extends TestCase
 
     public function testDocumentGetInferenceAsync(): void
     {
-        /** @var MindeeApiV2&MockObject $predictable */
-        $predictable = $this->createMock(MindeeApiV2::class);
+        /** @var MindeeAPIV2&MockObject $predictable */
+        $predictable = $this->createMock(MindeeAPIV2::class);
 
         $jsonFile = \TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
@@ -141,7 +141,7 @@ class ClientV2Test extends TestCase
         putenv('MINDEE_V2_BASE_URL=https://invalid-v2.mindee.net');
 
         try {
-            $client = new ClientV2('dummy-key');
+            $client = new Client('dummy-key');
             $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
             $params = new InferenceParameters('dummy-model-id');
             $client->enqueueAndGetInference($input, $params);

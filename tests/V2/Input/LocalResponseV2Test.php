@@ -3,7 +3,7 @@
 namespace V2\Input;
 
 use Mindee\Input\LocalResponse;
-use Mindee\Parsing\V2\InferenceResponse;
+use Mindee\V2\Parsing\InferenceResponse;
 use PHPUnit\Framework\TestCase;
 
 class LocalResponseV2Test extends TestCase

@@ -2,11 +2,11 @@
 
 namespace V1\Error;
 
-use Mindee\Client;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\PathInput;
 use Mindee\Product\Invoice\InvoiceV4;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 
 class MindeeHttpExceptionTest extends TestCase

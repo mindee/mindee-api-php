@@ -2,8 +2,8 @@
 
 namespace V1\Input;
 
-use Mindee\Client;
 use Mindee\Product\Invoice\InvoiceV4;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 
 class URLInputSourceTestFunctional extends TestCase

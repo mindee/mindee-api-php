@@ -2,11 +2,11 @@
 
 namespace V1\Parsing\Common\Extras;
 
-use Mindee\Client;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\PredictOptions;
 use Mindee\Product\InternationalId\InternationalIdV2;
 use Mindee\Product\Invoice\InvoiceV4;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 
 class ExtrasIntegrationFunctional extends TestCase

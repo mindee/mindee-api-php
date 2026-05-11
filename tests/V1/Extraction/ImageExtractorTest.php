@@ -2,12 +2,12 @@
 
 namespace V1\Extraction;
 
-use Mindee\Client;
-use Mindee\V1\Image\ImageExtractor;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
+use Mindee\V1\Client;
+use Mindee\V1\Image\ImageExtractor;
 use PHPUnit\Framework\TestCase;
 
 class ImageExtractorTest extends TestCase

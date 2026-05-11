@@ -1,10 +1,10 @@
 <?php
 
-use Mindee\Client;
-use Mindee\V1\Image\ImageExtractor;
 use Mindee\Input\PathInput;
 use Mindee\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\Product\Receipt\ReceiptV5;
+use Mindee\V1\Client;
+use Mindee\V1\Image\ImageExtractor;
 
 $mindeeClient = new Client("my-api-key-here");
 // $mindeeClient = new Client(); // Optionally, use an environment variable.

@@ -2,24 +2,24 @@
 
 namespace Input;
 
-use Mindee\Client;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePDFException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Image\ImageCompressor;
+use Mindee\Input\Base64Input;
+use Mindee\Input\BytesInput;
+use Mindee\Input\FileInput;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\Input\FileInput;
-use Mindee\Input\BytesInput;
-use Mindee\Input\Base64Input;
 use Mindee\PDF\PDFCompressor;
 use Mindee\PDF\PDFUtils;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
 
-use const Mindee\Http\API_KEY_ENV_NAME;
+use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 use const Mindee\Input\KEEP_ONLY;
 use const Mindee\Input\REMOVE;
 

@@ -1,0 +1,30 @@
+<?php
+
+namespace Mindee\V2\Parsing;
+
+/**
+ * Common response base class for V2.
+ */
+abstract class BaseResponse
+{
+    /**
+     * @var array Raw HTTP response from the server.
+     */
+    private array $rawHttp;
+
+    /**
+     * @param array $rawResponse Raw server response array.
+     */
+    protected function __construct(array $rawResponse)
+    {
+        $this->rawHttp = $rawResponse;
+    }
+
+    /**
+     * @return string Raw dump of the JSON response.
+     */
+    public function getRawHttp(): string
+    {
+        return json_encode($this->rawHttp, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    }
+}

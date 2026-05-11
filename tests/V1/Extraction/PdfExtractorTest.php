@@ -3,11 +3,11 @@
 
 namespace V1\Extraction;
 
-use Mindee\Client;
 use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 
 class PdfExtractorTest extends TestCase

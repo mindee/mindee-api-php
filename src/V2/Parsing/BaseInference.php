@@ -3,9 +3,6 @@
 namespace Mindee\V2\Parsing;
 
 use Mindee\Parsing\Common\SummaryHelper;
-use Mindee\Parsing\V2\InferenceFile;
-use Mindee\Parsing\V2\InferenceJob;
-use Mindee\Parsing\V2\InferenceModel;
 
 /**
  * Base for all inference-based V2 products.

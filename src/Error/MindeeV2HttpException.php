@@ -2,7 +2,7 @@
 
 namespace Mindee\Error;
 
-use Mindee\Parsing\V2\ErrorResponse;
+use Mindee\V2\Parsing\ErrorResponse;
 
 /**
  * Exceptions relating to HTTP errors for the V2 API.

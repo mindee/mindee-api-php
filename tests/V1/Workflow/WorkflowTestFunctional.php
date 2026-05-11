@@ -2,10 +2,10 @@
 
 namespace V1\Workflow;
 
-use Mindee\Client;
 use Mindee\Input\PredictMethodOptions;
 use Mindee\Input\WorkflowOptions;
 use Mindee\Product\FinancialDocument\FinancialDocumentV1;
+use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");

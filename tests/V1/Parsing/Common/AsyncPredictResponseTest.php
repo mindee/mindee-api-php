@@ -2,9 +2,9 @@
 
 namespace V1\Parsing\Common;
 
-use Mindee\Http\ResponseValidation;
 use Mindee\Parsing\Common\AsyncPredictResponse;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\V1\HTTP\ResponseValidation;
 use PHPUnit\Framework\TestCase;
 
 class AsyncPredictResponseTest extends TestCase

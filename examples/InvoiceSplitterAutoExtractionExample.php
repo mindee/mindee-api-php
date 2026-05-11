@@ -1,10 +1,10 @@
 <?php
 
-use Mindee\Client;
 use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use Mindee\Product\Invoice\InvoiceV4;
 use Mindee\Product\InvoiceSplitter\InvoiceSplitterV1;
+use Mindee\V1\Client;
 
 function parseInvoice(string $filePath, Client $mindeeClient)
 {
