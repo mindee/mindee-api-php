@@ -1,6 +1,6 @@
 <?php
 
-namespace Mindee\Parsing\Common;
+namespace Mindee\Parsing;
 
 /**
  * Base utility class to handle information display.

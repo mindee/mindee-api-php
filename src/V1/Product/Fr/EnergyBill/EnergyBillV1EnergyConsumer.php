@@ -2,9 +2,9 @@
 
 namespace Mindee\V1\Product\Fr\EnergyBill;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * The entity that consumes the energy.

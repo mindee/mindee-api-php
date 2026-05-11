@@ -4,7 +4,7 @@ namespace Mindee\V1\Product\Fr\Payslip;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Payslip API version 3.0 document data.

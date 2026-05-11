@@ -4,9 +4,9 @@ namespace Mindee\V1\Product\BillOfLading;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\DateField;
 use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Bill of Lading API version 1.1 document data.

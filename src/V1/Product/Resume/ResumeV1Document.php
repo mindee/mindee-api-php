@@ -4,9 +4,9 @@ namespace Mindee\V1\Product\Resume;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\ClassificationField;
 use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Resume API version 1.2 document data.

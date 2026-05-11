@@ -4,10 +4,10 @@ namespace Mindee\V1\Product\Ind\IndianPassport;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\ClassificationField;
 use Mindee\V1\Parsing\Standard\DateField;
 use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Passport - India API version 1.2 document data.

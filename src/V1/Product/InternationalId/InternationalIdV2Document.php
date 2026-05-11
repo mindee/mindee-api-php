@@ -4,10 +4,10 @@ namespace Mindee\V1\Product\InternationalId;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\ClassificationField;
 use Mindee\V1\Parsing\Standard\DateField;
 use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * International ID API version 2.2 document data.

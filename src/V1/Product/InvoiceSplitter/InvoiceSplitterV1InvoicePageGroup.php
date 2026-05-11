@@ -2,9 +2,9 @@
 
 namespace Mindee\V1\Product\InvoiceSplitter;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * List of page groups. Each group represents a single invoice within a multi-invoice document.

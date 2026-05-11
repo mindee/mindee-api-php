@@ -7,10 +7,10 @@
 namespace Mindee\V1\Product\Generated;
 
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Generated\GeneratedListField;
 use Mindee\V1\Parsing\Generated\GeneratedObjectField;
 use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Generated V1 document prediction results.

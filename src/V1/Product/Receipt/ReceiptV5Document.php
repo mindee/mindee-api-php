@@ -4,7 +4,6 @@ namespace Mindee\V1\Product\Receipt;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\AmountField;
 use Mindee\V1\Parsing\Standard\ClassificationField;
 use Mindee\V1\Parsing\Standard\CompanyRegistrationField;
@@ -12,6 +11,7 @@ use Mindee\V1\Parsing\Standard\DateField;
 use Mindee\V1\Parsing\Standard\LocaleField;
 use Mindee\V1\Parsing\Standard\StringField;
 use Mindee\V1\Parsing\Standard\Taxes;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Receipt API version 5.4 document data.

@@ -2,9 +2,9 @@
 
 namespace Mindee\V1\Product\FinancialDocument;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * List of line item present on the document.

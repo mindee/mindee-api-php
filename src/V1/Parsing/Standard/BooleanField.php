@@ -2,7 +2,7 @@
 
 namespace Mindee\V1\Parsing\Standard;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * A field containing a boolean value.

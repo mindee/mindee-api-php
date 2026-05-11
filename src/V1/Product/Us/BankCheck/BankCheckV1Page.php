@@ -2,8 +2,8 @@
 
 namespace Mindee\V1\Product\Us\BankCheck;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\PositionField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Bank Check API version 1.1 page data.

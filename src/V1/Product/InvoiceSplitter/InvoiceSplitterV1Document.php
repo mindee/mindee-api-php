@@ -4,7 +4,7 @@ namespace Mindee\V1\Product\InvoiceSplitter;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Invoice Splitter API version 1.4 document data.

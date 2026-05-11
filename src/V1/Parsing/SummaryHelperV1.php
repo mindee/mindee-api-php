@@ -1,8 +1,8 @@
 <?php
 
-namespace Mindee\V1\Parsing\Common;
+namespace Mindee\V1\Parsing;
 
-use Mindee\Parsing\Common\SummaryHelper;
+use Mindee\Parsing\SummaryHelper;
 
 /**
  * Utility class to handle information display.

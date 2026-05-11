@@ -4,10 +4,10 @@ namespace Mindee\V1\Product\Us\BankCheck;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\AmountField;
 use Mindee\V1\Parsing\Standard\DateField;
 use Mindee\V1\Parsing\Standard\StringField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Bank Check API version 1.1 document data.

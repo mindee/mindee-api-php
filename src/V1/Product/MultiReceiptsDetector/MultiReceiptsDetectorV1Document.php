@@ -4,8 +4,8 @@ namespace Mindee\V1\Product\MultiReceiptsDetector;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\PositionField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Multi Receipts Detector API version 1.1 document data.

@@ -2,8 +2,8 @@
 
 namespace Mindee\V1\Product\Cropper;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\PositionField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Cropper API version 1.1 page data.

@@ -2,9 +2,9 @@
 
 namespace Mindee\V1\Product\Invoice;
 
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * List of all the line items present on the invoice.

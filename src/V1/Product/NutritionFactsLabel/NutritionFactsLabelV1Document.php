@@ -4,8 +4,8 @@ namespace Mindee\V1\Product\NutritionFactsLabel;
 
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Prediction;
-use Mindee\V1\Parsing\Common\SummaryHelperV1;
 use Mindee\V1\Parsing\Standard\AmountField;
+use Mindee\V1\Parsing\SummaryHelperV1;
 
 /**
  * Nutrition Facts Label API version 1.0 document data.
