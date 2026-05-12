@@ -10,12 +10,12 @@ namespace Mindee\V1\Parsing\Common;
 class AsyncPredictResponse extends ApiResponse
 {
     /**
-     * @var \Mindee\V1\Parsing\Common\Job Job object link to the prediction.
+     * @var Job Job object link to the prediction.
      * As long as it isn't complete, the prediction doesn't exist.
      */
     public Job $job;
     /**
-     * @var \Mindee\V1\Parsing\Common\Document|null Document object. Can be null when enqueuing.
+     * @var Document|null Document object. Can be null when enqueuing.
      */
     public ?Document $document;
 

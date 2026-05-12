@@ -2,15 +2,15 @@
 
 namespace Mindee\V2;
 
+use Mindee\ClientOptions\PollingOptions;
 use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
 use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\HTTP\MindeeAPIV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
-use Mindee\V2\Product\Extraction\Params\InferenceParameters;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 
 /**
  * Mindee Client V2.
@@ -37,15 +37,15 @@ class Client
     /**
      * Send the document to an asynchronous endpoint and return its ID in the queue.
      *
-     * @param InputSource         $inputSource File to parse.
-     * @param InferenceParameters $params      Parameters relating to prediction options.
+     * @param InputSource          $inputSource File to parse.
+     * @param ExtractionParameters $params      Parameters relating to prediction options.
      * @return JobResponse A JobResponse containing the job (queue) corresponding to a document.
      * @throws MindeeException Throws if the input document is not provided.
      * @category Asynchronous
      */
     public function enqueueInference(
         InputSource $inputSource,
-        InferenceParameters $params
+        ExtractionParameters $params
     ): JobResponse {
         return $this->enqueue($inputSource, $params);
     }
@@ -65,17 +65,6 @@ class Client
         return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
     }
 
-    /**
-     * Retrieves an inference.
-     *
-     * @param string $inferenceId ID of the queue to poll.
-     * @return InferenceResponse An InferenceResponse containing a Job.
-     * @category Asynchronous
-     */
-    public function getInference(string $inferenceId): InferenceResponse
-    {
-        return $this->mindeeApi->reqGetInference($inferenceId);
-    }
 
     /**
      * @template T of BaseResponse
@@ -122,36 +111,24 @@ class Client
      * Send a document to an endpoint and poll the server until the result is sent or
      * until the maximum number of tries is reached.
      *
-     * @param InputSource         $inputDoc Input document to parse.
-     * @param InferenceParameters $params   Parameters relating to prediction options.
-     * @return InferenceResponse A response containing parsing results.
-     * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
-     */
-    public function enqueueAndGetInference(
-        InputSource $inputDoc,
-        InferenceParameters $params
-    ): InferenceResponse {
-        return $this->enqueueAndGetResult(InferenceResponse::class, $inputDoc, $params);
-    }
-
-    /**
-     * Send a document to an endpoint and poll the server until the result is sent or
-     * until the maximum number of tries is reached.
-     *
      * @template T of BaseResponse
-     * @param string         $responseClass The response class to construct.
+     * @param string              $responseClass  The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param InputSource    $inputDoc      Input document to parse.
-     * @param BaseParameters $params        Parameters relating to prediction options.
+     * @param InputSource         $inputDoc       Input document to parse.
+     * @param BaseParameters      $params         Parameters relating to prediction options.
+     * @param PollingOptions|null $pollingOptions Options to apply to the polling.
      * @return BaseResponse A response containing parsing results.
      * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
      */
     public function enqueueAndGetResult(
         string $responseClass,
         InputSource $inputDoc,
-        BaseParameters $params
+        BaseParameters $params,
+        ?PollingOptions $pollingOptions = null
     ): BaseResponse {
-        $pollingOptions = $params->pollingOptions;
+        if (!$pollingOptions) {
+            $pollingOptions = new PollingOptions();
+        }
 
         $enqueueResponse = $this->enqueue($inputDoc, $params);
 

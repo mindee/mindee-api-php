@@ -1,16 +1,18 @@
 <?php
 
-namespace Mindee\V2\Parsing\Inference;
+namespace Mindee\V2\Product\Extraction;
+
+use Mindee\V2\Parsing\Inference\BaseResponse;
 
 /**
  * Inference response class for V2.
  */
-class InferenceResponse extends BaseResponse
+class ExtractionResponse extends BaseResponse
 {
     /**
-     * @var Inference Inference result.
+     * @var ExtractionInference Inference result.
      */
-    public Inference $inference;
+    public ExtractionInference $inference;
 
     /**
      * @var string Slug for the inference.
@@ -23,6 +25,6 @@ class InferenceResponse extends BaseResponse
     public function __construct(array $rawResponse)
     {
         parent::__construct($rawResponse);
-        $this->inference = new Inference($rawResponse['inference']);
+        $this->inference = new ExtractionInference($rawResponse['inference']);
     }
 }

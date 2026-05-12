@@ -1,13 +1,15 @@
 <?php
 
-namespace Mindee\V2\Parsing\Inference;
+namespace Mindee\V2\Product\Extraction;
 
 use Mindee\V2\Parsing\Inference\Field\InferenceFields;
+use Mindee\V2\Parsing\Inference\RAGMetadata;
+use Mindee\V2\Parsing\Inference\RawText;
 
 /**
  * Inference result class.
  */
-class InferenceResult
+class ExtractionResult
 {
     /**
      * @var InferenceFields Fields contained in the inference.

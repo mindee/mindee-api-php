@@ -4,7 +4,7 @@ namespace V2\Input;
 
 
 use Mindee\V2\Product\Extraction\Params\DataSchema;
-use Mindee\V2\Product\Extraction\Params\InferenceParameters;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\TestCase;
 
 class InferenceParameterTest extends TestCase
@@ -21,14 +21,14 @@ class InferenceParameterTest extends TestCase
     }
 
     public function testDataSchemaShouldntReplaceWhenUnset() {
-        $params = new InferenceParameters('model_id', dataSchema: null);
+        $params = new ExtractionParameters('model_id', dataSchema: null);
         $this->assertFalse(isset($params->dataSchema));
     }
 
     public function testDataSchemaShouldEquateNoMatterTheType(){
-        $paramsDict = new InferenceParameters('model_id', dataSchema: $this->expectedSchemaDict);
-        $paramsString = new InferenceParameters('model_id', dataSchema: $this->expectedSchemaString);
-        $paramsObject = new InferenceParameters('model_id', dataSchema: $this->expectedSchemaObject);
+        $paramsDict = new ExtractionParameters('model_id', dataSchema: $this->expectedSchemaDict);
+        $paramsString = new ExtractionParameters('model_id', dataSchema: $this->expectedSchemaString);
+        $paramsObject = new ExtractionParameters('model_id', dataSchema: $this->expectedSchemaObject);
         $this->assertEquals(strval($paramsDict->dataSchema), $this->expectedSchemaString);
         $this->assertEquals(strval($paramsObject->dataSchema), $this->expectedSchemaString);
         $this->assertEquals(strval($paramsString->dataSchema), $this->expectedSchemaString);

@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Split;
 
-use Mindee\V2\Parsing\Inference\InferenceResponse;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
 
 /**
  * A single document as identified when splitting a multi-document source file.
@@ -21,9 +21,9 @@ class SplitRange
     public string $documentType;
 
     /**
-     * @var InferenceResponse|null $extractionResponse The extraction response associated with the split.
+     * @var ExtractionResponse|null $extractionResponse The extraction response associated with the split.
      */
-    public ?InferenceResponse $extractionResponse;
+    public ?ExtractionResponse $extractionResponse;
 
 
     /**
@@ -34,7 +34,7 @@ class SplitRange
         $this->pageRange = $rawResponse['page_range'];
         $this->documentType = $rawResponse['document_type'];
         $this->extractionResponse = isset($rawResponse['extraction_response']) ?
-            new InferenceResponse($rawResponse['extraction_response']) : null;
+            new ExtractionResponse($rawResponse['extraction_response']) : null;
     }
 
     /**

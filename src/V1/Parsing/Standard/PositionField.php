@@ -11,23 +11,23 @@ use Mindee\Geometry\PolygonUtils;
 class PositionField extends BaseField
 {
     /**
-     * @var \Mindee\Geometry\Polygon|null Polygon of cropped area, identical to the `polygon` property.
+     * @var Polygon|null Polygon of cropped area, identical to the `polygon` property.
      */
     public $value;
     /**
-     * @var \Mindee\Geometry\Polygon|null Polygon of cropped area.
+     * @var Polygon|null Polygon of cropped area.
      */
     public ?Polygon $polygon;
     /**
-     * @var \Mindee\Geometry\Polygon|null Quadrangle of cropped area (does not exceed the canvas).
+     * @var Polygon|null Quadrangle of cropped area (does not exceed the canvas).
      */
     public ?Polygon $quadrangle;
     /**
-     * @var \Mindee\Geometry\Polygon|null Oriented rectangle of cropped area (may exceed the canvas).
+     * @var Polygon|null Oriented rectangle of cropped area (may exceed the canvas).
      */
     public ?Polygon $rectangle;
     /**
-     * @var \Mindee\Geometry\Polygon|null Straight rectangle of cropped area (does not exceed the canvas).
+     * @var Polygon|null Straight rectangle of cropped area (does not exceed the canvas).
      */
     public ?Polygon $boundingBox;
 
@@ -36,7 +36,7 @@ class PositionField extends BaseField
      *
      * @param array  $rawPrediction Raw prediction array.
      * @param string $key           Key to use for the value.
-     * @return \Mindee\Geometry\Polygon|null
+     * @return Polygon|null
      */
     private static function getQuadrilateral(array $rawPrediction, string $key): ?Polygon
     {
@@ -52,7 +52,7 @@ class PositionField extends BaseField
      *
      * @param array  $rawPrediction Raw prediction array.
      * @param string $key           Key to use for the value.
-     * @return \Mindee\Geometry\Polygon|null
+     * @return Polygon|null
      */
     private static function getPolygon(array $rawPrediction, string $key): ?Polygon
     {

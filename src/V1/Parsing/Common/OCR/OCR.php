@@ -8,7 +8,7 @@ namespace Mindee\V1\Parsing\Common\OCR;
 class OCR
 {
     /**
-     * @var \Mindee\V1\Parsing\Common\OCR\MVisionV1 Mindee Vision v1 results.
+     * @var MVisionV1 Mindee Vision v1 results.
      */
     public MVisionV1 $mvisionV1;
 

@@ -8,8 +8,6 @@ use TestingUtilities;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\Geometry\Point;
 
-// Added for the polygon coordinate assertions
-
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
 /**
@@ -86,7 +84,6 @@ class CropTest extends TestCase
         $polygon = $firstCrop->location->polygon;
         $this->assertCount(4, $polygon->getCoordinates());
 
-        // Note: Using assertEquals here instead of assertSame to allow for object value comparison
         $this->assertEquals(new Point(0.214, 0.036), $polygon->getCoordinates()[0]);
         $this->assertEquals(new Point(0.476, 0.036), $polygon->getCoordinates()[1]);
         $this->assertEquals(new Point(0.476, 0.949), $polygon->getCoordinates()[2]);
@@ -158,8 +155,6 @@ class CropTest extends TestCase
         $inference = $response->inference;
         $this->assertNotNull($inference);
 
-        // Assumes your Inference class implements the __toString() magic method
-        // which maps to C#'s ToString()
         $this->assertEquals(
             self::normalizeLineEndings($rstReference),
             self::normalizeLineEndings((string)$inference)

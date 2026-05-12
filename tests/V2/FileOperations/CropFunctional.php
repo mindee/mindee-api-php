@@ -5,10 +5,10 @@ namespace V2\FileOperations;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Crop;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\V2\Product\Crop\Params\CropParameters;
-use Mindee\V2\Product\Extraction\Params\InferenceParameters;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\TestCase;
 
 class CropFunctional extends TestCase
@@ -44,7 +44,7 @@ class CropFunctional extends TestCase
         }
     }
 
-    private function checkFindocReturn(InferenceResponse $findocResponse): void
+    private function checkFindocReturn(ExtractionResponse $findocResponse): void
     {
         $this->assertGreaterThan(0, strlen($findocResponse->inference->model->id));
 
@@ -71,9 +71,9 @@ class CropFunctional extends TestCase
         $this->assertEquals('default_sample.jpg_page0-1.jpg', $extractedImages[1]->filename);
 
         $extractionInput = $extractedImages[0]->asInputSource();
-        $findocParams = new InferenceParameters($this->findocModelId);
+        $findocParams = new ExtractionParameters($this->findocModelId);
 
-        $invoice0 = $this->client->enqueueAndGetResult(InferenceResponse::class, $extractionInput, $findocParams);
+        $invoice0 = $this->client->enqueueAndGetResult(ExtractionResponse::class, $extractionInput, $findocParams);
 
         $this->checkFindocReturn($invoice0);
 

@@ -20,8 +20,6 @@ class MindeeCLICommandTest extends TestCase
     public function testInvalidFilePath()
     {
         $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", "invalid-file-path", "-k", $this->apiKey, "-D"]);
-        // Note : a direct comparison here would be too complicated due to the fact that the output of the command has
-        // formatting applied by Symfony CLI.
         $this->assertEquals(1, $cmdOutput["code"]);
         $this->assertTrue(str_contains($cmdOutput["output"][0], "Invalid path or url provided 'invalid-file-path'."));
     }
