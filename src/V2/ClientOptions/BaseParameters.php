@@ -2,8 +2,6 @@
 
 namespace Mindee\V2\ClientOptions;
 
-use Mindee\ClientOptions\PollingOptions;
-
 /**
  * Base parameters for running an inference.
  */
@@ -25,17 +23,11 @@ abstract class BaseParameters
     public array $webhooksIds;
 
     /**
-     * @var PollingOptions Polling options.
+     * @param string             $modelId     ID of the model.
+     * @param string|null        $alias       Optional file alias.
+     * @param array<string>|null $webhooksIds List of webhook IDs.
      */
-    public PollingOptions $pollingOptions;
-
-    /**
-     * @param string              $modelId        ID of the model.
-     * @param string|null         $alias          Optional file alias.
-     * @param array<string>|null  $webhooksIds    List of webhook IDs.
-     * @param PollingOptions|null $pollingOptions Polling options.
-     */
-    public function __construct(string $modelId, ?string $alias, ?array $webhooksIds, ?PollingOptions $pollingOptions)
+    public function __construct(string $modelId, ?string $alias, ?array $webhooksIds)
     {
         $this->modelId = $modelId;
 
@@ -47,10 +39,6 @@ abstract class BaseParameters
         } else {
             $this->webhooksIds = [];
         }
-        if (!$pollingOptions) {
-            $pollingOptions = new PollingOptions();
-        }
-        $this->pollingOptions = $pollingOptions;
     }
 
     /**

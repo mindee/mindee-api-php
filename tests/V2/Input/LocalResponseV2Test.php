@@ -3,7 +3,7 @@
 namespace V2\Input;
 
 use Mindee\Input\LocalResponse;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
 use PHPUnit\Framework\TestCase;
 
 class LocalResponseV2Test extends TestCase
@@ -26,8 +26,8 @@ class LocalResponseV2Test extends TestCase
         $this->assertFalse($localResponse->isValidHMACSignature($fakeHMACSigning, "fake HMAC signature"));
         $this->assertEquals($signature, $localResponse->getHmacSignature($fakeHMACSigning));
         $this->assertTrue($localResponse->isValidHMACSignature($fakeHMACSigning, $signature));
-        $response = $localResponse->deserializeResponse(InferenceResponse::class);
-        $this->assertInstanceOf(InferenceResponse::class, $response);
+        $response = $localResponse->deserializeResponse(ExtractionResponse::class);
+        $this->assertInstanceOf(ExtractionResponse::class, $response);
         $this->assertNotNull($response->inference);
         $this->assertNotNull($response->inference->result);
         $this->assertNotNull($response->inference->result->fields);

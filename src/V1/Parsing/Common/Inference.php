@@ -10,7 +10,7 @@ use Mindee\V1\Parsing\Common\Extras\Extras;
 abstract class Inference
 {
     /**
-     * @var \Mindee\V1\Parsing\Common\Product Name and version of a given product, as sent back by the API.
+     * @var Product Name and version of a given product, as sent back by the API.
      */
     public Product $product;
     /**
@@ -22,7 +22,7 @@ abstract class Inference
      */
     public static string $endpointVersion;
     /**
-     * @var \Mindee\V1\Parsing\Common\Prediction A document's top-level Prediction.
+     * @var Prediction A document's top-level Prediction.
      */
     public Prediction $prediction;
     /**
@@ -38,7 +38,7 @@ abstract class Inference
      */
     public ?int $pageId;
     /**
-     * @var \Mindee\V1\Parsing\Common\Extras\Extras|null Potential Extras fields sent back along with the prediction.
+     * @var Extras|null Potential Extras fields sent back along with the prediction.
      */
     public ?Extras $extras;
 

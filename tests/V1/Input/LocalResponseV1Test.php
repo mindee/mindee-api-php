@@ -74,12 +74,10 @@ class LocalResponseV1Test extends TestCase
 
     public function testValidStreamLocalResponse()
     {
-        // Create a stream from the file content
         $stream = fopen('php://memory', 'r+');
         fwrite($stream, file_get_contents($this->filePath));
         rewind($stream);
 
-        // Create LocalResponse instance with the stream
         $localResponse = new LocalResponse($stream);
 
         $this->assertNotNull($localResponse->toArray(), 'Local response file should not be null');
@@ -102,7 +100,7 @@ class LocalResponseV1Test extends TestCase
             'Valid signature should be valid'
         );
 
-        fclose($stream); // Close the stream after use
+        fclose($stream);
     }
 
     public function testValidFilePathLocalResponse()

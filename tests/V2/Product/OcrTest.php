@@ -68,7 +68,6 @@ class OcrTest extends TestCase
 
         $firstWord = $firstPage->words[0];
         $this->assertSame("Shipper:", $firstWord->content);
-        // Using the getCoordinates() logic from the corrected file
         $this->assertCount(4, $firstWord->polygon->getCoordinates());
 
         $fifthWord = $firstPage->words[4];

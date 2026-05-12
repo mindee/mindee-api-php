@@ -6,7 +6,8 @@ use Mindee\Error\MindeeV2HttpException;
 use Mindee\Input\PathInput;
 use Mindee\Input\URLInputSource;
 use Mindee\V2\Client;
-use Mindee\V2\Product\Extraction\Params\InferenceParameters;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
@@ -26,9 +27,9 @@ class ClientV2TestFunctional extends TestCase
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
         $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
-        $inferenceParams = new InferenceParameters($this->modelId, rag: false, rawText: true);
+        $inferenceParams = new ExtractionParameters($this->modelId, rag: false, rawText: true);
 
-        $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
+        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -64,9 +65,9 @@ class ClientV2TestFunctional extends TestCase
             TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
         );
 
-        $inferenceParams = new InferenceParameters($this->modelId, rag: false, textContext: 'this is an invoice');
+        $inferenceParams = new ExtractionParameters($this->modelId, rag: false, textContext: 'this is an invoice');
 
-        $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
+        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -97,7 +98,7 @@ class ClientV2TestFunctional extends TestCase
 
         $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
 
-        $inferenceParams = new InferenceParameters('INVALID MODEL ID');
+        $inferenceParams = new ExtractionParameters('INVALID MODEL ID');
 
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
@@ -112,7 +113,7 @@ class ClientV2TestFunctional extends TestCase
     {
         $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
-        $inferenceParams = new InferenceParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21', textContext: 'this is invalid');
+        $inferenceParams = new ExtractionParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21', textContext: 'this is invalid');
 
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
@@ -127,7 +128,7 @@ class ClientV2TestFunctional extends TestCase
     public function testInvalidJobMustThrowError(): void
     {
         try {
-            $this->mindeeClient->getInference('fc405e37-4ba4-4d03-aeba-533a8d1f0f21');
+            $this->mindeeClient->getResult(ExtractionResponse::class, 'fc405e37-4ba4-4d03-aeba-533a8d1f0f21');
         } catch (MindeeV2HttpException $e) {
             $this->assertStringStartsWith('404-', $e->errorCode);
             $this->assertNotEmpty($e->title);
@@ -139,7 +140,7 @@ class ClientV2TestFunctional extends TestCase
     {
         $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
-        $inferenceParams = new InferenceParameters(
+        $inferenceParams = new ExtractionParameters(
             $this->modelId,
             null,
             null,
@@ -163,9 +164,9 @@ class ClientV2TestFunctional extends TestCase
     {
         $urlSource = new URLInputSource(getenv('MINDEE_V2_SE_TESTS_BLANK_PDF_URL'));
 
-        $inferenceParams = new InferenceParameters($this->modelId);
+        $inferenceParams = new ExtractionParameters($this->modelId);
 
-        $response = $this->mindeeClient->enqueueAndGetInference($urlSource, $inferenceParams);
+        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $urlSource, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -187,9 +188,9 @@ class ClientV2TestFunctional extends TestCase
             TestingUtilities::getV2DataDir() . '/products/extraction/data_schema_replace_param.json'
         );
 
-        $inferenceParams = new InferenceParameters($this->modelId, dataSchema: $dataSchemaReplace);
+        $inferenceParams = new ExtractionParameters($this->modelId, dataSchema: $dataSchemaReplace);
 
-        $response = $this->mindeeClient->enqueueAndGetInference($source, $inferenceParams);
+        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $inferenceParams);
         $this->assertNotNull($response);
         $inference = $response->inference;
         $this->assertNotNull($inference);
@@ -222,7 +223,7 @@ class ClientV2TestFunctional extends TestCase
             TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
         );
 
-        $inferenceParams = new InferenceParameters($this->modelId, webhooksIds: [
+        $inferenceParams = new ExtractionParameters($this->modelId, webhooksIds: [
             getenv('MINDEE_V2_FAILURE_WEBHOOK_ID'),
             getenv('MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID')]
         );
