@@ -30,7 +30,7 @@ class CropperV1 extends Inference
     public function __construct(array $rawPrediction)
     {
         parent::__construct($rawPrediction);
-        $this->prediction = new CropperV1Document($rawPrediction['prediction']);
+        $this->prediction = new CropperV1Document();
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
             try {

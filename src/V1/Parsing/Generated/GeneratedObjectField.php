@@ -27,6 +27,8 @@ class GeneratedObjectField
 
     /** @var array List of all printable field names */
     private array $printableValues;
+    /** @var array Storage for dynamically generated properties */
+    private array $dynamicProperties = [];
 
     /**
      * Constructor.
@@ -67,6 +69,40 @@ class GeneratedObjectField
             }
             $this->pageId = $pageId ?? $itemPageId;
         }
+    }
+
+    /**
+     * Magic getter for dynamic properties.
+     *
+     * @param string $name Property name.
+     * @return mixed
+     */
+    public function __get(string $name)
+    {
+        return $this->dynamicProperties[$name] ?? null;
+    }
+
+    /**
+     * Magic setter for dynamic properties.
+     *
+     * @param string $name  Property name.
+     * @param mixed  $value Property value.
+     * @return void
+     */
+    public function __set(string $name, mixed $value): void
+    {
+        $this->dynamicProperties[$name] = $value;
+    }
+
+    /**
+     * Magic isset for dynamic properties.
+     *
+     * @param string $name Property name.
+     * @return boolean
+     */
+    public function __isset(string $name): bool
+    {
+        return isset($this->dynamicProperties[$name]);
     }
 
     /**
