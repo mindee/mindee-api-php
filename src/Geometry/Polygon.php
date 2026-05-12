@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Geometry;
+
+use function count;
 
 /**
  * Polygon represented as a set of coordinates (vertices/points).
@@ -27,7 +31,7 @@ class Polygon
      */
     public function __construct(?array $coordinates = null)
     {
-        if (!is_null($coordinates)) {
+        if (null !== $coordinates) {
             $this->coordinates = [];
             foreach ($coordinates as $point) {
                 $this->coordinates[] = new Point($point[0], $point[1]);
@@ -40,7 +44,6 @@ class Polygon
     /**
      * Retrieves the centroid of the polygon.
      *
-     * @return Point
      */
     public function getCentroid(): Point
     {
@@ -50,7 +53,6 @@ class Polygon
     /**
      * Retrieves the upper and lower bounds of the y-axis.
      *
-     * @return MinMax
      */
     public function getMinMaxY(): MinMax
     {
@@ -63,7 +65,6 @@ class Polygon
     /**
      * Retrieves the upper and lower bounds of the x-axis.
      *
-     * @return MinMax
      */
     public function getMinMaxX(): MinMax
     {
@@ -100,7 +101,6 @@ class Polygon
     /**
      * Retrieves the minimum X coordinate.
      *
-     * @return float
      */
     public function getMinX(): float
     {
@@ -110,7 +110,6 @@ class Polygon
     /**
      * Retrieves the maximum X coordinate.
      *
-     * @return float
      */
     public function getMaxX(): float
     {
@@ -120,7 +119,6 @@ class Polygon
     /**
      * Retrieves the minimum Y coordinate.
      *
-     * @return float
      */
     public function getMinY(): float
     {
@@ -130,7 +128,6 @@ class Polygon
     /**
      * Retrieves the maximum Y coordinate.
      *
-     * @return float
      */
     public function getMaxY(): float
     {
@@ -144,13 +141,12 @@ class Polygon
      */
     public function isEmpty(): bool
     {
-        return count($this->coordinates) == 0;
+        return count($this->coordinates) === 0;
     }
 
     /**
      * Retrieves the coordinates of the polygon.
      *
-     * @return array|null
      */
     public function getCoordinates(): ?array
     {
@@ -162,7 +158,7 @@ class Polygon
      */
     public function __toString(): string
     {
-        $formattedPoints = array_map(fn ($p) => "({$p->getX()},{$p->getY()})", $this->coordinates);
+        $formattedPoints = array_map(static fn($p) => "({$p->getX()},{$p->getY()})", $this->coordinates);
         $joinedPoints = implode(", ", $formattedPoints);
 
         return "($joinedPoints)";

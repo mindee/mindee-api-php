@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
 
 use DateTimeImmutable;
@@ -17,25 +19,21 @@ class Execution
 {
     /**
      * Identifier for the batch to which the execution belongs.
-     * @var string|null
      */
     public ?string $batchName;
 
     /**
      * The time at which the execution started.
-     * @var DateTimeImmutable|null
      */
     public ?DateTimeImmutable $createdAt;
 
     /**
      * File representation within a workflow execution.
-     * @var ExecutionFile|null
      */
     public ?ExecutionFile $file;
 
     /**
      * Identifier for the execution.
-     * @var string|null
      */
     public ?string $id;
 
@@ -47,55 +45,47 @@ class Execution
 
     /**
      * Priority of the execution.
-     * @var string|null
      */
     public ?string $priority;
 
     /**
      * The time at which the file was tagged as reviewed.
-     * @var DateTimeImmutable|null
      */
     public ?DateTimeImmutable $reviewedAt;
 
     /**
      * The time at which the file was uploaded to a workflow.
-     * @var DateTimeImmutable|null
      */
     public ?DateTimeImmutable $availableAt;
 
     /**
      * Reviewed fields and values.
-     * @var GeneratedV1Document|null
      */
     public ?GeneratedV1Document $reviewedPrediction;
 
     /**
      * Execution Status.
-     * @var string|null
      */
     public ?string $status;
 
     /**
      * Execution type.
-     * @var string|null
      */
     public ?string $type;
 
     /**
      * The time at which the file was uploaded to a workflow.
-     * @var DateTimeImmutable|null
      */
     public ?DateTimeImmutable $uploadedAt;
 
     /**
      * Identifier for the workflow.
-     * @var string|null
      */
     public ?string $workflowId;
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array  $rawResponse    Raw execution array.
+     * @param array $rawResponse Raw execution array.
      * @throws Exception|MindeeApiException Throws if one of the objects can't properly be created.
      */
     public function __construct(string $predictionType, array $rawResponse)
@@ -117,21 +107,20 @@ class Execution
             }
         }
         $this->priority = $rawResponse['priority'] ?? null;
-        $this->reviewedAt = isset($rawResponse['reviewed_at']) ?
-            new DateTimeImmutable($rawResponse['reviewed_at']) : null;
-        $this->availableAt = isset($rawResponse['available_at']) ?
-            new DateTimeImmutable($rawResponse['available_at']) : null;
-        $this->reviewedPrediction = isset($rawResponse['reviewed_prediction']) ?
-            new GeneratedV1Document($rawResponse['reviewed_prediction']) : null;
+        $this->reviewedAt = isset($rawResponse['reviewed_at'])
+            ? new DateTimeImmutable($rawResponse['reviewed_at']) : null;
+        $this->availableAt = isset($rawResponse['available_at'])
+            ? new DateTimeImmutable($rawResponse['available_at']) : null;
+        $this->reviewedPrediction = isset($rawResponse['reviewed_prediction'])
+            ? new GeneratedV1Document($rawResponse['reviewed_prediction']) : null;
         $this->status = $rawResponse['status'] ?? null;
         $this->type = $rawResponse['type'] ?? null;
-        $this->uploadedAt = isset($rawResponse['uploaded_at']) ?
-            new DateTimeImmutable($rawResponse['uploaded_at']) : null;
+        $this->uploadedAt = isset($rawResponse['uploaded_at'])
+            ? new DateTimeImmutable($rawResponse['uploaded_at']) : null;
         $this->workflowId = $rawResponse['workflow_id'] ?? null;
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {

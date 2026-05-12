@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Testing utility class.
  */
@@ -18,7 +20,7 @@ class TestingUtilities
      */
     public static function getV1DataDir(): string
     {
-        return TestingUtilities::getRootDataDir() . "/v1";
+        return self::getRootDataDir() . "/v1";
     }
 
     /**
@@ -26,7 +28,7 @@ class TestingUtilities
      */
     public static function getV2DataDir(): string
     {
-        return TestingUtilities::getRootDataDir() . "/v2";
+        return self::getRootDataDir() . "/v2";
     }
 
     /**
@@ -34,7 +36,7 @@ class TestingUtilities
      */
     public static function getV2ProductDir(): string
     {
-        return TestingUtilities::getV2DataDir() . "/products";
+        return self::getV2DataDir() . "/products";
     }
 
     /**
@@ -42,7 +44,7 @@ class TestingUtilities
      */
     public static function getFileTypesDir(): string
     {
-        return TestingUtilities::getRootDataDir() . "/file_types";
+        return self::getRootDataDir() . "/file_types";
     }
     /**
      * Retrieves the version in a string of a prediction's RST.
@@ -83,7 +85,7 @@ class TestingUtilities
      * Which in turn was taken from:
      * https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#PHP
      * @param string $referenceStr Base string.
-     * @param string $targetStr    String to compare.
+     * @param string $targetStr String to compare.
      * @return integer Levenshtein distance between the two strings.
      */
     private static function lev(string $referenceStr, string $targetStr): int
@@ -100,7 +102,7 @@ class TestingUtilities
 
         for ($i = 1; $i <= $refLength; $i++) {
             for ($j = 1; $j <= $targetLength; $j++) {
-                $c = ($referenceStr[$i - 1] == $targetStr[$j - 1]) ? 0 : 1;
+                $c = ($referenceStr[$i - 1] === $targetStr[$j - 1]) ? 0 : 1;
                 $distanceTable[$i][$j] = min(
                     $distanceTable[$i - 1][$j] + 1,
                     $distanceTable[$i][$j - 1] + 1,
@@ -115,13 +117,13 @@ class TestingUtilities
     /**
      * Computes the levenshtein ratio between two strings.
      *
-     * @param string $ref    Reference string.
+     * @param string $ref Reference string.
      * @param string $target Target string.
      * @return float The levenshtein ratio.
      */
     public static function levenshteinRatio(string $ref, string $target): float
     {
-        $lev = TestingUtilities::lev($ref, $target);
+        $lev = self::lev($ref, $target);
         $maxLen = max(strlen($ref), strlen($target));
         if ($maxLen === 0) {
             return 1.0;

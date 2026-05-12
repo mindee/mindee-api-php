@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Standard;
 
 use Mindee\V1\Parsing\Standard\LocaleField;
@@ -7,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class LocaleFieldTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $fieldArray = [
             "confidence" => 0.82,
@@ -18,13 +20,13 @@ class LocaleFieldTest extends TestCase
         ];
 
         $companyRegistration = new LocaleField($fieldArray);
-        $this->assertEquals("en-GB", $companyRegistration->value);
-        $this->assertEquals("en", $companyRegistration->language);
-        $this->assertEquals("GB", $companyRegistration->country);
-        $this->assertEquals("GBP", $companyRegistration->currency);
+        self::assertSame("en-GB", $companyRegistration->value);
+        self::assertSame("en", $companyRegistration->language);
+        self::assertSame("GB", $companyRegistration->country);
+        self::assertSame("GBP", $companyRegistration->currency);
     }
 
-    public function testConstructorNoValues()
+    public function testConstructorNoValues(): void
     {
         $fieldArray = [
             "confidence" => 0,
@@ -34,9 +36,9 @@ class LocaleFieldTest extends TestCase
             "value" => null,
         ];
         $classification = new LocaleField($fieldArray);
-        $this->assertNull($classification->value);
-        $this->assertNull($classification->language);
-        $this->assertNull($classification->country);
-        $this->assertNull($classification->currency);
+        self::assertNull($classification->value);
+        self::assertNull($classification->language);
+        self::assertNull($classification->country);
+        self::assertNull($classification->currency);
     }
 }

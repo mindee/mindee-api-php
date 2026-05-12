@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Extraction\Params;
 
 use Mindee\V2\ClientOptions\BaseParameters;
@@ -26,14 +28,14 @@ class ExtractionParameters extends BaseParameters
 
     /**
      * @var boolean|null Boost the precision and accuracy of all extractions.
-     *      Calculate confidence scores for all fields.
+     *                   Calculate confidence scores for all fields.
      */
     public ?bool $confidence;
 
 
     /**
      * @var string|null Additional text context used by the model during inference.
-     * Not recommended, for specific use only.
+     *                  Not recommended, for specific use only.
      */
     public ?string $textContext;
 
@@ -48,19 +50,19 @@ class ExtractionParameters extends BaseParameters
     public static string $slug = "extraction";
 
     /**
-     * @param string                       $modelId     ID of the model.
-     * @param boolean|null                 $rag         Whether to enable Retrieval-Augmented Generation.
-     * @param boolean|null                 $rawText     Whether to extract the full text content from the
-     * document as strings.
-     * @param boolean|null                 $polygon     Whether to calculate bounding box polygons for all
-     * fields.
-     * @param boolean|null                 $confidence  Whether to calculate confidence scores for all fields.
-     * @param string|null                  $alias       Optional file alias.
-     * @param array<string>|null           $webhooksIds List of webhook IDs.
-     * @param string|null                  $textContext Additional text context used by the model during
-     * inference.
-     * @param DataSchema|string|array|null $dataSchema  Additional text context used by the model during
-     * inference.
+     * @param string $modelId ID of the model.
+     * @param boolean|null $rag Whether to enable Retrieval-Augmented Generation.
+     * @param boolean|null $rawText Whether to extract the full text content from the
+     *                              document as strings.
+     * @param boolean|null $polygon Whether to calculate bounding box polygons for all
+     *                              fields.
+     * @param boolean|null $confidence Whether to calculate confidence scores for all fields.
+     * @param string|null $alias Optional file alias.
+     * @param array<string>|null $webhooksIds List of webhook IDs.
+     * @param string|null $textContext Additional text context used by the model during
+     *                                 inference.
+     * @param DataSchema|string|array|null $dataSchema Additional text context used by the model during
+     *                                                 inference.
      */
     public function __construct(
         string $modelId,
@@ -109,7 +111,7 @@ class ExtractionParameters extends BaseParameters
             $outHash['text_context'] = $this->textContext;
         }
         if (isset($this->dataSchema)) {
-            $outHash['data_schema'] = strval($this->dataSchema);
+            $outHash['data_schema'] = (string) ($this->dataSchema);
         }
         return $outHash;
     }

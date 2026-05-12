@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\HTTP;
 
 use Mindee\Input\InputSource;
@@ -26,9 +28,9 @@ class Endpoint extends BaseEndpoint
     public string $version;
 
     /**
-     * @param string    $urlName  Url (name) of the endpoint.
-     * @param string    $owner    Name of the endpoint's owner.
-     * @param string    $version  Version of the endpoint.
+     * @param string $urlName Url (name) of the endpoint.
+     * @param string $owner Name of the endpoint's owner.
+     * @param string $version Version of the endpoint.
      * @param MindeeAPI $settings Settings for the endpoint.
      */
     public function __construct(
@@ -47,7 +49,6 @@ class Endpoint extends BaseEndpoint
      * Retrieves a document from its queue ID.
      *
      * @param string $queueId ID of the queue to poll.
-     * @return array
      */
     public function documentQueueReqGet(string $queueId): array
     {
@@ -57,9 +58,8 @@ class Endpoint extends BaseEndpoint
     /**
      * Sends a document for asynchronous enqueuing.
      *
-     * @param InputSource          $fileCurl File to upload.
-     * @param PredictMethodOptions $options  Prediction Options.
-     * @return array
+     * @param InputSource $fileCurl File to upload.
+     * @param PredictMethodOptions $options Prediction Options.
      */
     public function predictRequestPost(
         InputSource $fileCurl,
@@ -71,9 +71,8 @@ class Endpoint extends BaseEndpoint
     /**
      * Sends a document for synchronous enqueuing.
      *
-     * @param InputSource          $fileCurl File to upload.
-     * @param PredictMethodOptions $options  Prediction Options.
-     * @return array
+     * @param InputSource $fileCurl File to upload.
+     * @param PredictMethodOptions $options Prediction Options.
      */
     public function predictAsyncRequestPost(
         InputSource $fileCurl,
@@ -90,10 +89,9 @@ class Endpoint extends BaseEndpoint
     /**
      * Starts a CURL session, using POST.
      *
-     * @param InputSource          $inputSource File to upload.
-     * @param PredictMethodOptions $options     Prediction Options.
-     * @param boolean              $async       Whether to use the async endpoint.
-     * @return array
+     * @param InputSource $inputSource File to upload.
+     * @param PredictMethodOptions $options Prediction Options.
+     * @param boolean $async Whether to use the async endpoint.
      */
     private function initCurlSessionPost(
         InputSource $inputSource,

@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Generated;
 
 use Mindee\V1\Parsing\Standard\StringField;
+
+use function is_float;
+use function is_int;
 
 /**
  * A list of value or words for generated APIs.
@@ -18,8 +23,8 @@ class GeneratedListField
     /**
      * Constructor.
      *
-     * @param array        $rawPrediction Raw prediction data.
-     * @param integer|null $pageId        ID of the page.
+     * @param array $rawPrediction Raw prediction data.
+     * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -36,12 +41,12 @@ class GeneratedListField
                 $valueStr = $value;
                 if (isset($valueStr['value'])) {
                     if (
-                        (is_int($valueStr['value']) || (is_float($value) && floor($value) == $value)) &&
-                        $value != 0.0
+                        (is_int($valueStr['value']) || (is_float($value) && floor($value) === $value))
+                        && (float) $value['value'] !== 0.0
                     ) {
                         $valueStr['value'] = $value['value'] . ".0";
                     } else {
-                        $valueStr['value'] = strval($value['value']);
+                        $valueStr['value'] = (string) ($value['value']);
                     }
                 }
                 $this->values[] = new StringField($valueStr, $this->pageId);
@@ -56,9 +61,7 @@ class GeneratedListField
      */
     public function getContentsList(): array
     {
-        return array_map(function ($v) {
-            return (string)($v ?: "");
-        }, $this->values);
+        return array_map(static fn($v) => (string) ($v ?: ""), $this->values);
     }
 
     /**

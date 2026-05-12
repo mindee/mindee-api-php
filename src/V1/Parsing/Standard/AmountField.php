@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use function array_key_exists;
 
 /**
  * A field containing an amount value.
  */
 class AmountField extends BaseField
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null The amount value as a float.
@@ -17,9 +21,9 @@ class AmountField extends BaseField
 
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
-     * @param boolean      $reconstructed Whether the field was reconstructed.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field was reconstructed.
      */
     public function __construct(
         array $rawPrediction,
@@ -28,7 +32,7 @@ class AmountField extends BaseField
     ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, 'value');
         if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
-            $this->value = number_format(floatval($rawPrediction['value']), 2, ".", "");
+            $this->value = (float) ($rawPrediction['value']);
         } else {
             $this->value = null;
             $this->confidence = 0.0;
@@ -41,6 +45,6 @@ class AmountField extends BaseField
      */
     public function __toString(): string
     {
-        return strval($this->value);
+        return isset($this->value) ? number_format((float) $this->value, 2, ".", "") : '';
     }
 }

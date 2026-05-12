@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\CLI;
 
 use Mindee\Error\MindeeHttpException;
@@ -17,6 +19,11 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Exception;
+
+use function count;
+use function in_array;
+
 use const Mindee\Input\KEEP_ONLY;
 use const Mindee\Input\REMOVE;
 use const Mindee\VERSION;
@@ -54,7 +61,6 @@ class MindeeCLICommand extends Command
 
     /**
      * @param string|null $product Selected product, for customisation of the help section.
-     * @return string
      */
     protected function formatHelp(string $product = null): string
     {
@@ -83,7 +89,7 @@ Available products:";
     /**
      * @return void sets the main CLI properties.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('mindee')
@@ -106,7 +112,7 @@ Available products:";
     /**
      * @return void Sets main properties regarding polling/parsing.
      */
-    private function configureMainOptions()
+    private function configureMainOptions(): void
     {
         $this->addOption(
             'async',
@@ -171,7 +177,7 @@ Available products:";
     /**
      * @return void Sets custom options.
      */
-    private function configureCustomOptions()
+    private function configureCustomOptions(): void
     {
         $this
             ->addOption(
@@ -197,11 +203,10 @@ Available products:";
     /**
      * Initializes the CLI runner, writes the help section if no argument nor option is given.
      *
-     * @param InputInterface  $input  Input interface given to the CLI.
+     * @param InputInterface $input Input interface given to the CLI.
      * @param OutputInterface $output Output interface.
-     * @return void
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $args = $input->getArguments();
         $opts = $input->getOptions();
@@ -215,7 +220,7 @@ Available products:";
     /**
      * Runs a command (overload).
      *
-     * @param InputInterface  $input  Input interface given to the CLI.
+     * @param InputInterface $input Input interface given to the CLI.
      * @param OutputInterface $output Output interface.
      * @return integer Command execution code return.
      */
@@ -276,7 +281,7 @@ Available products:";
     /**
      * Checks whether the version was requested.
      *
-     * @param InputInterface  $input  Input interface of the CLI.
+     * @param InputInterface $input Input interface of the CLI.
      * @param OutputInterface $output Output interface of the CLI.
      * @return boolean True if options are valid.
      */
@@ -292,16 +297,16 @@ Available products:";
     /**
      * Checks whether a given product is valid for CLI use.
      *
-     * @param string          $product Product class used.
-     * @param OutputInterface $output  Output interface of the CLI.
+     * @param string $product Product class used.
+     * @param OutputInterface $output Output interface of the CLI.
      * @return boolean True if a product is valid.
      */
     private function isValidProduct(string $product, OutputInterface $output): bool
     {
-        if (!in_array($product, $this->acceptableDocuments)) {
+        if (!in_array($product, $this->acceptableDocuments, true)) {
             $output->writeln("<error>Invalid product: $product</error>");
-            $output->writeln('<error>Available products are: ' .
-                implode(', ', $this->acceptableDocuments) . '</error>');
+            $output->writeln('<error>Available products are: '
+                . implode(', ', $this->acceptableDocuments) . '</error>');
             return false;
         }
         return true;
@@ -310,9 +315,9 @@ Available products:";
     /**
      * Checks whether a polling method is valid for the current poll.
      *
-     * @param string          $product Product class used.
-     * @param boolean         $isAsync Whether the polling will be asynchronous.
-     * @param OutputInterface $output  Output interface of the CLI.
+     * @param string $product Product class used.
+     * @param boolean $isAsync Whether the polling will be asynchronous.
+     * @param OutputInterface $output Output interface of the CLI.
      * @return boolean True if the polling method exists for a given product.
      */
     private function isValidPollingMethod(string $product, bool $isAsync, OutputInterface $output): bool
@@ -333,7 +338,7 @@ Available products:";
     /**
      * Checks whether PageOptions for the current polling are possible.
      *
-     * @param InputInterface  $input  Input interface of the CLI.
+     * @param InputInterface $input Input interface of the CLI.
      * @param OutputInterface $output Output interface of the CLI.
      * @return boolean True if the operations are possible.
      */
@@ -351,9 +356,9 @@ Available products:";
     /**
      * Retrieves a source file from a URL or a path.
      *
-     * @param string          $filePathOrUrl Path of the file, or URL if it's remote.
-     * @param Client          $client        Mindee Client.
-     * @param OutputInterface $output        Output interface of the CLI.
+     * @param string $filePathOrUrl Path of the file, or URL if it's remote.
+     * @param Client $client Mindee Client.
+     * @param OutputInterface $output Output interface of the CLI.
      * @return PathInput|URLInputSource|null A valid InputSource.
      */
     private function getFileSource(string $filePathOrUrl, Client $client, OutputInterface $output)
@@ -410,7 +415,7 @@ Available products:";
      * Generates a valid PredictMethodOptions object for parsing.
      *
      * @param PredictOptions $predictOptions Valid PredictOptions.
-     * @param PageOptions    $pageOptions    Valid PageOptions.
+     * @param PageOptions $pageOptions Valid PageOptions.
      * @return PredictMethodOptions Valid PredictMethod Options.
      */
     private function getPredictMethodOptions(
@@ -426,11 +431,11 @@ Available products:";
     /**
      * Handles options specific to Custom & Generated Products.
      *
-     * @param InputInterface       $input                Input interface of the CLI.
-     * @param OutputInterface      $output               Output interface of the CLI.
-     * @param Client               $client               Mindee Client.
+     * @param InputInterface $input Input interface of the CLI.
+     * @param OutputInterface $output Output interface of the CLI.
+     * @param Client $client Mindee Client.
      * @param PredictMethodOptions $predictMethodOptions Valid PredictMethodOptions.
-     * @param string               $product              Product class used.
+     * @param string $product Product class used.
      * @return boolean Whether the setting of options for custom/generated are valid.
      */
     private function handleCustomOrGeneratedProduct(
@@ -440,7 +445,7 @@ Available products:";
         PredictMethodOptions $predictMethodOptions,
         string $product
     ): bool {
-        if ($product == "generated") {
+        if ($product === "generated") {
             $accountName = $input->getOption('account_name');
             $endpointName = $input->getOption('endpoint_name');
             $endpointVersion = $input->getOption('endpoint_version') ?? '1';
@@ -465,14 +470,14 @@ Available products:";
     }
 
     /**
-     * @param Client               $client               Mindee Client.
-     * @param string               $product              Product class used.
-     * @param InputSource          $file                 Input File.
+     * @param Client $client Mindee Client.
+     * @param string $product Product class used.
+     * @param InputSource $file Input File.
      * @param PredictMethodOptions $predictMethodOptions Options for the polling.
-     * @param boolean              $isAsync              Whether the polling will be asynchronous.
-     * @param InputInterface       $input                Input interface of the CLI.
-     * @param OutputInterface      $output               Output interface of the CLI.
-     * @param string|null          $outputType           Type of output (raw, parsed or summary).
+     * @param boolean $isAsync Whether the polling will be asynchronous.
+     * @param InputInterface $input Input interface of the CLI.
+     * @param OutputInterface $output Output interface of the CLI.
+     * @param string|null $outputType Type of output (raw, parsed or summary).
      * @return integer Return code for the CLI
      */
     private function executePrediction(
@@ -491,7 +496,7 @@ Available products:";
         } catch (MindeeHttpException $e) {
             $output->writeln($e->getMessage());
             return Command::FAILURE;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $output->writeln("Something went wrong, '" . $e->getMessage() . "' was raised.");
             return Command::FAILURE;
         }
@@ -502,15 +507,15 @@ Available products:";
     /**
      * Runs the prediction call.
      *
-     * @param Client               $client               Mindee client.
-     * @param string               $product              Product class used.
-     * @param InputSource          $file                 Input File.
+     * @param Client $client Mindee client.
+     * @param string $product Product class used.
+     * @param InputSource $file Input File.
      * @param PredictMethodOptions $predictMethodOptions Prediction method options.
-     * @param boolean              $isAsync              Whether the polling is asynchronous.
-     * @param boolean              $debug                Whether the command is running in debug mode.
+     * @param boolean $isAsync Whether the polling is asynchronous.
+     * @param boolean $debug Whether the command is running in debug mode.
      *
      * @return AsyncPredictResponse|PredictResponse|string Either a valid prediction response, or a message if the
-     * command is in debug mode.
+     *                                                     command is in debug mode.
      */
     private function runClientPrediction(
         Client $client,
@@ -532,10 +537,10 @@ Available products:";
     }
 
     /**
-     * @param PredictResponse|AsyncPredictResponse|string $result     Result of the parsing (or message if in debug
-     *         mode).
-     * @param string|null                                 $outputType Type of output (raw, parsed or summary).
-     * @param OutputInterface                             $output     Output interface for the CLI.
+     * @param PredictResponse|AsyncPredictResponse|string $result Result of the parsing (or message if in debug
+     *                                                            mode).
+     * @param string|null $outputType Type of output (raw, parsed or summary).
+     * @param OutputInterface $output Output interface for the CLI.
      * @return integer Command execution code return.
      */
     private function outputResult(

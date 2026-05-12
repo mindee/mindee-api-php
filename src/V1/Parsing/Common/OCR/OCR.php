@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common\OCR;
+
+use function array_key_exists;
+use function count;
 
 /**
  * OCR extraction from the entire document.
@@ -21,11 +26,10 @@ class OCR
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
-        return strval($this->mvisionV1);
+        return (string) ($this->mvisionV1);
     }
 
     /**
@@ -40,7 +44,7 @@ class OCR
         for ($i = 0; $i < count($this->mvisionV1->pages); $i++) {
             $page = $this->mvisionV1->pages[$i];
             foreach ($page->getAllLines() as $line) {
-                if (preg_match($regex, strval($line))) {
+                if (preg_match($regex, (string) $line)) {
                     if (!array_key_exists($i, $matches)) {
                         $matches[$i] = [];
                     }

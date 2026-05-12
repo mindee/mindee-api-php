@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Cropper;
 
 use Mindee\V1\Parsing\Standard\PositionField;
@@ -15,13 +17,13 @@ class CropperV1Page extends CropperV1Document
      */
     public array $cropping;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        $this->cropping = $rawPrediction["cropping"] == null ? [] : array_map(
-            fn ($prediction) => new PositionField($prediction, $pageId),
+        $this->cropping = $rawPrediction["cropping"] === null ? [] : array_map(
+            static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["cropping"]
         );
     }

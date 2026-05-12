@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Financial Document V1. */
 
 namespace Mindee\V1\Product\FinancialDocument;

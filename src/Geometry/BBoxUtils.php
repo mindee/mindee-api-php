@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Geometry;
 
 /**
@@ -11,7 +13,6 @@ abstract class BBoxUtils
      * Generates a BBox from a polygon. Returns null if no polygon is provided.
      *
      * @param Polygon $polygon Polygon to get the BBox of.
-     * @return BBox|null
      */
     public static function generateBBoxFromPolygon(Polygon $polygon): ?BBox
     {
@@ -30,7 +31,6 @@ abstract class BBoxUtils
      * Generates a BBox from an array of polygons. Returns null if no polygons are provided.
      *
      * @param array $polygons Series of polygons to get the BBox of.
-     * @return BBox|null
      */
     public static function generateBBoxFromPolygons(array $polygons): ?BBox
     {
@@ -55,7 +55,6 @@ abstract class BBoxUtils
      * Merges an array of bboxes.
      *
      * @param array $bboxes BBoxes to merge.
-     * @return BBox|null
      */
     public static function mergeBBoxes(array $bboxes): ?BBox
     {
@@ -80,6 +79,6 @@ abstract class BBoxUtils
                 $maxY = $bbox->getMaxY();
             }
         }
-        return new BBox((float)$minX, (float)$maxX, (float)$minY, (float)$maxY);
+        return new BBox((float) $minX, (float) $maxX, (float) $minY, (float) $maxY);
     }
 }

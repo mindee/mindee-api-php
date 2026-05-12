@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Product;
 
 use Mindee\Input\PathInput;
@@ -27,7 +29,6 @@ class OcrFunctional extends TestCase
     /**
      * Tests the success of the OCR process using a default sample file.
      *
-     * @return void
      */
     public function testOcrDefaultSampleMustSucceed(): void
     {
@@ -38,18 +39,18 @@ class OcrFunctional extends TestCase
         $productParams = new OcrParameters($this->ocrModelId);
         $response = $this->client->enqueueAndGetResult(OcrResponse::class, $inputSource, $productParams);
 
-        $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        self::assertNotNull($response);
+        self::assertNotNull($response->inference);
 
         $file = $response->inference->file;
-        $this->assertNotNull($file);
-        $this->assertSame("default_sample.jpg", $file->name);
+        self::assertNotNull($file);
+        self::assertSame("default_sample.jpg", $file->name);
 
         $result = $response->inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
         $pages = $result->pages;
-        $this->assertNotNull($pages);
-        $this->assertCount(1, $pages);
+        self::assertNotNull($pages);
+        self::assertCount(1, $pages);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2;
 
 use Mindee\Error\MindeeV2HttpException;
@@ -30,30 +32,30 @@ class ClientV2TestFunctional extends TestCase
         $inferenceParams = new ExtractionParameters($this->modelId, rag: false, rawText: true);
 
         $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $inferenceParams);
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->inference;
-        $this->assertNotNull($inference);
+        self::assertNotNull($inference);
 
         $file = $inference->file;
-        $this->assertNotNull($file);
-        $this->assertEquals('multipage_cut-2.pdf', $file->name);
-        $this->assertEquals(2, $file->pageCount);
+        self::assertNotNull($file);
+        self::assertSame('multipage_cut-2.pdf', $file->name);
+        self::assertSame(2, $file->pageCount);
 
-        $this->assertNotNull($inference->model);
-        $this->assertEquals($this->modelId, $inference->model->id);
+        self::assertNotNull($inference->model);
+        self::assertSame($this->modelId, $inference->model->id);
 
         $activeOptions = $inference->activeOptions;
-        $this->assertTrue($activeOptions->rawText, "Raw text must be enabled");
-        $this->assertFalse($activeOptions->polygon, "Polygon must be disabled by default");
-        $this->assertFalse($activeOptions->confidence, "Confidence must be disabled by default");
-        $this->assertFalse($activeOptions->rag, "RAG must be disabled by default");
+        self::assertTrue($activeOptions->rawText, "Raw text must be enabled");
+        self::assertFalse($activeOptions->polygon, "Polygon must be disabled by default");
+        self::assertFalse($activeOptions->confidence, "Confidence must be disabled by default");
+        self::assertFalse($activeOptions->rag, "RAG must be disabled by default");
 
         $result = $inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
         $rawText = $result->rawText;
-        $this->assertNotNull($rawText);
-        $this->assertCount(2, $rawText->pages);
+        self::assertNotNull($rawText);
+        self::assertCount(2, $rawText->pages);
     }
 
     /**
@@ -68,26 +70,26 @@ class ClientV2TestFunctional extends TestCase
         $inferenceParams = new ExtractionParameters($this->modelId, rag: false, textContext: 'this is an invoice');
 
         $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $inferenceParams);
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->inference;
-        $this->assertNotNull($inference);
+        self::assertNotNull($inference);
 
         $file = $inference->file;
-        $this->assertNotNull($file);
-        $this->assertEquals('default_sample.jpg', $file->name);
-        $this->assertEquals(1, $file->pageCount);
+        self::assertNotNull($file);
+        self::assertSame('default_sample.jpg', $file->name);
+        self::assertSame(1, $file->pageCount);
 
-        $this->assertNotNull($inference->model);
-        $this->assertEquals($this->modelId, $inference->model->id);
+        self::assertNotNull($inference->model);
+        self::assertSame($this->modelId, $inference->model->id);
 
         $result = $inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
-        $this->assertNotNull($result->fields);
-        $this->assertNotNull($result->fields['supplier_name'] ?? null);
+        self::assertNotNull($result->fields);
+        self::assertNotNull($result->fields['supplier_name'] ?? null);
 
         $supplierName = $result->fields['supplier_name']->value ?? null;
-        $this->assertEquals(
+        self::assertSame(
             'John Smith',
             $supplierName
         );
@@ -103,9 +105,9 @@ class ClientV2TestFunctional extends TestCase
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
-            $this->assertStringStartsWith('422-', $e->errorCode);
-            $this->assertNotEmpty($e->title);
-            $this->assertIsArray($e->errors);
+            self::assertStringStartsWith('422-', $e->errorCode);
+            self::assertNotEmpty($e->title);
+            self::assertIsArray($e->errors);
         }
     }
 
@@ -118,9 +120,9 @@ class ClientV2TestFunctional extends TestCase
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
-            $this->assertStringStartsWith('404-', $e->errorCode);
-            $this->assertNotEmpty($e->title);
-            $this->assertIsArray($e->errors);
+            self::assertStringStartsWith('404-', $e->errorCode);
+            self::assertNotEmpty($e->title);
+            self::assertIsArray($e->errors);
         }
     }
 
@@ -130,13 +132,13 @@ class ClientV2TestFunctional extends TestCase
         try {
             $this->mindeeClient->getResult(ExtractionResponse::class, 'fc405e37-4ba4-4d03-aeba-533a8d1f0f21');
         } catch (MindeeV2HttpException $e) {
-            $this->assertStringStartsWith('404-', $e->errorCode);
-            $this->assertNotEmpty($e->title);
-            $this->assertIsArray($e->errors);
+            self::assertStringStartsWith('404-', $e->errorCode);
+            self::assertNotEmpty($e->title);
+            self::assertIsArray($e->errors);
         }
     }
 
-    public function testInvalidWebhookIDsMustThrowError()
+    public function testInvalidWebhookIDsMustThrowError(): void
     {
         $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
@@ -154,9 +156,9 @@ class ClientV2TestFunctional extends TestCase
         try {
             $this->mindeeClient->enqueueInference($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
-            $this->assertStringStartsWith('422-', $e->errorCode);
-            $this->assertNotEmpty($e->title);
-            $this->assertIsArray($e->errors);
+            self::assertStringStartsWith('422-', $e->errorCode);
+            self::assertNotEmpty($e->title);
+            self::assertIsArray($e->errors);
         }
     }
 
@@ -167,15 +169,15 @@ class ClientV2TestFunctional extends TestCase
         $inferenceParams = new ExtractionParameters($this->modelId);
 
         $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $urlSource, $inferenceParams);
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->inference;
-        $this->assertNotNull($inference);
+        self::assertNotNull($inference);
 
         $file = $inference->file;
-        $this->assertNotNull($file);
+        self::assertNotNull($file);
 
         $result = $inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
     }
 
     public function testDataSchemaMustSucceed(): void
@@ -191,27 +193,27 @@ class ClientV2TestFunctional extends TestCase
         $inferenceParams = new ExtractionParameters($this->modelId, dataSchema: $dataSchemaReplace);
 
         $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $inferenceParams);
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->inference;
-        $this->assertNotNull($inference);
+        self::assertNotNull($inference);
 
         $file = $inference->file;
-        $this->assertNotNull($file);
-        $this->assertEquals('blank_1.pdf', $file->name);
-        $this->assertEquals(1, $file->pageCount);
+        self::assertNotNull($file);
+        self::assertSame('blank_1.pdf', $file->name);
+        self::assertSame(1, $file->pageCount);
 
-        $this->assertNotNull($inference->model);
-        $this->assertEquals($this->modelId, $inference->model->id);
-        $this->assertNotNull($inference->activeOptions);
-        $this->assertTrue($inference->activeOptions->dataSchema->replace);
+        self::assertNotNull($inference->model);
+        self::assertSame($this->modelId, $inference->model->id);
+        self::assertNotNull($inference->activeOptions);
+        self::assertTrue($inference->activeOptions->dataSchema->replace);
 
         $result = $inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
-        $this->assertNotNull($result->fields);
-        $this->assertNotNull($result->fields['test_replace'] ?? null);
+        self::assertNotNull($result->fields);
+        self::assertNotNull($result->fields['test_replace'] ?? null);
 
-        $this->assertEquals(
+        self::assertSame(
             'a test value',
             $result->fields['test_replace']->value
         );
@@ -223,11 +225,13 @@ class ClientV2TestFunctional extends TestCase
             TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
         );
 
-        $inferenceParams = new ExtractionParameters($this->modelId, webhooksIds: [
-            getenv('MINDEE_V2_FAILURE_WEBHOOK_ID'),
-            getenv('MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID')]
+        $inferenceParams = new ExtractionParameters(
+            $this->modelId,
+            webhooksIds: [
+                getenv('MINDEE_V2_FAILURE_WEBHOOK_ID'),
+                getenv('MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID')]
         );
         $response = $this->mindeeClient->enqueue($source, $inferenceParams);
-        $this->assertEquals(2, count($response->job->webhooks));
+        self::assertCount(2, $response->job->webhooks);
     }
 }

@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Input;
 
 use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
+
+use function is_array;
+use function is_resource;
+use function is_string;
 
 /**
  * Local response loaded from a file.
@@ -59,7 +65,6 @@ class LocalResponse
     }
 
     /**
-     * @return array
      * @throws MindeeException Throws if the file contents cannot be converted to a valid array.
      */
     public function toArray(): array

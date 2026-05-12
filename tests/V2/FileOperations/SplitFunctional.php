@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\FileOperations;
 
 use Mindee\Input\PathInput;
@@ -10,6 +12,11 @@ use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
+
+use function count;
+use function sprintf;
+use function strlen;
 
 class SplitFunctional extends TestCase
 {
@@ -27,7 +34,7 @@ class SplitFunctional extends TestCase
 
         $this->outputDir = getcwd() . '/output';
         if (!is_dir($this->outputDir)) {
-            mkdir($this->outputDir, 0777, true);
+            mkdir($this->outputDir, 0o777, true);
         }
     }
 
@@ -46,31 +53,31 @@ class SplitFunctional extends TestCase
 
     private function checkFindocReturn(ExtractionResponse $findocResponse): void
     {
-        $this->assertGreaterThan(0, strlen($findocResponse->inference->model->id));
+        self::assertGreaterThan(0, strlen($findocResponse->inference->model->id));
 
         $totalAmount = $findocResponse->inference->result->fields['total_amount'];
-        $this->assertNotNull($totalAmount);
-        $this->assertGreaterThan(0, $totalAmount->value);
+        self::assertNotNull($totalAmount);
+        self::assertGreaterThan(0, $totalAmount->value);
     }
 
     public function testExtractSplitsFromPDFCorrectly(): void
     {
-        $inputSource = new PathInput(\TestingUtilities::getV2ProductDir() . '/split/default_sample.pdf');
+        $inputSource = new PathInput(TestingUtilities::getV2ProductDir() . '/split/default_sample.pdf');
         $splitParams = new SplitParameters($this->splitModelId);
 
         $response = $this->client->enqueueAndGetResult(SplitResponse::class, $inputSource, $splitParams);
 
-        $this->assertNotNull($response);
-        $this->assertCount(2, $response->inference->result->splits);
+        self::assertNotNull($response);
+        self::assertCount(2, $response->inference->result->splits);
 
         $splitOperation = new Split($inputSource);
         $extractedSplits = $splitOperation->extractSplits(
-            array_map(fn($s) => $s->pageRange, $response->inference->result->splits)
+            array_map(static fn($s) => $s->pageRange, $response->inference->result->splits)
         );
 
-        $this->assertCount(2, $extractedSplits);
-        $this->assertEquals('default_sample_001-001.pdf', $extractedSplits[0]->filename);
-        $this->assertEquals('default_sample_002-002.pdf', $extractedSplits[1]->filename);
+        self::assertCount(2, $extractedSplits);
+        self::assertSame('default_sample_001-001.pdf', $extractedSplits[0]->filename);
+        self::assertSame('default_sample_002-002.pdf', $extractedSplits[1]->filename);
 
         $inferenceInput = $extractedSplits[0]->asInputSource();
         $findocParams = new ExtractionParameters($this->findocModelId);
@@ -85,11 +92,11 @@ class SplitFunctional extends TestCase
             $fileName = sprintf('split_%03d.pdf', $i + 1);
             $filePath = $this->outputDir . '/' . $fileName;
 
-            $this->assertFileExists($filePath);
-            $this->assertGreaterThan(0, filesize($filePath));
+            self::assertFileExists($filePath);
+            self::assertGreaterThan(0, filesize($filePath));
 
             $localInput = new PathInput($filePath);
-            $this->assertEquals($extractedSplits[$i]->getPageCount(), $localInput->getPageCount());
+            self::assertSame($extractedSplits[$i]->getPageCount(), $localInput->getPageCount());
         }
     }
 }

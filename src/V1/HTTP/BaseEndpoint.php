@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\HTTP;
 
 /**
@@ -24,7 +26,6 @@ abstract class BaseEndpoint
      * Starts a CURL session, using GET.
      *
      * @param string $queueId ID of the queue to poll.
-     * @return array
      */
     protected function initCurlSessionGet(string $queueId): array
     {
@@ -55,11 +56,10 @@ abstract class BaseEndpoint
     }
 
     /**
-     * @param resource    $ch         Curl Channel.
-     * @param string      $suffix     Optional suffix for the url call.
-     * @param array|null  $postFields Post fields.
+     * @param resource $ch Curl Channel.
+     * @param string $suffix Optional suffix for the url call.
+     * @param array|null $postFields Post fields.
      * @param string|null $workflowId Optional ID of the workflow.
-     * @return array
      */
     public function setFinalCurlOpts(
         $ch,

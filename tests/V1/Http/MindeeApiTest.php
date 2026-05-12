@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Http;
 
 use Mindee\Error\MindeeException;
 use Mindee\V1\HTTP\MindeeAPI;
 use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
+use Mindee\V1\Client;
+
 use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 
 class MindeeApiTest extends TestCase
@@ -21,25 +25,25 @@ class MindeeApiTest extends TestCase
         putenv(API_KEY_ENV_NAME . '=' . $this->keyEnvName);
     }
 
-    public function testGivenOTSParametersAProperMindeeApiObjectShouldBeCreated()
+    public function testGivenOTSParametersAProperMindeeApiObjectShouldBeCreated(): void
     {
         $settings = new MindeeAPI("my-api-key", InvoiceSplitterV1::$endpointName);
-        $this->assertEquals("my-api-key", $settings->apiKey);
-        $this->assertEquals(InvoiceSplitterV1::$endpointName, $settings->endpointName);
-        $this->assertEquals(\Mindee\V1\Client::DEFAULT_OWNER, $settings->accountName);
-        $this->assertEquals("1", $settings->version);
+        self::assertSame("my-api-key", $settings->apiKey);
+        self::assertSame(InvoiceSplitterV1::$endpointName, $settings->endpointName);
+        self::assertSame(Client::DEFAULT_OWNER, $settings->accountName);
+        self::assertSame("1", $settings->version);
     }
 
-    public function testGivenCustomParametersAProperMindeeApiObjectShouldBeCreated()
+    public function testGivenCustomParametersAProperMindeeApiObjectShouldBeCreated(): void
     {
         $settings = new MindeeAPI("my-api-key", "custom-endpoint-name", "custom-owner-name", "1.3");
-        $this->assertEquals("my-api-key", $settings->apiKey);
-        $this->assertEquals("custom-endpoint-name", $settings->endpointName);
-        $this->assertEquals("custom-owner-name", $settings->accountName);
-        $this->assertEquals("1.3", $settings->version);
+        self::assertSame("my-api-key", $settings->apiKey);
+        self::assertSame("custom-endpoint-name", $settings->endpointName);
+        self::assertSame("custom-owner-name", $settings->accountName);
+        self::assertSame("1.3", $settings->version);
     }
 
-    public function testGivenInvalidApiKeyAnExceptionShouldBeThrown()
+    public function testGivenInvalidApiKeyAnExceptionShouldBeThrown(): void
     {
         $this->expectException(MindeeException::class);
         putenv(API_KEY_ENV_NAME . '=');

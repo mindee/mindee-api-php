@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\NutritionFactsLabel;
+
+use ArrayObject;
 
 /**
  * The amount of nutrients in the product.
  */
-class NutritionFactsLabelV1Nutrients extends \ArrayObject
+class NutritionFactsLabelV1Nutrients extends ArrayObject
 {
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -24,7 +28,6 @@ class NutritionFactsLabelV1Nutrients extends \ArrayObject
      * Creates a line of rST table-compliant string separators.
      *
      * @param string $char Character to use as a separator.
-     * @return string
      */
     public static function nutrientsSeparator(string $char): string
     {
@@ -41,7 +44,6 @@ class NutritionFactsLabelV1Nutrients extends \ArrayObject
     /**
      * String representation.
      *
-     * @return string
      */
     public function __toString(): string
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\BillOfLading;
 
 use Mindee\Error\MindeeUnsetException;
@@ -58,8 +60,8 @@ class BillOfLadingV1Document extends Prediction
      */
     public BillOfLadingV1Shipper $shipper;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -148,11 +150,11 @@ class BillOfLadingV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $shipperToFieldList = $this->shipper != null ? $this->shipper->toFieldList() : "";
-        $consigneeToFieldList = $this->consignee != null ? $this->consignee->toFieldList() : "";
-        $notifyPartyToFieldList = $this->notifyParty != null ? $this->notifyParty->toFieldList() : "";
-        $carrierToFieldList = $this->carrier != null ? $this->carrier->toFieldList() : "";
-        $carrierItemsSummary = strval($this->carrierItems);
+        $shipperToFieldList = $this->shipper !== null ? $this->shipper->toFieldList() : "";
+        $consigneeToFieldList = $this->consignee !== null ? $this->consignee->toFieldList() : "";
+        $notifyPartyToFieldList = $this->notifyParty !== null ? $this->notifyParty->toFieldList() : "";
+        $carrierToFieldList = $this->carrier !== null ? $this->carrier->toFieldList() : "";
+        $carrierItemsSummary = (string) ($this->carrierItems);
 
         $outStr = ":Bill of Lading Number: $this->billOfLadingNumber
 :Shipper: $shipperToFieldList

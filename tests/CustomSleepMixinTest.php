@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use PHPUnit\Framework\TestCase;
+use Mindee\CustomSleepMixin;
 
 /**
  * Custom delay tests.
@@ -8,63 +11,69 @@ use PHPUnit\Framework\TestCase;
  */
 class CustomSleepMixinTest extends TestCase
 {
-    use Mindee\CustomSleepMixin;
+    use CustomSleepMixin;
 
-    public function testCustomSleep1Second(): void {
+    public function testCustomSleep1Second(): void
+    {
         $lowerBound = 1;
         $upperBound = 1.1;
 
         $start = microtime(true);
         $this->customSleep(1);
         $elapsed = microtime(true) - $start;
-        $this->assertGreaterThanOrEqual($lowerBound, $elapsed);
-        $this->assertLessThanOrEqual($upperBound, $elapsed);
+        self::assertGreaterThanOrEqual($lowerBound, $elapsed);
+        self::assertLessThanOrEqual($upperBound, $elapsed);
     }
 
-    public function testCustomSleep0dot33Seconds(): void {
+    public function testCustomSleep0dot33Seconds(): void
+    {
         $lowerBound = 0.33;
         $upperBound = 0.43;
 
         $start = microtime(true);
         $this->customSleep(0.33);
         $elapsed = microtime(true) - $start;
-        $this->assertGreaterThanOrEqual($lowerBound, $elapsed);
-        $this->assertLessThanOrEqual($upperBound, $elapsed);
+        self::assertGreaterThanOrEqual($lowerBound, $elapsed);
+        self::assertLessThanOrEqual($upperBound, $elapsed);
     }
 
-    public function testCustomSleep2Seconds(): void {
+    public function testCustomSleep2Seconds(): void
+    {
         $lowerBound = 2;
         $upperBound = 2.1;
 
         $start = microtime(true);
         $this->customSleep(2);
         $elapsed = microtime(true) - $start;
-        $this->assertGreaterThanOrEqual($lowerBound, $elapsed);
-        $this->assertLessThanOrEqual($upperBound, $elapsed);
+        self::assertGreaterThanOrEqual($lowerBound, $elapsed);
+        self::assertLessThanOrEqual($upperBound, $elapsed);
     }
 
-    public function testCustomSleep1dot5Seconds(): void {
+    public function testCustomSleep1dot5Seconds(): void
+    {
         $lowerBound = 1.5;
         $upperBound = 1.6;
 
         $start = microtime(true);
         $this->customSleep(1.5);
         $elapsed = microtime(true) - $start;
-        $this->assertGreaterThanOrEqual($lowerBound, $elapsed);
-        $this->assertLessThanOrEqual($upperBound, $elapsed);
+        self::assertGreaterThanOrEqual($lowerBound, $elapsed);
+        self::assertLessThanOrEqual($upperBound, $elapsed);
     }
 
-    public function testCustomSleep0Seconds(): void {
+    public function testCustomSleep0Seconds(): void
+    {
         $start = microtime(true);
         $this->customSleep(0);
         $elapsed = microtime(true) - $start;
-        $this->assertLessThanOrEqual(0.0001, $elapsed);
+        self::assertLessThanOrEqual(0.0001, $elapsed);
     }
 
-    public function testCustomSleepMinus1Seconds(): void {
+    public function testCustomSleepMinus1Seconds(): void
+    {
         $start = microtime(true);
         $this->customSleep(-1);
         $elapsed = microtime(true) - $start;
-        $this->assertLessThanOrEqual(0.0001, $elapsed);
+        self::assertLessThanOrEqual(0.0001, $elapsed);
     }
 }

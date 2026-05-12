@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference;
+
+use function array_key_exists;
 
 /**
  * Raw text as found in the document.

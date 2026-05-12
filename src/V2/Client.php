@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2;
 
 use Mindee\ClientOptions\PollingOptions;
@@ -37,8 +39,8 @@ class Client
     /**
      * Send the document to an asynchronous endpoint and return its ID in the queue.
      *
-     * @param InputSource          $inputSource File to parse.
-     * @param ExtractionParameters $params      Parameters relating to prediction options.
+     * @param InputSource $inputSource File to parse.
+     * @param ExtractionParameters $params Parameters relating to prediction options.
      * @return JobResponse A JobResponse containing the job (queue) corresponding to a document.
      * @throws MindeeException Throws if the input document is not provided.
      * @category Asynchronous
@@ -52,8 +54,8 @@ class Client
 
     /**
      * Send the document to an asynchronous endpoint and return its ID in the queue.
-     * @param InputSource    $inputSource File to parse.
-     * @param BaseParameters $params      Parameters relating to prediction options.
+     * @param InputSource $inputSource File to parse.
+     * @param BaseParameters $params Parameters relating to prediction options.
      * @return JobResponse A JobResponse containing the job (queue) corresponding to a document.
      * @throws MindeeException Throws if the input document is not provided.
      * @category Asynchronous
@@ -70,7 +72,7 @@ class Client
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param string $resultUrl     URL of the result.
+     * @param string $resultUrl URL of the result.
      * @return BaseResponse A response containing parsing results.
      */
     public function getResultFromUrl(
@@ -84,7 +86,7 @@ class Client
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param string $resultId      ID of the result.
+     * @param string $resultId ID of the result.
      * @return BaseResponse A response containing parsing results.
      */
     public function getResult(
@@ -112,10 +114,10 @@ class Client
      * until the maximum number of tries is reached.
      *
      * @template T of BaseResponse
-     * @param string              $responseClass  The response class to construct.
+     * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param InputSource         $inputDoc       Input document to parse.
-     * @param BaseParameters      $params         Parameters relating to prediction options.
+     * @param InputSource $inputDoc Input document to parse.
+     * @param BaseParameters $params Parameters relating to prediction options.
      * @param PollingOptions|null $pollingOptions Options to apply to the polling.
      * @return BaseResponse A response containing parsing results.
      * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
@@ -153,9 +155,9 @@ class Client
             }
 
             error_log(
-                "Polling server for parsing result with job ID: " . $jobId .
-                ". Attempt number " . $retryCounter . " of " . $pollingOptions->maxRetries .
-                ". Job status: " . $pollResults->job->status
+                "Polling server for parsing result with job ID: " . $jobId
+                . ". Attempt number " . $retryCounter . " of " . $pollingOptions->maxRetries
+                . ". Job status: " . $pollResults->job->status
             );
 
             $this->customSleep($pollingOptions->delaySec);
@@ -170,8 +172,8 @@ class Client
         }
 
         throw new MindeeException(
-            "Asynchronous parsing request timed out after " .
-            ($pollingOptions->delaySec * $retryCounter) . " seconds"
+            "Asynchronous parsing request timed out after "
+            . ($pollingOptions->delaySec * $retryCounter) . " seconds"
         );
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Input;
 
 use Mindee\Error\ErrorCode;
@@ -33,14 +35,13 @@ class URLInputSource extends InputSource
     /**
      * Downloads the file from the url, and returns a BytesInput wrapper object for it.
      *
-     * @param string|null $filename     Name of the file.
-     * @param string|null $username     Optional username for credential-based authentication.
-     * @param string|null $password     Optional password for credential-based authentication.
-     * @param string|null $token        Optional token for JWT-based authentication.
-     * @param integer     $maxRedirects Maximum amount of redirects to follow.
-     * @return BytesInput
-     * @throws MindeeSourceException    Throws if the file can't be accessed, downloaded or converted to a proper input
-     * source.
+     * @param string|null $filename Name of the file.
+     * @param string|null $username Optional username for credential-based authentication.
+     * @param string|null $password Optional password for credential-based authentication.
+     * @param string|null $token Optional token for JWT-based authentication.
+     * @param integer $maxRedirects Maximum amount of redirects to follow.
+     * @throws MindeeSourceException Throws if the file can't be accessed, downloaded or converted to a proper input
+     *                               source.
      */
     public function asLocalInputSource(
         ?string $filename = null,
@@ -49,7 +50,7 @@ class URLInputSource extends InputSource
         ?string $token = null,
         int $maxRedirects = 3
     ): BytesInput {
-        $filename = $filename ?? basename(parse_url($this->url, PHP_URL_PATH));
+        $filename ??= basename(parse_url($this->url, PHP_URL_PATH));
         if ($filename === '' || !pathinfo($filename, PATHINFO_EXTENSION)) {
             throw new MindeeSourceException(
                 'Filename must end with an extension.',
@@ -66,7 +67,6 @@ class URLInputSource extends InputSource
      * Attempts to grab a file's extension.
      *
      * @param string|null $filename Initial file name.
-     * @return string|null
      */
     private static function getFileExtension(?string $filename): ?string
     {
@@ -78,7 +78,6 @@ class URLInputSource extends InputSource
      * Generates a unique filename.
      *
      * @param string|null $extension File extension, defaults to .tmp.
-     * @return string
      */
     private static function generateFileName(?string $extension): string
     {
@@ -90,14 +89,13 @@ class URLInputSource extends InputSource
     /**
      * Downloads the file and saves it to the specified path.
      *
-     * @param string      $path         Path to save the file.
-     * @param string|null $filename     Optional name for the saved file.
-     * @param string|null $username     Optional username for credential-based authentication.
-     * @param string|null $password     Optional password for credential-based authentication.
-     * @param string|null $token        Optional token for JWT-based authentication.
-     * @param integer     $maxRedirects Maximum amount of redirects to follow.
-     * @return void
-     * @throws MindeeSourceException    Throws if the file can't be accessed, downloaded or saved.
+     * @param string $path Path to save the file.
+     * @param string|null $filename Optional name for the saved file.
+     * @param string|null $username Optional username for credential-based authentication.
+     * @param string|null $password Optional password for credential-based authentication.
+     * @param string|null $token Optional token for JWT-based authentication.
+     * @param integer $maxRedirects Maximum amount of redirects to follow.
+     * @throws MindeeSourceException Throws if the file can't be accessed, downloaded or saved.
      */
     public function saveToFile(
         string $path,
@@ -107,9 +105,9 @@ class URLInputSource extends InputSource
         ?string $token = null,
         int $maxRedirects = 3
     ): void {
-        $filename = $filename ?? basename(parse_url($this->url, PHP_URL_PATH));
+        $filename ??= basename(parse_url($this->url, PHP_URL_PATH));
         if ($filename === '' || !pathinfo($filename, PATHINFO_EXTENSION)) {
-            $filename = URLInputSource::generateFileName(URLInputSource::getFileExtension($filename));
+            $filename = self::generateFileName(self::getFileExtension($filename));
         }
 
         $response = $this->downloadFile($username, $password, $token, $maxRedirects);
@@ -126,12 +124,11 @@ class URLInputSource extends InputSource
     /**
      * Downloads the file from the URL.
      *
-     * @param string|null $username     Optional username for credential-based authentication.
-     * @param string|null $password     Optional password for credential-based authentication.
-     * @param string|null $token        Optional token for JWT-based authentication.
-     * @param integer     $maxRedirects Maximum amount of redirects to follow.
-     * @return string
-     * @throws MindeeSourceException    Throws if the file can't be accessed or downloaded.
+     * @param string|null $username Optional username for credential-based authentication.
+     * @param string|null $password Optional password for credential-based authentication.
+     * @param string|null $token Optional token for JWT-based authentication.
+     * @param integer $maxRedirects Maximum amount of redirects to follow.
+     * @throws MindeeSourceException Throws if the file can't be accessed or downloaded.
      */
     private function downloadFile(
         ?string $username = null,

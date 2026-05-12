@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Fr\Payslip;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class PayslipV3PayDetail
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null The gross salary of the employee.
@@ -56,39 +58,38 @@ class PayslipV3PayDetail
     public ?float $totalTaxesAndDeductions;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->grossSalary = isset($rawPrediction["gross_salary"]) ?
-            floatval($rawPrediction["gross_salary"]) : null;
-        $this->grossSalaryYtd = isset($rawPrediction["gross_salary_ytd"]) ?
-            floatval($rawPrediction["gross_salary_ytd"]) : null;
-        $this->incomeTaxRate = isset($rawPrediction["income_tax_rate"]) ?
-            floatval($rawPrediction["income_tax_rate"]) : null;
-        $this->incomeTaxWithheld = isset($rawPrediction["income_tax_withheld"]) ?
-            floatval($rawPrediction["income_tax_withheld"]) : null;
-        $this->netPaid = isset($rawPrediction["net_paid"]) ?
-            floatval($rawPrediction["net_paid"]) : null;
-        $this->netPaidBeforeTax = isset($rawPrediction["net_paid_before_tax"]) ?
-            floatval($rawPrediction["net_paid_before_tax"]) : null;
-        $this->netTaxable = isset($rawPrediction["net_taxable"]) ?
-            floatval($rawPrediction["net_taxable"]) : null;
-        $this->netTaxableYtd = isset($rawPrediction["net_taxable_ytd"]) ?
-            floatval($rawPrediction["net_taxable_ytd"]) : null;
-        $this->totalCostEmployer = isset($rawPrediction["total_cost_employer"]) ?
-            floatval($rawPrediction["total_cost_employer"]) : null;
-        $this->totalTaxesAndDeductions = isset($rawPrediction["total_taxes_and_deductions"]) ?
-            floatval($rawPrediction["total_taxes_and_deductions"]) : null;
+        $this->grossSalary = isset($rawPrediction["gross_salary"])
+            ? (float) ($rawPrediction["gross_salary"]) : null;
+        $this->grossSalaryYtd = isset($rawPrediction["gross_salary_ytd"])
+            ? (float) ($rawPrediction["gross_salary_ytd"]) : null;
+        $this->incomeTaxRate = isset($rawPrediction["income_tax_rate"])
+            ? (float) ($rawPrediction["income_tax_rate"]) : null;
+        $this->incomeTaxWithheld = isset($rawPrediction["income_tax_withheld"])
+            ? (float) ($rawPrediction["income_tax_withheld"]) : null;
+        $this->netPaid = isset($rawPrediction["net_paid"])
+            ? (float) ($rawPrediction["net_paid"]) : null;
+        $this->netPaidBeforeTax = isset($rawPrediction["net_paid_before_tax"])
+            ? (float) ($rawPrediction["net_paid_before_tax"]) : null;
+        $this->netTaxable = isset($rawPrediction["net_taxable"])
+            ? (float) ($rawPrediction["net_taxable"]) : null;
+        $this->netTaxableYtd = isset($rawPrediction["net_taxable_ytd"])
+            ? (float) ($rawPrediction["net_taxable_ytd"]) : null;
+        $this->totalCostEmployer = isset($rawPrediction["total_cost_employer"])
+            ? (float) ($rawPrediction["total_cost_employer"]) : null;
+        $this->totalTaxesAndDeductions = isset($rawPrediction["total_taxes_and_deductions"])
+            ? (float) ($rawPrediction["total_taxes_and_deductions"]) : null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -109,7 +110,6 @@ class PayslipV3PayDetail
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -129,7 +129,6 @@ class PayslipV3PayDetail
     /**
      * Output in a format suitable for inclusion in a field list.
      *
-     * @return string
      */
     public function toFieldList(): string
     {

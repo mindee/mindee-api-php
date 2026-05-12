@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Error;
 
 use Mindee\V2\Parsing\ErrorResponse;
@@ -23,7 +25,7 @@ class MindeeV2HttpException extends MindeeException
     public ?string $title;
     /**
      * @var string|null Error code.
-     * Note: PHP's `RuntimeException` class uses `$code` for the error code.
+     *                  Note: PHP's `RuntimeException` class uses `$code` for the error code.
      */
     public ?string $errorCode;
     /**

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Geometry;
 
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
+
+use function count;
 
 /**
  * Utility class for MinMax.
@@ -14,7 +18,6 @@ class MinMaxUtils
      * Retrieves the upper and lower bounds of the y-axis from an array of points.
      *
      * @param array $points An array of points.
-     * @return MinMax
      * @throws MindeeGeometryException Throws if the provided array is too small.
      */
     public static function getMinMaxY(array $points): MinMax
@@ -36,7 +39,6 @@ class MinMaxUtils
      * Retrieves the upper and lower bounds of the x-axis from an array of points.
      *
      * @param array $points An array of points.
-     * @return MinMax
      * @throws MindeeGeometryException Throws if the provided array is too small.
      */
     public static function getMinMaxX(array $points): MinMax

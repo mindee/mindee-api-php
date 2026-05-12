@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\BillOfLading;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class BillOfLadingV1CarrierItem
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var string|null A description of the item.
@@ -40,28 +42,27 @@ class BillOfLadingV1CarrierItem
     public ?string $weightUnit;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->description = $rawPrediction["description"] ?? null;
-        $this->grossWeight = isset($rawPrediction["gross_weight"]) ?
-            floatval($rawPrediction["gross_weight"]) : null;
-        $this->measurement = isset($rawPrediction["measurement"]) ?
-            floatval($rawPrediction["measurement"]) : null;
+        $this->grossWeight = isset($rawPrediction["gross_weight"])
+            ? (float) ($rawPrediction["gross_weight"]) : null;
+        $this->measurement = isset($rawPrediction["measurement"])
+            ? (float) ($rawPrediction["measurement"]) : null;
         $this->measurementUnit = $rawPrediction["measurement_unit"] ?? null;
-        $this->quantity = isset($rawPrediction["quantity"]) ?
-            floatval($rawPrediction["quantity"]) : null;
+        $this->quantity = isset($rawPrediction["quantity"])
+            ? (float) ($rawPrediction["quantity"]) : null;
         $this->weightUnit = $rawPrediction["weight_unit"] ?? null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -78,7 +79,6 @@ class BillOfLadingV1CarrierItem
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -94,7 +94,6 @@ class BillOfLadingV1CarrierItem
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

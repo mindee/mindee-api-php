@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
 
 use Mindee\V1\Parsing\SummaryHelperV1;
@@ -9,8 +11,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class BooleanField extends BaseField
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var boolean|null Value as string.
@@ -19,10 +21,10 @@ class BooleanField extends BaseField
 
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
-     * @param boolean      $reconstructed Whether the field was reconstructed.
-     * @param string       $valueKey      Key to use for the value.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field was reconstructed.
+     * @param string $valueKey Key to use for the value.
      */
     public function __construct(
         array $rawPrediction,

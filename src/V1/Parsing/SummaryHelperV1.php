@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing;
 
 use Mindee\Parsing\SummaryHelper;
@@ -12,9 +14,9 @@ class SummaryHelperV1 extends SummaryHelper
     /**
      * Pads and add separators to a string for rst table items.
      *
-     * @param string  $inputString Input value, as an already printable string.
-     * @param integer $colSize     Column size assigned to the value.
-     * @param string  $separator   Optional custom separator for tables.
+     * @param string $inputString Input value, as an already printable string.
+     * @param integer $colSize Column size assigned to the value.
+     * @param string $separator Optional custom separator for tables.
      * @return string The string, with table separators.
      */
     public static function padString(string $inputString, int $colSize, string $separator = "|"): string

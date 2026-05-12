@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Fr\Payslip;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class PayslipV3SalaryDetail
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null The amount of the earning.
@@ -36,28 +38,27 @@ class PayslipV3SalaryDetail
     public ?float $rate;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->amount = isset($rawPrediction["amount"]) ?
-            floatval($rawPrediction["amount"]) : null;
-        $this->base = isset($rawPrediction["base"]) ?
-            floatval($rawPrediction["base"]) : null;
+        $this->amount = isset($rawPrediction["amount"])
+            ? (float) ($rawPrediction["amount"]) : null;
+        $this->base = isset($rawPrediction["base"])
+            ? (float) ($rawPrediction["base"]) : null;
         $this->description = $rawPrediction["description"] ?? null;
-        $this->number = isset($rawPrediction["number"]) ?
-            floatval($rawPrediction["number"]) : null;
-        $this->rate = isset($rawPrediction["rate"]) ?
-            floatval($rawPrediction["rate"]) : null;
+        $this->number = isset($rawPrediction["number"])
+            ? (float) ($rawPrediction["number"]) : null;
+        $this->rate = isset($rawPrediction["rate"])
+            ? (float) ($rawPrediction["rate"]) : null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -73,7 +74,6 @@ class PayslipV3SalaryDetail
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -88,7 +88,6 @@ class PayslipV3SalaryDetail
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

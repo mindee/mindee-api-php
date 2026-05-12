@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\FileOperations;
 
 use Mindee\Input\PathInput;
@@ -10,6 +12,9 @@ use Mindee\V2\Product\Crop\Params\CropParameters;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
+
+use function strlen;
 
 class CropFunctional extends TestCase
 {
@@ -27,7 +32,7 @@ class CropFunctional extends TestCase
 
         $this->outputDir = getcwd() . '/output';
         if (!is_dir($this->outputDir)) {
-            mkdir($this->outputDir, 0777, true);
+            mkdir($this->outputDir, 0o777, true);
         }
     }
 
@@ -46,29 +51,29 @@ class CropFunctional extends TestCase
 
     private function checkFindocReturn(ExtractionResponse $findocResponse): void
     {
-        $this->assertGreaterThan(0, strlen($findocResponse->inference->model->id));
+        self::assertGreaterThan(0, strlen($findocResponse->inference->model->id));
 
         $totalAmount = $findocResponse->inference->result->fields['total_amount'];
-        $this->assertNotNull($totalAmount);
-        $this->assertGreaterThan(0, $totalAmount->value);
+        self::assertNotNull($totalAmount);
+        self::assertGreaterThan(0, $totalAmount->value);
     }
 
     public function testExtractCropsFromImageCorrectly(): void
     {
-        $inputSource = new PathInput(\TestingUtilities::getV2ProductDir() . '/crop/default_sample.jpg');
+        $inputSource = new PathInput(TestingUtilities::getV2ProductDir() . '/crop/default_sample.jpg');
         $cropParams = new CropParameters($this->cropModelId);
 
         $response = $this->client->enqueueAndGetResult(CropResponse::class, $inputSource, $cropParams);
 
-        $this->assertNotNull($response);
-        $this->assertCount(2, $response->inference->result->crops);
+        self::assertNotNull($response);
+        self::assertCount(2, $response->inference->result->crops);
 
         $cropOperation = new Crop($inputSource);
         $extractedImages = $cropOperation->extractCrops($response->inference->result->crops);
 
-        $this->assertCount(2, $extractedImages);
-        $this->assertEquals('default_sample.jpg_page0-0.jpg', $extractedImages[0]->filename);
-        $this->assertEquals('default_sample.jpg_page0-1.jpg', $extractedImages[1]->filename);
+        self::assertCount(2, $extractedImages);
+        self::assertSame('default_sample.jpg_page0-0.jpg', $extractedImages[0]->filename);
+        self::assertSame('default_sample.jpg_page0-1.jpg', $extractedImages[1]->filename);
 
         $extractionInput = $extractedImages[0]->asInputSource();
         $findocParams = new ExtractionParameters($this->findocModelId);
@@ -80,25 +85,25 @@ class CropFunctional extends TestCase
         $extractedImages->saveAllToDisk($this->outputDir, quality: 50);
 
         $file1Info = filesize($this->outputDir . '/crop_001.jpg');
-        $this->assertGreaterThanOrEqual(97000, $file1Info);
-        $this->assertLessThanOrEqual(103000, $file1Info);
+        self::assertGreaterThanOrEqual(97000, $file1Info);
+        self::assertLessThanOrEqual(103000, $file1Info);
 
         $file2Info = filesize($this->outputDir . '/crop_002.jpg');
-        $this->assertGreaterThanOrEqual(97000, $file2Info);
-        $this->assertLessThanOrEqual(103000, $file2Info);
+        self::assertGreaterThanOrEqual(97000, $file2Info);
+        self::assertLessThanOrEqual(103000, $file2Info);
     }
 
     public function testExtractCropsFromEachPDFPageCorrectly(): void
     {
-        $inputSource = new PathInput(\TestingUtilities::getV2ProductDir() . '/crop/multipage_sample.pdf');
+        $inputSource = new PathInput(TestingUtilities::getV2ProductDir() . '/crop/multipage_sample.pdf');
         $cropParams = new CropParameters($this->cropModelId);
 
         $response = $this->client->enqueueAndGetResult(CropResponse::class, $inputSource, $cropParams);
         $cropOperation = new Crop($inputSource);
         $extractedImages = $cropOperation->extractCrops($response->inference->result->crops);
 
-        $this->assertCount(5, $extractedImages);
-        $this->assertEquals('multipage_sample.pdf_page0-0.jpg', $extractedImages[0]->filename);
-        $this->assertEquals('multipage_sample.pdf_page1-0.jpg', $extractedImages[3]->filename);
+        self::assertCount(5, $extractedImages);
+        self::assertSame('multipage_sample.pdf_page0-0.jpg', $extractedImages[0]->filename);
+        self::assertSame('multipage_sample.pdf_page1-0.jpg', $extractedImages[3]->filename);
     }
 }

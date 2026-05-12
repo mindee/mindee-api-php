@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\InvoiceSplitter;
 
 use Mindee\Error\MindeeUnsetException;
@@ -13,12 +15,12 @@ class InvoiceSplitterV1Document extends Prediction
 {
     /**
      * @var InvoiceSplitterV1InvoicePageGroups List of page groups. Each group represents a single invoice within a
-     * multi-invoice document.
+     *                                         multi-invoice document.
      */
     public InvoiceSplitterV1InvoicePageGroups $invoicePageGroups;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -37,7 +39,7 @@ class InvoiceSplitterV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $invoicePageGroupsSummary = strval($this->invoicePageGroups);
+        $invoicePageGroupsSummary = (string) ($this->invoicePageGroups);
 
         $outStr = ":Invoice Page Groups: $invoicePageGroupsSummary
 ";

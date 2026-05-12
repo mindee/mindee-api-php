@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference;
 
 /**
@@ -10,7 +12,6 @@ class RawTextPage
     /**
      * Page content as a single string.
      *
-     * @var string
      */
     public string $content;
 

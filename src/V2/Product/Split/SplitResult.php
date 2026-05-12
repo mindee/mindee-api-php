@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Split;
 
 /**
@@ -17,7 +19,7 @@ class SplitResult
      */
     public function __construct(array $rawResponse)
     {
-        $this->splits = array_map(fn ($split) => new SplitRange($split), $rawResponse['splits']);
+        $this->splits = array_map(static fn($split) => new SplitRange($split), $rawResponse['splits']);
     }
 
     /**

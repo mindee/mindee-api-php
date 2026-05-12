@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeInputException;
@@ -29,7 +31,7 @@ class Split
      * Expands a range to a list of integers.
      *
      * @param integer $start Start of the range.
-     * @param integer $end   End of the range.
+     * @param integer $end End of the range.
      *
      * @return int[]
      *
@@ -66,7 +68,7 @@ class Split
     public function extractSplits(array $splits): SplitFiles
     {
         $pdfExtractor = new PDFExtractor($this->localInput);
-        $expandedPageIndexes = array_map(fn (array $split) => self::expandRange($split[0], $split[1]), $splits);
+        $expandedPageIndexes = array_map(static fn(array $split) => self::expandRange($split[0], $split[1]), $splits);
 
         return new SplitFiles(...$pdfExtractor->extractSubDocuments($expandedPageIndexes));
     }

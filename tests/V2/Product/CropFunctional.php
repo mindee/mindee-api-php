@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Product;
 
 use Mindee\Input\PathInput;
@@ -29,7 +31,6 @@ class CropFunctional extends TestCase
     /**
      * Tests the success of the crop process using a default sample file.
      *
-     * @return void
      */
     public function testCropDefaultSampleMustSucceed(): void
     {
@@ -40,30 +41,29 @@ class CropFunctional extends TestCase
         $productParams = new CropParameters($this->cropModelId);
         $response = $this->client->enqueueAndGetResult(CropResponse::class, $inputSource, $productParams);
 
-        $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        self::assertNotNull($response);
+        self::assertNotNull($response->inference);
 
         $file = $response->inference->file;
-        $this->assertNotNull($file);
-        $this->assertSame("default_sample.jpg", $file->name);
+        self::assertNotNull($file);
+        self::assertSame("default_sample.jpg", $file->name);
 
         $result = $response->inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
         $crops = $result->crops;
-        $this->assertNotNull($crops);
-        $this->assertCount(2, $crops);
+        self::assertNotNull($crops);
+        self::assertCount(2, $crops);
 
         foreach ($crops as $crop) {
-            $this->assertNotNull($crop->objectType);
-            $this->assertNotNull($crop->location);
+            self::assertNotNull($crop->objectType);
+            self::assertNotNull($crop->location);
         }
     }
 
     /**
      * Tests the success of the crop and extraction process.
      *
-     * @return void
      */
     public function testCropAndExtractionMustSucceed(): void
     {
@@ -82,32 +82,32 @@ class CropFunctional extends TestCase
             $productParams
         );
 
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->inference;
-        $this->assertNotNull($inference);
+        self::assertNotNull($inference);
 
         $file = $inference->file;
-        $this->assertNotNull($file);
-        $this->assertSame("default_sample.jpg", $file->name);
-        $this->assertSame(1, $file->pageCount);
+        self::assertNotNull($file);
+        self::assertSame("default_sample.jpg", $file->name);
+        self::assertSame(1, $file->pageCount);
 
-        $this->assertNotNull($inference->model);
-        $this->assertSame($this->cropExtractionModelId, $inference->model->id);
+        self::assertNotNull($inference->model);
+        self::assertSame($this->cropExtractionModelId, $inference->model->id);
 
         $result = $inference->result;
-        $this->assertNotNull($result);
-        $this->assertCount(2, $result->crops);
+        self::assertNotNull($result);
+        self::assertCount(2, $result->crops);
 
         $crop0 = $result->crops[0];
-        $this->assertSame("receipt", $crop0->objectType);
-        $this->assertNotNull($crop0->location->polygon);
-        $this->assertSame(0, $crop0->location->page);
+        self::assertSame("receipt", $crop0->objectType);
+        self::assertNotNull($crop0->location->polygon);
+        self::assertSame(0, $crop0->location->page);
         $extractionResponse0 = $crop0->extractionResponse;
-        $this->assertNotNull($extractionResponse0);
+        self::assertNotNull($extractionResponse0);
 
         $supplierName = $extractionResponse0->inference->result->fields
             ->getSimpleField("supplier_name")->value;
 
-        $this->assertSame("CHEZ ALAIN MIAM MIAM", $supplierName);
+        self::assertSame("CHEZ ALAIN MIAM MIAM", $supplierName);
     }
 }

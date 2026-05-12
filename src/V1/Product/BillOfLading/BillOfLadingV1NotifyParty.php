@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\BillOfLading;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class BillOfLadingV1NotifyParty
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var string|null The address of the notify party.
@@ -32,8 +34,8 @@ class BillOfLadingV1NotifyParty
     public ?string $phone;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
@@ -48,7 +50,6 @@ class BillOfLadingV1NotifyParty
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -63,7 +64,6 @@ class BillOfLadingV1NotifyParty
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -77,7 +77,6 @@ class BillOfLadingV1NotifyParty
     /**
      * Output in a format suitable for inclusion in a field list.
      *
-     * @return string
      */
     public function toFieldList(): string
     {

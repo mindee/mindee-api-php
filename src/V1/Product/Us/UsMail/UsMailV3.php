@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** US Mail V3. */
 
 namespace Mindee\V1\Product\Us\UsMail;

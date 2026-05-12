@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Settings and variables linked to all API usage.
  */
@@ -33,11 +35,13 @@ const TIMEOUT_DEFAULT = 120;
 include_once(dirname(__DIR__, 2) . '/version.php');
 // phpcs:enable
 
+use function call_user_func;
+use function dirname;
+
 use const Mindee\VERSION;
 
 /**
  * Get the User Agent to send for API calls.
- * @return string
  */
 function getUserAgent(): string
 {
@@ -77,7 +81,6 @@ abstract class BaseAPI
      * Sets the base url.
      *
      * @param string $value Value for the base Url.
-     * @return void
      */
     protected function setBaseUrl(string $value): void
     {
@@ -88,9 +91,8 @@ abstract class BaseAPI
      * Sets the default timeout.
      *
      * @param string $value Value for the CURL timeout.
-     * @return void
      */
-    protected function setTimeout(string $value)
+    protected function setTimeout(string $value): void
     {
         $this->requestTimeout = $value;
     }
@@ -98,16 +100,15 @@ abstract class BaseAPI
     /**
      * Sets values from environment, if needed.
      *
-     * @return void
      */
-    protected function setFromEnv()
+    protected function setFromEnv(): void
     {
         $envVars = [
             BASE_URL_ENV_NAME => [$this, 'setBaseUrl'],
             REQUEST_TIMEOUT_ENV_NAME => [$this, 'setTimeout'],
         ];
         foreach ($envVars as $key => $func) {
-            $envVal = getenv($key) ? getenv($key) : '';
+            $envVal = getenv($key) ?: '';
             if ($envVal) {
                 call_user_func($func, $envVal);
                 error_log('Value ' . $key . ' was set from env.');
@@ -119,9 +120,8 @@ abstract class BaseAPI
      * Sets the API key.
      *
      * @param string|null $apiKey Optional API key.
-     * @return void
      */
-    protected function setApiKey(?string $apiKey = null)
+    protected function setApiKey(?string $apiKey = null): void
     {
         $envVal = !getenv(API_KEY_ENV_NAME) ? '' : getenv(API_KEY_ENV_NAME);
         if (!$apiKey) {

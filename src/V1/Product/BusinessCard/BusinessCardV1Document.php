@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\BusinessCard;
 
 use Mindee\Error\MindeeUnsetException;
@@ -57,8 +59,8 @@ class BusinessCardV1Document extends Prediction
      */
     public StringField $website;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -129,8 +131,8 @@ class BusinessCardV1Document extends Prediction
         if (!isset($rawPrediction["social_media"])) {
             throw new MindeeUnsetException();
         }
-        $this->socialMedia = $rawPrediction["social_media"] == null ? [] : array_map(
-            fn ($prediction) => new StringField($prediction, $pageId),
+        $this->socialMedia = $rawPrediction["social_media"] === null ? [] : array_map(
+            static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["social_media"]
         );
         if (!isset($rawPrediction["website"])) {

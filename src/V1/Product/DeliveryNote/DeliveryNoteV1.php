@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Delivery note V1. */
 
 namespace Mindee\V1\Product\DeliveryNote;

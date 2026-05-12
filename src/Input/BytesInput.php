@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Input;
+
+use CURLFile;
 
 /**
  * Raw bytes input.
@@ -14,7 +18,7 @@ class BytesInput extends LocalInputSource
 
     /**
      * @param string $fileBytes Raw data as bytes.
-     * @param string $fileName  File name of the input.
+     * @param string $fileName File name of the input.
      */
     public function __construct(string $fileBytes, string $fileName)
     {
@@ -24,7 +28,7 @@ class BytesInput extends LocalInputSource
         rename($this->tempFile, $this->tempFile .= "." . pathinfo($this->fileName, PATHINFO_EXTENSION));
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $this->fileMimetype = finfo_buffer($finfo, $fileBytes);
-        $this->fileObject = new \CURLFile($this->tempFile, $this->fileMimetype, $this->fileName);
+        $this->fileObject = new CURLFile($this->tempFile, $this->fileMimetype, $this->fileName);
         parent::__construct();
     }
 
@@ -32,7 +36,6 @@ class BytesInput extends LocalInputSource
     /**
      * Reads the contents of the file.
      *
-     * @return array
      */
     public function readContents(): array
     {

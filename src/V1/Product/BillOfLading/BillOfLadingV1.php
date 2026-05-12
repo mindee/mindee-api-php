@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Bill of Lading V1. */
 
 namespace Mindee\V1\Product\BillOfLading;

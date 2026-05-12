@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Error;
 
 /**
@@ -7,6 +9,4 @@ namespace Mindee\Error;
  *
  * Handles error 400 to 499.
  */
-class MindeeHttpClientException extends MindeeHttpException
-{
-}
+class MindeeHttpClientException extends MindeeHttpException {}

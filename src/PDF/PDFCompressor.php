@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\PDF;
 
 use Mindee\Dependency\DependencyChecker;
@@ -12,6 +14,11 @@ use Smalot\PdfParser\Config;
 use Smalot\PdfParser\Document;
 use Smalot\PdfParser\Page;
 use Smalot\PdfParser\Parser;
+use CURLFile;
+use Exception;
+use Imagick;
+
+use function count;
 
 /**
  * PDF compression class.
@@ -21,12 +28,12 @@ class PDFCompressor
     /**
      * Compresses each page of a provided PDF stream. Skips if force_source_text isn't set and source text is detected.
      *
-     * @param mixed   $input                      Path to the PDF file.
-     * @param integer $quality                    Compression quality (70-100 for most JPG images in the test dataset).
+     * @param mixed $input Path to the PDF file.
+     * @param integer $quality Compression quality (70-100 for most JPG images in the test dataset).
      * @param boolean $forceSourceTextCompression If true, attempts to re-write detected text.
-     * @param boolean $disableSourceText          If true, doesn't re-apply source text to the original PDF.
+     * @param boolean $disableSourceText If true, doesn't re-apply source text to the original PDF.
      * @throws MindeePDFException Throws if the operation fails at any step.
-     * //phpcs:disable
+     *                            //phpcs:disable
      * @throws MindeeUnhandledException Throws if one of the dependencies isn't installed.
      */
     public static function compress(
@@ -34,7 +41,7 @@ class PDFCompressor
         int $quality = 85,
         bool $forceSourceTextCompression = false,
         bool $disableSourceText = true
-    ): \CURLFile {
+    ): CURLFile {
         //phpcs: enable
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
@@ -46,7 +53,7 @@ class PDFCompressor
             $parser = new Parser([], $config);
             $pdf = $parser->parseFile($pdfPath);
 
-            if (strlen($pdf->getText()) > 0) {
+            if ($pdf->getText() !== '') {
                 if ($forceSourceTextCompression) {
                     if (!$disableSourceText) {
                         error_log("[WARNING] Re-writing PDF source-text is an EXPERIMENTAL feature.");
@@ -66,8 +73,8 @@ class PDFCompressor
                 $fpdi = new CustomFPDI();
                 $pageCount = $fpdi->setSourceFile($pdfPath);
             } catch (CrossReferenceException) {
-                error_log("[WARNING] PDF format for '$pdfPath' is not directly supported." .
-                    " Output PDF will be rasterized and source text won't be available.");
+                error_log("[WARNING] PDF format for '$pdfPath' is not directly supported."
+                    . " Output PDF will be rasterized and source text won't be available.");
                 $pdfPath = PDFUtils::downgradePDFVersion($pdfPath);
                 $fpdi = new CustomFPDI();
                 $pdf = $parser->parseFile($pdfPath);
@@ -76,8 +83,8 @@ class PDFCompressor
 
             $outPdf = new CustomFPDI();
             for ($i = 1; $i <= $pageCount; $i++) {
-                list($tempJpegFile, $orientation) = static::processPDFPage($pdfPath, $i, $quality);
-                list($width, $height) = getimagesize($tempJpegFile);
+                [$tempJpegFile, $orientation] = static::processPDFPage($pdfPath, $i, $quality);
+                [$width, $height] = getimagesize($tempJpegFile);
                 $outPdf->AddPage($orientation, [$width, $height]);
                 $outPdf->Image($tempJpegFile, 0, 0, $width, $height);
                 unlink($tempJpegFile);
@@ -92,12 +99,12 @@ class PDFCompressor
             $finalPDFSize = filesize($outputPath);
 
             if ($initialFileSize < $finalPDFSize) {
-                error_log("[WARNING] Compressed PDF for '$pdfPath' would be larger than input." .
-                    " Aborting operation.");
+                error_log("[WARNING] Compressed PDF for '$pdfPath' would be larger than input."
+                    . " Aborting operation.");
                 return PDFUtils::toCURLFile(PDFUtils::extractFilePath($input));
             }
             return PDFUtils::toCURLFile($outputPath);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException(
                 "Couldn't compress PDF.",
                 ErrorCode::FILE_OPERATION_ABORTED,
@@ -109,7 +116,6 @@ class PDFCompressor
     /**
      * @param Page $inputPage Input page.
      * @param CustomFPDI $outputPdf Output PDF handle.
-     * @return void
      * @throws MindeePDFException Throws if text can't be inserted into the page.
      */
     private static function injectTextForPage(Page $inputPage, CustomFPDI $outputPdf): void
@@ -119,7 +125,7 @@ class PDFCompressor
             foreach ($textElements as $element) {
                 PDFUtils::addTextElement($outputPdf, $element);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException(
                 "Couldn't inject text into the new file.",
                 ErrorCode::PDF_CANT_EDIT,
@@ -151,7 +157,7 @@ class PDFCompressor
             $processedPdf->Output('F', $outputPath);
 
             return $outputPath;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException(
                 "Couldn't create output PDF.",
                 ErrorCode::PDF_CANT_CREATE,
@@ -166,7 +172,6 @@ class PDFCompressor
      *
      * @param Document $inputPdf Input PDF document.
      * @param CustomFPDI $outputPdf The output PDF object.
-     * @return void
      * @throws MindeePDFException Throws if the text can't be injected.
      */
     private static function injectText(Document $inputPdf, CustomFPDI $outputPdf): void
@@ -188,7 +193,7 @@ class PDFCompressor
                     }
                 }
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException(
                 "Couldn't inject text into the new file.",
                 ErrorCode::PDF_CANT_EDIT,
@@ -210,7 +215,7 @@ class PDFCompressor
     private static function processPDFPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): array
     {
         try {
-            $singlePagePdf = new FPDI();
+            $singlePagePdf = new Fpdi();
             $singlePagePdf->setSourceFile($sourcePdfPath);
             $tplId = $singlePagePdf->importPage($pageIndex);
             $size = $singlePagePdf->getTemplateSize($tplId);
@@ -221,11 +226,11 @@ class PDFCompressor
             $tempPdfFile = tempnam(sys_get_temp_dir(), 'pdf_page_') . '.pdf';
             $singlePagePdf->Output('F', $tempPdfFile);
 
-            $imagick = new \Imagick();
+            $imagick = new Imagick();
             $imagick->readImage($tempPdfFile);
             $imagick->setImageFormat('jpg');
-            $imagick->setImageAlphaChannel(\Imagick::ALPHACHANNEL_REMOVE);
-            $imagick->setImageCompression(\Imagick::COMPRESSION_JPEG);
+            $imagick->setImageAlphaChannel(Imagick::ALPHACHANNEL_REMOVE);
+            $imagick->setImageCompression(Imagick::COMPRESSION_JPEG);
             $imagick->setImageCompressionQuality($imageQuality);
 
             $tempJpegFile = tempnam(sys_get_temp_dir(), 'pdf_page_') . '.jpg';
@@ -234,7 +239,7 @@ class PDFCompressor
             unlink($tempPdfFile);
 
             return [$tempJpegFile, $size['orientation']];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePDFException(
                 "Couldn't process PDF page $pageIndex.",
                 ErrorCode::PDF_CANT_PROCESS,
