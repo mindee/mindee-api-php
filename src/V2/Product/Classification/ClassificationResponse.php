@@ -10,7 +10,7 @@ use Mindee\V2\Parsing\Inference\BaseResponse;
 class ClassificationResponse extends BaseResponse
 {
     /**
-     * @var ClassificationInference ExtractionInference results for the classification.
+     * @var ClassificationInference Inference results for the classification.
      */
     public ClassificationInference $inference;
 

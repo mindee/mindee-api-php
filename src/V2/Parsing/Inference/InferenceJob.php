@@ -3,7 +3,7 @@
 namespace Mindee\V2\Parsing\Inference;
 
 /**
- * Information on the Job associated to a given ExtractionInference.
+ * Information on the Job associated to a given Inference.
  */
 class InferenceJob
 {

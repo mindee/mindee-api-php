@@ -5,12 +5,12 @@ namespace Mindee\V2\Product\Extraction;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 
 /**
- * ExtractionInference response class for V2.
+ * Inference response class for V2.
  */
 class ExtractionResponse extends BaseResponse
 {
     /**
-     * @var ExtractionInference ExtractionInference result.
+     * @var ExtractionInference Inference result.
      */
     public ExtractionInference $inference;
 

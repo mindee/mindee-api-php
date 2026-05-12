@@ -6,6 +6,8 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
 use Mindee\V1\Parsing\Common\OCR\OCR;
+use ReflectionClass;
+use ReflectionException;
 
 /**
  * Base class for all predictions.
@@ -17,7 +19,7 @@ class Document
      */
     public string $filename;
     /**
-     * @var \Mindee\V1\Parsing\Common\Inference|object|string Result of the base inference.
+     * @var Inference|object|string Result of the base inference.
      */
     public Inference $inference;
     /**
@@ -29,18 +31,18 @@ class Document
      */
     public int $nPages;
     /**
-     * @var \Mindee\V1\Parsing\Common\Extras\Extras|null Potential Extras fields sent back along with the prediction.
+     * @var Extras|null Potential Extras fields sent back along with the prediction.
      */
     public ?Extras $extras;
     /**
-     * @var \Mindee\V1\Parsing\Common\OCR\OCR|null Potential raw text results read by the OCR (limited feature)
+     * @var OCR|null Potential raw text results read by the OCR (limited feature)
      */
     public ?OCR $ocr;
 
     /**
      * @param string $predictionType Type of prediction.
      * @param array  $rawResponse    Raw HTTP response.
-     * @throws \Mindee\Error\MindeeApiException Throws if the prediction type isn't recognized.
+     * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {
@@ -48,9 +50,9 @@ class Document
         $this->nPages = $rawResponse['n_pages'];
         $this->filename = $rawResponse['name'];
         try {
-            $reflection = new \ReflectionClass($predictionType);
+            $reflection = new ReflectionClass($predictionType);
             $this->inference = $reflection->newInstance($rawResponse['inference']);
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             throw new MindeeApiException(
                 "Unable to create custom product " . $predictionType,
                 ErrorCode::INTERNAL_LIBRARY_ERROR,

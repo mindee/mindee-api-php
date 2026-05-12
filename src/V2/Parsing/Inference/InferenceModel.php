@@ -3,7 +3,7 @@
 namespace Mindee\V2\Parsing\Inference;
 
 /**
- * ExtractionInference result model class.
+ * Inference result model class.
  */
 class InferenceModel
 {

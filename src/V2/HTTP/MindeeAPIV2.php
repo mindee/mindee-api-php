@@ -345,7 +345,7 @@ class MindeeAPIV2
      * Starts a CURL session using POST.
      *
      * @param InputSource    $inputSource File to upload.
-     * @param BaseParameters $params      ExtractionInference parameters.
+     * @param BaseParameters $params      Parameters.
      * @return array
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */

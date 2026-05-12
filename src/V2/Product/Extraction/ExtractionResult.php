@@ -7,7 +7,7 @@ use Mindee\V2\Parsing\Inference\RAGMetadata;
 use Mindee\V2\Parsing\Inference\RawText;
 
 /**
- * ExtractionInference result class.
+ * Inference result class.
  */
 class ExtractionResult
 {
