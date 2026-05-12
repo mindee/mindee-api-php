@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\ClientOptions;
 
 use Mindee\Input\PageOptions;
@@ -54,7 +56,7 @@ class PredictMethodOptions
      * @param PredictOptions $predictOptions Prediction Options.
      * @return $this
      */
-    public function setPredictOptions(PredictOptions $predictOptions): PredictMethodOptions
+    public function setPredictOptions(PredictOptions $predictOptions): self
     {
         $this->predictOptions = $predictOptions;
         return $this;
@@ -64,7 +66,7 @@ class PredictMethodOptions
      * @param WorkflowOptions $workflowOptions Prediction Options.
      * @return $this
      */
-    public function setWorkflowOptions(WorkflowOptions $workflowOptions): PredictMethodOptions
+    public function setWorkflowOptions(WorkflowOptions $workflowOptions): self
     {
         $this->workflowOptions = $workflowOptions;
         return $this;
@@ -74,7 +76,7 @@ class PredictMethodOptions
      * @param PageOptions $pageOptions Page Options.
      * @return $this
      */
-    public function setPageOptions(PageOptions $pageOptions): PredictMethodOptions
+    public function setPageOptions(PageOptions $pageOptions): self
     {
         $this->pageOptions = $pageOptions;
         return $this;
@@ -84,7 +86,7 @@ class PredictMethodOptions
      * @param Endpoint $customEndpoint Endpoint.
      * @return $this
      */
-    public function setEndpoint(Endpoint $customEndpoint): PredictMethodOptions
+    public function setEndpoint(Endpoint $customEndpoint): self
     {
         $this->endpoint = $customEndpoint;
         return $this;
@@ -94,7 +96,7 @@ class PredictMethodOptions
      * @param boolean $rag Whether to enable Retrieval-Augmented Generation.
      * @return $this
      */
-    public function setRag(bool $rag): PredictMethodOptions
+    public function setRag(bool $rag): self
     {
         $this->rag = $rag;
         return $this;
@@ -106,7 +108,7 @@ class PredictMethodOptions
      * @param string $workflowId The unique workflow ID to be set.
      * @return $this
      */
-    public function setWorkflowId(string $workflowId): PredictMethodOptions
+    public function setWorkflowId(string $workflowId): self
     {
         $this->workflowId = $workflowId;
         return $this;

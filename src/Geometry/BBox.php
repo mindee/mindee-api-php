@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Geometry;
 
 /**
@@ -45,7 +47,6 @@ class BBox
     /**
      * Retrieves the minimum x coordinate.
      *
-     * @return float
      */
     public function getMinX(): float
     {
@@ -55,7 +56,6 @@ class BBox
     /**
      * Retrieves the maximum x coordinate.
      *
-     * @return float
      */
     public function getMaxX(): float
     {
@@ -65,7 +65,6 @@ class BBox
     /**
      * Retrieves the minimum y coordinate.
      *
-     * @return float
      */
     public function getMinY(): float
     {
@@ -75,7 +74,6 @@ class BBox
     /**
      * Retrieves the maximum y coordinate.
      *
-     * @return float
      */
     public function getMaxY(): float
     {
@@ -86,7 +84,6 @@ class BBox
      * Extends the BBox with the provided points.
      *
      * @param array|Polygon $points Series of points to add to the BBox.
-     * @return void
      */
     public function extendWith(Polygon|array $points): void
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\CLI;
 
 /**
@@ -25,10 +27,10 @@ class DocumentCommandConfig
     public bool $isAsync;
 
     /**
-     * @param string  $help     Custom help message (currently not in use).
-     * @param string  $docClass Document class, as defined in the Mindee\Product namespace.
-     * @param boolean $isSync   Whether the document supports synchronous usage.
-     * @param boolean $isAsync  Whether the document supports asynchronous usage.
+     * @param string $help Custom help message (currently not in use).
+     * @param string $docClass Document class, as defined in the Mindee\Product namespace.
+     * @param boolean $isSync Whether the document supports synchronous usage.
+     * @param boolean $isAsync Whether the document supports asynchronous usage.
      */
     public function __construct(string $help, string $docClass, bool $isSync, bool $isAsync = false)
     {

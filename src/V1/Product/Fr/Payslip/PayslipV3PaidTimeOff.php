@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Fr\Payslip;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class PayslipV3PaidTimeOff
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null The amount of paid time off accrued in the period.
@@ -36,27 +38,26 @@ class PayslipV3PaidTimeOff
     public ?float $used;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->accrued = isset($rawPrediction["accrued"]) ?
-            floatval($rawPrediction["accrued"]) : null;
+        $this->accrued = isset($rawPrediction["accrued"])
+            ? (float) ($rawPrediction["accrued"]) : null;
         $this->period = $rawPrediction["period"] ?? null;
         $this->ptoType = $rawPrediction["pto_type"] ?? null;
-        $this->remaining = isset($rawPrediction["remaining"]) ?
-            floatval($rawPrediction["remaining"]) : null;
-        $this->used = isset($rawPrediction["used"]) ?
-            floatval($rawPrediction["used"]) : null;
+        $this->remaining = isset($rawPrediction["remaining"])
+            ? (float) ($rawPrediction["remaining"]) : null;
+        $this->used = isset($rawPrediction["used"])
+            ? (float) ($rawPrediction["used"]) : null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -72,7 +73,6 @@ class PayslipV3PaidTimeOff
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -87,7 +87,6 @@ class PayslipV3PaidTimeOff
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

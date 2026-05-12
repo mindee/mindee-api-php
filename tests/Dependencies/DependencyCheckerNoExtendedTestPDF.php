@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dependencies;
 
 use Mindee\Error\MindeeUnhandledException;
@@ -9,24 +11,25 @@ use Mindee\V1\Image\ImageExtractor;
 use Mindee\Extraction\PDFExtractor;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 require_once(__DIR__ . "/../TestingUtilities.php");
 
 class DependencyCheckerNoExtendedTestPDF extends TestCase
 {
-    public function testNoImageExtractor()
+    public function testNoImageExtractor(): void
     {
         $this->expectException(MindeeUnhandledException::class);
-        $inputObj = new PathInput(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         new ImageExtractor($inputObj);
     }
-    public function testNoPDFExtractor()
+    public function testNoPDFExtractor(): void
     {
         $this->expectException(MindeeUnhandledException::class);
-        $inputObj = new PathInput(\TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         new PDFExtractor($inputObj);
     }
-    public function testNoExtractedImage()
+    public function testNoExtractedImage(): void
     {
         $this->expectException(MindeeUnhandledException::class);
         $inputImage = "";
@@ -34,7 +37,7 @@ class DependencyCheckerNoExtendedTestPDF extends TestCase
         $saveFormat = "pdf";
         new ExtractedImage($inputImage, $filename, $saveFormat, 0, 0);
     }
-    public function testNoExtractedPDF()
+    public function testNoExtractedPDF(): void
     {
         $this->expectException(MindeeUnhandledException::class);
         $inputImage = "";

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Carte Grise V1. */
 
 namespace Mindee\V1\Product\Fr\CarteGrise;

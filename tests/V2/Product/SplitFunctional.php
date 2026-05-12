@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Product;
 
 use Mindee\Input\PathInput;
@@ -27,7 +29,6 @@ class SplitFunctional extends TestCase
     /**
      * Tests the success of the split process using a default sample file.
      *
-     * @return void
      */
     public function testSplitDefaultSampleMustSucceed(): void
     {
@@ -38,18 +39,18 @@ class SplitFunctional extends TestCase
         $productParams = new SplitParameters($this->splitModelId);
         $response = $this->client->enqueueAndGetResult(SplitResponse::class, $inputSource, $productParams);
 
-        $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        self::assertNotNull($response);
+        self::assertNotNull($response->inference);
 
         $file = $response->inference->file;
-        $this->assertNotNull($file);
-        $this->assertSame("default_sample.pdf", $file->name);
+        self::assertNotNull($file);
+        self::assertSame("default_sample.pdf", $file->name);
 
         $result = $response->inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
         $splits = $result->splits;
-        $this->assertNotNull($splits);
-        $this->assertCount(2, $splits);
+        self::assertNotNull($splits);
+        self::assertCount(2, $splits);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Error;
 
 use Mindee\V2\Parsing\ErrorResponse;
@@ -20,7 +22,7 @@ class MindeeV2HttpUnknownException extends MindeeV2HttpException
                     "status" => -1,
                     "detail" => "Couldn't deserialize server error. Found: $response",
                     "title" => "Unknown error",
-                    "code" => "000-000"
+                    "code" => "000-000",
                 ]
             )
         );

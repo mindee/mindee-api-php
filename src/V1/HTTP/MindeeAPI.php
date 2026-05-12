@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Settings and variables linked to endpoint calling & API usage.
  */
@@ -29,10 +31,10 @@ class MindeeAPI extends BaseAPI
     public string $accountName;
 
     /**
-     * @param string|null $apiKey       API key.
-     * @param string      $endpointName Name of the endpoint.
-     * @param string|null $accountName  Name of the endpoint's owner.
-     * @param string|null $version      Version of the endpoint.
+     * @param string|null $apiKey API key.
+     * @param string $endpointName Name of the endpoint.
+     * @param string|null $accountName Name of the endpoint's owner.
+     * @param string|null $version Version of the endpoint.
      * @throws MindeeException Throws if the API key specified is invalid.
      */
     public function __construct(
@@ -42,11 +44,11 @@ class MindeeAPI extends BaseAPI
         ?string $version = "1"
     ) {
         parent::__construct($apiKey);
-        if (!$this->apiKey || strlen($this->apiKey) == 0) {
+        if (!$this->apiKey || $this->apiKey === '') {
             throw new MindeeException(
-                "Missing API key for '$endpointName v$version' (belonging to $accountName)," .
-                " check your Client configuration.You can set this using the " .
-                API_KEY_ENV_NAME . ' environment variable.',
+                "Missing API key for '$endpointName v$version' (belonging to $accountName),"
+                . " check your Client configuration.You can set this using the "
+                . API_KEY_ENV_NAME . ' environment variable.',
                 ErrorCode::USER_INPUT_ERROR
             );
         }

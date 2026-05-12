@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Nutrition Facts Label V1. */
 
 namespace Mindee\V1\Product\NutritionFactsLabel;

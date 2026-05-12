@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Fr\IdCard;
 
 use Mindee\Product\Fr\IdCard;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Parsing\Common\Page;
+use Mindee\V1\Product\Fr\IdCard\IdCardV2;
+use Mindee\V1\Product\Fr\IdCard\IdCardV2Page;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class IdCardV2Test extends TestCase
 {
@@ -17,45 +22,45 @@ class IdCardV2Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/idcard_fr/response_v2/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/idcard_fr/response_v2/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\IdCard\IdCardV2::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\IdCard\IdCardV2::class, $emptyDocJSON["document"]);
-        $this->completePage0 = new Page(\Mindee\V1\Product\Fr\IdCard\IdCardV2Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
+        $this->completeDoc = new Document(IdCardV2::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(IdCardV2::class, $emptyDocJSON["document"]);
+        $this->completePage0 = new Page(IdCardV2Page::class, $completeDocJSON["document"]["inference"]["pages"][0]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
         $this->completePage0Reference = file_get_contents($productDir . "summary_page0.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->nationality->value);
-        $this->assertNull($prediction->cardAccessNumber->value);
-        $this->assertNull($prediction->documentNumber->value);
-        $this->assertEquals(0, count($prediction->givenNames));
-        $this->assertNull($prediction->surname->value);
-        $this->assertNull($prediction->alternateName->value);
-        $this->assertNull($prediction->birthDate->value);
-        $this->assertNull($prediction->birthPlace->value);
-        $this->assertNull($prediction->gender->value);
-        $this->assertNull($prediction->expiryDate->value);
-        $this->assertNull($prediction->mrz1->value);
-        $this->assertNull($prediction->mrz2->value);
-        $this->assertNull($prediction->mrz3->value);
-        $this->assertNull($prediction->issueDate->value);
-        $this->assertNull($prediction->authority->value);
+        self::assertNull($prediction->nationality->value);
+        self::assertNull($prediction->cardAccessNumber->value);
+        self::assertNull($prediction->documentNumber->value);
+        self::assertCount(0, $prediction->givenNames);
+        self::assertNull($prediction->surname->value);
+        self::assertNull($prediction->alternateName->value);
+        self::assertNull($prediction->birthDate->value);
+        self::assertNull($prediction->birthPlace->value);
+        self::assertNull($prediction->gender->value);
+        self::assertNull($prediction->expiryDate->value);
+        self::assertNull($prediction->mrz1->value);
+        self::assertNull($prediction->mrz2->value);
+        self::assertNull($prediction->mrz3->value);
+        self::assertNull($prediction->issueDate->value);
+        self::assertNull($prediction->authority->value);
     }
-    public function testCompletePage0()
+    public function testCompletePage0(): void
     {
-        $this->assertEquals(0, $this->completePage0->id);
-        $this->assertEquals($this->completePage0Reference, strval($this->completePage0));
+        self::assertSame(0, $this->completePage0->id);
+        self::assertSame($this->completePage0Reference, (string) ($this->completePage0));
     }
 }

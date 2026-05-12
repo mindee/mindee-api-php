@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Split;
 
 use Mindee\V2\Product\Extraction\ExtractionResponse;
@@ -11,7 +13,7 @@ class SplitRange
 {
     /**
      * @var integer[] 0-based page indexes, where the first integer indicates the start page and the second integer
-     * indicates the end page.
+     *                indicates the end page.
      */
     public array $pageRange;
 
@@ -33,8 +35,8 @@ class SplitRange
     {
         $this->pageRange = $rawResponse['page_range'];
         $this->documentType = $rawResponse['document_type'];
-        $this->extractionResponse = isset($rawResponse['extraction_response']) ?
-            new ExtractionResponse($rawResponse['extraction_response']) : null;
+        $this->extractionResponse = isset($rawResponse['extraction_response'])
+            ? new ExtractionResponse($rawResponse['extraction_response']) : null;
     }
 
     /**

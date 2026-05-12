@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference;
 
 use Mindee\Parsing\SummaryHelper;
@@ -16,7 +18,7 @@ class InferenceActiveOptions
 {
     /**
      * @var boolean Whether the Retrieval-Augmented Generation feature was activated.
-     * When this feature is activated, the RAG pipeline is used to increase result accuracy.
+     *              When this feature is activated, the RAG pipeline is used to increase result accuracy.
      */
     public bool $rag;
 
@@ -27,18 +29,18 @@ class InferenceActiveOptions
 
     /**
      * @var boolean Whether the Raw Text feature was activated.
-     * When this feature is activated, the raw text extracted from the document is returned in the result.
+     *              When this feature is activated, the raw text extracted from the document is returned in the result.
      */
     public bool $polygon;
 
     /**
      * @var boolean Whether the confidence feature was activated.
-     * When this feature is activated, a confidence score for each field is returned in the result.
+     *              When this feature is activated, a confidence score for each field is returned in the result.
      */
     public bool $confidence;
     /**
      * @var boolean Whether the text context feature was activated.
-     * When this feature is activated, the provided context is used to improve the accuracy of the inference.
+     *              When this feature is activated, the provided context is used to improve the accuracy of the inference.
      */
     public bool $textContext;
 

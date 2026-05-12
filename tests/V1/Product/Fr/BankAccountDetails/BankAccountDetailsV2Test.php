@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Fr\BankAccountDetails;
 
 use Mindee\Product\Fr\BankAccountDetails;
 use Mindee\V1\Parsing\Common\Document;
 use PHPUnit\Framework\TestCase;
+use Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV2;
+use TestingUtilities;
 
 class BankAccountDetailsV2Test extends TestCase
 {
@@ -14,30 +18,30 @@ class BankAccountDetailsV2Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/bank_account_details/response_v2/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/bank_account_details/response_v2/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV2::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV2::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(BankAccountDetailsV2::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(BankAccountDetailsV2::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->accountHoldersNames->value);
-        $this->assertNull($prediction->bban->bbanBankCode);
-        $this->assertNull($prediction->bban->bbanBranchCode);
-        $this->assertNull($prediction->bban->bbanKey);
-        $this->assertNull($prediction->bban->bbanNumber);
-        $this->assertNull($prediction->iban->value);
-        $this->assertNull($prediction->swiftCode->value);
+        self::assertNull($prediction->accountHoldersNames->value);
+        self::assertNull($prediction->bban->bbanBankCode);
+        self::assertNull($prediction->bban->bbanBranchCode);
+        self::assertNull($prediction->bban->bbanKey);
+        self::assertNull($prediction->bban->bbanNumber);
+        self::assertNull($prediction->iban->value);
+        self::assertNull($prediction->swiftCode->value);
     }
 }

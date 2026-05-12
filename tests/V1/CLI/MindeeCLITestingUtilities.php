@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\CLI;
 
 use Mindee\Product;

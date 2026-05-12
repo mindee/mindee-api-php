@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use Mindee\Geometry\Polygon;
+
+use function is_int;
 
 /**
  * Location of a field.
@@ -12,7 +16,6 @@ class FieldLocation
     /**
      * Free polygon made up of points (can be null when not provided).
      *
-     * @var Polygon|null
      */
     public ?Polygon $polygon;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\Error\ErrorCode;
@@ -7,6 +9,8 @@ use Mindee\Error\MindeeApiException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
 use ReflectionClass;
 use ReflectionException;
+
+use function array_key_exists;
 
 /**
  * Base Page object for predictions.
@@ -32,7 +36,7 @@ class Page
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array  $rawPrediction  Raw prediction array.
+     * @param array $rawPrediction Raw prediction array.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawPrediction)

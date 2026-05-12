@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\PDF;
 
 use CURLFile;
@@ -10,6 +12,12 @@ use Mindee\Error\MindeePDFException;
 use Smalot\PdfParser\Config;
 use Smalot\PdfParser\Page;
 use Smalot\PdfParser\Parser;
+use Imagick;
+use SplFileObject;
+use TypeError;
+
+use function is_resource;
+use function is_string;
 
 /**
  * PDF utility class.
@@ -27,14 +35,14 @@ class PDFUtils
             return $input;
         }
         try {
-            if ($input instanceof \Imagick) {
+            if ($input instanceof Imagick) {
                 return $input->getImageFilename();
-            } elseif ($input instanceof \SplFileObject) {
+            } elseif ($input instanceof SplFileObject) {
                 return $input->getRealPath();
             } elseif ($input instanceof CURLFile) {
                 return $input->getFilename();
             } elseif (is_resource($input)) {
-                $imagickHandle = new \Imagick();
+                $imagickHandle = new Imagick();
                 $imagickHandle->readImageBlob($input);
             } else {
                 throw new MindeePDFException('Input PDF must be a SplFileObject, path, resource or Imagick handle.');
@@ -64,7 +72,7 @@ class PDFUtils
         $config->setDataTmFontInfoHasToBeIncluded(true);
         $parser = new Parser([], $config);
         $pdf = $parser->parseFile($pdfPath);
-        return strlen($pdf->getText()) > 0;
+        return $pdf->getText() !== '';
     }
 
     /**
@@ -86,9 +94,7 @@ class PDFUtils
 
             foreach ($pdf->getPages() as $pageNumber => $page) {
                 $result = self::extractTextElements($page);
-                $text = implode('', array_map(function ($e) {
-                    return $e['text'];
-                }, $result));
+                $text = implode('', array_map(static fn($e) => $e['text'], $result));
                 $allPagesTextElements[$pageNumber] = $text;
             }
 
@@ -115,8 +121,8 @@ class PDFUtils
     {
         try {
             $outputPath = tempnam(sys_get_temp_dir(), 'downgrade_pdf_') . '.pdf';
-            $command = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET" .
-                " -dBATCH -sOutputFile={$outputPath} \"{$inputPath}\"";
+            $command = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET"
+                . " -dBATCH -sOutputFile={$outputPath} \"{$inputPath}\"";
 
             exec($command, $output, $returnCode);
 
@@ -147,7 +153,7 @@ class PDFUtils
     {
         try {
             $dataTm = $page->getDataTm();
-        } catch (\Exception | \TypeError $e) {
+        } catch (Exception|TypeError $e) {
             return [];
         }
         try {
@@ -156,11 +162,11 @@ class PDFUtils
                 if (isset($text[1])) {
                     $textElements[] = [
                         'text' => $text[1],
-                        'rotation' => rad2deg(floatval($text[0][2])),
-                        'x' => floatval($text[0][4]),
-                        'y' => floatval($text[0][5]),
+                        'rotation' => rad2deg((float) ($text[0][2])),
+                        'x' => (float) ($text[0][4]),
+                        'y' => (float) ($text[0][5]),
                         'font' => $page->getFont($text[2]),
-                        'size' => floatval($text[3])
+                        'size' => (float) ($text[3]),
                     ];
                 }
             }
@@ -197,16 +203,15 @@ class PDFUtils
 
         return [
             'family' => $fontFamily,
-            'style' => $fontStyle
+            'style' => $fontStyle,
         ];
     }
 
     /**
      * Adds a text element to the output PDF.
      *
-     * @param CustomFPDI $pdf     The output PDF object.
-     * @param array      $element Text element array containing text, position, font, size, and color.
-     * @return void
+     * @param CustomFPDI $pdf The output PDF object.
+     * @param array $element Text element array containing text, position, font, size, and color.
      */
     public static function addTextElement(CustomFPDI $pdf, array $element): void
     {
@@ -230,7 +235,6 @@ class PDFUtils
     /**
      * Loads a pdf handle into a valid CURLFile handle.
      * @param string $path Imagick image handle.
-     * @return CURLFile
      * @throws MindeeImageException Throws if the image can't be converted back into a CURLFile.
      */
     public static function toCURLFile(string $path): CURLFile

@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @file
  * Mindee HTTP Exceptions.
  */
 
 namespace Mindee\Error;
+
+use function array_key_exists;
+use function is_array;
+use function is_string;
 
 /**
  * Exceptions relating to HTTP calls.
@@ -32,9 +38,9 @@ class MindeeHttpException extends MindeeException
     public ?string $apiMessage;
 
     /**
-     * @param array   $httpError Array containing the error data.
-     * @param string  $url       Remote URL the error was found on.
-     * @param integer $code      Error code.
+     * @param array $httpError Array containing the error data.
+     * @param string $url Remote URL the error was found on.
+     * @param integer $code Error code.
      */
     public function __construct(array $httpError, string $url, int $code)
     {
@@ -57,7 +63,7 @@ class MindeeHttpException extends MindeeException
         if (is_array($this->apiDetails)) {
             $details = "\n" . json_encode($this->apiDetails, JSON_PRETTY_PRINT) . "\n";
         } else {
-            $details = strval($this->apiDetails);
+            $details = (string) ($this->apiDetails);
         }
         parent::__construct("$url $this->statusCode HTTP error: $details - $this->apiMessage");
     }
@@ -113,9 +119,9 @@ class MindeeHttpException extends MindeeException
             return $errorArray;
         }
         if (
-            is_array($response) &&
-            array_key_exists('api_request', $response) &&
-            array_key_exists('error', $response['api_request'])
+            is_array($response)
+            && array_key_exists('api_request', $response)
+            && array_key_exists('error', $response['api_request'])
         ) {
             return $response['api_request']['error'];
         }
@@ -132,20 +138,19 @@ class MindeeHttpException extends MindeeException
     }
 
     /**
-     * @param string               $url      Remote URL the error was found on.
+     * @param string $url Remote URL the error was found on.
      * @param array|string|boolean $response Raw server response.
-     * @return MindeeHttpException
      */
-    public static function handleError(string $url, $response): MindeeHttpException
+    public static function handleError(string $url, $response): self
     {
         if (is_array($response)) {
             $dataResponse = $response['data'] ?? ["data" => null];
         } else {
             $dataResponse = ["data" => null];
         }
-        $errorObj = MindeeHttpException::createErrorObj($dataResponse);
+        $errorObj = self::createErrorObj($dataResponse);
         if (array_key_exists("code", $response) && is_numeric($response['code'])) {
-            $code = intval($response['code']);
+            $code = (int) ($response['code']);
         } else {
             $code = 500;
         }
@@ -156,6 +161,6 @@ class MindeeHttpException extends MindeeException
             return new MindeeHttpClientException($errorObj, $url, $code);
         }
 
-        return new MindeeHttpException($errorObj, $url, $code);
+        return new self($errorObj, $url, $code);
     }
 }

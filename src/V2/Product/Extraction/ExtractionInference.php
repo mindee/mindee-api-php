@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Extraction;
 
 use Mindee\Parsing\SummaryHelper;
@@ -36,7 +38,6 @@ class ExtractionInference extends BaseInference
      */
     /**
      * A prettier representation.
-     * @return string
      */
     public function __toString(): string
     {

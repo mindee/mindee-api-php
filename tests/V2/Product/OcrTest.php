@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Product;
 
 use PHPUnit\Framework\TestCase;
@@ -29,19 +31,17 @@ class OcrTest extends TestCase
     /**
      * Helper to assert the core inference response properties exist.
      * @param mixed $response The response object to check.
-     * @return void
      */
     private function assertInferenceResponse(mixed $response): void
     {
-        $this->assertNotNull($response->inference);
-        $this->assertNotNull($response->inference->id);
-        $this->assertNotNull($response->inference->file);
-        $this->assertNotNull($response->inference->result);
+        self::assertNotNull($response->inference);
+        self::assertNotNull($response->inference->id);
+        self::assertNotNull($response->inference->file);
+        self::assertNotNull($response->inference->result);
     }
 
     /**
      * Should correctly map properties when reading a single OCR JSON.
-     * @return void
      */
     public function testOcrWhenSingleMustHaveValidProperties(): void
     {
@@ -52,32 +52,31 @@ class OcrTest extends TestCase
 
         $inference = $response->inference;
 
-        $this->assertSame("12345678-1234-1234-1234-123456789abc", $inference->id);
-        $this->assertSame("test-model-id", $inference->model->id);
+        self::assertSame("12345678-1234-1234-1234-123456789abc", $inference->id);
+        self::assertSame("test-model-id", $inference->model->id);
 
-        $this->assertSame("default_sample.jpg", $inference->file->name);
-        $this->assertSame(1, $inference->file->pageCount);
-        $this->assertSame("image/jpeg", $inference->file->mimeType);
+        self::assertSame("default_sample.jpg", $inference->file->name);
+        self::assertSame(1, $inference->file->pageCount);
+        self::assertSame("image/jpeg", $inference->file->mimeType);
 
         $pages = $inference->result->pages;
-        $this->assertNotNull($pages);
-        $this->assertCount(1, $pages);
+        self::assertNotNull($pages);
+        self::assertCount(1, $pages);
 
         $firstPage = $pages[0];
-        $this->assertNotNull($firstPage->words);
+        self::assertNotNull($firstPage->words);
 
         $firstWord = $firstPage->words[0];
-        $this->assertSame("Shipper:", $firstWord->content);
-        $this->assertCount(4, $firstWord->polygon->getCoordinates());
+        self::assertSame("Shipper:", $firstWord->content);
+        self::assertCount(4, $firstWord->polygon->getCoordinates());
 
         $fifthWord = $firstPage->words[4];
-        $this->assertSame("INC.", $fifthWord->content);
-        $this->assertCount(4, $fifthWord->polygon->getCoordinates());
+        self::assertSame("INC.", $fifthWord->content);
+        self::assertCount(4, $fifthWord->polygon->getCoordinates());
     }
 
     /**
      * Should correctly map properties when reading a multiple OCR JSON.
-     * @return void
      */
     public function testOcrWhenMultipleMustHaveValidProperties(): void
     {
@@ -89,19 +88,19 @@ class OcrTest extends TestCase
         $inference = $response->inference;
 
         $job = $inference->job;
-        $this->assertSame("12345678-1234-1234-1234-jobid1234567", $job->id);
+        self::assertSame("12345678-1234-1234-1234-jobid1234567", $job->id);
 
         $model = $inference->model;
-        $this->assertNotNull($model);
+        self::assertNotNull($model);
 
         $pages = $inference->result->pages;
-        $this->assertNotNull($pages);
-        $this->assertCount(3, $pages);
+        self::assertNotNull($pages);
+        self::assertCount(3, $pages);
 
         foreach ($pages as $page) {
-            $this->assertNotNull($page->words);
-            $this->assertNotNull($page->content);
-            $this->assertIsString($page->content);
+            self::assertNotNull($page->words);
+            self::assertNotNull($page->content);
+            self::assertIsString($page->content);
         }
     }
 }

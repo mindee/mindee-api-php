@@ -1,16 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeException;
 use Mindee\Extraction\ExtractedImage;
+use ArrayObject;
+use ImagickException;
+
+use function sprintf;
 
 /**
  * Cropped files collection wrapper.
  *
- * * @extends \ArrayObject<int, ExtractedImage>
+ * * @extends ArrayObject<int, ExtractedImage>
  */
-class CropFiles extends \ArrayObject
+class CropFiles extends ArrayObject
 {
     /**
      * Builds a new CropFiles collection.
@@ -25,13 +31,12 @@ class CropFiles extends \ArrayObject
     /**
      * Save all extracted crops to disk.
      *
-     * @param string      $path       The directory path to save the extracted crops to.
-     * @param string      $prefix     Prefix to add to the filename.
+     * @param string $path The directory path to save the extracted crops to.
+     * @param string $prefix Prefix to add to the filename.
      * @param null|string $fileFormat File format to save the crops as.
-     * @param integer     $quality    Quality of the saved image.
+     * @param integer $quality Quality of the saved image.
      *
      * @throws MindeeException If directory creation fails.
-     * @return void
      */
     public function saveAllToDisk(
         string $path,
@@ -49,7 +54,7 @@ class CropFiles extends \ArrayObject
 
             try {
                 $crop->writeToFile($path, $format, $quality);
-            } catch (\ImagickException $e) {
+            } catch (ImagickException $e) {
                 throw new MindeeException('Failed to save crop to disk.', 0, $e);
             }
 

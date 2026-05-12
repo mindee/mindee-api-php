@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Classification\Params;
 
 use Mindee\ClientOptions\PollingOptions;
@@ -16,8 +18,8 @@ class ClassificationParameters extends BaseParameters
     public static string $slug = "classification";
 
     /**
-     * @param string             $modelId     ID of the model.
-     * @param string|null        $alias       Optional file alias.
+     * @param string $modelId ID of the model.
+     * @param string|null $alias Optional file alias.
      * @param array<string>|null $webhooksIds List of webhook IDs.
      */
     public function __construct(

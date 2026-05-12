@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Generated;
 
 use Mindee\V1\Parsing\Generated\GeneratedListField;
 use Mindee\V1\Parsing\Generated\GeneratedObjectField;
 use Mindee\V1\Parsing\Standard\StringField;
+
+use function is_array;
+use function is_float;
+use function is_int;
 
 /**
  * Generated V1 page prediction results.
@@ -16,8 +22,8 @@ class GeneratedV1Page extends GeneratedV1Prediction
 
     /**
      * GeneratedV1Page constructor.
-     * @param array        $rawPrediction Dictionary containing the JSON document response.
-     * @param integer|null $pageId        ID of the page.
+     * @param array $rawPrediction Dictionary containing the JSON document response.
+     * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -32,14 +38,14 @@ class GeneratedV1Page extends GeneratedV1Prediction
                 $fieldContentsStr = $fieldContents;
                 if (isset($fieldContentsStr['value'])) {
                     if (
-                        (is_int($fieldContentsStr['value']) ||
-                            (is_float($fieldContentsStr['value']) &&
-                                floor($fieldContentsStr['value']) == $fieldContentsStr['value'])) &&
-                        $fieldContentsStr['value'] != 0.0
+                        (is_int($fieldContentsStr['value'])
+                            || (is_float($fieldContentsStr['value'])
+                                && floor($fieldContentsStr['value']) === $fieldContentsStr['value']))
+                        && (float) $fieldContentsStr['value'] !== 0.0
                     ) {
                         $this->{$fieldName} = $fieldContentsStr['value'] . ".0";
                     } else {
-                        $fieldContentsStr['value'] = strval($fieldContents['value']);
+                        $fieldContentsStr['value'] = (string) ($fieldContents['value']);
                     }
                 } else {
                     $fieldContentsStr['value'] = null;

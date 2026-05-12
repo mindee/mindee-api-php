@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Us\UsMail;
 
 use Mindee\Error\MindeeUnsetException;
@@ -34,8 +36,8 @@ class UsMailV3Document extends Prediction
      */
     public StringField $senderName;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -57,8 +59,8 @@ class UsMailV3Document extends Prediction
         if (!isset($rawPrediction["recipient_names"])) {
             throw new MindeeUnsetException();
         }
-        $this->recipientNames = $rawPrediction["recipient_names"] == null ? [] : array_map(
-            fn ($prediction) => new StringField($prediction, $pageId),
+        $this->recipientNames = $rawPrediction["recipient_names"] === null ? [] : array_map(
+            static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["recipient_names"]
         );
         if (!isset($rawPrediction["sender_address"])) {
@@ -82,12 +84,12 @@ class UsMailV3Document extends Prediction
      */
     public function __toString(): string
     {
-        $senderAddressToFieldList = $this->senderAddress != null ? $this->senderAddress->toFieldList() : "";
+        $senderAddressToFieldList = $this->senderAddress !== null ? $this->senderAddress->toFieldList() : "";
         $recipientNames = implode(
             "\n                  ",
             $this->recipientNames
         );
-        $recipientAddressesSummary = strval($this->recipientAddresses);
+        $recipientAddressesSummary = (string) ($this->recipientAddresses);
 
         $outStr = ":Sender Name: $this->senderName
 :Sender Address: $senderAddressToFieldList

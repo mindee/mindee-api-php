@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Generated V1.
  */
@@ -11,6 +13,8 @@ use Mindee\V1\Parsing\Generated\GeneratedListField;
 use Mindee\V1\Parsing\Generated\GeneratedObjectField;
 use Mindee\V1\Parsing\Standard\StringField;
 use Mindee\V1\Parsing\SummaryHelperV1;
+
+use function count;
 
 /**
  * Generated V1 document prediction results.
@@ -51,13 +55,13 @@ class GeneratedV1Prediction extends Prediction
                         $strValue .= " " . str_repeat(
                             " ",
                             mb_strlen($fieldName, "UTF-8") + 2
-                        ) .
-                            "{$fieldValue->values[$i]}\n";
+                        )
+                            . "{$fieldValue->values[$i]}\n";
                     }
                 }
                 $strValue = rtrim($strValue);
             } else {
-                $strValue = strval($fieldValue);
+                $strValue = (string) $fieldValue;
             }
             $outStr .= ":{$fieldName}: {$strValue}\n";
         }

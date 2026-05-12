@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\FileOperations;
 
 use Mindee\Input\LocalResponse;
@@ -7,6 +9,7 @@ use Mindee\Input\PathInput;
 use Mindee\V2\FileOperations\Split;
 use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class SplitTest extends TestCase
 {
@@ -15,8 +18,8 @@ class SplitTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->splitDataDir = \TestingUtilities::getV2DataDir() . '/products/split';
-        $this->finDocDataDir = \TestingUtilities::getV2DataDir() . '/products/extraction/financial_document';
+        $this->splitDataDir = TestingUtilities::getV2DataDir() . '/products/split';
+        $this->finDocDataDir = TestingUtilities::getV2DataDir() . '/products/extraction/financial_document';
     }
 
     public function testProcessesSinglePageSplitCorrectly(): void
@@ -28,11 +31,11 @@ class SplitTest extends TestCase
 
         $splitOperation = new Split($inputSample);
         $splits = $doc->inference->result->splits;
-        $extractedSplits = $splitOperation->extractSplits(array_map(fn($s) => $s->pageRange, $splits));
+        $extractedSplits = $splitOperation->extractSplits(array_map(static fn($s) => $s->pageRange, $splits));
 
-        $this->assertCount(1, $extractedSplits);
+        self::assertCount(1, $extractedSplits);
 
-        $this->assertEquals(1, $extractedSplits[0]->getPageCount());
+        self::assertSame(1, $extractedSplits[0]->getPageCount());
     }
 
     public function testProcessesMultiPageReceiptSplitCorrectly(): void
@@ -44,12 +47,12 @@ class SplitTest extends TestCase
 
         $splitOperation = new Split($inputSample);
         $splits = $doc->inference->result->splits;
-        $extractedSplits = $splitOperation->extractSplits(array_map(fn($s) => $s->pageRange, $splits));
+        $extractedSplits = $splitOperation->extractSplits(array_map(static fn($s) => $s->pageRange, $splits));
 
-        $this->assertCount(3, $extractedSplits);
+        self::assertCount(3, $extractedSplits);
 
-        $this->assertEquals(1, $extractedSplits[0]->getPageCount());
-        $this->assertEquals(3, $extractedSplits[1]->getPageCount());
-        $this->assertEquals(1, $extractedSplits[2]->getPageCount());
+        self::assertSame(1, $extractedSplits[0]->getPageCount());
+        self::assertSame(3, $extractedSplits[1]->getPageCount());
+        self::assertSame(1, $extractedSplits[2]->getPageCount());
     }
 }

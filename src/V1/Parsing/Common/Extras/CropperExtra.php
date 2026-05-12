@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common\Extras;
 
 use Mindee\V1\Parsing\Standard\PositionField;
+
+use function array_key_exists;
 
 /**
  * Contains information on the cropping of a prediction.
@@ -15,8 +19,8 @@ class CropperExtra
     public array $croppings;
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -35,7 +39,7 @@ class CropperExtra
     {
         $croppingsStr = [];
         foreach ($this->croppings as $cropping) {
-            $croppingsStr[] = strval($cropping);
+            $croppingsStr[] = (string) $cropping;
         }
         return implode("\n           ", $croppingsStr);
     }

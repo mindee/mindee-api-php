@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace V2\FileOperations;
 
@@ -8,6 +9,7 @@ use Mindee\Input\PathInput;
 use Mindee\V2\FileOperations\Crop;
 use Mindee\V2\Product\Crop\CropResponse;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class CropTest extends TestCase
 {
@@ -15,7 +17,7 @@ class CropTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->cropDataDir = \TestingUtilities::getV2DataDir() . '/products/crop';
+        $this->cropDataDir = TestingUtilities::getV2DataDir() . '/products/crop';
     }
 
     public function testProcessesSinglePageCropSplitCorrectly(): void
@@ -28,15 +30,15 @@ class CropTest extends TestCase
         $cropOperation = new Crop($inputSample);
         $extractedCrops = $cropOperation->extractCrops($doc->inference->result->crops);
 
-        $this->assertCount(1, $extractedCrops);
+        self::assertCount(1, $extractedCrops);
 
-        $this->assertEquals(0, $extractedCrops[0]->pageId);
-        $this->assertEquals(0, $extractedCrops[0]->elementId);
+        self::assertSame(0, $extractedCrops[0]->pageId);
+        self::assertSame(0, $extractedCrops[0]->elementId);
 
         $bitmap0 = $extractedCrops[0]->image;
 
-        $this->assertEquals(2822, $bitmap0->width ?? clone $bitmap0->getWidth());
-        $this->assertEquals(1572, $bitmap0->height ?? clone $bitmap0->getHeight());
+        self::assertSame(2822, $bitmap0->width ?? clone $bitmap0->getWidth());
+        self::assertSame(1572, $bitmap0->height ?? clone $bitmap0->getHeight());
     }
 
     public function testProcessesMultiPageReceiptSplitCorrectly(): void
@@ -49,20 +51,20 @@ class CropTest extends TestCase
         $cropOperation = new Crop($inputSample);
         $extractedCrops = $cropOperation->extractCrops($doc->inference->result->crops);
 
-        $this->assertCount(2, $extractedCrops);
+        self::assertCount(2, $extractedCrops);
 
-        $this->assertEquals(0, $extractedCrops[0]->pageId);
-        $this->assertEquals(0, $extractedCrops[0]->elementId);
+        self::assertSame(0, $extractedCrops[0]->pageId);
+        self::assertSame(0, $extractedCrops[0]->elementId);
 
         $bitmap0 = $extractedCrops[0]->image;
-        $this->assertEquals(156, $bitmap0->width ?? $bitmap0->getWidth());
-        $this->assertEquals(757, $bitmap0->height ?? $bitmap0->getHeight());
+        self::assertSame(156, $bitmap0->width ?? $bitmap0->getWidth());
+        self::assertSame(757, $bitmap0->height ?? $bitmap0->getHeight());
 
-        $this->assertEquals(0, $extractedCrops[1]->pageId);
-        $this->assertEquals(1, $extractedCrops[1]->elementId);
+        self::assertSame(0, $extractedCrops[1]->pageId);
+        self::assertSame(1, $extractedCrops[1]->elementId);
 
         $bitmap1 = $extractedCrops[1]->image;
-        $this->assertEquals(188, $bitmap1->width ?? $bitmap1->getWidth());
-        $this->assertEquals(691, $bitmap1->height ?? $bitmap1->getHeight());
+        self::assertSame(188, $bitmap1->width ?? $bitmap1->getWidth());
+        self::assertSame(691, $bitmap1->height ?? $bitmap1->getHeight());
     }
 }

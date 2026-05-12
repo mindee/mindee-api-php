@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Settings and variables linked to endpoint calling & API usage.
  */
@@ -24,6 +26,9 @@ use Mindee\V2\Product\Extraction\ExtractionResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
+
+use function call_user_func;
+use function dirname;
 
 use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 use const Mindee\VERSION;
@@ -64,7 +69,6 @@ class MindeeAPIV2
 {
     /**
      * Get the User Agent to send for API calls.
-     * @return string
      */
     private function getUserAgent(): string
     {
@@ -99,11 +103,11 @@ class MindeeAPIV2
         $this->baseUrl = API_V2_BASE_URL_DEFAULT;
         $this->requestTimeout = API_V2_TIMEOUT_DEFAULT;
         $this->setFromEnv();
-        if (!$this->apiKey || strlen($this->apiKey) == 0) {
+        if (!$this->apiKey || $this->apiKey === '') {
             throw new MindeeException(
-                "Missing API key for call," .
-                " check your Client configuration.You can set this using the " .
-                API_KEY_ENV_NAME . ' environment variable.',
+                "Missing API key for call,"
+                . " check your Client configuration.You can set this using the "
+                . API_KEY_ENV_NAME . ' environment variable.',
                 ErrorCode::USER_INPUT_ERROR
             );
         }
@@ -113,7 +117,6 @@ class MindeeAPIV2
      * Sets the base url.
      *
      * @param string $value Value for the base Url.
-     * @return void
      */
     protected function setBaseUrl(string $value): void
     {
@@ -123,7 +126,6 @@ class MindeeAPIV2
     /**
      * Sets values from environment, if needed.
      *
-     * @return void
      */
     private function setFromEnv(): void
     {
@@ -132,7 +134,7 @@ class MindeeAPIV2
             API_V2_REQUEST_TIMEOUT_ENV_NAME => [$this, 'setTimeout'],
         ];
         foreach ($envVars as $key => $func) {
-            $envVal = getenv($key) ? getenv($key) : '';
+            $envVal = getenv($key) ?: '';
             if ($envVal) {
                 call_user_func($func, $envVal);
                 error_log('Value ' . $key . ' was set from env.');
@@ -145,7 +147,6 @@ class MindeeAPIV2
      * Sets the API key.
      *
      * @param string|null $apiKey Optional API key.
-     * @return void
      */
     protected function setApiKey(?string $apiKey = null): void
     {
@@ -159,9 +160,9 @@ class MindeeAPIV2
     }
 
     /**
-     * @param InputSource    $inputDoc Input document.
-     * @param BaseParameters $params   Parameters for the inference.
-     * @return JobResponse                  Server response wrapped in a JobResponse object.
+     * @param InputSource $inputDoc Input document.
+     * @param BaseParameters $params Parameters for the inference.
+     * @return JobResponse Server response wrapped in a JobResponse object.
      * @throws MindeeException Throws if the model ID is not provided.
      */
     public function reqPostEnqueue(InputSource $inputDoc, BaseParameters $params): JobResponse
@@ -180,7 +181,7 @@ class MindeeAPIV2
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param array  $result        Raw HTTP response array with 'data' and 'code' keys.
+     * @param array $result Raw HTTP response array with 'data' and 'code' keys.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      */
@@ -253,7 +254,7 @@ class MindeeAPIV2
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param string $resultId      URL of the result.
+     * @param string $resultId URL of the result.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if the server's response contains an error.
      * @throws MindeeApiException Throws if the response class is not valid.
@@ -284,7 +285,7 @@ class MindeeAPIV2
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param string $resultUrl     URL of the result.
+     * @param string $resultUrl URL of the result.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if the server's response contains an error.
      */
@@ -344,9 +345,8 @@ class MindeeAPIV2
     /**
      * Starts a CURL session using POST.
      *
-     * @param InputSource    $inputSource File to upload.
-     * @param BaseParameters $params      Parameters.
-     * @return array
+     * @param InputSource $inputSource File to upload.
+     * @param BaseParameters $params Parameters.
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
@@ -381,7 +381,6 @@ class MindeeAPIV2
 
     /**
      * @param array $result Raw HTTP response array with 'data' and 'code' keys.
-     * @return void
      * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
      * @throws MindeeV2HttpUnknownException Throws if the server sends an unexpected reply.
      */

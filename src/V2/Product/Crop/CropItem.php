@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Crop;
 
 use Mindee\V2\Parsing\Inference\Field\FieldLocation;
@@ -12,7 +14,7 @@ class CropItem
 {
     /**
      * @var FieldLocation Location which includes cropping coordinates for the detected object,
-     * within the source document.
+     *                    within the source document.
      */
     public FieldLocation $location;
     /**
@@ -31,8 +33,8 @@ class CropItem
     {
         $this->location = new FieldLocation($rawResponse['location']);
         $this->objectType = $rawResponse['object_type'];
-        $this->extractionResponse = isset($rawResponse['extraction_response']) ?
-            new ExtractionResponse($rawResponse['extraction_response']) : null;
+        $this->extractionResponse = isset($rawResponse['extraction_response'])
+            ? new ExtractionResponse($rawResponse['extraction_response']) : null;
     }
 
     /**

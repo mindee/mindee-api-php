@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use Mindee\Error\MindeeApiException;
+
+use function array_key_exists;
+use function sprintf;
 
 /**
  * Base class for V2 fields.
@@ -24,8 +29,8 @@ abstract class BaseField
     public ?FieldConfidence $confidence;
 
     /**
-     * @param array   $rawPrediction Raw prediction array.
-     * @param integer $indentLevel   Level of indentation for rst display.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer $indentLevel Level of indentation for rst display.
      */
     public function __construct(array $rawPrediction, int $indentLevel = 0)
     {
@@ -42,9 +47,8 @@ abstract class BaseField
     }
 
     /**
-     * @param array   $rawPrediction Raw prediction array.
-     * @param integer $indentLevel   Level of indentation for rst display.
-     * @return ListField|ObjectField|SimpleField
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer $indentLevel Level of indentation for rst display.
      * @throws MindeeApiException Throws if the field type isn't recognized.
      */
     public static function createField(array $rawPrediction, int $indentLevel = 0): ListField|ObjectField|SimpleField

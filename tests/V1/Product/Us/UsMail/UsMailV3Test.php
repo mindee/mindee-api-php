@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Us\UsMail;
 
 use Mindee\Product\Us\UsMail;
 use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Us\UsMail\UsMailV3;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class UsMailV3Test extends TestCase
 {
@@ -14,32 +18,32 @@ class UsMailV3Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/us_mail/response_v3/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/us_mail/response_v3/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Us\UsMail\UsMailV3::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Us\UsMail\UsMailV3::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(UsMailV3::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(UsMailV3::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->senderName->value);
-        $this->assertNull($prediction->senderAddress->city);
-        $this->assertNull($prediction->senderAddress->complete);
-        $this->assertNull($prediction->senderAddress->postalCode);
-        $this->assertNull($prediction->senderAddress->state);
-        $this->assertNull($prediction->senderAddress->street);
-        $this->assertEquals(0, count($prediction->recipientNames));
-        $this->assertEquals(0, count($prediction->recipientAddresses));
-        $this->assertNull($prediction->isReturnToSender->value);
+        self::assertNull($prediction->senderName->value);
+        self::assertNull($prediction->senderAddress->city);
+        self::assertNull($prediction->senderAddress->complete);
+        self::assertNull($prediction->senderAddress->postalCode);
+        self::assertNull($prediction->senderAddress->state);
+        self::assertNull($prediction->senderAddress->street);
+        self::assertCount(0, $prediction->recipientNames);
+        self::assertCount(0, $prediction->recipientAddresses);
+        self::assertNull($prediction->isReturnToSender->value);
     }
 }

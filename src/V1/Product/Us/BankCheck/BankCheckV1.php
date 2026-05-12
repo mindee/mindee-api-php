@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Bank Check V1. */
 
 namespace Mindee\V1\Product\Us\BankCheck;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Extraction;
 
 use Mindee\Dependency\DependencyChecker;
@@ -12,6 +14,11 @@ use Mindee\Geometry\BBoxUtils;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
 use Mindee\V1\Parsing\Standard\BaseField;
+use Imagick;
+use ImagickException;
+
+use function count;
+use function sprintf;
 
 /**
  * Extract sub-images from an image.
@@ -19,7 +26,7 @@ use Mindee\V1\Parsing\Standard\BaseField;
 class ImageExtractor
 {
     /**
-     * @var \Imagick[] Array of extracted page images.
+     * @var Imagick[] Array of extracted page images.
      */
     protected array $pageImages = [];
 
@@ -40,7 +47,7 @@ class ImageExtractor
 
     /**
      * @param LocalInputSource $localInput Local input, accepts all compatible formats.
-     * @param null|string      $saveFormat Save format, will be coerced to jpg by default.
+     * @param null|string $saveFormat Save format, will be coerced to jpg by default.
      *
      * @throws MindeePDFException Throws if PDF operations aren't supported, or if the file can't be read, respectively.
      */
@@ -66,9 +73,9 @@ class ImageExtractor
             $this->pageImages = $this->pdfToImages($this->inputSource->readContents()[1]);
         } else {
             try {
-                $image = new \Imagick();
+                $image = new Imagick();
                 $image->readImageBlob($this->inputSource->readContents()[1]);
-            } catch (\ImagickException $e) {
+            } catch (ImagickException $e) {
                 throw new MindeePDFException(
                     "Image couldn't be processed.",
                     ErrorCode::IMAGE_CANT_PROCESS,
@@ -84,7 +91,7 @@ class ImageExtractor
      *
      * @param string $fileBytes Input pdf.
      *
-     * @return \Imagick[] A list of pages.
+     * @return Imagick[] A list of pages.
      *
      * @throws MindeeImageException Throws if the image can't be handled.
      */
@@ -92,7 +99,7 @@ class ImageExtractor
     {
         try {
             $images = [];
-            $imagick = new \Imagick();
+            $imagick = new Imagick();
             $imagick->readImageBlob($fileBytes);
 
             foreach ($imagick as $page) {
@@ -101,7 +108,7 @@ class ImageExtractor
             }
 
             return $images;
-        } catch (\ImagickException $e) {
+        } catch (ImagickException $e) {
             throw new MindeeImageException(
                 "Couldn't convert PDF to images.",
                 ErrorCode::FILE_OPERATION_ABORTED,
@@ -122,8 +129,8 @@ class ImageExtractor
     /**
      * Extract multiple images on a given page from a list of fields having position data.
      *
-     * @param array       $fields     List of Fields to extract.
-     * @param integer     $pageIndex  The page index to extract, begins at 0.
+     * @param array $fields List of Fields to extract.
+     * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $outputName The base output filename, must have an image extension.
      *
      * @return array a list of extracted images
@@ -137,10 +144,10 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array       $polygons       List of polygons to extract.
-     * @param integer     $pageIndex      The page index to extract, begins at 0.
+     * @param array $polygons List of polygons to extract.
+     * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $filenamePrefix Output filename prefix.
-     * @param null|string $format         Save format for extracted images. Defaults to the original format.
+     * @param null|string $format Save format for extracted images. Defaults to the original format.
      *
      * @return array an array of created images
      * @throws MindeeImageException Throws if the image can't be processed.
@@ -166,7 +173,7 @@ class ImageExtractor
                     $saveFormat
                 );
             }
-        } catch (\ImagickException $e) {
+        } catch (ImagickException $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
 
@@ -176,11 +183,11 @@ class ImageExtractor
     /**
      * Extracts a cropped portion from an image.
      *
-     * @param Polygon     $polygon   Polygon to extract.
-     * @param integer     $pageIndex Page index to extract from.
-     * @param integer     $index     Index to use for naming the extracted image.
-     * @param null|string $filename  Output filename.
-     * @param null|string $format    Output format.
+     * @param Polygon $polygon Polygon to extract.
+     * @param integer $pageIndex Page index to extract from.
+     * @param integer $index Index to use for naming the extracted image.
+     * @param null|string $filename Output filename.
+     * @param null|string $format Output format.
      *
      * @return ExtractedImage Extracted image data.
      * @throws MindeeImageException Throws if the image can't be processed.
@@ -195,7 +202,7 @@ class ImageExtractor
         $bbox = BBoxUtils::generateBBoxFromPolygon($polygon);
         try {
             $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex);
-        } catch (\ImagickException $e) {
+        } catch (ImagickException $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
         $filename ??= $this->filename;
@@ -207,11 +214,11 @@ class ImageExtractor
     /**
      * Extracts a single image from a Position field.
      *
-     * @param BaseField $field     The field to extract.
-     * @param integer   $pageIndex The page index to extract, begins at 0.
-     * @param integer   $index     The index to use for naming the extracted image.
-     * @param string    $filename  The output filename.
-     * @param string    $format    The output format.
+     * @param BaseField $field The field to extract.
+     * @param integer $pageIndex The page index to extract, begins at 0.
+     * @param integer $index The index to use for naming the extracted image.
+     * @param string $filename The output filename.
+     * @param string $format The output format.
      *
      * @return null|ExtractedImage The extracted image, or null if the field does not have valid position data.
      *
@@ -248,7 +255,6 @@ class ImageExtractor
 
     /**
      * Getter for the local input source.
-     * @return LocalInputSource
      */
     public function getInputSource(): LocalInputSource
     {
@@ -258,10 +264,10 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array   $fields     List of Fields to extract.
-     * @param integer $pageIndex  The page index to extract, begins at 0.
-     * @param string  $outputName Name of the created file.
-     * @param string  $format     The output format.
+     * @param array $fields List of Fields to extract.
+     * @param integer $pageIndex The page index to extract, begins at 0.
+     * @param string $outputName Name of the created file.
+     * @param string $format The output format.
      *
      * @return array an array of created images
      */
@@ -286,12 +292,11 @@ class ImageExtractor
     /**
      * Extracts an image from a set of coordinates.
      *
-     * @param BBox          $bbox      BBox coordinates.
+     * @param BBox $bbox BBox coordinates.
      * @param integer|float $pageIndex The page index to extract, begins at 0.
-     * @return \Imagick
-     * @throws \ImagickException Throws if the image can't be processed.
+     * @throws ImagickException Throws if the image can't be processed.
      */
-    protected function extractImageFromBbox(BBox $bbox, int|float $pageIndex): \Imagick
+    protected function extractImageFromBbox(BBox $bbox, int|float $pageIndex): Imagick
     {
         $image = $this->pageImages[$pageIndex]->clone();
         $width = $image->getImageWidth();
@@ -302,7 +307,7 @@ class ImageExtractor
         $minY = round($bbox->getMinY() * $height);
         $maxY = round($bbox->getMaxY() * $height);
 
-        $image->cropImage((int)($maxX - $minX), (int)($maxY - $minY), (int)$minX, (int)$minY);
+        $image->cropImage((int) ($maxX - $minX), (int) ($maxY - $minY), (int) $minX, (int) $minY);
 
         return $image;
     }

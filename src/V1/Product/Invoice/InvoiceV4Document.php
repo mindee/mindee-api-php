@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Invoice;
 
 use Mindee\Error\MindeeUnsetException;
@@ -137,8 +139,8 @@ class InvoiceV4Document extends Prediction
      */
     public AmountField $totalTax;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -167,8 +169,8 @@ class InvoiceV4Document extends Prediction
         if (!isset($rawPrediction["customer_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] == null ? [] : array_map(
-            fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
+        $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] === null ? [] : array_map(
+            static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["customer_company_registrations"]
         );
         if (!isset($rawPrediction["customer_id"])) {
@@ -251,8 +253,8 @@ class InvoiceV4Document extends Prediction
         if (!isset($rawPrediction["reference_numbers"])) {
             throw new MindeeUnsetException();
         }
-        $this->referenceNumbers = $rawPrediction["reference_numbers"] == null ? [] : array_map(
-            fn ($prediction) => new StringField($prediction, $pageId),
+        $this->referenceNumbers = $rawPrediction["reference_numbers"] === null ? [] : array_map(
+            static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["reference_numbers"]
         );
         if (!isset($rawPrediction["shipping_address"])) {
@@ -279,8 +281,8 @@ class InvoiceV4Document extends Prediction
         if (!isset($rawPrediction["supplier_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
-            fn ($prediction) => new CompanyRegistrationField($prediction, $pageId),
+        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] === null ? [] : array_map(
+            static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );
         if (!isset($rawPrediction["supplier_email"])) {
@@ -300,8 +302,8 @@ class InvoiceV4Document extends Prediction
         if (!isset($rawPrediction["supplier_payment_details"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] == null ? [] : array_map(
-            fn ($prediction) => new PaymentDetailsField($prediction, $pageId),
+        $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] === null ? [] : array_map(
+            static fn($prediction) => new PaymentDetailsField($prediction, $pageId),
             $rawPrediction["supplier_payment_details"]
         );
         if (!isset($rawPrediction["supplier_phone_number"])) {
@@ -369,7 +371,7 @@ class InvoiceV4Document extends Prediction
             "\n                                 ",
             $this->customerCompanyRegistrations
         );
-        $lineItemsSummary = strval($this->lineItems);
+        $lineItemsSummary = (string) ($this->lineItems);
 
         $outStr = ":Locale: $this->locale
 :Invoice Number: $this->invoiceNumber

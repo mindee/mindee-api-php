@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common\OCR;
+
+use function count;
+use function in_array;
 
 /**
  * OCR extraction for a single page.
@@ -20,7 +25,7 @@ class OCRPage
      * Checks whether the words are on the same line.
      *
      * @param OCRWord $currentWord Reference word to compare.
-     * @param OCRWord $nextWord    Next word to compare.
+     * @param OCRWord $nextWord Next word to compare.
      * @return boolean
      */
     private static function areWordsOnSameLine(OCRWord $currentWord, OCRWord $nextWord): bool
@@ -41,7 +46,7 @@ class OCRPage
     {
         $word1X = $word1->polygon->getMinMaxX()->getMin();
         $word2X = $word2->polygon->getMinMaxX()->getMin();
-        if ($word1X == $word2X) {
+        if ($word1X === $word2X) {
             return 0;
         }
         return $word1X < $word2X ? -1 : 1;
@@ -58,7 +63,7 @@ class OCRPage
     {
         $word1Y = $word1->polygon->getMinMaxY()->getMin();
         $word2Y = $word2->polygon->getMinMaxY()->getMin();
-        if ($word1Y == $word2Y) {
+        if ($word1Y === $word2Y) {
             return 0;
         }
         return $word1Y < $word2Y ? -1 : 1;
@@ -67,7 +72,6 @@ class OCRPage
     /**
      * Puts all words on the page into an array of lines.
      *
-     * @return array
      */
     private function toLines(): array
     {
@@ -78,8 +82,8 @@ class OCRPage
             $line = new OCRLine();
             for ($idx = 0; $idx < count($this->allWords); $idx++) {
                 $word = $this->allWords[$idx];
-                if (!in_array($idx, $indexes)) {
-                    if ($current == null) {
+                if (!in_array($idx, $indexes, true)) {
+                    if ($current === null) {
                         $current = $word;
                         $indexes[] = $idx;
                         $line = new OCRLine();
@@ -104,7 +108,6 @@ class OCRPage
     /**
      * Retrieves all lines on the page.
      *
-     * @return array
      */
     public function getAllLines(): array
     {
@@ -117,7 +120,6 @@ class OCRPage
     /**
      * Retrieves all words on the page.
      *
-     * @return array
      */
     public function getAllWords(): array
     {
@@ -143,7 +145,7 @@ class OCRPage
     {
         $linesStr = [];
         foreach ($this->getAllLines() as $line) {
-            $linesStr[] = strval($line);
+            $linesStr[] = (string) $line;
         }
         return implode("\n", $linesStr) . "\n";
     }

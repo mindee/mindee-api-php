@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Crop;
 
 use Mindee\V2\Parsing\BaseInference;

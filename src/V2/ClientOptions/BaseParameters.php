@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\ClientOptions;
+
+use function count;
 
 /**
  * Base parameters for running an inference.
@@ -23,8 +27,8 @@ abstract class BaseParameters
     public array $webhooksIds;
 
     /**
-     * @param string             $modelId     ID of the model.
-     * @param string|null        $alias       Optional file alias.
+     * @param string $modelId ID of the model.
+     * @param string|null $alias Optional file alias.
      * @param array<string>|null $webhooksIds List of webhook IDs.
      */
     public function __construct(string $modelId, ?string $alias, ?array $webhooksIds)

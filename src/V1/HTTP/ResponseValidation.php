@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Settings and variables linked to endpoint calling & API usage.
  */
 
 namespace Mindee\V1\HTTP;
+
+use function count;
+use function is_string;
 
 /**
  * Wrapper class for http requests/responses validation handling.
@@ -24,9 +29,9 @@ class ResponseValidation
         }
         $statusCode = $response['code'];
         return !(
-            is_nan($statusCode) ||
-            intval($statusCode) < 200 ||
-            intval($statusCode) > 302
+            is_nan($statusCode)
+            || (int) $statusCode < 200
+            || (int) $statusCode > 302
         );
     }
 
@@ -40,7 +45,7 @@ class ResponseValidation
      */
     public static function isValidWorkflowResponse(array $response): bool
     {
-        if (!ResponseValidation::isValidSyncResponse($response)) {
+        if (!self::isValidSyncResponse($response)) {
             return false;
         }
         if (isset($response["code"])) {
@@ -65,7 +70,7 @@ class ResponseValidation
      */
     public static function isValidAsyncResponse(array $response): bool
     {
-        if (!ResponseValidation::isValidSyncResponse($response)) {
+        if (!self::isValidSyncResponse($response)) {
             return false;
         }
         if (isset($response["code"])) {
@@ -85,7 +90,6 @@ class ResponseValidation
      * Checks and corrects the response object depending on the possible kinds of returns.
      *
      * @param array $response An endpoint response array.
-     * @return array
      */
     public static function cleanRequestData(array $response): array
     {
@@ -97,10 +101,10 @@ class ResponseValidation
         }
         if (isset($response["data"])) {
             if (
-                isset($response["data"]["api_request"]["status_code"]) &&
-                intval($response["data"]["api_request"]["status_code"]) > 399
+                isset($response["data"]["api_request"]["status_code"])
+                && (int) ($response["data"]["api_request"]["status_code"]) > 399
             ) {
-                $response["code"] = intval($response["data"]["api_request"]["status_code"]);
+                $response["code"] = (int) ($response["data"]["api_request"]["status_code"]);
             }
             if (isset($response["data"]["job"]["error"]) && count($response["data"]["job"]["error"]) > 0) {
                 $response["code"] = 500;

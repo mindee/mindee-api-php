@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common\Extras;
 
 use function PHPUnit\Framework\isEmpty;
@@ -32,10 +34,9 @@ class Extras
      * Sets a field.
      *
      * @param string $varName Name of the field to set.
-     * @param mixed  $value   Value to set the field with.
-     * @return void
+     * @param mixed $value Value to set the field with.
      */
-    public function __set(string $varName, mixed $value)
+    public function __set(string $varName, mixed $value): void
     {
         $this->data[$varName] = $value;
     }
@@ -46,9 +47,9 @@ class Extras
     public function __construct(array $rawPrediction)
     {
         foreach ($rawPrediction as $key => $extra) {
-            if ($key == 'cropper' && isset($rawPrediction['cropper'])) {
+            if ($key === 'cropper' && isset($rawPrediction['cropper'])) {
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
-            } elseif ($key == 'full_text_ocr' && isset($rawPrediction['full_text_ocr'])) {
+            } elseif ($key === 'full_text_ocr' && isset($rawPrediction['full_text_ocr'])) {
                 $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
             } elseif ($key = 'rag' && isset($rawPrediction['rag'])) {
                 $this->rag = new RAGExtra($rawPrediction['rag']);
@@ -63,9 +64,8 @@ class Extras
      * Currently only used for full_text_ocr.
      *
      * @param array $rawPrediction Raw HTTP response.
-     * @return void
      */
-    public function addArtificialExtra(array $rawPrediction)
+    public function addArtificialExtra(array $rawPrediction): void
     {
         if (isset($rawPrediction["full_text_ocr"]) && !isEmpty($rawPrediction['full_text_ocr'])) {
             $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);

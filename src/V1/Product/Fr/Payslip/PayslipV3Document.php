@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Fr\Payslip;
 
 use Mindee\Error\MindeeUnsetException;
@@ -44,8 +46,8 @@ class PayslipV3Document extends Prediction
      */
     public PayslipV3SalaryDetails $salaryDetails;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -113,15 +115,15 @@ class PayslipV3Document extends Prediction
      */
     public function __toString(): string
     {
-        $payPeriodToFieldList = $this->payPeriod != null ? $this->payPeriod->toFieldList() : "";
-        $employeeToFieldList = $this->employee != null ? $this->employee->toFieldList() : "";
-        $employerToFieldList = $this->employer != null ? $this->employer->toFieldList() : "";
-        $bankAccountDetailsToFieldList = $this->bankAccountDetails != null ?
-            $this->bankAccountDetails->toFieldList() : "";
-        $employmentToFieldList = $this->employment != null ? $this->employment->toFieldList() : "";
-        $salaryDetailsSummary = strval($this->salaryDetails);
-        $payDetailToFieldList = $this->payDetail != null ? $this->payDetail->toFieldList() : "";
-        $paidTimeOffSummary = strval($this->paidTimeOff);
+        $payPeriodToFieldList = $this->payPeriod !== null ? $this->payPeriod->toFieldList() : "";
+        $employeeToFieldList = $this->employee !== null ? $this->employee->toFieldList() : "";
+        $employerToFieldList = $this->employer !== null ? $this->employer->toFieldList() : "";
+        $bankAccountDetailsToFieldList = $this->bankAccountDetails !== null
+            ? $this->bankAccountDetails->toFieldList() : "";
+        $employmentToFieldList = $this->employment !== null ? $this->employment->toFieldList() : "";
+        $salaryDetailsSummary = (string) ($this->salaryDetails);
+        $payDetailToFieldList = $this->payDetail !== null ? $this->payDetail->toFieldList() : "";
+        $paidTimeOffSummary = (string) ($this->paidTimeOff);
 
         $outStr = ":Pay Period: $payPeriodToFieldList
 :Employee: $employeeToFieldList

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
 
 /**
@@ -16,7 +18,7 @@ class PredictResponse extends ApiResponse
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array  $rawResponse    Raw HTTP response.
+     * @param array $rawResponse Raw HTTP response.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Ocr;
 
 /**
@@ -22,7 +24,7 @@ class OcrPage
      */
     public function __construct(array $rawResponse)
     {
-        $this->words = array_map(fn ($word) => new OcrWord($word), $rawResponse['words']);
+        $this->words = array_map(static fn($word) => new OcrWord($word), $rawResponse['words']);
         $this->content = $rawResponse['content'];
     }
 

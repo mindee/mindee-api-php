@@ -1,16 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeException;
 use Mindee\Extraction\ExtractedPDF;
+use ArrayObject;
+use Exception;
+
+use function sprintf;
+
+use const DIRECTORY_SEPARATOR;
 
 /**
  * Split files collection wrapper.
  *
- * * @extends \ArrayObject<int, ExtractedPDF>
+ * * @extends ArrayObject<int, ExtractedPDF>
  */
-class SplitFiles extends \ArrayObject
+class SplitFiles extends ArrayObject
 {
     /**
      * Builds a new SplitFiles collection.
@@ -25,11 +33,10 @@ class SplitFiles extends \ArrayObject
     /**
      * Save all extracted splits to disk.
      *
-     * @param string $path   The directory path to save the extracted splits to.
+     * @param string $path The directory path to save the extracted splits to.
      * @param string $prefix Prefix to add to the filename.
      *
      * @throws MindeeException If directory creation fails.
-     * @return void
      */
     public function saveAllToDisk(string $path, string $prefix = 'split'): void
     {
@@ -48,7 +55,7 @@ class SplitFiles extends \ArrayObject
 
             try {
                 $split->writeToFile($filePath);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 throw new MindeeException('Failed to save split to disk.', 0, $e->getMessage());
             }
 

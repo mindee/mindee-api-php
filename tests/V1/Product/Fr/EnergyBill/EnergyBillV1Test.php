@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Fr\EnergyBill;
 
 use Mindee\Product\Fr\EnergyBill;
 use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Fr\EnergyBill\EnergyBillV1;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class EnergyBillV1Test extends TestCase
 {
@@ -14,41 +18,41 @@ class EnergyBillV1Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/energy_bill_fra/response_v1/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/energy_bill_fra/response_v1/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\EnergyBill\EnergyBillV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\EnergyBill\EnergyBillV1::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(EnergyBillV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(EnergyBillV1::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->invoiceNumber->value);
-        $this->assertNull($prediction->contractId->value);
-        $this->assertNull($prediction->deliveryPoint->value);
-        $this->assertNull($prediction->invoiceDate->value);
-        $this->assertNull($prediction->dueDate->value);
-        $this->assertNull($prediction->totalBeforeTaxes->value);
-        $this->assertNull($prediction->totalTaxes->value);
-        $this->assertNull($prediction->totalAmount->value);
-        $this->assertNull($prediction->energySupplier->address);
-        $this->assertNull($prediction->energySupplier->name);
-        $this->assertNull($prediction->energyConsumer->address);
-        $this->assertNull($prediction->energyConsumer->name);
-        $this->assertEquals(0, count($prediction->subscription));
-        $this->assertEquals(0, count($prediction->energyUsage));
-        $this->assertEquals(0, count($prediction->taxesAndContributions));
-        $this->assertNull($prediction->meterDetails->meterNumber);
-        $this->assertNull($prediction->meterDetails->meterType);
-        $this->assertNull($prediction->meterDetails->unit);
+        self::assertNull($prediction->invoiceNumber->value);
+        self::assertNull($prediction->contractId->value);
+        self::assertNull($prediction->deliveryPoint->value);
+        self::assertNull($prediction->invoiceDate->value);
+        self::assertNull($prediction->dueDate->value);
+        self::assertNull($prediction->totalBeforeTaxes->value);
+        self::assertNull($prediction->totalTaxes->value);
+        self::assertNull($prediction->totalAmount->value);
+        self::assertNull($prediction->energySupplier->address);
+        self::assertNull($prediction->energySupplier->name);
+        self::assertNull($prediction->energyConsumer->address);
+        self::assertNull($prediction->energyConsumer->name);
+        self::assertCount(0, $prediction->subscription);
+        self::assertCount(0, $prediction->energyUsage);
+        self::assertCount(0, $prediction->taxesAndContributions);
+        self::assertNull($prediction->meterDetails->meterNumber);
+        self::assertNull($prediction->meterDetails->meterType);
+        self::assertNull($prediction->meterDetails->unit);
     }
 }

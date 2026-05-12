@@ -1,6 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference\Field;
+
+use function array_key_exists;
+use function is_bool;
+use function is_int;
 
 /**
  * A simple field with a scalar value.
@@ -13,8 +19,8 @@ class SimpleField extends BaseField
     public $value;
 
     /**
-     * @param array   $serverResponse Raw server response array.
-     * @param integer $indentLevel    Level of indentation for rst display.
+     * @param array $serverResponse Raw server response array.
+     * @param integer $indentLevel Level of indentation for rst display.
      */
     public function __construct(array $serverResponse, int $indentLevel = 0)
     {
@@ -26,7 +32,6 @@ class SimpleField extends BaseField
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
@@ -34,8 +39,8 @@ class SimpleField extends BaseField
             return $this->value ? 'True' : 'False';
         }
         if (is_numeric($this->value)) {
-            return number_format($this->value, 1, '.', '');
+            return number_format((float) $this->value, 1, '.', '');
         }
-        return $this->value !== null ? (string)$this->value : '';
+        return $this->value !== null ? (string) $this->value : '';
     }
 }

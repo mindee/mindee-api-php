@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Standard;
 
 use Mindee\V1\Parsing\Standard\PaymentDetailsField;
@@ -7,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class PaymentDetailsFieldTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $fieldArray = [
             "account_number" => "12345678910",
@@ -18,31 +20,31 @@ class PaymentDetailsFieldTest extends TestCase
             "polygon" => [
                 [
                     0.666,
-                    0.123
+                    0.123,
                 ],
                 [
                     0.861,
-                    0.123
+                    0.123,
                 ],
                 [
                     0.861,
-                    0.14
+                    0.14,
                 ],
                 [
                     0.666,
-                    0.14
-                ]
+                    0.14,
+                ],
             ],
         ];
 
         $companyRegistration = new PaymentDetailsField($fieldArray);
-        $this->assertEquals("FR7640254025476501124705368", $companyRegistration->iban);
-        $this->assertEquals("211212121212", $companyRegistration->routingNumber);
-        $this->assertEquals("CEPAFRPP", $companyRegistration->swift);
-        $this->assertEquals("12345678910", $companyRegistration->accountNumber);
+        self::assertSame("FR7640254025476501124705368", $companyRegistration->iban);
+        self::assertSame("211212121212", $companyRegistration->routingNumber);
+        self::assertSame("CEPAFRPP", $companyRegistration->swift);
+        self::assertSame("12345678910", $companyRegistration->accountNumber);
     }
 
-    public function testConstructorNoValues()
+    public function testConstructorNoValues(): void
     {
         $fieldArray = [
             "confidence" => 0,
@@ -52,9 +54,9 @@ class PaymentDetailsFieldTest extends TestCase
             "account_number" => null,
         ];
         $companyRegistration = new PaymentDetailsField($fieldArray);
-        $this->assertNull($companyRegistration->iban);
-        $this->assertNull($companyRegistration->routingNumber);
-        $this->assertNull($companyRegistration->swift);
-        $this->assertNull($companyRegistration->accountNumber);
+        self::assertNull($companyRegistration->iban);
+        self::assertNull($companyRegistration->routingNumber);
+        self::assertNull($companyRegistration->swift);
+        self::assertNull($companyRegistration->accountNumber);
     }
 }

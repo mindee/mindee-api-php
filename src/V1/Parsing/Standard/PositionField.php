@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
 
 use Mindee\Geometry\Polygon;
 use Mindee\Geometry\PolygonUtils;
+
+use function array_key_exists;
+use function count;
 
 /**
  * A field indicating a position or area on the document.
@@ -34,25 +39,27 @@ class PositionField extends BaseField
     /**
      * Retrieves the quadrilateral of a prediction.
      *
-     * @param array  $rawPrediction Raw prediction array.
-     * @param string $key           Key to use for the value.
-     * @return Polygon|null
+     * @param array $rawPrediction Raw prediction array.
+     * @param string $key Key to use for the value.
      */
     private static function getQuadrilateral(array $rawPrediction, string $key): ?Polygon
     {
-        if (array_key_exists($key, $rawPrediction) && $rawPrediction[$key] != null) {
-            return PolygonUtils::quadrilateralFromPrediction($rawPrediction[$key]);
+        if (
+            !array_key_exists($key, $rawPrediction)
+            || $rawPrediction[$key] === null
+            || $rawPrediction[$key] === []
+        ) {
+            return null;
         }
 
-        return null;
+        return PolygonUtils::quadrilateralFromPrediction($rawPrediction[$key]);
     }
 
     /**
      * Retrieves the polygon of a prediction.
      *
-     * @param array  $rawPrediction Raw prediction array.
-     * @param string $key           Key to use for the value.
-     * @return Polygon|null
+     * @param array $rawPrediction Raw prediction array.
+     * @param string $key Key to use for the value.
      */
     private static function getPolygon(array $rawPrediction, string $key): ?Polygon
     {
@@ -64,10 +71,10 @@ class PositionField extends BaseField
     }
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page id.
-     * @param boolean      $reconstructed Whether the field was reconstructed.
-     * @param string       $valueKey      Key to use for the value.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page id.
+     * @param boolean $reconstructed Whether the field was reconstructed.
+     * @param string $valueKey Key to use for the value.
      */
     public function __construct(
         array $rawPrediction,
@@ -77,10 +84,10 @@ class PositionField extends BaseField
     ) {
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
 
-        $this->boundingBox = PositionField::getQuadrilateral($rawPrediction, 'bounding_box');
-        $this->quadrangle = PositionField::getQuadrilateral($rawPrediction, 'quadrangle');
-        $this->rectangle = PositionField::getQuadrilateral($rawPrediction, 'rectangle');
-        $this->polygon = PositionField::getPolygon($rawPrediction, 'polygon');
+        $this->boundingBox = self::getQuadrilateral($rawPrediction, 'bounding_box');
+        $this->quadrangle = self::getQuadrilateral($rawPrediction, 'quadrangle');
+        $this->rectangle = self::getQuadrilateral($rawPrediction, 'rectangle');
+        $this->polygon = self::getPolygon($rawPrediction, 'polygon');
 
         $this->value = $this->polygon;
     }

@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Parsing;
+
+use function sprintf;
+use function strlen;
 
 /**
  * Base utility class to handle information display.
@@ -22,7 +27,7 @@ class SummaryHelper
 
         $formatted = rtrim(rtrim($formatted, '0'), '.');
 
-        if (substr_count($formatted, '.') == 0) {
+        if (substr_count($formatted, '.') === 0) {
             $formatted .= '.00';
         } elseif (strlen($formatted) - strpos($formatted, '.') <= 2) {
             $formatted = sprintf("%.2f", $formatted);
@@ -35,7 +40,6 @@ class SummaryHelper
      * Properly formats carriage returns in a string and remove leading spaces before them.
      *
      * @param string $inputString String to clean.
-     * @return string
      */
     public static function cleanOutString(string $inputString): string
     {
@@ -53,8 +57,8 @@ class SummaryHelper
         if ($string === null) {
             return null;
         }
-        $find = array("\n", "\t", "\r");
-        $replace = array("\\n", "\\t", "\\r");
+        $find = ["\n", "\t", "\r"];
+        $replace = ["\\n", "\\t", "\\r"];
         return str_replace($find, $replace, $string);
     }
 
@@ -62,8 +66,7 @@ class SummaryHelper
      * Truncates line-items to the max width of their corresponding column.
      *
      * @param string|boolean|null $inputString String to check.
-     * @param integer|null        $maxColSize  Maximum size for the current column, if it exists.
-     * @return string
+     * @param integer|null $maxColSize Maximum size for the current column, if it exists.
      */
     public static function formatForDisplay($inputString = null, ?int $maxColSize = null): string
     {
@@ -73,8 +76,8 @@ class SummaryHelper
         if ($inputString === false) {
             return 'False';
         }
-        $inputString = SummaryHelper::escapeSpecialChars($inputString);
-        if (!$inputString || mb_strlen($inputString, "UTF-8") == 0) {
+        $inputString = self::escapeSpecialChars($inputString);
+        if (!$inputString || mb_strlen($inputString, "UTF-8") === 0) {
             return "";
         }
         if (!isset($maxColSize)) {

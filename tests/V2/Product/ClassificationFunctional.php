@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace V2\Product;
 
@@ -28,7 +29,6 @@ class ClassificationFunctional extends TestCase
     /**
      * Tests the success of the classification process using a default sample file.
      *
-     * @return void
      */
     public function testClassificationDefaultSampleMustSucceed(): void
     {
@@ -39,17 +39,17 @@ class ClassificationFunctional extends TestCase
         $productParams = new ClassificationParameters($this->classificationModelId);
         $response = $this->client->enqueueAndGetResult(ClassificationResponse::class, $inputSource, $productParams);
 
-        $this->assertNotNull($response);
-        $this->assertNotNull($response->inference);
+        self::assertNotNull($response);
+        self::assertNotNull($response->inference);
 
         $file = $response->inference->file;
-        $this->assertNotNull($file);
-        $this->assertSame("default_sample.jpg", $file->name);
+        self::assertNotNull($file);
+        self::assertSame("default_sample.jpg", $file->name);
 
         $result = $response->inference->result;
-        $this->assertNotNull($result);
+        self::assertNotNull($result);
 
         $classifications = $result->classification;
-        $this->assertNotNull($classifications);
+        self::assertNotNull($classifications);
     }
 }
