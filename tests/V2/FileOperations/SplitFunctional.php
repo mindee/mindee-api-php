@@ -5,8 +5,8 @@ namespace V2\FileOperations;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\FileOperations\Split;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
-use Mindee\V2\Product\Extraction\Params\InferenceParameters;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
@@ -44,7 +44,7 @@ class SplitFunctional extends TestCase
         }
     }
 
-    private function checkFindocReturn(InferenceResponse $findocResponse): void
+    private function checkFindocReturn(ExtractionResponse $findocResponse): void
     {
         $this->assertGreaterThan(0, strlen($findocResponse->inference->model->id));
 
@@ -73,9 +73,9 @@ class SplitFunctional extends TestCase
         $this->assertEquals('default_sample_002-002.pdf', $extractedSplits[1]->filename);
 
         $inferenceInput = $extractedSplits[0]->asInputSource();
-        $findocParams = new InferenceParameters($this->findocModelId);
+        $findocParams = new ExtractionParameters($this->findocModelId);
 
-        $invoice0 = $this->client->enqueueAndGetResult(InferenceResponse::class, $inferenceInput, $findocParams);
+        $invoice0 = $this->client->enqueueAndGetResult(ExtractionResponse::class, $inferenceInput, $findocParams);
 
         $this->checkFindocReturn($invoice0);
 

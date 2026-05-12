@@ -8,7 +8,7 @@ namespace Mindee\V1\Parsing\Common;
 abstract class ApiResponse
 {
     /**
-     * @var \Mindee\V1\Parsing\Common\ApiRequest Request part of the response.
+     * @var ApiRequest Request part of the response.
      */
     public ApiRequest $apiRequest;
     /**

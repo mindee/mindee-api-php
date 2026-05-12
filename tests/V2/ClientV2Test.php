@@ -8,9 +8,9 @@ use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\HTTP\MindeeAPIV2;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
-use Mindee\V2\Product\Extraction\Params\InferenceParameters;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -34,14 +34,14 @@ class ClientV2Test extends TestCase
             ->method('reqPostEnqueue')
             ->with(
                 $this->isInstanceOf(LocalInputSource::class),
-                $this->isInstanceOf(InferenceParameters::class)
+                $this->isInstanceOf(ExtractionParameters::class)
             )
             ->willReturn(new JobResponse(json_decode($syntheticResponse, true)));
 
         $mindeeClient = self::makeClientWithMockedApi($predictable);
 
         $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
-        $params = new InferenceParameters('dummy-model-id', textContext: 'dummy text context');
+        $params = new ExtractionParameters('dummy-model-id', textContext: 'dummy text context');
 
         $response = $mindeeClient->enqueueInference($input, $params);
 
@@ -79,16 +79,19 @@ class ClientV2Test extends TestCase
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
 
         $json = json_decode(file_get_contents($jsonFile), true);
-        $processing = new InferenceResponse($json);
+        $processing = new ExtractionResponse($json);
 
         $predictable->expects($this->once())
-            ->method('reqGetInference')
-            ->with($this->equalTo('12345678-1234-1234-1234-123456789abc'))
+            ->method('reqGetResult')
+            ->with(
+                $this->equalTo(ExtractionResponse::class),
+                $this->equalTo('12345678-1234-1234-1234-123456789abc')
+            )
             ->willReturn($processing);
 
         $mindeeClient = self::makeClientWithMockedApi($predictable);
 
-        $response = $mindeeClient->getInference('12345678-1234-1234-1234-123456789abc');
+        $response = $mindeeClient->getResult(ExtractionResponse::class, '12345678-1234-1234-1234-123456789abc');
 
         $this->assertNotNull($response, 'must have a response');
         $this->assertNotNull($response->inference, 'inference must have a response');
@@ -114,10 +117,10 @@ class ClientV2Test extends TestCase
         $this->assertFileExists($jsonFile, 'Test resource file must exist');
 
         $localResponse = new LocalResponse($jsonFile);
-        $loaded = $localResponse->deserializeResponse(InferenceResponse::class);
+        $loaded = $localResponse->deserializeResponse(ExtractionResponse::class);
 
-        $this->assertNotNull($loaded, 'Loaded InferenceResponse must not be null');
-        $this->assertInstanceOf(InferenceResponse::class, $loaded);
+        $this->assertNotNull($loaded, 'Loaded ExtractionResponse must not be null');
+        $this->assertInstanceOf(ExtractionResponse::class, $loaded);
 
         $modelId = $loaded->inference->model->id ?? null;
         $this->assertEquals(
@@ -143,8 +146,8 @@ class ClientV2Test extends TestCase
         try {
             $client = new Client('dummy-key');
             $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
-            $params = new InferenceParameters('dummy-model-id');
-            $client->enqueueAndGetInference($input, $params);
+            $params = new ExtractionParameters('dummy-model-id');
+            $client->enqueueAndGetResult(ExtractionResponse::class, $input, $params);
         } finally {
             if ($original === null) {
                 putenv('MINDEE_V2_BASE_URL');

@@ -2,7 +2,7 @@
 
 namespace Mindee\V2\Product\Classification;
 
-use Mindee\V2\Parsing\Inference\InferenceResponse;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
 
 /**
  * Classification of document type from the source file.
@@ -15,9 +15,9 @@ class ClassificationClassifier
     public string $documentType;
 
     /**
-     * @var InferenceResponse|null $extractionResponse The extraction response associated with the classification.
+     * @var ExtractionResponse|null $extractionResponse The extraction response associated with the classification.
      */
-    public ?InferenceResponse $extractionResponse;
+    public ?ExtractionResponse $extractionResponse;
 
     /**
      * @param array $rawPrediction Raw prediction array.
@@ -26,7 +26,7 @@ class ClassificationClassifier
     {
         $this->documentType = $rawPrediction['document_type'];
         $this->extractionResponse = isset($rawPrediction['extraction_response']) ?
-            new InferenceResponse($rawPrediction['extraction_response']) : null;
+            new ExtractionResponse($rawPrediction['extraction_response']) : null;
     }
 
     /**

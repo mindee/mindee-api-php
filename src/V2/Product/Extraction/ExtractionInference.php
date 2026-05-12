@@ -1,14 +1,15 @@
 <?php
 
-namespace Mindee\V2\Parsing\Inference;
+namespace Mindee\V2\Product\Extraction;
 
 use Mindee\Parsing\SummaryHelper;
 use Mindee\V2\Parsing\BaseInference;
+use Mindee\V2\Parsing\Inference\InferenceActiveOptions;
 
 /**
- * Inference class.
+ * ExtractionInference class.
  */
-class Inference extends BaseInference
+class ExtractionInference extends BaseInference
 {
     /**
      * @var InferenceActiveOptions Active options for the inference.
@@ -16,9 +17,9 @@ class Inference extends BaseInference
     public InferenceActiveOptions $activeOptions;
 
     /**
-     * @var InferenceResult Result of the inference.
+     * @var ExtractionResult Result of the inference.
      */
-    public InferenceResult $result;
+    public ExtractionResult $result;
 
     /**
      * @param array $rawResponse Raw server response array.
@@ -27,7 +28,7 @@ class Inference extends BaseInference
     {
         parent::__construct($rawResponse);
         $this->activeOptions = new InferenceActiveOptions($rawResponse['active_options']);
-        $this->result = new InferenceResult($rawResponse['result']);
+        $this->result = new ExtractionResult($rawResponse['result']);
     }
 
     /**

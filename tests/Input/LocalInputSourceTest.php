@@ -113,9 +113,6 @@ class LocalInputSourceTest extends TestCase
                 $cutPdf->useTemplate($cutPdf->importPage($pageNumber + 1));
                 $basePdf->AddPage();
                 $basePdf->useTemplate($basePdf->importPage($pageNumber + 1));
-                // TODO: comparing extracted page bytes content turns out to be unreliable when using FPDF.
-                // This will be left here until a better solution is found within the limitations of licensing.
-                //                $this->assertEquals($cutPdf->Output('', 'S'), $basePdf->Output('', 'S'));
             }
             $basePdf->Close();
             $cutPdf->Close();
@@ -370,8 +367,6 @@ class LocalInputSourceTest extends TestCase
         $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $sizeTextCompressed = filesize(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf");
         $this->assertEquals($sizeTextCompressed, $sizeOriginal);
-        // Note: Greater size when compressed is expected due to original not having any images, so the operation will
-        // be aborted.
 
         $this->assertEquals(
             str_repeat('*', 650),
