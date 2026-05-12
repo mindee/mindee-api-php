@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use function array_key_exists;
 
 /**
  * Trait to add position information.
@@ -16,9 +20,8 @@ trait FieldConfidenceMixin
      * Sets the confidence score.
      *
      * @param array $rawPrediction Raw prediction array.
-     * @return void
      */
-    protected function setConfidence(array $rawPrediction)
+    protected function setConfidence(array $rawPrediction): void
     {
         if (array_key_exists('confidence', $rawPrediction) && $rawPrediction['confidence']) {
             $this->confidence = $rawPrediction['confidence'];

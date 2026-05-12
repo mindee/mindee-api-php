@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Fr\EnergyBill;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class EnergyBillV1EnergyUsage
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null The price per unit of energy consumed.
@@ -48,31 +50,30 @@ class EnergyBillV1EnergyUsage
     public ?float $unitPrice;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->consumption = isset($rawPrediction["consumption"]) ?
-            floatval($rawPrediction["consumption"]) : null;
+        $this->consumption = isset($rawPrediction["consumption"])
+            ? (float) ($rawPrediction["consumption"]) : null;
         $this->description = $rawPrediction["description"] ?? null;
         $this->endDate = $rawPrediction["end_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
-        $this->taxRate = isset($rawPrediction["tax_rate"]) ?
-            floatval($rawPrediction["tax_rate"]) : null;
-        $this->total = isset($rawPrediction["total"]) ?
-            floatval($rawPrediction["total"]) : null;
+        $this->taxRate = isset($rawPrediction["tax_rate"])
+            ? (float) ($rawPrediction["tax_rate"]) : null;
+        $this->total = isset($rawPrediction["total"])
+            ? (float) ($rawPrediction["total"]) : null;
         $this->unit = $rawPrediction["unit"] ?? null;
-        $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-            floatval($rawPrediction["unit_price"]) : null;
+        $this->unitPrice = isset($rawPrediction["unit_price"])
+            ? (float) ($rawPrediction["unit_price"]) : null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -91,7 +92,6 @@ class EnergyBillV1EnergyUsage
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -109,7 +109,6 @@ class EnergyBillV1EnergyUsage
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

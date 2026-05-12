@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\ClientOptions;
 
 /**
@@ -19,7 +21,7 @@ class WorkflowOptions extends CommonOptions
 
     /**
      * @var string|null A unique, encrypted URL for accessing the document validation interface without requiring
-     * authentication.
+     *                  authentication.
      */
     public ?string $publicUrl;
 
@@ -29,11 +31,11 @@ class WorkflowOptions extends CommonOptions
     public ?bool $rag;
 
     /**
-     * @param string|null $alias       Alias for the document.
-     * @param string|null $priority    Priority for the document.
-     * @param boolean     $fullTextOcr Whether to retrieve the full ocr text.
-     * @param string|null $publicUrl   Priority for the document.
-     * @param boolean     $rag         Whether to enable Retrieval-Augmented Generation.
+     * @param string|null $alias Alias for the document.
+     * @param string|null $priority Priority for the document.
+     * @param boolean $fullTextOcr Whether to retrieve the full ocr text.
+     * @param string|null $publicUrl Priority for the document.
+     * @param boolean $rag Whether to enable Retrieval-Augmented Generation.
      */
     public function __construct(
         ?string $alias = null,

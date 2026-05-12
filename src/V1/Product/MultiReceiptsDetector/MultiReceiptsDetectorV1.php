@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Multi Receipts Detector V1. */
 
 namespace Mindee\V1\Product\MultiReceiptsDetector;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Parsing;
 
 use DateTime;
@@ -11,7 +13,7 @@ use TestingUtilities;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
-class TestJobResponse extends TestCase
+class JobResponseTest extends TestCase
 {
     /**
      * Load a job sample JSON file and return its decoded contents.
@@ -28,54 +30,51 @@ class TestJobResponse extends TestCase
 
     /**
      * Should load when status is Processing.
-     * @return void
      */
     public function testShouldLoadWhenStatusIsProcessing(): void
     {
         $jsonSample = self::getJobSamples('ok_processing.json');
         $response = new JobResponse($jsonSample);
 
-        $this->assertNotNull($response->job);
-        $this->assertSame('Processing', $response->job->status);
-        $this->assertNull($response->job->completedAt);
-        $this->assertNull($response->job->error);
-        $this->assertIsArray($response->job->webhooks);
-        $this->assertCount(0, $response->job->webhooks);
+        self::assertNotNull($response->job);
+        self::assertSame('Processing', $response->job->status);
+        self::assertNull($response->job->completedAt);
+        self::assertNull($response->job->error);
+        self::assertIsArray($response->job->webhooks);
+        self::assertCount(0, $response->job->webhooks);
     }
 
     /**
      * Should load when status is Processed.
-     * @return void
      */
     public function testShouldLoadWhenStatusIsProcessed(): void
     {
         $jsonSample = self::getJobSamples('ok_processed_webhooks_ok.json');
         $response = new JobResponse($jsonSample);
 
-        $this->assertNotNull($response->job);
-        $this->assertSame('Processed', $response->job->status);
-        $this->assertInstanceOf(DateTime::class, $response->job->completedAt);
-        $this->assertNull($response->job->error);
+        self::assertNotNull($response->job);
+        self::assertSame('Processed', $response->job->status);
+        self::assertInstanceOf(DateTime::class, $response->job->completedAt);
+        self::assertNull($response->job->error);
     }
 
     /**
      * Should load with 422 error.
-     * @return void
      */
     public function testShouldLoadWith422Error(): void
     {
         $jsonSample = self::getJobSamples('fail_422.json');
         $response = new JobResponse($jsonSample);
 
-        $this->assertNotNull($response->job);
-        $this->assertSame('Failed', $response->job->status);
-        $this->assertInstanceOf(DateTime::class, $response->job->completedAt);
+        self::assertNotNull($response->job);
+        self::assertSame('Failed', $response->job->status);
+        self::assertInstanceOf(DateTime::class, $response->job->completedAt);
 
-        $this->assertInstanceOf(ErrorResponse::class, $response->job->error);
-        $this->assertSame(422, $response->job->error->status);
-        $this->assertStringStartsWith('422-', $response->job->error->code);
-        $this->assertIsArray($response->job->error->errors);
-        $this->assertCount(1, $response->job->error->errors);
-        $this->assertInstanceOf(ErrorItem::class, $response->job->error->errors[0]);
+        self::assertInstanceOf(ErrorResponse::class, $response->job->error);
+        self::assertSame(422, $response->job->error->status);
+        self::assertStringStartsWith('422-', $response->job->error->code);
+        self::assertIsArray($response->job->error->errors);
+        self::assertCount(1, $response->job->error->errors);
+        self::assertInstanceOf(ErrorItem::class, $response->job->error->errors[0]);
     }
 }

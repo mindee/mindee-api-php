@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\ClientOptions;
 
 use Mindee\V2\ClientOptions\BaseParameters;
@@ -15,9 +17,9 @@ class BaseParametersTest extends TestCase
 
         $hash = $params->asHash();
 
-        $this->assertArrayHasKey('model_id', $hash);
-        $this->assertArrayHasKey('webhook_ids', $hash);
-        $this->assertSame('model-id', $hash['model_id']);
-        $this->assertSame('first-id,second-id', $hash['webhook_ids']);
+        self::assertArrayHasKey('model_id', $hash);
+        self::assertArrayHasKey('webhook_ids', $hash);
+        self::assertSame('model-id', $hash['model_id']);
+        self::assertSame('first-id,second-id', $hash['webhook_ids']);
     }
 }

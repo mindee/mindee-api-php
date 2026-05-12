@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common\OCR;
+
+use function count;
 
 /**
  * A list of words which are on the same line.
@@ -23,9 +27,8 @@ class OCRLine
     /**
      * Sort the words on the line from left to right.
      *
-     * @return void
      */
-    public function sortOnX()
+    public function sortOnX(): void
     {
         usort($this->words, "Mindee\\V1\\Parsing\\Common\\OCR\\OCRPage::getMinMaxX");
     }
@@ -34,9 +37,8 @@ class OCRLine
      * Appends a word to the line.
      *
      * @param OCRWord $word Word to add.
-     * @return void
      */
-    public function add(OCRWord $word)
+    public function add(OCRWord $word): void
     {
         $this->words[] = $word;
     }

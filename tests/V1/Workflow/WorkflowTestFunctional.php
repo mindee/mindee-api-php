@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Workflow;
 
 use Mindee\V1\Client;
@@ -7,6 +9,7 @@ use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\WorkflowOptions;
 use Mindee\V1\Product\FinancialDocument\FinancialDocumentV1;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
@@ -23,11 +26,12 @@ class WorkflowTestFunctional extends TestCase
         $this->workflowId = getenv('WORKFLOW_ID') ?: '';
         $this->predictionType = FinancialDocumentV1::class;
         $this->inputSource = $this->mindeeClient->sourceFromPath(
-            \TestingUtilities::getV1DataDir() . "/products/financial_document/default_sample.jpg"
+            TestingUtilities::getV1DataDir() . "/products/financial_document/default_sample.jpg"
         );
     }
 
-    public function testWorkflow() {
+    public function testWorkflow(): void
+    {
         $currentDateTime = date('Y-m-d-H:i:s');
         $options = new WorkflowOptions(
             "php-" . $currentDateTime,
@@ -37,14 +41,17 @@ class WorkflowTestFunctional extends TestCase
             true
         );
         $response = $this->mindeeClient->executeWorkflow(
-            $this->inputSource, $this->workflowId, $options
+            $this->inputSource,
+            $this->workflowId,
+            $options
         );
-        $this->assertEquals(202, $response->apiRequest->statusCode);
-        $this->assertEquals("php-$currentDateTime", $response->execution->file->alias);
-        $this->assertEquals("low", $response->execution->priority);
+        self::assertSame(202, $response->apiRequest->statusCode);
+        self::assertSame("php-$currentDateTime", $response->execution->file->alias);
+        self::assertSame("low", $response->execution->priority);
     }
 
-    public function testWorkflowPollingWithRAG() {
+    public function testWorkflowPollingWithRAG(): void
+    {
         $options = new PredictMethodOptions();
         $options->setRAG(true)->setWorkflowId($this->workflowId);
         $response = $this->mindeeClient->enqueueAndParse(
@@ -52,12 +59,13 @@ class WorkflowTestFunctional extends TestCase
             $this->inputSource,
             $options
         );
-        $this->assertNotEmpty(strval($response->document));
-        $this->assertNotEmpty($response->document->inference->extras);
-        $this->assertNotEmpty($response->document->inference->extras->rag->matchingDocumentId);
+        self::assertNotEmpty((string) ($response->document));
+        self::assertNotEmpty($response->document->inference->extras);
+        self::assertNotEmpty($response->document->inference->extras->rag->matchingDocumentId);
     }
 
-    public function testWorkflowPollingWithoutRAG() {
+    public function testWorkflowPollingWithoutRAG(): void
+    {
         $options = new PredictMethodOptions();
         $options->setWorkflowId($this->workflowId);
         $response = $this->mindeeClient->enqueueAndParse(
@@ -65,8 +73,8 @@ class WorkflowTestFunctional extends TestCase
             $this->inputSource,
             $options
         );
-        $this->assertNotEmpty(strval($response->document));
-        $this->assertObjectHasProperty('rag', $response->document->inference->extras);
-        $this->assertFalse(isset($response->document->inference->extras->rag));
+        self::assertNotEmpty((string) ($response->document));
+        self::assertObjectHasProperty('rag', $response->document->inference->extras);
+        self::assertFalse(isset($response->document->inference->extras->rag));
     }
 }

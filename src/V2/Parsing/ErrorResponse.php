@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing;
+
+use function is_array;
 
 /**
  * Error response class.
@@ -40,9 +44,7 @@ class ErrorResponse
         $this->title = $serverResponse['title'] ?? null;
         $this->code = $serverResponse['code'] ?? null;
         if (isset($serverResponse['errors']) && is_array($serverResponse['errors'])) {
-            $this->errors = array_map(static function ($error) {
-                return new ErrorItem($error);
-            }, $serverResponse['errors']);
+            $this->errors = array_map(static fn($error) => new ErrorItem($error), $serverResponse['errors']);
         } else {
             $this->errors = [];
         }

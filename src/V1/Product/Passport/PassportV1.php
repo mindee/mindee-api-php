@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Passport V1. */
 
 namespace Mindee\V1\Product\Passport;

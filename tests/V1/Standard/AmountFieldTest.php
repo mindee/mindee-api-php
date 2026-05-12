@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Standard;
 
 use Mindee\V1\Parsing\Standard\AmountField;
@@ -7,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class AmountFieldTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $fieldArray = [
             "value" => "2",
@@ -17,19 +19,19 @@ class AmountFieldTest extends TestCase
                 [0.414, 0.707],
                 [0.414, 0.831],
                 [0.016, 0.831],
-            ]
+            ],
         ];
         $amount = new AmountField($fieldArray);
-        $this->assertEquals(2, $amount->value);
+        self::assertSame(2.0, $amount->value);
     }
 
-    public function testConstructorNoAmount()
+    public function testConstructorNoAmount(): void
     {
         $fieldArray = [
             "value" => "N/A",
-            "confidence" => 0.1
+            "confidence" => 0.1,
         ];
         $amount = new AmountField($fieldArray);
-        $this->assertNull($amount->value);
+        self::assertNull($amount->value);
     }
 }

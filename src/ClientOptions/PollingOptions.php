@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\ClientOptions;
 
 use Mindee\Error\ErrorCode;
@@ -41,7 +43,7 @@ class PollingOptions
      * @return $this
      * @throws MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
      */
-    public function setInitialDelaySec(int $initialDelay): PollingOptions
+    public function setInitialDelaySec(int $initialDelay): self
     {
         if ($initialDelay < MINIMUM_INITIAL_DELAY_SECONDS) {
             throw new MindeeApiException(
@@ -58,7 +60,7 @@ class PollingOptions
      * @return $this
      * @throws MindeeApiException Throws if the delay is too low.
      */
-    public function setDelaySec(int $delay): PollingOptions
+    public function setDelaySec(int $delay): self
     {
         if ($delay < MINIMUM_DELAY_SECONDS) {
             throw new MindeeApiException(
@@ -74,7 +76,7 @@ class PollingOptions
      * @param integer $maxRetries Maximum allowed retries. Will default to 80 if an invalid number is provided.
      * @return $this
      */
-    public function setMaxRetries(int $maxRetries): PollingOptions
+    public function setMaxRetries(int $maxRetries): self
     {
         if (!$maxRetries || $maxRetries < 0) {
             $this->maxRetries = 80;

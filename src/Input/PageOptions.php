@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Page options & related constants.
  */
@@ -35,8 +37,8 @@ class PageOptions
 
     /**
      * @param array|null $pageIndexes Indexes of the page.
-     * @param string     $operation   Operation to apply.
-     * @param integer    $onMinPage   Minimum page amount.
+     * @param string $operation Operation to apply.
+     * @param integer $onMinPage Minimum page amount.
      */
     public function __construct(
         ?array $pageIndexes = null,
@@ -57,9 +59,9 @@ class PageOptions
     public function isEmpty(): bool
     {
         if (
-            ($this->pageIndexes !== null && $this->pageIndexes !== []) ||
-            $this->operation !== KEEP_ONLY ||
-            $this->onMinPage !== 0
+            ($this->pageIndexes !== null && $this->pageIndexes !== [])
+            || $this->operation !== KEEP_ONLY
+            || $this->onMinPage !== 0
         ) {
             return false;
         }

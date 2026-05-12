@@ -1,8 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use Mindee\Error\MindeeApiException;
+
+use function array_key_exists;
+use function is_array;
+use function sprintf;
 
 /**
  * A field containing a list of other fields.
@@ -17,8 +23,8 @@ class ListField extends BaseField
     public array $items;
 
     /**
-     * @param array   $serverResponse Raw server response array.
-     * @param integer $indentLevel    Level of indentation for rst display.
+     * @param array $serverResponse Raw server response array.
+     * @param integer $indentLevel Level of indentation for rst display.
      * @throws MindeeApiException Throws if deserialization fails.
      */
     public function __construct(array $serverResponse, int $indentLevel = 0)
@@ -38,7 +44,6 @@ class ListField extends BaseField
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {

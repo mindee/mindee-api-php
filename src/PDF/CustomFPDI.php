@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\PDF;
 
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\FpdiTrait;
+
+use function sprintf;
 
 /**
  * Custom wrapper to add text rotation to FPDI.
@@ -21,20 +25,19 @@ class CustomFPDI extends Fpdi
      * Rotates the current drawing context.
      *
      * @param float $angle The rotation angle in degrees.
-     * @param float $x     The x-coordinate of the rotation center. Default is current x position.
-     * @param float $y     The y-coordinate of the rotation center. Default is current y position.
-     * @return void
+     * @param float $x The x-coordinate of the rotation center. Default is current x position.
+     * @param float $y The y-coordinate of the rotation center. Default is current y position.
      */
-    public function rotate(float $angle, float $x = -1, float $y = -1)
+    public function rotate(float $angle, float $x = -1, float $y = -1): void
     {
-        if ($x == -1) {
+        if ($x === -1) {
             $x = $this->x;
         }
-        if ($y == -1) {
+        if ($y === -1) {
             $y = $this->y;
         }
 
-        if (intval($angle) != 0) {
+        if ((int) $angle !== 0) {
             $angle = -$angle;
         }
         $angle *= M_PI / 180;
@@ -60,11 +63,10 @@ class CustomFPDI extends Fpdi
     /**
      * Ends the page, resetting any rotation.
      *
-     * @return void
      */
-    protected function _endpage() //phpcs:ignore
+    protected function _endpage(): void //phpcs:ignore
     {
-        if ($this->angle != 0) {
+        if ($this->angle !== 0) {
             $this->angle = 0;
             $this->_out('Q');
         }
@@ -73,18 +75,16 @@ class CustomFPDI extends Fpdi
     /**
      * Starts a new transformation.
      *
-     * @return void
      */
-    public function startTransform()
+    public function startTransform(): void
     {
         $this->_out('q');
     }
     /**
      * Stops the current transformation.
      *
-     * @return void
      */
-    public function stopTransform()
+    public function stopTransform(): void
     {
         $this->_out('Q');
     }

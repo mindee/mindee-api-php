@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Mindee Client.
  *
@@ -39,6 +41,8 @@ use Mindee\V1\Product\Generated\GeneratedV1;
 use ReflectionClass;
 use ReflectionException;
 
+use function strlen;
+
 /**
  * Main entrypoint for Mindee operations.
  */
@@ -70,9 +74,8 @@ class Client
     /**
      * Load a document from an absolute path, as a string.
      *
-     * @param string  $filePath Path of the file.
-     * @param boolean $fixPDF   Whether the PDF should be fixed or not.
-     * @return PathInput
+     * @param string $filePath Path of the file.
+     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
     public function sourceFromPath(string $filePath, bool $fixPDF = false): PathInput
     {
@@ -86,9 +89,8 @@ class Client
     /**
      * Load a document from a normal PHP file object.
      *
-     * @param mixed   $file   File object as created from the file() function.
+     * @param mixed $file File object as created from the file() function.
      * @param boolean $fixPDF Whether the PDF should be fixed or not.
-     * @return FileInput
      */
     public function sourceFromFile(mixed $file, bool $fixPDF = false): FileInput
     {
@@ -102,10 +104,9 @@ class Client
     /**
      * Load a document from raw bytes.
      *
-     * @param string  $fileBytes File object in raw bytes.
-     * @param string  $fileName  File name, mandatory.
-     * @param boolean $fixPDF    Whether the PDF should be fixed or not.
-     * @return BytesInput
+     * @param string $fileBytes File object in raw bytes.
+     * @param string $fileName File name, mandatory.
+     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
     public function sourceFromBytes(string $fileBytes, string $fileName, bool $fixPDF = false): BytesInput
     {
@@ -119,10 +120,9 @@ class Client
     /**
      * Load a document from a base64 encoded string.
      *
-     * @param string  $fileB64  File object in Base64.
-     * @param string  $fileName File name, mandatory.
-     * @param boolean $fixPDF   Whether the PDF should be fixed or not.
-     * @return Base64Input
+     * @param string $fileB64 File object in Base64.
+     * @param string $fileName File name, mandatory.
+     * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
     public function sourceFromB64String(string $fileB64, string $fileName, bool $fixPDF = false): Base64Input
     {
@@ -137,7 +137,6 @@ class Client
      * Load a document from an URL.
      *
      * @param string $url File URL. Must start with "https://".
-     * @return URLInputSource
      */
     public function sourceFromUrl(string $url): URLInputSource
     {
@@ -147,17 +146,16 @@ class Client
     /**
      * Builds a custom endpoint.
      *
-     * @param string $endpointName    URL of the endpoint.
-     * @param string $endpointOwner   Name of the endpoint's owner.
+     * @param string $endpointName URL of the endpoint.
+     * @param string $endpointOwner Name of the endpoint's owner.
      * @param string $endpointVersion Version of the endpoint.
-     * @return Endpoint
      */
     private function constructEndpoint(
         string $endpointName,
         string $endpointOwner,
         string $endpointVersion
     ): Endpoint {
-        $endpointVersion = $endpointVersion != null && strlen($endpointVersion) > 0 ? $endpointVersion : '1';
+        $endpointVersion = $endpointVersion !== null && strlen($endpointVersion) > 0 ? $endpointVersion : '1';
 
         $endpointSettings = new MindeeAPI($this->apiKey, $endpointName, $endpointOwner, $endpointVersion);
 
@@ -168,7 +166,6 @@ class Client
      * Cleans the account name.
      *
      * @param string $accountName Name of the endpoint's owner. Replaced by self::DEFAULT_OWNER if absent.
-     * @return string
      */
     private function cleanAccountName(string $accountName): string
     {
@@ -185,7 +182,6 @@ class Client
      * Builds an off-the-shelf endpoint.
      *
      * @param string $product Name of the product's class.
-     * @return Endpoint
      * @throws MindeeApiException Throws if the product isn't recognized.
      */
     private function constructOTSEndpoint(string $product): Endpoint
@@ -200,7 +196,7 @@ class Client
                 ErrorCode::INTERNAL_LIBRARY_ERROR
             );
         }
-        if ($endpointName == 'custom') {
+        if ($endpointName === 'custom') {
             throw new MindeeApiException(
                 'Please create an endpoint manually before sending requests to a custom build.',
                 ErrorCode::USER_INPUT_ERROR
@@ -214,22 +210,21 @@ class Client
     /**
      * Adds a custom endpoint, created using the Mindee API Builder.
      *
-     * @param string      $endpointName URL of the endpoint.
-     * @param string      $accountName  Name of the endpoint's owner.
-     * @param string|null $version      Version of the endpoint.
-     * @return Endpoint
+     * @param string $endpointName URL of the endpoint.
+     * @param string $accountName Name of the endpoint's owner.
+     * @param string|null $version Version of the endpoint.
      * @throws MindeeClientException Throws if a custom endpoint name isn't provided.
      */
     public function createEndpoint(string $endpointName, string $accountName, ?string $version = null): Endpoint
     {
-        if (mb_strlen($endpointName, "UTF-8") == 0) {
+        if (mb_strlen($endpointName, "UTF-8") === 0) {
             throw new MindeeClientException(
                 "Custom endpoint requires a valid 'endpoint_name'.",
                 ErrorCode::USER_INPUT_ERROR
             );
         }
         $accountName = $this->cleanAccountName($accountName);
-        if (!$version || strlen($version) < 1) {
+        if (!$version || $version === '') {
             error_log("Notice: no version provided for a custom build, will attempt to poll version 1 by default.");
             $version = "1";
         }
@@ -239,11 +234,10 @@ class Client
     /**
      * Cut the pages of a PDF following the detailed operations.
      *
-     * @param LocalInputSource $inputDoc    Input PDF file.
-     * @param PageOptions      $pageOptions Options to apply to the PDF file.
-     * @return void
+     * @param LocalInputSource $inputDoc Input PDF file.
+     * @param PageOptions $pageOptions Options to apply to the PDF file.
      */
-    private function cutDocPages(LocalInputSource $inputDoc, PageOptions $pageOptions)
+    private function cutDocPages(LocalInputSource $inputDoc, PageOptions $pageOptions): void
     {
         $inputDoc->applyPageOptions($pageOptions);
     }
@@ -251,10 +245,9 @@ class Client
     /**
      * Makes the request to retrieve an async document.
      *
-     * @param string   $predictionType Name of the product's class.
-     * @param string   $queueId        ID of the queue.
-     * @param Endpoint $endpoint       Endpoint to poll.
-     * @return AsyncPredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param string $queueId ID of the queue.
+     * @param Endpoint $endpoint Endpoint to poll.
      * @throws MindeeHttpException Throws if the API sent an error.
      */
     private function makeParseQueuedRequest(
@@ -275,10 +268,9 @@ class Client
     /**
      * Makes the request to send a document to an asynchronous endpoint.
      *
-     * @param string               $predictionType Name of the product's class.
-     * @param InputSource          $inputDoc       Input file.
-     * @param PredictMethodOptions $options        Prediction Options.
-     * @return AsyncPredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param InputSource $inputDoc Input file.
+     * @param PredictMethodOptions $options Prediction Options.
      * @throws MindeeHttpException Throws if the API sent an error.
      * @throws MindeeApiException Throws if one attempts to edit remote resources.
      */
@@ -315,14 +307,13 @@ class Client
     /**
      * Makes the request to send a document to a workflow.
      *
-     * @param string               $predictionType Name of the product's class.
-     * @param InputSource          $inputDoc       Input file.
-     * @param string               $workflowId     ID of the workflow.
-     * @param PredictMethodOptions $options        Prediction Options.
-     * @return WorkflowResponse
+     * @param string $predictionType Name of the product's class.
+     * @param InputSource $inputDoc Input file.
+     * @param string $workflowId ID of the workflow.
+     * @param PredictMethodOptions $options Prediction Options.
      * @throws MindeeHttpException Throws if the API sent an error.
      * @throws MindeeApiException Throws if the API sent an error,
-     * or if the prediction type isn't recognized or if a field can't be deserialized.
+     *                            or if the prediction type isn't recognized or if a field can't be deserialized.
      */
     private function makeWorkflowExecutionRequest(
         string $predictionType,
@@ -365,10 +356,9 @@ class Client
     /**
      * Makes the request to send a document to a synchronous endpoint.
      *
-     * @param string               $predictionType Name of the product's class.
-     * @param InputSource          $inputDoc       Input file.
-     * @param PredictMethodOptions $options        Prediction Options.
-     * @return PredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param InputSource $inputDoc Input file.
+     * @param PredictMethodOptions $options Prediction Options.
      * @throws MindeeHttpException Throws if the API sent an error.
      * @throws MindeeApiException Throws if one attempts to edit remote resources.
      */
@@ -404,11 +394,10 @@ class Client
     /**
      * Call prediction API on the document and parse the results.
      *
-     * @param string                    $predictionType Name of the product's class.
-     * @param InputSource               $inputDoc       Input file.
-     * @param PredictMethodOptions|null $options        Prediction options.
-     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
-     * @return PredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param InputSource $inputDoc Input file.
+     * @param PredictMethodOptions|null $options Prediction options.
+     * @param PageOptions|null $pageOptions Options to apply to the PDF file.
      */
     public function parse(
         string $predictionType,
@@ -416,13 +405,13 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): PredictResponse {
-        if ($options == null) {
+        if ($options === null) {
             $options = new PredictMethodOptions();
         }
-        if ($pageOptions != null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
-        $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+        $options->endpoint ??= $this->constructOTSEndpoint(
             $predictionType,
         );
 
@@ -432,12 +421,11 @@ class Client
     /**
      * Enqueues a document and automatically polls the response. Asynchronous calls only.
      *
-     * @param string                    $predictionType Name of the product's class.
-     * @param InputSource               $inputDoc       Input file.
-     * @param PredictMethodOptions|null $options        Prediction Options.
-     * @param PollingOptions|null       $asyncOptions   Async Options. Manages timers.
-     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
-     * @return AsyncPredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param InputSource $inputDoc Input file.
+     * @param PredictMethodOptions|null $options Prediction Options.
+     * @param PollingOptions|null $asyncOptions Async Options. Manages timers.
+     * @param PageOptions|null $pageOptions Options to apply to the PDF file.
      * @throws MindeeApiException Throws if the document couldn't be retrieved in time.
      */
     public function enqueueAndParse(
@@ -447,14 +435,14 @@ class Client
         ?PollingOptions $asyncOptions = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if ($options == null) {
+        if ($options === null) {
             $options = new PredictMethodOptions();
         }
-        if ($asyncOptions == null) {
+        if ($asyncOptions === null) {
             $asyncOptions = new PollingOptions();
         }
 
-        $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+        $options->endpoint ??= $this->constructOTSEndpoint(
             $predictionType,
         );
 
@@ -471,7 +459,7 @@ class Client
         $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
 
         while ($retryCounter < $asyncOptions->maxRetries) {
-            if ($pollResults->job->status == "completed") {
+            if ($pollResults->job->status === "completed") {
                 break;
             }
             error_log("Polling server for parsing result with job id: " . $enqueueResponse->job->id);
@@ -479,7 +467,7 @@ class Client
             $this->customSleep($asyncOptions->delaySec);
             $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
         }
-        if ($pollResults->job->status != "completed") {
+        if ($pollResults->job->status !== "completed") {
             throw new MindeeApiException(
                 "Couldn't retrieve document " . $enqueueResponse->job->id . " after $retryCounter tries.",
                 ErrorCode::API_TIMEOUT,
@@ -491,11 +479,10 @@ class Client
     /**
      * Enqueue a document to an asynchronous endpoint.
      *
-     * @param string                    $predictionType Name of the product's class.
-     * @param InputSource               $inputDoc       Input File.
-     * @param PredictMethodOptions|null $options        Prediction Options.
-     * @param PageOptions|null          $pageOptions    Options to apply to the PDF file.
-     * @return AsyncPredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param InputSource $inputDoc Input File.
+     * @param PredictMethodOptions|null $options Prediction Options.
+     * @param PageOptions|null $pageOptions Options to apply to the PDF file.
      */
     public function enqueue(
         string $predictionType,
@@ -503,13 +490,13 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if ($options == null) {
+        if ($options === null) {
             $options = new PredictMethodOptions();
         }
-        if ($pageOptions != null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
-        $options->endpoint = $options->endpoint ?? $this->constructOTSEndpoint(
+        $options->endpoint ??= $this->constructOTSEndpoint(
             $predictionType,
         );
         return $this->makeEnqueueRequest($predictionType, $inputDoc, $options);
@@ -518,25 +505,24 @@ class Client
     /**
      * Parses a queued document.
      *
-     * @param string        $predictionType Name of the product's class.
-     * @param string        $queueId        ID of the queue.
-     * @param Endpoint|null $endpoint       Endpoint to poll.
-     * @return AsyncPredictResponse
+     * @param string $predictionType Name of the product's class.
+     * @param string $queueId ID of the queue.
+     * @param Endpoint|null $endpoint Endpoint to poll.
      */
     public function parseQueued(
         string $predictionType,
         string $queueId,
         ?Endpoint $endpoint = null
     ): AsyncPredictResponse {
-        $endpoint = $endpoint ?? $this->constructOTSEndpoint(
+        $endpoint ??= $this->constructOTSEndpoint(
             $predictionType,
         );
         return $this->makeParseQueuedRequest($predictionType, $queueId, $endpoint);
     }
 
     /**
-     * @param string        $predictionType Name of the product's class.
-     * @param LocalResponse $localResponse  Local response to load.
+     * @param string $predictionType Name of the product's class.
+     * @param LocalResponse $localResponse Local response to load.
      * @return AsyncPredictResponse|PredictResponse A valid prediction response.
      * @throws MindeeException Throws if the loaded response isn't a valid prediction.
      */
@@ -561,11 +547,10 @@ class Client
     /**
      * Sends a document to a workflow.
      *
-     * @param InputSource          $inputDoc    Input File.
-     * @param string               $workflowId  ID of the workflow.
-     * @param WorkflowOptions|null $options     Prediction Options.
-     * @param PageOptions|null     $pageOptions Options to apply to the PDF file.
-     * @return WorkflowResponse
+     * @param InputSource $inputDoc Input File.
+     * @param string $workflowId ID of the workflow.
+     * @param WorkflowOptions|null $options Prediction Options.
+     * @param PageOptions|null $pageOptions Options to apply to the PDF file.
      */
     public function executeWorkflow(
         InputSource $inputDoc,
@@ -573,10 +558,10 @@ class Client
         ?WorkflowOptions $options = null,
         ?PageOptions $pageOptions = null
     ): WorkflowResponse {
-        if ($options == null) {
+        if ($options === null) {
             $options = new WorkflowOptions();
         }
-        if ($pageOptions != null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
 

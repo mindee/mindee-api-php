@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Extraction;
 
 use Mindee\Dependency\DependencyChecker;
@@ -11,6 +13,13 @@ use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use setasign\Fpdi\PdfParser\Filter\FilterException;
 use setasign\Fpdi\PdfParser\PdfParserException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
+use Imagick;
+use ImagickException;
+use InvalidArgumentException;
+
+use function count;
+use function is_array;
+use function sprintf;
 
 /**
  * PDF extraction class.
@@ -31,7 +40,7 @@ class PDFExtractor
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      *
      * @throws MindeePDFException Throws if PDF operations aren't supported, or if the file
-     * can't be read, respectively.
+     *                            can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
@@ -43,8 +52,8 @@ class PDFExtractor
             $this->pdfBytes = $localInput->readContents()[1];
         } else {
             try {
-                $image = new \Imagick();
-            } catch (\ImagickException $e) {
+                $image = new Imagick();
+            } catch (ImagickException $e) {
                 throw new MindeePDFException("Imagick could not process this file.\n", 0, $e);
             }
             $image->readImageBlob($localInput->readContents()[1]);
@@ -81,8 +90,8 @@ class PDFExtractor
      *
      * @return ExtractedPDF[] list of extracted documents
      *
-     * @throws MindeePDFException        Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
-     * @throws \InvalidArgumentException Throws if invalid indexes are provided.
+     * @throws MindeePDFException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
+     * @throws InvalidArgumentException Throws if invalid indexes are provided.
      */
     public function extractSubDocuments(mixed $pageIndexes): array
     {
@@ -90,7 +99,7 @@ class PDFExtractor
 
         foreach ($pageIndexes as $pageIndexElem) {
             if (empty($pageIndexElem)) {
-                throw new \InvalidArgumentException('Empty indexes not allowed for extraction.');
+                throw new InvalidArgumentException('Empty indexes not allowed for extraction.');
             }
 
             $extension = pathinfo($this->fileName, PATHINFO_EXTENSION);
@@ -116,9 +125,9 @@ class PDFExtractor
 
                 $mergedPdfBytes = $pdf->Output('S');
             } catch (
-                CrossReferenceException |
-                FilterException |
-                PdfParserException |
+                CrossReferenceException|
+                FilterException|
+                PdfParserException|
                 PdfReaderException $e
             ) {
                 throw new MindeePDFException("PDF file couldn't be processed during extraction.", 0, $e);
@@ -133,7 +142,7 @@ class PDFExtractor
      * Extracts invoices as complete PDFs from the document.
      *
      * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
-     * @param boolean                                  $strict      Whether to trust confidence scores or not.
+     * @param boolean $strict Whether to trust confidence scores or not.
      *
      * @return ExtractedPDF[] a list of extracted invoices
      */
@@ -143,7 +152,7 @@ class PDFExtractor
             return [];
         }
         if (!$strict) {
-            $indexes = array_map(fn ($invoicePageIndexes) => $invoicePageIndexes->pageIndexes, (array) $pageIndexes);
+            $indexes = array_map(static fn($invoicePageIndexes) => $invoicePageIndexes->pageIndexes, (array) $pageIndexes);
 
             return $this->extractSubDocuments($indexes);
         }

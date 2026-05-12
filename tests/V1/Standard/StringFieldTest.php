@@ -1,31 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Standard;
 
 use Mindee\V1\Parsing\Standard\StringField;
 use PHPUnit\Framework\TestCase;
 
+use function count;
+
 class StringFieldTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $fieldArray = [
             "polygon" => [
                 [0.016, 0.707],
                 [0.414, 0.707],
                 [0.414, 0.831],
-                [0.016, 0.831]
+                [0.016, 0.831],
             ],
             "confidence" => 0.1,
             "value" => "some-value",
         ];
 
         $field = new StringField($fieldArray);
-        $this->assertEquals("some-value", $field->value);
-        $this->assertGreaterThan(0, count($field->boundingBox->getCoordinates()));
+        self::assertSame("some-value", $field->value);
+        self::assertGreaterThan(0, count($field->boundingBox->getCoordinates()));
     }
 
-    public function testConstructorFail()
+    public function testConstructorFail(): void
     {
         $fieldArray = [
             "polygon" => null,
@@ -34,10 +38,10 @@ class StringFieldTest extends TestCase
         ];
 
         $field = new StringField($fieldArray);
-        $this->assertNull($field->value);
+        self::assertNull($field->value);
     }
 
-    public function testConstructorNoRawValue()
+    public function testConstructorNoRawValue(): void
     {
         $fieldArray = [
             "value" => "hello world",
@@ -52,11 +56,11 @@ class StringFieldTest extends TestCase
 
         $field = new StringField($fieldArray);
 
-        $this->assertEquals("hello world", $field->value);
-        $this->assertNull($field->rawValue);
+        self::assertSame("hello world", $field->value);
+        self::assertNull($field->rawValue);
     }
 
-    public function testConstructorRawValue()
+    public function testConstructorRawValue(): void
     {
         $fieldArray = [
             "value" => "hello world",
@@ -72,7 +76,7 @@ class StringFieldTest extends TestCase
 
         $field = new StringField($fieldArray);
 
-        $this->assertEquals("hello world", $field->value);
-        $this->assertEquals("HelLO wOrld", $field->rawValue);
+        self::assertSame("hello world", $field->value);
+        self::assertSame("HelLO wOrld", $field->rawValue);
     }
 }

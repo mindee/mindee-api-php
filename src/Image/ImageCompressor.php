@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Image;
 
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
+use CURLFile;
+use Exception;
 
 /**
  * Image compressor class to handle image compression.
@@ -13,15 +17,15 @@ use Mindee\Error\MindeeUnhandledException;
 class ImageCompressor
 {
     /**
-     * @param mixed        $inputImage Input image. Accepts SplFileObject, CURLFile, Imagick & resources.
-     * @param integer|null $quality    Quality to apply to the image.
-     * @param integer|null $maxWidth   Maximum width to constrain the image to.
-     *                Defaults to the image's size if unset.
-     * @param integer|null $maxHeight  Maximum Height to constrain the image to.
-     *              Defaults to the image's size if unset.
-     * @return \CURLFile Curlfile handle for the image.
+     * @param mixed $inputImage Input image. Accepts SplFileObject, CURLFile, Imagick & resources.
+     * @param integer|null $quality Quality to apply to the image.
+     * @param integer|null $maxWidth Maximum width to constrain the image to.
+     *                               Defaults to the image's size if unset.
+     * @param integer|null $maxHeight Maximum Height to constrain the image to.
+     *                                Defaults to the image's size if unset.
+     * @return CURLFile Curlfile handle for the image.
      * @throws MindeeImageException Throws if image processing fails.
-     *  //phpcs:disable
+     *                              //phpcs:disable
      * @throws MindeeUnhandledException Throws if one of the dependencies isn't installed.
      */
     public static function compress(
@@ -29,7 +33,7 @@ class ImageCompressor
         ?int $quality = 85,
         ?int $maxWidth = null,
         ?int $maxHeight = null
-    ): \CURLFile {
+    ): CURLFile {
         //phpcs: enable
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
@@ -46,7 +50,7 @@ class ImageCompressor
                 return ImageUtils::toCURLFile($initialImage);
             }
             return ImageUtils::toCURLFile($image);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new MindeeImageException("Image compression failed.", ErrorCode::FILE_OPERATION_ABORTED, $e);
         }
     }

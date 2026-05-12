@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Carte Nationale d'Identité V1. */
 
 namespace Mindee\V1\Product\Fr\IdCard;

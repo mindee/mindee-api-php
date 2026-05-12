@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Product;
 
 use PHPUnit\Framework\TestCase;
@@ -29,19 +31,17 @@ class SplitTest extends TestCase
     /**
      * Helper to assert the core inference response properties exist.
      * @param mixed $response The response object to check.
-     * @return void
      */
     private function assertInferenceResponse(mixed $response): void
     {
-        $this->assertNotNull($response->inference);
-        $this->assertNotNull($response->inference->id);
-        $this->assertNotNull($response->inference->file);
-        $this->assertNotNull($response->inference->result);
+        self::assertNotNull($response->inference);
+        self::assertNotNull($response->inference->id);
+        self::assertNotNull($response->inference->file);
+        self::assertNotNull($response->inference->result);
     }
 
     /**
      * Should correctly map properties when reading a single split JSON.
-     * @return void
      */
     public function testSplitWhenSingleMustHaveValidProperties(): void
     {
@@ -53,24 +53,23 @@ class SplitTest extends TestCase
         $inference = $response->inference;
 
         $model = $inference->model;
-        $this->assertNotNull($model);
+        self::assertNotNull($model);
 
         $splits = $inference->result->splits;
-        $this->assertNotNull($splits);
-        $this->assertCount(1, $splits);
+        self::assertNotNull($splits);
+        self::assertCount(1, $splits);
 
         $firstSplit = $splits[0];
-        $this->assertSame("receipt", $firstSplit->documentType);
+        self::assertSame("receipt", $firstSplit->documentType);
 
-        $this->assertNotNull($firstSplit->pageRange);
-        $this->assertCount(2, $firstSplit->pageRange);
-        $this->assertSame(0, $firstSplit->pageRange[0]);
-        $this->assertSame(0, $firstSplit->pageRange[1]);
+        self::assertNotNull($firstSplit->pageRange);
+        self::assertCount(2, $firstSplit->pageRange);
+        self::assertSame(0, $firstSplit->pageRange[0]);
+        self::assertSame(0, $firstSplit->pageRange[1]);
     }
 
     /**
      * Should correctly map properties when reading a multiple split JSON.
-     * @return void
      */
     public function testSplitWhenMultipleMustHaveValidProperties(): void
     {
@@ -82,26 +81,26 @@ class SplitTest extends TestCase
         $inference = $response->inference;
 
         $model = $inference->model;
-        $this->assertNotNull($model);
+        self::assertNotNull($model);
 
         $splits = $inference->result->splits;
-        $this->assertNotNull($splits);
-        $this->assertCount(3, $splits);
+        self::assertNotNull($splits);
+        self::assertCount(3, $splits);
 
         $firstSplit = $splits[0];
-        $this->assertSame("passport", $firstSplit->documentType);
+        self::assertSame("passport", $firstSplit->documentType);
 
-        $this->assertNotNull($firstSplit->pageRange);
-        $this->assertCount(2, $firstSplit->pageRange);
-        $this->assertSame(0, $firstSplit->pageRange[0]);
-        $this->assertSame(0, $firstSplit->pageRange[1]);
+        self::assertNotNull($firstSplit->pageRange);
+        self::assertCount(2, $firstSplit->pageRange);
+        self::assertSame(0, $firstSplit->pageRange[0]);
+        self::assertSame(0, $firstSplit->pageRange[1]);
 
         $secondSplit = $splits[1];
-        $this->assertSame("invoice", $secondSplit->documentType);
+        self::assertSame("invoice", $secondSplit->documentType);
 
-        $this->assertNotNull($secondSplit->pageRange);
-        $this->assertCount(2, $secondSplit->pageRange);
-        $this->assertSame(1, $secondSplit->pageRange[0]);
-        $this->assertSame(3, $secondSplit->pageRange[1]);
+        self::assertNotNull($secondSplit->pageRange);
+        self::assertCount(2, $secondSplit->pageRange);
+        self::assertSame(1, $secondSplit->pageRange[0]);
+        self::assertSame(3, $secondSplit->pageRange[1]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Geometry;
 
 use ArrayAccess;
@@ -32,7 +34,6 @@ class Point implements ArrayAccess
     /**
      * Retrieves the x coordinate.
      *
-     * @return float
      */
     public function getX(): float
     {
@@ -42,7 +43,6 @@ class Point implements ArrayAccess
     /**
      * Retrieves the y coordinate.
      *
-     * @return float
      */
     public function getY(): float
     {
@@ -65,7 +65,6 @@ class Point implements ArrayAccess
     /**
      *  Get an offset value.
      * @param integer|string $offset Use 0 or 1.
-     * @return float
      * @throws InvalidArgumentException If the offset is not 0 or 1.
      */
     public function offsetGet($offset): float
@@ -80,9 +79,8 @@ class Point implements ArrayAccess
 
     /**
      *  Set an offset value.
-     * @param integer|string       $offset Use 0 or 1.
-     * @param float|integer|string $value  Coordinate value to set.
-     * @return void
+     * @param integer|string $offset Use 0 or 1.
+     * @param float|integer|string $value Coordinate value to set.
      * @throws InvalidArgumentException If the offset is not 0 or 1.
      */
     public function offsetSet($offset, $value): void
@@ -99,15 +97,14 @@ class Point implements ArrayAccess
     /**
      *  Get an offset value.
      * @param integer|string $offset Use 0 or 1.
-     * @return void
      * @throws InvalidArgumentException If the offset is not 0 or 1.
      */
     public function offsetUnset($offset): void
     {
         if ($offset === 0) {
-            unset($this->x);
+            $this->x = null;
         } elseif ($offset === 1) {
-            unset($this->y);
+            $this->y = null;
         } else {
             throw new InvalidArgumentException("Use 0 for X or 1 for Y");
         }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Us\HealthcareCard;
 
 use Mindee\Error\MindeeUnsetException;
@@ -70,8 +72,8 @@ class HealthcareCardV1Document extends Prediction
      */
     public StringField $rxPcn;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -93,8 +95,8 @@ class HealthcareCardV1Document extends Prediction
         if (!isset($rawPrediction["dependents"])) {
             throw new MindeeUnsetException();
         }
-        $this->dependents = $rawPrediction["dependents"] == null ? [] : array_map(
-            fn ($prediction) => new StringField($prediction, $pageId),
+        $this->dependents = $rawPrediction["dependents"] === null ? [] : array_map(
+            static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["dependents"]
         );
         if (!isset($rawPrediction["enrollment_date"])) {
@@ -185,7 +187,7 @@ class HealthcareCardV1Document extends Prediction
             "\n             ",
             $this->dependents
         );
-        $copaysSummary = strval($this->copays);
+        $copaysSummary = (string) ($this->copays);
 
         $outStr = ":Company Name: $this->companyName
 :Plan Name: $this->planName

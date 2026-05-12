@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Error;
 
 use RuntimeException;
@@ -7,6 +9,4 @@ use RuntimeException;
 /**
  * Global Mindee Exception.
  */
-class MindeeException extends RuntimeException
-{
-}
+class MindeeException extends RuntimeException {}

@@ -1,8 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Generated;
 
 use Mindee\V1\Parsing\Standard\PositionField;
+
+use function in_array;
+use function is_array;
+use function is_float;
+use function is_int;
 
 /**
  * A JSON-like object, with miscellaneous values.
@@ -24,8 +31,8 @@ class GeneratedObjectField
     /**
      * Constructor.
      *
-     * @param array        $rawPrediction Raw prediction data.
-     * @param integer|null $pageId        ID of the page.
+     * @param array $rawPrediction Raw prediction data.
+     * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -44,13 +51,13 @@ class GeneratedObjectField
                 $this->rawValue = $value;
             } else {
                 if (isset($value)) {
-                    if ((is_int($value) || (is_float($value) && floor($value) == $value)) && $value != 0.0) {
+                    if ((is_int($value) || (is_float($value) && floor($value) === $value)) && (float) $value !== 0.0) {
                         $this->{$fieldName} = $value . ".0";
                     } else {
                         if (is_array($value)) {
                             $this->{$fieldName} = implode(", ", $value);
                         } else {
-                            $this->{$fieldName} = strval($value);
+                            $this->{$fieldName} = (string) $value;
                         }
                     }
                 } else {
@@ -86,7 +93,7 @@ class GeneratedObjectField
         $outStr = "";
         foreach ($this->printableValues as $attr) {
             $value = $this->{$attr};
-            $strValue = $value !== null ? (string)$value : "";
+            $strValue = $value !== null ? (string) $value : "";
             $outStr .= "\n{$indent}:{$attr}: {$strValue}";
         }
         return "\n" . $indent . trim($outStr);
@@ -111,7 +118,7 @@ class GeneratedObjectField
             "raw_value",
         ];
         foreach (array_keys($strDict) as $key) {
-            if (!in_array($key, $commonKeys)) {
+            if (!in_array($key, $commonKeys, true)) {
                 return true;
             }
         }

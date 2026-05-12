@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Barcode Reader V1. */
 
 namespace Mindee\V1\Product\BarcodeReader;

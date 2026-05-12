@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Invoice;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class InvoiceV4LineItem
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var string|null The item description.
@@ -48,8 +50,8 @@ class InvoiceV4LineItem
     public ?float $unitPrice;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
@@ -57,23 +59,22 @@ class InvoiceV4LineItem
         $this->setPosition($rawPrediction);
         $this->description = $rawPrediction["description"] ?? null;
         $this->productCode = $rawPrediction["product_code"] ?? null;
-        $this->quantity = isset($rawPrediction["quantity"]) ?
-            floatval($rawPrediction["quantity"]) : null;
-        $this->taxAmount = isset($rawPrediction["tax_amount"]) ?
-            floatval($rawPrediction["tax_amount"]) : null;
-        $this->taxRate = isset($rawPrediction["tax_rate"]) ?
-            floatval($rawPrediction["tax_rate"]) : null;
-        $this->totalAmount = isset($rawPrediction["total_amount"]) ?
-            floatval($rawPrediction["total_amount"]) : null;
+        $this->quantity = isset($rawPrediction["quantity"])
+            ? (float) ($rawPrediction["quantity"]) : null;
+        $this->taxAmount = isset($rawPrediction["tax_amount"])
+            ? (float) ($rawPrediction["tax_amount"]) : null;
+        $this->taxRate = isset($rawPrediction["tax_rate"])
+            ? (float) ($rawPrediction["tax_rate"]) : null;
+        $this->totalAmount = isset($rawPrediction["total_amount"])
+            ? (float) ($rawPrediction["total_amount"]) : null;
         $this->unitMeasure = $rawPrediction["unit_measure"] ?? null;
-        $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-            floatval($rawPrediction["unit_price"]) : null;
+        $this->unitPrice = isset($rawPrediction["unit_price"])
+            ? (float) ($rawPrediction["unit_price"]) : null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -92,7 +93,6 @@ class InvoiceV4LineItem
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -110,7 +110,6 @@ class InvoiceV4LineItem
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Receipt;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class ReceiptV5LineItem
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var string|null The item description.
@@ -32,26 +34,25 @@ class ReceiptV5LineItem
     public ?float $unitPrice;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->description = $rawPrediction["description"] ?? null;
-        $this->quantity = isset($rawPrediction["quantity"]) ?
-            floatval($rawPrediction["quantity"]) : null;
-        $this->totalAmount = isset($rawPrediction["total_amount"]) ?
-            floatval($rawPrediction["total_amount"]) : null;
-        $this->unitPrice = isset($rawPrediction["unit_price"]) ?
-            floatval($rawPrediction["unit_price"]) : null;
+        $this->quantity = isset($rawPrediction["quantity"])
+            ? (float) ($rawPrediction["quantity"]) : null;
+        $this->totalAmount = isset($rawPrediction["total_amount"])
+            ? (float) ($rawPrediction["total_amount"]) : null;
+        $this->unitPrice = isset($rawPrediction["unit_price"])
+            ? (float) ($rawPrediction["unit_price"]) : null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -66,7 +67,6 @@ class ReceiptV5LineItem
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -80,7 +80,6 @@ class ReceiptV5LineItem
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

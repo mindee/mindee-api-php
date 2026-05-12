@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Extraction\Params;
 
 use InvalidArgumentException;
+
+use function get_class;
+use function gettype;
 
 /**
  * Modify the Data Schema.
@@ -18,14 +23,14 @@ class DataSchema
      * @param array|string|DataSchema $dataSchema Raw server response array.
      * @throws InvalidArgumentException Throws if the data schema is invalid.
      */
-    public function __construct(DataSchema|array|string $dataSchema)
+    public function __construct(self|array|string $dataSchema)
     {
-        if (gettype($dataSchema) == 'string') {
+        if (gettype($dataSchema) === 'string') {
             $jsonData = json_decode($dataSchema, true);
-        } elseif (gettype($dataSchema) == 'array') {
+        } elseif (gettype($dataSchema) === 'array') {
             $jsonData = $dataSchema;
         } else {
-            if (get_class($dataSchema) == DataSchema::class) {
+            if (get_class($dataSchema) === self::class) {
                 $this->replace = $dataSchema->replace;
                 return;
             }
@@ -54,7 +59,7 @@ class DataSchema
         }
         $i = 0;
         foreach (str_split($line) as $char) {
-            if ($char == ' ') {
+            if ($char === ' ') {
                 $i++;
                 continue;
             }

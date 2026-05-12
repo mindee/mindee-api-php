@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use InvalidArgumentException;
@@ -10,13 +12,12 @@ use InvalidArgumentException;
 class ObjectField extends BaseField
 {
     /**
-     * @var InferenceFields
      */
     public InferenceFields $fields;
 
     /**
-     * @param array   $serverResponse Raw server response array.
-     * @param integer $indentLevel    Level of indentation for rst display.
+     * @param array $serverResponse Raw server response array.
+     * @param integer $indentLevel Level of indentation for rst display.
      */
     public function __construct(array $serverResponse, int $indentLevel = 0)
     {
@@ -29,7 +30,6 @@ class ObjectField extends BaseField
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
@@ -39,7 +39,6 @@ class ObjectField extends BaseField
     /**
      * Returns a string representation suitable for list display.
      *
-     * @return string
      */
     public function toStringFromList(): string
     {
@@ -50,7 +49,6 @@ class ObjectField extends BaseField
      * Returns a ListField instance for the specified key.
      *
      * @param string $key The key of the list field to retrieve.
-     * @return ListField
      * @throws InvalidArgumentException When the field does not exist or is not a list field.
      */
     public function getListField(string $key): ListField
@@ -66,7 +64,6 @@ class ObjectField extends BaseField
      * Returns a SimpleField instance for the specified key.
      *
      * @param string $key The key of the simple field to retrieve.
-     * @return SimpleField
      * @throws InvalidArgumentException When the field does not exist or is not a simple field.
      */
     public function getSimpleField(string $key): SimpleField
@@ -82,13 +79,12 @@ class ObjectField extends BaseField
      * Returns an ObjectField instance for the specified key.
      *
      * @param string $key The key of the simple field to retrieve.
-     * @return ObjectField
      * @throws InvalidArgumentException When the field does not exist or is not a simple field.
      */
-    public function getObjectField(string $key): ObjectField
+    public function getObjectField(string $key): self
     {
         $field = $this->fields->get($key);
-        if (!($field instanceof ObjectField)) {
+        if (!($field instanceof self)) {
             throw new InvalidArgumentException("Field $key is not a simple field.");
         }
         return $field;
@@ -138,7 +134,7 @@ class ObjectField extends BaseField
     {
         $out = [];
         foreach ($this->fields->getArrayCopy() as $field) {
-            if ($field instanceof ObjectField) {
+            if ($field instanceof self) {
                 $out[] = $field;
             }
         }

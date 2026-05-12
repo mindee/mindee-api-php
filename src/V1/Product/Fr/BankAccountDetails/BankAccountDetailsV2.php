@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Bank Account Details V2. */
 
 namespace Mindee\V1\Product\Fr\BankAccountDetails;

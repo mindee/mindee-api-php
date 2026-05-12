@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Us\BankCheck;
 
 use Mindee\V1\Parsing\Standard\PositionField;
@@ -19,8 +21,8 @@ class BankCheckV1Page extends BankCheckV1Document
      */
     public array $signaturesPositions;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -29,8 +31,8 @@ class BankCheckV1Page extends BankCheckV1Document
             $rawPrediction["check_position"],
             $pageId
         );
-        $this->signaturesPositions = $rawPrediction["signatures_positions"] == null ? [] : array_map(
-            fn ($prediction) => new PositionField($prediction, $pageId),
+        $this->signaturesPositions = $rawPrediction["signatures_positions"] === null ? [] : array_map(
+            static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["signatures_positions"]
         );
     }

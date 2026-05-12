@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\MultiReceiptsDetector;
 
 use Mindee\Error\MindeeUnsetException;
@@ -17,8 +19,8 @@ class MultiReceiptsDetectorV1Document extends Prediction
      */
     public array $receipts;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -26,8 +28,8 @@ class MultiReceiptsDetectorV1Document extends Prediction
         if (!isset($rawPrediction["receipts"])) {
             throw new MindeeUnsetException();
         }
-        $this->receipts = $rawPrediction["receipts"] == null ? [] : array_map(
-            fn ($prediction) => new PositionField($prediction, $pageId),
+        $this->receipts = $rawPrediction["receipts"] === null ? [] : array_map(
+            static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["receipts"]
         );
     }

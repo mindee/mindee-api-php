@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use function array_key_exists;
 
 /**
  * Base class for most fields.
@@ -23,10 +27,10 @@ abstract class BaseField
     public ?int $pageId;
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
-     * @param boolean      $reconstructed Whether the field was reconstructed.
-     * @param string       $valueKey      Key to use for the value.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field was reconstructed.
+     * @param string $valueKey Key to use for the value.
      */
     public function __construct(
         array $rawPrediction,
@@ -40,7 +44,7 @@ abstract class BaseField
             $this->pageId = $pageId;
         }
         $this->reconstructed = $reconstructed;
-        if (array_key_exists($valueKey, $rawPrediction) && $rawPrediction[$valueKey] != 'N/A') {
+        if (array_key_exists($valueKey, $rawPrediction) && $rawPrediction[$valueKey] !== 'N/A') {
             $this->value = $rawPrediction[$valueKey];
             $this->setConfidence($rawPrediction);
         } else {
@@ -54,9 +58,9 @@ abstract class BaseField
      * @param BaseField $obj Field to compare.
      * @return boolean
      */
-    public function __compare(BaseField $obj): bool
+    public function __compare(self $obj): bool
     {
-        return $this->value == $obj->value;
+        return $this->value === $obj->value;
     }
 
     /**
@@ -64,6 +68,6 @@ abstract class BaseField
      */
     public function __toString(): string
     {
-        return isset($this->value) ? strval($this->value) : '';
+        return isset($this->value) ? (string) ($this->value) : '';
     }
 }

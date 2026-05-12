@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Classification;
 
 use Mindee\V2\Product\Extraction\ExtractionResponse;
@@ -25,8 +27,8 @@ class ClassificationClassifier
     public function __construct(array $rawPrediction)
     {
         $this->documentType = $rawPrediction['document_type'];
-        $this->extractionResponse = isset($rawPrediction['extraction_response']) ?
-            new ExtractionResponse($rawPrediction['extraction_response']) : null;
+        $this->extractionResponse = isset($rawPrediction['extraction_response'])
+            ? new ExtractionResponse($rawPrediction['extraction_response']) : null;
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Fr\EnergyBill;
 
 use Mindee\Error\MindeeUnsetException;
@@ -20,7 +22,7 @@ class EnergyBillV1Document extends Prediction
     public StringField $contractId;
     /**
      * @var StringField The unique identifier assigned to each electricity or gas consumption point. It specifies the
-     * exact location where the energy is delivered.
+     *                  exact location where the energy is delivered.
      */
     public StringField $deliveryPoint;
     /**
@@ -72,8 +74,8 @@ class EnergyBillV1Document extends Prediction
      */
     public AmountField $totalTaxes;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -183,12 +185,12 @@ class EnergyBillV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $energySupplierToFieldList = $this->energySupplier != null ? $this->energySupplier->toFieldList() : "";
-        $energyConsumerToFieldList = $this->energyConsumer != null ? $this->energyConsumer->toFieldList() : "";
-        $subscriptionSummary = strval($this->subscription);
-        $energyUsageSummary = strval($this->energyUsage);
-        $taxesAndContributionsSummary = strval($this->taxesAndContributions);
-        $meterDetailsToFieldList = $this->meterDetails != null ? $this->meterDetails->toFieldList() : "";
+        $energySupplierToFieldList = $this->energySupplier !== null ? $this->energySupplier->toFieldList() : "";
+        $energyConsumerToFieldList = $this->energyConsumer !== null ? $this->energyConsumer->toFieldList() : "";
+        $subscriptionSummary = (string) ($this->subscription);
+        $energyUsageSummary = (string) ($this->energyUsage);
+        $taxesAndContributionsSummary = (string) ($this->taxesAndContributions);
+        $meterDetailsToFieldList = $this->meterDetails !== null ? $this->meterDetails->toFieldList() : "";
 
         $outStr = ":Invoice Number: $this->invoiceNumber
 :Contract ID: $this->contractId

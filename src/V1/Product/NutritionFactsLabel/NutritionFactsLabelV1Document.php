@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\NutritionFactsLabel;
 
 use Mindee\Error\MindeeUnsetException;
@@ -69,8 +71,8 @@ class NutritionFactsLabelV1Document extends Prediction
      */
     public NutritionFactsLabelV1TransFat $transFat;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -180,19 +182,19 @@ class NutritionFactsLabelV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $servingSizeToFieldList = $this->servingSize != null ? $this->servingSize->toFieldList() : "";
-        $caloriesToFieldList = $this->calories != null ? $this->calories->toFieldList() : "";
-        $totalFatToFieldList = $this->totalFat != null ? $this->totalFat->toFieldList() : "";
-        $saturatedFatToFieldList = $this->saturatedFat != null ? $this->saturatedFat->toFieldList() : "";
-        $transFatToFieldList = $this->transFat != null ? $this->transFat->toFieldList() : "";
-        $cholesterolToFieldList = $this->cholesterol != null ? $this->cholesterol->toFieldList() : "";
-        $totalCarbohydrateToFieldList = $this->totalCarbohydrate != null ? $this->totalCarbohydrate->toFieldList() : "";
-        $dietaryFiberToFieldList = $this->dietaryFiber != null ? $this->dietaryFiber->toFieldList() : "";
-        $totalSugarsToFieldList = $this->totalSugars != null ? $this->totalSugars->toFieldList() : "";
-        $addedSugarsToFieldList = $this->addedSugars != null ? $this->addedSugars->toFieldList() : "";
-        $proteinToFieldList = $this->protein != null ? $this->protein->toFieldList() : "";
-        $sodiumToFieldList = $this->sodium != null ? $this->sodium->toFieldList() : "";
-        $nutrientsSummary = strval($this->nutrients);
+        $servingSizeToFieldList = $this->servingSize !== null ? $this->servingSize->toFieldList() : "";
+        $caloriesToFieldList = $this->calories !== null ? $this->calories->toFieldList() : "";
+        $totalFatToFieldList = $this->totalFat !== null ? $this->totalFat->toFieldList() : "";
+        $saturatedFatToFieldList = $this->saturatedFat !== null ? $this->saturatedFat->toFieldList() : "";
+        $transFatToFieldList = $this->transFat !== null ? $this->transFat->toFieldList() : "";
+        $cholesterolToFieldList = $this->cholesterol !== null ? $this->cholesterol->toFieldList() : "";
+        $totalCarbohydrateToFieldList = $this->totalCarbohydrate !== null ? $this->totalCarbohydrate->toFieldList() : "";
+        $dietaryFiberToFieldList = $this->dietaryFiber !== null ? $this->dietaryFiber->toFieldList() : "";
+        $totalSugarsToFieldList = $this->totalSugars !== null ? $this->totalSugars->toFieldList() : "";
+        $addedSugarsToFieldList = $this->addedSugars !== null ? $this->addedSugars->toFieldList() : "";
+        $proteinToFieldList = $this->protein !== null ? $this->protein->toFieldList() : "";
+        $sodiumToFieldList = $this->sodium !== null ? $this->sodium->toFieldList() : "";
+        $nutrientsSummary = (string) ($this->nutrients);
 
         $outStr = ":Serving per Box: $this->servingPerBox
 :Serving Size: $servingSizeToFieldList

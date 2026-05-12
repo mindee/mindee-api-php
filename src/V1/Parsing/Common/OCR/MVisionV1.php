@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common\OCR;
 
 /**
@@ -24,13 +26,12 @@ class MVisionV1
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {
         $pagesStr = [];
         foreach ($this->pages as $page) {
-            $pagesStr[] = strval($page);
+            $pagesStr[] = (string) $page;
         }
         return implode("\n", $pagesStr);
     }

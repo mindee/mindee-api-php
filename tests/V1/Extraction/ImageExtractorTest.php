@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Extraction;
 
 use Mindee\Input\LocalResponse;
@@ -9,10 +11,12 @@ use Mindee\V1\Image\ImageExtractor;
 use Mindee\V1\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
+
+use function sprintf;
 
 class ImageExtractorTest extends TestCase
 {
-
     private Client $dummyClient;
 
     protected function setUp(): void
@@ -20,25 +24,25 @@ class ImageExtractorTest extends TestCase
         $this->dummyClient = new Client("dummy-key");
     }
 
-    public function testGivenAnImageShouldExtractPositionFields()
+    public function testGivenAnImageShouldExtractPositionFields(): void
     {
         $image = new PathInput(
-            \TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/default_sample.jpg"
+            TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/default_sample.jpg"
         );
         $response = $this->getMultiReceiptsDetectorPrediction("complete");
         $inference = $response->document->inference;
 
         $extractor = new ImageExtractor($image);
-        $this->assertEquals(1, $extractor->getPageCount());
+        self::assertSame(1, $extractor->getPageCount());
 
         foreach ($inference->pages as $page) {
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
             foreach ($subImages as $i => $extractedImage) {
-                $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile(\TestingUtilities::getRootDataDir() . "/output");
+                self::assertNotNull($extractedImage->image);
+                $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
 
                 $source = $extractedImage->asInputSource();
-                $this->assertEquals(
+                self::assertSame(
                     sprintf("default_sample.jpg_page0-%d.jpg", $i),
                     $source->fileName
                 );
@@ -48,61 +52,61 @@ class ImageExtractorTest extends TestCase
 
     private function getMultiReceiptsDetectorPrediction($name)
     {
-        $fileName = \TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/response_v1/{$name}.json";
+        $fileName = TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/response_v1/{$name}.json";
         $localResponse = new LocalResponse($fileName);
         return $this->dummyClient->loadPrediction(MultiReceiptsDetectorV1::class, $localResponse);
     }
 
-    public function testGivenAnImageShouldExtractValueFields()
+    public function testGivenAnImageShouldExtractValueFields(): void
     {
-        $image = new PathInput(\TestingUtilities::getV1DataDir() . "/products/barcode_reader/default_sample.jpg");
+        $image = new PathInput(TestingUtilities::getV1DataDir() . "/products/barcode_reader/default_sample.jpg");
         $response = $this->getBarcodeReaderPrediction("complete");
         $inference = $response->document->inference;
 
         $extractor = new ImageExtractor($image);
-        $this->assertEquals(1, $extractor->getPageCount());
+        self::assertSame(1, $extractor->getPageCount());
 
         foreach ($inference->pages as $page) {
             $codes1D = $extractor->extractImagesFromPage($page->prediction->codes1D, $page->id, "barcodes_1D.jpg");
             foreach ($codes1D as $i => $extractedImage) {
-                $this->assertNotNull($extractedImage->image);
+                self::assertNotNull($extractedImage->image);
                 $source = $extractedImage->asInputSource();
-                $this->assertEquals(
+                self::assertSame(
                     sprintf("barcodes_1D.jpg_page0-%d.jpg", $i),
                     $source->fileName
                 );
-                $extractedImage->writeToFile(\TestingUtilities::getRootDataDir() . "/output");
+                $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
             }
 
             $codes2D = $extractor->extractImagesFromPage($page->prediction->codes2D, $page->id, "barcodes_2D.jpg");
             foreach ($codes2D as $extractedImage) {
-                $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile(\TestingUtilities::getRootDataDir() . "/output");
+                self::assertNotNull($extractedImage->image);
+                $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
             }
         }
     }
 
-    public function testGivenAPDFShouldExtractPositionFields()
+    public function testGivenAPDFShouldExtractPositionFields(): void
     {
         $imageInput = new PathInput(
-            \TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/multipage_sample.pdf"
+            TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/multipage_sample.pdf"
         );
         $response = $this->getMultiReceiptsDetectorPrediction("multipage_sample");
         $inference = $response->document->inference;
-        $this->assertNotEmpty($imageInput->readContents()[1]);
+        self::assertNotEmpty($imageInput->readContents()[1]);
 
         $extractor = new ImageExtractor($imageInput);
-        $this->assertEquals(2, $extractor->getPageCount());
+        self::assertSame(2, $extractor->getPageCount());
 
         foreach ($inference->pages as $page) {
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
 
             foreach ($subImages as $i => $extractedImage) {
-                $this->assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile(\TestingUtilities::getRootDataDir() . "/output");
+                self::assertNotNull($extractedImage->image);
+                $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
 
                 $source = $extractedImage->asInputSource();
-                $this->assertEquals(
+                self::assertSame(
                     sprintf("multipage_sample.pdf_page%d-%d.jpg", $page->id, $i),
                     $source->fileName
                 );
@@ -112,7 +116,7 @@ class ImageExtractorTest extends TestCase
 
     private function getBarcodeReaderPrediction($name)
     {
-        $fileName = \TestingUtilities::getV1DataDir() . "/products/barcode_reader/response_v1/{$name}.json";
+        $fileName = TestingUtilities::getV1DataDir() . "/products/barcode_reader/response_v1/{$name}.json";
         $localResponse = new LocalResponse($fileName);
         return $this->dummyClient->loadPrediction(BarcodeReaderV1::class, $localResponse);
     }
@@ -120,20 +124,20 @@ class ImageExtractorTest extends TestCase
     protected function tearDown(): void
     {
         $filesToDelete = [
-            \TestingUtilities::getRootDataDir() . "/output/barcodes_1D_page-001_001.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/barcodes_2D_page-001_001.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/barcodes_2D_page-001_002.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-001_001.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-001_002.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-001_003.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-002_001.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-002_002.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_001.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_002.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_003.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_004.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_005.jpg",
-            \TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_006.jpg",
+            TestingUtilities::getRootDataDir() . "/output/barcodes_1D_page-001_001.jpg",
+            TestingUtilities::getRootDataDir() . "/output/barcodes_2D_page-001_001.jpg",
+            TestingUtilities::getRootDataDir() . "/output/barcodes_2D_page-001_002.jpg",
+            TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-001_001.jpg",
+            TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-001_002.jpg",
+            TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-001_003.jpg",
+            TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-002_001.jpg",
+            TestingUtilities::getRootDataDir() . "/output/multipage_sample_page-002_002.jpg",
+            TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_001.jpg",
+            TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_002.jpg",
+            TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_003.jpg",
+            TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_004.jpg",
+            TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_005.jpg",
+            TestingUtilities::getRootDataDir() . "/output/default_sample_page-001_006.jpg",
         ];
 
         foreach ($filesToDelete as $file) {

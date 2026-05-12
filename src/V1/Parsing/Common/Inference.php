@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\V1\Parsing\Common\Extras\Extras;
+
+use function array_key_exists;
+use function count;
 
 /**
  * Base Inference class for all predictions.
@@ -44,8 +49,8 @@ abstract class Inference
 
 
     /**
-     * @param array        $rawInference Raw inference array.
-     * @param integer|null $pageId       Page number for multi pages document.
+     * @param array $rawInference Raw inference array.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawInference, ?int $pageId = null)
     {
@@ -73,7 +78,7 @@ abstract class Inference
         if (count($this->pages)) {
             $pagesStr = "\nPage Predictions\n================\n\n" . implode(
                 "\n",
-                array_map(fn ($page) => strval($page), $this->pages)
+                array_map(static fn($page) => (string) $page, $this->pages)
             );
         }
 

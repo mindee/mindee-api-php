@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2;
 
 use Mindee\Error\MindeeException;
@@ -13,13 +15,15 @@ use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use TestingUtilities;
 
 class ClientV2Test extends TestCase
 {
     private static function makeClientWithMockedApi(MindeeAPIV2 $mockedApi): Client
     {
         $client = new Client("dummy");
-        $reflection = new \ReflectionClass($client);
+        $reflection = new ReflectionClass($client);
         $property = $reflection->getProperty('mindeeApi');
         $property->setAccessible(true);
         $property->setValue($client, $mockedApi);
@@ -29,24 +33,24 @@ class ClientV2Test extends TestCase
     public function testEnqueuePostAsync(): void
     {
         $predictable = $this->createMock(MindeeAPIV2::class);
-        $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
-        $predictable->expects($this->once())
+        $syntheticResponse = file_get_contents(TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
+        $predictable->expects(self::once())
             ->method('reqPostEnqueue')
             ->with(
-                $this->isInstanceOf(LocalInputSource::class),
-                $this->isInstanceOf(ExtractionParameters::class)
+                self::isInstanceOf(LocalInputSource::class),
+                self::isInstanceOf(ExtractionParameters::class)
             )
             ->willReturn(new JobResponse(json_decode($syntheticResponse, true)));
 
         $mindeeClient = self::makeClientWithMockedApi($predictable);
 
-        $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+        $input = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
         $params = new ExtractionParameters('dummy-model-id', textContext: 'dummy text context');
 
         $response = $mindeeClient->enqueueInference($input, $params);
 
-        $this->assertNotNull($response, 'enqueue() must return a response');
-        $this->assertInstanceOf(JobResponse::class, $response);
+        self::assertNotNull($response, 'enqueue() must return a response');
+        self::assertInstanceOf(JobResponse::class, $response);
     }
 
     public function testDocumentGetJobAsync(): void
@@ -54,20 +58,20 @@ class ClientV2Test extends TestCase
         /** @var MindeeAPIV2&MockObject $predictable */
         $predictable = $this->createMock(MindeeAPIV2::class);
 
-        $syntheticResponse = file_get_contents(\TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
+        $syntheticResponse = file_get_contents(TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $processing = new JobResponse(json_decode($syntheticResponse, true));
 
-        $predictable->expects($this->once())
+        $predictable->expects(self::once())
             ->method('reqGetJob')
-            ->with($this->equalTo('dummy-id'))
+            ->with(self::equalTo('dummy-id'))
             ->willReturn($processing);
 
         $mindeeClient = self::makeClientWithMockedApi($predictable);
 
         $response = $mindeeClient->getJob('dummy-id');
 
-        $this->assertNotNull($response, 'must return a response');
-        $this->assertNotNull($response->job, 'job must return a response');
+        self::assertNotNull($response, 'must return a response');
+        self::assertNotNull($response->job, 'job must return a response');
     }
 
     public function testDocumentGetInferenceAsync(): void
@@ -75,17 +79,17 @@ class ClientV2Test extends TestCase
         /** @var MindeeAPIV2&MockObject $predictable */
         $predictable = $this->createMock(MindeeAPIV2::class);
 
-        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
-        $this->assertFileExists($jsonFile, 'Test resource file must exist');
+        $jsonFile = TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
+        self::assertFileExists($jsonFile, 'Test resource file must exist');
 
         $json = json_decode(file_get_contents($jsonFile), true);
         $processing = new ExtractionResponse($json);
 
-        $predictable->expects($this->once())
+        $predictable->expects(self::once())
             ->method('reqGetResult')
             ->with(
-                $this->equalTo(ExtractionResponse::class),
-                $this->equalTo('12345678-1234-1234-1234-123456789abc')
+                self::equalTo(ExtractionResponse::class),
+                self::equalTo('12345678-1234-1234-1234-123456789abc')
             )
             ->willReturn($processing);
 
@@ -93,18 +97,18 @@ class ClientV2Test extends TestCase
 
         $response = $mindeeClient->getResult(ExtractionResponse::class, '12345678-1234-1234-1234-123456789abc');
 
-        $this->assertNotNull($response, 'must have a response');
-        $this->assertNotNull($response->inference, 'inference must have a response');
+        self::assertNotNull($response, 'must have a response');
+        self::assertNotNull($response->inference, 'inference must have a response');
 
         $fields = $response->inference->result->fields ?? [];
-        $this->assertCount(
+        self::assertCount(
             21,
             $fields,
             'Result must have 21 fields'
         );
 
         $supplierName = $fields['supplier_name']->value ?? null;
-        $this->assertEquals(
+        self::assertSame(
             'John Smith',
             $supplierName,
             'Result "' . $supplierName . '" must deserialize fields properly.'
@@ -113,24 +117,24 @@ class ClientV2Test extends TestCase
 
     public function testInferenceLoadsLocally(): void
     {
-        $jsonFile = \TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
-        $this->assertFileExists($jsonFile, 'Test resource file must exist');
+        $jsonFile = TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
+        self::assertFileExists($jsonFile, 'Test resource file must exist');
 
         $localResponse = new LocalResponse($jsonFile);
         $loaded = $localResponse->deserializeResponse(ExtractionResponse::class);
 
-        $this->assertNotNull($loaded, 'Loaded ExtractionResponse must not be null');
-        $this->assertInstanceOf(ExtractionResponse::class, $loaded);
+        self::assertNotNull($loaded, 'Loaded ExtractionResponse must not be null');
+        self::assertInstanceOf(ExtractionResponse::class, $loaded);
 
         $modelId = $loaded->inference->model->id ?? null;
-        $this->assertEquals(
+        self::assertSame(
             '12345678-1234-1234-1234-123456789abc',
             $modelId,
             'Model Id mismatch'
         );
 
         $supplierName = $loaded->inference->result->fields['supplier_name']->value ?? null;
-        $this->assertEquals(
+        self::assertSame(
             'John Smith',
             $supplierName,
             'Supplier name mismatch'
@@ -145,7 +149,7 @@ class ClientV2Test extends TestCase
 
         try {
             $client = new Client('dummy-key');
-            $input = new PathInput(\TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+            $input = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
             $params = new ExtractionParameters('dummy-model-id');
             $client->enqueueAndGetResult(ExtractionResponse::class, $input, $params);
         } finally {

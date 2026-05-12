@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\Error\ErrorCode;
@@ -8,6 +10,8 @@ use Mindee\V1\Parsing\Common\Extras\Extras;
 use Mindee\V1\Parsing\Common\OCR\OCR;
 use ReflectionClass;
 use ReflectionException;
+
+use function array_key_exists;
 
 /**
  * Base class for all predictions.
@@ -41,7 +45,7 @@ class Document
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array  $rawResponse    Raw HTTP response.
+     * @param array $rawResponse Raw HTTP response.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawResponse)
@@ -86,27 +90,22 @@ $this->inference";
      * Injects the results from pages' "full_text_ocr", if present.
      *
      * @param array $rawResponse Raw HTTP response.
-     * @return void
      */
     private function injectFullTextOcr(array $rawResponse): void
     {
         $pages = $rawResponse['inference']['pages'] ?? [];
 
         if (
-            empty($pages) ||
-            !isset($pages[0]['extras']) ||
-            !isset($pages[0]['extras']['full_text_ocr'])
+            empty($pages)
+            || !isset($pages[0]['extras'])
+            || !isset($pages[0]['extras']['full_text_ocr'])
         ) {
             return;
         }
 
         $fullTextContent = implode("\n", array_map(
-            function ($page) {
-                return $page['extras']['full_text_ocr']['content'] ?? '';
-            },
-            array_filter($pages, function ($page) {
-                return isset($page['extras']['full_text_ocr']);
-            })
+            static fn($page) => $page['extras']['full_text_ocr']['content'] ?? '',
+            array_filter($pages, static fn($page) => isset($page['extras']['full_text_ocr']))
         ));
 
         $artificialTextObj = ['content' => $fullTextContent];

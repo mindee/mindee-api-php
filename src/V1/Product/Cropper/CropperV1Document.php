@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Cropper;
 
 use Mindee\V1\Parsing\Common\Prediction;

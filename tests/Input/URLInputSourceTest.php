@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Input;
 
 use Mindee\Error\MindeeSourceException;
 use Mindee\Input\URLInputSource;
 use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
+
 use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 
 class URLInputSourceTest extends TestCase
@@ -24,19 +27,20 @@ class URLInputSourceTest extends TestCase
         putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
 
-    public function testInputFromHTTPShouldNotThrow()
+    public function testInputFromHTTPShouldNotThrow(): void
     {
         $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
-        $this->assertInstanceOf(URLInputSource::class, $inputDoc);
+        self::assertInstanceOf(URLInputSource::class, $inputDoc);
     }
 
-    public function testInputFromHTTPShouldThrow()
+    public function testInputFromHTTPShouldThrow(): void
     {
         $this->expectException(MindeeSourceException::class);
         new URLInputSource(url: "http://example.com/invoice.pdf");
     }
 
-    public function testDownloadFileFails(){
+    public function testDownloadFileFails(): void
+    {
         $dummyAddress = "addressthatdoesntworkforcipurposes";
         $urlSource = $this->dummyClient->sourceFromUrl("https://$dummyAddress");
         $this->expectException(MindeeSourceException::class);
@@ -44,7 +48,8 @@ class URLInputSourceTest extends TestCase
         $urlSource->asLocalInputSource("test.pdf");
     }
 
-    public function testInvalidFileName(){
+    public function testInvalidFileName(): void
+    {
         $urlSource = $this->dummyClient->sourceFromUrl("https://addressthatdoesntworkforcipurposes");
         $this->expectException(MindeeSourceException::class);
         $this->expectExceptionMessage("Filename must end with an extension.");

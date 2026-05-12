@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use ArrayObject;
 use InvalidArgumentException;
+
+use function sprintf;
 
 /**
  * Collection of inference fields.
@@ -21,8 +25,8 @@ class InferenceFields extends ArrayObject
     private int $indentLevel;
 
     /**
-     * @param array   $serverResponse Raw server response array.
-     * @param integer $indentLevel    Level of indentation.
+     * @param array $serverResponse Raw server response array.
+     * @param integer $indentLevel Level of indentation.
      */
     public function __construct(array $serverResponse, int $indentLevel = 0)
     {
@@ -44,7 +48,7 @@ class InferenceFields extends ArrayObject
     public function get(string $fieldName)
     {
         $field = $this->fields[$fieldName];
-        if ($field == null) {
+        if ($field === null) {
             throw new InvalidArgumentException("Field $fieldName does not exist.");
         }
         return $field;
@@ -102,7 +106,6 @@ class InferenceFields extends ArrayObject
      * Convert the fields to a string representation.
      *
      * @param integer|null $indent Optional indentation level.
-     * @return string
      */
     public function toString(?int $indent = 0): string
     {
@@ -110,7 +113,7 @@ class InferenceFields extends ArrayObject
             return '';
         }
 
-        $indent = $indent ?? $this->indentLevel;
+        $indent ??= $this->indentLevel;
         $padding = str_repeat('  ', $indent);
         $lines = [];
 
@@ -125,7 +128,7 @@ class InferenceFields extends ArrayObject
                 $line .= $fieldValue->__toString();
             } elseif ($fieldValue instanceof SimpleField) {
                 $value = $fieldValue->__toString();
-                if ($value != '') {
+                if ($value !== '') {
                     $line .= ' ' . $value;
                 }
             }

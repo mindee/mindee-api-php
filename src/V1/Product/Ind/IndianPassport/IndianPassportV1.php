@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Passport - India V1. */
 
 namespace Mindee\V1\Product\Ind\IndianPassport;

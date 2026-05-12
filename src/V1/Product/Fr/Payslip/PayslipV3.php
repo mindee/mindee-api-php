@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Payslip V3. */
 
 namespace Mindee\V1\Product\Fr\Payslip;

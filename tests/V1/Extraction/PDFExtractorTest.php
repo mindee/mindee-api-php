@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace V1\Extraction;
 
@@ -9,71 +10,71 @@ use Mindee\Input\PathInput;
 use Mindee\V1\Client;
 use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class PDFExtractorTest extends TestCase
 {
-
     private Client $dummyClient;
 
     protected function setUp(): void
     {
         $this->dummyClient = new Client("dummy-key");
     }
-    public function testGivenAnImageShouldExtractAPDF()
+    public function testGivenAnImageShouldExtractAPDF(): void
     {
-        $jpg = \TestingUtilities::getV1DataDir() . "/products/invoices/default_sample.jpg";
+        $jpg = TestingUtilities::getV1DataDir() . "/products/invoices/default_sample.jpg";
         $localInput = new PathInput($jpg);
-        $this->assertFalse($localInput->isPDF());
+        self::assertFalse($localInput->isPDF());
         $extractor = new PDFExtractor($localInput);
-        $this->assertEquals(1, $extractor->getPageCount());
+        self::assertSame(1, $extractor->getPageCount());
     }
 
     /**
-     * @test
+     *
      */
-    public function testGivenAPDFShouldExtractInvoicesNoStrict()
+    public function testGivenAPDFShouldExtractInvoicesNoStrict(): void
     {
-        $pdf = new PathInput(\TestingUtilities::getV1DataDir() . "/products/invoice_splitter/invoice_5p.pdf");
+        $pdf = new PathInput(TestingUtilities::getV1DataDir() . "/products/invoice_splitter/invoice_5p.pdf");
         $response = $this->getPrediction();
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->document->inference;
         $extractor = new PDFExtractor($pdf);
-        $this->assertEquals(5, $extractor->getPageCount());
+        self::assertSame(5, $extractor->getPageCount());
 
         $extractedPDFSNoStrict = $extractor->extractInvoices($inference->prediction->invoicePageGroups);
-        $this->assertCount(3, $extractedPDFSNoStrict);
-        $this->assertEquals("invoice_5p_001-001.pdf", $extractedPDFSNoStrict[0]->getFileName());
-        $this->assertEquals(1, $extractedPDFSNoStrict[0]->getPageCount());
-        $this->assertEquals("invoice_5p_002-004.pdf", $extractedPDFSNoStrict[1]->getFileName());
-        $this->assertEquals(3, $extractedPDFSNoStrict[1]->getPageCount());
-        $this->assertEquals("invoice_5p_005-005.pdf", $extractedPDFSNoStrict[2]->getFileName());
-        $this->assertEquals(1, $extractedPDFSNoStrict[2]->getPageCount());
+        self::assertCount(3, $extractedPDFSNoStrict);
+        self::assertSame("invoice_5p_001-001.pdf", $extractedPDFSNoStrict[0]->getFileName());
+        self::assertSame(1, $extractedPDFSNoStrict[0]->getPageCount());
+        self::assertSame("invoice_5p_002-004.pdf", $extractedPDFSNoStrict[1]->getFileName());
+        self::assertSame(3, $extractedPDFSNoStrict[1]->getPageCount());
+        self::assertSame("invoice_5p_005-005.pdf", $extractedPDFSNoStrict[2]->getFileName());
+        self::assertSame(1, $extractedPDFSNoStrict[2]->getPageCount());
     }
 
     /**
-     * @test
+     *
      */
-    public function testGivenAPDFShouldExtractInvoicesStrict()
+    public function testGivenAPDFShouldExtractInvoicesStrict(): void
     {
-        $pdf = new PathInput(\TestingUtilities::getV1DataDir() . "/products/invoice_splitter/invoice_5p.pdf");
+        $pdf = new PathInput(TestingUtilities::getV1DataDir() . "/products/invoice_splitter/invoice_5p.pdf");
         $response = $this->getPrediction();
-        $this->assertNotNull($response);
+        self::assertNotNull($response);
         $inference = $response->document->inference;
 
         $extractor = new PDFExtractor($pdf);
-        $this->assertEquals(5, $extractor->getPageCount());
+        self::assertSame(5, $extractor->getPageCount());
 
         $extractedPDFStrict = $extractor->extractInvoices($inference->prediction->invoicePageGroups, true);
-        $this->assertCount(2, $extractedPDFStrict);
-        $this->assertEquals("invoice_5p_001-001.pdf", $extractedPDFStrict[0]->getFileName());
-        $this->assertEquals(1, $extractedPDFStrict[0]->getPageCount());
-        $this->assertEquals("invoice_5p_002-005.pdf", $extractedPDFStrict[1]->getFileName());
-        $this->assertEquals(4, $extractedPDFStrict[1]->getPageCount());
+        self::assertCount(2, $extractedPDFStrict);
+        self::assertSame("invoice_5p_001-001.pdf", $extractedPDFStrict[0]->getFileName());
+        self::assertSame(1, $extractedPDFStrict[0]->getPageCount());
+        self::assertSame("invoice_5p_002-005.pdf", $extractedPDFStrict[1]->getFileName());
+        self::assertSame(4, $extractedPDFStrict[1]->getPageCount());
     }
 
     private function getPrediction()
     {
-        $fileName = \TestingUtilities::getV1DataDir() . "/products/invoice_splitter/response_v1/complete.json";
+        $fileName = TestingUtilities::getV1DataDir() . "/products/invoice_splitter/response_v1/complete.json";
         $localResponse = new LocalResponse($fileName);
         return $this->dummyClient->loadPrediction(InvoiceSplitterV1::class, $localResponse);
     }

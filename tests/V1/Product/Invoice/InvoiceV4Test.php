@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Invoice;
 
-use Mindee\Product\Invoice;
 use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class InvoiceV4Test extends TestCase
 {
@@ -14,48 +17,48 @@ class InvoiceV4Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/invoices/response_v4/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/invoices/response_v4/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Invoice\InvoiceV4::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Invoice\InvoiceV4::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(InvoiceV4::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(InvoiceV4::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->locale->value);
-        $this->assertNull($prediction->invoiceNumber->value);
-        $this->assertNull($prediction->poNumber->value);
-        $this->assertEquals(0, count($prediction->referenceNumbers));
-        $this->assertNull($prediction->date->value);
-        $this->assertNull($prediction->dueDate->value);
-        $this->assertNull($prediction->paymentDate->value);
-        $this->assertNull($prediction->totalNet->value);
-        $this->assertNull($prediction->totalAmount->value);
-        $this->assertNull($prediction->totalTax->value);
-        $this->assertEquals(0, count($prediction->taxes));
-        $this->assertEquals(0, count($prediction->supplierPaymentDetails));
-        $this->assertNull($prediction->supplierName->value);
-        $this->assertEquals(0, count($prediction->supplierCompanyRegistrations));
-        $this->assertNull($prediction->supplierAddress->value);
-        $this->assertNull($prediction->supplierPhoneNumber->value);
-        $this->assertNull($prediction->supplierWebsite->value);
-        $this->assertNull($prediction->supplierEmail->value);
-        $this->assertNull($prediction->customerName->value);
-        $this->assertEquals(0, count($prediction->customerCompanyRegistrations));
-        $this->assertNull($prediction->customerAddress->value);
-        $this->assertNull($prediction->customerId->value);
-        $this->assertNull($prediction->shippingAddress->value);
-        $this->assertNull($prediction->billingAddress->value);
-        $this->assertEquals(0, count($prediction->lineItems));
+        self::assertNull($prediction->locale->value);
+        self::assertNull($prediction->invoiceNumber->value);
+        self::assertNull($prediction->poNumber->value);
+        self::assertCount(0, $prediction->referenceNumbers);
+        self::assertNull($prediction->date->value);
+        self::assertNull($prediction->dueDate->value);
+        self::assertNull($prediction->paymentDate->value);
+        self::assertNull($prediction->totalNet->value);
+        self::assertNull($prediction->totalAmount->value);
+        self::assertNull($prediction->totalTax->value);
+        self::assertCount(0, $prediction->taxes);
+        self::assertCount(0, $prediction->supplierPaymentDetails);
+        self::assertNull($prediction->supplierName->value);
+        self::assertCount(0, $prediction->supplierCompanyRegistrations);
+        self::assertNull($prediction->supplierAddress->value);
+        self::assertNull($prediction->supplierPhoneNumber->value);
+        self::assertNull($prediction->supplierWebsite->value);
+        self::assertNull($prediction->supplierEmail->value);
+        self::assertNull($prediction->customerName->value);
+        self::assertCount(0, $prediction->customerCompanyRegistrations);
+        self::assertNull($prediction->customerAddress->value);
+        self::assertNull($prediction->customerId->value);
+        self::assertNull($prediction->shippingAddress->value);
+        self::assertNull($prediction->billingAddress->value);
+        self::assertCount(0, $prediction->lineItems);
     }
 }

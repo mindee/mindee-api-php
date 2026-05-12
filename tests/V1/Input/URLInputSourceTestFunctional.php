@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Input;
 
 use Mindee\V1\Client;
 use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class URLInputSourceTestFunctional extends TestCase
 {
@@ -15,45 +18,45 @@ class URLInputSourceTestFunctional extends TestCase
     protected function setUp(): void
     {
         $this->client = new Client();
-        $this->outputFilePath = \TestingUtilities::getRootDataDir() . "/output/";
+        $this->outputFilePath = TestingUtilities::getRootDataDir() . "/output/";
         $this->referenceFilePath = getenv('MINDEE_V2_SE_TESTS_BLANK_PDF_URL');
     }
 
     public static function tearDownAfterClass(): void
     {
-        unlink(\TestingUtilities::getRootDataDir() . "/output/blank_1.pdf");
-        unlink(\TestingUtilities::getRootDataDir() . "/output/customFileName.pdf");
+        unlink(TestingUtilities::getRootDataDir() . "/output/blank_1.pdf");
+        unlink(TestingUtilities::getRootDataDir() . "/output/customFileName.pdf");
     }
 
-    public function testLoadLocalFile()
+    public function testLoadLocalFile(): void
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $localSource = $urlSource->asLocalInputSource();
         $result = $this->client->parse(InvoiceV4::class, $localSource);
-        $this->assertEquals(1, $result->document->nPages);
-        $this->assertEquals("blank_1.pdf", $result->document->filename);
+        self::assertSame(1, $result->document->nPages);
+        self::assertSame("blank_1.pdf", $result->document->filename);
     }
 
-    public function testCustomFileName()
+    public function testCustomFileName(): void
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $localSource = $urlSource->asLocalInputSource("customName.pdf");
         $result = $this->client->parse(InvoiceV4::class, $localSource);
-        $this->assertEquals(1, $result->document->nPages);
-        $this->assertEquals("customName.pdf", $result->document->filename);
+        self::assertSame(1, $result->document->nPages);
+        self::assertSame("customName.pdf", $result->document->filename);
     }
 
-    public function testSaveFile()
+    public function testSaveFile(): void
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $urlSource->saveToFile($this->outputFilePath);
-        $this->assertFileExists($this->outputFilePath . "blank_1.pdf");
+        self::assertFileExists($this->outputFilePath . "blank_1.pdf");
     }
 
-    public function testSaveFileWithFilename()
+    public function testSaveFileWithFilename(): void
     {
         $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
         $urlSource->saveToFile($this->outputFilePath, "customFileName.pdf");
-        $this->assertFileExists($this->outputFilePath . "customFileName.pdf");
+        self::assertFileExists($this->outputFilePath . "customFileName.pdf");
     }
 }

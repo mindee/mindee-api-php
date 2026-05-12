@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Fr\Payslip;
 
-use Mindee\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Fr\Payslip\PayslipV3;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class PayslipV3Test extends TestCase
 {
@@ -14,64 +17,64 @@ class PayslipV3Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/payslip_fra/response_v3/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/payslip_fra/response_v3/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\Payslip\PayslipV3::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\Payslip\PayslipV3::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(PayslipV3::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(PayslipV3::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->payPeriod->endDate);
-        $this->assertNull($prediction->payPeriod->month);
-        $this->assertNull($prediction->payPeriod->paymentDate);
-        $this->assertNull($prediction->payPeriod->startDate);
-        $this->assertNull($prediction->payPeriod->year);
-        $this->assertNull($prediction->employee->address);
-        $this->assertNull($prediction->employee->dateOfBirth);
-        $this->assertNull($prediction->employee->firstName);
-        $this->assertNull($prediction->employee->lastName);
-        $this->assertNull($prediction->employee->phoneNumber);
-        $this->assertNull($prediction->employee->registrationNumber);
-        $this->assertNull($prediction->employee->socialSecurityNumber);
-        $this->assertNull($prediction->employer->address);
-        $this->assertNull($prediction->employer->companyId);
-        $this->assertNull($prediction->employer->companySite);
-        $this->assertNull($prediction->employer->nafCode);
-        $this->assertNull($prediction->employer->name);
-        $this->assertNull($prediction->employer->phoneNumber);
-        $this->assertNull($prediction->employer->urssafNumber);
-        $this->assertNull($prediction->bankAccountDetails->bankName);
-        $this->assertNull($prediction->bankAccountDetails->iban);
-        $this->assertNull($prediction->bankAccountDetails->swift);
-        $this->assertNull($prediction->employment->category);
-        $this->assertNull($prediction->employment->coefficient);
-        $this->assertNull($prediction->employment->collectiveAgreement);
-        $this->assertNull($prediction->employment->jobTitle);
-        $this->assertNull($prediction->employment->positionLevel);
-        $this->assertNull($prediction->employment->seniorityDate);
-        $this->assertNull($prediction->employment->startDate);
-        $this->assertEquals(0, count($prediction->salaryDetails));
-        $this->assertNull($prediction->payDetail->grossSalary);
-        $this->assertNull($prediction->payDetail->grossSalaryYtd);
-        $this->assertNull($prediction->payDetail->incomeTaxRate);
-        $this->assertNull($prediction->payDetail->incomeTaxWithheld);
-        $this->assertNull($prediction->payDetail->netPaid);
-        $this->assertNull($prediction->payDetail->netPaidBeforeTax);
-        $this->assertNull($prediction->payDetail->netTaxable);
-        $this->assertNull($prediction->payDetail->netTaxableYtd);
-        $this->assertNull($prediction->payDetail->totalCostEmployer);
-        $this->assertNull($prediction->payDetail->totalTaxesAndDeductions);
-        $this->assertEquals(0, count($prediction->paidTimeOff));
+        self::assertNull($prediction->payPeriod->endDate);
+        self::assertNull($prediction->payPeriod->month);
+        self::assertNull($prediction->payPeriod->paymentDate);
+        self::assertNull($prediction->payPeriod->startDate);
+        self::assertNull($prediction->payPeriod->year);
+        self::assertNull($prediction->employee->address);
+        self::assertNull($prediction->employee->dateOfBirth);
+        self::assertNull($prediction->employee->firstName);
+        self::assertNull($prediction->employee->lastName);
+        self::assertNull($prediction->employee->phoneNumber);
+        self::assertNull($prediction->employee->registrationNumber);
+        self::assertNull($prediction->employee->socialSecurityNumber);
+        self::assertNull($prediction->employer->address);
+        self::assertNull($prediction->employer->companyId);
+        self::assertNull($prediction->employer->companySite);
+        self::assertNull($prediction->employer->nafCode);
+        self::assertNull($prediction->employer->name);
+        self::assertNull($prediction->employer->phoneNumber);
+        self::assertNull($prediction->employer->urssafNumber);
+        self::assertNull($prediction->bankAccountDetails->bankName);
+        self::assertNull($prediction->bankAccountDetails->iban);
+        self::assertNull($prediction->bankAccountDetails->swift);
+        self::assertNull($prediction->employment->category);
+        self::assertNull($prediction->employment->coefficient);
+        self::assertNull($prediction->employment->collectiveAgreement);
+        self::assertNull($prediction->employment->jobTitle);
+        self::assertNull($prediction->employment->positionLevel);
+        self::assertNull($prediction->employment->seniorityDate);
+        self::assertNull($prediction->employment->startDate);
+        self::assertCount(0, $prediction->salaryDetails);
+        self::assertNull($prediction->payDetail->grossSalary);
+        self::assertNull($prediction->payDetail->grossSalaryYtd);
+        self::assertNull($prediction->payDetail->incomeTaxRate);
+        self::assertNull($prediction->payDetail->incomeTaxWithheld);
+        self::assertNull($prediction->payDetail->netPaid);
+        self::assertNull($prediction->payDetail->netPaidBeforeTax);
+        self::assertNull($prediction->payDetail->netTaxable);
+        self::assertNull($prediction->payDetail->netTaxableYtd);
+        self::assertNull($prediction->payDetail->totalCostEmployer);
+        self::assertNull($prediction->payDetail->totalTaxesAndDeductions);
+        self::assertCount(0, $prediction->paidTimeOff);
     }
 }
