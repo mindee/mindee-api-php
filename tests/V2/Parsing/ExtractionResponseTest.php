@@ -10,8 +10,8 @@ use Mindee\V2\Parsing\Inference\Field\FieldConfidence;
 use Mindee\V2\Parsing\Inference\Field\ListField;
 use Mindee\V2\Parsing\Inference\Field\ObjectField;
 use Mindee\V2\Parsing\Inference\Field\SimpleField;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
@@ -20,15 +20,15 @@ require_once(__DIR__ . "/../../TestingUtilities.php");
 /**
  * InferenceV2 – field integrity checks
  */
-class InferenceResponseTest extends TestCase
+class ExtractionResponseTest extends TestCase
 {
-    private function loadFromResource(string $resourcePath): InferenceResponse
+    private function loadFromResource(string $resourcePath): ExtractionResponse
     {
         $fullPath = TestingUtilities::getV2ProductDir() . "/$resourcePath";
         $this->assertFileExists($fullPath, "Resource file must exist: $resourcePath");
 
         $localResponse = new LocalResponse($fullPath);
-        return $localResponse->deserializeResponse(InferenceResponse::class);
+        return $localResponse->deserializeResponse(ExtractionResponse::class);
     }
 
     private function readFileAsString(string $path): string
@@ -101,7 +101,7 @@ class InferenceResponseTest extends TestCase
         $inference = $response->inference;
 
         $this->assertNotNull($inference, 'Inference must not be null');
-        $this->assertEquals('12345678-1234-1234-1234-123456789abc', $inference->id, 'Inference ID mismatch');
+        $this->assertEquals('12345678-1234-1234-1234-123456789abc', $inference->id, 'ExtractionInference ID mismatch');
 
         $model = $inference->model;
         $this->assertNotNull($model, 'Model must not be null');

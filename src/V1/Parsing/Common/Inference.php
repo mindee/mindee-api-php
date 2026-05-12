@@ -5,7 +5,7 @@ namespace Mindee\V1\Parsing\Common;
 use Mindee\V1\Parsing\Common\Extras\Extras;
 
 /**
- * Base Inference class for all predictions.
+ * Base ExtractionInference class for all predictions.
  */
 abstract class Inference
 {

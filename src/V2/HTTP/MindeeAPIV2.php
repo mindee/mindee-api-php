@@ -19,12 +19,13 @@ use Mindee\Input\URLInputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Parsing\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
-use Mindee\V2\Parsing\Inference\InferenceResponse;
 use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Product\Extraction\ExtractionResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
 
+use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 use const Mindee\VERSION;
 
 // phpcs:disable
@@ -233,22 +234,6 @@ class MindeeAPIV2
     /**
      * Requests the job of a queued document from the API.
      * Throws an error if the server's response contains one.
-     * @param string $inferenceId ID of the inference.
-     * @return InferenceResponse
-     * @throws MindeeException Throws if the server's response contains an error.
-     * @throws MindeeException Throws if the inference ID is not provided.
-     */
-    public function reqGetInference(string $inferenceId): InferenceResponse
-    {
-        if (!isset($inferenceId)) {
-            throw new MindeeException("Inference ID must be provided.", ErrorCode::USER_INPUT_ERROR);
-        }
-        return $this->reqGetResult(InferenceResponse::class, $inferenceId);
-    }
-
-    /**
-     * Requests the job of a queued document from the API.
-     * Throws an error if the server's response contains one.
      * @param string $jobId ID of the inference.
      * @return JobResponse Server response wrapped in a JobResponse object.
      * @throws MindeeException Throws if the server's response contains an error.
@@ -360,7 +345,7 @@ class MindeeAPIV2
      * Starts a CURL session using POST.
      *
      * @param InputSource    $inputSource File to upload.
-     * @param BaseParameters $params      Inference parameters.
+     * @param BaseParameters $params      ExtractionInference parameters.
      * @return array
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
