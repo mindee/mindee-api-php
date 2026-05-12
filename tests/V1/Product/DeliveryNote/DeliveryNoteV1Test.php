@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\DeliveryNote;
 
-use Mindee\Product\DeliveryNote;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\DeliveryNote\DeliveryNoteV1;
 use PHPUnit\Framework\TestCase;

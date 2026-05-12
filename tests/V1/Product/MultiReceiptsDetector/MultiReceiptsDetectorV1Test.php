@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\MultiReceiptsDetector;
 
-use Mindee\Product\MultiReceiptsDetector;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use PHPUnit\Framework\TestCase;

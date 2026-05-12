@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Invoice;
 
-use Mindee\Product\Invoice;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;

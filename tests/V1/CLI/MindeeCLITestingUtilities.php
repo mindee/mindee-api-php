@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace V1\CLI;
 
-use Mindee\Product;
-
 class MindeeCLITestingUtilities
 {
     public static function executeTest($args, $mute = false)

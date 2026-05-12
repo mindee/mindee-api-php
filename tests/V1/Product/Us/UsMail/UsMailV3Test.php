@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Us\UsMail;
 
-use Mindee\Product\Us\UsMail;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Us\UsMail\UsMailV3;
 use PHPUnit\Framework\TestCase;

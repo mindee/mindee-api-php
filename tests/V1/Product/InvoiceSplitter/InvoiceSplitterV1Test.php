@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\InvoiceSplitter;
 
-use Mindee\Product\InvoiceSplitter;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;

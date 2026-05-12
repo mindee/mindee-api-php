@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Fr\CarteGrise;
 
-use Mindee\Product\Fr\CarteGrise;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Fr\CarteGrise\CarteGriseV1;
 use PHPUnit\Framework\TestCase;

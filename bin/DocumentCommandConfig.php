@@ -14,7 +14,7 @@ class DocumentCommandConfig
      */
     public string $help;
     /**
-     * @var string Document class, as defined in the Mindee\Product namespace.
+     * @var string Document class, as defined in the Mindee\V1\Product namespace.
      */
     public string $docClass;
     /**
@@ -28,7 +28,7 @@ class DocumentCommandConfig
 
     /**
      * @param string $help Custom help message (currently not in use).
-     * @param string $docClass Document class, as defined in the Mindee\Product namespace.
+     * @param string $docClass Document class, as defined in the Mindee\V1\Product namespace.
      * @param boolean $isSync Whether the document supports synchronous usage.
      * @param boolean $isAsync Whether the document supports asynchronous usage.
      */

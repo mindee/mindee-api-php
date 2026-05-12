@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Fr\BankAccountDetails;
 
-use Mindee\Product\Fr\BankAccountDetails;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Fr\BankAccountDetails\BankAccountDetailsV1;
 use PHPUnit\Framework\TestCase;

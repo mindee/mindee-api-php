@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\NutritionFactsLabel;
 
-use Mindee\Product\NutritionFactsLabel;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\NutritionFactsLabel\NutritionFactsLabelV1;
 use PHPUnit\Framework\TestCase;

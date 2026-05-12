@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Receipt;
 
-use Mindee\Product\Receipt;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;

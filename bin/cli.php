@@ -8,7 +8,6 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/MindeeCLIDocuments.php';
 require __DIR__ . '/MindeeCLICommand.php';
 
-use Mindee\Product;
 use Symfony\Component\Console\Application;
 use Exception;
 

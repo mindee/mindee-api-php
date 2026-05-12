@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\BillOfLading;
 
-use Mindee\Product\BillOfLading;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\BillOfLading\BillOfLadingV1;
 use PHPUnit\Framework\TestCase;

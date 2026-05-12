@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\BarcodeReader;
 
-use Mindee\Product\BarcodeReader;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\BarcodeReader\BarcodeReaderV1;
 use PHPUnit\Framework\TestCase;

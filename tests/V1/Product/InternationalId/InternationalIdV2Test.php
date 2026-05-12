@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\InternationalId;
 
-use Mindee\Product\InternationalId;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\InternationalId\InternationalIdV2;
 use PHPUnit\Framework\TestCase;

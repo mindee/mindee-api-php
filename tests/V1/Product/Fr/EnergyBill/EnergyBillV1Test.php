@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Fr\EnergyBill;
 
-use Mindee\Product\Fr\EnergyBill;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Fr\EnergyBill\EnergyBillV1;
 use PHPUnit\Framework\TestCase;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\FinancialDocument;
 
-use Mindee\Product\FinancialDocument;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Parsing\Common\Page;
 use Mindee\V1\Product\FinancialDocument\FinancialDocumentV1;

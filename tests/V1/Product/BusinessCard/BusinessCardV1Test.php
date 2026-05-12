@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\BusinessCard;
 
-use Mindee\Product\BusinessCard;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\BusinessCard\BusinessCardV1;
 use PHPUnit\Framework\TestCase;

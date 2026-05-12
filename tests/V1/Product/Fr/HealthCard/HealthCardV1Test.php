@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Fr\HealthCard;
 
-use Mindee\Product\Fr\HealthCard;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Fr\HealthCard\HealthCardV1;
 use PHPUnit\Framework\TestCase;

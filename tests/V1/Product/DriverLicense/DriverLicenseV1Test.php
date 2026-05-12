@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\DriverLicense;
 
-use Mindee\Product\DriverLicense;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\DriverLicense\DriverLicenseV1;
 use PHPUnit\Framework\TestCase;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Resume;
 
-use Mindee\Product\Resume;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Resume\ResumeV1;
 use PHPUnit\Framework\TestCase;

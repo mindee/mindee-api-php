@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace V1\Product\Passport;
 
-use Mindee\Product\Passport;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Passport\PassportV1;
 use PHPUnit\Framework\TestCase;
