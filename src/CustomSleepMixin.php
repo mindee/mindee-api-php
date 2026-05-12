@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee;
 
 trait CustomSleepMixin
@@ -8,7 +10,6 @@ trait CustomSleepMixin
      * Waits for a custom amount of time from either a float or an integer.
      * Purposefully waits for one more millisecond on windows due to flakiness in delays between OS.
      * @param float|integer $delay Delay in seconds.
-     * @return void
      */
     protected static function customSleep(float|int $delay): void
     {
@@ -16,7 +17,7 @@ trait CustomSleepMixin
             return;
         }
 
-        $seconds = intval($delay);
+        $seconds = (int) $delay;
         $nanoseconds = abs($seconds - (float) $delay);
         if (
             strtoupper(substr(PHP_OS_FAMILY, 0, 7)) === 'WINDOWS'

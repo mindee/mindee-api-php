@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Fr\HealthCard;
 
-use Mindee\Product\Fr\HealthCard;
 use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Fr\HealthCard\HealthCardV1;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class HealthCardV1Test extends TestCase
 {
@@ -14,27 +17,27 @@ class HealthCardV1Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/french_healthcard/response_v1/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/french_healthcard/response_v1/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\HealthCard\HealthCardV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\HealthCard\HealthCardV1::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(HealthCardV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(HealthCardV1::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertEquals(0, count($prediction->givenNames));
-        $this->assertNull($prediction->surname->value);
-        $this->assertNull($prediction->socialSecurity->value);
-        $this->assertNull($prediction->issuanceDate->value);
+        self::assertCount(0, $prediction->givenNames);
+        self::assertNull($prediction->surname->value);
+        self::assertNull($prediction->socialSecurity->value);
+        self::assertNull($prediction->issuanceDate->value);
     }
 }

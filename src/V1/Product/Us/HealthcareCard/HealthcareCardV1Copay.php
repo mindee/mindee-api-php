@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Us\HealthcareCard;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class HealthcareCardV1Copay
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null The price of the service.
@@ -24,22 +26,21 @@ class HealthcareCardV1Copay
     public ?string $serviceName;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->serviceFees = isset($rawPrediction["service_fees"]) ?
-            floatval($rawPrediction["service_fees"]) : null;
+        $this->serviceFees = isset($rawPrediction["service_fees"])
+            ? (float) ($rawPrediction["service_fees"]) : null;
         $this->serviceName = $rawPrediction["service_name"] ?? null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -52,7 +53,6 @@ class HealthcareCardV1Copay
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -64,7 +64,6 @@ class HealthcareCardV1Copay
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
-     * @return string
      */
     public function toTableLine(): string
     {

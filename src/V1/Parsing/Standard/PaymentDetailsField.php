@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use function array_key_exists;
+use function is_scalar;
 
 /**
  * Information on a single payment.
@@ -29,21 +34,20 @@ class PaymentDetailsField extends BaseField
     /**
      * Gets the value of any given key.
      *
-     * @param array  $rawPrediction Raw prediction array.
-     * @param string $key           Key to get the value of.
-     * @return string|null
+     * @param array $rawPrediction Raw prediction array.
+     * @param string $key Key to get the value of.
      */
     private function getValue(array $rawPrediction, string $key): ?string
     {
         if (
-            array_key_exists($key, $rawPrediction) &&
-            is_scalar($rawPrediction[$key])
+            array_key_exists($key, $rawPrediction)
+            && is_scalar($rawPrediction[$key])
         ) {
-            $value = strval($rawPrediction[$key]);
+            $value = (string) ($rawPrediction[$key]);
         } else {
             $value = null;
         }
-        if ($value == 'N/A') {
+        if ($value === 'N/A') {
             $value = null;
         }
 
@@ -51,14 +55,14 @@ class PaymentDetailsField extends BaseField
     }
 
     /**
-     * @param array        $rawPrediction    Raw prediction array.
-     * @param integer|null $pageId           Page number for multi pages document.
-     * @param boolean      $reconstructed    Whether the field was reconstructed.
-     * @param string       $valueKey         Key to use for the value.
-     * @param string       $accountNumberKey Key to use for the account number.
-     * @param string       $ibanKey          Key to use for the IBAN.
-     * @param string       $routingNumberKey Key to use for the routing number.
-     * @param string       $swiftKey         Key to use for the SWIFT code.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field was reconstructed.
+     * @param string $valueKey Key to use for the value.
+     * @param string $accountNumberKey Key to use for the account number.
+     * @param string $ibanKey Key to use for the IBAN.
+     * @param string $routingNumberKey Key to use for the routing number.
+     * @param string $swiftKey Key to use for the SWIFT code.
      */
     public function __construct(
         array $rawPrediction,

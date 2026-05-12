@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use ArrayObject;
 
 /**
  * List of tax lines information.
  */
-class Taxes extends \ArrayObject
+class Taxes extends ArrayObject
 {
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
@@ -24,7 +28,6 @@ class Taxes extends \ArrayObject
      * Creates a string of rst line separators.
      *
      * @param string $char Character to use as a separator.
-     * @return string
      */
     private static function lineSeparator(string $char): string
     {
@@ -41,9 +44,9 @@ class Taxes extends \ArrayObject
      */
     public function __toString()
     {
-        $outStr = "\n" . Taxes::lineSeparator('-') . "\n";
+        $outStr = "\n" . self::lineSeparator('-') . "\n";
         $outStr .= "  | Base          | Code   | Rate (%) | Amount        |\n";
-        $outStr .= Taxes::lineSeparator('=');
+        $outStr .= self::lineSeparator('=');
         $arr = [];
         $iterator = $this->getIterator();
         if (!$iterator->valid()) {
@@ -51,7 +54,7 @@ class Taxes extends \ArrayObject
         }
         while ($iterator->valid()) {
             $entry = $iterator->current();
-            $arr[] = "\n  " . $entry->toTableLine() . "\n" . Taxes::lineSeparator('-');
+            $arr[] = "\n  " . $entry->toTableLine() . "\n" . self::lineSeparator('-');
             $iterator->next();
         }
         $outStr .= implode("\n", $arr);

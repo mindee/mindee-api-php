@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Extraction;
 
 use Mindee\Extraction\PDFExtractor;
@@ -13,7 +15,7 @@ use TestingUtilities;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
-class PDFExtractorTest extends TestCase
+class InvoiceSplitterAutoExtractionTestFunctional extends TestCase
 {
     private const PRODUCT_DATA_DIR = '/tests/resources/products';
 
@@ -27,10 +29,10 @@ class PDFExtractorTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group functional
      */
-    public function testPDFShouldExtractInvoicesStrict()
+    public function testPDFShouldExtractInvoicesStrict(): void
     {
         $client = new Client();
         $invoiceSplitterInput = new PathInput(
@@ -39,13 +41,13 @@ class PDFExtractorTest extends TestCase
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
         $pdfExtractor = new PDFExtractor($invoiceSplitterInput);
-        $this->assertEquals(2, $pdfExtractor->getPageCount());
+        self::assertSame(2, $pdfExtractor->getPageCount());
 
         $extractedPdfsStrict = $pdfExtractor->extractInvoices($inference->prediction->invoicePageGroups);
 
-        $this->assertCount(2, $extractedPdfsStrict);
-        $this->assertEquals('default_sample_001-001.pdf', $extractedPdfsStrict[0]->getFilename());
-        $this->assertEquals('default_sample_002-002.pdf', $extractedPdfsStrict[1]->getFilename());
+        self::assertCount(2, $extractedPdfsStrict);
+        self::assertSame('default_sample_001-001.pdf', $extractedPdfsStrict[0]->getFilename());
+        self::assertSame('default_sample_002-002.pdf', $extractedPdfsStrict[1]->getFilename());
 
         $invoice0 = $client->parse(InvoiceV4::class, $extractedPdfsStrict[0]->asInputSource());
 
@@ -54,11 +56,11 @@ class PDFExtractorTest extends TestCase
             invoicePrediction: $invoice0->document
         );
 
-        $this->assertGreaterThan(
+        self::assertGreaterThan(
             0.90,
             TestingUtilities::levenshteinRatio(
                 $testStringRstInvoice0,
-                (string)$invoice0->document
+                (string) $invoice0->document
             )
         );
     }

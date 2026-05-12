@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
+
+use function array_key_exists;
 
 /**
  * Async Response Wrapper class for a Predict response.
@@ -11,7 +15,7 @@ class AsyncPredictResponse extends ApiResponse
 {
     /**
      * @var Job Job object link to the prediction.
-     * As long as it isn't complete, the prediction doesn't exist.
+     *          As long as it isn't complete, the prediction doesn't exist.
      */
     public Job $job;
     /**
@@ -21,7 +25,7 @@ class AsyncPredictResponse extends ApiResponse
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array  $rawResponse    Raw HTTP response.
+     * @param array $rawResponse Raw HTTP response.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {

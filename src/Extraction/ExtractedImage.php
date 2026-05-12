@@ -1,10 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Extraction;
 
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
+use Imagick;
+use ImagickException;
+
+use function in_array;
+
+use const DIRECTORY_SEPARATOR;
 
 /**
  * An extracted sub-image.
@@ -12,9 +20,9 @@ use Mindee\Input\BytesInput;
 class ExtractedImage
 {
     /**
-     * @var \Imagick Wrapper for the image.
+     * @var Imagick Wrapper for the image.
      */
-    public \Imagick $image;
+    public Imagick $image;
 
     /**
      * @var string Name of the file.
@@ -39,11 +47,11 @@ class ExtractedImage
     /**
      * Initializes a new instance of the ExtractedImage class.
      *
-     * @param mixed   $image      The extracted image. Not explicitly typed as \Imagick to avoid errors.
-     * @param string  $filename   The filename for the image.
-     * @param string  $saveFormat The format to save the image.
-     * @param integer $pageIndex  The page index of the image.
-     * @param integer $index      The element index of the image.
+     * @param mixed $image The extracted image. Not explicitly typed as \Imagick to avoid errors.
+     * @param string $filename The filename for the image.
+     * @param string $saveFormat The format to save the image.
+     * @param integer $pageIndex The page index of the image.
+     * @param integer $index The element index of the image.
      *
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
@@ -62,12 +70,11 @@ class ExtractedImage
      * Writes the image to a file.
      * Uses the default image format and filename.
      *
-     * @param string      $outputPath The output directory (must exist).
-     * @param null|string $format     The image format to use. Defaults to the save format if not provided.
-     * @param integer     $quality    Quality of the saved image.
+     * @param string $outputPath The output directory (must exist).
+     * @param null|string $format The image format to use. Defaults to the save format if not provided.
+     * @param integer $quality Quality of the saved image.
      *
-     * @return void
-     * @throws \ImagickException Throws if the image can't be processed.
+     * @throws ImagickException Throws if the image can't be processed.
      */
     public function writeToFile(string $outputPath, ?string $format = null, int $quality = 100): void
     {
@@ -79,8 +86,8 @@ class ExtractedImage
         if ('png' === $format) {
             $finalQuality = round($quality * 0.09);
             $this->image->setOption('png:compression-level', $finalQuality);
-        } elseif (in_array($format, ['jpg', 'jpeg'])) {
-            $this->image->setImageCompression(\Imagick::COMPRESSION_JPEG);
+        } elseif (in_array($format, ['jpg', 'jpeg'], true)) {
+            $this->image->setImageCompression(Imagick::COMPRESSION_JPEG);
         }
         $this->image->setImageCompressionQuality($quality);
         $this->image->writeImage($imagePath);
@@ -91,7 +98,7 @@ class ExtractedImage
      *
      * @return BytesInput Bytes input for the image.
      *
-     * @throws \ImagickException Throws if the image can't be processed.
+     * @throws ImagickException Throws if the image can't be processed.
      */
     public function asInputSource(): BytesInput
     {

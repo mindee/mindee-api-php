@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Extraction\ExtractedImage;
 use Mindee\Extraction\ImageExtractor;
 use Mindee\Input\LocalInputSource;
 use Mindee\V2\Product\Crop\CropItem;
+
+use function sprintf;
 
 /**
  * V2 Crop operation.
@@ -54,7 +58,7 @@ class Crop
         }
 
         foreach ($cropsPerPage as $page => $pageCrops) {
-            $polygons = array_map(fn ($c) => $c->location->polygon, $pageCrops);
+            $polygons = array_map(static fn($c) => $c->location->polygon, $pageCrops);
             $filenamePrefix = sprintf('%s_page%d', $this->localInput->fileName, $page);
 
             $images = $imageExtractor->extractPolygonsFromPage(

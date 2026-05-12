@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Parsing;
 
 use DateTime;
 use Exception;
+
+use function array_key_exists;
 
 /**
  * Job information for a V2 polling attempt.
@@ -103,7 +107,6 @@ class Job
      * Parse a date string into a DateTime object.
      *
      * @param string|null $dateString Date string to parse.
-     * @return DateTime|null
      */
     private function parseDate(?string $dateString): ?DateTime
     {

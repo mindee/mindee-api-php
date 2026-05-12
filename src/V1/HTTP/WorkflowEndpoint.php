@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\HTTP;
 
 use Mindee\Input\InputSource;
@@ -24,9 +26,8 @@ class WorkflowEndpoint extends BaseEndpoint
     /**
      * Sends a document for synchronous enqueuing.
      *
-     * @param InputSource     $fileCurl        File to upload.
+     * @param InputSource $fileCurl File to upload.
      * @param WorkflowOptions $workflowOptions Workflow options.
-     * @return array
      */
     public function executeWorkflowRequestPost(
         InputSource $fileCurl,
@@ -39,9 +40,8 @@ class WorkflowEndpoint extends BaseEndpoint
     /**
      * Starts a CURL session using POST.
      *
-     * @param InputSource     $fileCurl        File to upload.
+     * @param InputSource $fileCurl File to upload.
      * @param WorkflowOptions $workflowOptions Workflow options.
-     * @return array
      */
     private function initCurlSessionPost(
         InputSource $fileCurl,

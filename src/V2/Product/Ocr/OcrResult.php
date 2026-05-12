@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Ocr;
+
+use function strlen;
 
 /**
  * Result of the OCR utility inference.
@@ -17,7 +21,7 @@ class OcrResult
      */
     public function __construct(array $rawResponse)
     {
-        $this->pages = array_map(fn ($page) => new OcrPage($page), $rawResponse['pages']);
+        $this->pages = array_map(static fn($page) => new OcrPage($page), $rawResponse['pages']);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V2\Product;
 
 use PHPUnit\Framework\TestCase;
@@ -28,19 +30,17 @@ class ClassificationTest extends TestCase
     /**
      * Helper to assert the core inference response properties exist.
      * @param mixed $response The response object to check.
-     * @return void
      */
     private function assertInferenceResponse(mixed $response): void
     {
-        $this->assertNotNull($response->inference);
-        $this->assertNotNull($response->inference->id);
-        $this->assertNotNull($response->inference->file);
-        $this->assertNotNull($response->inference->result);
+        self::assertNotNull($response->inference);
+        self::assertNotNull($response->inference->id);
+        self::assertNotNull($response->inference->file);
+        self::assertNotNull($response->inference->result);
     }
 
     /**
      * Should correctly map properties when reading a single classification JSON.
-     * @return void
      */
     public function testClassificationWhenSingleMustHaveValidProperties(): void
     {
@@ -52,15 +52,15 @@ class ClassificationTest extends TestCase
 
         $inference = $response->inference;
 
-        $this->assertSame("12345678-1234-1234-1234-123456789abc", $inference->id);
-        $this->assertSame("test-model-id", $inference->model->id);
-        $this->assertSame("12345678-1234-1234-1234-jobid1234567", $inference->job->id);
+        self::assertSame("12345678-1234-1234-1234-123456789abc", $inference->id);
+        self::assertSame("test-model-id", $inference->model->id);
+        self::assertSame("12345678-1234-1234-1234-jobid1234567", $inference->job->id);
 
-        $this->assertSame("default_sample.jpg", $inference->file->name);
-        $this->assertSame(1, $inference->file->pageCount);
-        $this->assertSame("image/jpeg", $inference->file->mimeType);
+        self::assertSame("default_sample.jpg", $inference->file->name);
+        self::assertSame(1, $inference->file->pageCount);
+        self::assertSame("image/jpeg", $inference->file->mimeType);
 
         $classification = $inference->result->classification;
-        $this->assertSame("invoice", $classification->documentType);
+        self::assertSame("invoice", $classification->documentType);
     }
 }

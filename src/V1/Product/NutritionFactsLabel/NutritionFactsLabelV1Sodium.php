@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\NutritionFactsLabel;
 
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
@@ -11,8 +13,8 @@ use Mindee\V1\Parsing\SummaryHelperV1;
  */
 class NutritionFactsLabelV1Sodium
 {
-    use FieldPositionMixin;
     use FieldConfidenceMixin;
+    use FieldPositionMixin;
 
     /**
      * @var float|null DVs are the recommended amounts of sodium to consume or not to exceed each day.
@@ -32,26 +34,25 @@ class NutritionFactsLabelV1Sodium
     public ?string $unit;
 
     /**
-     * @param array        $rawPrediction Array containing the JSON document response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Array containing the JSON document response.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->dailyValue = isset($rawPrediction["daily_value"]) ?
-            floatval($rawPrediction["daily_value"]) : null;
-        $this->per100G = isset($rawPrediction["per_100g"]) ?
-            floatval($rawPrediction["per_100g"]) : null;
-        $this->perServing = isset($rawPrediction["per_serving"]) ?
-            floatval($rawPrediction["per_serving"]) : null;
+        $this->dailyValue = isset($rawPrediction["daily_value"])
+            ? (float) ($rawPrediction["daily_value"]) : null;
+        $this->per100G = isset($rawPrediction["per_100g"])
+            ? (float) ($rawPrediction["per_100g"]) : null;
+        $this->perServing = isset($rawPrediction["per_serving"])
+            ? (float) ($rawPrediction["per_serving"]) : null;
         $this->unit = $rawPrediction["unit"] ?? null;
     }
 
     /**
      * Return values for printing inside an RST table.
      *
-     * @return array
      */
     private function tablePrintableValues(): array
     {
@@ -66,7 +67,6 @@ class NutritionFactsLabelV1Sodium
     /**
      * Return values for printing as an array.
      *
-     * @return array
      */
     private function printableValues(): array
     {
@@ -80,7 +80,6 @@ class NutritionFactsLabelV1Sodium
     /**
      * Output in a format suitable for inclusion in a field list.
      *
-     * @return string
      */
     public function toFieldList(): string
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Receipt V5. */
 
 namespace Mindee\V1\Product\Receipt;

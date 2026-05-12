@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Product\Fr\CarteGrise;
 
-use Mindee\Product\Fr\CarteGrise;
 use Mindee\V1\Parsing\Common\Document;
+use Mindee\V1\Product\Fr\CarteGrise\CarteGriseV1;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class CarteGriseV1Test extends TestCase
 {
@@ -14,64 +17,64 @@ class CarteGriseV1Test extends TestCase
 
     protected function setUp(): void
     {
-        $productDir = \TestingUtilities::getV1DataDir() . "/products/carte_grise/response_v1/";
+        $productDir = TestingUtilities::getV1DataDir() . "/products/carte_grise/response_v1/";
         $completeDocFile = file_get_contents($productDir . "complete.json");
         $emptyDocFile = file_get_contents($productDir . "empty.json");
         $completeDocJSON = json_decode($completeDocFile, true);
         $emptyDocJSON = json_decode($emptyDocFile, true);
-        $this->completeDoc = new Document(\Mindee\V1\Product\Fr\CarteGrise\CarteGriseV1::class, $completeDocJSON["document"]);
-        $this->emptyDoc = new Document(\Mindee\V1\Product\Fr\CarteGrise\CarteGriseV1::class, $emptyDocJSON["document"]);
+        $this->completeDoc = new Document(CarteGriseV1::class, $completeDocJSON["document"]);
+        $this->emptyDoc = new Document(CarteGriseV1::class, $emptyDocJSON["document"]);
         $this->completeDocReference = file_get_contents($productDir . "summary_full.rst");
     }
 
-    public function testCompleteDoc()
+    public function testCompleteDoc(): void
     {
-        $this->assertEquals($this->completeDocReference, strval($this->completeDoc));
+        self::assertSame($this->completeDocReference, (string) ($this->completeDoc));
     }
 
-    public function testEmptyDoc()
+    public function testEmptyDoc(): void
     {
         $prediction = $this->emptyDoc->inference->prediction;
-        $this->assertNull($prediction->a->value);
-        $this->assertNull($prediction->b->value);
-        $this->assertNull($prediction->c1->value);
-        $this->assertNull($prediction->c3->value);
-        $this->assertNull($prediction->c41->value);
-        $this->assertNull($prediction->c4A->value);
-        $this->assertNull($prediction->d1->value);
-        $this->assertNull($prediction->d3->value);
-        $this->assertNull($prediction->e->value);
-        $this->assertNull($prediction->f1->value);
-        $this->assertNull($prediction->f2->value);
-        $this->assertNull($prediction->f3->value);
-        $this->assertNull($prediction->g->value);
-        $this->assertNull($prediction->g1->value);
-        $this->assertNull($prediction->i->value);
-        $this->assertNull($prediction->j->value);
-        $this->assertNull($prediction->j1->value);
-        $this->assertNull($prediction->j2->value);
-        $this->assertNull($prediction->j3->value);
-        $this->assertNull($prediction->p1->value);
-        $this->assertNull($prediction->p2->value);
-        $this->assertNull($prediction->p3->value);
-        $this->assertNull($prediction->p6->value);
-        $this->assertNull($prediction->q->value);
-        $this->assertNull($prediction->s1->value);
-        $this->assertNull($prediction->s2->value);
-        $this->assertNull($prediction->u1->value);
-        $this->assertNull($prediction->u2->value);
-        $this->assertNull($prediction->v7->value);
-        $this->assertNull($prediction->x1->value);
-        $this->assertNull($prediction->y1->value);
-        $this->assertNull($prediction->y2->value);
-        $this->assertNull($prediction->y3->value);
-        $this->assertNull($prediction->y4->value);
-        $this->assertNull($prediction->y5->value);
-        $this->assertNull($prediction->y6->value);
-        $this->assertNull($prediction->formulaNumber->value);
-        $this->assertNull($prediction->ownerFirstName->value);
-        $this->assertNull($prediction->ownerSurname->value);
-        $this->assertNull($prediction->mrz1->value);
-        $this->assertNull($prediction->mrz2->value);
+        self::assertNull($prediction->a->value);
+        self::assertNull($prediction->b->value);
+        self::assertNull($prediction->c1->value);
+        self::assertNull($prediction->c3->value);
+        self::assertNull($prediction->c41->value);
+        self::assertNull($prediction->c4A->value);
+        self::assertNull($prediction->d1->value);
+        self::assertNull($prediction->d3->value);
+        self::assertNull($prediction->e->value);
+        self::assertNull($prediction->f1->value);
+        self::assertNull($prediction->f2->value);
+        self::assertNull($prediction->f3->value);
+        self::assertNull($prediction->g->value);
+        self::assertNull($prediction->g1->value);
+        self::assertNull($prediction->i->value);
+        self::assertNull($prediction->j->value);
+        self::assertNull($prediction->j1->value);
+        self::assertNull($prediction->j2->value);
+        self::assertNull($prediction->j3->value);
+        self::assertNull($prediction->p1->value);
+        self::assertNull($prediction->p2->value);
+        self::assertNull($prediction->p3->value);
+        self::assertNull($prediction->p6->value);
+        self::assertNull($prediction->q->value);
+        self::assertNull($prediction->s1->value);
+        self::assertNull($prediction->s2->value);
+        self::assertNull($prediction->u1->value);
+        self::assertNull($prediction->u2->value);
+        self::assertNull($prediction->v7->value);
+        self::assertNull($prediction->x1->value);
+        self::assertNull($prediction->y1->value);
+        self::assertNull($prediction->y2->value);
+        self::assertNull($prediction->y3->value);
+        self::assertNull($prediction->y4->value);
+        self::assertNull($prediction->y5->value);
+        self::assertNull($prediction->y6->value);
+        self::assertNull($prediction->formulaNumber->value);
+        self::assertNull($prediction->ownerFirstName->value);
+        self::assertNull($prediction->ownerSurname->value);
+        self::assertNull($prediction->mrz1->value);
+        self::assertNull($prediction->mrz2->value);
     }
 }

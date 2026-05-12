@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Geometry;
 
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
+
+use function count;
 
 /**
  * Utility class for Polygon.
@@ -14,7 +18,6 @@ abstract class PolygonUtils
      * Gets the centroid (Point) of a set of points.
      *
      * @param array $vertices Array of points.
-     * @return Point
      */
     public static function getCentroid(array $vertices): Point
     {
@@ -24,7 +27,7 @@ abstract class PolygonUtils
         $ySum = 0.0;
 
         foreach ($vertices as $vertex) {
-            /* @var Point $vertex */
+            /** @var Point $vertex */
             $xSum += $vertex->getX();
             $ySum += $vertex->getY();
         }
@@ -42,7 +45,7 @@ abstract class PolygonUtils
     public static function compareOnY(Polygon $polygon1, Polygon $polygon2): int
     {
         $sort = ($polygon1->getMinY() - $polygon2->getMinY());
-        if ($sort == 0) {
+        if ($sort === 0) {
             return 0;
         }
         return $sort < 0 ? -1 : 1;
@@ -51,9 +54,8 @@ abstract class PolygonUtils
     /**
      * Merges two polygons.
      *
-     * @param Polygon $base   First polygon to merge.
+     * @param Polygon $base First polygon to merge.
      * @param Polygon $target Second polygon to merge.
-     * @return Polygon
      * @throws MindeeGeometryException Throws if both polygons are empty.
      */
     public static function merge(Polygon $base, Polygon $target): Polygon
@@ -78,14 +80,13 @@ abstract class PolygonUtils
     /**
      * Creates a bounding box from one or two polygons.
      *
-     * @param Polygon      $base   First polygon.
+     * @param Polygon $base First polygon.
      * @param Polygon|null $target Second polygon.
-     * @return Polygon
      */
     public static function createBoundingBoxFrom(Polygon $base, ?Polygon $target = null): Polygon
     {
         if ($target) {
-            $merged = PolygonUtils::merge($base, $target);
+            $merged = self::merge($base, $target);
         } else {
             $merged = $base;
         }
@@ -106,12 +107,11 @@ abstract class PolygonUtils
      * Generates a quadrilateral Polygon from a given prediction.
      *
      * @param array $prediction Raw prediction array.
-     * @return Polygon
      * @throws MindeeGeometryException Throws if the polygon isn't a quadrilateral.
      */
     public static function quadrilateralFromPrediction(array $prediction): Polygon
     {
-        if (count($prediction) != 4) {
+        if (count($prediction) !== 4) {
             throw new MindeeGeometryException('Prediction must have exactly 4 points.');
         }
         return new Polygon($prediction);
@@ -121,8 +121,8 @@ abstract class PolygonUtils
      * Checks whether a point is located within a coordinate range on the x-axis.
      *
      * @param Point $point Point to check.
-     * @param float $minX  Lower bound.
-     * @param float $maxX  Upper bound.
+     * @param float $minX Lower bound.
+     * @param float $maxX Upper bound.
      * @return boolean
      */
     public static function isPointInX(Point $point, float $minX, float $maxX): bool
@@ -134,8 +134,8 @@ abstract class PolygonUtils
      * Checks whether a point is located within a coordinate range on the y-axis.
      *
      * @param Point $point Point to check.
-     * @param float $minY  Lower bound.
-     * @param float $maxY  Upper bound.
+     * @param float $minY Lower bound.
+     * @param float $maxY Upper bound.
      * @return boolean
      */
     public static function isPointInY(Point $point, float $minY, float $maxY): bool

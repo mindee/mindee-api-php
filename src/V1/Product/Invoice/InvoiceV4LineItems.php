@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Invoice;
+
+use ArrayObject;
 
 /**
  * List of all the line items present on the invoice.
  */
-class InvoiceV4LineItems extends \ArrayObject
+class InvoiceV4LineItems extends ArrayObject
 {
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -24,7 +28,6 @@ class InvoiceV4LineItems extends \ArrayObject
      * Creates a line of rST table-compliant string separators.
      *
      * @param string $char Character to use as a separator.
-     * @return string
      */
     public static function lineItemsSeparator(string $char): string
     {
@@ -44,7 +47,6 @@ class InvoiceV4LineItems extends \ArrayObject
     /**
      * String representation.
      *
-     * @return string
      */
     public function __toString(): string
     {

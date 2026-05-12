@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /** Invoice V4. */
 
 namespace Mindee\V1\Product\Invoice;

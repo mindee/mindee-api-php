@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Parsing\Common\Extras;
 
 use Mindee\V1\Client;
@@ -8,6 +10,10 @@ use Mindee\V1\ClientOptions\PredictOptions;
 use Mindee\V1\Product\InternationalId\InternationalIdV2;
 use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
+
+use function count;
+use function strlen;
 
 class ExtrasIntegrationFunctional extends TestCase
 {
@@ -21,7 +27,7 @@ class ExtrasIntegrationFunctional extends TestCase
     public function testShouldSendCropperExtra(): void
     {
         $sample = $this->client->sourceFromPath(
-            \TestingUtilities::getV1DataDir() . "/products/invoices/default_sample.jpg"
+            TestingUtilities::getV1DataDir() . "/products/invoices/default_sample.jpg"
         );
         $predictOptions = new PredictOptions();
         $predictOptions->setCropper(true);
@@ -30,14 +36,14 @@ class ExtrasIntegrationFunctional extends TestCase
 
         $response = $this->client->parse(InvoiceV4::class, $sample, $predictMethodOptions);
 
-        $this->assertNotNull($response->document->inference->pages[0]->extras->cropper);
-        $this->assertGreaterThan(0, count($response->document->inference->pages[0]->extras->cropper->croppings));
+        self::assertNotNull($response->document->inference->pages[0]->extras->cropper);
+        self::assertGreaterThan(0, count($response->document->inference->pages[0]->extras->cropper->croppings));
     }
 
     public function testShouldSendFullTextOcrExtra(): void
     {
         $sample = $this->client->sourceFromPath(
-            \TestingUtilities::getV1DataDir() . "/products/international_id/default_sample.jpg"
+            TestingUtilities::getV1DataDir() . "/products/international_id/default_sample.jpg"
         );
         $predictOptions = new PredictOptions();
         $predictOptions->setFullText(true);
@@ -45,7 +51,7 @@ class ExtrasIntegrationFunctional extends TestCase
         $predictMethodOptions->setPredictOptions($predictOptions);
         $response = $this->client->enqueueAndParse(InternationalIdV2::class, $sample, $predictMethodOptions);
 
-        $this->assertNotNull($response->document->extras->fullTextOcr);
-        $this->assertGreaterThan(10, strlen($response->document->extras->fullTextOcr->content));
+        self::assertNotNull($response->document->extras->fullTextOcr);
+        self::assertGreaterThan(10, strlen($response->document->extras->fullTextOcr->content));
     }
 }

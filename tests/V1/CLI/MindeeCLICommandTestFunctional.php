@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\CLI;
 
 require_once(__DIR__ . "/../../../vendor/autoload.php");
@@ -9,6 +11,7 @@ require_once(__DIR__ . "/MindeeCLITestingUtilities.php");
 
 use Mindee\CLI\MindeeCLIDocuments;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
 class MindeeCLICommandTestFunctional extends TestCase
 {
@@ -21,7 +24,7 @@ class MindeeCLICommandTestFunctional extends TestCase
 
     private function runValidCall($productName, $async = false, $initialArgs = []): array
     {
-        $filePath = \TestingUtilities::getFileTypesDir() . "/pdf/blank_1.pdf";
+        $filePath = TestingUtilities::getFileTypesDir() . "/pdf/blank_1.pdf";
         $args = [$productName, $filePath, "-k", $this->apiKey];
         if ($initialArgs) {
             $args = array_merge($args, $initialArgs);
@@ -33,12 +36,12 @@ class MindeeCLICommandTestFunctional extends TestCase
     }
 
 
-    public function productDataProvider()
+    public static function provideProductCases(): iterable
     {
         $data = [];
         $data[] = ["generated", true, ["-a", "mindee", "-e", "invoice_splitter", "-d", "1"]];
         foreach (MindeeCLIDocuments::getSpecs() as $productName => $productSpecs) {
-            if ($productName != "custom" && $productName != "generated") {
+            if ($productName !== "custom" && $productName !== "generated") {
                 if ($productSpecs->isSync) {
                     $data[] = [$productName, false];
                 }
@@ -51,13 +54,13 @@ class MindeeCLICommandTestFunctional extends TestCase
     }
 
     /**
-     * @dataProvider productDataProvider
+     * @dataProvider provideProductCases
      */
-    public function testProduct($productName, $async, $additionnalArgs = [])
+    public function testProduct($productName, $async, $additionnalArgs = []): void
     {
         $cmdOutput = $this->runValidCall($productName, $async, $additionnalArgs);
-        $this->assertEquals(0, $cmdOutput["code"], $productName . ($async ? " async" : " sync") . " test (code).");
-        $this->assertTrue(
+        self::assertSame(0, $cmdOutput["code"], $productName . ($async ? " async" : " sync") . " test (code).");
+        self::assertTrue(
             str_contains($cmdOutput["output"][1], "Document"),
             $productName . ($async ? " async" : " sync") . " test (string return)."
         );

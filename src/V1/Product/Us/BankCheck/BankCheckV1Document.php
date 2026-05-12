@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Us\BankCheck;
 
 use Mindee\Error\MindeeUnsetException;
@@ -39,8 +41,8 @@ class BankCheckV1Document extends Prediction
      */
     public StringField $routingNumber;
     /**
-     * @param array        $rawPrediction Raw prediction from HTTP response.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -76,8 +78,8 @@ class BankCheckV1Document extends Prediction
         if (!isset($rawPrediction["payees"])) {
             throw new MindeeUnsetException();
         }
-        $this->payees = $rawPrediction["payees"] == null ? [] : array_map(
-            fn ($prediction) => new StringField($prediction, $pageId),
+        $this->payees = $rawPrediction["payees"] === null ? [] : array_map(
+            static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["payees"]
         );
         if (!isset($rawPrediction["routing_number"])) {

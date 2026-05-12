@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Local input handling.
  */
@@ -18,6 +20,12 @@ use Mindee\PDF\PDFUtils;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
+
+use function count;
+use function in_array;
+use function strlen;
+
+use const DIRECTORY_SEPARATOR;
 
 /**
  * List of allowed mime types for document parsing.
@@ -57,11 +65,10 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Checks if the file needs fixing.
-     * @return void
      */
     public function checkNeedsFix(): void
     {
-        if ($this->fileMimetype == 'application/octet-stream') {
+        if ($this->fileMimetype === 'application/octet-stream') {
             trigger_error(
                 'File type application/octet-stream is probably incorrect. '
                 . 'Try to run fixPDF() on the file.',
@@ -73,17 +80,16 @@ abstract class LocalInputSource extends InputSource
     /**
      * Checks the mimetype integrity of a file.
      *
-     * @return void
      * @throws MindeeMimeTypeException Throws if the Mime type isn't allowed.
      */
-    private function checkMimeType()
+    private function checkMimeType(): void
     {
-        if (!in_array($this->fileMimetype, ALLOWED_MIME_TYPES)) {
+        if (!in_array($this->fileMimetype, ALLOWED_MIME_TYPES, true)) {
             $fileTypes = implode(', ', ALLOWED_MIME_TYPES);
             throw new MindeeMimeTypeException(
-                "File type " .
-                $this->fileMimetype .
-                " not allowed, must be one of $fileTypes.",
+                "File type "
+                . $this->fileMimetype
+                . " not allowed, must be one of $fileTypes.",
                 ErrorCode::USER_OPERATION_ERROR
             );
         }
@@ -105,7 +111,7 @@ abstract class LocalInputSource extends InputSource
     public function isPDF(): bool
     {
         $this->checkMimeType();
-        return $this->fileMimetype == 'application/pdf';
+        return $this->fileMimetype === 'application/pdf';
     }
 
     /**
@@ -123,7 +129,7 @@ abstract class LocalInputSource extends InputSource
                 ErrorCode::USER_OPERATION_ERROR
             );
         }
-        $pdf = new FPDI();
+        $pdf = new Fpdi();
         try {
             return $pdf->setSourceFile($this->fileObject->getFilename());
         } catch (PdfParserException $e) {
@@ -146,7 +152,6 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * @param string $fileBytes Raw data as bytes.
-     * @return void
      */
     private function saveBytesAsFile(string $fileBytes): void
     {
@@ -159,13 +164,12 @@ abstract class LocalInputSource extends InputSource
     /**
      * Create a new PDF from pages and set it as the main file object.
      * @param array $pageNumbers Array of page numbers to add to the newly created PDF.
-     * @return void
      * @throws MindeePDFException Throws if the pdf file can't be processed.
      */
     public function mergePDFPages(array $pageNumbers): void
     {
         try {
-            $pdf = new FPDI();
+            $pdf = new Fpdi();
             $pdf->setSourceFile($this->filePath);
             foreach ($pageNumbers as $pageNumber) {
                 $pdf->AddPage();
@@ -173,7 +177,7 @@ abstract class LocalInputSource extends InputSource
             }
             $this->saveBytesAsFile($pdf->Output($this->fileName, 'S'));
             $pdf->Close();
-        } catch (PdfParserException | PdfReaderException $e) {
+        } catch (PdfParserException|PdfReaderException $e) {
             throw new MindeePDFException(
                 "Failed to read PDF file.",
                 ErrorCode::PDF_CANT_PROCESS,
@@ -192,11 +196,11 @@ abstract class LocalInputSource extends InputSource
     public function isPDFEmpty(int $threshold = 1024): bool
     {
         try {
-            $pdf = new FPDI();
+            $pdf = new Fpdi();
             $pageCount = $pdf->setSourceFile($this->fileObject->getFilename());
             $pdf->Close();
             for ($pageNumber = 0; $pageNumber < $pageCount; $pageNumber++) {
-                $pdfPage = new FPDI();
+                $pdfPage = new Fpdi();
                 $pdfPage->setSourceFile($this->fileObject->getFilename());
                 $pdfPage->AddPage();
                 $pdfPage->useTemplate($pdfPage->importPage($pageNumber + 1));
@@ -206,7 +210,7 @@ abstract class LocalInputSource extends InputSource
                 }
                 $pdfPage->Close();
             }
-        } catch (PdfParserException | PdfReaderException $e) {
+        } catch (PdfParserException|PdfReaderException $e) {
             throw new MindeePDFException(
                 "Failed to read PDF file.",
                 ErrorCode::PDF_CANT_PROCESS,
@@ -219,11 +223,10 @@ abstract class LocalInputSource extends InputSource
     /**
      * Reads the contents of the file.
      *
-     * @return array
      */
     public function readContents(): array
     {
-        $fileHandle = fopen($this->fileObject->getFilename(), 'rb');
+        $fileHandle = fopen($this->fileObject->getFilename(), 'r');
         $strContents = fread($fileHandle, filesize($this->fileObject->getFilename()));
         fclose($fileHandle);
         return [basename($this->fileObject->getFilename()), $strContents];
@@ -232,7 +235,6 @@ abstract class LocalInputSource extends InputSource
     /**
      * Attempts to fix a PDF file.
      *
-     * @return void
      * @throws MindeeSourceException Throws if the file couldn't be fixed.
      */
     public function fixPDF(): void
@@ -263,17 +265,16 @@ abstract class LocalInputSource extends InputSource
     }
 
     /**
-     * @param integer      $quality                    Quality of the output file.
-     * @param integer|null $maxWidth                   Maximum width (Ignored for PDFs).
-     * @param integer|null $maxHeight                  Maximum height (Ignored for PDFs).
-     * @param boolean      $forceSourceTextCompression Whether to force the operation on PDFs with source text.
-     *            This will attempt to re-render PDF text over the rasterized original.
-     *            The script will attempt to re-write text, but might not support all fonts & encoding.
-     *            If disabled, ignored the operation.
-     *            WARNING: this operation is strongly discouraged.
-     * @param boolean      $disableSourceText          If the PDF has source text, whether to re-apply it to the
-     *            original or not. Needs force_source_text to work.
-     * @return void
+     * @param integer $quality Quality of the output file.
+     * @param integer|null $maxWidth Maximum width (Ignored for PDFs).
+     * @param integer|null $maxHeight Maximum height (Ignored for PDFs).
+     * @param boolean $forceSourceTextCompression Whether to force the operation on PDFs with source text.
+     *                                            This will attempt to re-render PDF text over the rasterized original.
+     *                                            The script will attempt to re-write text, but might not support all fonts & encoding.
+     *                                            If disabled, ignored the operation.
+     *                                            WARNING: this operation is strongly discouraged.
+     * @param boolean $disableSourceText If the PDF has source text, whether to re-apply it to the
+     *                                   original or not. Needs force_source_text to work.
      */
     public function compress(
         int $quality = 85,
@@ -324,7 +325,6 @@ abstract class LocalInputSource extends InputSource
      * Applies PDF-specific operations on the current file based on the specified PageOptions.
      *
      * @param PageOptions|null $pageOptions The options specifying which pages to modify or retain in the PDF file.
-     * @return void
      * @throws MindeePDFException If a PDF processing error occurs during the operation.
      */
     public function applyPageOptions(?PageOptions $pageOptions): void
@@ -340,24 +340,24 @@ abstract class LocalInputSource extends InputSource
         }
         $allPages = range(0, $this->getPageCount() - 1);
         $pagesToKeep = [];
-        if ($pageOptions->operation == KEEP_ONLY) {
+        if ($pageOptions->operation === KEEP_ONLY) {
             foreach ($pageOptions->pageIndexes as $pageId) {
                 if ($pageId < 0) {
                     $pageId = $this->getPageCount() + $pageId;
                 }
-                if (!in_array($pageId, $allPages)) {
+                if (!in_array($pageId, $allPages, true)) {
                     error_log("Page index '" . $pageId . "' is not present in source document");
                 } else {
                     $pagesToKeep[] = $pageId;
                 }
             }
-        } elseif ($pageOptions->operation == REMOVE) {
+        } elseif ($pageOptions->operation === REMOVE) {
             $pagesToRemove = [];
             foreach ($pageOptions->pageIndexes as $pageId) {
                 if ($pageId < 0) {
                     $pageId = $this->getPageCount() + $pageId;
                 }
-                if (!in_array($pageId, $allPages)) {
+                if (!in_array($pageId, $allPages, true)) {
                     error_log("Page index '" . $pageId . "' is not present in source document");
                 } else {
                     $pagesToRemove[] = $pageId;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Crop;
 
 /**
@@ -17,7 +19,7 @@ class CropResult
      */
     public function __construct(array $rawResponse)
     {
-        $this->crops = array_map(fn ($crop) => new CropItem($crop), $rawResponse['crops']);
+        $this->crops = array_map(static fn($crop) => new CropItem($crop), $rawResponse['crops']);
     }
 
     /**

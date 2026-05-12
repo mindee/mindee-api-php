@@ -1,34 +1,39 @@
 <?php
 
+declare(strict_types=1);
+
 namespace V1\Parsing\Common\Extras;
 
+use Mindee\Input\LocalResponse;
+use Mindee\V1\Client;
 use Mindee\V1\Product\InternationalId\InternationalIdV2;
 use PHPUnit\Framework\TestCase;
+use TestingUtilities;
 
-class FullTextOCRTest extends TestCase
+class FullTextOcrExtraTest extends TestCase
 {
     private $extrasDir;
 
     protected function setUp(): void
     {
-        $this->extrasDir = \TestingUtilities::getV1DataDir() . "/extras";
+        $this->extrasDir = TestingUtilities::getV1DataDir() . "/extras";
     }
 
     private function loadDocument()
     {
-        $dummyClient = new \Mindee\V1\Client("dummy-key");
-        $localResponse = new \Mindee\Input\LocalResponse($this->extrasDir . '/full_text_ocr/complete.json');
+        $dummyClient = new Client("dummy-key");
+        $localResponse = new LocalResponse($this->extrasDir . '/full_text_ocr/complete.json');
         $response = $dummyClient->loadPrediction(InternationalIdV2::class, $localResponse);
         return $response->document;
     }
 
-    public function testGetsFullTextOCRResult()
+    public function testGetsFullTextOCRResult(): void
     {
         $expectedText = file_get_contents($this->extrasDir . '/full_text_ocr/full_text_ocr.txt');
 
         $document = $this->loadDocument();
         $fullTextOcr = $document->extras->fullTextOcr;
 
-        $this->assertEquals(trim($expectedText), trim(strval($fullTextOcr)));
+        self::assertSame(trim($expectedText), trim((string) $fullTextOcr));
     }
 }

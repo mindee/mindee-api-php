@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Product\Resume;
+
+use ArrayObject;
 
 /**
  * The list of social network profiles of the candidate.
  */
-class ResumeV1SocialNetworksUrls extends \ArrayObject
+class ResumeV1SocialNetworksUrls extends ArrayObject
 {
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
@@ -24,7 +28,6 @@ class ResumeV1SocialNetworksUrls extends \ArrayObject
      * Creates a line of rST table-compliant string separators.
      *
      * @param string $char Character to use as a separator.
-     * @return string
      */
     public static function socialNetworksUrlsSeparator(string $char): string
     {
@@ -38,7 +41,6 @@ class ResumeV1SocialNetworksUrls extends \ArrayObject
     /**
      * String representation.
      *
-     * @return string
      */
     public function __toString(): string
     {

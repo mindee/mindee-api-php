@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\Extraction;
 
 use Mindee\Dependency\DependencyChecker;
@@ -9,6 +11,8 @@ use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\PdfParserException;
+
+use const DIRECTORY_SEPARATOR;
 
 /**
  * An extracted sub-Pdf.
@@ -70,7 +74,6 @@ class ExtractedPDF
      * Write the PDF to a file.
      *
      * @param string $outputPath The output directory (must exist).
-     * @return void
      */
     public function writeToFile(string $outputPath): void
     {

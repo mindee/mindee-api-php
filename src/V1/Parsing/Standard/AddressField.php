@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
 
 /**
@@ -25,10 +27,10 @@ class AddressField extends StringField
     public ?string $country;
 
     /**
-     * @param array        $rawPrediction Raw prediction array as returned by the Mindee API.
-     * @param integer|null $pageId        Page number for multi-page documents.
-     * @param boolean      $reconstructed Whether the field was reconstructed.
-     * @param string       $valueKey      Key to use for the full address value.
+     * @param array $rawPrediction Raw prediction array as returned by the Mindee API.
+     * @param integer|null $pageId Page number for multi-page documents.
+     * @param boolean $reconstructed Whether the field was reconstructed.
+     * @param string $valueKey Key to use for the full address value.
      */
     public function __construct(
         array $rawPrediction,
@@ -50,7 +52,6 @@ class AddressField extends StringField
     /**
      * Prettier string representation (same semantics as StringField).
      *
-     * @return string
      */
     public function __toString(): string
     {

@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use function array_key_exists;
+use function is_scalar;
 
 /**
  * Tax line information.
@@ -27,10 +32,10 @@ class TaxField extends BaseField
     public ?float $basis;
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
-     * @param boolean      $reconstructed Whether the field has been reconstructed.
-     * @param string       $valueKey      Key to use for the value.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field has been reconstructed.
+     * @param string $valueKey Key to use for the value.
      */
     public function __construct(
         array $rawPrediction,
@@ -41,27 +46,27 @@ class TaxField extends BaseField
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
         $this->setPosition($rawPrediction);
         if (array_key_exists('value', $rawPrediction) && is_numeric($rawPrediction['value'])) {
-            $this->value = floatval($rawPrediction['value']);
+            $this->value = (float) ($rawPrediction['value']);
         } else {
             $this->value = null;
             $this->confidence = 0.0;
         }
         if (array_key_exists('rate', $rawPrediction) && is_numeric($rawPrediction['rate'])) {
-            $this->rate = floatval($rawPrediction['rate']);
+            $this->rate = (float) ($rawPrediction['rate']);
         } else {
             $this->rate = null;
         }
         if (
             array_key_exists('code', $rawPrediction) && is_scalar(
                 $rawPrediction['code']
-            ) && $rawPrediction['code'] != 'N/A'
+            ) && $rawPrediction['code'] !== 'N/A'
         ) {
-            $this->code = strval($rawPrediction['code']);
+            $this->code = (string) ($rawPrediction['code']);
         } else {
             $this->code = null;
         }
         if (array_key_exists('base', $rawPrediction) && is_numeric($rawPrediction['base'])) {
-            $this->basis = floatval($rawPrediction['base']);
+            $this->basis = (float) ($rawPrediction['base']);
         } else {
             $this->basis = null;
         }
@@ -76,9 +81,9 @@ class TaxField extends BaseField
     {
         return [
             'code' => $this->code ?? '',
-            'basis' => isset($this->basis) ? number_format((float)$this->basis, 2, ".", "") : '',
-            'rate' => isset($this->rate) ? number_format((float)$this->rate, 2, ".", "") : '',
-            'value' => isset($this->value) ? number_format((float)$this->value, 2, ".", "") : '',
+            'basis' => isset($this->basis) ? number_format((float) $this->basis, 2, ".", "") : '',
+            'rate' => isset($this->rate) ? number_format((float) $this->rate, 2, ".", "") : '',
+            'value' => isset($this->value) ? number_format((float) $this->value, 2, ".", "") : '',
         ];
     }
 
@@ -91,10 +96,10 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return '| ' . mb_str_pad($printable['basis'], 13, ' ', STR_PAD_RIGHT, "UTF-8") .
-            ' | ' . mb_str_pad($printable['code'], 6, ' ', STR_PAD_RIGHT, "UTF-8") .
-            ' | ' . mb_str_pad($printable['rate'], 8, ' ', STR_PAD_RIGHT, "UTF-8") .
-            ' | ' . mb_str_pad($printable['value'], 13, ' ', STR_PAD_RIGHT, "UTF-8") . ' |';
+        return '| ' . mb_str_pad($printable['basis'], 13, ' ', STR_PAD_RIGHT, "UTF-8")
+            . ' | ' . mb_str_pad($printable['code'], 6, ' ', STR_PAD_RIGHT, "UTF-8")
+            . ' | ' . mb_str_pad($printable['rate'], 8, ' ', STR_PAD_RIGHT, "UTF-8")
+            . ' | ' . mb_str_pad($printable['value'], 13, ' ', STR_PAD_RIGHT, "UTF-8") . ' |';
     }
 
     /**
@@ -105,10 +110,10 @@ class TaxField extends BaseField
         $printable = $this->printableValues();
 
         return rtrim(
-            'Base: ' . $printable['basis'] . ', ' .
-            'Code: ' . $printable['code'] . ', ' .
-            'Rate (%): ' . $printable['rate'] . ', ' .
-            'Amount: ' . $printable['value']
+            'Base: ' . $printable['basis'] . ', '
+            . 'Code: ' . $printable['code'] . ', '
+            . 'Rate (%): ' . $printable['rate'] . ', '
+            . 'Amount: ' . $printable['value']
         );
     }
 }

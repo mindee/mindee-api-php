@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Common;
 
 use DateTimeImmutable;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
+use Exception;
+
+use function array_key_exists;
 
 /**
  * Job class for asynchronous requests.
@@ -46,10 +51,10 @@ class Job
     {
         try {
             $this->issuedAt = new DateTimeImmutable($rawResponse['issued_at']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             try {
                 $this->issuedAt = new DateTimeImmutable(strtotime($rawResponse['issued_at']));
-            } catch (\Exception $e2) {
+            } catch (Exception $e2) {
                 throw new MindeeApiException(
                     "Could not create date from " . $rawResponse['issued_at'],
                     ErrorCode::API_UNPROCESSABLE_ENTITY,
@@ -60,15 +65,15 @@ class Job
         $this->id = $rawResponse['id'];
         $this->status = $rawResponse['status'];
         if (
-            array_key_exists('available_at', $rawResponse) &&
-            $rawResponse['available_at'] !== null && strtotime($rawResponse['available_at'])
+            array_key_exists('available_at', $rawResponse)
+            && $rawResponse['available_at'] !== null && strtotime($rawResponse['available_at'])
         ) {
             try {
                 $this->availableAt = new DateTimeImmutable($rawResponse['available_at']);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 try {
                     $this->availableAt = new DateTimeImmutable(strtotime($rawResponse['available_at']));
-                } catch (\Exception $e2) {
+                } catch (Exception $e2) {
                     throw new MindeeApiException(
                         "Could not create date from " . $rawResponse['available_at'],
                         ErrorCode::API_UNPROCESSABLE_ENTITY,
@@ -76,8 +81,8 @@ class Job
                     );
                 }
             }
-            $ts1 = (int)$this->availableAt->format('Uv');
-            $ts2 = (int)$this->issuedAt->format('Uv');
+            $ts1 = (int) $this->availableAt->format('Uv');
+            $ts2 = (int) $this->issuedAt->format('Uv');
             $this->millisecsTaken = $ts2 - $ts1;
         } else {
             $this->availableAt = null;
@@ -86,7 +91,6 @@ class Job
     }
 
     /**
-     * @return string
      */
     public function __toString(): string
     {

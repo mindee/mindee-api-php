@@ -1,8 +1,8 @@
 <?php
 
-namespace V1\CLI;
+declare(strict_types=1);
 
-use Mindee\Product;
+namespace V1\CLI;
 
 class MindeeCLITestingUtilities
 {

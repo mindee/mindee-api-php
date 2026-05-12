@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Settings and variables linked to endpoint calling & API usage.
  */
@@ -19,8 +21,8 @@ class MindeeWorkflowAPI extends BaseAPI
      */
     public string $workflowId;
     /**
-     * @param string|null $apiKey     API key.
-     * @param string      $workflowId ID of the workflow.
+     * @param string|null $apiKey API key.
+     * @param string $workflowId ID of the workflow.
      * @throws MindeeException Throws if the API key specified is invalid.
      */
     public function __construct(
@@ -28,10 +30,10 @@ class MindeeWorkflowAPI extends BaseAPI
         string $workflowId
     ) {
         parent::__construct($apiKey);
-        if (!$this->apiKey || strlen($this->apiKey) == 0) {
+        if (!$this->apiKey || $this->apiKey === '') {
             throw new MindeeException(
-                "Missing API key. Please check your Client configuration.You can set this using the " .
-                API_KEY_ENV_NAME . ' environment variable.',
+                "Missing API key. Please check your Client configuration.You can set this using the "
+                . API_KEY_ENV_NAME . ' environment variable.',
                 ErrorCode::USER_INPUT_ERROR
             );
         }

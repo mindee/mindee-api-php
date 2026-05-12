@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Geometry;
 
 use Mindee\Geometry\Point;
@@ -29,54 +31,54 @@ class PolygonUtilsTest extends TestCase
         );
     }
 
-    public function testGivenAValidPolygonMustGetTheValidCentroid()
+    public function testGivenAValidPolygonMustGetTheValidCentroid(): void
     {
-        $this->assertEquals($this->polygonWhichIsNotRectangle->getCentroid(), new Point(0.149, 0.538));
+        self::assertEquals(new Point(0.149, 0.538), $this->polygonWhichIsNotRectangle->getCentroid());
     }
 
-    public function testGivenAValidPolygonMustGetTheMinX()
+    public function testGivenAValidPolygonMustGetTheMinX(): void
     {
-        $this->assertEquals(0.123, $this->polygonWhichIsNotRectangle->getMinX());
+        self::assertSame(0.123, $this->polygonWhichIsNotRectangle->getMinX());
     }
 
-    public function testGivenAValidPolygonMustGetTheMinY()
+    public function testGivenAValidPolygonMustGetTheMinY(): void
     {
-        $this->assertEquals(0.53, $this->polygonWhichIsNotRectangle->getMinY());
+        self::assertSame(0.53, $this->polygonWhichIsNotRectangle->getMinY());
     }
 
-    public function testGivenAValidPolygonMustGetTheMaxX()
+    public function testGivenAValidPolygonMustGetTheMaxX(): void
     {
-        $this->assertEquals(0.175, $this->polygonWhichIsNotRectangle->getMaxX());
+        self::assertSame(0.175, $this->polygonWhichIsNotRectangle->getMaxX());
     }
 
-    public function testGivenAValidPolygonMustGetTheMaxY()
+    public function testGivenAValidPolygonMustGetTheMaxY(): void
     {
-        $this->assertEquals(0.546, $this->polygonWhichIsNotRectangle->getMaxY());
+        self::assertSame(0.546, $this->polygonWhichIsNotRectangle->getMaxY());
     }
 
-    public function testMergePolygonsWithTwoNotNullMustGetAValidPolygon()
+    public function testMergePolygonsWithTwoNotNullMustGetAValidPolygon(): void
     {
         $mergedPolygon = PolygonUtils::merge($this->polygon1, $this->polygon2);
 
-        $this->assertEquals(0.442, $mergedPolygon->getMinY());
-        $this->assertEquals(0.081, $mergedPolygon->getMinX());
-        $this->assertEquals(0.451, $mergedPolygon->getMaxY());
-        $this->assertEquals(0.26, $mergedPolygon->getMaxX());
+        self::assertSame(0.442, $mergedPolygon->getMinY());
+        self::assertSame(0.081, $mergedPolygon->getMinX());
+        self::assertSame(0.451, $mergedPolygon->getMaxY());
+        self::assertSame(0.26, $mergedPolygon->getMaxX());
     }
 
-    public function testMergeWithNullPolygonMustThrow()
+    public function testMergeWithNullPolygonMustThrow(): void
     {
         $this->expectException(TypeError::class);
         PolygonUtils::merge(null, null);
     }
 
-    public function testMergeWith1PolygonAndANullPolygonMustGetPolygon()
+    public function testMergeWith1PolygonAndANullPolygonMustGetPolygon(): void
     {
         $mergedPolygon = PolygonUtils::merge($this->polygon1, new Polygon([]));
 
-        $this->assertEquals(0.442, $mergedPolygon->getMinY());
-        $this->assertEquals(0.081, $mergedPolygon->getMinX());
-        $this->assertEquals(0.451, $mergedPolygon->getMaxY());
-        $this->assertEquals(0.15, $mergedPolygon->getMaxX());
+        self::assertSame(0.442, $mergedPolygon->getMinY());
+        self::assertSame(0.081, $mergedPolygon->getMinX());
+        self::assertSame(0.451, $mergedPolygon->getMaxY());
+        self::assertSame(0.15, $mergedPolygon->getMaxX());
     }
 }

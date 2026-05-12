@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V2\Product\Classification;
 
 use Mindee\Parsing\SummaryHelper;
@@ -30,7 +32,6 @@ class ClassificationInference extends BaseInference
      */
     /**
      * A prettier representation.
-     * @return string
      */
     public function __toString(): string
     {

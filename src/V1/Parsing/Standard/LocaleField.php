@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Mindee\V1\Parsing\Standard;
+
+use function array_key_exists;
 
 /**
  * The locale detected on the document.
@@ -21,13 +25,12 @@ class LocaleField extends BaseField
     public ?string $currency;
 
     /**
-     * @param array  $localePrediction Raw locale prediction.
-     * @param string $key              Name of the prediction key.
-     * @return string|null
+     * @param array $localePrediction Raw locale prediction.
+     * @param string $key Name of the prediction key.
      */
     private static function getValue(array $localePrediction, string $key): ?string
     {
-        if (!array_key_exists($key, $localePrediction) || $localePrediction[$key] == 'N/A') {
+        if (!array_key_exists($key, $localePrediction) || $localePrediction[$key] === 'N/A') {
             return null;
         }
 
@@ -35,9 +38,9 @@ class LocaleField extends BaseField
     }
 
     /**
-     * @param array        $rawPrediction Raw prediction array.
-     * @param integer|null $pageId        Page number for multi pages document.
-     * @param boolean      $reconstructed Whether the field was reconstructed.
+     * @param array $rawPrediction Raw prediction array.
+     * @param integer|null $pageId Page number for multi pages document.
+     * @param boolean $reconstructed Whether the field was reconstructed.
      */
     public function __construct(
         array $rawPrediction,
@@ -50,9 +53,9 @@ class LocaleField extends BaseField
             $valueKey = 'language';
         }
         parent::__construct($rawPrediction, $pageId, $reconstructed, $valueKey);
-        $this->language = LocaleField::getValue($rawPrediction, 'language');
-        $this->country = LocaleField::getValue($rawPrediction, 'country');
-        $this->currency = LocaleField::getValue($rawPrediction, 'currency');
+        $this->language = self::getValue($rawPrediction, 'language');
+        $this->country = self::getValue($rawPrediction, 'country');
+        $this->currency = self::getValue($rawPrediction, 'currency');
     }
 
     /**
