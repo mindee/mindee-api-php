@@ -20,7 +20,7 @@ class SummaryHelper
      */
     public static function formatFloat(?float $number): string
     {
-        if ($number == null) {
+        if ($number === null) {
             return '';
         }
         $formatted = number_format($number, 5, '.', '');

@@ -37,8 +37,15 @@ abstract class BBoxUtils
         if (!$polygons) {
             return null;
         }
-        $merged = $polygons[0];
+        $merged = null;
         foreach ($polygons as $polygon) {
+            if (empty($polygon)) {
+                continue;
+            } else {
+                if (empty($merged)) {
+                    $merged = $polygon;
+                }
+            }
             if ($merged !== $polygon) {
                 $merged = PolygonUtils::merge($merged, $polygon);
             }

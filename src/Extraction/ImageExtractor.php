@@ -208,7 +208,7 @@ class ImageExtractor
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
         $format ??= $this->saveFormat;
-        $filename = sprintf('%s.%s_page%d-%d.%s', $filename ?? $this->filename, $format, $pageIndex, $index, $format);
+        $filename ??= sprintf('%s_page%d-%d.%s', $this->filename, $pageIndex, $index, $format);
         return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
     }
 
