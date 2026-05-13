@@ -25,7 +25,7 @@ class LocaleField extends BaseField
     public ?string $currency;
 
     /**
-     * @param array $localePrediction Raw locale prediction.
+     * @param array<string,mixed> $localePrediction Raw locale prediction.
      * @param string $key Name of the prediction key.
      */
     private static function getValue(array $localePrediction, string $key): ?string
@@ -38,7 +38,7 @@ class LocaleField extends BaseField
     }
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      */

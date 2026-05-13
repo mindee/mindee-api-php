@@ -17,13 +17,13 @@ class GeneratedListField
     /** @var integer|null ID of the page the object was found on */
     public ?int $pageId;
 
-    /** @var array List of values */
+    /** @var array<GeneratedObjectField|StringField> List of values */
     public array $values = [];
 
     /**
      * Constructor.
      *
-     * @param array $rawPrediction Raw prediction data.
+     * @param array<string, mixed> $rawPrediction Raw prediction data.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -57,7 +57,7 @@ class GeneratedListField
     /**
      * Get a list of contents.
      *
-     * @return array List of contents.
+     * @return array<GeneratedObjectField|StringField> List of contents.
      */
     public function getContentsList(): array
     {

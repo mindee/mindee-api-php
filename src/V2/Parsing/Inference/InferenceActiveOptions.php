@@ -50,16 +50,16 @@ class InferenceActiveOptions
     public DataSchemaActiveOption $dataSchema;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->rag = $serverResponse['rag'];
-        $this->rawText = $serverResponse['raw_text'];
-        $this->polygon = $serverResponse['polygon'];
-        $this->confidence = $serverResponse['confidence'];
-        $this->textContext = $serverResponse['text_context'];
-        $this->dataSchema = new DataSchemaActiveOption($serverResponse['data_schema']);
+        $this->rag = $rawResponse['rag'];
+        $this->rawText = $rawResponse['raw_text'];
+        $this->polygon = $rawResponse['polygon'];
+        $this->confidence = $rawResponse['confidence'];
+        $this->textContext = $rawResponse['text_context'];
+        $this->dataSchema = new DataSchemaActiveOption($rawResponse['data_schema']);
     }
 
     /**

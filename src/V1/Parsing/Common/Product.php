@@ -10,16 +10,16 @@ namespace Mindee\V1\Parsing\Common;
 class Product
 {
     /**
-     * @var string|mixed Product's name.
+     * @var string Product's name.
      */
     public string $name;
     /**
-     * @var string|mixed Product's versions.
+     * @var string Product's versions.
      */
     public string $version;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {

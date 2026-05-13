@@ -36,9 +36,13 @@ class PayslipV3SalaryDetail
      * @var float|null The rate of the earning.
      */
     public ?float $rate;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -54,6 +58,7 @@ class PayslipV3SalaryDetail
             ? (float) ($rawPrediction["number"]) : null;
         $this->rate = isset($rawPrediction["rate"])
             ? (float) ($rawPrediction["rate"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -73,7 +78,7 @@ class PayslipV3SalaryDetail
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

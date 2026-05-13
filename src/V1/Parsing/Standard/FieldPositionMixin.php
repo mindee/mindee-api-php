@@ -26,7 +26,7 @@ trait FieldPositionMixin
     /**
      * Sets the position of a field.
      *
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      */
     protected function setPosition(array $rawPrediction): void
     {

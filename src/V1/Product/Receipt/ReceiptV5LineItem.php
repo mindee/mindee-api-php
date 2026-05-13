@@ -32,15 +32,20 @@ class ReceiptV5LineItem
      * @var float|null The item unit price.
      */
     public ?float $unitPrice;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->description = $rawPrediction["description"] ?? null;
         $this->quantity = isset($rawPrediction["quantity"])
             ? (float) ($rawPrediction["quantity"]) : null;
@@ -66,7 +71,7 @@ class ReceiptV5LineItem
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

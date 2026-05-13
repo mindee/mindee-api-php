@@ -19,7 +19,7 @@ class ErrorItem
     public string $detail;
 
     /**
-     * @param array $rawResponse Raw error response from the API.
+     * @param array<string, mixed> $rawResponse Raw error response from the API.
      */
     public function __construct(array $rawResponse)
     {

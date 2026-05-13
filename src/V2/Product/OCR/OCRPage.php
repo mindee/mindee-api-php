@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Product\Ocr;
+namespace Mindee\V2\Product\OCR;
 
 /**
  * OCR result for a single page.
  */
-class OcrPage
+class OCRPage
 {
     /**
-     * @var OcrWord[] OCR result for a single page.
+     * @var OCRWord[] OCR result for a single page.
      */
     public array $words;
 
@@ -20,11 +20,11 @@ class OcrPage
     public string $content;
 
     /**
-     * @param array $rawResponse Raw server response array.
+     * @param array<string, mixed> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {
-        $this->words = array_map(static fn($word) => new OcrWord($word), $rawResponse['words']);
+        $this->words = array_map(static fn($word) => new OCRWord($word), $rawResponse['words']);
         $this->content = $rawResponse['content'];
     }
 

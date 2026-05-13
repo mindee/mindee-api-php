@@ -23,13 +23,13 @@ class LocalResponse
     private $file;
 
     /**
-     * @param mixed $inputFile A string, path or file-like object to load as a local response.
+     * @param resource|string|array $inputFile A string, path or file-like object to load as a local response.
      * @throws MindeeException Throws if the input file isn't acceptable.
      */
     public function __construct(mixed $inputFile)
     {
         if (is_resource($inputFile) && get_resource_type($inputFile) === 'file') {
-            $content = fread($inputFile, filesize($inputFile));
+            $content = fread($inputFile, fstat($inputFile)['size']);
             $strStripped = str_replace(["\r", "\n"], '', $content);
             $this->file = fopen('php://memory', 'r+');
             fwrite($this->file, $strStripped);
@@ -52,6 +52,10 @@ class LocalResponse
             fwrite($this->file, $strStripped);
             rewind($this->file);
         } elseif (is_string($inputFile) || is_array($inputFile)) {
+            if (is_array($inputFile))
+            {
+                $inputFile = implode($inputFile);
+            }
             $strStripped = str_replace(["\r", "\n"], '', $inputFile);
             $this->file = fopen('php://memory', 'r+');
             fwrite($this->file, $strStripped);
@@ -66,6 +70,7 @@ class LocalResponse
 
     /**
      * @throws MindeeException Throws if the file contents cannot be converted to a valid array.
+     * @return array<string, mixed> The file contents.
      */
     public function toArray(): array
     {

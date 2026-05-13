@@ -40,9 +40,13 @@ class EnergyBillV1TaxesAndContribution
      * @var float|null The price per unit of Taxes and Contributions.
      */
     public ?float $unitPrice;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -52,6 +56,7 @@ class EnergyBillV1TaxesAndContribution
         $this->description = $rawPrediction["description"] ?? null;
         $this->endDate = $rawPrediction["end_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
+        $this->pageId = $pageId;
         $this->taxRate = isset($rawPrediction["tax_rate"])
             ? (float) ($rawPrediction["tax_rate"]) : null;
         $this->total = isset($rawPrediction["total"])
@@ -78,7 +83,7 @@ class EnergyBillV1TaxesAndContribution
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

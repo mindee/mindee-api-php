@@ -48,9 +48,13 @@ class FinancialDocumentV1LineItem
      * @var float|null The item unit price.
      */
     public ?float $unitPrice;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -70,6 +74,7 @@ class FinancialDocumentV1LineItem
         $this->unitMeasure = $rawPrediction["unit_measure"] ?? null;
         $this->unitPrice = isset($rawPrediction["unit_price"])
             ? (float) ($rawPrediction["unit_price"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -92,7 +97,7 @@ class FinancialDocumentV1LineItem
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

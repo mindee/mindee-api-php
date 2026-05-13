@@ -18,7 +18,7 @@ class PredictResponse extends ApiResponse
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array $rawResponse Raw HTTP response.
+     * @param array<string, mixed> $rawResponse Raw HTTP response.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {

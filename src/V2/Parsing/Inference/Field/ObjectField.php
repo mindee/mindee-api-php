@@ -16,15 +16,15 @@ class ObjectField extends BaseField
     public InferenceFields $fields;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation for rst display.
      */
-    public function __construct(array $serverResponse, int $indentLevel = 0)
+    public function __construct(array $rawResponse, int $indentLevel = 0)
     {
-        parent::__construct($serverResponse, $indentLevel);
+        parent::__construct($rawResponse, $indentLevel);
 
         $this->fields = new InferenceFields(
-            $serverResponse['fields'],
+            $rawResponse['fields'],
             $this->indentLevel + 1
         );
     }

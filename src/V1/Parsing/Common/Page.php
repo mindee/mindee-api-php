@@ -6,6 +6,7 @@ namespace Mindee\V1\Parsing\Common;
 
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
 use ReflectionClass;
 use ReflectionException;
@@ -18,7 +19,7 @@ use function array_key_exists;
 class Page
 {
     /**
-     * @var integer|mixed ID of the current page.
+     * @var integer ID of the current page.
      */
     public int $id;
     /**
@@ -28,7 +29,7 @@ class Page
     /**
      * @var Prediction|object Type of Page prediction.
      */
-    public Prediction $prediction;
+    public mixed $prediction;
     /**
      * @var Extras Potential Extras fields sent back along with the prediction.
      */
@@ -36,8 +37,10 @@ class Page
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
+     * @throws MindeeUnsetException Throws if a field doesn't appear in the response, through the reflected document
+     * class.
      */
     public function __construct(string $predictionType, array $rawPrediction)
     {

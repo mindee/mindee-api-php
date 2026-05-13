@@ -28,9 +28,13 @@ class NutritionFactsLabelV1Calorie
      * @var float|null The amount of calories per serving of the product.
      */
     public ?float $perServing;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -43,6 +47,7 @@ class NutritionFactsLabelV1Calorie
             ? (float) ($rawPrediction["per_100g"]) : null;
         $this->perServing = isset($rawPrediction["per_serving"])
             ? (float) ($rawPrediction["per_serving"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -60,7 +65,7 @@ class NutritionFactsLabelV1Calorie
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

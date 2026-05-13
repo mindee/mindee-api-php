@@ -17,12 +17,12 @@ class RawText
     public array $pages;
 
     /**
-     * @param array $serverResponse JSON response from the server.
+     * @param array<string,mixed> $rawResponse JSON response from the server.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        if (array_key_exists('pages', $serverResponse)) {
-            foreach ($serverResponse['pages'] as $page) {
+        if (array_key_exists('pages', $rawResponse)) {
+            foreach ($rawResponse['pages'] as $page) {
                 $this->pages[] = new RawTextPage($page);
             }
         } else {

@@ -6,14 +6,14 @@ namespace V2\Product;
 
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
-use Mindee\V2\Product\Ocr\OcrResponse;
-use Mindee\V2\Product\Ocr\Params\OcrParameters;
+use Mindee\V2\Product\OCR\OCRResponse;
+use Mindee\V2\Product\OCR\Params\OCRParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
-class OcrFunctional extends TestCase
+class OCRFunctional extends TestCase
 {
     private Client $client;
     private string $ocrModelId;
@@ -30,14 +30,14 @@ class OcrFunctional extends TestCase
      * Tests the success of the OCR process using a default sample file.
      *
      */
-    public function testOcrDefaultSampleMustSucceed(): void
+    public function testOCRDefaultSampleMustSucceed(): void
     {
         $inputSource = new PathInput(
             TestingUtilities::getV2ProductDir() . '/ocr/default_sample.jpg'
         );
 
-        $productParams = new OcrParameters($this->ocrModelId);
-        $response = $this->client->enqueueAndGetResult(OcrResponse::class, $inputSource, $productParams);
+        $productParams = new OCRParameters($this->ocrModelId);
+        $response = $this->client->enqueueAndGetResult(OCRResponse::class, $inputSource, $productParams);
 
         self::assertNotNull($response);
         self::assertNotNull($response->inference);

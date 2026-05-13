@@ -28,15 +28,20 @@ class NutritionFactsLabelV1SaturatedFat
      * @var float|null The amount of saturated fat per serving of the product.
      */
     public ?float $perServing;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->dailyValue = isset($rawPrediction["daily_value"])
             ? (float) ($rawPrediction["daily_value"]) : null;
         $this->per100G = isset($rawPrediction["per_100g"])
@@ -60,7 +65,7 @@ class NutritionFactsLabelV1SaturatedFat
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

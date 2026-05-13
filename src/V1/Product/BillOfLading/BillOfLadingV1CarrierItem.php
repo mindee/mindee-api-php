@@ -40,9 +40,13 @@ class BillOfLadingV1CarrierItem
      * @var string|null The unit of measurement for weights.
      */
     public ?string $weightUnit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -58,6 +62,7 @@ class BillOfLadingV1CarrierItem
         $this->quantity = isset($rawPrediction["quantity"])
             ? (float) ($rawPrediction["quantity"]) : null;
         $this->weightUnit = $rawPrediction["weight_unit"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -78,7 +83,7 @@ class BillOfLadingV1CarrierItem
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -12,7 +12,7 @@ use ArrayObject;
 class FinancialDocumentV1LineItems extends ArrayObject
 {
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

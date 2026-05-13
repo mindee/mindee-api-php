@@ -17,7 +17,7 @@ class SplitInference extends BaseInference
     public SplitResult $result;
 
     /**
-     * @param array $rawResponse Raw server response array.
+     * @param array<string, mixed> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {

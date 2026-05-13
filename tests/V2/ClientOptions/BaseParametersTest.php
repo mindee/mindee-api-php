@@ -11,7 +11,7 @@ class BaseParametersTest extends TestCase
 {
     public function testAsHashShouldSerializeMultipleWebhookIdsAsIndexedFields(): void
     {
-        $params = new class ('model-id', null, ['first-id', 'second-id'], null) extends BaseParameters {
+        $params = new class ('model-id', null, ['first-id', 'second-id']) extends BaseParameters {
             public static string $slug = 'test';
         };
 

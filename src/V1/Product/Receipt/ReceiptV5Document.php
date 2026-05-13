@@ -89,7 +89,7 @@ class ReceiptV5Document extends Prediction
      */
     public AmountField $totalTax;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -154,7 +154,7 @@ class ReceiptV5Document extends Prediction
         if (!isset($rawPrediction["supplier_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] === null ? [] : array_map(
+        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
             static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );

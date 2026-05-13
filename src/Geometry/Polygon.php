@@ -12,7 +12,7 @@ use function count;
 class Polygon
 {
     /**
-     * @var Point[]|null Vertices of the polygon.
+     * @var array<Point>|null Vertices of the polygon.
      */
     public ?array $coordinates;
 
@@ -27,7 +27,7 @@ class Polygon
     private MinMax $minMaxX;
 
     /**
-     * @param array|null $coordinates Coordinates of the polygon as a set of Points.
+     * @param array<array<float|integer>>|null $coordinates Coordinates of the polygon as a set of Points.
      */
     public function __construct(?array $coordinates = null)
     {
@@ -146,7 +146,7 @@ class Polygon
 
     /**
      * Retrieves the coordinates of the polygon.
-     *
+     * @return array<Point>|null Coordinates of the polygon.
      */
     public function getCoordinates(): ?array
     {

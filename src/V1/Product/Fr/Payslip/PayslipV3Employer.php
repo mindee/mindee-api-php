@@ -44,9 +44,13 @@ class PayslipV3Employer
      * @var string|null The URSSAF number of the employer.
      */
     public ?string $urssafNumber;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -60,6 +64,7 @@ class PayslipV3Employer
         $this->name = $rawPrediction["name"] ?? null;
         $this->phoneNumber = $rawPrediction["phone_number"] ?? null;
         $this->urssafNumber = $rawPrediction["urssaf_number"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -81,7 +86,7 @@ class PayslipV3Employer
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

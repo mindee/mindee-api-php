@@ -29,17 +29,17 @@ class ExtractionResult
     public ?RAGMetadata $rag;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->fields = new InferenceFields($serverResponse['fields']);
-        $this->rawText = isset($serverResponse['raw_text'])
-            ? new RawText($serverResponse['raw_text'])
+        $this->fields = new InferenceFields($rawResponse['fields']);
+        $this->rawText = isset($rawResponse['raw_text'])
+            ? new RawText($rawResponse['raw_text'])
             : null;
         $this->rag = isset(
-            $serverResponse['rag']
-        ) ? new RAGMetadata($serverResponse['rag']) : null;
+            $rawResponse['rag']
+        ) ? new RAGMetadata($rawResponse['rag']) : null;
     }
 
     /**

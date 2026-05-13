@@ -30,21 +30,21 @@ class ErrorResponse
      */
     public ?string $code;
     /**
-     * @var array|mixed|null A list of explicit error details.
+     * @var array<ErrorItem>|mixed|null A list of explicit error details.
      */
     public ?array $errors;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->status = $serverResponse['status'];
-        $this->detail = $serverResponse['detail'];
-        $this->title = $serverResponse['title'] ?? null;
-        $this->code = $serverResponse['code'] ?? null;
-        if (isset($serverResponse['errors']) && is_array($serverResponse['errors'])) {
-            $this->errors = array_map(static fn($error) => new ErrorItem($error), $serverResponse['errors']);
+        $this->status = $rawResponse['status'];
+        $this->detail = $rawResponse['detail'];
+        $this->title = $rawResponse['title'] ?? null;
+        $this->code = $rawResponse['code'] ?? null;
+        if (isset($rawResponse['errors']) && is_array($rawResponse['errors'])) {
+            $this->errors = array_map(static fn($error) => new ErrorItem($error), $rawResponse['errors']);
         } else {
             $this->errors = [];
         }

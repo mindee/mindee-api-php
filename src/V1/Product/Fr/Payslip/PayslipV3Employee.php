@@ -44,9 +44,13 @@ class PayslipV3Employee
      * @var string|null The social security number of the employee.
      */
     public ?string $socialSecurityNumber;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -57,6 +61,7 @@ class PayslipV3Employee
         $this->dateOfBirth = $rawPrediction["date_of_birth"] ?? null;
         $this->firstName = $rawPrediction["first_name"] ?? null;
         $this->lastName = $rawPrediction["last_name"] ?? null;
+        $this->pageId = $pageId;
         $this->phoneNumber = $rawPrediction["phone_number"] ?? null;
         $this->registrationNumber = $rawPrediction["registration_number"] ?? null;
         $this->socialSecurityNumber = $rawPrediction["social_security_number"] ?? null;
@@ -81,7 +86,7 @@ class PayslipV3Employee
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -8,26 +8,27 @@ use function array_key_exists;
 
 /**
  * Base class for most fields.
+ * @template T Generic typing for value type handling.
  */
 abstract class BaseField
 {
     use FieldConfidenceMixin;
 
     /**
-     * @var mixed|null Raw field value.
+     * @var T|null Raw field value.
      */
-    public $value;
+    public mixed $value;
     /**
      * @var boolean Whether the field was reconstructed from other fields.
      */
     public bool $reconstructed;
     /**
-     * @var integer|mixed|null The document page on which the information was found.
+     * @var integer|null The document page on which the information was found.
      */
     public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.

@@ -25,20 +25,20 @@ class MindeeHttpException extends MindeeException
      */
     public int $statusCode;
     /**
-     * @var string|mixed|null API code as sent by the server.
+     * @var string|null API code as sent by the server.
      */
     public ?string $apiCode;
     /**
-     * @var mixed|null API details field as sent by the server.
+     * @var string|array<string,mixed>|null API details field as sent by the server.
      */
-    public $apiDetails;
+    public mixed $apiDetails;
     /**
-     * @var string|mixed|null API message field as sent by the server.
+     * @var string|array<string,mixed>|null API message field as sent by the server.
      */
-    public ?string $apiMessage;
+    public mixed $apiMessage;
 
     /**
-     * @param array $httpError Array containing the error data.
+     * @param array<string,mixed> $httpError Array containing the error data.
      * @param string $url Remote URL the error was found on.
      * @param integer $code Error code.
      */
@@ -71,11 +71,11 @@ class MindeeHttpException extends MindeeException
     /**
      * Builds an appropriate error object from the server reply.
      *
-     * @param array|string $response Parsed server response.
+     * @param array<string,mixed>|string|null $response Parsed server response.
      * @return string[]
      * @throws MindeeException Throws if the error itself can't be built.
      */
-    public static function createErrorObj($response): array
+    public static function createErrorObj(mixed $response): array
     {
         if (is_string($response)) {
             if (str_contains($response, 'Maximum pdf pages')) {
@@ -125,7 +125,7 @@ class MindeeHttpException extends MindeeException
         ) {
             return $response['api_request']['error'];
         }
-        if (!$response) {
+        if (!isset($response)) {
             throw new MindeeException(
                 "Request to the API failed.",
                 ErrorCode::API_REQUEST_FAILED
@@ -139,9 +139,9 @@ class MindeeHttpException extends MindeeException
 
     /**
      * @param string $url Remote URL the error was found on.
-     * @param array|string|boolean $response Raw server response.
+     * @param array<string,mixed>|string|boolean $response Raw server response.
      */
-    public static function handleError(string $url, $response): self
+    public static function handleError(string $url, mixed $response): self
     {
         if (is_array($response)) {
             $dataResponse = $response['data'] ?? ["data" => null];

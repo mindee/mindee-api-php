@@ -155,7 +155,7 @@ class Client
         string $endpointOwner,
         string $endpointVersion
     ): Endpoint {
-        $endpointVersion = $endpointVersion !== null && strlen($endpointVersion) > 0 ? $endpointVersion : '1';
+        $endpointVersion = $endpointVersion != null && strlen($endpointVersion) > 0 ? $endpointVersion : '1';
 
         $endpointSettings = new MindeeAPI($this->apiKey, $endpointName, $endpointOwner, $endpointVersion);
 
@@ -193,7 +193,8 @@ class Client
         } catch (ReflectionException $e) {
             throw new MindeeApiException(
                 "Unable to create custom product " . $product,
-                ErrorCode::INTERNAL_LIBRARY_ERROR
+                ErrorCode::INTERNAL_LIBRARY_ERROR,
+                previous: $e
             );
         }
         if ($endpointName === 'custom') {
@@ -224,7 +225,7 @@ class Client
             );
         }
         $accountName = $this->cleanAccountName($accountName);
-        if (!$version || $version === '') {
+        if (!$version || $version == '') {
             error_log("Notice: no version provided for a custom build, will attempt to poll version 1 by default.");
             $version = "1";
         }
@@ -348,7 +349,8 @@ class Client
         } catch (Exception $e) {
             throw new MindeeApiException(
                 "Unable to create workflow response for $predictionType",
-                ErrorCode::API_UNPROCESSABLE_ENTITY
+                ErrorCode::API_UNPROCESSABLE_ENTITY,
+                previous: $e
             );
         }
     }
@@ -405,7 +407,7 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): PredictResponse {
-        if ($options === null) {
+        if ($options == null) {
             $options = new PredictMethodOptions();
         }
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
@@ -435,10 +437,10 @@ class Client
         ?PollingOptions $asyncOptions = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if ($options === null) {
+        if ($options == null) {
             $options = new PredictMethodOptions();
         }
-        if ($asyncOptions === null) {
+        if ($asyncOptions == null) {
             $asyncOptions = new PollingOptions();
         }
 
@@ -490,7 +492,7 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if ($options === null) {
+        if ($options == null) {
             $options = new PredictMethodOptions();
         }
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
@@ -539,7 +541,8 @@ class Client
         } catch (Exception $e) {
             throw new MindeeException(
                 "Local response is not a valid prediction.",
-                ErrorCode::USER_INPUT_ERROR
+                ErrorCode::USER_INPUT_ERROR,
+                previous: $e
             );
         }
     }
@@ -558,7 +561,7 @@ class Client
         ?WorkflowOptions $options = null,
         ?PageOptions $pageOptions = null
     ): WorkflowResponse {
-        if ($options === null) {
+        if ($options == null) {
             $options = new WorkflowOptions();
         }
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {

@@ -33,17 +33,17 @@ class JobWebhook
     public ?ErrorResponse $error;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->id = $serverResponse['id'];
-        $this->createdAt = isset($serverResponse['created_at'])
-            ? $this->parseDate($serverResponse['created_at'])
+        $this->id = $rawResponse['id'];
+        $this->createdAt = isset($rawResponse['created_at'])
+            ? $this->parseDate($rawResponse['created_at'])
             : null;
-        $this->status = $serverResponse['status'];
-        $this->error = isset($serverResponse['error'])
-            ? new ErrorResponse($serverResponse['error'])
+        $this->status = $rawResponse['status'];
+        $this->error = isset($rawResponse['error'])
+            ? new ErrorResponse($rawResponse['error'])
             : null;
     }
 
@@ -54,7 +54,7 @@ class JobWebhook
      */
     private function parseDate(?string $dateString): ?DateTime
     {
-        if ($dateString === null || $dateString === '') {
+        if ($dateString == null || $dateString === '') {
             return null;
         }
 

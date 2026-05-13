@@ -15,11 +15,11 @@ class InferenceJob
     public string $id;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->id = $serverResponse['id'];
+        $this->id = $rawResponse['id'];
     }
 
     /**

@@ -36,9 +36,13 @@ class PayslipV3PayPeriod
      * @var string|null The year of the pay period.
      */
     public ?string $year;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -50,6 +54,7 @@ class PayslipV3PayPeriod
         $this->paymentDate = $rawPrediction["payment_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
         $this->year = $rawPrediction["year"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -69,7 +74,7 @@ class PayslipV3PayPeriod
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

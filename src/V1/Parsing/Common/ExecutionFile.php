@@ -20,7 +20,7 @@ class ExecutionFile
     public ?string $alias;
 
     /**
-     * @param array $rawResponse Raw HTTP response.
+     * @param array<string, mixed> $rawResponse Raw HTTP response.
      */
     public function __construct(array $rawResponse)
     {

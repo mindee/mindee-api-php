@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Product\Ocr;
+namespace Mindee\V2\Product\OCR;
 
 use Mindee\V2\Parsing\BaseInference;
 
 /**
  * Response for an OCR utility inference.
  */
-class OcrInference extends BaseInference
+class OCRInference extends BaseInference
 {
     /**
-     * @var OcrResult Result of the inference.
+     * @var OCRResult Result of the inference.
      */
-    public OcrResult $result;
+    public OCRResult $result;
 
     /**
-     * @param array $rawResponse Raw server response array.
+     * @param array<string, mixed> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {
         parent::__construct($rawResponse);
-        $this->result = new OcrResult($rawResponse['result']);
+        $this->result = new OCRResult($rawResponse['result']);
     }
 
     /**

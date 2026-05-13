@@ -75,7 +75,7 @@ class ExtractionResponseTest extends TestCase
         self::assertCount(9, $supplierAddress->fields);
 
         foreach ($fields as $fieldName => $field) {
-            if ($field === null) {
+            if ($field == null) {
                 continue;
             }
             if ($field instanceof ListField) {

@@ -44,9 +44,13 @@ class PayslipV3Employment
      * @var string|null The start date of the employment.
      */
     public ?string $startDate;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -60,6 +64,7 @@ class PayslipV3Employment
         $this->positionLevel = $rawPrediction["position_level"] ?? null;
         $this->seniorityDate = $rawPrediction["seniority_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -81,7 +86,7 @@ class PayslipV3Employment
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -24,15 +24,20 @@ class HealthcareCardV1Copay
      * @var string|null The name of the service.
      */
     public ?string $serviceName;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->serviceFees = isset($rawPrediction["service_fees"])
             ? (float) ($rawPrediction["service_fees"]) : null;
         $this->serviceName = $rawPrediction["service_name"] ?? null;
@@ -52,7 +57,7 @@ class HealthcareCardV1Copay
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

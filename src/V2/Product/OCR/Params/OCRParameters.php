@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Product\Ocr\Params;
+namespace Mindee\V2\Product\OCR\Params;
 
 use Mindee\ClientOptions\PollingOptions;
 use Mindee\V2\ClientOptions\BaseParameters;
@@ -10,7 +10,7 @@ use Mindee\V2\ClientOptions\BaseParameters;
 /**
  * Parameters for an ocr utility inference.
  */
-class OcrParameters extends BaseParameters
+class OCRParameters extends BaseParameters
 {
     /**
      * @var string Slug of the endpoint.

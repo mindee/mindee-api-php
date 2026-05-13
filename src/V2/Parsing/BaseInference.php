@@ -35,7 +35,7 @@ abstract class BaseInference
     public InferenceJob $job;
 
     /**
-     * @param array $rawResponse Raw server response array.
+     * @param array<string, mixed> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {

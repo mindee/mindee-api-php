@@ -20,9 +20,13 @@ class InvoiceSplitterV1InvoicePageGroup
      * @var int[] List of page indexes that belong to the same invoice (group).
      */
     public array $pageIndexes;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -30,6 +34,7 @@ class InvoiceSplitterV1InvoicePageGroup
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->pageIndexes = $rawPrediction["page_indexes"] ?? [];
+        $this->pageId = $pageId;
     }
 
     /**
@@ -45,7 +50,7 @@ class InvoiceSplitterV1InvoicePageGroup
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

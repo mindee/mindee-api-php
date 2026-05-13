@@ -13,6 +13,10 @@ use function is_int;
 
 /**
  * A JSON-like object, with miscellaneous values.
+ * @property PositionField|null $bounding_box
+ * @property PositionField|null $polygon
+ * @property PositionField|null $quadrangle
+ * @property PositionField|null $rectangle
  */
 class GeneratedObjectField
 {
@@ -25,15 +29,15 @@ class GeneratedObjectField
     /** @var string|null Raw unprocessed value, as it was sent by the server */
     private ?string $rawValue;
 
-    /** @var array List of all printable field names */
+    /** @var array<string> List of all printable field names */
     private array $printableValues;
-    /** @var array Storage for dynamically generated properties */
+    /** @var array<string, mixed> Storage for dynamically generated properties */
     private array $dynamicProperties = [];
 
     /**
      * Constructor.
      *
-     * @param array $rawPrediction Raw prediction data.
+     * @param array<string, mixed> $rawPrediction Raw prediction data.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -85,9 +89,8 @@ class GeneratedObjectField
     /**
      * Magic setter for dynamic properties.
      *
-     * @param string $name  Property name.
-     * @param mixed  $value Property value.
-     * @return void
+     * @param string $name Property name.
+     * @param mixed $value Property value.
      */
     public function __set(string $name, mixed $value): void
     {
@@ -130,7 +133,7 @@ class GeneratedObjectField
         foreach ($this->printableValues as $attr) {
             $value = $this->{$attr};
             $strValue = $value !== null ? (string) $value : "";
-            $outStr .= "\n{$indent}:{$attr}: {$strValue}";
+            $outStr .= "\n$indent:$attr: $strValue";
         }
         return "\n" . $indent . trim($outStr);
     }
@@ -138,7 +141,7 @@ class GeneratedObjectField
     /**
      * Checks whether a field is a custom object or not.
      *
-     * @param array $strDict Input dictionary to check.
+     * @param array<string,mixed> $strDict Input dictionary to check.
      * @return boolean Whether the field is a custom object.
      */
     public static function isGeneratedObject(array $strDict): bool

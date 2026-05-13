@@ -17,11 +17,14 @@ class MinMaxUtils
     /**
      * Retrieves the upper and lower bounds of the y-axis from an array of points.
      *
-     * @param array $points An array of points.
+     * @param array<Point>|Polygon $points An array of points.
      * @throws MindeeGeometryException Throws if the provided array is too small.
      */
-    public static function getMinMaxY(array $points): MinMax
+    public static function getMinMaxY(mixed $points): MinMax
     {
+        if (is_a(Polygon::class, $points)) {
+            $points = $points->getCoordinates();
+        }
         if (count($points) < 1) {
             throw new MindeeGeometryException(
                 'The provided point array must have at least 1 point to calculate the Y bounds.',
@@ -38,11 +41,14 @@ class MinMaxUtils
     /**
      * Retrieves the upper and lower bounds of the x-axis from an array of points.
      *
-     * @param array $points An array of points.
+     * @param array<Point>|Polygon $points An array of points.
      * @throws MindeeGeometryException Throws if the provided array is too small.
      */
-    public static function getMinMaxX(array $points): MinMax
+    public static function getMinMaxX(mixed $points): MinMax
     {
+        if (is_a(Polygon::class, $points)) {
+            $points = $points->getCoordinates();
+        }
         if (count($points) < 1) {
             throw new MindeeGeometryException(
                 'The provided point array must have at least 1 point to calculate the X bounds.',

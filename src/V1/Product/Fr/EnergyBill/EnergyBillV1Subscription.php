@@ -40,9 +40,13 @@ class EnergyBillV1Subscription
      * @var float|null The price per unit of subscription.
      */
     public ?float $unitPrice;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -58,6 +62,7 @@ class EnergyBillV1Subscription
             ? (float) ($rawPrediction["total"]) : null;
         $this->unitPrice = isset($rawPrediction["unit_price"])
             ? (float) ($rawPrediction["unit_price"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -78,7 +83,7 @@ class EnergyBillV1Subscription
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -71,7 +71,7 @@ class NutritionFactsLabelV1Document extends Prediction
      */
     public NutritionFactsLabelV1TransFat $transFat;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */

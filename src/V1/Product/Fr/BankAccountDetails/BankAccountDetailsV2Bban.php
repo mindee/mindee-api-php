@@ -32,9 +32,13 @@ class BankAccountDetailsV2Bban
      * @var string|null The BBAN Account number outputted as a string.
      */
     public ?string $bbanNumber;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -45,6 +49,7 @@ class BankAccountDetailsV2Bban
         $this->bbanBranchCode = $rawPrediction["bban_branch_code"] ?? null;
         $this->bbanKey = $rawPrediction["bban_key"] ?? null;
         $this->bbanNumber = $rawPrediction["bban_number"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -63,7 +68,7 @@ class BankAccountDetailsV2Bban
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

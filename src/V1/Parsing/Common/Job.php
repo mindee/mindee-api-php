@@ -39,26 +39,30 @@ class Job
      */
     public ?int $millisecsTaken;
     /**
-     * @var array|null Information about an error that occurred during the job processing.
+     * @var array<string, mixed>|null Information about an error that occurred during the job processing.
      */
     public ?array $error;
 
     /**
-     * @param array $rawResponse Raw prediction array.
+     * @param array<string, mixed> $rawResponse Raw prediction array.
      * @throws MindeeApiException Throws if a date is faulty.
      */
     public function __construct(array $rawResponse)
     {
         try {
             $this->issuedAt = new DateTimeImmutable($rawResponse['issued_at']);
-        } catch (Exception $e) {
+        } catch (Exception) {
             try {
-                $this->issuedAt = new DateTimeImmutable(strtotime($rawResponse['issued_at']));
-            } catch (Exception $e2) {
+                $timestamp = strtotime($rawResponse['issued_at']);
+                if ($timestamp === false) {
+                    throw new Exception("Invalid date format");
+                }
+                $this->issuedAt = new DateTimeImmutable('@' . $timestamp);
+            } catch (Exception $e) {
                 throw new MindeeApiException(
                     "Could not create date from " . $rawResponse['issued_at'],
                     ErrorCode::API_UNPROCESSABLE_ENTITY,
-                    $e2
+                    previous: $e
                 );
             }
         }
@@ -72,7 +76,11 @@ class Job
                 $this->availableAt = new DateTimeImmutable($rawResponse['available_at']);
             } catch (Exception $e) {
                 try {
-                    $this->availableAt = new DateTimeImmutable(strtotime($rawResponse['available_at']));
+                    $timestamp = strtotime($rawResponse['available_at']);
+                    if ($timestamp === false) {
+                        throw new Exception("Invalid date format");
+                    }
+                    $this->availableAt = new DateTimeImmutable('@' . $timestamp);
                 } catch (Exception $e2) {
                     throw new MindeeApiException(
                         "Could not create date from " . $rawResponse['available_at'],

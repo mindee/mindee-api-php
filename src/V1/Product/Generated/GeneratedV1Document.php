@@ -22,7 +22,7 @@ class GeneratedV1Document extends GeneratedV1Prediction
 
     /**
      * GeneratedV1Document constructor.
-     * @param array $rawPrediction Dictionary containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Dictionary containing the JSON document response.
      */
     public function __construct(array $rawPrediction)
     {

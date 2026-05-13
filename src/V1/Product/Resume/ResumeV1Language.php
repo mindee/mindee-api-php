@@ -24,15 +24,20 @@ class ResumeV1Language
      * @var string|null The candidate's level for the language.
      */
     public ?string $level;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->language = $rawPrediction["language"] ?? null;
         $this->level = $rawPrediction["level"] ?? null;
     }
@@ -51,7 +56,7 @@ class ResumeV1Language
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

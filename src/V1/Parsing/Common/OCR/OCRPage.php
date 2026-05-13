@@ -13,11 +13,11 @@ use function in_array;
 class OCRPage
 {
     /**
-     * @var array List of all words.
+     * @var array<OCRWord> List of all words.
      */
     private array $allWords;
     /**
-     * @var array List of lines.
+     * @var array<OCRLine> List of lines.
      */
     private array $lines;
 
@@ -71,7 +71,7 @@ class OCRPage
 
     /**
      * Puts all words on the page into an array of lines.
-     *
+     * @return array<OCRLine>
      */
     private function toLines(): array
     {
@@ -83,7 +83,7 @@ class OCRPage
             for ($idx = 0; $idx < count($this->allWords); $idx++) {
                 $word = $this->allWords[$idx];
                 if (!in_array($idx, $indexes, true)) {
-                    if ($current === null) {
+                    if ($current == null) {
                         $current = $word;
                         $indexes[] = $idx;
                         $line = new OCRLine();
@@ -107,7 +107,7 @@ class OCRPage
 
     /**
      * Retrieves all lines on the page.
-     *
+     * @return array<OCRLine>
      */
     public function getAllLines(): array
     {
@@ -119,7 +119,7 @@ class OCRPage
 
     /**
      * Retrieves all words on the page.
-     *
+     * @return array<OCRWord>
      */
     public function getAllWords(): array
     {
@@ -127,7 +127,7 @@ class OCRPage
     }
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {

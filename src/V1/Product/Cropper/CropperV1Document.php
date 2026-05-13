@@ -14,9 +14,7 @@ class CropperV1Document extends Prediction
     /**
      * Constructor for CropperV1Document.
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * @return string String representation.

@@ -32,9 +32,13 @@ class BillOfLadingV1Consignee
      * @var string|null The phone number of the consignee.
      */
     public ?string $phone;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -45,6 +49,7 @@ class BillOfLadingV1Consignee
         $this->email = $rawPrediction["email"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
         $this->phone = $rawPrediction["phone"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -63,7 +68,7 @@ class BillOfLadingV1Consignee
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -16,13 +16,13 @@ class CompanyRegistrationField extends BaseField
     use FieldPositionMixin;
 
     /**
-     * @var string|mixed The type of registration.
+     * @var string The type of registration.
      */
     public string $type;
 
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.
@@ -60,7 +60,7 @@ class CompanyRegistrationField extends BaseField
 
     /**
      * Returns an array of proper values for the formatting.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -10,28 +10,28 @@ namespace Mindee\V1\Parsing\Common;
 class ApiRequest
 {
     /**
-     * @var array|mixed Error content, if any.
+     * @var array<string, mixed>|string|null Error content, if any.
      */
-    public array $error;
+    public mixed $error;
     /**
-     * @var array|mixed Information on the target resources
+     * @var array<string, mixed>|string|null Information on the target resources
      */
-    public array $resources;
+    public mixed $resources;
     /**
-     * @var string|mixed Status as sent back by the API.
+     * @var array<string,mixed>|string Status as sent back by the API.
      */
-    public string $status;
+    public mixed $status;
     /**
-     * @var integer|mixed HTTP status code.
+     * @var integer HTTP status code.
      */
     public int $statusCode;
     /**
-     * @var string|mixed
+     * @var string|null URL of the request.
      */
-    public string $url;
+    public ?string $url;
 
     /**
-     * @param array $rawResponse Raw HTTP response.
+     * @param array<string, mixed> $rawResponse Raw HTTP response.
      */
     public function __construct(array $rawResponse)
     {

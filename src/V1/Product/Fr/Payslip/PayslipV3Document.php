@@ -46,7 +46,7 @@ class PayslipV3Document extends Prediction
      */
     public PayslipV3SalaryDetails $salaryDetails;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */

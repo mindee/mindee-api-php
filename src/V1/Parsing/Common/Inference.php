@@ -31,7 +31,7 @@ abstract class Inference
      */
     public Prediction $prediction;
     /**
-     * @var array A document's pages.
+     * @var array<Page> A document's pages.
      */
     public array $pages;
     /**
@@ -49,21 +49,21 @@ abstract class Inference
 
 
     /**
-     * @param array $rawInference Raw inference array.
+     * @param array<string,mixed> $rawResponse Raw inference array.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawInference, ?int $pageId = null)
+    public function __construct(array $rawResponse, ?int $pageId = null)
     {
         $this->isRotationApplied = null;
-        if (array_key_exists('is_rotation_applied', $rawInference)) {
-            $this->isRotationApplied = $rawInference['is_rotation_applied'];
+        if (array_key_exists('is_rotation_applied', $rawResponse)) {
+            $this->isRotationApplied = $rawResponse['is_rotation_applied'];
         }
-        $this->product = new Product($rawInference['product']);
+        $this->product = new Product($rawResponse['product']);
         if (isset($pageId)) {
             $this->pageId = $pageId;
         }
-        if (array_key_exists('extras', $rawInference)) {
-            $this->extras = new Extras($rawInference['extras']);
+        if (array_key_exists('extras', $rawResponse)) {
+            $this->extras = new Extras($rawResponse['extras']);
         }
     }
 

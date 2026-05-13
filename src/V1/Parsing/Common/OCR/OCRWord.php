@@ -14,18 +14,18 @@ class OCRWord
     use FieldPositionMixin;
 
     /**
-     * @var float|mixed The confidence score.
+     * @var float The confidence score.
      */
     public float $confidence;
 
     /**
-     * @var string|mixed The extracted text.
+     * @var string The extracted text.
      */
     public string $text;
 
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {

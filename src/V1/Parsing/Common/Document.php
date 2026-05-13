@@ -19,19 +19,19 @@ use function array_key_exists;
 class Document
 {
     /**
-     * @var string|mixed Name of the input document.
+     * @var string Name of the input document.
      */
     public string $filename;
     /**
      * @var Inference|object|string Result of the base inference.
      */
-    public Inference $inference;
+    public mixed $inference;
     /**
-     * @var string|mixed ID of the document as sent back by the server.
+     * @var string ID of the document as sent back by the server.
      */
     public string $id;
     /**
-     * @var integer|mixed Amount of pages in the document
+     * @var integer Amount of pages in the document
      */
     public int $nPages;
     /**
@@ -45,7 +45,7 @@ class Document
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array $rawResponse Raw HTTP response.
+     * @param array<string, mixed> $rawResponse Raw HTTP response.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawResponse)
@@ -69,7 +69,7 @@ class Document
         if (array_key_exists("extras", $rawResponse['inference']) && $rawResponse['inference']['extras']) {
             $this->extras = new Extras($rawResponse['inference']['extras']);
         }
-        $this->injectFullTextOcr($rawResponse);
+        $this->injectFullTextOCR($rawResponse);
     }
 
     /**
@@ -89,9 +89,9 @@ $this->inference";
     /**
      * Injects the results from pages' "full_text_ocr", if present.
      *
-     * @param array $rawResponse Raw HTTP response.
+     * @param array<string, mixed> $rawResponse Raw HTTP response.
      */
-    private function injectFullTextOcr(array $rawResponse): void
+    private function injectFullTextOCR(array $rawResponse): void
     {
         $pages = $rawResponse['inference']['pages'] ?? [];
 

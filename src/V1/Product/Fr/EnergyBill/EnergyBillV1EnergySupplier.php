@@ -24,9 +24,13 @@ class EnergyBillV1EnergySupplier
      * @var string|null The name of the energy supplier.
      */
     public ?string $name;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -35,6 +39,7 @@ class EnergyBillV1EnergySupplier
         $this->setPosition($rawPrediction);
         $this->address = $rawPrediction["address"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -51,7 +56,7 @@ class EnergyBillV1EnergySupplier
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -19,7 +19,7 @@ class ResponseValidation
     /**
      * Checks if the synchronous response is valid. Returns True if the response is valid.
      *
-     * @param array $response A response object.
+     * @param array<string,mixed> $response A response object.
      * @return boolean
      */
     public static function isValidSyncResponse(array $response): bool
@@ -40,7 +40,7 @@ class ResponseValidation
      * Checks if the workflow response is valid. Also checks if it is a valid synchronous response.
      * Returns True if the response is valid.
      *
-     * @param array $response A response array.
+     * @param array<string,mixed> $response A response array.
      * @return boolean
      */
     public static function isValidWorkflowResponse(array $response): bool
@@ -65,7 +65,7 @@ class ResponseValidation
      * Checks if the asynchronous response is valid. Also checks if it is a valid synchronous response.
      * Returns True if the response is valid.
      *
-     * @param array $response A response array.
+     * @param array<string,mixed> $response A response array.
      * @return boolean
      */
     public static function isValidAsyncResponse(array $response): bool
@@ -89,7 +89,8 @@ class ResponseValidation
     /**
      * Checks and corrects the response object depending on the possible kinds of returns.
      *
-     * @param array $response An endpoint response array.
+     * @param array<string,mixed> $response An endpoint response array.
+     * @return array<string,mixed> A cleaned response array.
      */
     public static function cleanRequestData(array $response): array
     {

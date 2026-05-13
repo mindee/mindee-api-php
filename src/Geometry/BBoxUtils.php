@@ -30,7 +30,7 @@ abstract class BBoxUtils
     /**
      * Generates a BBox from an array of polygons. Returns null if no polygons are provided.
      *
-     * @param array $polygons Series of polygons to get the BBox of.
+     * @param array<Polygon> $polygons Series of polygons to get the BBox of.
      */
     public static function generateBBoxFromPolygons(array $polygons): ?BBox
     {
@@ -39,7 +39,7 @@ abstract class BBoxUtils
         }
         $merged = $polygons[0];
         foreach ($polygons as $polygon) {
-            if ($polygon && $merged !== $polygon) {
+            if ($merged !== $polygon) {
                 $merged = PolygonUtils::merge($merged, $polygon);
             }
         }
@@ -54,7 +54,7 @@ abstract class BBoxUtils
     /**
      * Merges an array of bboxes.
      *
-     * @param array $bboxes BBoxes to merge.
+     * @param array<BBox> $bboxes BBoxes to merge.
      */
     public static function mergeBBoxes(array $bboxes): ?BBox
     {

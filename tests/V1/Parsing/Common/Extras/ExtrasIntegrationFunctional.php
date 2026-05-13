@@ -40,7 +40,7 @@ class ExtrasIntegrationFunctional extends TestCase
         self::assertGreaterThan(0, count($response->document->inference->pages[0]->extras->cropper->croppings));
     }
 
-    public function testShouldSendFullTextOcrExtra(): void
+    public function testShouldSendFullTextOCRExtra(): void
     {
         $sample = $this->client->sourceFromPath(
             TestingUtilities::getV1DataDir() . "/products/international_id/default_sample.jpg"

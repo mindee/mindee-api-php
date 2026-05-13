@@ -156,7 +156,7 @@ class FinancialDocumentV1Document extends Prediction
      */
     public AmountField $totalTax;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -186,7 +186,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["customer_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] === null ? [] : array_map(
+        $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] == null ? [] : array_map(
             static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["customer_company_registrations"]
         );
@@ -284,7 +284,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["reference_numbers"])) {
             throw new MindeeUnsetException();
         }
-        $this->referenceNumbers = $rawPrediction["reference_numbers"] === null ? [] : array_map(
+        $this->referenceNumbers = $rawPrediction["reference_numbers"] == null ? [] : array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["reference_numbers"]
         );
@@ -312,7 +312,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["supplier_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] === null ? [] : array_map(
+        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
             static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );
@@ -333,7 +333,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["supplier_payment_details"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] === null ? [] : array_map(
+        $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] == null ? [] : array_map(
             static fn($prediction) => new PaymentDetailsField($prediction, $pageId),
             $rawPrediction["supplier_payment_details"]
         );

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Product\Ocr;
+namespace Mindee\V2\Product\OCR;
 
 use Mindee\Geometry\Polygon;
 
 /**
  * OCR result for a single word extracted from the document page.
  */
-class OcrWord
+class OCRWord
 {
     /**
      * @var string Content of the word.
@@ -22,7 +22,7 @@ class OcrWord
     public Polygon $polygon;
 
     /**
-     * @param array $rawResponse Raw server response array.
+     * @param array<string, mixed> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {

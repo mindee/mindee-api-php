@@ -19,13 +19,13 @@ class SimpleField extends BaseField
     public $value;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation for rst display.
      */
-    public function __construct(array $serverResponse, int $indentLevel = 0)
+    public function __construct(array $rawResponse, int $indentLevel = 0)
     {
-        parent::__construct($serverResponse, $indentLevel);
-        $this->value = array_key_exists('value', $serverResponse) ? $serverResponse['value'] : null;
+        parent::__construct($rawResponse, $indentLevel);
+        $this->value = array_key_exists('value', $rawResponse) ? $rawResponse['value'] : null;
         if (is_int($this->value)) {
             $this->value = (float) $this->value;
         }

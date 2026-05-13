@@ -14,12 +14,12 @@ use function array_key_exists;
 class CropperExtra
 {
     /**
-     * @var array List of all croppings coordiantes.
+     * @var array<PositionField> List of all croppings coordiantes.
      */
     public array $croppings;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string,mixed> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

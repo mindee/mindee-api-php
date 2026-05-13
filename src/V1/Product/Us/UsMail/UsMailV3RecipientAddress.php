@@ -48,15 +48,20 @@ class UsMailV3RecipientAddress
      * @var string|null The unit number of the recipient's address.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->city = $rawPrediction["city"] ?? null;
         $this->complete = $rawPrediction["complete"] ?? null;
         $this->isAddressChange = $rawPrediction["is_address_change"] ?? null;
@@ -87,7 +92,7 @@ class UsMailV3RecipientAddress
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

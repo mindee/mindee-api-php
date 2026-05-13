@@ -44,15 +44,20 @@ class ResumeV1Education
      * @var string|null The year when the education program or course began.
      */
     public ?string $startYear;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->degreeDomain = $rawPrediction["degree_domain"] ?? null;
         $this->degreeType = $rawPrediction["degree_type"] ?? null;
         $this->endMonth = $rawPrediction["end_month"] ?? null;
@@ -81,7 +86,7 @@ class ResumeV1Education
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

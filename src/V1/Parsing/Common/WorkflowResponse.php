@@ -19,7 +19,7 @@ class WorkflowResponse extends ApiResponse
 
     /**
      * @param string|null $predictionType Type of prediction.
-     * @param array $rawResponse Raw HTTP response.
+     * @param array<string, mixed> $rawResponse Raw HTTP response.
      * @throws Exception Throws if the prediction type isn't recognized or if a field can't be deserialized.
      */
     public function __construct(?string $predictionType, array $rawResponse)

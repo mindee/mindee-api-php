@@ -33,21 +33,11 @@ class FileInput extends LocalInputSource
 
     /**
      * Reads the contents of the file.
-     *
+     * @return array{0: string, 1: string} File name and contents as a tuple.
      */
     public function readContents(): array
     {
         $fileContents = fread($this->file, filesize($this->filePath));
         return [$this->fileName, $fileContents];
-    }
-
-    /**
-     * Returns the reference to the file object. Only used for testing purposes.
-     *
-     * @return mixed
-     */
-    public function getFilePtr()
-    {
-        return $this->file;
     }
 }

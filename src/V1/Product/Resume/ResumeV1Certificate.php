@@ -32,15 +32,20 @@ class ResumeV1Certificate
      * @var string|null The year when a certificate was issued or received.
      */
     public ?string $year;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->grade = $rawPrediction["grade"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
         $this->provider = $rawPrediction["provider"] ?? null;
@@ -63,7 +68,7 @@ class ResumeV1Certificate
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

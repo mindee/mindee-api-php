@@ -27,7 +27,7 @@ class AddressField extends StringField
     public ?string $country;
 
     /**
-     * @param array $rawPrediction Raw prediction array as returned by the Mindee API.
+     * @param array<string, mixed> $rawPrediction Raw prediction array as returned by the Mindee API.
      * @param integer|null $pageId Page number for multi-page documents.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the full address value.

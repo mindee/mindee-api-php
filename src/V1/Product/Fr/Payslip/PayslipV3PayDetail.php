@@ -56,9 +56,13 @@ class PayslipV3PayDetail
      * @var float|null The total taxes and deductions of the employee.
      */
     public ?float $totalTaxesAndDeductions;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -85,6 +89,7 @@ class PayslipV3PayDetail
             ? (float) ($rawPrediction["total_cost_employer"]) : null;
         $this->totalTaxesAndDeductions = isset($rawPrediction["total_taxes_and_deductions"])
             ? (float) ($rawPrediction["total_taxes_and_deductions"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -109,7 +114,7 @@ class PayslipV3PayDetail
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

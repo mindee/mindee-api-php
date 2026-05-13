@@ -24,9 +24,13 @@ class NutritionFactsLabelV1ServingSize
      * @var string|null The unit for the amount of a single serving.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -36,6 +40,7 @@ class NutritionFactsLabelV1ServingSize
         $this->amount = isset($rawPrediction["amount"])
             ? (float) ($rawPrediction["amount"]) : null;
         $this->unit = $rawPrediction["unit"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -52,7 +57,7 @@ class NutritionFactsLabelV1ServingSize
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

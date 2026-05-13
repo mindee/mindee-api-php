@@ -28,9 +28,13 @@ class EnergyBillV1MeterDetail
      * @var string|null The unit of power for energy consumption.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -40,6 +44,7 @@ class EnergyBillV1MeterDetail
         $this->meterNumber = $rawPrediction["meter_number"] ?? null;
         $this->meterType = $rawPrediction["meter_type"] ?? null;
         $this->unit = $rawPrediction["unit"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
@@ -57,7 +62,7 @@ class EnergyBillV1MeterDetail
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

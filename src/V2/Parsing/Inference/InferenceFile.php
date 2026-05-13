@@ -30,14 +30,14 @@ class InferenceFile
     public string $mimeType;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string,mixed> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->name = $serverResponse['name'];
-        $this->alias = $serverResponse['alias'];
-        $this->pageCount = $serverResponse['page_count'];
-        $this->mimeType = $serverResponse['mime_type'];
+        $this->name = $rawResponse['name'];
+        $this->alias = $rawResponse['alias'];
+        $this->pageCount = $rawResponse['page_count'];
+        $this->mimeType = $rawResponse['mime_type'];
     }
 
     /**

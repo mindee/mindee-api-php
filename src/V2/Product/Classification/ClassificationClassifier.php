@@ -22,7 +22,7 @@ class ClassificationClassifier
     public ?ExtractionResponse $extractionResponse;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, mixed> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {
