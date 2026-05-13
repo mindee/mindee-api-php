@@ -69,7 +69,7 @@ class ResumeV1Education
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -84,22 +84,6 @@ class ResumeV1Education
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["degreeDomain"] = SummaryHelperV1::formatForDisplay($this->degreeDomain);
-        $outArr["degreeType"] = SummaryHelperV1::formatForDisplay($this->degreeType);
-        $outArr["endMonth"] = SummaryHelperV1::formatForDisplay($this->endMonth);
-        $outArr["endYear"] = SummaryHelperV1::formatForDisplay($this->endYear);
-        $outArr["school"] = SummaryHelperV1::formatForDisplay($this->school);
-        $outArr["startMonth"] = SummaryHelperV1::formatForDisplay($this->startMonth);
-        $outArr["startYear"] = SummaryHelperV1::formatForDisplay($this->startYear);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

@@ -62,7 +62,7 @@ class NutritionFactsLabelV1Nutrient
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -75,20 +75,6 @@ class NutritionFactsLabelV1Nutrient
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["dailyValue"] = SummaryHelperV1::formatFloat($this->dailyValue);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["per100G"] = SummaryHelperV1::formatFloat($this->per100G);
-        $outArr["perServing"] = SummaryHelperV1::formatFloat($this->perServing);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

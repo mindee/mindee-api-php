@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The goods being shipped.
+ * @extends ArrayObject<integer, BillOfLadingV1CarrierItem>
  */
 class BillOfLadingV1CarrierItems extends ArrayObject
 {

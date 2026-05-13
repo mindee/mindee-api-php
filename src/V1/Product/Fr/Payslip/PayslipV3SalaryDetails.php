@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * Detailed information about the earnings.
+ * @extends ArrayObject<integer, PayslipV3SalaryDetail>
  */
 class PayslipV3SalaryDetails extends ArrayObject
 {

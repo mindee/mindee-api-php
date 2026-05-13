@@ -44,7 +44,7 @@ class ResumeV1SocialNetworksUrl
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -54,17 +54,6 @@ class ResumeV1SocialNetworksUrl
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["url"] = SummaryHelperV1::formatForDisplay($this->url);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

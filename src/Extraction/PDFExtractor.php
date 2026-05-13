@@ -86,7 +86,7 @@ class PDFExtractor
     /**
      * Extracts sub-documents from the source document using list of page indexes.
      *
-     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param array<array<integer>>|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
      *
      * @return ExtractedPDF[] list of extracted documents
      *
@@ -141,7 +141,7 @@ class PDFExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param array<array<integer>>|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
      * @param boolean $strict Whether to trust confidence scores or not.
      *
      * @return ExtractedPDF[] a list of extracted invoices

@@ -22,7 +22,7 @@ class MinMaxUtils
      */
     public static function getMinMaxY(mixed $points): MinMax
     {
-        if (is_a(Polygon::class, $points)) {
+        if ($points instanceof Polygon) {
             $points = $points->getCoordinates();
         }
         if (count($points) < 1) {
@@ -46,7 +46,7 @@ class MinMaxUtils
      */
     public static function getMinMaxX(mixed $points): MinMax
     {
-        if (is_a(Polygon::class, $points)) {
+        if ($points instanceof  Polygon) {
             $points = $points->getCoordinates();
         }
         if (count($points) < 1) {

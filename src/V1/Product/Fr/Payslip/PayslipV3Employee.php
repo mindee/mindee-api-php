@@ -68,23 +68,6 @@ class PayslipV3Employee
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["dateOfBirth"] = SummaryHelperV1::formatForDisplay($this->dateOfBirth);
-        $outArr["firstName"] = SummaryHelperV1::formatForDisplay($this->firstName);
-        $outArr["lastName"] = SummaryHelperV1::formatForDisplay($this->lastName);
-        $outArr["phoneNumber"] = SummaryHelperV1::formatForDisplay($this->phoneNumber);
-        $outArr["registrationNumber"] = SummaryHelperV1::formatForDisplay($this->registrationNumber);
-        $outArr["socialSecurityNumber"] = SummaryHelperV1::formatForDisplay($this->socialSecurityNumber);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

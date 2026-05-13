@@ -71,7 +71,7 @@ class TaxField extends BaseField
     /**
      * Returns an array of immediately printable values.
      *
-     * @return array Array of printable values.
+     * @return array<string, string> Array of printable values.
      */
     private function printableValues(): array
     {

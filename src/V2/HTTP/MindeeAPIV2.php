@@ -22,7 +22,6 @@ use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Parsing\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\JobResponse;
-use Mindee\V2\Product\Extraction\ExtractionResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -103,7 +102,7 @@ class MindeeAPIV2
         $this->baseUrl = API_V2_BASE_URL_DEFAULT;
         $this->requestTimeout = API_V2_TIMEOUT_DEFAULT;
         $this->setFromEnv();
-        if (strl($this->apiKey) === 0) {
+        if (strlen($this->apiKey) === 0) {
             throw new MindeeException(
                 "Missing API key for call,"
                 . " check your Client configuration.You can set this using the "
@@ -337,13 +336,13 @@ class MindeeAPIV2
      *
      * @param InputSource $inputSource File to upload.
      * @param BaseParameters $params Parameters.
+     * @return array<string,mixed> Server response.
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
         BaseParameters $params
     ): array {
-        /** @var CurlHandle $ch */
         $ch = $this->initChannel();
         $postFields = $params->asHash();
 

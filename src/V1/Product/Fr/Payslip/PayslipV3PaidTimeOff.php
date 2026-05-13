@@ -62,7 +62,7 @@ class PayslipV3PaidTimeOff
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -75,20 +75,6 @@ class PayslipV3PaidTimeOff
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["accrued"] = SummaryHelperV1::formatFloat($this->accrued);
-        $outArr["period"] = SummaryHelperV1::formatForDisplay($this->period);
-        $outArr["ptoType"] = SummaryHelperV1::formatForDisplay($this->ptoType);
-        $outArr["remaining"] = SummaryHelperV1::formatFloat($this->remaining);
-        $outArr["used"] = SummaryHelperV1::formatFloat($this->used);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

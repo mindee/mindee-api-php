@@ -155,7 +155,7 @@ class Client
         string $endpointOwner,
         string $endpointVersion
     ): Endpoint {
-        $endpointVersion = $endpointVersion != null && strlen($endpointVersion) > 0 ? $endpointVersion : '1';
+        $endpointVersion = $endpointVersion !== '' ? $endpointVersion : '1';
 
         $endpointSettings = new MindeeAPI($this->apiKey, $endpointName, $endpointOwner, $endpointVersion);
 
@@ -225,7 +225,7 @@ class Client
             );
         }
         $accountName = $this->cleanAccountName($accountName);
-        if (!$version || $version == '') {
+        if (empty($version)) {
             error_log("Notice: no version provided for a custom build, will attempt to poll version 1 by default.");
             $version = "1";
         }

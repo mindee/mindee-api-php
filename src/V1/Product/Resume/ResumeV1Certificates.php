@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The list of certificates obtained by the candidate.
+ * @extends ArrayObject<integer, ResumeV1Certificate>
  */
 class ResumeV1Certificates extends ArrayObject
 {

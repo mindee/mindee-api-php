@@ -26,9 +26,8 @@ class GeneratedV1Prediction extends Prediction
 
     /**
      * GeneratedV1Prediction constructor.
-     * @param array<string, mixed> $rawPrediction Dictionary containing the JSON document response.
      */
-    public function __construct(array $rawPrediction)
+    public function __construct()
     {
         $this->fields = [];
     }

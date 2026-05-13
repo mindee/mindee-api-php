@@ -45,7 +45,7 @@ class HealthcareCardV1Copay
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -55,17 +55,6 @@ class HealthcareCardV1Copay
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["serviceFees"] = SummaryHelperV1::formatFloat($this->serviceFees);
-        $outArr["serviceName"] = SummaryHelperV1::formatForDisplay($this->serviceName);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

@@ -58,21 +58,6 @@ class UsMailV3SenderAddress
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["city"] = SummaryHelperV1::formatForDisplay($this->city, 15);
-        $outArr["complete"] = SummaryHelperV1::formatForDisplay($this->complete, 35);
-        $outArr["postalCode"] = SummaryHelperV1::formatForDisplay($this->postalCode);
-        $outArr["state"] = SummaryHelperV1::formatForDisplay($this->state);
-        $outArr["street"] = SummaryHelperV1::formatForDisplay($this->street, 25);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

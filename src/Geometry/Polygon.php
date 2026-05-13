@@ -27,7 +27,7 @@ class Polygon
     private MinMax $minMaxX;
 
     /**
-     * @param array<array<float|integer>>|null $coordinates Coordinates of the polygon as a set of Points.
+     * @param array<array<float|integer>>|array<Point>|null $coordinates Coordinates of the polygon as a set of Points.
      */
     public function __construct(?array $coordinates = null)
     {

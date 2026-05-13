@@ -41,11 +41,7 @@ class PositionField extends BaseField
      */
     private static function getQuadrilateral(array $rawPrediction, string $key): ?Polygon
     {
-        if (
-            !array_key_exists($key, $rawPrediction)
-            || $rawPrediction[$key] == null
-            || $rawPrediction[$key] === []
-        ) {
+        if (empty($rawPrediction[$key])) {
             return null;
         }
 

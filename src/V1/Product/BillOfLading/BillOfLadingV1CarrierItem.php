@@ -67,7 +67,7 @@ class BillOfLadingV1CarrierItem
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -81,21 +81,6 @@ class BillOfLadingV1CarrierItem
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["grossWeight"] = SummaryHelperV1::formatFloat($this->grossWeight);
-        $outArr["measurement"] = SummaryHelperV1::formatFloat($this->measurement);
-        $outArr["measurementUnit"] = SummaryHelperV1::formatForDisplay($this->measurementUnit);
-        $outArr["quantity"] = SummaryHelperV1::formatFloat($this->quantity);
-        $outArr["weightUnit"] = SummaryHelperV1::formatForDisplay($this->weightUnit);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

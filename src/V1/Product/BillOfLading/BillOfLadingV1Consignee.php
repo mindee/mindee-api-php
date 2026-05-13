@@ -53,20 +53,6 @@ class BillOfLadingV1Consignee
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["email"] = SummaryHelperV1::formatForDisplay($this->email);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["phone"] = SummaryHelperV1::formatForDisplay($this->phone);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */
@@ -81,7 +67,7 @@ class BillOfLadingV1Consignee
     }
     /**
      * Output in a format suitable for inclusion in a field list.
-     *
+     * @return string
      */
     public function toFieldList(): string
     {

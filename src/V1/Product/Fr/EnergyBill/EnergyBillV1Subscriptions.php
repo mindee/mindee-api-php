@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The subscription details fee for the energy service.
+ * @extends ArrayObject<integer, EnergyBillV1Subscription>
  */
 class EnergyBillV1Subscriptions extends ArrayObject
 {

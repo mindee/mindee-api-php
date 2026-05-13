@@ -39,7 +39,7 @@ class InvoiceSplitterV1InvoicePageGroup
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -48,16 +48,6 @@ class InvoiceSplitterV1InvoicePageGroup
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["pageIndexes"] = implode(", ", $this->pageIndexes);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

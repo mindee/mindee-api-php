@@ -93,26 +93,6 @@ class PayslipV3PayDetail
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["grossSalary"] = SummaryHelperV1::formatFloat($this->grossSalary);
-        $outArr["grossSalaryYtd"] = SummaryHelperV1::formatFloat($this->grossSalaryYtd);
-        $outArr["incomeTaxRate"] = SummaryHelperV1::formatFloat($this->incomeTaxRate);
-        $outArr["incomeTaxWithheld"] = SummaryHelperV1::formatFloat($this->incomeTaxWithheld);
-        $outArr["netPaid"] = SummaryHelperV1::formatFloat($this->netPaid);
-        $outArr["netPaidBeforeTax"] = SummaryHelperV1::formatFloat($this->netPaidBeforeTax);
-        $outArr["netTaxable"] = SummaryHelperV1::formatFloat($this->netTaxable);
-        $outArr["netTaxableYtd"] = SummaryHelperV1::formatFloat($this->netTaxableYtd);
-        $outArr["totalCostEmployer"] = SummaryHelperV1::formatFloat($this->totalCostEmployer);
-        $outArr["totalTaxesAndDeductions"] = SummaryHelperV1::formatFloat($this->totalTaxesAndDeductions);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

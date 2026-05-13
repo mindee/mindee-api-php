@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The list of the candidate's professional experiences.
+ * @extends ArrayObject<integer, ResumeV1ProfessionalExperience>
  */
 class ResumeV1ProfessionalExperiences extends ArrayObject
 {

@@ -43,18 +43,6 @@ class EnergyBillV1EnergyConsumer
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

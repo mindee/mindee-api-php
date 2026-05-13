@@ -28,6 +28,10 @@ class PayslipV3BankAccountDetail
      * @var string|null The SWIFT code of the bank.
      */
     public ?string $swift;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
      * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
@@ -40,19 +44,7 @@ class PayslipV3BankAccountDetail
         $this->bankName = $rawPrediction["bank_name"] ?? null;
         $this->iban = $rawPrediction["iban"] ?? null;
         $this->swift = $rawPrediction["swift"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["bankName"] = SummaryHelperV1::formatForDisplay($this->bankName);
-        $outArr["iban"] = SummaryHelperV1::formatForDisplay($this->iban);
-        $outArr["swift"] = SummaryHelperV1::formatForDisplay($this->swift);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**

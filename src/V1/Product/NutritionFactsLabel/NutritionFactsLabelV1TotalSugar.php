@@ -51,19 +51,6 @@ class NutritionFactsLabelV1TotalSugar
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["dailyValue"] = SummaryHelperV1::formatFloat($this->dailyValue);
-        $outArr["per100G"] = SummaryHelperV1::formatFloat($this->per100G);
-        $outArr["perServing"] = SummaryHelperV1::formatFloat($this->perServing);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */
@@ -75,6 +62,7 @@ class NutritionFactsLabelV1TotalSugar
         $outArr["perServing"] = SummaryHelperV1::formatFloat($this->perServing);
         return $outArr;
     }
+
     /**
      * Output in a format suitable for inclusion in a field list.
      *

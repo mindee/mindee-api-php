@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * List of all line items on the receipt.
+ * @extends ArrayObject<integer, ReceiptV5LineItem>
  */
 class ReceiptV5LineItems extends ArrayObject
 {

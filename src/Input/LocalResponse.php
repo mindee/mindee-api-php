@@ -23,49 +23,36 @@ class LocalResponse
     private $file;
 
     /**
-     * @param resource|string|array $inputFile A string, path or file-like object to load as a local response.
+     * @param resource|string|array<string> $inputFile A string, path or file-like object to load as a local response.
      * @throws MindeeException Throws if the input file isn't acceptable.
      */
     public function __construct(mixed $inputFile)
     {
-        if (is_resource($inputFile) && get_resource_type($inputFile) === 'file') {
-            $content = fread($inputFile, fstat($inputFile)['size']);
-            $strStripped = str_replace(["\r", "\n"], '', $content);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_resource($inputFile) && get_resource_type($inputFile) === 'stream') {
-            $content = stream_get_contents($inputFile);
-            $strStripped = str_replace(["\r", "\n"], '', $content);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_string($inputFile) && file_exists($inputFile)) {
-            $content = file_get_contents($inputFile);
-            $strStripped = str_replace(["\r", "\n"], '', $content);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_string($inputFile)) {
-            $strStripped = str_replace(["\r", "\n"], '', $inputFile);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_string($inputFile) || is_array($inputFile)) {
-            if (is_array($inputFile))
-            {
-                $inputFile = implode($inputFile);
+        if (is_resource($inputFile)) {
+            $resourceType = get_resource_type($inputFile);
+            if ($resourceType === 'file') {
+                $content = fread($inputFile, fstat($inputFile)['size']);
+            } elseif ($resourceType === 'stream') {
+                $content = stream_get_contents($inputFile);
+            } else {
+                throw new MindeeException("Unsupported resource type.", ErrorCode::USER_INPUT_ERROR);
             }
-            $strStripped = str_replace(["\r", "\n"], '', $inputFile);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
+        } elseif (is_string($inputFile)) {
+            if (file_exists($inputFile) && is_file($inputFile)) {
+                $content = file_get_contents($inputFile);
+            } else {
+                $content = $inputFile;
+            }
+        } elseif (is_array($inputFile)) {
+            $content = implode('', $inputFile);
         } else {
-            throw new MindeeException(
-                "Incompatible type for input.",
-                ErrorCode::USER_INPUT_ERROR
-            );
+            throw new MindeeException("Incompatible type for input.", ErrorCode::USER_INPUT_ERROR);
         }
+
+        $strStripped = str_replace(["\r", "\n"], '', (string) $content);
+        $this->file = fopen('php://memory', 'r+');
+        fwrite($this->file, $strStripped);
+        rewind($this->file);
     }
 
     /**

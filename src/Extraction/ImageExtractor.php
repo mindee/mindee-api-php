@@ -131,7 +131,7 @@ class ImageExtractor
     /**
      * Extract multiple images on a given page from a list of fields having position data.
      *
-     * @param array<BaseField> $fields List of Fields to extract.
+     * @param array<BaseField<mixed>> $fields List of Fields to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $outputName The base output filename, must have an image extension.
      *
@@ -215,7 +215,7 @@ class ImageExtractor
     /**
      * Extracts a single image from a Position field.
      *
-     * @param BaseField $field The field to extract.
+     * @param BaseField<mixed> $field The field to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param integer $index The index to use for naming the extracted image.
      * @param string $filename The output filename.
@@ -265,7 +265,7 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array<BaseField> $fields List of Fields to extract.
+     * @param array<BaseField<mixed>> $fields List of Fields to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param string $outputName Name of the created file.
      * @param string $format The output format.
@@ -316,7 +316,7 @@ class ImageExtractor
      * Splits the filename into name and extension.
      *
      * @param string $filename Name of the file.
-     * @return array An array containing the name and extension of the file.
+     * @return array{0: string, 1: string} An array containing the name and extension of the file.
      */
     protected static function splitNameStrict(string $filename): array
     {

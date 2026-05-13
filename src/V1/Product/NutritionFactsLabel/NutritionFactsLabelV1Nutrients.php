@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The amount of nutrients in the product.
+ * @extends ArrayObject<int, NutritionFactsLabelV1Nutrient>
  */
 class NutritionFactsLabelV1Nutrients extends ArrayObject
 {

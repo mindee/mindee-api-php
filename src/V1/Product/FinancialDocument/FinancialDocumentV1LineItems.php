@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * List of line item present on the document.
+ * @extends ArrayObject<integer, FinancialDocumentV1LineItem>
  */
 class FinancialDocumentV1LineItems extends ArrayObject
 {

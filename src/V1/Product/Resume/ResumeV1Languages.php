@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The list of languages that the candidate is proficient in.
+ * @extends ArrayObject<integer, ResumeV1Language>
  */
 class ResumeV1Languages extends ArrayObject
 {

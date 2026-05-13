@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * List of page groups. Each group represents a single invoice within a multi-invoice document.
+ * @extends ArrayObject<integer, InvoiceSplitterV1InvoicePageGroup>
  */
 class InvoiceSplitterV1InvoicePageGroups extends ArrayObject
 {

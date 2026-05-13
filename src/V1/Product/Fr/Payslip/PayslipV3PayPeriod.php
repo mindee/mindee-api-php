@@ -58,21 +58,6 @@ class PayslipV3PayPeriod
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["endDate"] = SummaryHelperV1::formatForDisplay($this->endDate);
-        $outArr["month"] = SummaryHelperV1::formatForDisplay($this->month);
-        $outArr["paymentDate"] = SummaryHelperV1::formatForDisplay($this->paymentDate);
-        $outArr["startDate"] = SummaryHelperV1::formatForDisplay($this->startDate);
-        $outArr["year"] = SummaryHelperV1::formatForDisplay($this->year);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

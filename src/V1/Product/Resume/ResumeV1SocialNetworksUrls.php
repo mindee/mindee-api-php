@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The list of social network profiles of the candidate.
+ * @extends ArrayObject<integer, ResumeV1SocialNetworksUrl>
  */
 class ResumeV1SocialNetworksUrls extends ArrayObject
 {

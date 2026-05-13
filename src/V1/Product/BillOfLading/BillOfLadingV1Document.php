@@ -150,10 +150,10 @@ class BillOfLadingV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $shipperToFieldList = $this->shipper !== null ? $this->shipper->toFieldList() : "";
-        $consigneeToFieldList = $this->consignee !== null ? $this->consignee->toFieldList() : "";
-        $notifyPartyToFieldList = $this->notifyParty !== null ? $this->notifyParty->toFieldList() : "";
-        $carrierToFieldList = $this->carrier !== null ? $this->carrier->toFieldList() : "";
+        $shipperToFieldList = $this->shipper->toFieldList();
+        $consigneeToFieldList = $this->consignee->toFieldList();
+        $notifyPartyToFieldList = $this->notifyParty->toFieldList();
+        $carrierToFieldList = $this->carrier->toFieldList();
         $carrierItemsSummary = (string) ($this->carrierItems);
 
         $outStr = ":Bill of Lading Number: $this->billOfLadingNumber

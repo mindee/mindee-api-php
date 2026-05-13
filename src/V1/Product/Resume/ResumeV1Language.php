@@ -44,7 +44,7 @@ class ResumeV1Language
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -54,17 +54,6 @@ class ResumeV1Language
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["language"] = SummaryHelperV1::formatForDisplay($this->language);
-        $outArr["level"] = SummaryHelperV1::formatForDisplay($this->level);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

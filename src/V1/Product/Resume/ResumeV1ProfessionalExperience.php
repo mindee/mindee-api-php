@@ -79,7 +79,7 @@ class ResumeV1ProfessionalExperience
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -96,24 +96,6 @@ class ResumeV1ProfessionalExperience
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["contractType"] = SummaryHelperV1::formatForDisplay($this->contractType);
-        $outArr["department"] = SummaryHelperV1::formatForDisplay($this->department);
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["employer"] = SummaryHelperV1::formatForDisplay($this->employer);
-        $outArr["endMonth"] = SummaryHelperV1::formatForDisplay($this->endMonth);
-        $outArr["endYear"] = SummaryHelperV1::formatForDisplay($this->endYear);
-        $outArr["role"] = SummaryHelperV1::formatForDisplay($this->role);
-        $outArr["startMonth"] = SummaryHelperV1::formatForDisplay($this->startMonth);
-        $outArr["startYear"] = SummaryHelperV1::formatForDisplay($this->startYear);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

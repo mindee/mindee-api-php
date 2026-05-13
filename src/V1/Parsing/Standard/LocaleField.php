@@ -8,6 +8,7 @@ use function array_key_exists;
 
 /**
  * The locale detected on the document.
+ * @extends BaseField<string>
  */
 class LocaleField extends BaseField
 {

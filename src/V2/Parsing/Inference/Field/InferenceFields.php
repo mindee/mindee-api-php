@@ -11,6 +11,7 @@ use function sprintf;
 
 /**
  * Collection of inference fields.
+ * @extends ArrayObject<string, SimpleField|ObjectField|ListField>
  */
 class InferenceFields extends ArrayObject
 {

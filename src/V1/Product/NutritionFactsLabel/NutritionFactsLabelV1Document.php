@@ -182,18 +182,18 @@ class NutritionFactsLabelV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $servingSizeToFieldList = $this->servingSize !== null ? $this->servingSize->toFieldList() : "";
-        $caloriesToFieldList = $this->calories !== null ? $this->calories->toFieldList() : "";
-        $totalFatToFieldList = $this->totalFat !== null ? $this->totalFat->toFieldList() : "";
-        $saturatedFatToFieldList = $this->saturatedFat !== null ? $this->saturatedFat->toFieldList() : "";
-        $transFatToFieldList = $this->transFat !== null ? $this->transFat->toFieldList() : "";
-        $cholesterolToFieldList = $this->cholesterol !== null ? $this->cholesterol->toFieldList() : "";
-        $totalCarbohydrateToFieldList = $this->totalCarbohydrate !== null ? $this->totalCarbohydrate->toFieldList() : "";
-        $dietaryFiberToFieldList = $this->dietaryFiber !== null ? $this->dietaryFiber->toFieldList() : "";
-        $totalSugarsToFieldList = $this->totalSugars !== null ? $this->totalSugars->toFieldList() : "";
-        $addedSugarsToFieldList = $this->addedSugars !== null ? $this->addedSugars->toFieldList() : "";
-        $proteinToFieldList = $this->protein !== null ? $this->protein->toFieldList() : "";
-        $sodiumToFieldList = $this->sodium !== null ? $this->sodium->toFieldList() : "";
+        $servingSizeToFieldList = $this->servingSize->toFieldList();
+        $caloriesToFieldList = $this->calories->toFieldList();
+        $totalFatToFieldList = $this->totalFat->toFieldList();
+        $saturatedFatToFieldList = $this->saturatedFat->toFieldList();
+        $transFatToFieldList = $this->transFat->toFieldList();
+        $cholesterolToFieldList = $this->cholesterol->toFieldList();
+        $totalCarbohydrateToFieldList = $this->totalCarbohydrate->toFieldList();
+        $dietaryFiberToFieldList = $this->dietaryFiber->toFieldList();
+        $totalSugarsToFieldList = $this->totalSugars->toFieldList();
+        $addedSugarsToFieldList = $this->addedSugars->toFieldList();
+        $proteinToFieldList = $this->protein->toFieldList();
+        $sodiumToFieldList = $this->sodium->toFieldList();
         $nutrientsSummary = (string) ($this->nutrients);
 
         $outStr = ":Serving per Box: $this->servingPerBox

@@ -17,7 +17,9 @@ use function is_int;
  */
 class GeneratedV1Page extends GeneratedV1Prediction
 {
-    /** @var array Dictionary of all fields in the document */
+    /**
+     * @var array<string, GeneratedListField|GeneratedObjectField|StringField> Dictionary of all fields in the document.
+     */
     public array $fields;
 
     /**
@@ -27,7 +29,7 @@ class GeneratedV1Page extends GeneratedV1Prediction
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        parent::__construct($rawPrediction);
+        parent::__construct();
         $this->fields = [];
         foreach ($rawPrediction as $fieldName => $fieldContents) {
             if (is_array($fieldContents) && array_values($fieldContents) === $fieldContents) {

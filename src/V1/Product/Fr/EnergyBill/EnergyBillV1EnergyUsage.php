@@ -78,7 +78,7 @@ class EnergyBillV1EnergyUsage
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -94,23 +94,6 @@ class EnergyBillV1EnergyUsage
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["consumption"] = SummaryHelperV1::formatFloat($this->consumption);
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["endDate"] = SummaryHelperV1::formatForDisplay($this->endDate);
-        $outArr["startDate"] = SummaryHelperV1::formatForDisplay($this->startDate);
-        $outArr["taxRate"] = SummaryHelperV1::formatFloat($this->taxRate);
-        $outArr["total"] = SummaryHelperV1::formatFloat($this->total);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        $outArr["unitPrice"] = SummaryHelperV1::formatFloat($this->unitPrice);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

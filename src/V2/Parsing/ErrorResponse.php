@@ -30,7 +30,7 @@ class ErrorResponse
      */
     public ?string $code;
     /**
-     * @var array<ErrorItem>|mixed|null A list of explicit error details.
+     * @var array<ErrorItem>|null A list of explicit error details.
      */
     public ?array $errors;
 

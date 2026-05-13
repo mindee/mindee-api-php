@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * Copayments for covered services.
+ * @extends ArrayObject<integer, HealthcareCardV1Copay>
  */
 class HealthcareCardV1Copays extends ArrayObject
 {

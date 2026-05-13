@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The list of the candidate's educational background.
+ * @extends ArrayObject<integer, ResumeV1Education>
  */
 class ResumeV1Educations extends ArrayObject
 {

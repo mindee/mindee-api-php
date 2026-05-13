@@ -27,6 +27,11 @@ abstract class BaseParameters
     public array $webhooksIds;
 
     /**
+     * @var string Slug of the endpoint.
+     */
+    public static string $slug;
+
+    /**
      * @param string $modelId ID of the model.
      * @param string|null $alias Optional file alias.
      * @param array<string>|null $webhooksIds List of webhook IDs.
@@ -46,7 +51,7 @@ abstract class BaseParameters
     }
 
     /**
-     * @return array Hash representation.
+     * @return array<string, string> Hash representation.
      */
     public function asHash(): array
     {
@@ -56,7 +61,7 @@ abstract class BaseParameters
         }
 
 
-        if (isset($this->webhooksIds) && count($this->webhooksIds) > 0) {
+        if (!empty($this->webhooksIds)) {
             $outHash['webhook_ids'] = implode(',', $this->webhooksIds);
         }
         return $outHash;

@@ -63,7 +63,7 @@ class PayslipV3SalaryDetail
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -76,20 +76,6 @@ class PayslipV3SalaryDetail
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["amount"] = SummaryHelperV1::formatFloat($this->amount);
-        $outArr["base"] = SummaryHelperV1::formatFloat($this->base);
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["number"] = SummaryHelperV1::formatFloat($this->number);
-        $outArr["rate"] = SummaryHelperV1::formatFloat($this->rate);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

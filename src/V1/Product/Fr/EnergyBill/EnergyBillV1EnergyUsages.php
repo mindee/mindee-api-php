@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * Details of energy consumption.
+ * @extends ArrayObject<integer, EnergyBillV1EnergyUsage>
  */
 class EnergyBillV1EnergyUsages extends ArrayObject
 {

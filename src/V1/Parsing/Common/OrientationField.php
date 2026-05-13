@@ -11,14 +11,10 @@ use function in_array;
 
 /**
  * The clockwise rotation to apply (in degrees) to make the image upright.
+ * @extends BaseField<integer>
  */
 class OrientationField extends BaseField
 {
-    /**
-     * @var integer Degrees as an integer.
-     */
-    public $value;
-
     /**
      * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.

@@ -22,7 +22,7 @@ abstract class PolygonUtils
      */
     public static function getCentroid(mixed $vertices): Point
     {
-        if (is_a(Polygon::class, $vertices)) {
+        if ($vertices instanceof Polygon) {
             $vertices = $vertices->getCoordinates();
         }
         $verticesSum = count($vertices);

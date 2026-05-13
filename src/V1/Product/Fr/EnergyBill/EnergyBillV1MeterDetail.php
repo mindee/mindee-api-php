@@ -48,19 +48,6 @@ class EnergyBillV1MeterDetail
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["meterNumber"] = SummaryHelperV1::formatForDisplay($this->meterNumber);
-        $outArr["meterType"] = SummaryHelperV1::formatForDisplay($this->meterType);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

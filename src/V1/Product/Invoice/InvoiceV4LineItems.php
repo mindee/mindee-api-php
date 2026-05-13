@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * List of all the line items present on the invoice.
+ * @extends ArrayObject<integer, InvoiceV4LineItem>
  */
 class InvoiceV4LineItems extends ArrayObject
 {

@@ -36,7 +36,7 @@ class OCR
      * Finds all lines matching the given regex in the OCR data, indexed by their page.
      *
      * @param string $regex The regular expression to match against.
-     * @return array<OCRLine> All lines that match the regex, indexed by their page.
+     * @return array<integer, array<OCRLine>> All lines that match the regex, indexed by their page.
      */
     public function findLineByRegex(string $regex): array
     {

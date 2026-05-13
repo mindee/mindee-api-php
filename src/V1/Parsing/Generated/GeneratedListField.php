@@ -23,7 +23,7 @@ class GeneratedListField
     /**
      * Constructor.
      *
-     * @param array<string, mixed> $rawPrediction Raw prediction data.
+     * @param list<mixed> $rawPrediction Array containing the list elements.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -57,11 +57,11 @@ class GeneratedListField
     /**
      * Get a list of contents.
      *
-     * @return array<GeneratedObjectField|StringField> List of contents.
+     * @return array<string> List of contents.
      */
     public function getContentsList(): array
     {
-        return array_map(static fn($v) => (string) ($v ?: ""), $this->values);
+        return array_map(static fn($v) => (string) $v, $this->values);
     }
 
     /**

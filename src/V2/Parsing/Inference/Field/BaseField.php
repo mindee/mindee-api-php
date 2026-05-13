@@ -66,4 +66,13 @@ abstract class BaseField
             sprintf('Unrecognized field format in %s.', json_encode($rawPrediction))
         );
     }
+
+    /**
+     * Base str-rep. Do not use.
+     * @throws MindeeApiException
+     */
+    public function __toString(): string
+    {
+        throw new MindeeApiException('Not implemented');
+    }
 }

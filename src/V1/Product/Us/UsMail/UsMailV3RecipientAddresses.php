@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * The addresses of the recipients.
+ * @extends ArrayObject<integer, UsMailV3RecipientAddress>
  */
 class UsMailV3RecipientAddresses extends ArrayObject
 {

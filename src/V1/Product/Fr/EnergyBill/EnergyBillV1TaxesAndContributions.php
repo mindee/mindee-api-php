@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * Details of Taxes and Contributions.
+ * @extends ArrayObject<integer, EnergyBillV1TaxesAndContribution>
  */
 class EnergyBillV1TaxesAndContributions extends ArrayObject
 {

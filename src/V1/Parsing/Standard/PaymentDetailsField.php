@@ -9,6 +9,7 @@ use function is_scalar;
 
 /**
  * Information on a single payment.
+ * @extends BaseField<string>
  */
 class PaymentDetailsField extends BaseField
 {

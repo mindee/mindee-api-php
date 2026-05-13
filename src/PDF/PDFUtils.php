@@ -85,7 +85,7 @@ class PDFUtils
      * Extracts text elements with their properties from all pages in a PDF.
      *
      * @param string $pdfPath Path to the PDF file.
-     * @return array<<integer, string>> A page-indexed array of text elements.
+     * @return array<integer, string> A page-indexed array of text elements.
      *               Each text element includes text content, position, font, size, and color.
      * @throws MindeePDFException Throws if the PDF can't be parsed or text elements can't be extracted.
      */
@@ -192,7 +192,7 @@ class PDFUtils
      * @param string $fontName Name of the font/subfont.
      * @return array{family: string, style: string} The standard font & possible style.
      */
-    private static function standardizeFontName(string $fontName): array
+    protected static function standardizeFontName(string $fontName): array
     {
         $cleanName = preg_replace('/^.*?\+/', '', $fontName);
         $parts = explode('-', $cleanName, 2);

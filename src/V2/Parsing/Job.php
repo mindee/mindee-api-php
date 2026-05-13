@@ -110,7 +110,7 @@ class Job
      */
     private function parseDate(?string $dateString): ?DateTime
     {
-        if ($dateString == null || $dateString === '') {
+        if (empty($dateString)) {
             return null;
         }
 

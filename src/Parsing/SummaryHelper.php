@@ -77,7 +77,7 @@ class SummaryHelper
             return 'False';
         }
         $inputString = self::escapeSpecialChars($inputString);
-        if (!$inputString || mb_strlen($inputString, "UTF-8") === 0) {
+        if (!$inputString) {
             return "";
         }
         if (!isset($maxColSize)) {

@@ -56,7 +56,7 @@ abstract class BaseField
     /**
      * Compares with the value of another field.
      *
-     * @param BaseField $obj Field to compare.
+     * @param BaseField<mixed> $obj Field to compare.
      * @return boolean
      */
     public function __compare(self $obj): bool

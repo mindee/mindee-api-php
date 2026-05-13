@@ -21,7 +21,7 @@ class ListField extends BaseField
     public array $items;
 
     /**
-     * @param array<string,mixed> $rawResponse Raw server response array.
+     * @param array<string, mixed> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation for rst display.
      * @throws MindeeApiException Throws if deserialization fails.
      */

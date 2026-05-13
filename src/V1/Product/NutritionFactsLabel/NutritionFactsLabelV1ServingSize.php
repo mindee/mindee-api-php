@@ -44,18 +44,6 @@ class NutritionFactsLabelV1ServingSize
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["amount"] = SummaryHelperV1::formatFloat($this->amount);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

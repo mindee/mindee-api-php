@@ -8,6 +8,7 @@ use ArrayObject;
 
 /**
  * Information about paid time off.
+ * @extends ArrayObject<integer, PayslipV3PaidTimeOff>
  */
 class PayslipV3PaidTimeOffs extends ArrayObject
 {

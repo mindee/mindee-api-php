@@ -72,7 +72,7 @@ class BankAccountDetailsV2Document extends Prediction
      */
     public function __toString(): string
     {
-        $bbanToFieldList = $this->bban !== null ? $this->bban->toFieldList() : "";
+        $bbanToFieldList = $this->bban->toFieldList();
 
         $outStr = ":Account Holder's Names: $this->accountHoldersNames
 :Basic Bank Account Number: $bbanToFieldList

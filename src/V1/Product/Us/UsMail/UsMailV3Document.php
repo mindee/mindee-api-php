@@ -84,7 +84,7 @@ class UsMailV3Document extends Prediction
      */
     public function __toString(): string
     {
-        $senderAddressToFieldList = $this->senderAddress !== null ? $this->senderAddress->toFieldList() : "";
+        $senderAddressToFieldList = $this->senderAddress->toFieldList();
         $recipientNames = implode(
             "\n                  ",
             $this->recipientNames

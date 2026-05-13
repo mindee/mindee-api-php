@@ -10,6 +10,7 @@ use function sprintf;
 
 /**
  * A company registration item.
+ * @extends BaseField<string>
  */
 class CompanyRegistrationField extends BaseField
 {

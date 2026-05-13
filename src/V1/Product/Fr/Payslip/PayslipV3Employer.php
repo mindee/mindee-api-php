@@ -68,23 +68,6 @@ class PayslipV3Employer
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["companyId"] = SummaryHelperV1::formatForDisplay($this->companyId);
-        $outArr["companySite"] = SummaryHelperV1::formatForDisplay($this->companySite);
-        $outArr["nafCode"] = SummaryHelperV1::formatForDisplay($this->nafCode);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["phoneNumber"] = SummaryHelperV1::formatForDisplay($this->phoneNumber);
-        $outArr["urssafNumber"] = SummaryHelperV1::formatForDisplay($this->urssafNumber);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
      * @return array<string, string>
      */

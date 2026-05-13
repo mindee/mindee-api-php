@@ -54,7 +54,7 @@ class ResumeV1Certificate
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -66,19 +66,6 @@ class ResumeV1Certificate
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     * @return array<string, string>
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["grade"] = SummaryHelperV1::formatForDisplay($this->grade);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["provider"] = SummaryHelperV1::formatForDisplay($this->provider);
-        $outArr["year"] = SummaryHelperV1::formatForDisplay($this->year);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *
