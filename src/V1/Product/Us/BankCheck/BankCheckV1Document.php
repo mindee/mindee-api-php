@@ -78,7 +78,7 @@ class BankCheckV1Document extends Prediction
         if (!isset($rawPrediction["payees"])) {
             throw new MindeeUnsetException();
         }
-        $this->payees = $rawPrediction["payees"] == null ? [] : array_map(
+        $this->payees = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["payees"]
         );

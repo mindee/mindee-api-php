@@ -34,4 +34,7 @@ jobs:
     - name: Run lint
       run: |
         composer lint
-    
+
+    - name: Run PHPStan
+      run: |
+        composer phpstan

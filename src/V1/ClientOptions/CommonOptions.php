@@ -27,7 +27,6 @@ abstract class CommonOptions
 
     /**
      * @param boolean $fullText Whether to include the full text.
-     * @return static
      */
     public function setFullText(bool $fullText): static
     {

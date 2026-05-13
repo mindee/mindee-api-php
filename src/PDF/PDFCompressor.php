@@ -18,7 +18,6 @@ use Exception;
 use Imagick;
 use SplFileObject;
 
-
 /**
  * PDF compression class.
  */

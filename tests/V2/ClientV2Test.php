@@ -153,7 +153,7 @@ class ClientV2Test extends TestCase
             $params = new ExtractionParameters('dummy-model-id');
             $client->enqueueAndGetResult(ExtractionResponse::class, $input, $params);
         } finally {
-            if ($original == null) {
+            if (null === $original) {
                 putenv('MINDEE_V2_BASE_URL');
             } else {
                 putenv('MINDEE_V2_BASE_URL=' . $original);

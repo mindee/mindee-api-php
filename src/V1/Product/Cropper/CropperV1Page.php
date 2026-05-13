@@ -22,7 +22,7 @@ class CropperV1Page extends CropperV1Document
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        $this->cropping = $rawPrediction["cropping"] == null ? [] : array_map(
+        $this->cropping = null === $rawPrediction["cropping"] ? [] : array_map(
             static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["cropping"]
         );

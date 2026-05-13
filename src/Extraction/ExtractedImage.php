@@ -85,7 +85,7 @@ class ExtractedImage
         $quality = min(100, max(0, $quality));
         if ('png' === $format) {
             $finalQuality = round($quality * 0.09);
-            $this->image->setOption('png:compression-level', (string)$finalQuality);
+            $this->image->setOption('png:compression-level', (string) $finalQuality);
         } elseif (in_array($format, ['jpg', 'jpeg'], true)) {
             $this->image->setImageCompression(Imagick::COMPRESSION_JPEG);
         }

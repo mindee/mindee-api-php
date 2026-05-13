@@ -31,7 +31,7 @@ class BankCheckV1Page extends BankCheckV1Document
             $rawPrediction["check_position"],
             $pageId
         );
-        $this->signaturesPositions = $rawPrediction["signatures_positions"] == null ? [] : array_map(
+        $this->signaturesPositions = array_map(
             static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["signatures_positions"]
         );

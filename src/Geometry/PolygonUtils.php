@@ -18,7 +18,6 @@ abstract class PolygonUtils
      * Gets the centroid (Point) of a set of points.
      *
      * @param array<Point>|Polygon $vertices Array of points.
-     * @return Point
      */
     public static function getCentroid(mixed $vertices): Point
     {
@@ -49,7 +48,7 @@ abstract class PolygonUtils
     public static function compareOnY(Polygon $polygon1, Polygon $polygon2): int
     {
         $sort = ($polygon1->getMinY() - $polygon2->getMinY());
-        if ($sort == 0) {
+        if ($sort === 0.0) {
             return 0;
         }
         return $sort < 0 ? -1 : 1;

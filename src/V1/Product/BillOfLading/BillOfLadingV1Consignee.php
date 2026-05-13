@@ -67,7 +67,6 @@ class BillOfLadingV1Consignee
     }
     /**
      * Output in a format suitable for inclusion in a field list.
-     * @return string
      */
     public function toFieldList(): string
     {

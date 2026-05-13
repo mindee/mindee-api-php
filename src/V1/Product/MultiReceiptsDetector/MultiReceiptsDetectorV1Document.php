@@ -28,7 +28,7 @@ class MultiReceiptsDetectorV1Document extends Prediction
         if (!isset($rawPrediction["receipts"])) {
             throw new MindeeUnsetException();
         }
-        $this->receipts = $rawPrediction["receipts"] == null ? [] : array_map(
+        $this->receipts = array_map(
             static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["receipts"]
         );

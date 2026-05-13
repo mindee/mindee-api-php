@@ -62,7 +62,7 @@ class ExtractionParameters extends BaseParameters
      * @param string|null $textContext Additional text context used by the model during
      *                                 inference.
      * @param DataSchema|string|array<string>|null $dataSchema Additional text context used by the model during
-     *                                                 inference.
+     *                                                         inference.
      */
     public function __construct(
         string $modelId,

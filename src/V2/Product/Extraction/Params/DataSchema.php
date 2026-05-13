@@ -76,7 +76,7 @@ class DataSchema
     {
         $jsonStr = json_encode($this->toJson(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         $lines = explode("\n", $jsonStr);
-        return implode("\n", array_map(fn($line) => self::fixLineSpaces($line), $lines)) . "\n";
+        return implode("\n", array_map(static fn($line) => self::fixLineSpaces($line), $lines)) . "\n";
     }
 
     /**

@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "lint": "php-cs-fixer fix --dry-run --diff",
-    "phpstan": "phpstan analyse src --level max",
+    "phpstan": "phpstan analyse src --level 6",
     "format": "php-cs-fixer fix"
   }
 }

@@ -135,14 +135,14 @@ class ResumeV1Document extends Prediction
         if (!isset($rawPrediction["given_names"])) {
             throw new MindeeUnsetException();
         }
-        $this->givenNames = $rawPrediction["given_names"] == null ? [] : array_map(
+        $this->givenNames = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["given_names"]
         );
         if (!isset($rawPrediction["hard_skills"])) {
             throw new MindeeUnsetException();
         }
-        $this->hardSkills = $rawPrediction["hard_skills"] == null ? [] : array_map(
+        $this->hardSkills = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["hard_skills"]
         );
@@ -198,14 +198,14 @@ class ResumeV1Document extends Prediction
         if (!isset($rawPrediction["soft_skills"])) {
             throw new MindeeUnsetException();
         }
-        $this->softSkills = $rawPrediction["soft_skills"] == null ? [] : array_map(
+        $this->softSkills = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["soft_skills"]
         );
         if (!isset($rawPrediction["surnames"])) {
             throw new MindeeUnsetException();
         }
-        $this->surnames = $rawPrediction["surnames"] == null ? [] : array_map(
+        $this->surnames = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["surnames"]
         );

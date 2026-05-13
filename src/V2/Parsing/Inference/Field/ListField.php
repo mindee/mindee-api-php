@@ -16,7 +16,7 @@ use function sprintf;
 class ListField extends BaseField
 {
     /**
-     * @var array<BaseField> Items contained in the list.
+     * @var array<BaseField|null> Items contained in the list.
      */
     public array $items;
 
@@ -51,7 +51,7 @@ class ListField extends BaseField
 
         $parts = [''];
         foreach ($this->items as $item) {
-            if ($item == null) {
+            if (null === $item) {
                 continue;
             }
 

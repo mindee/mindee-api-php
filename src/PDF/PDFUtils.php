@@ -86,7 +86,7 @@ class PDFUtils
      *
      * @param string $pdfPath Path to the PDF file.
      * @return array<integer, string> A page-indexed array of text elements.
-     *               Each text element includes text content, position, font, size, and color.
+     *                                Each text element includes text content, position, font, size, and color.
      * @throws MindeePDFException Throws if the PDF can't be parsed or text elements can't be extracted.
      */
     public static function extractPagesTextElements(string $pdfPath): array
@@ -153,7 +153,7 @@ class PDFUtils
      *
      * @param Page $page Page object.
      * @return array<array<string, string|float|Font|null>> An array of text elements, each containing text content,
-     * position, font, size, and color.
+     *                                                      position, font, size, and color.
      * @throws MindeePDFException Throws if the text elements can't be extracted.
      */
     public static function extractTextElements(Page $page): array
@@ -169,11 +169,11 @@ class PDFUtils
                 if (isset($text[1])) {
                     $textElements[] = [
                         'text' => $text[1],
-                        'rotation' => rad2deg((float)($text[0][2])),
-                        'x' => (float)($text[0][4]),
-                        'y' => (float)($text[0][5]),
+                        'rotation' => rad2deg((float) ($text[0][2])),
+                        'x' => (float) ($text[0][4]),
+                        'y' => (float) ($text[0][5]),
                         'font' => $page->getFont($text[2]),
-                        'size' => (float)($text[3]),
+                        'size' => (float) ($text[3]),
                     ];
                 }
             }

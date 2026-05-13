@@ -30,32 +30,21 @@ abstract class BBoxUtils
     /**
      * Generates a BBox from an array of polygons. Returns null if no polygons are provided.
      *
-     * @param array<Polygon> $polygons Series of polygons to get the BBox of.
+     * @param array<Polygon|null> $polygons Series of polygons to get the BBox of.
      */
     public static function generateBBoxFromPolygons(array $polygons): ?BBox
     {
-        if (!$polygons) {
-            return null;
-        }
-        $merged = null;
+        $bboxes = [];
+
         foreach ($polygons as $polygon) {
-            if (empty($polygon)) {
+            if (null === $polygon || !$polygon->getCoordinates()) {
                 continue;
-            } else {
-                if (empty($merged)) {
-                    $merged = $polygon;
-                }
             }
-            if ($merged !== $polygon) {
-                $merged = PolygonUtils::merge($merged, $polygon);
-            }
+
+            $bboxes[] = self::generateBBoxFromPolygon($polygon);
         }
-        return new BBox(
-            $merged->getMinX(),
-            $merged->getMaxX(),
-            $merged->getMinY(),
-            $merged->getMaxY(),
-        );
+
+        return self::mergeBBoxes($bboxes);
     }
 
     /**

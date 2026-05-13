@@ -20,7 +20,7 @@ class SummaryHelper
      */
     public static function formatFloat(?float $number): string
     {
-        if ($number === null) {
+        if (null === $number) {
             return '';
         }
         $formatted = number_format($number, 5, '.', '');
@@ -54,7 +54,7 @@ class SummaryHelper
      */
     protected static function escapeSpecialChars(?string $string): ?string
     {
-        if ($string == null) {
+        if (null === $string) {
             return null;
         }
         $find = ["\n", "\t", "\r"];

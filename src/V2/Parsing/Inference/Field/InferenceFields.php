@@ -43,7 +43,6 @@ class InferenceFields extends ArrayObject
      * Get a field by key.
      *
      * @param string $fieldName Field key to retrieve.
-     * @return SimpleField|ObjectField|ListField
      * @throws InvalidArgumentException When the field does not exist.
      */
     public function get(string $fieldName): SimpleField|ObjectField|ListField

@@ -102,7 +102,7 @@ class MindeeAPIV2
         $this->baseUrl = API_V2_BASE_URL_DEFAULT;
         $this->requestTimeout = API_V2_TIMEOUT_DEFAULT;
         $this->setFromEnv();
-        if (strlen($this->apiKey) === 0) {
+        if ($this->apiKey === '') {
             throw new MindeeException(
                 "Missing API key for call,"
                 . " check your Client configuration.You can set this using the "

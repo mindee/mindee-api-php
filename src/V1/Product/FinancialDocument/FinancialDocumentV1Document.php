@@ -186,7 +186,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["customer_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->customerCompanyRegistrations = $rawPrediction["customer_company_registrations"] == null ? [] : array_map(
+        $this->customerCompanyRegistrations = array_map(
             static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["customer_company_registrations"]
         );
@@ -284,7 +284,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["reference_numbers"])) {
             throw new MindeeUnsetException();
         }
-        $this->referenceNumbers = $rawPrediction["reference_numbers"] == null ? [] : array_map(
+        $this->referenceNumbers = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["reference_numbers"]
         );
@@ -312,7 +312,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["supplier_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
+        $this->supplierCompanyRegistrations = array_map(
             static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );
@@ -333,7 +333,7 @@ class FinancialDocumentV1Document extends Prediction
         if (!isset($rawPrediction["supplier_payment_details"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierPaymentDetails = $rawPrediction["supplier_payment_details"] == null ? [] : array_map(
+        $this->supplierPaymentDetails = array_map(
             static fn($prediction) => new PaymentDetailsField($prediction, $pageId),
             $rawPrediction["supplier_payment_details"]
         );

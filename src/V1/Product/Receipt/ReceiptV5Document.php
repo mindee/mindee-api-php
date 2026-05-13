@@ -154,7 +154,7 @@ class ReceiptV5Document extends Prediction
         if (!isset($rawPrediction["supplier_company_registrations"])) {
             throw new MindeeUnsetException();
         }
-        $this->supplierCompanyRegistrations = $rawPrediction["supplier_company_registrations"] == null ? [] : array_map(
+        $this->supplierCompanyRegistrations = array_map(
             static fn($prediction) => new CompanyRegistrationField($prediction, $pageId),
             $rawPrediction["supplier_company_registrations"]
         );

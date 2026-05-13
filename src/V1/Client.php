@@ -407,7 +407,7 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): PredictResponse {
-        if ($options == null) {
+        if (null === $options) {
             $options = new PredictMethodOptions();
         }
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
@@ -437,10 +437,10 @@ class Client
         ?PollingOptions $asyncOptions = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if ($options == null) {
+        if (null === $options) {
             $options = new PredictMethodOptions();
         }
-        if ($asyncOptions == null) {
+        if (null === $asyncOptions) {
             $asyncOptions = new PollingOptions();
         }
 
@@ -492,7 +492,7 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if ($options == null) {
+        if (null === $options) {
             $options = new PredictMethodOptions();
         }
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
@@ -561,7 +561,7 @@ class Client
         ?WorkflowOptions $options = null,
         ?PageOptions $pageOptions = null
     ): WorkflowResponse {
-        if ($options == null) {
+        if (null === $options) {
             $options = new WorkflowOptions();
         }
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {

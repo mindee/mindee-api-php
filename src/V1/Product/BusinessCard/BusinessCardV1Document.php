@@ -131,7 +131,7 @@ class BusinessCardV1Document extends Prediction
         if (!isset($rawPrediction["social_media"])) {
             throw new MindeeUnsetException();
         }
-        $this->socialMedia = $rawPrediction["social_media"] == null ? [] : array_map(
+        $this->socialMedia = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["social_media"]
         );

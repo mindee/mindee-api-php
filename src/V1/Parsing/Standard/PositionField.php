@@ -53,7 +53,6 @@ class PositionField extends BaseField
      *
      * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @param string $key Key to use for the value.
-     * @return Polygon|null
      */
     private static function getPolygon(array $rawPrediction, string $key): ?Polygon
     {

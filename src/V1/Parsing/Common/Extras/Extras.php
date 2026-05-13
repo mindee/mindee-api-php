@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\Extras;
 
+use function is_scalar;
+
 /**
  * Extras collection wrapper class.
  *

@@ -40,7 +40,7 @@ class Page
      * @param array<string, mixed> $rawPrediction Raw prediction array.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response, through the reflected document
-     * class.
+     *                              class.
      */
     public function __construct(string $predictionType, array $rawPrediction)
     {

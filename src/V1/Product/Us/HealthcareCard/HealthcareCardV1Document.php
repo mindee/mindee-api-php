@@ -95,7 +95,7 @@ class HealthcareCardV1Document extends Prediction
         if (!isset($rawPrediction["dependents"])) {
             throw new MindeeUnsetException();
         }
-        $this->dependents = $rawPrediction["dependents"] == null ? [] : array_map(
+        $this->dependents = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["dependents"]
         );

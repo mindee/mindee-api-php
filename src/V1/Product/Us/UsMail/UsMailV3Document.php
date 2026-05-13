@@ -59,7 +59,7 @@ class UsMailV3Document extends Prediction
         if (!isset($rawPrediction["recipient_names"])) {
             throw new MindeeUnsetException();
         }
-        $this->recipientNames = $rawPrediction["recipient_names"] == null ? [] : array_map(
+        $this->recipientNames = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["recipient_names"]
         );

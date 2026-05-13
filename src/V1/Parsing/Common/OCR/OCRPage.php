@@ -78,12 +78,12 @@ class OCRPage
         $current = null;
         $indexes = [];
         $lines = [];
-        foreach ($this->allWords as $w) {
+        foreach ($this->allWords as $_) {
             $line = new OCRLine();
             for ($idx = 0; $idx < count($this->allWords); $idx++) {
                 $word = $this->allWords[$idx];
                 if (!in_array($idx, $indexes, true)) {
-                    if ($current == null) {
+                    if (null === $current) {
                         $current = $word;
                         $indexes[] = $idx;
                         $line = new OCRLine();
