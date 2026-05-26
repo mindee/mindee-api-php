@@ -61,7 +61,7 @@ abstract class LocalInputSource extends InputSource
     /**
      * @var string|null Path of the file for files retrieved from a path.
      */
-    public ?string $filePath;
+    public ?string $filePath = null;
 
     /**
      * Checks if the file needs fixing.
@@ -204,7 +204,7 @@ abstract class LocalInputSource extends InputSource
                 $pdfPage->setSourceFile($this->fileObject->getFilename());
                 $pdfPage->AddPage();
                 $pdfPage->useTemplate($pdfPage->importPage($pageNumber + 1));
-                if (strlen($pdfPage->Output('', 'S')) > $threshold) {
+                if (strlen((string) $pdfPage->Output('', 'S')) > $threshold) {
                     $pdfPage->Close();
                     return false;
                 }
@@ -291,7 +291,7 @@ abstract class LocalInputSource extends InputSource
                 $disableSourceText
             );
             $this->fileMimetype = 'application/pdf';
-            $pathInfo = pathinfo($this->filePath);
+            $pathInfo = pathinfo((string) $this->filePath);
             $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.pdf';
         } else {
             $this->fileObject = ImageCompressor::compress(
@@ -301,7 +301,7 @@ abstract class LocalInputSource extends InputSource
                 $maxHeight
             );
             $this->fileMimetype = 'image/jpeg';
-            $pathInfo = pathinfo($this->filePath);
+            $pathInfo = pathinfo((string) $this->filePath);
             $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.jpg';
         }
     }

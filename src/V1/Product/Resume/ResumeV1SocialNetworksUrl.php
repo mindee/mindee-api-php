@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Resume;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The list of social network profiles of the candidate.
  */
-class ResumeV1SocialNetworksUrl
+class ResumeV1SocialNetworksUrl implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -24,20 +25,15 @@ class ResumeV1SocialNetworksUrl
      * @var string|null The URL of the social network.
      */
     public ?string $url;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->pageId = $pageId;
         $this->name = $rawPrediction["name"] ?? null;
         $this->url = $rawPrediction["url"] ?? null;
     }

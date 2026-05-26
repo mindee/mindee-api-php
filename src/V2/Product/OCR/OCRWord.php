@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\OCR;
 
 use Mindee\Geometry\Polygon;
+use Stringable;
 
 /**
  * OCR result for a single word extracted from the document page.
  */
-class OCRWord
+class OCRWord implements Stringable
 {
     /**
      * @var string Content of the word.

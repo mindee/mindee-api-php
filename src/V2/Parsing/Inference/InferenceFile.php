@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference;
 
+use Stringable;
+
 /**
  * Inference result file class.
  */
-class InferenceFile
+class InferenceFile implements Stringable
 {
     /**
      * @var string Name of the file.

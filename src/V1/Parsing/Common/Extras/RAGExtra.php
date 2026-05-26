@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\Extras;
 
+use Stringable;
+
 /**
  * Contains information on the Retrieval-Augmented-Generation of a prediction.
  */
-class RAGExtra
+class RAGExtra implements Stringable
 {
     /**
      * @var string|null The document ID of the matching document.

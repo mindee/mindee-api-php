@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\OCR;
 
+use Stringable;
+
 /**
  * Mindee Vision V1.
  */
-class MVisionV1
+class MVisionV1 implements Stringable
 {
     /**
      * @var array<OCRPage> List of pages.

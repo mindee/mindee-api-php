@@ -17,11 +17,6 @@ abstract class BaseParameters
     public ?string $alias;
 
     /**
-     * @var string Model ID.
-     */
-    public string $modelId;
-
-    /**
      * @var array<string> Optional webhook IDs.
      */
     public array $webhooksIds;
@@ -36,10 +31,8 @@ abstract class BaseParameters
      * @param string|null $alias Optional file alias.
      * @param array<string>|null $webhooksIds List of webhook IDs.
      */
-    public function __construct(string $modelId, ?string $alias, ?array $webhooksIds)
+    public function __construct(public string $modelId, ?string $alias, ?array $webhooksIds)
     {
-        $this->modelId = $modelId;
-
         if (isset($alias)) {
             $this->alias = $alias;
         }

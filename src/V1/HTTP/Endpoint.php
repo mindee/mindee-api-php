@@ -16,34 +16,18 @@ use Mindee\V1\ClientOptions\PredictMethodOptions;
 class Endpoint extends BaseEndpoint
 {
     /**
-     * @var string Url (name) of then endpoint.
-     */
-    public string $urlName;
-    /**
-     * @var string Name of the endpoint's owner.
-     */
-    public string $owner;
-    /**
-     * @var string Version of the endpoint.
-     */
-    public string $version;
-
-    /**
      * @param string $urlName Url (name) of the endpoint.
      * @param string $owner Name of the endpoint's owner.
      * @param string $version Version of the endpoint.
      * @param MindeeAPI $settings Settings for the endpoint.
      */
     public function __construct(
-        string $urlName,
-        string $owner,
-        string $version,
+        public string $urlName,
+        public string $owner,
+        public string $version,
         MindeeAPI $settings
     ) {
         parent::__construct($settings);
-        $this->urlName = $urlName;
-        $this->owner = $owner;
-        $this->version = $version;
     }
 
     /**

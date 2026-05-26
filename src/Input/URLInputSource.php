@@ -70,7 +70,7 @@ class URLInputSource extends InputSource
      */
     private static function getFileExtension(?string $filename): ?string
     {
-        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $extension = pathinfo((string) $filename, PATHINFO_EXTENSION);
         return $extension ? "." . strtolower($extension) : null;
     }
 

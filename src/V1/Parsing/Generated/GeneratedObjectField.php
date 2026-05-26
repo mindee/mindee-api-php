@@ -7,6 +7,7 @@ namespace Mindee\V1\Parsing\Generated;
 use Mindee\Geometry\Polygon;
 use Mindee\V1\Parsing\Standard\BaseField;
 use Mindee\V1\Parsing\Standard\PositionField;
+use Stringable;
 
 use function in_array;
 use function is_array;
@@ -20,7 +21,7 @@ use function is_int;
  * @property PositionField|null $quadrangle
  * @property PositionField|null $rectangle
  */
-class GeneratedObjectField
+class GeneratedObjectField implements Stringable
 {
     /** @var integer|null ID of the page the object was found on */
     public ?int $pageId;

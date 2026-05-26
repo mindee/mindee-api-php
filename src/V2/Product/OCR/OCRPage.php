@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\OCR;
 
+use Stringable;
+
 /**
  * OCR result for a single page.
  */
-class OCRPage
+class OCRPage implements Stringable
 {
     /**
      * @var OCRWord[] OCR result for a single page.

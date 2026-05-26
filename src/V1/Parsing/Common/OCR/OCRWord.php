@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Common\OCR;
 
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
+use Stringable;
 
 /**
  * A single word.
  */
-class OCRWord
+class OCRWord implements Stringable
 {
     use FieldPositionMixin;
 

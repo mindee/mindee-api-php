@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\Extras;
 
+use Stringable;
+
 use function is_scalar;
 
 /**
@@ -11,7 +13,7 @@ use function is_scalar;
  *
  * Is roughly equivalent to an array of Extras, with a bit more utility.
  */
-class Extras
+class Extras implements Stringable
 {
     /**
      * @var CropperExtra|null Cropper extra.
@@ -73,9 +75,8 @@ class Extras
     }
 
     /**
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $resStr = '';
         foreach ($this->data as $key => $extra) {

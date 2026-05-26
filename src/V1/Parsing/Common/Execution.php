@@ -11,11 +11,12 @@ use Mindee\Error\MindeeApiException;
 use Mindee\V1\Product\Generated\GeneratedV1Document;
 use ReflectionClass;
 use ReflectionException;
+use Stringable;
 
 /**
  * Representation of a workflow execution.
  */
-class Execution
+class Execution implements Stringable
 {
     /**
      * Identifier for the batch to which the execution belongs.
@@ -127,6 +128,6 @@ class Execution
         $objAsArray = get_object_vars($this);
         ksort($objAsArray);
 
-        return json_encode($objAsArray, JSON_PRETTY_PRINT);
+        return (string) json_encode($objAsArray, JSON_PRETTY_PRINT);
     }
 }

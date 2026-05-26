@@ -17,17 +17,13 @@ use Mindee\Error\MindeeException;
 class MindeeWorkflowAPI extends BaseAPI
 {
     /**
-     * @var string ID of the workflow.
-     */
-    public string $workflowId;
-    /**
      * @param string|null $apiKey API key.
      * @param string $workflowId ID of the workflow.
      * @throws MindeeException Throws if the API key specified is invalid.
      */
     public function __construct(
         ?string $apiKey,
-        string $workflowId
+        public string $workflowId
     ) {
         parent::__construct($apiKey);
         if (empty($this->apiKey)) {
@@ -37,7 +33,6 @@ class MindeeWorkflowAPI extends BaseAPI
                 ErrorCode::USER_INPUT_ERROR
             );
         }
-        $this->workflowId = $workflowId;
         $this->urlRoot = rtrim(
             $this->baseUrl,
             "/"

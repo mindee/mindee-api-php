@@ -16,23 +16,10 @@ use InvalidArgumentException;
 class Point implements ArrayAccess
 {
     /**
-     * @var float X coordinate.
-     */
-    private float $x;
-    /**
-     * @var float Y coordinate.
-     */
-    private float $y;
-
-    /**
      * @param float $x Input x coordinate.
      * @param float $y Input y coordinate.
      */
-    public function __construct(float $x, float $y)
-    {
-        $this->x = $x;
-        $this->y = $y;
-    }
+    public function __construct(private float $x, private float $y) {}
 
     /**
      * Retrieves the x coordinate.

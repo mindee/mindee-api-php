@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Resume;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The list of languages that the candidate is proficient in.
  * @extends ArrayObject<integer, ResumeV1Language>
  */
-class ResumeV1Languages extends ArrayObject
+class ResumeV1Languages extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

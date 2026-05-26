@@ -25,7 +25,6 @@ class LocalResponseV2Test extends TestCase
         $signature = "e51bdf80f1a08ed44ee161100fc30a25cb35b4ede671b0a575dc9064a3f5dbf1";
         $reflectedLocalResponse = new ReflectionClass($localResponse);
         $reflectedFile = $reflectedLocalResponse->getProperty('file');
-        $reflectedFile->setAccessible(true);
         self::assertNotNull($reflectedFile);
         self::assertFalse($localResponse->isValidHMACSignature($fakeHMACSigning, "fake HMAC signature"));
         self::assertSame($signature, $localResponse->getHmacSignature($fakeHMACSigning));

@@ -21,18 +21,11 @@ class InferenceFields extends ArrayObject
     private array $fields = [];
 
     /**
-     * @var integer Indentation level.
-     */
-    private int $indentLevel;
-
-    /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation.
      */
-    public function __construct(array $rawResponse, int $indentLevel = 0)
+    public function __construct(array $rawResponse, private readonly int $indentLevel = 0)
     {
-        $this->indentLevel = $indentLevel;
-
         foreach ($rawResponse as $key => $value) {
             $this->fields[$key] = BaseField::createField($value, 1);
         }

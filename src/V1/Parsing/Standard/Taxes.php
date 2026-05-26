@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Standard;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * List of tax lines information.
  * @extends ArrayObject<int, TaxField>
  */
-class Taxes extends ArrayObject
+class Taxes extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
@@ -43,7 +44,7 @@ class Taxes extends ArrayObject
     /**
      * @return string String representation.
      */
-    public function __toString()
+    public function __toString(): string
     {
         $outStr = "\n" . self::lineSeparator('-') . "\n";
         $outStr .= "  | Base          | Code   | Rate (%) | Amount        |\n";

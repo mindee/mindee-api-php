@@ -81,7 +81,7 @@ class MindeeAPIV2
     /**
      * @var string|null API key.
      */
-    public ?string $apiKey;
+    public ?string $apiKey = null;
     /**
      * @var integer Timeout for the request, in ms.
      */
@@ -129,7 +129,7 @@ class MindeeAPIV2
     private function setFromEnv(): void
     {
         $envVars = [
-            API_V2_BASE_URL_ENV_NAME => [$this, 'setBaseUrl'],
+            API_V2_BASE_URL_ENV_NAME => $this->setBaseUrl(...),
             API_V2_REQUEST_TIMEOUT_ENV_NAME => [$this, 'setTimeout'],
         ];
         foreach ($envVars as $key => $func) {

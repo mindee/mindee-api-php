@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\NutritionFactsLabel;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The amount of nutrients in the product.
  */
-class NutritionFactsLabelV1Nutrient
+class NutritionFactsLabelV1Nutrient implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -36,20 +37,15 @@ class NutritionFactsLabelV1Nutrient
      * @var string|null The unit of measurement for the amount of nutrients.
      */
     public ?string $unit;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->pageId = $pageId;
         $this->dailyValue = isset($rawPrediction["daily_value"])
             ? (float) ($rawPrediction["daily_value"]) : null;
         $this->name = $rawPrediction["name"] ?? null;

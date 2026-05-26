@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\OCR;
 
+use Stringable;
+
 use function strlen;
 
 /**
  * Result of the OCR utility inference.
  */
-class OCRResult
+class OCRResult implements Stringable
 {
     /**
      * @var OCRPage[] List of pages.

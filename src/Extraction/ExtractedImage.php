@@ -20,50 +20,20 @@ use const DIRECTORY_SEPARATOR;
 class ExtractedImage
 {
     /**
-     * @var Imagick Wrapper for the image.
-     */
-    public Imagick $image;
-
-    /**
-     * @var string Name of the file.
-     */
-    public string $filename;
-
-    /**
-     * @var integer Page ID of the image.
-     */
-    public int $pageId;
-
-    /**
-     * @var integer Element ID of the image.
-     */
-    public int $elementId;
-
-    /**
-     * @var string String representation of the save format.
-     */
-    protected string $saveFormat;
-
-    /**
      * Initializes a new instance of the ExtractedImage class.
      *
      * @param Imagick $image The extracted image.
      * @param string $filename The filename for the image.
      * @param string $saveFormat The format to save the image.
-     * @param integer $pageIndex The page index of the image.
-     * @param integer $index The element index of the image.
+     * @param integer $pageId The page index of the image.
+     * @param integer $elementId The element index of the image.
      *
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
-    public function __construct(Imagick $image, string $filename, string $saveFormat, int $pageIndex, int $index)
+    public function __construct(public Imagick $image, public string $filename, protected string $saveFormat, public int $pageId, public int $elementId)
     {
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
-        $this->image = $image;
-        $this->filename = $filename;
-        $this->saveFormat = $saveFormat;
-        $this->pageId = $pageIndex;
-        $this->elementId = $index;
     }
 
     /**

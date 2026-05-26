@@ -25,7 +25,6 @@ class ClientV2Test extends TestCase
         $client = new Client("dummy");
         $reflection = new ReflectionClass($client);
         $property = $reflection->getProperty('mindeeApi');
-        $property->setAccessible(true);
         $property->setValue($client, $mockedApi);
         return $client;
     }

@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Receipt;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * List of all line items on the receipt.
  * @extends ArrayObject<integer, ReceiptV5LineItem>
  */
-class ReceiptV5LineItems extends ArrayObject
+class ReceiptV5LineItems extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

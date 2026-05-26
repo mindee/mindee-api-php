@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\OCR;
 
+use Stringable;
+
 use function count;
 use function in_array;
 
 /**
  * OCR extraction for a single page.
  */
-class OCRPage
+class OCRPage implements Stringable
 {
     /**
      * @var array<OCRWord> List of all words.
@@ -46,10 +48,7 @@ class OCRPage
     {
         $word1X = $word1->polygon->getMinMaxX()->getMin();
         $word2X = $word2->polygon->getMinMaxX()->getMin();
-        if ($word1X === $word2X) {
-            return 0;
-        }
-        return $word1X < $word2X ? -1 : 1;
+        return $word1X <=> $word2X;
     }
 
     /**
@@ -63,10 +62,7 @@ class OCRPage
     {
         $word1Y = $word1->polygon->getMinMaxY()->getMin();
         $word2Y = $word2->polygon->getMinMaxY()->getMin();
-        if ($word1Y === $word2Y) {
-            return 0;
-        }
-        return $word1Y < $word2Y ? -1 : 1;
+        return $word1Y <=> $word2Y;
     }
 
     /**
@@ -89,7 +85,7 @@ class OCRPage
                         $line = new OCRLine();
                         $line->add($word);
                     } else {
-                        if ($this->areWordsOnSameLine($current, $word)) {
+                        if (self::areWordsOnSameLine($current, $word)) {
                             $line->add($word);
                             $indexes[] = $idx;
                         }
@@ -135,7 +131,7 @@ class OCRPage
         foreach ($rawPrediction['all_words'] as $wordPrediction) {
             $this->allWords[] = new OCRWord($wordPrediction);
         }
-        usort($this->allWords, "self::getMinMaxY");
+        usort($this->allWords, self::getMinMaxY(...));
     }
 
     /**

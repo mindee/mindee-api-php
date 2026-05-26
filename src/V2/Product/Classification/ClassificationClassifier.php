@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Classification;
 
 use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Stringable;
 
 /**
  * Classification of document type from the source file.
  */
-class ClassificationClassifier
+class ClassificationClassifier implements Stringable
 {
     /**
      * @var string The document type, as identified on given classification values.

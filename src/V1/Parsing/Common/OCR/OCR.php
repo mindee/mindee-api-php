@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\OCR;
 
+use Stringable;
+
 use function array_key_exists;
 use function count;
 
 /**
  * OCR extraction from the entire document.
  */
-class OCR
+class OCR implements Stringable
 {
     /**
      * @var MVisionV1 Mindee Vision v1 results.

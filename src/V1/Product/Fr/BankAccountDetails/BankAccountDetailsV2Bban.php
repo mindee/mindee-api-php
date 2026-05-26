@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\BankAccountDetails;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Full extraction of BBAN, including: branch code, bank code, account and key.
  */
-class BankAccountDetailsV2Bban
+class BankAccountDetailsV2Bban implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -32,16 +33,12 @@ class BankAccountDetailsV2Bban
      * @var string|null The BBAN Account number outputted as a string.
      */
     public ?string $bbanNumber;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -49,7 +46,6 @@ class BankAccountDetailsV2Bban
         $this->bbanBranchCode = $rawPrediction["bban_branch_code"] ?? null;
         $this->bbanKey = $rawPrediction["bban_key"] ?? null;
         $this->bbanNumber = $rawPrediction["bban_number"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

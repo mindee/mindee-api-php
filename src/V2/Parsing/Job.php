@@ -116,7 +116,7 @@ class Job
 
         try {
             return new DateTime($dateString);
-        } catch (Exception $e) {
+        } catch (Exception) {
             return null;
         }
     }

@@ -7,11 +7,12 @@ namespace Mindee\V2\Product\Extraction;
 use Mindee\V2\Parsing\Inference\Field\InferenceFields;
 use Mindee\V2\Parsing\Inference\RAGMetadata;
 use Mindee\V2\Parsing\Inference\RawText;
+use Stringable;
 
 /**
  * Inference result class.
  */
-class ExtractionResult
+class ExtractionResult implements Stringable
 {
     /**
      * @var InferenceFields Fields contained in the inference.

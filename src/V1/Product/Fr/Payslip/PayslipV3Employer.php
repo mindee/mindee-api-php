@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Information about the employer.
  */
-class PayslipV3Employer
+class PayslipV3Employer implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -44,16 +45,12 @@ class PayslipV3Employer
      * @var string|null The URSSAF number of the employer.
      */
     public ?string $urssafNumber;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -64,7 +61,6 @@ class PayslipV3Employer
         $this->name = $rawPrediction["name"] ?? null;
         $this->phoneNumber = $rawPrediction["phone_number"] ?? null;
         $this->urssafNumber = $rawPrediction["urssaf_number"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

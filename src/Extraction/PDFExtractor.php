@@ -34,7 +34,7 @@ class PDFExtractor
     /**
      * @var string name of the file
      */
-    private string $fileName;
+    private readonly string $fileName;
 
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.

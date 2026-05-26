@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Us\UsMail;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The address of the sender.
  */
-class UsMailV3SenderAddress
+class UsMailV3SenderAddress implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -36,20 +37,15 @@ class UsMailV3SenderAddress
      * @var string|null The street of the sender's address.
      */
     public ?string $street;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->pageId = $pageId;
         $this->city = $rawPrediction["city"] ?? null;
         $this->complete = $rawPrediction["complete"] ?? null;
         $this->postalCode = $rawPrediction["postal_code"] ?? null;

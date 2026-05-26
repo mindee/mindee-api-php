@@ -195,7 +195,7 @@ class PDFUtils
     protected static function standardizeFontName(string $fontName): array
     {
         $cleanName = preg_replace('/^.*?\+/', '', $fontName);
-        $parts = explode('-', $cleanName, 2);
+        $parts = explode('-', (string) $cleanName, 2);
 
         $fontFamily = $parts[0];
         $fontStyle = $parts[1] ?? '';

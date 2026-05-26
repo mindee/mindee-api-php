@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Mindee\Geometry;
 
+use Stringable;
+
 use function count;
 
 /**
  * Polygon represented as a set of coordinates (vertices/points).
  */
-class Polygon
+class Polygon implements Stringable
 {
     /**
      * @var array<Point>|null Vertices of the polygon.

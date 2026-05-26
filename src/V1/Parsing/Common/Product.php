@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common;
 
+use Stringable;
+
 /**
  * Class for keeping track of a product's info.
  */
-class Product
+class Product implements Stringable
 {
     /**
      * @var string Product's name.
@@ -30,7 +32,7 @@ class Product
     /**
      * @return string String representation.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "$this->name v$this->version";
     }

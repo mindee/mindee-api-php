@@ -15,17 +15,9 @@ use Mindee\Input\LocalInputSource;
 class Split
 {
     /**
-     * @var LocalInputSource localInputSource object
+     * @param LocalInputSource $localInput LocalInputSource object.
      */
-    private readonly LocalInputSource $localInput;
-
-    /**
-     * @param LocalInputSource $inputSource LocalInputSource object.
-     */
-    public function __construct(LocalInputSource $inputSource)
-    {
-        $this->localInput = $inputSource;
-    }
+    public function __construct(private readonly LocalInputSource $localInput) {}
 
     /**
      * Expands a range to a list of integers.

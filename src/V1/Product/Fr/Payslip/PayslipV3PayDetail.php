@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Detailed information about the pay.
  */
-class PayslipV3PayDetail
+class PayslipV3PayDetail implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -56,16 +57,12 @@ class PayslipV3PayDetail
      * @var float|null The total taxes and deductions of the employee.
      */
     public ?float $totalTaxesAndDeductions;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -89,7 +86,6 @@ class PayslipV3PayDetail
             ? (float) ($rawPrediction["total_cost_employer"]) : null;
         $this->totalTaxesAndDeductions = isset($rawPrediction["total_taxes_and_deductions"])
             ? (float) ($rawPrediction["total_taxes_and_deductions"]) : null;
-        $this->pageId = $pageId;
     }
 
     /**

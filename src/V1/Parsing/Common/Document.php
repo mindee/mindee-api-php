@@ -10,13 +10,14 @@ use Mindee\V1\Parsing\Common\Extras\Extras;
 use Mindee\V1\Parsing\Common\OCR\OCR;
 use ReflectionClass;
 use ReflectionException;
+use Stringable;
 
 use function array_key_exists;
 
 /**
  * Base class for all predictions.
  */
-class Document
+class Document implements Stringable
 {
     /**
      * @var string Name of the input document.

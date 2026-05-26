@@ -12,28 +12,6 @@ use Mindee\V2\ClientOptions\BaseParameters;
 class ExtractionParameters extends BaseParameters
 {
     /**
-     * @var boolean|null Enhance extraction accuracy with Retrieval-Augmented Generation..
-     */
-    public ?bool $rag;
-
-    /**
-     * @var boolean|null Extract the full text content from the document as strings.
-     */
-    public ?bool $rawText;
-
-    /**
-     * @var boolean|null Calculate bounding box polygons for all fields.
-     */
-    public ?bool $polygon;
-
-    /**
-     * @var boolean|null Boost the precision and accuracy of all extractions.
-     *                   Calculate confidence scores for all fields.
-     */
-    public ?bool $confidence;
-
-
-    /**
      * @var string|null Additional text context used by the model during inference.
      *                  Not recommended, for specific use only.
      */
@@ -66,21 +44,16 @@ class ExtractionParameters extends BaseParameters
      */
     public function __construct(
         string $modelId,
-        ?bool $rag = null,
-        ?bool $rawText = null,
-        ?bool $polygon = null,
-        ?bool $confidence = null,
+        public ?bool $rag = null,
+        public ?bool $rawText = null,
+        public ?bool $polygon = null,
+        public ?bool $confidence = null,
         ?string $alias = null,
         ?array $webhooksIds = null,
         ?string $textContext = null,
         DataSchema|string|array|null $dataSchema = null,
     ) {
         parent::__construct($modelId, $alias, $webhooksIds);
-
-        $this->rag = $rag;
-        $this->rawText = $rawText;
-        $this->polygon = $polygon;
-        $this->confidence = $confidence;
         if (isset($textContext)) {
             $this->textContext = $textContext;
         }

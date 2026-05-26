@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\OCR;
 
+use Stringable;
+
 use function count;
 
 /**
  * A list of words which are on the same line.
  */
-class OCRLine
+class OCRLine implements Stringable
 {
-    /**
-     * @var array<OCRWord> Words in the line.
-     */
-    private array $words;
-
     /**
      * @param array<OCRWord> $words Words to insert in the line.
      */
-    public function __construct(array $words = [])
-    {
-        $this->words = $words;
-    }
+    public function __construct(private array $words = []) {}
 
     /**
      * Sort the words on the line from left to right.
@@ -30,7 +24,7 @@ class OCRLine
      */
     public function sortOnX(): void
     {
-        usort($this->words, "Mindee\\V1\\Parsing\\Common\\OCR\\OCRPage::getMinMaxX");
+        usort($this->words, OCRPage::getMinMaxX(...));
     }
 
     /**

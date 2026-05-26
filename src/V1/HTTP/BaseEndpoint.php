@@ -12,17 +12,9 @@ use CurlHandle;
 abstract class BaseEndpoint
 {
     /**
-     * @var MindeeAPI|MindeeWorkflowAPI Settings of the endpoint.
-     */
-    public MindeeAPI|MindeeWorkflowAPI $settings;
-
-    /**
      * @param MindeeAPI|MindeeWorkflowAPI $settings Input settings.
      */
-    public function __construct(MindeeAPI|MindeeWorkflowAPI $settings)
-    {
-        $this->settings = $settings;
-    }
+    public function __construct(public MindeeAPI|MindeeWorkflowAPI $settings) {}
 
     /**
      * Starts a CURL session using GET.

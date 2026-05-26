@@ -52,6 +52,6 @@ class ExtrasIntegrationFunctional extends TestCase
         $response = $this->client->enqueueAndParse(InternationalIdV2::class, $sample, $predictMethodOptions);
 
         self::assertNotNull($response->document->extras->fullTextOcr);
-        self::assertGreaterThan(10, strlen($response->document->extras->fullTextOcr->content));
+        self::assertGreaterThan(10, strlen((string) $response->document->extras->fullTextOcr->content));
     }
 }

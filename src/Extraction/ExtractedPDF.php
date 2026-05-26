@@ -20,16 +20,6 @@ use const DIRECTORY_SEPARATOR;
 class ExtractedPDF
 {
     /**
-     * @var string name of the original file
-     */
-    public string $filename;
-
-    /**
-     * @var string File object for an ExtractedPdf.
-     */
-    protected string $pdfBytes;
-
-    /**
      * Initializes a new instance of the ExtractedPdf class.
      *
      * @param string $pdfBytes A binary string representation of the PDF.
@@ -37,12 +27,10 @@ class ExtractedPDF
      *
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
-    public function __construct(string $pdfBytes, string $filename)
+    public function __construct(protected string $pdfBytes, public string $filename)
     {
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
-        $this->pdfBytes = $pdfBytes;
-        $this->filename = $filename;
     }
 
     /**

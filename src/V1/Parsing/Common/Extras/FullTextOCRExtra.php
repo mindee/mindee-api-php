@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\Extras;
 
+use Stringable;
+
 /**
  * Full Text OCR result.
  */
-class FullTextOCRExtra
+class FullTextOCRExtra implements Stringable
 {
     /**
      * @var string|null Text content of the full text ocr reading.
@@ -34,9 +36,8 @@ class FullTextOCRExtra
     }
 
     /**
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->content ?? '';
     }

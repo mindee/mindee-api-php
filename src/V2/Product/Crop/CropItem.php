@@ -6,11 +6,12 @@ namespace Mindee\V2\Product\Crop;
 
 use Mindee\V2\Parsing\Inference\Field\FieldLocation;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Stringable;
 
 /**
  * Result of a cropped document region.
  */
-class CropItem
+class CropItem implements Stringable
 {
     /**
      * @var FieldLocation Location which includes cropping coordinates for the detected object,
@@ -40,7 +41,7 @@ class CropItem
     /**
      * @return string String representation.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "* :Location: $this->location\n  :Object Type: $this->objectType";
     }

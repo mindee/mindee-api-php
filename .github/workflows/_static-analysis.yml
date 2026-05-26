@@ -38,3 +38,7 @@ jobs:
     - name: Run PHPStan
       run: |
         composer phpstan
+
+    - name: Run Rector
+      run: |
+        composer rector:check

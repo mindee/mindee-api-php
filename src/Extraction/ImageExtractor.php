@@ -72,7 +72,7 @@ class ImageExtractor
         }
 
         if ($this->inputSource->isPDF()) {
-            $this->pageImages = $this->pdfToImages($this->inputSource->readContents()[1]);
+            $this->pageImages = static::pdfToImages($this->inputSource->readContents()[1]);
         } else {
             try {
                 $image = new Imagick();

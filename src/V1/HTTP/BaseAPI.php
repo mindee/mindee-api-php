@@ -45,13 +45,10 @@ use const Mindee\VERSION;
  */
 function getUserAgent(): string
 {
-    switch (PHP_OS_FAMILY) {
-        case "Darwin":
-            $os = "macos";
-            break;
-        default:
-            $os = strtolower(PHP_OS_FAMILY);
-    }
+    $os = match (PHP_OS_FAMILY) {
+        "Darwin" => "macos",
+        default => strtolower(PHP_OS_FAMILY),
+    };
     return 'mindee-api-php@v' . VERSION . ' php-v' . PHP_VERSION . ' ' . $os;
 }
 
@@ -63,7 +60,7 @@ abstract class BaseAPI
     /**
      * @var string|null API key.
      */
-    public ?string $apiKey;
+    public ?string $apiKey = null;
     /**
      * @var integer Timeout for the request, in ms.
      */
@@ -104,8 +101,8 @@ abstract class BaseAPI
     protected function setFromEnv(): void
     {
         $envVars = [
-            BASE_URL_ENV_NAME => [$this, 'setBaseUrl'],
-            REQUEST_TIMEOUT_ENV_NAME => [$this, 'setTimeout'],
+            BASE_URL_ENV_NAME => $this->setBaseUrl(...),
+            REQUEST_TIMEOUT_ENV_NAME => $this->setTimeout(...),
         ];
         foreach ($envVars as $key => $func) {
             $envVal = getenv($key) ?: '';

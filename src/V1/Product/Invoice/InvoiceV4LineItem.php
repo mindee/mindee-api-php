@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Invoice;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * List of all the line items present on the invoice.
  */
-class InvoiceV4LineItem
+class InvoiceV4LineItem implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -48,16 +49,12 @@ class InvoiceV4LineItem
      * @var float|null The item unit price.
      */
     public ?float $unitPrice;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -74,7 +71,6 @@ class InvoiceV4LineItem
         $this->unitMeasure = $rawPrediction["unit_measure"] ?? null;
         $this->unitPrice = isset($rawPrediction["unit_price"])
             ? (float) ($rawPrediction["unit_price"]) : null;
-        $this->pageId = $pageId;
     }
 
     /**
