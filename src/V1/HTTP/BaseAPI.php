@@ -118,7 +118,7 @@ abstract class BaseAPI
      *
      * @param string|null $apiKey Optional API key.
      */
-    protected function setApiKey(?string $apiKey = null): void
+    protected function setAPIKey(?string $apiKey = null): void
     {
         $envVal = !getenv(API_KEY_ENV_NAME) ? '' : getenv(API_KEY_ENV_NAME);
         if (!$apiKey) {
@@ -135,7 +135,7 @@ abstract class BaseAPI
     public function __construct(
         ?string $apiKey
     ) {
-        $this->setApiKey($apiKey);
+        $this->setAPIKey($apiKey);
         $this->baseUrl = BASE_URL_DEFAULT;
         $this->requestTimeout = TIMEOUT_DEFAULT;
         $this->setFromEnv();

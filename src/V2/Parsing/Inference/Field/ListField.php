@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference\Field;
 
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 
 use function array_key_exists;
 use function is_array;
@@ -23,14 +23,14 @@ class ListField extends BaseField
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation for rst display.
-     * @throws MindeeApiException Throws if deserialization fails.
+     * @throws MindeeAPIException Throws if deserialization fails.
      */
     public function __construct(array $rawResponse, int $indentLevel = 0)
     {
         parent::__construct($rawResponse, $indentLevel);
 
         if (!array_key_exists('items', $rawResponse) || !is_array($rawResponse['items'])) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 sprintf('Expected "items" to be an array in %s.', json_encode($rawResponse))
             );
         }

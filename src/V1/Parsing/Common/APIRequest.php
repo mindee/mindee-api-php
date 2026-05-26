@@ -7,7 +7,7 @@ namespace Mindee\V1\Parsing\Common;
 /**
  * Information on the API request made to the server.
  */
-class ApiRequest
+class APIRequest
 {
     /**
      * @var array<string, int|float|string|bool|null|array<array-key, mixed>>|string|null Error content, if any.

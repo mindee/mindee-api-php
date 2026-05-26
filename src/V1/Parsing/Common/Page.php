@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
 use Stringable;
@@ -38,7 +38,7 @@ class Page implements Stringable
     /**
      * @param string $predictionType Type of prediction.
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
-     * @throws MindeeApiException Throws if the prediction type isn't recognized.
+     * @throws MindeeAPIException Throws if the prediction type isn't recognized.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response, through the reflected document
      *                              class.
      */
@@ -46,7 +46,7 @@ class Page implements Stringable
     {
         $this->id = $rawPrediction['id'];
         if (!is_subclass_of($predictionType, Prediction::class)) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Invalid prediction type " . $predictionType . ", must extend " . Prediction::class,
                 ErrorCode::INTERNAL_LIBRARY_ERROR
             );

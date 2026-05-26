@@ -12,7 +12,7 @@ use Mindee\V1\Client;
 
 use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
 
-class MindeeApiTest extends TestCase
+class MindeeAPITest extends TestCase
 {
     private string $keyEnvName;
     protected function setUp(): void
@@ -25,7 +25,7 @@ class MindeeApiTest extends TestCase
         putenv(API_KEY_ENV_NAME . '=' . $this->keyEnvName);
     }
 
-    public function testGivenOTSParametersAProperMindeeApiObjectShouldBeCreated(): void
+    public function testGivenOTSParametersAProperMindeeAPIObjectShouldBeCreated(): void
     {
         $settings = new MindeeAPI("my-api-key", InvoiceSplitterV1::$endpointName);
         self::assertSame("my-api-key", $settings->apiKey);
@@ -34,7 +34,7 @@ class MindeeApiTest extends TestCase
         self::assertSame("1", $settings->version);
     }
 
-    public function testGivenCustomParametersAProperMindeeApiObjectShouldBeCreated(): void
+    public function testGivenCustomParametersAProperMindeeAPIObjectShouldBeCreated(): void
     {
         $settings = new MindeeAPI("my-api-key", "custom-endpoint-name", "custom-owner-name", "1.3");
         self::assertSame("my-api-key", $settings->apiKey);
@@ -43,7 +43,7 @@ class MindeeApiTest extends TestCase
         self::assertSame("1.3", $settings->version);
     }
 
-    public function testGivenInvalidApiKeyAnExceptionShouldBeThrown(): void
+    public function testGivenInvalidAPIKeyAnExceptionShouldBeThrown(): void
     {
         $this->expectException(MindeeException::class);
         putenv(API_KEY_ENV_NAME . '=');

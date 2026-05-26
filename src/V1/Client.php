@@ -15,7 +15,7 @@ use Exception;
 use Mindee\ClientOptions\PollingOptions;
 use Mindee\CustomSleepMixin;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeException;
 use Mindee\Error\MindeeHttpException;
@@ -184,7 +184,7 @@ class Client
      * Builds an off-the-shelf endpoint.
      *
      * @param string $product Name of the product's class.
-     * @throws MindeeApiException Throws if the product isn't recognized.
+     * @throws MindeeAPIException Throws if the product isn't recognized.
      */
     private function constructOTSEndpoint(string $product): Endpoint
     {
@@ -193,14 +193,14 @@ class Client
             $endpointName = $reflection->getStaticPropertyValue("endpointName");
             $endpointVersion = $reflection->getStaticPropertyValue("endpointVersion");
         } catch (ReflectionException $e) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Unable to create custom product " . $product,
                 ErrorCode::INTERNAL_LIBRARY_ERROR,
                 previous: $e
             );
         }
         if ($endpointName === 'custom') {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 'Please create an endpoint manually before sending requests to a custom build.',
                 ErrorCode::USER_INPUT_ERROR
             );
@@ -275,7 +275,7 @@ class Client
      * @param InputSource $inputDoc Input file.
      * @param PredictMethodOptions $options Prediction Options.
      * @throws MindeeHttpException Throws if the API sent an error.
-     * @throws MindeeApiException Throws if one attempts to edit remote resources.
+     * @throws MindeeAPIException Throws if one attempts to edit remote resources.
      */
     private function makeEnqueueRequest(
         string $predictionType,
@@ -286,7 +286,7 @@ class Client
             if ($inputDoc instanceof LocalInputSource) {
                 $this->cutDocPages($inputDoc, $options->pageOptions);
             } else {
-                throw new MindeeApiException(
+                throw new MindeeAPIException(
                     "Cannot edit non-local input sources.",
                     ErrorCode::USER_OPERATION_ERROR
                 );
@@ -315,7 +315,7 @@ class Client
      * @param string $workflowId ID of the workflow.
      * @param PredictMethodOptions $options Prediction Options.
      * @throws MindeeHttpException Throws if the API sent an error.
-     * @throws MindeeApiException Throws if the API sent an error,
+     * @throws MindeeAPIException Throws if the API sent an error,
      *                            or if the prediction type isn't recognized or if a field can't be deserialized.
      */
     private function makeWorkflowExecutionRequest(
@@ -330,7 +330,7 @@ class Client
             if ($inputDoc instanceof LocalInputSource) {
                 $this->cutDocPages($inputDoc, $options->pageOptions);
             } else {
-                throw new MindeeApiException(
+                throw new MindeeAPIException(
                     "Cannot edit non-local input sources.",
                     ErrorCode::USER_OPERATION_ERROR
                 );
@@ -349,7 +349,7 @@ class Client
         try {
             return new WorkflowResponse($predictionType, $response['data']);
         } catch (Exception $e) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Unable to create workflow response for $predictionType",
                 ErrorCode::API_UNPROCESSABLE_ENTITY,
                 previous: $e
@@ -364,7 +364,7 @@ class Client
      * @param InputSource $inputDoc Input file.
      * @param PredictMethodOptions $options Prediction Options.
      * @throws MindeeHttpException Throws if the API sent an error.
-     * @throws MindeeApiException Throws if one attempts to edit remote resources.
+     * @throws MindeeAPIException Throws if one attempts to edit remote resources.
      */
     private function makeParseRequest(
         string $predictionType,
@@ -375,7 +375,7 @@ class Client
             if ($inputDoc instanceof LocalInputSource) {
                 $this->cutDocPages($inputDoc, $options->pageOptions);
             } else {
-                throw new MindeeApiException(
+                throw new MindeeAPIException(
                     "Cannot edit non-local input sources.",
                     ErrorCode::USER_OPERATION_ERROR
                 );
@@ -430,7 +430,7 @@ class Client
      * @param PredictMethodOptions|null $options Prediction Options.
      * @param PollingOptions|null $asyncOptions Async Options. Manages timers.
      * @param PageOptions|null $pageOptions Options to apply to the PDF file.
-     * @throws MindeeApiException Throws if the document couldn't be retrieved in time.
+     * @throws MindeeAPIException Throws if the document couldn't be retrieved in time.
      */
     public function enqueueAndParse(
         string $predictionType,
@@ -472,7 +472,7 @@ class Client
             $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
         }
         if ($pollResults->job->status !== "completed") {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Couldn't retrieve document " . $enqueueResponse->job->id . " after $retryCounter tries.",
                 ErrorCode::API_TIMEOUT,
             );

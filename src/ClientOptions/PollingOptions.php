@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mindee\ClientOptions;
 
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 
 const MINIMUM_INITIAL_DELAY_SECONDS = 1.0;
 const MINIMUM_DELAY_SECONDS = 1.0;
@@ -41,12 +41,12 @@ class PollingOptions
     /**
      * @param integer $initialDelay Delay between polls.
      * @return $this
-     * @throws MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
+     * @throws MindeeAPIException Throws if the initial parsing delay is less than 4 seconds.
      */
     public function setInitialDelaySec(int $initialDelay): self
     {
         if ($initialDelay < MINIMUM_INITIAL_DELAY_SECONDS) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Cannot set initial parsing delay to less than " . MINIMUM_INITIAL_DELAY_SECONDS . " second(s).",
                 ErrorCode::USER_INPUT_ERROR
             );
@@ -58,12 +58,12 @@ class PollingOptions
     /**
      * @param integer $delay Delay between successive attempts to poll a queue.
      * @return $this
-     * @throws MindeeApiException Throws if the delay is too low.
+     * @throws MindeeAPIException Throws if the delay is too low.
      */
     public function setDelaySec(int $delay): self
     {
         if ($delay < MINIMUM_DELAY_SECONDS) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Cannot set auto-parsing delay to less than " . MINIMUM_DELAY_SECONDS . " second(s).",
                 ErrorCode::USER_INPUT_ERROR
             );

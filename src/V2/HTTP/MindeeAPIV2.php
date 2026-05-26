@@ -11,7 +11,7 @@ namespace Mindee\V2\HTTP;
 use CurlHandle;
 use Exception;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 use Mindee\Error\MindeeException;
 use Mindee\Error\MindeeV2HttpException;
 use Mindee\Error\MindeeV2HttpUnknownException;
@@ -98,7 +98,7 @@ class MindeeAPIV2
      */
     public function __construct(?string $apiKey)
     {
-        $this->setApiKey($apiKey);
+        $this->setAPIKey($apiKey);
         $this->baseUrl = API_V2_BASE_URL_DEFAULT;
         $this->requestTimeout = API_V2_TIMEOUT_DEFAULT;
         $this->setFromEnv();
@@ -147,7 +147,7 @@ class MindeeAPIV2
      *
      * @param string|null $apiKey Optional API key.
      */
-    protected function setApiKey(?string $apiKey = null): void
+    protected function setAPIKey(?string $apiKey = null): void
     {
         $envVal = !getenv(API_V2_KEY_ENV_NAME) ? '' : getenv(API_V2_KEY_ENV_NAME);
         if (!$apiKey) {
@@ -212,7 +212,7 @@ class MindeeAPIV2
      * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @return JobResponse The processed response object.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
-     * @throws MindeeApiException Throws if the response type is not recognized.
+     * @throws MindeeAPIException Throws if the response type is not recognized.
      */
     private function processJobResponse(array $result): JobResponse
     {
@@ -227,7 +227,7 @@ class MindeeAPIV2
             return new JobResponse($responseData);
         } catch (Exception $e) {
             error_log("Raised '{$e->getMessage()}' Couldn't deserialize job response:\n" . $result['data']);
-            throw new MindeeApiException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
+            throw new MindeeAPIException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -253,7 +253,7 @@ class MindeeAPIV2
      * @param string $resultId URL of the result.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if the server's response contains an error.
-     * @throws MindeeApiException Throws if the response class is not valid.
+     * @throws MindeeAPIException Throws if the response class is not valid.
      */
     public function reqGetResult(
         string $responseClass,
@@ -262,7 +262,7 @@ class MindeeAPIV2
         try {
             $slugProperty = new ReflectionProperty($responseClass, 'slug');
         } catch (ReflectionException $e) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Unable to access slug property of " . $responseClass,
                 ErrorCode::INTERNAL_LIBRARY_ERROR,
                 $e

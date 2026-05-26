@@ -20,12 +20,12 @@ use TestingUtilities;
 
 class ClientV2Test extends TestCase
 {
-    private static function makeClientWithMockedApi(MindeeAPIV2 $mockedApi): Client
+    private static function makeClientWithMockedAPI(MindeeAPIV2 $mockedAPI): Client
     {
         $client = new Client("dummy");
         $reflection = new ReflectionClass($client);
-        $property = $reflection->getProperty('mindeeApi');
-        $property->setValue($client, $mockedApi);
+        $property = $reflection->getProperty('mindeeAPI');
+        $property->setValue($client, $mockedAPI);
         return $client;
     }
 
@@ -41,7 +41,7 @@ class ClientV2Test extends TestCase
             )
             ->willReturn(new JobResponse(json_decode($syntheticResponse, true)));
 
-        $mindeeClient = self::makeClientWithMockedApi($predictable);
+        $mindeeClient = self::makeClientWithMockedAPI($predictable);
 
         $input = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
         $params = new ExtractionParameters('dummy-model-id', textContext: 'dummy text context');
@@ -65,7 +65,7 @@ class ClientV2Test extends TestCase
             ->with(self::equalTo('dummy-id'))
             ->willReturn($processing);
 
-        $mindeeClient = self::makeClientWithMockedApi($predictable);
+        $mindeeClient = self::makeClientWithMockedAPI($predictable);
 
         $response = $mindeeClient->getJob('dummy-id');
 
@@ -92,7 +92,7 @@ class ClientV2Test extends TestCase
             )
             ->willReturn($processing);
 
-        $mindeeClient = self::makeClientWithMockedApi($predictable);
+        $mindeeClient = self::makeClientWithMockedAPI($predictable);
 
         $response = $mindeeClient->getResult(ExtractionResponse::class, '12345678-1234-1234-1234-123456789abc');
 

@@ -24,7 +24,7 @@ class Client
     /**
      * @var MindeeAPIV2 Mindee API V2.
      */
-    protected MindeeAPIV2 $mindeeApi;
+    protected MindeeAPIV2 $mindeeAPI;
 
     /**
      * Mindee Client V2.
@@ -33,7 +33,7 @@ class Client
      */
     public function __construct(?string $apiKey = null)
     {
-        $this->mindeeApi = new MindeeAPIV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
+        $this->mindeeAPI = new MindeeAPIV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
     }
 
     /**
@@ -64,7 +64,7 @@ class Client
         InputSource $inputSource,
         BaseParameters $params
     ): JobResponse {
-        return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
+        return $this->mindeeAPI->reqPostEnqueue($inputSource, $params);
     }
 
 
@@ -79,7 +79,7 @@ class Client
         string $responseClass,
         string $resultUrl
     ): BaseResponse {
-        return $this->mindeeApi->reqGetResultFromUrl($responseClass, $resultUrl);
+        return $this->mindeeAPI->reqGetResultFromUrl($responseClass, $resultUrl);
     }
 
     /**
@@ -93,7 +93,7 @@ class Client
         string $responseClass,
         string $resultId
     ): BaseResponse {
-        return $this->mindeeApi->reqGetResult($responseClass, $resultId);
+        return $this->mindeeAPI->reqGetResult($responseClass, $resultId);
     }
 
     /**
@@ -106,7 +106,7 @@ class Client
      */
     public function getJob(string $jobId): JobResponse
     {
-        return $this->mindeeApi->reqGetJob($jobId);
+        return $this->mindeeAPI->reqGetJob($jobId);
     }
 
     /**

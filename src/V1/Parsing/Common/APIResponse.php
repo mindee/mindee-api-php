@@ -7,12 +7,12 @@ namespace Mindee\V1\Parsing\Common;
 /**
  * Base class for API responses.
  */
-abstract class ApiResponse
+abstract class APIResponse
 {
     /**
-     * @var ApiRequest Request part of the response.
+     * @var APIRequest Request part of the response.
      */
-    public ApiRequest $apiRequest;
+    public APIRequest $apiRequest;
     /**
      * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Raw http result. Used for debugging purposes.
      */
@@ -23,7 +23,7 @@ abstract class ApiResponse
      */
     public function __construct(array $rawResponse)
     {
-        $this->apiRequest = new ApiRequest($rawResponse['api_request']);
+        $this->apiRequest = new APIRequest($rawResponse['api_request']);
         $this->rawHttp = $rawResponse;
     }
 

@@ -6,7 +6,7 @@ namespace Mindee\V1\Parsing\Common;
 
 use DateTimeImmutable;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 use Exception;
 use Stringable;
 
@@ -46,7 +46,7 @@ class Job implements Stringable
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.
-     * @throws MindeeApiException Throws if a date is faulty.
+     * @throws MindeeAPIException Throws if a date is faulty.
      */
     public function __construct(array $rawResponse)
     {
@@ -60,7 +60,7 @@ class Job implements Stringable
                 }
                 $this->issuedAt = new DateTimeImmutable('@' . $timestamp);
             } catch (Exception $e) {
-                throw new MindeeApiException(
+                throw new MindeeAPIException(
                     "Could not create date from " . $rawResponse['issued_at'],
                     ErrorCode::API_UNPROCESSABLE_ENTITY,
                     previous: $e
@@ -83,7 +83,7 @@ class Job implements Stringable
                     }
                     $this->availableAt = new DateTimeImmutable('@' . $timestamp);
                 } catch (Exception) {
-                    throw new MindeeApiException(
+                    throw new MindeeAPIException(
                         "Could not create date from " . $rawResponse['available_at'],
                         ErrorCode::API_UNPROCESSABLE_ENTITY,
                         $e

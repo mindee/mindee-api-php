@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeApiException;
+use Mindee\Error\MindeeAPIException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
 use Mindee\V1\Parsing\Common\OCR\OCR;
 use ReflectionClass;
@@ -47,7 +47,7 @@ class Document implements Stringable
     /**
      * @param string $predictionType Type of prediction.
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw HTTP response.
-     * @throws MindeeApiException Throws if the prediction type isn't recognized.
+     * @throws MindeeAPIException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {
@@ -58,7 +58,7 @@ class Document implements Stringable
             $reflection = new ReflectionClass($predictionType);
             $this->inference = $reflection->newInstance($rawResponse['inference']);
         } catch (ReflectionException $e) {
-            throw new MindeeApiException(
+            throw new MindeeAPIException(
                 "Unable to create custom product " . $predictionType,
                 ErrorCode::INTERNAL_LIBRARY_ERROR,
                 $e
