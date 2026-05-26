@@ -70,34 +70,34 @@ class Job
     public array $webhooks;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->id = $serverResponse['id'];
+        $this->id = $rawResponse['id'];
 
-        $this->status = $serverResponse['status'];
+        $this->status = $rawResponse['status'];
 
         $this->error = null;
         if (
-            !empty($serverResponse['error'])
+            !empty($rawResponse['error'])
         ) {
-            $this->error = new ErrorResponse($serverResponse['error']);
+            $this->error = new ErrorResponse($rawResponse['error']);
         }
 
-        $this->createdAt = $this->parseDate($serverResponse['created_at']);
-        $this->completedAt = isset($serverResponse['completed_at'])
-            ? $this->parseDate($serverResponse['completed_at'])
+        $this->createdAt = $this->parseDate($rawResponse['created_at']);
+        $this->completedAt = isset($rawResponse['completed_at'])
+            ? $this->parseDate($rawResponse['completed_at'])
             : null;
 
-        $this->modelId = $serverResponse['model_id'];
-        $this->pollingUrl = $serverResponse['polling_url'];
-        $this->filename = $serverResponse['filename'];
-        $this->resultUrl = $serverResponse['result_url'] ?? null;
-        $this->alias = $serverResponse['alias'];
+        $this->modelId = $rawResponse['model_id'];
+        $this->pollingUrl = $rawResponse['polling_url'];
+        $this->filename = $rawResponse['filename'];
+        $this->resultUrl = $rawResponse['result_url'] ?? null;
+        $this->alias = $rawResponse['alias'];
         $this->webhooks = [];
-        if (array_key_exists("webhooks", $serverResponse)) {
-            foreach ($serverResponse['webhooks'] as $webhook) {
+        if (array_key_exists("webhooks", $rawResponse)) {
+            foreach ($rawResponse['webhooks'] as $webhook) {
                 $this->webhooks[] = new JobWebhook($webhook);
             }
         }
@@ -110,7 +110,7 @@ class Job
      */
     private function parseDate(?string $dateString): ?DateTime
     {
-        if ($dateString === null || $dateString === '') {
+        if (empty($dateString)) {
             return null;
         }
 

@@ -24,22 +24,27 @@ class ResumeV1SocialNetworksUrl
      * @var string|null The URL of the social network.
      */
     public ?string $url;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->name = $rawPrediction["name"] ?? null;
         $this->url = $rawPrediction["url"] ?? null;
     }
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -49,17 +54,6 @@ class ResumeV1SocialNetworksUrl
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["url"] = SummaryHelperV1::formatForDisplay($this->url);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

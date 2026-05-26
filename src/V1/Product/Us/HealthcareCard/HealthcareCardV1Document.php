@@ -72,7 +72,7 @@ class HealthcareCardV1Document extends Prediction
      */
     public StringField $rxPcn;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -95,7 +95,7 @@ class HealthcareCardV1Document extends Prediction
         if (!isset($rawPrediction["dependents"])) {
             throw new MindeeUnsetException();
         }
-        $this->dependents = $rawPrediction["dependents"] === null ? [] : array_map(
+        $this->dependents = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["dependents"]
         );

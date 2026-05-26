@@ -29,7 +29,7 @@ abstract class BaseField
     public ?FieldConfidence $confidence;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer $indentLevel Level of indentation for rst display.
      */
     public function __construct(array $rawPrediction, int $indentLevel = 0)
@@ -47,7 +47,7 @@ abstract class BaseField
     }
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer $indentLevel Level of indentation for rst display.
      * @throws MindeeApiException Throws if the field type isn't recognized.
      */
@@ -65,5 +65,14 @@ abstract class BaseField
         throw new MindeeApiException(
             sprintf('Unrecognized field format in %s.', json_encode($rawPrediction))
         );
+    }
+
+    /**
+     * Base str-rep. Do not use.
+     * @throws MindeeApiException
+     */
+    public function __toString(): string
+    {
+        throw new MindeeApiException('Not implemented');
     }
 }

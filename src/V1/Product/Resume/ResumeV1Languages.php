@@ -8,11 +8,12 @@ use ArrayObject;
 
 /**
  * The list of languages that the candidate is proficient in.
+ * @extends ArrayObject<integer, ResumeV1Language>
  */
 class ResumeV1Languages extends ArrayObject
 {
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

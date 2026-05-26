@@ -8,11 +8,12 @@ use ArrayObject;
 
 /**
  * Details of energy consumption.
+ * @extends ArrayObject<integer, EnergyBillV1EnergyUsage>
  */
 class EnergyBillV1EnergyUsages extends ArrayObject
 {
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

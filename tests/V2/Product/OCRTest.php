@@ -6,14 +6,14 @@ namespace V2\Product;
 
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
-use Mindee\V2\Product\Ocr\OcrResponse;
+use Mindee\V2\Product\OCR\OCRResponse;
 
 require_once(__DIR__ . "/../../TestingUtilities.php");
 
 /**
  * OCR unit tests.
  */
-class OcrTest extends TestCase
+class OCRTest extends TestCase
 {
     /**
      * Load a JSON sample and return its decoded contents.
@@ -43,10 +43,10 @@ class OcrTest extends TestCase
     /**
      * Should correctly map properties when reading a single OCR JSON.
      */
-    public function testOcrWhenSingleMustHaveValidProperties(): void
+    public function testOCRWhenSingleMustHaveValidProperties(): void
     {
         $jsonSample = self::getInference("ocr/ocr_single.json");
-        $response = new OcrResponse($jsonSample);
+        $response = new OCRResponse($jsonSample);
 
         $this->assertInferenceResponse($response);
 
@@ -78,10 +78,10 @@ class OcrTest extends TestCase
     /**
      * Should correctly map properties when reading a multiple OCR JSON.
      */
-    public function testOcrWhenMultipleMustHaveValidProperties(): void
+    public function testOCRWhenMultipleMustHaveValidProperties(): void
     {
         $jsonSample = self::getInference("ocr/ocr_multiple.json");
-        $response = new OcrResponse($jsonSample);
+        $response = new OCRResponse($jsonSample);
 
         $this->assertInferenceResponse($response);
 

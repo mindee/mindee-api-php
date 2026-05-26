@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V1\HTTP;
 
+use Mindee\Error\MindeeException;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
@@ -49,6 +50,7 @@ class Endpoint extends BaseEndpoint
      * Retrieves a document from its queue ID.
      *
      * @param string $queueId ID of the queue to poll.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function documentQueueReqGet(string $queueId): array
     {
@@ -60,6 +62,7 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl File to upload.
      * @param PredictMethodOptions $options Prediction Options.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function predictRequestPost(
         InputSource $fileCurl,
@@ -73,6 +76,7 @@ class Endpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl File to upload.
      * @param PredictMethodOptions $options Prediction Options.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function predictAsyncRequestPost(
         InputSource $fileCurl,
@@ -87,11 +91,13 @@ class Endpoint extends BaseEndpoint
 
 
     /**
-     * Starts a CURL session, using POST.
+     * Starts a CURL session using POST.
      *
      * @param InputSource $inputSource File to upload.
      * @param PredictMethodOptions $options Prediction Options.
      * @param boolean $async Whether to use the async endpoint.
+     * @return array{data: string|bool, code: int} Final response.
+     * @throws MindeeException Throws if the CURL session couldn't be initialized.
      */
     private function initCurlSessionPost(
         InputSource $inputSource,
@@ -137,6 +143,10 @@ class Endpoint extends BaseEndpoint
 
         if (!empty($params)) {
             $suffix .= '?' . http_build_query($params);
+        }
+
+        if (!$ch) {
+            throw new MindeeException("Curl session initialization failed.");
         }
         return $this->setFinalCurlOpts($ch, $suffix, $postFields, $options->workflowId);
     }

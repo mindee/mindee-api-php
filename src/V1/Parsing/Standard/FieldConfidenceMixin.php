@@ -19,7 +19,7 @@ trait FieldConfidenceMixin
     /**
      * Sets the confidence score.
      *
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      */
     protected function setConfidence(array $rawPrediction): void
     {

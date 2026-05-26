@@ -52,15 +52,20 @@ class ResumeV1ProfessionalExperience
      * @var string|null The year when the professional experience began.
      */
     public ?string $startYear;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->contractType = $rawPrediction["contract_type"] ?? null;
         $this->department = $rawPrediction["department"] ?? null;
         $this->description = $rawPrediction["description"] ?? null;
@@ -74,7 +79,7 @@ class ResumeV1ProfessionalExperience
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -91,24 +96,6 @@ class ResumeV1ProfessionalExperience
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["contractType"] = SummaryHelperV1::formatForDisplay($this->contractType);
-        $outArr["department"] = SummaryHelperV1::formatForDisplay($this->department);
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["employer"] = SummaryHelperV1::formatForDisplay($this->employer);
-        $outArr["endMonth"] = SummaryHelperV1::formatForDisplay($this->endMonth);
-        $outArr["endYear"] = SummaryHelperV1::formatForDisplay($this->endYear);
-        $outArr["role"] = SummaryHelperV1::formatForDisplay($this->role);
-        $outArr["startMonth"] = SummaryHelperV1::formatForDisplay($this->startMonth);
-        $outArr["startYear"] = SummaryHelperV1::formatForDisplay($this->startYear);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

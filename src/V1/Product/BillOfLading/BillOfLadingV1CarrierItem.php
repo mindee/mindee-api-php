@@ -40,9 +40,13 @@ class BillOfLadingV1CarrierItem
      * @var string|null The unit of measurement for weights.
      */
     public ?string $weightUnit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -58,11 +62,12 @@ class BillOfLadingV1CarrierItem
         $this->quantity = isset($rawPrediction["quantity"])
             ? (float) ($rawPrediction["quantity"]) : null;
         $this->weightUnit = $rawPrediction["weight_unit"] ?? null;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -76,21 +81,6 @@ class BillOfLadingV1CarrierItem
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["grossWeight"] = SummaryHelperV1::formatFloat($this->grossWeight);
-        $outArr["measurement"] = SummaryHelperV1::formatFloat($this->measurement);
-        $outArr["measurementUnit"] = SummaryHelperV1::formatForDisplay($this->measurementUnit);
-        $outArr["quantity"] = SummaryHelperV1::formatFloat($this->quantity);
-        $outArr["weightUnit"] = SummaryHelperV1::formatForDisplay($this->weightUnit);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

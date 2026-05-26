@@ -24,22 +24,27 @@ class ResumeV1Language
      * @var string|null The candidate's level for the language.
      */
     public ?string $level;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->language = $rawPrediction["language"] ?? null;
         $this->level = $rawPrediction["level"] ?? null;
     }
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -49,17 +54,6 @@ class ResumeV1Language
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["language"] = SummaryHelperV1::formatForDisplay($this->language);
-        $outArr["level"] = SummaryHelperV1::formatForDisplay($this->level);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

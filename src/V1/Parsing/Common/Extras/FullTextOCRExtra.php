@@ -7,7 +7,7 @@ namespace Mindee\V1\Parsing\Common\Extras;
 /**
  * Full Text OCR result.
  */
-class FullTextOcrExtra
+class FullTextOCRExtra
 {
     /**
      * @var string|null Text content of the full text ocr reading.
@@ -21,7 +21,7 @@ class FullTextOcrExtra
     public ?string $language;
 
     /**
-     * @param array $rawPrediction Raw HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw HTTP response.
      */
     public function __construct(array $rawPrediction)
     {

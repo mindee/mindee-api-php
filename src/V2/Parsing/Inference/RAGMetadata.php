@@ -15,7 +15,7 @@ class RAGMetadata
     public ?string $retrievedDocumentId;
 
     /**
-     * @param array $rawResponse Raw response from the server.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw response from the server.
      */
     public function __construct(array $rawResponse)
     {

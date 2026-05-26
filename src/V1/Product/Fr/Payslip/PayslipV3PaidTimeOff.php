@@ -36,9 +36,13 @@ class PayslipV3PaidTimeOff
      * @var float|null The amount of paid time off used in the period.
      */
     public ?float $used;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -53,11 +57,12 @@ class PayslipV3PaidTimeOff
             ? (float) ($rawPrediction["remaining"]) : null;
         $this->used = isset($rawPrediction["used"])
             ? (float) ($rawPrediction["used"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -70,20 +75,6 @@ class PayslipV3PaidTimeOff
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["accrued"] = SummaryHelperV1::formatFloat($this->accrued);
-        $outArr["period"] = SummaryHelperV1::formatForDisplay($this->period);
-        $outArr["ptoType"] = SummaryHelperV1::formatForDisplay($this->ptoType);
-        $outArr["remaining"] = SummaryHelperV1::formatFloat($this->remaining);
-        $outArr["used"] = SummaryHelperV1::formatFloat($this->used);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

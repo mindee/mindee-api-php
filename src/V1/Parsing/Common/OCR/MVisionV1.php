@@ -10,12 +10,12 @@ namespace Mindee\V1\Parsing\Common\OCR;
 class MVisionV1
 {
     /**
-     * @var array List of pages.
+     * @var array<OCRPage> List of pages.
      */
     public array $pages;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {

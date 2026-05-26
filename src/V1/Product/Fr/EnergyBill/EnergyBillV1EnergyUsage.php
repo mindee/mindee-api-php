@@ -48,9 +48,13 @@ class EnergyBillV1EnergyUsage
      * @var float|null The price per unit of energy consumed.
      */
     public ?float $unitPrice;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -62,6 +66,7 @@ class EnergyBillV1EnergyUsage
         $this->description = $rawPrediction["description"] ?? null;
         $this->endDate = $rawPrediction["end_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
+        $this->pageId = $pageId;
         $this->taxRate = isset($rawPrediction["tax_rate"])
             ? (float) ($rawPrediction["tax_rate"]) : null;
         $this->total = isset($rawPrediction["total"])
@@ -73,7 +78,7 @@ class EnergyBillV1EnergyUsage
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -89,23 +94,6 @@ class EnergyBillV1EnergyUsage
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["consumption"] = SummaryHelperV1::formatFloat($this->consumption);
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["endDate"] = SummaryHelperV1::formatForDisplay($this->endDate);
-        $outArr["startDate"] = SummaryHelperV1::formatForDisplay($this->startDate);
-        $outArr["taxRate"] = SummaryHelperV1::formatFloat($this->taxRate);
-        $outArr["total"] = SummaryHelperV1::formatFloat($this->total);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        $outArr["unitPrice"] = SummaryHelperV1::formatFloat($this->unitPrice);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

@@ -44,7 +44,7 @@ class MindeeAPI extends BaseAPI
         ?string $version = "1"
     ) {
         parent::__construct($apiKey);
-        if (!$this->apiKey || $this->apiKey === '') {
+        if (empty($this->apiKey)) {
             throw new MindeeException(
                 "Missing API key for '$endpointName v$version' (belonging to $accountName),"
                 . " check your Client configuration.You can set this using the "

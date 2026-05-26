@@ -38,38 +38,38 @@ class DataSchemaField
      */
     public ?bool $uniqueValues;
     /**
-     * @var array|null Subfields when type is `nested_object`. Leave empty for other types.
+     * @var array<string, int|float|string|bool|null|array<array-key, mixed>>|null Subfields when type is `nested_object`. Leave empty for other types.
      */
     public ?array $nestedFields;
     /**
-     * @var array|null Allowed values when type is `classification`. Leave empty for other types.
+     * @var array<string>|null Allowed values when type is `classification`. Leave empty for other types.
      */
     public ?array $classificationValues;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->name = $serverResponse['name'];
-        $this->title = $serverResponse['title'];
-        $this->isArray = $serverResponse['is_array'];
-        $this->type = $serverResponse['type'];
-        $this->description = $serverResponse['description'];
-        $this->guidelines = $serverResponse['guidelines'];
-        if (isset($serverResponse['unique_values'])) {
-            $this->uniqueValues = $serverResponse['unique_values'];
+        $this->name = $rawResponse['name'];
+        $this->title = $rawResponse['title'];
+        $this->isArray = $rawResponse['is_array'];
+        $this->type = $rawResponse['type'];
+        $this->description = $rawResponse['description'];
+        $this->guidelines = $rawResponse['guidelines'];
+        if (isset($rawResponse['unique_values'])) {
+            $this->uniqueValues = $rawResponse['unique_values'];
         }
-        if (isset($serverResponse['nested_fields'])) {
-            $this->nestedFields = $serverResponse['nested_fields'];
+        if (isset($rawResponse['nested_fields'])) {
+            $this->nestedFields = $rawResponse['nested_fields'];
         }
-        if (isset($serverResponse['classification_values'])) {
-            $this->classificationValues = $serverResponse['classification_values'];
+        if (isset($rawResponse['classification_values'])) {
+            $this->classificationValues = $rawResponse['classification_values'];
         }
     }
 
     /**
-     * @return array JSON representation.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> JSON representation.
      */
     public function toJson(): array
     {

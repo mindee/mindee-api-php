@@ -21,7 +21,7 @@ use function is_string;
 class ImageUtils
 {
     /**
-     * @param mixed $image Image handle.
+     * @param Imagick|SplFileObject|CURLFile|string|resource $image Image handle.
      * @return Imagick A valid Imagick handle, CURLFile, SplFileObject or resource.
      *                 The resulting image is formatted to jpeg.
      * @throws MindeeImageException Throws if something goes wrong during image conversion.
@@ -31,7 +31,6 @@ class ImageUtils
         try {
             if ($image instanceof Imagick) {
                 $imagickHandle = $image;
-                $imagickHandle->setImageFormat('jpeg');
             } elseif ($image instanceof SplFileObject) {
                 $imagickHandle = new Imagick();
                 $imagickHandle->readImage($image->getRealPath());
@@ -43,7 +42,14 @@ class ImageUtils
                 $imagickHandle->readImage($image);
             } elseif (is_resource($image)) {
                 $imagickHandle = new Imagick();
-                $imagickHandle->readImageBlob($image);
+                rewind($image);
+                $imageData = stream_get_contents($image);
+
+                if ($imageData === false) {
+                    throw new MindeeImageException('Failed to read from image resource.');
+                }
+
+                $imagickHandle->readImageBlob($imageData);
             } else {
                 throw new MindeeImageException(
                     'Input image must be a SplFileObject, path, resource or Imagick handle.'

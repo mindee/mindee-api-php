@@ -44,9 +44,13 @@ class PayslipV3Employer
      * @var string|null The URSSAF number of the employer.
      */
     public ?string $urssafNumber;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -60,28 +64,12 @@ class PayslipV3Employer
         $this->name = $rawPrediction["name"] ?? null;
         $this->phoneNumber = $rawPrediction["phone_number"] ?? null;
         $this->urssafNumber = $rawPrediction["urssaf_number"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["companyId"] = SummaryHelperV1::formatForDisplay($this->companyId);
-        $outArr["companySite"] = SummaryHelperV1::formatForDisplay($this->companySite);
-        $outArr["nafCode"] = SummaryHelperV1::formatForDisplay($this->nafCode);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["phoneNumber"] = SummaryHelperV1::formatForDisplay($this->phoneNumber);
-        $outArr["urssafNumber"] = SummaryHelperV1::formatForDisplay($this->urssafNumber);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

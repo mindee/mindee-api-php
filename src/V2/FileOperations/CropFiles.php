@@ -13,8 +13,7 @@ use function sprintf;
 
 /**
  * Cropped files collection wrapper.
- *
- * * @extends ArrayObject<int, ExtractedImage>
+ * @extends ArrayObject<int, ExtractedImage>
  */
 class CropFiles extends ArrayObject
 {
@@ -44,7 +43,6 @@ class CropFiles extends ArrayObject
         ?string $fileFormat = null,
         int $quality = 100
     ): void {
-        $format ??= $fileFormat;
         $idx = 1;
 
         foreach ($this as $crop) {
@@ -53,7 +51,7 @@ class CropFiles extends ArrayObject
             $crop->filename = $filename;
 
             try {
-                $crop->writeToFile($path, $format, $quality);
+                $crop->writeToFile($path, $fileFormat, $quality);
             } catch (ImagickException $e) {
                 throw new MindeeException('Failed to save crop to disk.', 0, $e);
             }

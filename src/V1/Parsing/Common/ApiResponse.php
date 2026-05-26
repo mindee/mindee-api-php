@@ -14,12 +14,12 @@ abstract class ApiResponse
      */
     public ApiRequest $apiRequest;
     /**
-     * @var array Raw http result. Used for debugging purposes.
+     * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Raw http result. Used for debugging purposes.
      */
     private array $rawHttp;
 
     /**
-     * @param array $rawResponse Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.
      */
     public function __construct(array $rawResponse)
     {

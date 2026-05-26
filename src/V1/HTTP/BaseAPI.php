@@ -90,15 +90,15 @@ abstract class BaseAPI
     /**
      * Sets the default timeout.
      *
-     * @param string $value Value for the CURL timeout.
+     * @param integer $value Value for the CURL timeout.
      */
-    protected function setTimeout(string $value): void
+    protected function setTimeout(int $value): void
     {
         $this->requestTimeout = $value;
     }
 
     /**
-     * Sets values from environment, if needed.
+     * Sets values from the environment, if needed.
      *
      */
     protected function setFromEnv(): void

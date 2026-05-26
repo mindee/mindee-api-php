@@ -20,23 +20,23 @@ class DataSchemaReplace
     public array $fields;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @throws InvalidArgumentException Throws if the fields array is empty or the Data schema is incorrect.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
         if (
-            !isset($serverResponse['fields'])
-            || !is_array($serverResponse['fields'])
-            || count($serverResponse['fields']) === 0
+            !isset($rawResponse['fields'])
+            || !is_array($rawResponse['fields'])
+            || count($rawResponse['fields']) === 0
         ) {
             throw new InvalidArgumentException('Data Schema replacement fields cannot be empty.');
         }
-        $this->fields = array_map(static fn($field) => new DataSchemaField($field), $serverResponse['fields']);
+        $this->fields = array_map(static fn($field) => new DataSchemaField($field), $rawResponse['fields']);
     }
 
     /**
-     * @return array JSON representation.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> JSON representation.
      */
     public function toJson(): array
     {

@@ -163,7 +163,7 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Create a new PDF from pages and set it as the main file object.
-     * @param array $pageNumbers Array of page numbers to add to the newly created PDF.
+     * @param array<integer> $pageNumbers Array of page numbers to add to the newly created PDF.
      * @throws MindeePDFException Throws if the pdf file can't be processed.
      */
     public function mergePDFPages(array $pageNumbers): void
@@ -222,7 +222,7 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Reads the contents of the file.
-     *
+     * @return array{0: string, 1: string} File name and contents as a tuple.
      */
     public function readContents(): array
     {

@@ -22,8 +22,9 @@ class BarcodeReaderV1Document extends Prediction
      * @var StringField[] List of decoded 2D barcodes.
      */
     public array $codes2D;
+
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -32,14 +33,14 @@ class BarcodeReaderV1Document extends Prediction
         if (!isset($rawPrediction["codes_1d"])) {
             throw new MindeeUnsetException();
         }
-        $this->codes1D = $rawPrediction["codes_1d"] === null ? [] : array_map(
+        $this->codes1D = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["codes_1d"]
         );
         if (!isset($rawPrediction["codes_2d"])) {
             throw new MindeeUnsetException();
         }
-        $this->codes2D = $rawPrediction["codes_2d"] === null ? [] : array_map(
+        $this->codes2D = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["codes_2d"]
         );

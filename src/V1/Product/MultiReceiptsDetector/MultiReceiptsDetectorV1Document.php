@@ -19,7 +19,7 @@ class MultiReceiptsDetectorV1Document extends Prediction
      */
     public array $receipts;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -28,7 +28,7 @@ class MultiReceiptsDetectorV1Document extends Prediction
         if (!isset($rawPrediction["receipts"])) {
             throw new MindeeUnsetException();
         }
-        $this->receipts = $rawPrediction["receipts"] === null ? [] : array_map(
+        $this->receipts = array_map(
             static fn($prediction) => new PositionField($prediction, $pageId),
             $rawPrediction["receipts"]
         );

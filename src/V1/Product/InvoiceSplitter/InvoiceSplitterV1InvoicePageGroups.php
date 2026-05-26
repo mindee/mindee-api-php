@@ -8,11 +8,12 @@ use ArrayObject;
 
 /**
  * List of page groups. Each group represents a single invoice within a multi-invoice document.
+ * @extends ArrayObject<integer, InvoiceSplitterV1InvoicePageGroup>
  */
 class InvoiceSplitterV1InvoicePageGroups extends ArrayObject
 {
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
