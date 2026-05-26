@@ -60,7 +60,7 @@ class BillOfLadingV1Document extends Prediction
      */
     public BillOfLadingV1Shipper $shipper;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -150,10 +150,10 @@ class BillOfLadingV1Document extends Prediction
      */
     public function __toString(): string
     {
-        $shipperToFieldList = $this->shipper !== null ? $this->shipper->toFieldList() : "";
-        $consigneeToFieldList = $this->consignee !== null ? $this->consignee->toFieldList() : "";
-        $notifyPartyToFieldList = $this->notifyParty !== null ? $this->notifyParty->toFieldList() : "";
-        $carrierToFieldList = $this->carrier !== null ? $this->carrier->toFieldList() : "";
+        $shipperToFieldList = $this->shipper->toFieldList();
+        $consigneeToFieldList = $this->consignee->toFieldList();
+        $notifyPartyToFieldList = $this->notifyParty->toFieldList();
+        $carrierToFieldList = $this->carrier->toFieldList();
         $carrierItemsSummary = (string) ($this->carrierItems);
 
         $outStr = ":Bill of Lading Number: $this->billOfLadingNumber

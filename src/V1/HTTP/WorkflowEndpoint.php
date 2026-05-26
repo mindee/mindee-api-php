@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V1\HTTP;
 
+use Mindee\Error\MindeeException;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\URLInputSource;
@@ -28,6 +29,7 @@ class WorkflowEndpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl File to upload.
      * @param WorkflowOptions $workflowOptions Workflow options.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function executeWorkflowRequestPost(
         InputSource $fileCurl,
@@ -42,6 +44,7 @@ class WorkflowEndpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl File to upload.
      * @param WorkflowOptions $workflowOptions Workflow options.
+     * @return array{data: string|bool, code: int} Final response.
      */
     private function initCurlSessionPost(
         InputSource $fileCurl,
@@ -87,6 +90,9 @@ class WorkflowEndpoint extends BaseEndpoint
 
         if (!empty($params)) {
             $suffix .= '?' . http_build_query($params);
+        }
+        if (!$ch) {
+            throw new MindeeException("Curl session initialization failed.");
         }
         return $this->setFinalCurlOpts($ch, $suffix, $postFields);
     }

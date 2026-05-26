@@ -10,6 +10,7 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePDFException;
 use Smalot\PdfParser\Config;
+use Smalot\PdfParser\Font;
 use Smalot\PdfParser\Page;
 use Smalot\PdfParser\Parser;
 use Imagick;
@@ -25,7 +26,7 @@ use function is_string;
 class PDFUtils
 {
     /**
-     * @param mixed $input Input file. Accepts SplFileObject, Imagick, Curl, resources & paths.
+     * @param SplFileObject|Imagick|CURLFile|string|resource $input Input file. Accepts SplFileObject, Imagick, Curl, resources & paths.
      * @return string Path of the file.
      * @throws MindeePDFException Throws if a path can't be extracted from the input.
      */
@@ -42,13 +43,18 @@ class PDFUtils
             } elseif ($input instanceof CURLFile) {
                 return $input->getFilename();
             } elseif (is_resource($input)) {
-                $imagickHandle = new Imagick();
-                $imagickHandle->readImageBlob($input);
+                $metaData = stream_get_meta_data($input);
+                if (isset($metaData['uri']) && is_file($metaData['uri'])) {
+                    return $metaData['uri'];
+                }
+                rewind($input);
+                $tempPath = tempnam(sys_get_temp_dir(), 'mindee_ext_') . '.pdf';
+                file_put_contents($tempPath, stream_get_contents($input));
+
+                return $tempPath;
             } else {
                 throw new MindeePDFException('Input PDF must be a SplFileObject, path, resource or Imagick handle.');
             }
-            $imagickHandle->setImageFormat('jpeg');
-            return $imagickHandle;
         } catch (MindeePDFException $e) {
             throw $e;
         } catch (Exception $e) {
@@ -79,8 +85,8 @@ class PDFUtils
      * Extracts text elements with their properties from all pages in a PDF.
      *
      * @param string $pdfPath Path to the PDF file.
-     * @return array An array of arrays, each containing text elements for a page.
-     *               Each text element includes text content, position, font, size, and color.
+     * @return array<integer, string> A page-indexed array of text elements.
+     *                                Each text element includes text content, position, font, size, and color.
      * @throws MindeePDFException Throws if the PDF can't be parsed or text elements can't be extracted.
      */
     public static function extractPagesTextElements(string $pdfPath): array
@@ -122,7 +128,7 @@ class PDFUtils
         try {
             $outputPath = tempnam(sys_get_temp_dir(), 'downgrade_pdf_') . '.pdf';
             $command = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET"
-                . " -dBATCH -sOutputFile={$outputPath} \"{$inputPath}\"";
+                . " -dBATCH -sOutputFile=$outputPath \"$inputPath\"";
 
             exec($command, $output, $returnCode);
 
@@ -146,14 +152,15 @@ class PDFUtils
      * Extracts text elements with their properties from a PDF page.
      *
      * @param Page $page Page object.
-     * @return array An array of text elements, each containing text content, position, font, size, and color.
+     * @return array<array<string, string|float|Font|null>> An array of text elements, each containing text content,
+     *                                                      position, font, size, and color.
      * @throws MindeePDFException Throws if the text elements can't be extracted.
      */
     public static function extractTextElements(Page $page): array
     {
         try {
             $dataTm = $page->getDataTm();
-        } catch (Exception|TypeError $e) {
+        } catch (Exception|TypeError) {
             return [];
         }
         try {
@@ -183,9 +190,9 @@ class PDFUtils
 
     /**
      * @param string $fontName Name of the font/subfont.
-     * @return array The standard font & possible style.
+     * @return array{family: string, style: string} The standard font & possible style.
      */
-    private static function standardizeFontName(string $fontName): array
+    protected static function standardizeFontName(string $fontName): array
     {
         $cleanName = preg_replace('/^.*?\+/', '', $fontName);
         $parts = explode('-', $cleanName, 2);
@@ -197,7 +204,7 @@ class PDFUtils
             $fontStyle = '';
         }
         $fontStyle = str_replace(['Bold', 'Italic', 'Oblique'], ['B', 'I', 'I'], $fontStyle);
-        if (strpos($fontStyle, 'B') !== false && strpos($fontStyle, 'I') !== false) {
+        if (str_contains($fontStyle, 'B') && str_contains($fontStyle, 'I')) {
             $fontStyle = 'BI';
         }
 
@@ -211,7 +218,7 @@ class PDFUtils
      * Adds a text element to the output PDF.
      *
      * @param CustomFPDI $pdf The output PDF object.
-     * @param array $element Text element array containing text, position, font, size, and color.
+     * @param array<string, float|null|Font|string> $element Text element array containing text, position, font, size, and color.
      */
     public static function addTextElement(CustomFPDI $pdf, array $element): void
     {
@@ -219,8 +226,8 @@ class PDFUtils
         $pageHeight = $pdf->GetPageHeight();
 
         $size = $element['size'] * 3;
-        $x = $element['x']  - $size / 10;
-        $y = $pageHeight - $element['y']  - $size / 10;
+        $x = $element['x'] - $size / 10;
+        $y = $pageHeight - $element['y'] - $size / 10;
         $pdf->SetFont($fontInfo['family'], $fontInfo['style'], $size);
 
         $pdf->SetTextColor(0, 0, 0); // No currently reliable nor easy way of retrieving text color.

@@ -8,11 +8,12 @@ use ArrayObject;
 
 /**
  * The amount of nutrients in the product.
+ * @extends ArrayObject<int, NutritionFactsLabelV1Nutrient>
  */
 class NutritionFactsLabelV1Nutrients extends ArrayObject
 {
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

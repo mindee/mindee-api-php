@@ -10,7 +10,7 @@ use Mindee\V1\Product\InternationalId\InternationalIdV2;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-class FullTextOcrExtraTest extends TestCase
+class FullTextOCRExtraTest extends TestCase
 {
     private $extrasDir;
 

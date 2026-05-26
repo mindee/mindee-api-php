@@ -36,15 +36,20 @@ class UsMailV3SenderAddress
      * @var string|null The street of the sender's address.
      */
     public ?string $street;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->city = $rawPrediction["city"] ?? null;
         $this->complete = $rawPrediction["complete"] ?? null;
         $this->postalCode = $rawPrediction["postal_code"] ?? null;
@@ -53,23 +58,8 @@ class UsMailV3SenderAddress
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["city"] = SummaryHelperV1::formatForDisplay($this->city, 15);
-        $outArr["complete"] = SummaryHelperV1::formatForDisplay($this->complete, 35);
-        $outArr["postalCode"] = SummaryHelperV1::formatForDisplay($this->postalCode);
-        $outArr["state"] = SummaryHelperV1::formatForDisplay($this->state);
-        $outArr["street"] = SummaryHelperV1::formatForDisplay($this->street, 25);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

@@ -20,7 +20,7 @@ class DataSchema
     public ?DataSchemaReplace $replace;
 
     /**
-     * @param array|string|DataSchema $dataSchema Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>>|string|DataSchema $dataSchema Raw server response array.
      * @throws InvalidArgumentException Throws if the data schema is invalid.
      */
     public function __construct(self|array|string $dataSchema)
@@ -40,7 +40,7 @@ class DataSchema
     }
 
     /**
-     * @return array JSON representation.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> JSON representation.
      */
     public function toJson(): array
     {
@@ -76,7 +76,7 @@ class DataSchema
     {
         $jsonStr = json_encode($this->toJson(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         $lines = explode("\n", $jsonStr);
-        return implode("\n", array_map('self::fixLineSpaces', $lines)) . "\n";
+        return implode("\n", array_map(static fn($line) => self::fixLineSpaces($line), $lines)) . "\n";
     }
 
     /**

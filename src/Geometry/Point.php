@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Mindee\Geometry;
 
 use ArrayAccess;
+use BadMethodCallException;
 use InvalidArgumentException;
 
 /**
  * Representation of the coordinates of a point.
+ *
+ * @implements ArrayAccess<int, float>
  */
 class Point implements ArrayAccess
 {
@@ -101,12 +104,6 @@ class Point implements ArrayAccess
      */
     public function offsetUnset($offset): void
     {
-        if ($offset === 0) {
-            $this->x = null;
-        } elseif ($offset === 1) {
-            $this->y = null;
-        } else {
-            throw new InvalidArgumentException("Use 0 for X or 1 for Y");
-        }
+        throw new BadMethodCallException("Cannot unset coordinates of a Point.");
     }
 }

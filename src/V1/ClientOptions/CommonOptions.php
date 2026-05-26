@@ -27,9 +27,8 @@ abstract class CommonOptions
 
     /**
      * @param boolean $fullText Whether to include the full text.
-     * @return $this
      */
-    public function setFullText(bool $fullText): PredictOptions
+    public function setFullText(bool $fullText): static
     {
         $this->fullText = $fullText;
         return $this;

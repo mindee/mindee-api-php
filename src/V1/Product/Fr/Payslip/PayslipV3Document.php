@@ -46,7 +46,7 @@ class PayslipV3Document extends Prediction
      */
     public PayslipV3SalaryDetails $salaryDetails;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -115,14 +115,13 @@ class PayslipV3Document extends Prediction
      */
     public function __toString(): string
     {
-        $payPeriodToFieldList = $this->payPeriod !== null ? $this->payPeriod->toFieldList() : "";
-        $employeeToFieldList = $this->employee !== null ? $this->employee->toFieldList() : "";
-        $employerToFieldList = $this->employer !== null ? $this->employer->toFieldList() : "";
-        $bankAccountDetailsToFieldList = $this->bankAccountDetails !== null
-            ? $this->bankAccountDetails->toFieldList() : "";
-        $employmentToFieldList = $this->employment !== null ? $this->employment->toFieldList() : "";
+        $payPeriodToFieldList = $this->payPeriod->toFieldList();
+        $employeeToFieldList = $this->employee->toFieldList();
+        $employerToFieldList = $this->employer->toFieldList();
+        $bankAccountDetailsToFieldList = $this->bankAccountDetails->toFieldList();
+        $employmentToFieldList = $this->employment->toFieldList();
         $salaryDetailsSummary = (string) ($this->salaryDetails);
-        $payDetailToFieldList = $this->payDetail !== null ? $this->payDetail->toFieldList() : "";
+        $payDetailToFieldList = $this->payDetail->toFieldList();
         $paidTimeOffSummary = (string) ($this->paidTimeOff);
 
         $outStr = ":Pay Period: $payPeriodToFieldList

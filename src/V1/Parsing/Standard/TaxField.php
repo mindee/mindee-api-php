@@ -9,15 +9,11 @@ use function is_scalar;
 
 /**
  * Tax line information.
+ * @extends BaseField<float>
  */
 class TaxField extends BaseField
 {
     use FieldPositionMixin;
-
-    /**
-     * @var float|null The amount of the tax line.
-     */
-    public $value;
     /**
      * @var float|null The tax rate.
      */
@@ -32,7 +28,7 @@ class TaxField extends BaseField
     public ?float $basis;
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field has been reconstructed.
      * @param string $valueKey Key to use for the value.
@@ -75,7 +71,7 @@ class TaxField extends BaseField
     /**
      * Returns an array of immediately printable values.
      *
-     * @return array Array of printable values.
+     * @return array<string, string> Array of printable values.
      */
     private function printableValues(): array
     {

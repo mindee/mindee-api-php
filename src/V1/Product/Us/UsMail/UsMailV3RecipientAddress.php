@@ -48,15 +48,20 @@ class UsMailV3RecipientAddress
      * @var string|null The unit number of the recipient's address.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->city = $rawPrediction["city"] ?? null;
         $this->complete = $rawPrediction["complete"] ?? null;
         $this->isAddressChange = $rawPrediction["is_address_change"] ?? null;
@@ -69,7 +74,7 @@ class UsMailV3RecipientAddress
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -85,23 +90,6 @@ class UsMailV3RecipientAddress
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["city"] = SummaryHelperV1::formatForDisplay($this->city);
-        $outArr["complete"] = SummaryHelperV1::formatForDisplay($this->complete);
-        $outArr["isAddressChange"] = SummaryHelperV1::formatForDisplay($this->isAddressChange);
-        $outArr["postalCode"] = SummaryHelperV1::formatForDisplay($this->postalCode);
-        $outArr["privateMailboxNumber"] = SummaryHelperV1::formatForDisplay($this->privateMailboxNumber);
-        $outArr["state"] = SummaryHelperV1::formatForDisplay($this->state);
-        $outArr["street"] = SummaryHelperV1::formatForDisplay($this->street);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

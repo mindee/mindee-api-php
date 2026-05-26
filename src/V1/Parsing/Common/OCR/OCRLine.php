@@ -12,12 +12,12 @@ use function count;
 class OCRLine
 {
     /**
-     * @var array Words in the line.
+     * @var array<OCRWord> Words in the line.
      */
     private array $words;
 
     /**
-     * @param array $words Words to insert in the line.
+     * @param array<OCRWord> $words Words to insert in the line.
      */
     public function __construct(array $words = [])
     {

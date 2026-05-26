@@ -17,13 +17,13 @@ class GeneratedListField
     /** @var integer|null ID of the page the object was found on */
     public ?int $pageId;
 
-    /** @var array List of values */
+    /** @var array<GeneratedObjectField|StringField> List of values */
     public array $values = [];
 
     /**
      * Constructor.
      *
-     * @param array $rawPrediction Raw prediction data.
+     * @param list<array<string, integer|float|string|bool|null|array<mixed>>> $rawPrediction Array containing the list elements.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -31,7 +31,7 @@ class GeneratedListField
         $this->pageId = $pageId;
 
         foreach ($rawPrediction as $value) {
-            if (isset($value['page_id'])) {
+            if (isset($value['page_id']) && is_int($value['page_id'])) {
                 $this->pageId = $value['page_id'];
             }
 
@@ -41,7 +41,10 @@ class GeneratedListField
                 $valueStr = $value;
                 if (isset($valueStr['value'])) {
                     if (
-                        (is_int($valueStr['value']) || (is_float($value) && floor($value) === $value))
+                        (
+                            is_int($valueStr['value'])
+                            || (is_float($valueStr['value']) && floor($valueStr['value']) === $valueStr['value'])
+                        )
                         && (float) $value['value'] !== 0.0
                     ) {
                         $valueStr['value'] = $value['value'] . ".0";
@@ -57,11 +60,11 @@ class GeneratedListField
     /**
      * Get a list of contents.
      *
-     * @return array List of contents.
+     * @return array<string> List of contents.
      */
     public function getContentsList(): array
     {
-        return array_map(static fn($v) => (string) ($v ?: ""), $this->values);
+        return array_map(static fn($v) => (string) $v, $this->values);
     }
 
     /**

@@ -93,6 +93,7 @@ class DependencyChecker
         $imagick = new Imagick();
         try {
             $imagick->readImage(
+                /** @phpstan-ignore-next-line */
                 TestingUtilities::getV1DataDir() . "/products/expense_receipts/default_sample.jpg"
             );
         } catch (Exception $e) {

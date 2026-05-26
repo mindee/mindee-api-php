@@ -36,9 +36,13 @@ class PayslipV3PayPeriod
      * @var string|null The year of the pay period.
      */
     public ?string $year;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -50,26 +54,12 @@ class PayslipV3PayPeriod
         $this->paymentDate = $rawPrediction["payment_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
         $this->year = $rawPrediction["year"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["endDate"] = SummaryHelperV1::formatForDisplay($this->endDate);
-        $outArr["month"] = SummaryHelperV1::formatForDisplay($this->month);
-        $outArr["paymentDate"] = SummaryHelperV1::formatForDisplay($this->paymentDate);
-        $outArr["startDate"] = SummaryHelperV1::formatForDisplay($this->startDate);
-        $outArr["year"] = SummaryHelperV1::formatForDisplay($this->year);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

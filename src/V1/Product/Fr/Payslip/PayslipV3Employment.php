@@ -44,9 +44,13 @@ class PayslipV3Employment
      * @var string|null The start date of the employment.
      */
     public ?string $startDate;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -60,28 +64,12 @@ class PayslipV3Employment
         $this->positionLevel = $rawPrediction["position_level"] ?? null;
         $this->seniorityDate = $rawPrediction["seniority_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["category"] = SummaryHelperV1::formatForDisplay($this->category);
-        $outArr["coefficient"] = SummaryHelperV1::formatForDisplay($this->coefficient);
-        $outArr["collectiveAgreement"] = SummaryHelperV1::formatForDisplay($this->collectiveAgreement);
-        $outArr["jobTitle"] = SummaryHelperV1::formatForDisplay($this->jobTitle);
-        $outArr["positionLevel"] = SummaryHelperV1::formatForDisplay($this->positionLevel);
-        $outArr["seniorityDate"] = SummaryHelperV1::formatForDisplay($this->seniorityDate);
-        $outArr["startDate"] = SummaryHelperV1::formatForDisplay($this->startDate);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

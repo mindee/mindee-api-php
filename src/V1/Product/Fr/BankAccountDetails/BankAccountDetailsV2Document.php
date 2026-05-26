@@ -31,7 +31,7 @@ class BankAccountDetailsV2Document extends Prediction
      */
     public StringField $swiftCode;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -72,7 +72,7 @@ class BankAccountDetailsV2Document extends Prediction
      */
     public function __toString(): string
     {
-        $bbanToFieldList = $this->bban !== null ? $this->bban->toFieldList() : "";
+        $bbanToFieldList = $this->bban->toFieldList();
 
         $outStr = ":Account Holder's Names: $this->accountHoldersNames
 :Basic Bank Account Number: $bbanToFieldList

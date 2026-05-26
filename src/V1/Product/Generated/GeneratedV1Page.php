@@ -17,20 +17,23 @@ use function is_int;
  */
 class GeneratedV1Page extends GeneratedV1Prediction
 {
-    /** @var array Dictionary of all fields in the document */
+    /**
+     * @var array<string, GeneratedListField|GeneratedObjectField|StringField> Dictionary of all fields in the document.
+     */
     public array $fields;
 
     /**
      * GeneratedV1Page constructor.
-     * @param array $rawPrediction Dictionary containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Dictionary containing the JSON document response.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
     {
-        parent::__construct($rawPrediction);
+        parent::__construct();
         $this->fields = [];
         foreach ($rawPrediction as $fieldName => $fieldContents) {
             if (is_array($fieldContents) && array_values($fieldContents) === $fieldContents) {
+                /** @var list<array<string, integer|float|string|bool|null|array<mixed>>> $fieldContents */
                 $this->fields[$fieldName] = new GeneratedListField($fieldContents, $pageId);
             } elseif (is_array($fieldContents) && GeneratedObjectField::isGeneratedObject($fieldContents)) {
                 $this->fields[$fieldName] = new GeneratedObjectField($fieldContents, $pageId);

@@ -32,9 +32,13 @@ class BankAccountDetailsV2Bban
      * @var string|null The BBAN Account number outputted as a string.
      */
     public ?string $bbanNumber;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -45,25 +49,12 @@ class BankAccountDetailsV2Bban
         $this->bbanBranchCode = $rawPrediction["bban_branch_code"] ?? null;
         $this->bbanKey = $rawPrediction["bban_key"] ?? null;
         $this->bbanNumber = $rawPrediction["bban_number"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["bbanBankCode"] = SummaryHelperV1::formatForDisplay($this->bbanBankCode);
-        $outArr["bbanBranchCode"] = SummaryHelperV1::formatForDisplay($this->bbanBranchCode);
-        $outArr["bbanKey"] = SummaryHelperV1::formatForDisplay($this->bbanKey);
-        $outArr["bbanNumber"] = SummaryHelperV1::formatForDisplay($this->bbanNumber);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

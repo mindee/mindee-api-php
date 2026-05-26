@@ -85,7 +85,7 @@ class InternationalIdV2Document extends Prediction
      */
     public array $surnames;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -143,7 +143,7 @@ class InternationalIdV2Document extends Prediction
         if (!isset($rawPrediction["given_names"])) {
             throw new MindeeUnsetException();
         }
-        $this->givenNames = $rawPrediction["given_names"] === null ? [] : array_map(
+        $this->givenNames = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["given_names"]
         );
@@ -206,7 +206,7 @@ class InternationalIdV2Document extends Prediction
         if (!isset($rawPrediction["surnames"])) {
             throw new MindeeUnsetException();
         }
-        $this->surnames = $rawPrediction["surnames"] === null ? [] : array_map(
+        $this->surnames = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["surnames"]
         );

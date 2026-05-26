@@ -36,9 +36,13 @@ class PayslipV3SalaryDetail
      * @var float|null The rate of the earning.
      */
     public ?float $rate;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -54,11 +58,12 @@ class PayslipV3SalaryDetail
             ? (float) ($rawPrediction["number"]) : null;
         $this->rate = isset($rawPrediction["rate"])
             ? (float) ($rawPrediction["rate"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -71,20 +76,6 @@ class PayslipV3SalaryDetail
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["amount"] = SummaryHelperV1::formatFloat($this->amount);
-        $outArr["base"] = SummaryHelperV1::formatFloat($this->base);
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["number"] = SummaryHelperV1::formatFloat($this->number);
-        $outArr["rate"] = SummaryHelperV1::formatFloat($this->rate);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

@@ -59,7 +59,7 @@ class BusinessCardV1Document extends Prediction
      */
     public StringField $website;
     /**
-     * @param array $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */
@@ -131,7 +131,7 @@ class BusinessCardV1Document extends Prediction
         if (!isset($rawPrediction["social_media"])) {
             throw new MindeeUnsetException();
         }
-        $this->socialMedia = $rawPrediction["social_media"] === null ? [] : array_map(
+        $this->socialMedia = array_map(
             static fn($prediction) => new StringField($prediction, $pageId),
             $rawPrediction["social_media"]
         );

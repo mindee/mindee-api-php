@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\HTTP;
 
+use CurlHandle;
+
 /**
  * Abstract class for endpoints.
  */
@@ -12,20 +14,21 @@ abstract class BaseEndpoint
     /**
      * @var MindeeAPI|MindeeWorkflowAPI Settings of the endpoint.
      */
-    public $settings;
+    public MindeeAPI|MindeeWorkflowAPI $settings;
 
     /**
      * @param MindeeAPI|MindeeWorkflowAPI $settings Input settings.
      */
-    public function __construct($settings)
+    public function __construct(MindeeAPI|MindeeWorkflowAPI $settings)
     {
         $this->settings = $settings;
     }
 
     /**
-     * Starts a CURL session, using GET.
+     * Starts a CURL session using GET.
      *
      * @param string $queueId ID of the queue to poll.
+     * @return array{data: string|bool, code: int}
      */
     protected function initCurlSessionGet(string $queueId): array
     {
@@ -56,13 +59,14 @@ abstract class BaseEndpoint
     }
 
     /**
-     * @param resource $ch Curl Channel.
+     * @param CurlHandle $ch Curl Channel.
      * @param string $suffix Optional suffix for the url call.
-     * @param array|null $postFields Post fields.
+     * @param array<string, string|array<mixed>|boolean>|null $postFields Post fields.
      * @param string|null $workflowId Optional ID of the workflow.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function setFinalCurlOpts(
-        $ch,
+        CurlHandle $ch,
         string $suffix,
         ?array $postFields,
         ?string $workflowId = null

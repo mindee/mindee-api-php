@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Mindee\Image;
 
+use Imagick;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
 use CURLFile;
 use Exception;
+use SplFileObject;
 
 /**
  * Image compressor class to handle image compression.
@@ -17,7 +19,7 @@ use Exception;
 class ImageCompressor
 {
     /**
-     * @param mixed $inputImage Input image. Accepts SplFileObject, CURLFile, Imagick & resources.
+     * @param Imagick|SplFileObject|CURLFile|string|resource $inputImage Input image. Accepts SplFileObject, CURLFile, Imagick & resources.
      * @param integer|null $quality Quality to apply to the image.
      * @param integer|null $maxWidth Maximum width to constrain the image to.
      *                               Defaults to the image's size if unset.
@@ -29,7 +31,7 @@ class ImageCompressor
      * @throws MindeeUnhandledException Throws if one of the dependencies isn't installed.
      */
     public static function compress(
-        $inputImage,
+        mixed $inputImage,
         ?int $quality = 85,
         ?int $maxWidth = null,
         ?int $maxHeight = null

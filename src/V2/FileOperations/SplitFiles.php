@@ -16,7 +16,7 @@ use const DIRECTORY_SEPARATOR;
 /**
  * Split files collection wrapper.
  *
- * * @extends ArrayObject<int, ExtractedPDF>
+ * @extends ArrayObject<int, ExtractedPDF>
  */
 class SplitFiles extends ArrayObject
 {
@@ -56,7 +56,7 @@ class SplitFiles extends ArrayObject
             try {
                 $split->writeToFile($filePath);
             } catch (Exception $e) {
-                throw new MindeeException('Failed to save split to disk.', 0, $e->getMessage());
+                throw new MindeeException('Failed to save split to disk.', 0, previous: $e);
             }
 
             ++$idx;
