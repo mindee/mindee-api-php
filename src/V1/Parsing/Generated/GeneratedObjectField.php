@@ -35,7 +35,7 @@ class GeneratedObjectField
     private array $printableValues;
     /**
      * @var array<string, BaseField<string|float|integer|boolean|Polygon>|integer|float|string|bool|null>
-     * Storage for dynamically generated properties.
+     *                                                                                                    Storage for dynamically generated properties.
      */
     private array $dynamicProperties = [];
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Standard;
 
 use Mindee\Geometry\Polygon;
+
 use function array_key_exists;
 
 /**
