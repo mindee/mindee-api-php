@@ -22,13 +22,14 @@ class GeneratedV1Document extends GeneratedV1Prediction
 
     /**
      * GeneratedV1Document constructor.
-     * @param array<string, mixed> $rawPrediction Dictionary containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Dictionary containing the JSON document response.
      */
     public function __construct(array $rawPrediction)
     {
         parent::__construct();
         foreach ($rawPrediction as $fieldName => $fieldContents) {
             if (is_array($fieldContents) && array_values($fieldContents) === $fieldContents) {
+                /** @var list<array<string, integer|float|string|bool|null|array<mixed>>> $fieldContents */
                 $this->fields[$fieldName] = new GeneratedListField($fieldContents);
             } elseif (is_array($fieldContents) && GeneratedObjectField::isGeneratedObject($fieldContents)) {
                 $this->fields[$fieldName] = new GeneratedObjectField($fieldContents);

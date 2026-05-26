@@ -26,7 +26,7 @@ class InferenceFields extends ArrayObject
     private int $indentLevel;
 
     /**
-     * @param array<string,mixed> $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation.
      */
     public function __construct(array $rawResponse, int $indentLevel = 0)

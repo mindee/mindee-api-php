@@ -15,7 +15,7 @@ class RawTextPage
     public ?string $content;
 
     /**
-     * @param array<string,mixed> $rawResponse JSON response from the server.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse JSON response from the server.
      */
     public function __construct(array $rawResponse)
     {

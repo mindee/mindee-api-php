@@ -26,7 +26,7 @@ class GeneratedV1 extends Inference
     public static string $endpointVersion = "1";
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction from the HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from the HTTP response.
      */
     public function __construct(array $rawPrediction)
     {

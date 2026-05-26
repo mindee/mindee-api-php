@@ -85,7 +85,7 @@ class InternationalIdV2Document extends Prediction
      */
     public array $surnames;
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response.
      */

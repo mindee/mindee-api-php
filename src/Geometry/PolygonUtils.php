@@ -19,7 +19,7 @@ abstract class PolygonUtils
      *
      * @param array<Point>|Polygon $vertices Array of points.
      */
-    public static function getCentroid(mixed $vertices): Point
+    public static function getCentroid(array|Polygon $vertices): Point
     {
         if ($vertices instanceof Polygon) {
             $vertices = $vertices->getCoordinates();
@@ -109,7 +109,7 @@ abstract class PolygonUtils
     /**
      * Generates a quadrilateral Polygon from a given prediction.
      *
-     * @param array<string,mixed> $rawResponse Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.
      * @throws MindeeGeometryException Throws if the polygon isn't a quadrilateral.
      */
     public static function quadrilateralFromPrediction(array $rawResponse): Polygon

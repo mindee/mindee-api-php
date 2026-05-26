@@ -10,12 +10,12 @@ namespace Mindee\V2\Parsing\Inference;
 abstract class BaseResponse
 {
     /**
-     * @var array<string,mixed> Raw HTTP response from the server.
+     * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Raw HTTP response from the server.
      */
     private array $rawHttp;
 
     /**
-     * @param array<string, mixed> $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      */
     protected function __construct(array $rawResponse)
     {

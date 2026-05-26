@@ -26,7 +26,7 @@ class Extras
      */
     public ?RAGExtra $rag;
     /**
-     * @var array<string, mixed> Other extras.
+     * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Other extras.
      */
     private array $data;
 
@@ -34,15 +34,15 @@ class Extras
      * Sets a field.
      *
      * @param string $varName Name of the field to set.
-     * @param mixed $value Value to set the field with.
+     * @param integer|float|string|boolean|null|array<mixed> $value Value to set the field with.
      */
-    public function __set(string $varName, mixed $value): void
+    public function __set(string $varName, int|float|string|bool|array|null $value): void
     {
         $this->data[$varName] = $value;
     }
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {
@@ -63,7 +63,7 @@ class Extras
      * Adds artificial extra data for reconstructed extras.
      * Currently only used for full_text_ocr.
      *
-     * @param array<string, mixed> $rawPrediction Raw HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw HTTP response.
      */
     public function addArtificialExtra(array $rawPrediction): void
     {

@@ -23,9 +23,9 @@ class Document
      */
     public string $filename;
     /**
-     * @var Inference|object|string Result of the base inference.
+     * @var Inference|string Result of the base inference.
      */
-    public mixed $inference;
+    public Inference|string $inference;
     /**
      * @var string ID of the document as sent back by the server.
      */
@@ -45,7 +45,7 @@ class Document
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array<string, mixed> $rawResponse Raw HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw HTTP response.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawResponse)
@@ -89,7 +89,7 @@ $this->inference";
     /**
      * Injects the results from pages' "full_text_ocr", if present.
      *
-     * @param array<string, mixed> $rawResponse Raw HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw HTTP response.
      */
     private function injectFullTextOCR(array $rawResponse): void
     {

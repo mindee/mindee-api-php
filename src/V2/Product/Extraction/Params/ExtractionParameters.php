@@ -90,7 +90,7 @@ class ExtractionParameters extends BaseParameters
     }
 
     /**
-     * @return array<string,mixed> Hash representation.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Hash representation.
      */
     public function asHash(): array
     {

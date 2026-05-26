@@ -23,7 +23,7 @@ class GeneratedListField
     /**
      * Constructor.
      *
-     * @param list<mixed> $rawPrediction Array containing the list elements.
+     * @param list<array<string, integer|float|string|bool|null|array<mixed>>> $rawPrediction Array containing the list elements.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -31,7 +31,7 @@ class GeneratedListField
         $this->pageId = $pageId;
 
         foreach ($rawPrediction as $value) {
-            if (isset($value['page_id'])) {
+            if (isset($value['page_id']) && is_int($value['page_id'])) {
                 $this->pageId = $value['page_id'];
             }
 
@@ -41,7 +41,10 @@ class GeneratedListField
                 $valueStr = $value;
                 if (isset($valueStr['value'])) {
                     if (
-                        (is_int($valueStr['value']) || (is_float($value) && floor($value) === $value))
+                        (
+                            is_int($valueStr['value'])
+                            || (is_float($valueStr['value']) && floor($valueStr['value']) === $valueStr['value'])
+                        )
                         && (float) $value['value'] !== 0.0
                     ) {
                         $valueStr['value'] = $value['value'] . ".0";

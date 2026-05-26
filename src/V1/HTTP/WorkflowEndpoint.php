@@ -29,7 +29,7 @@ class WorkflowEndpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl File to upload.
      * @param WorkflowOptions $workflowOptions Workflow options.
-     * @return array<string, mixed> Final response.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function executeWorkflowRequestPost(
         InputSource $fileCurl,
@@ -44,7 +44,7 @@ class WorkflowEndpoint extends BaseEndpoint
      *
      * @param InputSource $fileCurl File to upload.
      * @param WorkflowOptions $workflowOptions Workflow options.
-     * @return array<string, mixed> Final response.
+     * @return array{data: string|bool, code: int} Final response.
      */
     private function initCurlSessionPost(
         InputSource $fileCurl,

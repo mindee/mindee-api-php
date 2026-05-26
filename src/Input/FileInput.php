@@ -14,14 +14,14 @@ use CURLFile;
 class FileInput extends LocalInputSource
 {
     /**
-     * @var mixed $file A file-like object compatible with CURLFile.
+     * @var resource $file A file resource compatible with CURLFile.
      */
-    private mixed $file;
+    private $file;
 
     /**
-     * @param mixed &$file File reference.
+     * @param resource &$file File reference.
      */
-    public function __construct(mixed &$file)
+    public function __construct(&$file)
     {
         $this->file = &$file;
         $this->filePath = stream_get_meta_data($this->file)['uri'];

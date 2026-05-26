@@ -28,7 +28,7 @@ class TaxField extends BaseField
     public ?float $basis;
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field has been reconstructed.
      * @param string $valueKey Key to use for the value.

@@ -38,7 +38,7 @@ class DataSchemaField
      */
     public ?bool $uniqueValues;
     /**
-     * @var array<string,mixed>|null Subfields when type is `nested_object`. Leave empty for other types.
+     * @var array<string, int|float|string|bool|null|array<array-key, mixed>>|null Subfields when type is `nested_object`. Leave empty for other types.
      */
     public ?array $nestedFields;
     /**
@@ -47,7 +47,7 @@ class DataSchemaField
     public ?array $classificationValues;
 
     /**
-     * @param array<string,mixed> $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {
@@ -69,7 +69,7 @@ class DataSchemaField
     }
 
     /**
-     * @return array<string, mixed> JSON representation.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> JSON representation.
      */
     public function toJson(): array
     {

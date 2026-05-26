@@ -27,7 +27,7 @@ class FieldLocation
     public ?int $page;
 
     /**
-     * @param array<string,mixed> $rawResponse Raw server response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response.
      */
     public function __construct(array $rawResponse)
     {

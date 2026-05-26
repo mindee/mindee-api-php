@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
+use CURLFile;
 use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
+use SplFileObject;
 
 use function is_array;
 use function is_resource;
@@ -18,7 +20,7 @@ use function is_string;
 class LocalResponse
 {
     /**
-     * @var mixed $file File object of the local response.
+     * @var resource $file File object of the local response.
      */
     private $file;
 
@@ -57,7 +59,7 @@ class LocalResponse
 
     /**
      * @throws MindeeException Throws if the file contents cannot be converted to a valid array.
-     * @return array<string, mixed> The file contents.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> The file contents.
      */
     public function toArray(): array
     {
@@ -116,10 +118,9 @@ class LocalResponse
     /**
      * Deserialize the loaded local response into the requested BaseResponse-derived class.
      *
-     * Typically used when dealing with V2 webhook callbacks.
-     *
-     * @param string $responseClass The class name into which the payload should be deserialized.
-     * @return mixed An instance of responseClass populated with the file content.
+     * @template T
+     * @param class-string<T> $responseClass The class name into which the payload should be deserialized.
+     * @return T An instance of responseClass populated with the file content.
      * @throws MindeeException If the provided class cannot be instantiated.
      */
     public function deserializeResponse(string $responseClass): mixed

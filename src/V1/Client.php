@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Mindee\V1;
 
+use CURLFile;
 use Exception;
 use Mindee\ClientOptions\PollingOptions;
 use Mindee\CustomSleepMixin;
@@ -40,6 +41,7 @@ use Mindee\V1\Parsing\Common\WorkflowResponse;
 use Mindee\V1\Product\Generated\GeneratedV1;
 use ReflectionClass;
 use ReflectionException;
+use SplFileObject;
 
 use function strlen;
 
@@ -89,7 +91,7 @@ class Client
     /**
      * Load a document from a normal PHP file object.
      *
-     * @param mixed $file File object as created from the file() function.
+     * @param SplFileObject|CURLFile|string|resource $file File object as created from the file() function.
      * @param boolean $fixPDF Whether the PDF should be fixed or not.
      */
     public function sourceFromFile(mixed $file, bool $fixPDF = false): FileInput

@@ -8,10 +8,9 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
-use ReflectionClass;
-use ReflectionException;
 
 use function array_key_exists;
+use function is_subclass_of;
 
 /**
  * Base Page object for predictions.
@@ -27,9 +26,9 @@ class Page
      */
     public OrientationField $orientation;
     /**
-     * @var Prediction|object Type of Page prediction.
+     * @var Prediction Type of Page prediction.
      */
-    public mixed $prediction;
+    public Prediction $prediction;
     /**
      * @var Extras Potential Extras fields sent back along with the prediction.
      */
@@ -37,7 +36,7 @@ class Page
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @throws MindeeApiException Throws if the prediction type isn't recognized.
      * @throws MindeeUnsetException Throws if a field doesn't appear in the response, through the reflected document
      *                              class.
@@ -45,22 +44,28 @@ class Page
     public function __construct(string $predictionType, array $rawPrediction)
     {
         $this->id = $rawPrediction['id'];
-        try {
-            $reflection = new ReflectionClass($predictionType);
-            $this->prediction = $reflection->newInstance($rawPrediction['prediction'], $this->id);
-        } catch (ReflectionException $e) {
+        if (!is_subclass_of($predictionType, Prediction::class)) {
             throw new MindeeApiException(
-                "Unable to create custom product " . $predictionType,
-                ErrorCode::INTERNAL_LIBRARY_ERROR,
-                $e
+                "Invalid prediction type " . $predictionType . ", must extend " . Prediction::class,
+                ErrorCode::INTERNAL_LIBRARY_ERROR
             );
         }
+        $this->prediction = self::createPrediction($predictionType, $rawPrediction['prediction'], $this->id);
         if (array_key_exists('orientation', $rawPrediction)) {
             $this->orientation = new OrientationField($rawPrediction['orientation'], $this->id, false, 'value');
         }
         if (array_key_exists('extras', $rawPrediction) && $rawPrediction['extras']) {
             $this->extras = new Extras($rawPrediction['extras']);
         }
+    }
+
+    /**
+     * @param class-string<Prediction> $predictionType Type of prediction.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
+     */
+    private static function createPrediction(string $predictionType, array $rawPrediction, int $pageId): Prediction
+    {
+        return new $predictionType($rawPrediction, $pageId);
     }
 
     /**

@@ -85,7 +85,7 @@ class BBox
      *
      * @param array<Point>|Polygon $points Series of points to add to the BBox.
      */
-    public function extendWith(mixed $points): void
+    public function extendWith(array|Polygon $points): void
     {
         if ($points instanceof Polygon) {
             $sequence = $points->getCoordinates();

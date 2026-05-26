@@ -49,7 +49,7 @@ abstract class Inference
 
 
     /**
-     * @param array<string,mixed> $rawResponse Raw inference array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw inference array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawResponse, ?int $pageId = null)

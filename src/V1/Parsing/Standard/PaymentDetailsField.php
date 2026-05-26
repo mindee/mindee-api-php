@@ -35,7 +35,7 @@ class PaymentDetailsField extends BaseField
     /**
      * Gets the value of any given key.
      *
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param string $key Key to get the value of.
      */
     private function getValue(array $rawPrediction, string $key): ?string
@@ -56,7 +56,7 @@ class PaymentDetailsField extends BaseField
     }
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.

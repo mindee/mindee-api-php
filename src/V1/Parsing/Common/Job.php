@@ -39,12 +39,12 @@ class Job
      */
     public ?int $millisecsTaken;
     /**
-     * @var array<string, mixed>|null Information about an error that occurred during the job processing.
+     * @var array<string, integer|float|string|bool|null|array<mixed>>|null Information about an error that occurred during the job processing.
      */
     public ?array $error;
 
     /**
-     * @param array<string, mixed> $rawResponse Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.
      * @throws MindeeApiException Throws if a date is faulty.
      */
     public function __construct(array $rawResponse)

@@ -131,7 +131,7 @@ class ImageExtractor
     /**
      * Extract multiple images on a given page from a list of fields having position data.
      *
-     * @param array<BaseField<mixed>> $fields List of Fields to extract.
+     * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $outputName The base output filename, must have an image extension.
      *
@@ -215,7 +215,7 @@ class ImageExtractor
     /**
      * Extracts a single image from a Position field.
      *
-     * @param BaseField<mixed> $field The field to extract.
+     * @param BaseField<string|float|integer|boolean|Polygon> $field The field to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param integer $index The index to use for naming the extracted image.
      * @param string $filename The output filename.
@@ -265,7 +265,7 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array<BaseField<mixed>> $fields List of Fields to extract.
+     * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param string $outputName Name of the created file.
      * @param string $format The output format.

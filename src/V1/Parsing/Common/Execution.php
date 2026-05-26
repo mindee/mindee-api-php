@@ -85,7 +85,7 @@ class Execution
 
     /**
      * @param string $predictionType Type of prediction.
-     * @param array<string, mixed> $rawResponse Raw execution array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw execution array.
      * @throws Exception|MindeeApiException Throws if one of the objects can't properly be created.
      */
     public function __construct(string $predictionType, array $rawResponse)

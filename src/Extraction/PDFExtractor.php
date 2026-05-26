@@ -93,7 +93,7 @@ class PDFExtractor
      * @throws MindeePDFException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
      * @throws InvalidArgumentException Throws if invalid indexes are provided.
      */
-    public function extractSubDocuments(mixed $pageIndexes): array
+    public function extractSubDocuments(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes): array
     {
         $extractedPdfs = [];
 
@@ -146,7 +146,7 @@ class PDFExtractor
      *
      * @return ExtractedPDF[] a list of extracted invoices
      */
-    public function extractInvoices(mixed $pageIndexes, bool $strict = false): array
+    public function extractInvoices(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes, bool $strict = false): array
     {
         if (empty($pageIndexes)) {
             return [];

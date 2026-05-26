@@ -17,7 +17,7 @@ class CropperV1Page extends CropperV1Document
      */
     public array $cropping;
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

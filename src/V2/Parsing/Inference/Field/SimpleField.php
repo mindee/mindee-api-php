@@ -19,7 +19,7 @@ class SimpleField extends BaseField
     public $value;
 
     /**
-     * @param array<string,mixed> $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation for rst display.
      */
     public function __construct(array $rawResponse, int $indentLevel = 0)

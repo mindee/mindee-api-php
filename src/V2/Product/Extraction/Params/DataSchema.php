@@ -20,7 +20,7 @@ class DataSchema
     public ?DataSchemaReplace $replace;
 
     /**
-     * @param array<string,mixed>|string|DataSchema $dataSchema Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>>|string|DataSchema $dataSchema Raw server response array.
      * @throws InvalidArgumentException Throws if the data schema is invalid.
      */
     public function __construct(self|array|string $dataSchema)
@@ -40,7 +40,7 @@ class DataSchema
     }
 
     /**
-     * @return array<string, mixed> JSON representation.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> JSON representation.
      */
     public function toJson(): array
     {

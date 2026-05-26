@@ -21,7 +21,7 @@ class FullTextOCRExtra
     public ?string $language;
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw HTTP response.
      */
     public function __construct(array $rawPrediction)
     {

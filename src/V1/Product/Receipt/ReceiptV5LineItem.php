@@ -38,7 +38,7 @@ class ReceiptV5LineItem
     public ?int $pageId;
 
     /**
-     * @param array<string, mixed> $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)

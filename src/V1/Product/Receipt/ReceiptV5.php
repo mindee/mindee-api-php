@@ -25,7 +25,7 @@ class ReceiptV5 extends Inference
     public static string $endpointVersion = "5";
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction from the HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from the HTTP response.
      */
     public function __construct(array $rawPrediction)
     {

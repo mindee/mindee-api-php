@@ -47,7 +47,7 @@ class ExtractedImage
     /**
      * Initializes a new instance of the ExtractedImage class.
      *
-     * @param mixed $image The extracted image. Not explicitly typed as \Imagick to avoid errors.
+     * @param Imagick $image The extracted image.
      * @param string $filename The filename for the image.
      * @param string $saveFormat The format to save the image.
      * @param integer $pageIndex The page index of the image.
@@ -55,7 +55,7 @@ class ExtractedImage
      *
      * @throws MindeeUnhandledException Throws if PDF operations aren't supported.
      */
-    public function __construct(mixed $image, string $filename, string $saveFormat, int $pageIndex, int $index)
+    public function __construct(Imagick $image, string $filename, string $saveFormat, int $pageIndex, int $index)
     {
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();

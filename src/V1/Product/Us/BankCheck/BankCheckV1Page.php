@@ -21,7 +21,7 @@ class BankCheckV1Page extends BankCheckV1Document
      */
     public array $signaturesPositions;
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction from HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from HTTP response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

@@ -29,7 +29,7 @@ abstract class BaseField
     public ?FieldConfidence $confidence;
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer $indentLevel Level of indentation for rst display.
      */
     public function __construct(array $rawPrediction, int $indentLevel = 0)
@@ -47,7 +47,7 @@ abstract class BaseField
     }
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer $indentLevel Level of indentation for rst display.
      * @throws MindeeApiException Throws if the field type isn't recognized.
      */

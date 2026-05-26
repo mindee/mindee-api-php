@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Standard;
 
+use Mindee\Geometry\Polygon;
 use function array_key_exists;
 
 /**
@@ -28,7 +29,7 @@ abstract class BaseField
     public ?int $pageId;
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.
@@ -56,7 +57,7 @@ abstract class BaseField
     /**
      * Compares with the value of another field.
      *
-     * @param BaseField<mixed> $obj Field to compare.
+     * @param BaseField<string|float|integer|boolean|Polygon> $obj Field to compare.
      * @return boolean
      */
     public function __compare(self $obj): bool

@@ -27,7 +27,7 @@ class CropItem
      */
     public ?ExtractionResponse $extractionResponse;
     /**
-     * @param array<string, mixed> $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {

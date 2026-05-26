@@ -25,7 +25,7 @@ class OCRWord
 
 
     /**
-     * @param array<string, mixed> $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {

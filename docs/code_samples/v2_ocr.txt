@@ -1,7 +1,7 @@
 <?php
 
 use Mindee\V2\Client;
-use Mindee\V2\Product\Ocr\Params\OcrParameters;
+use Mindee\V2\Product\Ocr\Params\OCRParameters;
 use Mindee\V2\Product\Ocr\OcrResponse;
 use Mindee\Input\PathInput;
 
@@ -14,7 +14,7 @@ $mindeeClient = new Client($apiKey);
 
 // Set ocr parameters
 // Note: modelId is mandatory.
-$ocrParams = new OcrParameters(
+$ocrParams = new OCRParameters(
     // ID of the model, required.
     $modelId,
 );

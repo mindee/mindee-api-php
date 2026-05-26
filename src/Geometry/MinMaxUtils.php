@@ -20,7 +20,7 @@ class MinMaxUtils
      * @param array<Point>|Polygon $points An array of points.
      * @throws MindeeGeometryException Throws if the provided array is too small.
      */
-    public static function getMinMaxY(mixed $points): MinMax
+    public static function getMinMaxY(array|Polygon $points): MinMax
     {
         if ($points instanceof Polygon) {
             $points = $points->getCoordinates();
@@ -44,7 +44,7 @@ class MinMaxUtils
      * @param array<Point>|Polygon $points An array of points.
      * @throws MindeeGeometryException Throws if the provided array is too small.
      */
-    public static function getMinMaxX(mixed $points): MinMax
+    public static function getMinMaxX(array|Polygon $points): MinMax
     {
         if ($points instanceof  Polygon) {
             $points = $points->getCoordinates();

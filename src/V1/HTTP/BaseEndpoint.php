@@ -14,12 +14,12 @@ abstract class BaseEndpoint
     /**
      * @var MindeeAPI|MindeeWorkflowAPI Settings of the endpoint.
      */
-    public mixed $settings;
+    public MindeeAPI|MindeeWorkflowAPI $settings;
 
     /**
      * @param MindeeAPI|MindeeWorkflowAPI $settings Input settings.
      */
-    public function __construct(mixed $settings)
+    public function __construct(MindeeAPI|MindeeWorkflowAPI $settings)
     {
         $this->settings = $settings;
     }
@@ -28,7 +28,7 @@ abstract class BaseEndpoint
      * Starts a CURL session using GET.
      *
      * @param string $queueId ID of the queue to poll.
-     * @return array<string, mixed>
+     * @return array{data: string|bool, code: int}
      */
     protected function initCurlSessionGet(string $queueId): array
     {
@@ -61,9 +61,9 @@ abstract class BaseEndpoint
     /**
      * @param CurlHandle $ch Curl Channel.
      * @param string $suffix Optional suffix for the url call.
-     * @param array<string, mixed>|null $postFields Post fields.
+     * @param array<string, string|array<mixed>|boolean>|null $postFields Post fields.
      * @param string|null $workflowId Optional ID of the workflow.
-     * @return array<string, mixed> Final response.
+     * @return array{data: string|bool, code: int} Final response.
      */
     public function setFinalCurlOpts(
         CurlHandle $ch,

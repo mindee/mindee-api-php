@@ -180,7 +180,7 @@ class MindeeAPIV2
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param array<string,mixed> $result Raw HTTP response array with 'data' and 'code' keys.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      */
@@ -209,7 +209,7 @@ class MindeeAPIV2
     /**
      * Process the HTTP response and return the appropriate response object.
      *
-     * @param array<string,mixed> $result Raw HTTP response array with 'data' and 'code' keys.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @return JobResponse The processed response object.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      * @throws MindeeApiException Throws if the response type is not recognized.
@@ -315,7 +315,7 @@ class MindeeAPIV2
     /**
      * Makes a GET call to retrieve a job.
      * @param string $url URL of the job.
-     * @return array<string,mixed> Server response.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      */
     private function sendGetRequest(string $url): array
     {
@@ -336,7 +336,7 @@ class MindeeAPIV2
      *
      * @param InputSource $inputSource File to upload.
      * @param BaseParameters $params Parameters.
-     * @return array<string,mixed> Server response.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
@@ -369,7 +369,7 @@ class MindeeAPIV2
     }
 
     /**
-     * @param array<string,mixed> $result Raw HTTP response array with 'data' and 'code' keys.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
      * @throws MindeeV2HttpUnknownException Throws if the server sends an unexpected reply.
      */

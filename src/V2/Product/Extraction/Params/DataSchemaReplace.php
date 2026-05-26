@@ -20,7 +20,7 @@ class DataSchemaReplace
     public array $fields;
 
     /**
-     * @param array<string,mixed> $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @throws InvalidArgumentException Throws if the fields array is empty or the Data schema is incorrect.
      */
     public function __construct(array $rawResponse)
@@ -36,7 +36,7 @@ class DataSchemaReplace
     }
 
     /**
-     * @return array<string, mixed> JSON representation.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> JSON representation.
      */
     public function toJson(): array
     {

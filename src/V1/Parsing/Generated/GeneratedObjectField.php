@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Generated;
 
+use Mindee\Geometry\Polygon;
+use Mindee\V1\Parsing\Standard\BaseField;
 use Mindee\V1\Parsing\Standard\PositionField;
 
 use function in_array;
@@ -31,13 +33,16 @@ class GeneratedObjectField
 
     /** @var array<string> List of all printable field names */
     private array $printableValues;
-    /** @var array<string, mixed> Storage for dynamically generated properties */
+    /**
+     * @var array<string, BaseField<string|float|integer|boolean|Polygon>|integer|float|string|bool|null>
+     * Storage for dynamically generated properties.
+     */
     private array $dynamicProperties = [];
 
     /**
      * Constructor.
      *
-     * @param array<string, mixed> $rawPrediction Raw prediction data.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction data.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -90,9 +95,9 @@ class GeneratedObjectField
      * Magic setter for dynamic properties.
      *
      * @param string $name Property name.
-     * @param mixed $value Property value.
+     * @param BaseField<string|float|integer|boolean|Polygon>|string|integer|boolean|float|null $value Property value.
      */
-    public function __set(string $name, mixed $value): void
+    public function __set(string $name, BaseField|string|int|bool|float|null $value): void
     {
         $this->dynamicProperties[$name] = $value;
     }
@@ -141,7 +146,7 @@ class GeneratedObjectField
     /**
      * Checks whether a field is a custom object or not.
      *
-     * @param array<string,mixed> $strDict Input dictionary to check.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $strDict Input dictionary to check.
      * @return boolean Whether the field is a custom object.
      */
     public static function isGeneratedObject(array $strDict): bool
