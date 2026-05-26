@@ -28,9 +28,13 @@ class EnergyBillV1MeterDetail
      * @var string|null The unit of power for energy consumption.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -40,24 +44,12 @@ class EnergyBillV1MeterDetail
         $this->meterNumber = $rawPrediction["meter_number"] ?? null;
         $this->meterType = $rawPrediction["meter_type"] ?? null;
         $this->unit = $rawPrediction["unit"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["meterNumber"] = SummaryHelperV1::formatForDisplay($this->meterNumber);
-        $outArr["meterType"] = SummaryHelperV1::formatForDisplay($this->meterType);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

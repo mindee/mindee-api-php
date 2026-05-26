@@ -30,7 +30,7 @@ class MindeeWorkflowAPI extends BaseAPI
         string $workflowId
     ) {
         parent::__construct($apiKey);
-        if (!$this->apiKey || $this->apiKey === '') {
+        if (empty($this->apiKey)) {
             throw new MindeeException(
                 "Missing API key. Please check your Client configuration.You can set this using the "
                 . API_KEY_ENV_NAME . ' environment variable.',

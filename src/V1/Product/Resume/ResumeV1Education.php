@@ -44,15 +44,20 @@ class ResumeV1Education
      * @var string|null The year when the education program or course began.
      */
     public ?string $startYear;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->degreeDomain = $rawPrediction["degree_domain"] ?? null;
         $this->degreeType = $rawPrediction["degree_type"] ?? null;
         $this->endMonth = $rawPrediction["end_month"] ?? null;
@@ -64,7 +69,7 @@ class ResumeV1Education
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -79,22 +84,6 @@ class ResumeV1Education
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["degreeDomain"] = SummaryHelperV1::formatForDisplay($this->degreeDomain);
-        $outArr["degreeType"] = SummaryHelperV1::formatForDisplay($this->degreeType);
-        $outArr["endMonth"] = SummaryHelperV1::formatForDisplay($this->endMonth);
-        $outArr["endYear"] = SummaryHelperV1::formatForDisplay($this->endYear);
-        $outArr["school"] = SummaryHelperV1::formatForDisplay($this->school);
-        $outArr["startMonth"] = SummaryHelperV1::formatForDisplay($this->startMonth);
-        $outArr["startYear"] = SummaryHelperV1::formatForDisplay($this->startYear);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

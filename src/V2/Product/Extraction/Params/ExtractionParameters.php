@@ -61,8 +61,8 @@ class ExtractionParameters extends BaseParameters
      * @param array<string>|null $webhooksIds List of webhook IDs.
      * @param string|null $textContext Additional text context used by the model during
      *                                 inference.
-     * @param DataSchema|string|array|null $dataSchema Additional text context used by the model during
-     *                                                 inference.
+     * @param DataSchema|string|array<string>|null $dataSchema Additional text context used by the model during
+     *                                                         inference.
      */
     public function __construct(
         string $modelId,
@@ -90,7 +90,7 @@ class ExtractionParameters extends BaseParameters
     }
 
     /**
-     * @return array Hash representation.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Hash representation.
      */
     public function asHash(): array
     {

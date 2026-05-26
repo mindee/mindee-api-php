@@ -12,6 +12,7 @@ use Mindee\Error\MindeeApiException;
 
 /**
  * A field containing a date value.
+ * @extends BaseField<string>
  */
 class DateField extends BaseField
 {
@@ -24,18 +25,13 @@ class DateField extends BaseField
     public ?DateTimeImmutable $dateObject;
 
     /**
-     * @var string|null The raw field value.
-     */
-    public $value;
-
-    /**
      * @var boolean|null Whether the field was computed or retrieved directly from the document.
      */
     public ?bool $isComputed;
 
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.
@@ -57,10 +53,14 @@ class DateField extends BaseField
             if ($this->value) {
                 try {
                     $this->dateObject = new DateTimeImmutable($this->value, new DateTimeZone('UTC'));
-                } catch (Exception $e) {
+                } catch (Exception) {
                     try {
-                        $this->dateObject = new DateTimeImmutable(strtotime($this->value), new DateTimeZone('UTC'));
-                    } catch (Exception $e2) {
+                        $timestamp = strtotime($this->value);
+                        if ($timestamp === false) {
+                            throw new Exception("Invalid date format");
+                        }
+                        $this->dateObject = new DateTimeImmutable('@' . $timestamp);
+                    } catch (Exception $e) {
                         throw new MindeeApiException(
                             "Couldn't create date field from value '" . $this->value . "'",
                             ErrorCode::API_UNPROCESSABLE_ENTITY,

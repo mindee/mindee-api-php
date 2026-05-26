@@ -35,7 +35,7 @@ class BytesInput extends LocalInputSource
 
     /**
      * Reads the contents of the file.
-     *
+     * @return array{0: string, 1: string} File name and contents as a tuple.
      */
     public function readContents(): array
     {

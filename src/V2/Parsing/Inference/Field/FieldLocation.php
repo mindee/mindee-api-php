@@ -27,13 +27,13 @@ class FieldLocation
     public ?int $page;
 
     /**
-     * @param array $serverResponse Raw server response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->polygon = isset($serverResponse['polygon']) ? new Polygon($serverResponse['polygon']) : null;
-        $this->page = isset($serverResponse['page']) && is_int($serverResponse['page'])
-            ? $serverResponse['page']
+        $this->polygon = isset($rawResponse['polygon']) ? new Polygon($rawResponse['polygon']) : null;
+        $this->page = isset($rawResponse['page']) && is_int($rawResponse['page'])
+            ? $rawResponse['page']
             : null;
     }
 

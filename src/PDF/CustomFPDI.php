@@ -19,7 +19,7 @@ class CustomFPDI extends Fpdi
     /**
      * @var integer Angle for the rotation.
      */
-    protected $angle = 0;
+    protected int $angle = 0;
 
     /**
      * Rotates the current drawing context.
@@ -30,10 +30,10 @@ class CustomFPDI extends Fpdi
      */
     public function rotate(float $angle, float $x = -1, float $y = -1): void
     {
-        if ($x === -1) {
+        if ((int) $x === -1) {
             $x = $this->x;
         }
-        if ($y === -1) {
+        if ((int) $y === -1) {
             $y = $this->y;
         }
 
@@ -64,7 +64,7 @@ class CustomFPDI extends Fpdi
      * Ends the page, resetting any rotation.
      *
      */
-    protected function _endpage(): void //phpcs:ignore
+    protected function _endpage(): void
     {
         if ($this->angle !== 0) {
             $this->angle = 0;
@@ -72,6 +72,7 @@ class CustomFPDI extends Fpdi
         }
         parent::_endpage();
     }
+
     /**
      * Starts a new transformation.
      *
@@ -80,6 +81,7 @@ class CustomFPDI extends Fpdi
     {
         $this->_out('q');
     }
+
     /**
      * Stops the current transformation.
      *

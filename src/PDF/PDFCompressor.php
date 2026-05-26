@@ -11,14 +11,12 @@ use Mindee\Error\MindeeUnhandledException;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use Smalot\PdfParser\Config;
-use Smalot\PdfParser\Document;
 use Smalot\PdfParser\Page;
 use Smalot\PdfParser\Parser;
 use CURLFile;
 use Exception;
 use Imagick;
-
-use function count;
+use SplFileObject;
 
 /**
  * PDF compression class.
@@ -28,7 +26,7 @@ class PDFCompressor
     /**
      * Compresses each page of a provided PDF stream. Skips if force_source_text isn't set and source text is detected.
      *
-     * @param mixed $input Path to the PDF file.
+     * @param resource|string|SplFileObject|CURLFile $input Path to the PDF file.
      * @param integer $quality Compression quality (70-100 for most JPG images in the test dataset).
      * @param boolean $forceSourceTextCompression If true, attempts to re-write detected text.
      * @param boolean $disableSourceText If true, doesn't re-apply source text to the original PDF.
@@ -37,7 +35,7 @@ class PDFCompressor
      * @throws MindeeUnhandledException Throws if one of the dependencies isn't installed.
      */
     public static function compress(
-        $input,
+        mixed $input,
         int $quality = 85,
         bool $forceSourceTextCompression = false,
         bool $disableSourceText = true
@@ -118,7 +116,7 @@ class PDFCompressor
      * @param CustomFPDI $outputPdf Output PDF handle.
      * @throws MindeePDFException Throws if text can't be inserted into the page.
      */
-    private static function injectTextForPage(Page $inputPage, CustomFPDI $outputPdf): void
+    protected static function injectTextForPage(Page $inputPage, CustomFPDI $outputPdf): void
     {
         try {
             $textElements = PDFUtils::extractTextElements($inputPage);
@@ -135,84 +133,15 @@ class PDFCompressor
     }
 
     /**
-     * Creates the final output PDF, optionally injecting text from the original PDF.
-     *
-     * @param CustomFPDI $processedPdf The FPDI object containing the processed pages.
-     * @param boolean $disableSourceText Whether to disable source text injection.
-     * @param Document $originalPdf The original PDF document (used for text injection).
-     * @return string Path to the output PDF file
-     * @throws MindeePDFException If there's an error creating the output PDF.
-     */
-    private static function createOutputPdf(
-        CustomFPDI $processedPdf,
-        bool       $disableSourceText,
-        Document   $originalPdf
-    ): string {
-        try {
-            if (!$disableSourceText) {
-                static::injectText($originalPdf, $processedPdf);
-            }
-
-            $outputPath = tempnam(sys_get_temp_dir(), 'compressed_pdf_') . '.pdf';
-            $processedPdf->Output('F', $outputPath);
-
-            return $outputPath;
-        } catch (Exception $e) {
-            throw new MindeePDFException(
-                "Couldn't create output PDF.",
-                ErrorCode::PDF_CANT_CREATE,
-                $e
-            );
-        }
-    }
-
-
-    /**
-     * Extracts text from a source text PDF, and injects it into a newly-created one.
-     *
-     * @param Document $inputPdf Input PDF document.
-     * @param CustomFPDI $outputPdf The output PDF object.
-     * @throws MindeePDFException Throws if the text can't be injected.
-     */
-    private static function injectText(Document $inputPdf, CustomFPDI $outputPdf): void
-    {
-        try {
-            $pages = $inputPdf->getPages();
-            $pageCount = count($pages);
-
-            for ($i = 1; $i <= $pageCount; $i++) {
-                $textElements = PDFUtils::extractTextElements($pages[$i - 1]);
-
-                if (!empty($textElements)) {
-                    $tplIdx = $outputPdf->importPage($i);
-                    $size = $outputPdf->getTemplateSize($tplIdx);
-                    $outputPdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
-                    $outputPdf->useTemplate($tplIdx);
-                    foreach ($textElements as $element) {
-                        PDFUtils::addTextElement($outputPdf, $element);
-                    }
-                }
-            }
-        } catch (Exception $e) {
-            throw new MindeePDFException(
-                "Couldn't inject text into the new file.",
-                ErrorCode::PDF_CANT_EDIT,
-                $e
-            );
-        }
-    }
-
-
-    /**
      * Processes a single PDF page, rasterizing it to a JPEG image.
      *
      * @param string $sourcePdfPath Path to the source PDF file.
      * @param integer $pageIndex The index of the page to process.
      * @param integer $imageQuality The quality setting for JPEG compression.
-     * @return array Path to the temporary JPEG file and orientation of the page.
+     * @return array{0: string, 1: string} Path to the temporary JPEG file and orientation of the page.
      * @throws MindeePDFException If there's an error processing the page.
      */
-    private static function processPDFPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): array
+    protected static function processPDFPage(string $sourcePdfPath, int $pageIndex, int $imageQuality): array
     {
         try {
             $singlePagePdf = new Fpdi();

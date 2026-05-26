@@ -44,9 +44,13 @@ class PayslipV3Employee
      * @var string|null The social security number of the employee.
      */
     public ?string $socialSecurityNumber;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -57,31 +61,15 @@ class PayslipV3Employee
         $this->dateOfBirth = $rawPrediction["date_of_birth"] ?? null;
         $this->firstName = $rawPrediction["first_name"] ?? null;
         $this->lastName = $rawPrediction["last_name"] ?? null;
+        $this->pageId = $pageId;
         $this->phoneNumber = $rawPrediction["phone_number"] ?? null;
         $this->registrationNumber = $rawPrediction["registration_number"] ?? null;
         $this->socialSecurityNumber = $rawPrediction["social_security_number"] ?? null;
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["dateOfBirth"] = SummaryHelperV1::formatForDisplay($this->dateOfBirth);
-        $outArr["firstName"] = SummaryHelperV1::formatForDisplay($this->firstName);
-        $outArr["lastName"] = SummaryHelperV1::formatForDisplay($this->lastName);
-        $outArr["phoneNumber"] = SummaryHelperV1::formatForDisplay($this->phoneNumber);
-        $outArr["registrationNumber"] = SummaryHelperV1::formatForDisplay($this->registrationNumber);
-        $outArr["socialSecurityNumber"] = SummaryHelperV1::formatForDisplay($this->socialSecurityNumber);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

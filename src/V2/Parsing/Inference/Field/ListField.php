@@ -16,29 +16,27 @@ use function sprintf;
 class ListField extends BaseField
 {
     /**
-     * Items contained in the list.
-     *
-     * @var ObjectField
+     * @var array<BaseField|null> Items contained in the list.
      */
     public array $items;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation for rst display.
      * @throws MindeeApiException Throws if deserialization fails.
      */
-    public function __construct(array $serverResponse, int $indentLevel = 0)
+    public function __construct(array $rawResponse, int $indentLevel = 0)
     {
-        parent::__construct($serverResponse, $indentLevel);
+        parent::__construct($rawResponse, $indentLevel);
 
-        if (!array_key_exists('items', $serverResponse) || !is_array($serverResponse['items'])) {
+        if (!array_key_exists('items', $rawResponse) || !is_array($rawResponse['items'])) {
             throw new MindeeApiException(
-                sprintf('Expected "items" to be an array in %s.', json_encode($serverResponse))
+                sprintf('Expected "items" to be an array in %s.', json_encode($rawResponse))
             );
         }
 
         $this->items = [];
-        foreach ($serverResponse['items'] as $item) {
+        foreach ($rawResponse['items'] as $item) {
             $this->items[] = BaseField::createField($item, $indentLevel + 1);
         }
     }
@@ -53,7 +51,7 @@ class ListField extends BaseField
 
         $parts = [''];
         foreach ($this->items as $item) {
-            if ($item === null) {
+            if (null === $item) {
                 continue;
             }
 

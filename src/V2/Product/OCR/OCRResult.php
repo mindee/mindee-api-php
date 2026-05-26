@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Product\Ocr;
+namespace Mindee\V2\Product\OCR;
 
 use function strlen;
 
 /**
  * Result of the OCR utility inference.
  */
-class OcrResult
+class OCRResult
 {
     /**
-     * @var OcrPage[] List of pages.
+     * @var OCRPage[] List of pages.
      */
     public array $pages;
 
     /**
-     * @param array $rawResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      */
     public function __construct(array $rawResponse)
     {
-        $this->pages = array_map(static fn($page) => new OcrPage($page), $rawResponse['pages']);
+        $this->pages = array_map(static fn($page) => new OCRPage($page), $rawResponse['pages']);
     }
 
     /**

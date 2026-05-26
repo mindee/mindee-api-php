@@ -40,9 +40,13 @@ class EnergyBillV1Subscription
      * @var float|null The price per unit of subscription.
      */
     public ?float $unitPrice;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -58,11 +62,12 @@ class EnergyBillV1Subscription
             ? (float) ($rawPrediction["total"]) : null;
         $this->unitPrice = isset($rawPrediction["unit_price"])
             ? (float) ($rawPrediction["unit_price"]) : null;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -76,21 +81,6 @@ class EnergyBillV1Subscription
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["description"] = SummaryHelperV1::formatForDisplay($this->description);
-        $outArr["endDate"] = SummaryHelperV1::formatForDisplay($this->endDate);
-        $outArr["startDate"] = SummaryHelperV1::formatForDisplay($this->startDate);
-        $outArr["taxRate"] = SummaryHelperV1::formatFloat($this->taxRate);
-        $outArr["total"] = SummaryHelperV1::formatFloat($this->total);
-        $outArr["unitPrice"] = SummaryHelperV1::formatFloat($this->unitPrice);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

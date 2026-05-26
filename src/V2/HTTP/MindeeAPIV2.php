@@ -22,7 +22,6 @@ use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Parsing\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\JobResponse;
-use Mindee\V2\Product\Extraction\ExtractionResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -103,7 +102,7 @@ class MindeeAPIV2
         $this->baseUrl = API_V2_BASE_URL_DEFAULT;
         $this->requestTimeout = API_V2_TIMEOUT_DEFAULT;
         $this->setFromEnv();
-        if (!$this->apiKey || $this->apiKey === '') {
+        if ($this->apiKey === '') {
             throw new MindeeException(
                 "Missing API key for call,"
                 . " check your Client configuration.You can set this using the "
@@ -181,7 +180,7 @@ class MindeeAPIV2
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param array $result Raw HTTP response array with 'data' and 'code' keys.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      */
@@ -210,7 +209,7 @@ class MindeeAPIV2
     /**
      * Process the HTTP response and return the appropriate response object.
      *
-     * @param array $result Raw HTTP response array with 'data' and 'code' keys.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @return JobResponse The processed response object.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      * @throws MindeeApiException Throws if the response type is not recognized.
@@ -242,11 +241,8 @@ class MindeeAPIV2
      */
     public function reqGetJob(string $jobId): JobResponse
     {
-        if (!isset($jobId)) {
-            throw new MindeeException("Inference ID must be provided.", ErrorCode::USER_INPUT_ERROR);
-        }
         $response = $this->sendGetRequest($this->baseUrl . "/jobs/$jobId");
-        return $this->processJobResponse($response, JobResponse::class);
+        return $this->processJobResponse($response);
     }
 
 
@@ -263,10 +259,6 @@ class MindeeAPIV2
         string $responseClass,
         string $resultId
     ): BaseResponse {
-        if (!isset($responseClass) || !isset($resultId)) {
-            throw new MindeeException("Response class and job ID must be provided.", ErrorCode::USER_INPUT_ERROR);
-        }
-
         try {
             $slugProperty = new ReflectionProperty($responseClass, 'slug');
         } catch (ReflectionException $e) {
@@ -293,18 +285,15 @@ class MindeeAPIV2
         string $responseClass,
         string $resultUrl
     ): BaseResponse {
-        if (!isset($responseClass) || !isset($resultUrl)) {
-            throw new MindeeException("Response class and result URL must be provided.", ErrorCode::USER_INPUT_ERROR);
-        }
         $response = $this->sendGetRequest($resultUrl);
         return $this->processResponse($responseClass, $response);
     }
 
     /**
      * Init a CURL channel with common params.
-     * @return false|resource Returns a valid CURL channel.
+     * @return boolean|CurlHandle Returns a valid CURL channel.
      */
-    private function initChannel()
+    private function initChannel(): bool|CurlHandle
     {
         $ch = curl_init();
         curl_setopt(
@@ -326,7 +315,7 @@ class MindeeAPIV2
     /**
      * Makes a GET call to retrieve a job.
      * @param string $url URL of the job.
-     * @return array Server response.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      */
     private function sendGetRequest(string $url): array
     {
@@ -347,13 +336,13 @@ class MindeeAPIV2
      *
      * @param InputSource $inputSource File to upload.
      * @param BaseParameters $params Parameters.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
         BaseParameters $params
     ): array {
-        /** @var CurlHandle $ch */
         $ch = $this->initChannel();
         $postFields = $params->asHash();
 
@@ -380,7 +369,7 @@ class MindeeAPIV2
     }
 
     /**
-     * @param array $result Raw HTTP response array with 'data' and 'code' keys.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
      * @throws MindeeV2HttpException Throws if the HTTP status indicates an error.
      * @throws MindeeV2HttpUnknownException Throws if the server sends an unexpected reply.
      */

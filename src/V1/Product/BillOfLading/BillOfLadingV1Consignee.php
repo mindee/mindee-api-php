@@ -32,9 +32,13 @@ class BillOfLadingV1Consignee
      * @var string|null The phone number of the consignee.
      */
     public ?string $phone;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -45,25 +49,12 @@ class BillOfLadingV1Consignee
         $this->email = $rawPrediction["email"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
         $this->phone = $rawPrediction["phone"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["address"] = SummaryHelperV1::formatForDisplay($this->address);
-        $outArr["email"] = SummaryHelperV1::formatForDisplay($this->email);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["phone"] = SummaryHelperV1::formatForDisplay($this->phone);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {
@@ -76,7 +67,6 @@ class BillOfLadingV1Consignee
     }
     /**
      * Output in a format suitable for inclusion in a field list.
-     *
      */
     public function toFieldList(): string
     {

@@ -23,7 +23,7 @@ const REMOVE = 'REMOVE';
 class PageOptions
 {
     /**
-     * @var array|null Indexes of the page to apply the transformations to.
+     * @var array<integer>|null Indexes of the page to apply the transformations to.
      */
     public ?array $pageIndexes;
     /**
@@ -36,7 +36,7 @@ class PageOptions
     public int $onMinPage;
 
     /**
-     * @param array|null $pageIndexes Indexes of the page.
+     * @param array<integer>|null $pageIndexes Indexes of the page.
      * @param string $operation Operation to apply.
      * @param integer $onMinPage Minimum page amount.
      */

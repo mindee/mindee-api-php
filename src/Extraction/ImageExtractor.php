@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\Extraction;
 
+use Exception;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
@@ -11,6 +12,7 @@ use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePDFException;
 use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
+use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
 use Mindee\V1\Parsing\Standard\BaseField;
@@ -129,11 +131,11 @@ class ImageExtractor
     /**
      * Extract multiple images on a given page from a list of fields having position data.
      *
-     * @param array $fields List of Fields to extract.
+     * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $outputName The base output filename, must have an image extension.
      *
-     * @return array a list of extracted images
+     * @return array<ExtractedImage> a list of extracted images
      */
     public function extractImagesFromPage(array $fields, int $pageIndex, ?string $outputName = null): array
     {
@@ -144,12 +146,12 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array $polygons List of polygons to extract.
+     * @param array<Polygon|array<Point>> $polygons List of polygons to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $filenamePrefix Output filename prefix.
      * @param null|string $format Save format for extracted images. Defaults to the original format.
      *
-     * @return array an array of created images
+     * @return array<ExtractedImage> An array of created images
      * @throws MindeeImageException Throws if the image can't be processed.
      */
     public function extractPolygonsFromPage(
@@ -173,7 +175,7 @@ class ImageExtractor
                     $saveFormat
                 );
             }
-        } catch (ImagickException $e) {
+        } catch (Exception $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
 
@@ -205,16 +207,15 @@ class ImageExtractor
         } catch (ImagickException $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
-        $filename ??= $this->filename;
         $format ??= $this->saveFormat;
-        $filename ??= sprintf('%s.%s_page%d-%d.%s', $filename, $format, $pageIndex, $index, $format);
+        $filename ??= sprintf('%s_page%d-%d.%s', $this->filename, $pageIndex, $index, $format);
         return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
     }
 
     /**
      * Extracts a single image from a Position field.
      *
-     * @param BaseField $field The field to extract.
+     * @param BaseField<string|float|integer|boolean|Polygon> $field The field to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param integer $index The index to use for naming the extracted image.
      * @param string $filename The output filename.
@@ -264,16 +265,15 @@ class ImageExtractor
     /**
      * Extracts images from a page.
      *
-     * @param array $fields List of Fields to extract.
+     * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param string $outputName Name of the created file.
      * @param string $format The output format.
      *
-     * @return array an array of created images
+     * @return array<ExtractedImage> An array of created images
      */
     protected function extractFromPage(array $fields, int $pageIndex, string $outputName, string $format = 'jpg'): array
     {
-        $format ??= $this->saveFormat;
         $extractedImages = [];
 
         $i = 0;
@@ -316,7 +316,7 @@ class ImageExtractor
      * Splits the filename into name and extension.
      *
      * @param string $filename Name of the file.
-     * @return array An array containing the name and extension of the file.
+     * @return array{0: string, 1: string} An array containing the name and extension of the file.
      */
     protected static function splitNameStrict(string $filename): array
     {

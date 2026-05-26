@@ -12,13 +12,10 @@ use function count;
 
 /**
  * A field indicating a position or area on the document.
+ * @extends BaseField<Polygon>
  */
 class PositionField extends BaseField
 {
-    /**
-     * @var Polygon|null Polygon of cropped area, identical to the `polygon` property.
-     */
-    public $value;
     /**
      * @var Polygon|null Polygon of cropped area.
      */
@@ -39,16 +36,12 @@ class PositionField extends BaseField
     /**
      * Retrieves the quadrilateral of a prediction.
      *
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param string $key Key to use for the value.
      */
     private static function getQuadrilateral(array $rawPrediction, string $key): ?Polygon
     {
-        if (
-            !array_key_exists($key, $rawPrediction)
-            || $rawPrediction[$key] === null
-            || $rawPrediction[$key] === []
-        ) {
+        if (empty($rawPrediction[$key])) {
             return null;
         }
 
@@ -58,20 +51,20 @@ class PositionField extends BaseField
     /**
      * Retrieves the polygon of a prediction.
      *
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param string $key Key to use for the value.
      */
     private static function getPolygon(array $rawPrediction, string $key): ?Polygon
     {
-        if (array_key_exists($key, $rawPrediction)) {
-            return new Polygon($rawPrediction[$key]);
+        if (!array_key_exists($key, $rawPrediction)) {
+            return null;
         }
 
-        return null;
+        return new Polygon($rawPrediction[$key]);
     }
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page id.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.

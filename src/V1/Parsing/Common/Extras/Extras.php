@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\Extras;
 
-use function PHPUnit\Framework\isEmpty;
+use function is_scalar;
 
 /**
  * Extras collection wrapper class.
@@ -18,15 +18,15 @@ class Extras
      */
     public ?CropperExtra $cropper;
     /**
-     * @var FullTextOcrExtra|null Full text OCR extra.
+     * @var FullTextOCRExtra|null Full text OCR extra.
      */
-    public ?FullTextOcrExtra $fullTextOcr;
+    public ?FullTextOCRExtra $fullTextOcr;
     /**
-     * @var RagExtra|null Rag Extra.
+     * @var RAGExtra|null Rag Extra.
      */
-    public ?RagExtra $rag;
+    public ?RAGExtra $rag;
     /**
-     * @var array Other extras.
+     * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Other extras.
      */
     private array $data;
 
@@ -34,15 +34,15 @@ class Extras
      * Sets a field.
      *
      * @param string $varName Name of the field to set.
-     * @param mixed $value Value to set the field with.
+     * @param integer|float|string|boolean|null|array<mixed> $value Value to set the field with.
      */
-    public function __set(string $varName, mixed $value): void
+    public function __set(string $varName, int|float|string|bool|array|null $value): void
     {
         $this->data[$varName] = $value;
     }
 
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      */
     public function __construct(array $rawPrediction)
     {
@@ -50,8 +50,8 @@ class Extras
             if ($key === 'cropper' && isset($rawPrediction['cropper'])) {
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
             } elseif ($key === 'full_text_ocr' && isset($rawPrediction['full_text_ocr'])) {
-                $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
-            } elseif ($key = 'rag' && isset($rawPrediction['rag'])) {
+                $this->fullTextOcr = new FullTextOCRExtra($rawPrediction['full_text_ocr']);
+            } elseif ($key === 'rag' && isset($rawPrediction['rag'])) {
                 $this->rag = new RAGExtra($rawPrediction['rag']);
             } else {
                 $this->__set($key, $extra);
@@ -63,12 +63,12 @@ class Extras
      * Adds artificial extra data for reconstructed extras.
      * Currently only used for full_text_ocr.
      *
-     * @param array $rawPrediction Raw HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw HTTP response.
      */
     public function addArtificialExtra(array $rawPrediction): void
     {
-        if (isset($rawPrediction["full_text_ocr"]) && !isEmpty($rawPrediction['full_text_ocr'])) {
-            $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
+        if (!empty($rawPrediction['full_text_ocr'])) {
+            $this->fullTextOcr = new FullTextOCRExtra($rawPrediction['full_text_ocr']);
         }
     }
 
@@ -79,8 +79,8 @@ class Extras
     {
         $resStr = '';
         foreach ($this->data as $key => $extra) {
-            $resStr .= $key . ': ' . $extra;
-            $resStr .= "\n";
+            $safeExtra = is_scalar($extra) ? $extra : json_encode($extra);
+            $resStr .= $key . ': ' . $safeExtra . "\n";
         }
         if ($this->cropper) {
             $resStr .= ":cropper:" . $this->cropper . "\n";

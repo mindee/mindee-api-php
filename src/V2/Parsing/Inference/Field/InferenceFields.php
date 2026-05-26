@@ -11,6 +11,7 @@ use function sprintf;
 
 /**
  * Collection of inference fields.
+ * @extends ArrayObject<string, SimpleField|ObjectField|ListField>
  */
 class InferenceFields extends ArrayObject
 {
@@ -25,14 +26,14 @@ class InferenceFields extends ArrayObject
     private int $indentLevel;
 
     /**
-     * @param array $serverResponse Raw server response array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
      * @param integer $indentLevel Level of indentation.
      */
-    public function __construct(array $serverResponse, int $indentLevel = 0)
+    public function __construct(array $rawResponse, int $indentLevel = 0)
     {
         $this->indentLevel = $indentLevel;
 
-        foreach ($serverResponse as $key => $value) {
+        foreach ($rawResponse as $key => $value) {
             $this->fields[$key] = BaseField::createField($value, 1);
         }
         parent::__construct($this->fields);
@@ -42,16 +43,11 @@ class InferenceFields extends ArrayObject
      * Get a field by key.
      *
      * @param string $fieldName Field key to retrieve.
-     * @return SimpleField|ObjectField|ListField
      * @throws InvalidArgumentException When the field does not exist.
      */
-    public function get(string $fieldName)
+    public function get(string $fieldName): SimpleField|ObjectField|ListField
     {
-        $field = $this->fields[$fieldName];
-        if ($field === null) {
-            throw new InvalidArgumentException("Field $fieldName does not exist.");
-        }
-        return $field;
+        return $this->fields[$fieldName] ?? throw new InvalidArgumentException("Field $fieldName does not exist.");
     }
 
     /**

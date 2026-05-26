@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
+use CURLFile;
 use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
+use SplFileObject;
 
 use function is_array;
 use function is_resource;
@@ -18,54 +20,46 @@ use function is_string;
 class LocalResponse
 {
     /**
-     * @var mixed $file File object of the local response.
+     * @var resource $file File object of the local response.
      */
     private $file;
 
     /**
-     * @param mixed $inputFile A string, path or file-like object to load as a local response.
+     * @param resource|string|array<string> $inputFile A string, path or file-like object to load as a local response.
      * @throws MindeeException Throws if the input file isn't acceptable.
      */
     public function __construct(mixed $inputFile)
     {
-        if (is_resource($inputFile) && get_resource_type($inputFile) === 'file') {
-            $content = fread($inputFile, filesize($inputFile));
-            $strStripped = str_replace(["\r", "\n"], '', $content);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_resource($inputFile) && get_resource_type($inputFile) === 'stream') {
-            $content = stream_get_contents($inputFile);
-            $strStripped = str_replace(["\r", "\n"], '', $content);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_string($inputFile) && file_exists($inputFile)) {
-            $content = file_get_contents($inputFile);
-            $strStripped = str_replace(["\r", "\n"], '', $content);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
+        if (is_resource($inputFile)) {
+            $resourceType = get_resource_type($inputFile);
+            if ($resourceType === 'file') {
+                $content = fread($inputFile, fstat($inputFile)['size']);
+            } elseif ($resourceType === 'stream') {
+                $content = stream_get_contents($inputFile);
+            } else {
+                throw new MindeeException("Unsupported resource type.", ErrorCode::USER_INPUT_ERROR);
+            }
         } elseif (is_string($inputFile)) {
-            $strStripped = str_replace(["\r", "\n"], '', $inputFile);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
-        } elseif (is_string($inputFile) || is_array($inputFile)) {
-            $strStripped = str_replace(["\r", "\n"], '', $inputFile);
-            $this->file = fopen('php://memory', 'r+');
-            fwrite($this->file, $strStripped);
-            rewind($this->file);
+            if (file_exists($inputFile) && is_file($inputFile)) {
+                $content = file_get_contents($inputFile);
+            } else {
+                $content = $inputFile;
+            }
+        } elseif (is_array($inputFile)) {
+            $content = implode('', $inputFile);
         } else {
-            throw new MindeeException(
-                "Incompatible type for input.",
-                ErrorCode::USER_INPUT_ERROR
-            );
+            throw new MindeeException("Incompatible type for input.", ErrorCode::USER_INPUT_ERROR);
         }
+
+        $strStripped = str_replace(["\r", "\n"], '', (string) $content);
+        $this->file = fopen('php://memory', 'r+');
+        fwrite($this->file, $strStripped);
+        rewind($this->file);
     }
 
     /**
      * @throws MindeeException Throws if the file contents cannot be converted to a valid array.
+     * @return array<string, int|float|string|bool|null|array<array-key, mixed>> The file contents.
      */
     public function toArray(): array
     {
@@ -124,10 +118,9 @@ class LocalResponse
     /**
      * Deserialize the loaded local response into the requested BaseResponse-derived class.
      *
-     * Typically used when dealing with V2 webhook callbacks.
-     *
-     * @param string $responseClass The class name into which the payload should be deserialized.
-     * @return mixed An instance of responseClass populated with the file content.
+     * @template T
+     * @param class-string<T> $responseClass The class name into which the payload should be deserialized.
+     * @return T An instance of responseClass populated with the file content.
      * @throws MindeeException If the provided class cannot be instantiated.
      */
     public function deserializeResponse(string $responseClass): mixed

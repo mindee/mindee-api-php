@@ -40,6 +40,7 @@ class MindeeCLICommandTestFunctional extends TestCase
     {
         $data = [];
         $data[] = ["generated", true, ["-a", "mindee", "-e", "invoice_splitter", "-d", "1"]];
+        /** @phpstan-ignore-next-line */
         foreach (MindeeCLIDocuments::getSpecs() as $productName => $productSpecs) {
             if ($productName !== "custom" && $productName !== "generated") {
                 if ($productSpecs->isSync) {

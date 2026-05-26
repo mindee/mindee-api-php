@@ -11,16 +11,15 @@ class RawTextPage
 {
     /**
      * Page content as a single string.
-     *
      */
-    public string $content;
+    public ?string $content;
 
     /**
-     * @param array $serverResponse JSON response from the server.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse JSON response from the server.
      */
-    public function __construct(array $serverResponse)
+    public function __construct(array $rawResponse)
     {
-        $this->content = $serverResponse['content'];
+        $this->content = $rawResponse['content'];
     }
 
     /**

@@ -8,11 +8,12 @@ use ArrayObject;
 
 /**
  * The subscription details fee for the energy service.
+ * @extends ArrayObject<integer, EnergyBillV1Subscription>
  */
 class EnergyBillV1Subscriptions extends ArrayObject
 {
     /**
-     * @param array $rawPrediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)

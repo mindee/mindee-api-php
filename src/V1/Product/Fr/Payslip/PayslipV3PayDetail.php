@@ -56,9 +56,13 @@ class PayslipV3PayDetail
      * @var float|null The total taxes and deductions of the employee.
      */
     public ?float $totalTaxesAndDeductions;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -85,31 +89,12 @@ class PayslipV3PayDetail
             ? (float) ($rawPrediction["total_cost_employer"]) : null;
         $this->totalTaxesAndDeductions = isset($rawPrediction["total_taxes_and_deductions"])
             ? (float) ($rawPrediction["total_taxes_and_deductions"]) : null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["grossSalary"] = SummaryHelperV1::formatFloat($this->grossSalary);
-        $outArr["grossSalaryYtd"] = SummaryHelperV1::formatFloat($this->grossSalaryYtd);
-        $outArr["incomeTaxRate"] = SummaryHelperV1::formatFloat($this->incomeTaxRate);
-        $outArr["incomeTaxWithheld"] = SummaryHelperV1::formatFloat($this->incomeTaxWithheld);
-        $outArr["netPaid"] = SummaryHelperV1::formatFloat($this->netPaid);
-        $outArr["netPaidBeforeTax"] = SummaryHelperV1::formatFloat($this->netPaidBeforeTax);
-        $outArr["netTaxable"] = SummaryHelperV1::formatFloat($this->netTaxable);
-        $outArr["netTaxableYtd"] = SummaryHelperV1::formatFloat($this->netTaxableYtd);
-        $outArr["totalCostEmployer"] = SummaryHelperV1::formatFloat($this->totalCostEmployer);
-        $outArr["totalTaxesAndDeductions"] = SummaryHelperV1::formatFloat($this->totalTaxesAndDeductions);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

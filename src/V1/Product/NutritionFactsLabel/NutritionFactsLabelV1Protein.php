@@ -28,15 +28,20 @@ class NutritionFactsLabelV1Protein
      * @var float|null The amount of protein per serving of the product.
      */
     public ?float $perServing;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->dailyValue = isset($rawPrediction["daily_value"])
             ? (float) ($rawPrediction["daily_value"]) : null;
         $this->per100G = isset($rawPrediction["per_100g"])
@@ -46,21 +51,8 @@ class NutritionFactsLabelV1Protein
     }
 
     /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["dailyValue"] = SummaryHelperV1::formatFloat($this->dailyValue);
-        $outArr["per100G"] = SummaryHelperV1::formatFloat($this->per100G);
-        $outArr["perServing"] = SummaryHelperV1::formatFloat($this->perServing);
-        return $outArr;
-    }
-
-    /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

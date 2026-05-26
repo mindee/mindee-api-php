@@ -17,10 +17,13 @@ abstract class PolygonUtils
     /**
      * Gets the centroid (Point) of a set of points.
      *
-     * @param array $vertices Array of points.
+     * @param array<Point>|Polygon $vertices Array of points.
      */
-    public static function getCentroid(array $vertices): Point
+    public static function getCentroid(array|Polygon $vertices): Point
     {
+        if ($vertices instanceof Polygon) {
+            $vertices = $vertices->getCoordinates();
+        }
         $verticesSum = count($vertices);
 
         $xSum = 0.0;
@@ -45,7 +48,7 @@ abstract class PolygonUtils
     public static function compareOnY(Polygon $polygon1, Polygon $polygon2): int
     {
         $sort = ($polygon1->getMinY() - $polygon2->getMinY());
-        if ($sort === 0) {
+        if ($sort === 0.0) {
             return 0;
         }
         return $sort < 0 ? -1 : 1;
@@ -106,15 +109,15 @@ abstract class PolygonUtils
     /**
      * Generates a quadrilateral Polygon from a given prediction.
      *
-     * @param array $prediction Raw prediction array.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.
      * @throws MindeeGeometryException Throws if the polygon isn't a quadrilateral.
      */
-    public static function quadrilateralFromPrediction(array $prediction): Polygon
+    public static function quadrilateralFromPrediction(array $rawResponse): Polygon
     {
-        if (count($prediction) !== 4) {
+        if (count($rawResponse) !== 4) {
             throw new MindeeGeometryException('Prediction must have exactly 4 points.');
         }
-        return new Polygon($prediction);
+        return new Polygon($rawResponse);
     }
 
     /**

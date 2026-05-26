@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Generated;
 
+use Mindee\Geometry\Polygon;
+use Mindee\V1\Parsing\Standard\BaseField;
 use Mindee\V1\Parsing\Standard\PositionField;
 
 use function in_array;
@@ -13,6 +15,10 @@ use function is_int;
 
 /**
  * A JSON-like object, with miscellaneous values.
+ * @property PositionField|null $bounding_box
+ * @property PositionField|null $polygon
+ * @property PositionField|null $quadrangle
+ * @property PositionField|null $rectangle
  */
 class GeneratedObjectField
 {
@@ -25,13 +31,18 @@ class GeneratedObjectField
     /** @var string|null Raw unprocessed value, as it was sent by the server */
     private ?string $rawValue;
 
-    /** @var array List of all printable field names */
+    /** @var array<string> List of all printable field names */
     private array $printableValues;
+    /**
+     * @var array<string, BaseField<string|float|integer|boolean|Polygon>|integer|float|string|bool|null>
+     *                                                                                                    Storage for dynamically generated properties.
+     */
+    private array $dynamicProperties = [];
 
     /**
      * Constructor.
      *
-     * @param array $rawPrediction Raw prediction data.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction data.
      * @param integer|null $pageId ID of the page.
      */
     public function __construct(array $rawPrediction, ?int $pageId = null)
@@ -70,6 +81,39 @@ class GeneratedObjectField
     }
 
     /**
+     * Magic getter for dynamic properties.
+     *
+     * @param string $name Property name.
+     * @return mixed
+     */
+    public function __get(string $name)
+    {
+        return $this->dynamicProperties[$name] ?? null;
+    }
+
+    /**
+     * Magic setter for dynamic properties.
+     *
+     * @param string $name Property name.
+     * @param BaseField<string|float|integer|boolean|Polygon>|string|integer|boolean|float|null $value Property value.
+     */
+    public function __set(string $name, BaseField|string|int|bool|float|null $value): void
+    {
+        $this->dynamicProperties[$name] = $value;
+    }
+
+    /**
+     * Magic isset for dynamic properties.
+     *
+     * @param string $name Property name.
+     * @return boolean
+     */
+    public function __isset(string $name): bool
+    {
+        return isset($this->dynamicProperties[$name]);
+    }
+
+    /**
      * Get a string representation of the object.
      *
      * @return string String representation of the object.
@@ -94,7 +138,7 @@ class GeneratedObjectField
         foreach ($this->printableValues as $attr) {
             $value = $this->{$attr};
             $strValue = $value !== null ? (string) $value : "";
-            $outStr .= "\n{$indent}:{$attr}: {$strValue}";
+            $outStr .= "\n$indent:$attr: $strValue";
         }
         return "\n" . $indent . trim($outStr);
     }
@@ -102,7 +146,7 @@ class GeneratedObjectField
     /**
      * Checks whether a field is a custom object or not.
      *
-     * @param array $strDict Input dictionary to check.
+     * @param array<string, integer|float|string|bool|null|array<mixed>> $strDict Input dictionary to check.
      * @return boolean Whether the field is a custom object.
      */
     public static function isGeneratedObject(array $strDict): bool

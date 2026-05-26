@@ -28,9 +28,13 @@ class BillOfLadingV1Carrier
      * @var string|null The Standard Carrier Alpha Code (SCAC) of the carrier.
      */
     public ?string $scac;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -40,24 +44,12 @@ class BillOfLadingV1Carrier
         $this->name = $rawPrediction["name"] ?? null;
         $this->professionalNumber = $rawPrediction["professional_number"] ?? null;
         $this->scac = $rawPrediction["scac"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["professionalNumber"] = SummaryHelperV1::formatForDisplay($this->professionalNumber);
-        $outArr["scac"] = SummaryHelperV1::formatForDisplay($this->scac);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

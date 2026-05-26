@@ -36,15 +36,20 @@ class NutritionFactsLabelV1Nutrient
      * @var string|null The unit of measurement for the amount of nutrients.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
+        $this->pageId = $pageId;
         $this->dailyValue = isset($rawPrediction["daily_value"])
             ? (float) ($rawPrediction["daily_value"]) : null;
         $this->name = $rawPrediction["name"] ?? null;
@@ -57,7 +62,7 @@ class NutritionFactsLabelV1Nutrient
 
     /**
      * Return values for printing inside an RST table.
-     *
+     * @return array<string, string>
      */
     private function tablePrintableValues(): array
     {
@@ -70,20 +75,6 @@ class NutritionFactsLabelV1Nutrient
         return $outArr;
     }
 
-    /**
-     * Return values for printing as an array.
-     *
-     */
-    private function printableValues(): array
-    {
-        $outArr = [];
-        $outArr["dailyValue"] = SummaryHelperV1::formatFloat($this->dailyValue);
-        $outArr["name"] = SummaryHelperV1::formatForDisplay($this->name);
-        $outArr["per100G"] = SummaryHelperV1::formatFloat($this->per100G);
-        $outArr["perServing"] = SummaryHelperV1::formatFloat($this->perServing);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
-    }
     /**
      * Output in a format suitable for inclusion in an rST table.
      *

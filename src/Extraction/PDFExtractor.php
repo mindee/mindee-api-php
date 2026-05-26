@@ -86,14 +86,14 @@ class PDFExtractor
     /**
      * Extracts sub-documents from the source document using list of page indexes.
      *
-     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param array<array<integer>>|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
      *
      * @return ExtractedPDF[] list of extracted documents
      *
      * @throws MindeePDFException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
      * @throws InvalidArgumentException Throws if invalid indexes are provided.
      */
-    public function extractSubDocuments(mixed $pageIndexes): array
+    public function extractSubDocuments(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes): array
     {
         $extractedPdfs = [];
 
@@ -141,12 +141,12 @@ class PDFExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param array<array<integer>>|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
      * @param boolean $strict Whether to trust confidence scores or not.
      *
      * @return ExtractedPDF[] a list of extracted invoices
      */
-    public function extractInvoices(mixed $pageIndexes, bool $strict = false): array
+    public function extractInvoices(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes, bool $strict = false): array
     {
         if (empty($pageIndexes)) {
             return [];

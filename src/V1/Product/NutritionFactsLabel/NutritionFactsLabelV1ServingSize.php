@@ -24,9 +24,13 @@ class NutritionFactsLabelV1ServingSize
      * @var string|null The unit for the amount of a single serving.
      */
     public ?string $unit;
+    /**
+     * @var integer|null Page ID.
+     */
+    public ?int $pageId;
 
     /**
-     * @param array $rawPrediction Array containing the JSON document response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
     public function __construct(array $rawPrediction, ?int $pageId)
@@ -36,23 +40,12 @@ class NutritionFactsLabelV1ServingSize
         $this->amount = isset($rawPrediction["amount"])
             ? (float) ($rawPrediction["amount"]) : null;
         $this->unit = $rawPrediction["unit"] ?? null;
-    }
-
-    /**
-     * Return values for printing inside an RST table.
-     *
-     */
-    private function tablePrintableValues(): array
-    {
-        $outArr = [];
-        $outArr["amount"] = SummaryHelperV1::formatFloat($this->amount);
-        $outArr["unit"] = SummaryHelperV1::formatForDisplay($this->unit);
-        return $outArr;
+        $this->pageId = $pageId;
     }
 
     /**
      * Return values for printing as an array.
-     *
+     * @return array<string, string>
      */
     private function printableValues(): array
     {

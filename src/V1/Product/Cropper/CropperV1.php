@@ -25,12 +25,12 @@ class CropperV1 extends Inference
     public static string $endpointVersion = "1";
 
     /**
-     * @param array $rawPrediction Raw prediction from the HTTP response.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction from the HTTP response.
      */
     public function __construct(array $rawPrediction)
     {
         parent::__construct($rawPrediction);
-        $this->prediction = new CropperV1Document($rawPrediction['prediction']);
+        $this->prediction = new CropperV1Document();
         $this->pages = [];
         foreach ($rawPrediction['pages'] as $page) {
             try {

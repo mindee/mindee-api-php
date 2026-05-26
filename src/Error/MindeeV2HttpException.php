@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\Error;
 
+use Mindee\V2\Parsing\ErrorItem;
 use Mindee\V2\Parsing\ErrorResponse;
 
 /**
@@ -29,7 +30,7 @@ class MindeeV2HttpException extends MindeeException
      */
     public ?string $errorCode;
     /**
-     * @var array List of associated errors.
+     * @var array<ErrorItem> List of associated errors.
      */
     public array $errors;
 
