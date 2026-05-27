@@ -10,7 +10,7 @@ use Mindee\V1\Product\Generated\GeneratedV1;
 /**
  * Represents the server response after a document is sent to a workflow.
  */
-class WorkflowResponse extends APIResponse
+class WorkflowResponse extends ApiResponse
 {
     /**
      * @var Execution Result of the base inference.

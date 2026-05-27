@@ -36,24 +36,24 @@ class ExtractionParameters extends BaseParameters
      *                              fields.
      * @param boolean|null $confidence Whether to calculate confidence scores for all fields.
      * @param string|null $alias Optional file alias.
-     * @param array<string>|null $webhooksIds List of webhook IDs.
+     * @param array<string>|null $webhookIds List of webhook IDs.
      * @param string|null $textContext Additional text context used by the model during
      *                                 inference.
      * @param DataSchema|string|array<string>|null $dataSchema Additional text context used by the model during
      *                                                         inference.
      */
     public function __construct(
-        string $modelId,
-        public ?bool $rag = null,
-        public ?bool $rawText = null,
-        public ?bool $polygon = null,
-        public ?bool $confidence = null,
-        ?string $alias = null,
-        ?array $webhooksIds = null,
-        ?string $textContext = null,
+        string                       $modelId,
+        public ?bool                 $rag = null,
+        public ?bool                 $rawText = null,
+        public ?bool                 $polygon = null,
+        public ?bool                 $confidence = null,
+        ?string                      $alias = null,
+        ?array                       $webhookIds = null,
+        ?string                      $textContext = null,
         DataSchema|string|array|null $dataSchema = null,
     ) {
-        parent::__construct($modelId, $alias, $webhooksIds);
+        parent::__construct($modelId, $alias, $webhookIds);
         if (isset($textContext)) {
             $this->textContext = $textContext;
         }

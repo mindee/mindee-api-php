@@ -11,10 +11,10 @@ class PredictOptions extends CommonOptions
 {
     /**
      * Prediction options.
-     * @param boolean $fullText Whether to include the full OCR text response in compatible APIs.
-     *                          This performs a full OCR operation on the server and will increase response time.
+     * @param boolean $fullText Whether to include the full Ocr text response in compatible APIs.
+     *                          This performs a full Ocr operation on the server and will increase response time.
      * @param boolean $includeWords Whether to include the full text for each page.
-     *                              This performs a full OCR operation on the server and will increase response time.
+     *                              This performs a full Ocr operation on the server and will increase response time.
      * @param boolean $cropper Whether to include cropper results for each page.
      *                         This performs a cropping operation on the server and may increase response time.
      */

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Mindee\ClientOptions\PollingOptions;
-use Mindee\Error\MindeeAPIException;
+use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeHttpClientException;
 use Mindee\Error\MindeeHttpException;
 use Mindee\Input\LocalResponse;
@@ -107,14 +107,14 @@ class ClientTest extends TestCase
 
     public function testAsyncWrongInitialDelay(): void
     {
-        $this->expectException(MindeeAPIException::class);
+        $this->expectException(MindeeApiException::class);
         $asyncParseOptions = new PollingOptions();
         $asyncParseOptions->setInitialDelaySec(0);
     }
 
     public function testAsyncWrongPollingDelay(): void
     {
-        $this->expectException(MindeeAPIException::class);
+        $this->expectException(MindeeApiException::class);
         $asyncParseOptions = new PollingOptions();
         $asyncParseOptions->setDelaySec(0);
     }
@@ -126,9 +126,9 @@ class ClientTest extends TestCase
         $predictOptions = new PredictMethodOptions();
         $predictOptions->setPageOptions($pageOptions);
         $urlInputSource = $this->dummyClient->sourceFromUrl("https://dummy");
-        $this->expectException(MindeeAPIException::class);
+        $this->expectException(MindeeApiException::class);
         $this->dummyClient->parse(InvoiceV4::class, $urlInputSource, $predictOptions);
-        $this->expectException(MindeeAPIException::class);
+        $this->expectException(MindeeApiException::class);
         $this->dummyClient->enqueue(InvoiceSplitterV1::class, $urlInputSource, $predictOptions);
     }
 

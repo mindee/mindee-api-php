@@ -9,7 +9,7 @@ namespace Mindee\V1\Parsing\Common;
  *
  * This is a generic class, so certain class properties depend on the document type.
  */
-class PredictResponse extends APIResponse
+class PredictResponse extends ApiResponse
 {
     /**
      * @var Document The document object, properly parsed after being retrieved from the server.

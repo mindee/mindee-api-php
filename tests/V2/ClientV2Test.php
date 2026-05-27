@@ -9,7 +9,7 @@ use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
-use Mindee\V2\HTTP\MindeeAPIV2;
+use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\JobResponse;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
@@ -20,18 +20,18 @@ use TestingUtilities;
 
 class ClientV2Test extends TestCase
 {
-    private static function makeClientWithMockedAPI(MindeeAPIV2 $mockedAPI): Client
+    private static function makeClientWithMockedApi(MindeeApiV2 $mockedApi): Client
     {
         $client = new Client("dummy");
         $reflection = new ReflectionClass($client);
-        $property = $reflection->getProperty('mindeeAPI');
-        $property->setValue($client, $mockedAPI);
+        $property = $reflection->getProperty('mindeeApi');
+        $property->setValue($client, $mockedApi);
         return $client;
     }
 
     public function testEnqueuePostAsync(): void
     {
-        $predictable = $this->createMock(MindeeAPIV2::class);
+        $predictable = $this->createMock(MindeeApiV2::class);
         $syntheticResponse = file_get_contents(TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $predictable->expects(self::once())
             ->method('reqPostEnqueue')
@@ -41,7 +41,7 @@ class ClientV2Test extends TestCase
             )
             ->willReturn(new JobResponse(json_decode($syntheticResponse, true)));
 
-        $mindeeClient = self::makeClientWithMockedAPI($predictable);
+        $mindeeClient = self::makeClientWithMockedApi($predictable);
 
         $input = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
         $params = new ExtractionParameters('dummy-model-id', textContext: 'dummy text context');
@@ -54,8 +54,8 @@ class ClientV2Test extends TestCase
 
     public function testDocumentGetJobAsync(): void
     {
-        /** @var MindeeAPIV2&MockObject $predictable */
-        $predictable = $this->createMock(MindeeAPIV2::class);
+        /** @var MindeeApiV2&MockObject $predictable */
+        $predictable = $this->createMock(MindeeApiV2::class);
 
         $syntheticResponse = file_get_contents(TestingUtilities::getV2DataDir() . '/job/ok_processing.json');
         $processing = new JobResponse(json_decode($syntheticResponse, true));
@@ -65,7 +65,7 @@ class ClientV2Test extends TestCase
             ->with(self::equalTo('dummy-id'))
             ->willReturn($processing);
 
-        $mindeeClient = self::makeClientWithMockedAPI($predictable);
+        $mindeeClient = self::makeClientWithMockedApi($predictable);
 
         $response = $mindeeClient->getJob('dummy-id');
 
@@ -75,8 +75,8 @@ class ClientV2Test extends TestCase
 
     public function testDocumentGetInferenceAsync(): void
     {
-        /** @var MindeeAPIV2&MockObject $predictable */
-        $predictable = $this->createMock(MindeeAPIV2::class);
+        /** @var MindeeApiV2&MockObject $predictable */
+        $predictable = $this->createMock(MindeeApiV2::class);
 
         $jsonFile = TestingUtilities::getV2DataDir() . '/products/extraction/financial_document/complete.json';
         self::assertFileExists($jsonFile, 'Test resource file must exist');
@@ -92,7 +92,7 @@ class ClientV2Test extends TestCase
             )
             ->willReturn($processing);
 
-        $mindeeClient = self::makeClientWithMockedAPI($predictable);
+        $mindeeClient = self::makeClientWithMockedApi($predictable);
 
         $response = $mindeeClient->getResult(ExtractionResponse::class, '12345678-1234-1234-1234-123456789abc');
 

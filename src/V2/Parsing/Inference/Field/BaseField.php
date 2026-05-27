@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference\Field;
 
-use Mindee\Error\MindeeAPIException;
+use Mindee\Error\MindeeApiException;
 use Stringable;
 
 use function array_key_exists;
@@ -45,7 +45,7 @@ abstract class BaseField implements Stringable
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer $indentLevel Level of indentation for rst display.
-     * @throws MindeeAPIException Throws if the field type isn't recognized.
+     * @throws MindeeApiException Throws if the field type isn't recognized.
      */
     public static function createField(array $rawPrediction, int $indentLevel = 0): ListField|ObjectField|SimpleField
     {
@@ -58,17 +58,17 @@ abstract class BaseField implements Stringable
         if (array_key_exists('value', $rawPrediction)) {
             return new SimpleField($rawPrediction, $indentLevel);
         }
-        throw new MindeeAPIException(
+        throw new MindeeApiException(
             sprintf('Unrecognized field format in %s.', json_encode($rawPrediction))
         );
     }
 
     /**
      * Base str-rep. Do not use.
-     * @throws MindeeAPIException
+     * @throws MindeeApiException
      */
     public function __toString(): string
     {
-        throw new MindeeAPIException('Not implemented');
+        throw new MindeeApiException('Not implemented');
     }
 }

@@ -11,7 +11,7 @@ use function array_key_exists;
  *
  * Links a Job to a future PredictResponse.
  */
-class AsyncPredictResponse extends APIResponse
+class AsyncPredictResponse extends ApiResponse
 {
     /**
      * @var Job Job object link to the prediction.

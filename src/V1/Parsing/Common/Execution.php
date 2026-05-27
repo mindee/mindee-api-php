@@ -7,7 +7,7 @@ namespace Mindee\V1\Parsing\Common;
 use DateTimeImmutable;
 use Exception;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeAPIException;
+use Mindee\Error\MindeeApiException;
 use Mindee\V1\Product\Generated\GeneratedV1Document;
 use ReflectionClass;
 use ReflectionException;
@@ -87,7 +87,7 @@ class Execution implements Stringable
     /**
      * @param string $predictionType Type of prediction.
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw execution array.
-     * @throws Exception|MindeeAPIException Throws if one of the objects can't properly be created.
+     * @throws Exception|MindeeApiException Throws if one of the objects can't properly be created.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {
@@ -100,7 +100,7 @@ class Execution implements Stringable
                 $reflection = new ReflectionClass($predictionType);
                 $this->inference = $reflection->newInstance($rawResponse['inference']);
             } catch (ReflectionException $e) {
-                throw new MindeeAPIException(
+                throw new MindeeApiException(
                     "Unable to create custom product " . $predictionType,
                     ErrorCode::INTERNAL_LIBRARY_ERROR,
                     $e

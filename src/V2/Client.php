@@ -9,7 +9,7 @@ use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
 use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
-use Mindee\V2\HTTP\MindeeAPIV2;
+use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\JobResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
@@ -22,9 +22,9 @@ class Client
     use CustomSleepMixin;
 
     /**
-     * @var MindeeAPIV2 Mindee API V2.
+     * @var MindeeApiV2 Mindee API V2.
      */
-    protected MindeeAPIV2 $mindeeAPI;
+    protected MindeeApiV2 $mindeeApi;
 
     /**
      * Mindee Client V2.
@@ -33,7 +33,7 @@ class Client
      */
     public function __construct(?string $apiKey = null)
     {
-        $this->mindeeAPI = new MindeeAPIV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
+        $this->mindeeApi = new MindeeApiV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
     }
 
     /**
@@ -64,7 +64,7 @@ class Client
         InputSource $inputSource,
         BaseParameters $params
     ): JobResponse {
-        return $this->mindeeAPI->reqPostEnqueue($inputSource, $params);
+        return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
     }
 
 
@@ -79,7 +79,7 @@ class Client
         string $responseClass,
         string $resultUrl
     ): BaseResponse {
-        return $this->mindeeAPI->reqGetResultFromUrl($responseClass, $resultUrl);
+        return $this->mindeeApi->reqGetResultFromUrl($responseClass, $resultUrl);
     }
 
     /**
@@ -93,7 +93,7 @@ class Client
         string $responseClass,
         string $resultId
     ): BaseResponse {
-        return $this->mindeeAPI->reqGetResult($responseClass, $resultId);
+        return $this->mindeeApi->reqGetResult($responseClass, $resultId);
     }
 
     /**
@@ -106,7 +106,7 @@ class Client
      */
     public function getJob(string $jobId): JobResponse
     {
-        return $this->mindeeAPI->reqGetJob($jobId);
+        return $this->mindeeApi->reqGetJob($jobId);
     }
 
     /**

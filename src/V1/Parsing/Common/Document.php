@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeAPIException;
+use Mindee\Error\MindeeApiException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
-use Mindee\V1\Parsing\Common\OCR\OCR;
+use Mindee\V1\Parsing\Common\Ocr\Ocr;
 use ReflectionClass;
 use ReflectionException;
 use Stringable;
@@ -40,14 +40,14 @@ class Document implements Stringable
      */
     public ?Extras $extras;
     /**
-     * @var OCR|null Potential raw text results read by the OCR (limited feature)
+     * @var Ocr|null Potential raw text results read by the Ocr (limited feature)
      */
-    public ?OCR $ocr;
+    public ?Ocr $ocr;
 
     /**
      * @param string $predictionType Type of prediction.
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw HTTP response.
-     * @throws MindeeAPIException Throws if the prediction type isn't recognized.
+     * @throws MindeeApiException Throws if the prediction type isn't recognized.
      */
     public function __construct(string $predictionType, array $rawResponse)
     {
@@ -58,19 +58,19 @@ class Document implements Stringable
             $reflection = new ReflectionClass($predictionType);
             $this->inference = $reflection->newInstance($rawResponse['inference']);
         } catch (ReflectionException $e) {
-            throw new MindeeAPIException(
+            throw new MindeeApiException(
                 "Unable to create custom product " . $predictionType,
                 ErrorCode::INTERNAL_LIBRARY_ERROR,
                 $e
             );
         }
         if (array_key_exists('ocr', $rawResponse) && $rawResponse['ocr']) {
-            $this->ocr = new OCR($rawResponse['ocr']);
+            $this->ocr = new Ocr($rawResponse['ocr']);
         }
         if (array_key_exists("extras", $rawResponse['inference']) && $rawResponse['inference']['extras']) {
             $this->extras = new Extras($rawResponse['inference']['extras']);
         }
-        $this->injectFullTextOCR($rawResponse);
+        $this->injectFullTextOcr($rawResponse);
     }
 
     /**
@@ -92,7 +92,7 @@ $this->inference";
      *
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw HTTP response.
      */
-    private function injectFullTextOCR(array $rawResponse): void
+    private function injectFullTextOcr(array $rawResponse): void
     {
         $pages = $rawResponse['inference']['pages'] ?? [];
 

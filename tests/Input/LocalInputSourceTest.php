@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Input;
 
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeePDFException;
+use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Image\ImageCompressor;
 use Mindee\Input\Base64Input;
@@ -13,8 +13,8 @@ use Mindee\Input\BytesInput;
 use Mindee\Input\FileInput;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\PDF\PDFCompressor;
-use Mindee\PDF\PDFUtils;
+use Mindee\Pdf\PdfCompressor;
+use Mindee\Pdf\PdfUtils;
 use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 use setasign\Fpdi\Fpdi;
@@ -24,7 +24,7 @@ use TestingUtilities;
 
 use function count;
 
-use const Mindee\V1\HTTP\API_KEY_ENV_NAME;
+use const Mindee\V1\Http\API_KEY_ENV_NAME;
 use const Mindee\Input\KEEP_ONLY;
 use const Mindee\Input\REMOVE;
 
@@ -69,20 +69,20 @@ class LocalInputSourceTest extends TestCase
     }
 
 
-    public function testPDFCountPages(): void
+    public function testPdfCountPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         self::assertSame(12, $inputObj->getPageCount());
     }
 
-    public function testPDFReconstructOK(): void
+    public function testPdfReconstructOK(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
         self::assertSame(5, $inputObj->getPageCount());
     }
 
-    public function testPDFReadContents(): void
+    public function testPdfReadContents(): void
     {
         $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $contents = $inputDoc->readContents();
@@ -90,9 +90,9 @@ class LocalInputSourceTest extends TestCase
     }
 
     /**
-     * @dataProvider providePDFCutNPagesCases
+     * @dataProvider providePdfCutNPagesCases
      */
-    public function testPDFCutNPages(array $indexes): void
+    public function testPdfCutNPages(array $indexes): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions($indexes, KEEP_ONLY, 2));
@@ -121,7 +121,7 @@ class LocalInputSourceTest extends TestCase
             $basePdf->Close();
             $cutPdf->Close();
         } catch (PdfParserException|PdfReaderException $e) {
-            throw new MindeePDFException(
+            throw new MindeePdfException(
                 "Failed to read PDF file.",
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
@@ -129,26 +129,26 @@ class LocalInputSourceTest extends TestCase
         }
     }
 
-    public static function providePDFCutNPagesCases(): iterable
+    public static function providePdfCutNPagesCases(): iterable
     {
         return [[[0]], [[0, -2]], [[0, -2, -1]]];
     }
 
-    public function testPDFKeep5FirstPages(): void
+    public function testPdfKeep5FirstPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
         self::assertSame(5, $inputObj->getPageCount());
     }
 
-    public function testPDFKeepInvalidPages(): void
+    public function testPdfKeepInvalidPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 17], KEEP_ONLY, 2));
         self::assertSame(2, $inputObj->getPageCount());
     }
 
-    public function testPDFRemove5LastPages(): void
+    public function testPdfRemove5LastPages(): void
     {
 
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
@@ -156,36 +156,36 @@ class LocalInputSourceTest extends TestCase
         self::assertSame(7, $inputObj->getPageCount());
     }
 
-    public function testPDFRemove5FirstPages(): void
+    public function testPdfRemove5FirstPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], REMOVE, 2));
         self::assertSame(7, $inputObj->getPageCount());
     }
 
-    public function testPDFRemoveInvalidPages(): void
+    public function testPdfRemoveInvalidPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([16], REMOVE, 2));
         self::assertSame(12, $inputObj->getPageCount());
     }
 
-    public function testPDFKeepNoPages(): void
+    public function testPdfKeepNoPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
-        $this->expectException(MindeePDFException::class);
+        $this->expectException(MindeePdfException::class);
         $inputObj->applyPageOptions(new PageOptions([], KEEP_ONLY, 2));
     }
 
-    public function testPDFRemoveAllPages(): void
+    public function testPdfRemoveAllPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
-        $this->expectException(MindeePDFException::class);
+        $this->expectException(MindeePdfException::class);
         $pageOptions = new PageOptions(range(0, $inputObj->getPageCount() - 1), REMOVE, 2);
         $inputObj->applyPageOptions(pageOptions: $pageOptions);
     }
 
-    public function testPDFInputFromFile(): void
+    public function testPdfInputFromFile(): void
     {
         $fileContents = file_get_contents(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $fileRef = fopen(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf", "r");
@@ -195,7 +195,7 @@ class LocalInputSourceTest extends TestCase
         self::assertSame($fileContents, $contents[1]);
     }
 
-    public function testPDFInputFromBytes(): void
+    public function testPdfInputFromBytes(): void
     {
         $pdfBytes = file_get_contents(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputDoc = new BytesInput($pdfBytes, "dummy.pdf");
@@ -213,21 +213,21 @@ class LocalInputSourceTest extends TestCase
         self::assertSame(str_replace("\n", "", $pdfBytes), str_replace("\n", "", base64_encode($contents[1])));
     }
 
-    public function testShouldNotRaiseMimeErrorForBrokenFixablePDF(): void
+    public function testShouldNotRaiseMimeErrorForBrokenFixablePdf(): void
     {
         $this->expectNotToPerformAssertions();
 
         $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/broken_fixable.pdf', true);
     }
 
-    public function testShouldRaiseErrorForBrokenUnfixablePDF(): void
+    public function testShouldRaiseErrorForBrokenUnfixablePdf(): void
     {
         $this->expectException(MindeeSourceException::class);
 
         $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/broken_unfixable.pdf', true);
     }
 
-    public function testShouldSendCorrectResultsForBrokenFixableInvoicePDF(): void
+    public function testShouldSendCorrectResultsForBrokenFixableInvoicePdf(): void
     {
         $sourceDocOriginal = $this->dummyClient->sourceFromPath(
             TestingUtilities::getV1DataDir() . '/products/invoices/invoice.pdf'
@@ -285,7 +285,7 @@ class LocalInputSourceTest extends TestCase
         self::assertGreaterThan($compressSize[1], $compressSize[10]);
     }
 
-    public function testPDFSourceText(): void
+    public function testPdfSourceText(): void
     {
         $imageInput = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
         $pdfEmptyInput = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
@@ -295,7 +295,7 @@ class LocalInputSourceTest extends TestCase
         self::assertFalse($imageInput->hasSourceText(), "An image should not have any text.");
     }
 
-    public function testCompressPDFFromInputSource(): void
+    public function testCompressPdfFromInputSource(): void
     {
         $pdfInput = $this->dummyClient->sourceFromPath(
             TestingUtilities::getFileTypesDir() . "/pdf/not_blank_image_only.pdf"
@@ -319,7 +319,7 @@ class LocalInputSourceTest extends TestCase
         self::assertLessThan($sizeOriginal, $sizeCompressed);
     }
 
-    public function testCompressPDFFromCompressor(): void
+    public function testCompressPdfFromCompressor(): void
     {
         $pdfInput = $this->dummyClient->sourceFromPath(
             TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf'
@@ -328,10 +328,10 @@ class LocalInputSourceTest extends TestCase
 
         self::assertFalse($pdfInput->hasSourceText());
         $pdfCompresses = [
-            85 => PDFCompressor::compress($pdfInput->fileObject),
-            75 => PDFCompressor::compress($pdfInput->fileObject, 75),
-            50 => PDFCompressor::compress($pdfInput->fileObject, 50),
-            10 => PDFCompressor::compress($pdfInput->fileObject, 10),
+            85 => PdfCompressor::compress($pdfInput->fileObject),
+            75 => PdfCompressor::compress($pdfInput->fileObject, 75),
+            50 => PdfCompressor::compress($pdfInput->fileObject, 50),
+            10 => PdfCompressor::compress($pdfInput->fileObject, 10),
         ];
         $outputFiles = [
             85 => TestingUtilities::getRootDataDir() . "/output/compress_direct_85.pdf",
@@ -354,7 +354,7 @@ class LocalInputSourceTest extends TestCase
         self::assertGreaterThan($compressSize[10], $compressSize[50]);
     }
 
-    public function testSourceTextPDFCompression(): void
+    public function testSourceTextPdfCompression(): void
     {
 
         $pdfInput = $this->dummyClient->sourceFromPath(
@@ -374,7 +374,7 @@ class LocalInputSourceTest extends TestCase
 
         self::assertSame(
             str_repeat('*', 650),
-            implode('', str_replace(" ", "", PDFUtils::extractPagesTextElements(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf")))
+            implode('', str_replace(" ", "", PdfUtils::extractPagesTextElements(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf")))
         );
     }
 }

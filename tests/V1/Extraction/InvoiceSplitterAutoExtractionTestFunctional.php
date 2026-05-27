@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace V1\Extraction;
 
-use Mindee\Extraction\PDFExtractor;
+use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use Mindee\V1\Client;
 use Mindee\V1\Parsing\Common\Document;
@@ -32,7 +32,7 @@ class InvoiceSplitterAutoExtractionTestFunctional extends TestCase
      *
      * @group functional
      */
-    public function testPDFShouldExtractInvoicesStrict(): void
+    public function testPdfShouldExtractInvoicesStrict(): void
     {
         $client = new Client();
         $invoiceSplitterInput = new PathInput(
@@ -40,7 +40,7 @@ class InvoiceSplitterAutoExtractionTestFunctional extends TestCase
         );
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
-        $pdfExtractor = new PDFExtractor($invoiceSplitterInput);
+        $pdfExtractor = new PdfExtractor($invoiceSplitterInput);
         self::assertSame(2, $pdfExtractor->getPageCount());
 
         $extractedPdfsStrict = $pdfExtractor->extractInvoices($inference->prediction->invoicePageGroups);

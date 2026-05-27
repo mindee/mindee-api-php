@@ -93,7 +93,7 @@ class CropFunctional extends TestCase
         self::assertLessThanOrEqual(103000, $file2Info);
     }
 
-    public function testExtractCropsFromEachPDFPageCorrectly(): void
+    public function testExtractCropsFromEachPdfPageCorrectly(): void
     {
         $inputSource = new PathInput(TestingUtilities::getV2ProductDir() . '/crop/multipage_sample.pdf');
         $cropParams = new CropParameters($this->cropModelId);

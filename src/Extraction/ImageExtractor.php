@@ -9,7 +9,7 @@ use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
 use Mindee\Error\MindeeImageException;
-use Mindee\Error\MindeePDFException;
+use Mindee\Error\MindeePdfException;
 use Mindee\Geometry\BBox;
 use Mindee\Geometry\BBoxUtils;
 use Mindee\Geometry\Point;
@@ -51,7 +51,7 @@ class ImageExtractor
      * @param LocalInputSource $localInput Local input, accepts all compatible formats.
      * @param null|string $saveFormat Save format, will be coerced to jpg by default.
      *
-     * @throws MindeePDFException Throws if PDF operations aren't supported, or if the file can't be read, respectively.
+     * @throws MindeePdfException Throws if PDF operations aren't supported, or if the file can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput, ?string $saveFormat = null)
     {
@@ -71,14 +71,14 @@ class ImageExtractor
             $this->saveFormat = $saveFormat;
         }
 
-        if ($this->inputSource->isPDF()) {
+        if ($this->inputSource->isPdf()) {
             $this->pageImages = static::pdfToImages($this->inputSource->readContents()[1]);
         } else {
             try {
                 $image = new Imagick();
                 $image->readImageBlob($this->inputSource->readContents()[1]);
             } catch (ImagickException $e) {
-                throw new MindeePDFException(
+                throw new MindeePdfException(
                     "Image couldn't be processed.",
                     ErrorCode::IMAGE_CANT_PROCESS,
                     $e

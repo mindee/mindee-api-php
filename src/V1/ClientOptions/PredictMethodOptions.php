@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Mindee\V1\ClientOptions;
 
 use Mindee\Input\PageOptions;
-use Mindee\V1\HTTP\Endpoint;
-use Mindee\V1\HTTP\WorkflowEndpoint;
+use Mindee\V1\Http\Endpoint;
+use Mindee\V1\Http\WorkflowEndpoint;
 
 /**
  * Handles options tied to prediction method.

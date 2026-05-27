@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeAPIException;
+use Mindee\Error\MindeeApiException;
 
 /**
  * A field containing a date value.
@@ -35,7 +35,7 @@ class DateField extends BaseField
      * @param integer|null $pageId Page number for multi pages document.
      * @param boolean $reconstructed Whether the field was reconstructed.
      * @param string $valueKey Key to use for the value.
-     * @throws MindeeAPIException Throws if the date can't be created from the given value.
+     * @throws MindeeApiException Throws if the date can't be created from the given value.
      */
     public function __construct(
         array $rawPrediction,
@@ -61,7 +61,7 @@ class DateField extends BaseField
                         }
                         $this->dateObject = new DateTimeImmutable('@' . $timestamp);
                     } catch (Exception $e) {
-                        throw new MindeeAPIException(
+                        throw new MindeeApiException(
                             "Couldn't create date field from value '" . $this->value . "'",
                             ErrorCode::API_UNPROCESSABLE_ENTITY,
                             $e

@@ -6,7 +6,7 @@ namespace V2;
 
 use Mindee\Error\MindeeV2HttpException;
 use Mindee\Input\PathInput;
-use Mindee\Input\URLInputSource;
+use Mindee\Input\UrlInputSource;
 use Mindee\V2\Client;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
@@ -164,7 +164,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testUrlInputSourceMustNotRaiseErrors(): void
     {
-        $urlSource = new URLInputSource(getenv('MINDEE_V2_SE_TESTS_BLANK_PDF_URL'));
+        $urlSource = new UrlInputSource(getenv('MINDEE_V2_SE_TESTS_BLANK_PDF_URL'));
 
         $inferenceParams = new ExtractionParameters($this->modelId);
 
@@ -227,7 +227,7 @@ class ClientV2TestFunctional extends TestCase
 
         $inferenceParams = new ExtractionParameters(
             $this->modelId,
-            webhooksIds: [
+            webhookIds: [
                 getenv('MINDEE_V2_FAILURE_WEBHOOK_ID'),
                 getenv('MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID')]
         );
