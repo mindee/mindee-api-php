@@ -132,7 +132,7 @@ class ClientV2Test extends TestCase
             'Model Id mismatch'
         );
 
-        $supplierName = $loaded->inference->result->fields['supplier_name']->value ?? null;
+        $supplierName = $loaded->inference->result->fields['supplier_name']->getStringValue();
         self::assertSame(
             'John Smith',
             $supplierName,
