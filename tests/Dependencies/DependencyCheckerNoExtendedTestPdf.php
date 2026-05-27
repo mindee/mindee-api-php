@@ -17,6 +17,8 @@ use stdClass;
 
 require_once(__DIR__ . "/../TestingUtilities.php");
 
+class DummyImagick {}
+
 class DependencyCheckerNoExtendedTestPdf extends TestCase
 {
     public function testNoImageExtractor(): void
@@ -35,8 +37,9 @@ class DependencyCheckerNoExtendedTestPdf extends TestCase
     {
         $this->expectException(MindeeUnhandledException::class);
         if (!class_exists('Imagick')) {
-            class_alias(stdClass::class, 'Imagick');
+            class_alias(DummyImagick::class, 'Imagick');
         }
+
         $inputImage = new Imagick();
         $filename = "dummy";
         $saveFormat = "pdf";
