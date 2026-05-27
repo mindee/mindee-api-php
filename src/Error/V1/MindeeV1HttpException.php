@@ -7,7 +7,10 @@ declare(strict_types=1);
  * Mindee HTTP Exceptions.
  */
 
-namespace Mindee\Error;
+namespace Mindee\Error\V1;
+
+use Mindee\Error\ErrorCode;
+use Mindee\Error\MindeeException;
 
 use function array_key_exists;
 use function is_array;
@@ -18,7 +21,7 @@ use function is_string;
  *
  * Handles uncaught error codes.
  */
-class MindeeHttpException extends MindeeException
+class MindeeV1HttpException extends MindeeException
 {
     /**
      * @var string|null API code as sent by the server.
@@ -150,10 +153,10 @@ class MindeeHttpException extends MindeeException
             $code = 500;
         }
         if ($code >= 400 && $code <= 499) {
-            return new MindeeHttpClientException($errorObj, $url, $code);
+            return new self($errorObj, $url, $code);
         }
         if ($code >= 500 && $code <= 599) {
-            return new MindeeHttpClientException($errorObj, $url, $code);
+            return new self($errorObj, $url, $code);
         }
 
         return new self($errorObj, $url, $code);

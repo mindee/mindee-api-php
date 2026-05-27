@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace V1\Parsing\Common\Extras;
 
+use Mindee\Input\PathInput;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\PredictOptions;
@@ -26,7 +27,7 @@ class ExtrasIntegrationFunctional extends TestCase
 
     public function testShouldSendCropperExtra(): void
     {
-        $sample = $this->client->sourceFromPath(
+        $sample = new PathInput(
             TestingUtilities::getV1DataDir() . "/products/invoices/default_sample.jpg"
         );
         $predictOptions = new PredictOptions();
@@ -42,7 +43,7 @@ class ExtrasIntegrationFunctional extends TestCase
 
     public function testShouldSendFullTextOcrExtra(): void
     {
-        $sample = $this->client->sourceFromPath(
+        $sample = new PathInput(
             TestingUtilities::getV1DataDir() . "/products/international_id/default_sample.jpg"
         );
         $predictOptions = new PredictOptions();

@@ -6,13 +6,13 @@ namespace V2\Parsing;
 
 use Mindee\Geometry\Point;
 use Mindee\Input\LocalResponse;
-use Mindee\V2\Parsing\ErrorItem;
-use Mindee\V2\Parsing\ErrorResponse;
+use Mindee\V2\Parsing\Error\ErrorItem;
+use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\Field\FieldConfidence;
 use Mindee\V2\Parsing\Inference\Field\ListField;
 use Mindee\V2\Parsing\Inference\Field\ObjectField;
 use Mindee\V2\Parsing\Inference\Field\SimpleField;
-use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
@@ -57,6 +57,7 @@ class ExtractionResponseTest extends TestCase
         );
         $totalAmount = $fields->getSimpleField('total_amount');
         self::assertEmpty($totalAmount->value);
+        self::assertNull($totalAmount->getFloatValue());
 
         self::assertInstanceOf(
             ListField::class,
@@ -119,7 +120,7 @@ class ExtractionResponseTest extends TestCase
 
         $date = $fields->get('date');
         self::assertInstanceOf(SimpleField::class, $date);
-        self::assertSame('2019-11-02', $date->value, "'date' value mismatch");
+        self::assertSame('2019-11-02', $date->getStringValue(), "'date' value mismatch");
 
         $taxes = $fields->getListField('taxes');
         self::assertNotNull($taxes, "'taxes' field must exist");
@@ -132,7 +133,7 @@ class ExtractionResponseTest extends TestCase
 
         $baseTax = $taxItemObj->fields->get('base');
         self::assertInstanceOf(SimpleField::class, $baseTax);
-        self::assertSame(31.5, $baseTax->value, "'taxes.base' value mismatch");
+        self::assertSame(31.5, $baseTax->getFloatValue(), "'taxes.base' value mismatch");
         self::assertNotNull((string) $taxes, "'taxes'.__toString() must not be null");
 
         $supplierAddress = $fields->getObjectField('supplier_address');
@@ -142,7 +143,7 @@ class ExtractionResponseTest extends TestCase
         $country = $supplierAddress->fields->get('country');
         self::assertNotNull($country, "'supplier_address.country' must exist");
         self::assertInstanceOf(SimpleField::class, $country);
-        self::assertSame('USA', $country->value, 'Country mismatch');
+        self::assertSame('USA', $country->getStringValue(), 'Country mismatch');
         self::assertSame('USA', (string) $country, "'country'.__toString() mismatch");
         self::assertNotNull((string) $supplierAddress, "'supplier_address'.__toString() must not be null");
 
@@ -150,7 +151,7 @@ class ExtractionResponseTest extends TestCase
         self::assertInstanceOf(ObjectField::class, $customerAddr);
         $city = $customerAddr->fields->get('city');
         self::assertInstanceOf(SimpleField::class, $city);
-        self::assertSame('New York', $city->value, 'City mismatch');
+        self::assertSame('New York', $city->getStringValue(), 'City mismatch');
 
         self::assertNull($inference->result->options ?? null, 'Options must be null');
     }
@@ -196,7 +197,7 @@ class ExtractionResponseTest extends TestCase
         self::assertInstanceOf(ObjectField::class, $firstItem);
         $deepSimple = $firstItem->fields->get('sub_object_object_sub_object_list_simple');
         self::assertInstanceOf(SimpleField::class, $deepSimple);
-        self::assertSame('value_9', $deepSimple->value);
+        self::assertSame('value_9', $deepSimple->getStringValue());
     }
 
     /**
@@ -212,27 +213,30 @@ class ExtractionResponseTest extends TestCase
 
         $fieldSimpleString = $fields->get('field_simple_string');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleString);
-        self::assertIsString($fieldSimpleString->value);
+        self::assertIsString($fieldSimpleString->getStringValue());
 
         $fieldSimpleFloat = $fields->get('field_simple_float');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleFloat);
-        self::assertIsFloat($fieldSimpleFloat->value);
+        self::assertIsFloat($fieldSimpleFloat->getFloatValue());
 
         $fieldSimpleInt = $fields->get('field_simple_int');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleInt);
-        self::assertIsFloat($fieldSimpleInt->value);
+        self::assertIsFloat($fieldSimpleInt->getFloatValue());
 
         $fieldSimpleZero = $fields->get('field_simple_zero');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleZero);
-        self::assertIsFloat($fieldSimpleZero->value);
+        self::assertIsFloat($fieldSimpleZero->getFloatValue());
 
         $fieldSimpleBool = $fields->get('field_simple_bool');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleBool);
-        self::assertIsBool($fieldSimpleBool->value);
+        self::assertIsBool($fieldSimpleBool->getBoolValue());
 
         $fieldSimpleNull = $fields->get('field_simple_null');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleNull);
         self::assertNull($fieldSimpleNull->value);
+        self::assertNull($fieldSimpleNull->getStringValue());
+        self::assertNull($fieldSimpleNull->getFloatValue());
+        self::assertNull($fieldSimpleNull->getBoolValue());
 
         $fieldSimpleList = $fields->get('field_simple_list');
         self::assertInstanceOf(ListField::class, $fieldSimpleList);
@@ -241,11 +245,11 @@ class ExtractionResponseTest extends TestCase
 
         $firstSimpleItem = $simpleItems[0];
         self::assertInstanceOf(SimpleField::class, $firstSimpleItem);
-        self::assertIsString($firstSimpleItem->value);
+        self::assertIsString($firstSimpleItem->getStringValue());
 
         foreach ($fieldSimpleList->items as $item) {
             self::assertInstanceOf(SimpleField::class, $item);
-            self::assertIsString($item->value);
+            self::assertIsString($item->getStringValue());
         }
 
         $fieldObject = $fields->get('field_object');
@@ -258,7 +262,7 @@ class ExtractionResponseTest extends TestCase
 
         $subfield1 = $fieldObjectFields->getSimpleField('subfield_1');
         self::assertInstanceOf(SimpleField::class, $subfield1);
-        self::assertIsString($subfield1->value);
+        self::assertIsString($subfield1->getStringValue());
 
         $fieldObjectList = $fields->get('field_object_list');
         self::assertInstanceOf(ListField::class, $fieldObjectList);
@@ -270,13 +274,13 @@ class ExtractionResponseTest extends TestCase
 
         $firstObjectSubfield = $firstObjectItem->fields->get('subfield_1');
         self::assertInstanceOf(SimpleField::class, $firstObjectSubfield);
-        self::assertIsString($firstObjectSubfield->value);
+        self::assertIsString($firstObjectSubfield->getStringValue());
 
         foreach ($fieldObjectList->items as $item) {
             self::assertInstanceOf(ObjectField::class, $item);
             $subfield = $item->fields->get('subfield_1');
             self::assertInstanceOf(SimpleField::class, $subfield);
-            self::assertIsString($subfield->value);
+            self::assertIsString($subfield->getStringValue());
         }
     }
 

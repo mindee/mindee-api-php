@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace V1\Input;
 
+use Mindee\Input\UrlInputSource;
 use Mindee\V1\Client;
 use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +31,7 @@ class UrlInputSourceTestFunctional extends TestCase
 
     public function testLoadLocalFile(): void
     {
-        $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
+        $urlSource = new UrlInputSource($this->referenceFilePath);
         $localSource = $urlSource->asLocalInputSource();
         $result = $this->client->parse(InvoiceV4::class, $localSource);
         self::assertSame(1, $result->document->nPages);
@@ -39,7 +40,7 @@ class UrlInputSourceTestFunctional extends TestCase
 
     public function testCustomFileName(): void
     {
-        $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
+        $urlSource = new UrlInputSource($this->referenceFilePath);
         $localSource = $urlSource->asLocalInputSource("customName.pdf");
         $result = $this->client->parse(InvoiceV4::class, $localSource);
         self::assertSame(1, $result->document->nPages);
@@ -48,14 +49,14 @@ class UrlInputSourceTestFunctional extends TestCase
 
     public function testSaveFile(): void
     {
-        $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
+        $urlSource = new UrlInputSource($this->referenceFilePath);
         $urlSource->saveToFile($this->outputFilePath);
         self::assertFileExists($this->outputFilePath . "blank_1.pdf");
     }
 
     public function testSaveFileWithFilename(): void
     {
-        $urlSource = $this->client->sourceFromUrl($this->referenceFilePath);
+        $urlSource = new UrlInputSource($this->referenceFilePath);
         $urlSource->saveToFile($this->outputFilePath, "customFileName.pdf");
         self::assertFileExists($this->outputFilePath . "customFileName.pdf");
     }

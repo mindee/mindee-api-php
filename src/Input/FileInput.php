@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
-use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeSourceException;
 use CURLFile;
 
 /**

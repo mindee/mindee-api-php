@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Mindee\V2\FileOperations;
 
-use Mindee\Error\MindeeException;
-use Mindee\Extraction\ExtractedPdf;
 use ArrayObject;
 use Exception;
+use Mindee\Error\MindeeException;
+use Mindee\Pdf\ExtractedPdf;
 
 use function sprintf;
 

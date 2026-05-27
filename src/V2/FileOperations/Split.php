@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeInputException;
-use Mindee\Extraction\ExtractedPdf;
-use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\LocalInputSource;
+use Mindee\Pdf\ExtractedPdf;
+use Mindee\Pdf\PdfExtractor;
 
 /**
  * V2 Split operation.

@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mindee\Extraction;
+namespace Mindee\Pdf;
 
+use Imagick;
+use ImagickException;
+use InvalidArgumentException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\MindeePdfException;
 use Mindee\Input\LocalInputSource;
@@ -13,9 +16,6 @@ use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use setasign\Fpdi\PdfParser\Filter\FilterException;
 use setasign\Fpdi\PdfParser\PdfParserException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
-use Imagick;
-use ImagickException;
-use InvalidArgumentException;
 
 use function count;
 use function is_array;

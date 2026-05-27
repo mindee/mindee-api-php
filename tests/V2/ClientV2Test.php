@@ -10,7 +10,7 @@ use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\Http\MindeeApiV2;
-use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -46,10 +46,10 @@ class ClientV2Test extends TestCase
         $input = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
         $params = new ExtractionParameters('dummy-model-id', textContext: 'dummy text context');
 
-        $response = $mindeeClient->enqueueInference($input, $params);
+        $response = $mindeeClient->enqueue($input, $params);
 
         self::assertNotNull($response, 'enqueue() must return a response');
-        self::assertInstanceOf(JobResponse::class, $response);
+        self::assertEmpty($response->job->error);
     }
 
     public function testDocumentGetJobAsync(): void
@@ -132,7 +132,7 @@ class ClientV2Test extends TestCase
             'Model Id mismatch'
         );
 
-        $supplierName = $loaded->inference->result->fields['supplier_name']->value ?? null;
+        $supplierName = $loaded->inference->result->fields['supplier_name']->getStringValue();
         self::assertSame(
             'John Smith',
             $supplierName,

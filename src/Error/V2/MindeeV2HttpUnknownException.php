@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mindee\Error;
+namespace Mindee\Error\V2;
 
-use Mindee\V2\Parsing\ErrorResponse;
+use Mindee\V2\Parsing\Error\ErrorResponse;
 
 /**
  * Unknown HTTP error for the V2 API.

@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mindee\Error;
+namespace Mindee\Error\V2;
 
-use Mindee\V2\Parsing\ErrorItem;
-use Mindee\V2\Parsing\ErrorResponse;
+use Mindee\Error\MindeeException;
+use Mindee\V2\Parsing\Error\ErrorItem;
+use Mindee\V2\Parsing\Error\ErrorResponse;
 
 /**
  * Exceptions relating to HTTP errors for the V2 API.

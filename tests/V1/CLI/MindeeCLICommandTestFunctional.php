@@ -9,7 +9,7 @@ require_once(__DIR__ . "/../../../bin/MindeeCLIDocuments.php");
 require_once(__DIR__ . "/../../TestingUtilities.php");
 require_once(__DIR__ . "/MindeeCLITestingUtilities.php");
 
-use Mindee\CLI\MindeeCLIDocuments;
+use Mindee\Cli\MindeeCLIDocuments;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 

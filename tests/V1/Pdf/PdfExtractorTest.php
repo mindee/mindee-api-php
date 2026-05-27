@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace V1\Extraction;
+namespace V1\Pdf;
 
-use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
+use Mindee\Pdf\PdfExtractor;
 use Mindee\V1\Client;
 use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;

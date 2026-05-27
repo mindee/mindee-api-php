@@ -1,13 +1,14 @@
 <?php
 
 use Mindee\V1\Client;
+use Mindee\Input\PathInput;
 use Mindee\V1\Product\Fr\IdCard\IdCardV2;
 
 // Init a new client
 $mindeeClient = new Client("my-api-key");
 
 // Load a file from disk
-$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+$inputSource = new PathInput("/path/to/the/file.ext");
 
 // Parse the file
 $apiResponse = $mindeeClient->parse(IdCardV2::class, $inputSource);

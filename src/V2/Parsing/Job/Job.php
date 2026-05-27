@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Parsing;
+namespace Mindee\V2\Parsing\Job;
 
 use DateTime;
 use Exception;
+use Mindee\V2\Parsing\Error\ErrorResponse;
 
 use function array_key_exists;
 

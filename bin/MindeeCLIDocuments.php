@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mindee\CLI;
+namespace Mindee\Cli;
 
 use Mindee\V1\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\V1\Product\BillOfLading\BillOfLadingV1;

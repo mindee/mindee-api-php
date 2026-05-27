@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace V2\Parsing;
 
 use DateTime;
-use Mindee\V2\Parsing\ErrorItem;
-use Mindee\V2\Parsing\ErrorResponse;
-use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Parsing\Error\ErrorItem;
+use Mindee\V2\Parsing\Error\ErrorResponse;
+use Mindee\V2\Parsing\Job\JobResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
