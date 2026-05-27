@@ -27,13 +27,13 @@ class UrlInputSourceTest extends TestCase
         putenv('MINDEE_API_KEY=' . $this->oldKey);
     }
 
-    public function testInputFromHTTPShouldNotThrow(): void
+    public function testInputFromHttpShouldNotThrow(): void
     {
         $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
         self::assertInstanceOf(UrlInputSource::class, $inputDoc);
     }
 
-    public function testInputFromHTTPShouldThrow(): void
+    public function testInputFromHttpShouldThrow(): void
     {
         $this->expectException(MindeeSourceException::class);
         new UrlInputSource(url: "http://example.com/invoice.pdf");
