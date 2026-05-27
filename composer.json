@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "lint": "php-cs-fixer fix --dry-run --diff",
-    "phpstan": "phpstan analyse src --level 6",
+    "phpstan": "phpstan analyse",
     "format": "php-cs-fixer fix",
     "rector": "rector process src tests",
     "rector:check": "rector process src tests --dry-run"
