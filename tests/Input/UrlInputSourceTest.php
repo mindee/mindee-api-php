@@ -29,7 +29,7 @@ class UrlInputSourceTest extends TestCase
 
     public function testInputFromHttpShouldNotThrow(): void
     {
-        $inputDoc = $this->dummyClient->sourceFromUrl("https://example.com/invoice.pdf");
+        $inputDoc = new UrlInputSource("https://example.com/invoice.pdf");
         self::assertInstanceOf(UrlInputSource::class, $inputDoc);
     }
 
@@ -42,7 +42,7 @@ class UrlInputSourceTest extends TestCase
     public function testDownloadFileFails(): void
     {
         $dummyAddress = "addressthatdoesntworkforcipurposes";
-        $urlSource = $this->dummyClient->sourceFromUrl("https://$dummyAddress");
+        $urlSource = new UrlInputSource("https://$dummyAddress");
         $this->expectException(MindeeSourceException::class);
         $this->expectExceptionMessage("Failed to download file: Could not resolve host: $dummyAddress");
         $urlSource->asLocalInputSource("test.pdf");
@@ -50,7 +50,7 @@ class UrlInputSourceTest extends TestCase
 
     public function testInvalidFileName(): void
     {
-        $urlSource = $this->dummyClient->sourceFromUrl("https://addressthatdoesntworkforcipurposes");
+        $urlSource = new UrlInputSource("https://addressthatdoesntworkforcipurposes");
         $this->expectException(MindeeSourceException::class);
         $this->expectExceptionMessage("Filename must end with an extension.");
         $urlSource->asLocalInputSource("toto");

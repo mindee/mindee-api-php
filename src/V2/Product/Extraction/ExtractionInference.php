@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Extraction;
 
 use Mindee\Parsing\SummaryHelper;
-use Mindee\V2\Parsing\BaseInference;
+use Mindee\V2\Parsing\Inference\BaseInference;
 use Mindee\V2\Parsing\Inference\InferenceActiveOptions;
 
 /**

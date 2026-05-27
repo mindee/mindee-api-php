@@ -217,29 +217,29 @@ class LocalInputSourceTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
 
-        $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/broken_fixable.pdf', true);
+        new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_fixable.pdf', true);
     }
 
     public function testShouldRaiseErrorForBrokenUnfixablePdf(): void
     {
         $this->expectException(MindeeSourceException::class);
 
-        $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/broken_unfixable.pdf', true);
+        new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_unfixable.pdf', true);
     }
 
     public function testShouldSendCorrectResultsForBrokenFixableInvoicePdf(): void
     {
-        $sourceDocOriginal = $this->dummyClient->sourceFromPath(
+        $sourceDocOriginal = new PathInput(
             TestingUtilities::getV1DataDir() . '/products/invoices/invoice.pdf'
         );
 
-        $sourceDocFixed = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/broken_invoice.pdf', true);
+        $sourceDocFixed = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_invoice.pdf', true);
         self::assertSame($sourceDocFixed->readContents()[1], $sourceDocOriginal->readContents()[1]);
     }
 
     public function testImageQualityCompressionFromInputSource(): void
     {
-        $receiptInput = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
+        $receiptInput = new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
         $receiptInput->compress(80);
         file_put_contents(
             TestingUtilities::getRootDataDir() . "/output/compress_indirect.jpg",
@@ -252,7 +252,7 @@ class LocalInputSourceTest extends TestCase
 
     public function testDirectImageQualityCompression(): void
     {
-        $receiptInput = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
+        $receiptInput = new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
         $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
         $compresses = [
             100 => ImageCompressor::compress($receiptInput->fileObject, 100),
@@ -287,9 +287,9 @@ class LocalInputSourceTest extends TestCase
 
     public function testPdfSourceText(): void
     {
-        $imageInput = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
-        $pdfEmptyInput = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
-        $pdfSourceText = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . '/pdf/multipage.pdf');
+        $imageInput = new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
+        $pdfEmptyInput = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+        $pdfSourceText = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage.pdf');
         self::assertTrue($pdfSourceText->hasSourceText(), "Source text should be properly detected.");
         self::assertFalse($pdfEmptyInput->hasSourceText(), "Empty PDFs should not have source text detected.");
         self::assertFalse($imageInput->hasSourceText(), "An image should not have any text.");
@@ -297,7 +297,7 @@ class LocalInputSourceTest extends TestCase
 
     public function testCompressPdfFromInputSource(): void
     {
-        $pdfInput = $this->dummyClient->sourceFromPath(
+        $pdfInput = new PathInput(
             TestingUtilities::getFileTypesDir() . "/pdf/not_blank_image_only.pdf"
         );
         self::assertFalse($pdfInput->hasSourceText());
@@ -321,7 +321,7 @@ class LocalInputSourceTest extends TestCase
 
     public function testCompressPdfFromCompressor(): void
     {
-        $pdfInput = $this->dummyClient->sourceFromPath(
+        $pdfInput = new PathInput(
             TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf'
         );
         $sizeOriginal = filesize(TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf');
@@ -357,7 +357,7 @@ class LocalInputSourceTest extends TestCase
     public function testSourceTextPdfCompression(): void
     {
 
-        $pdfInput = $this->dummyClient->sourceFromPath(
+        $pdfInput = new PathInput(
             TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf"
         );
 

@@ -14,7 +14,7 @@ use Mindee\V1\ClientOptions\PredictMethodOptions;
 $mindeeClient = new Client("my-api-key");
 
 // Load a file from disk
-$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+$inputSource = new PathInput("/path/to/the/file.ext");
 
 // Create a custom endpoint
 $customEndpoint = $mindeeClient->createEndpoint(

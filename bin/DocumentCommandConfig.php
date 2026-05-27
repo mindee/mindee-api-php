@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mindee\CLI;
+namespace Mindee\Cli;
 
 /**
  * Document configuration class for CLI usage.

@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Dependencies;
 
+use Imagick;
 use Mindee\Error\MindeeUnhandledException;
-use Mindee\Extraction\ExtractedImage;
-use Mindee\Extraction\ExtractedPdf;
-use Mindee\V1\Image\ImageExtractor;
-use Mindee\Extraction\PdfExtractor;
+use Mindee\Image\ExtractedImage;
 use Mindee\Input\PathInput;
+use Mindee\Pdf\ExtractedPdf;
+use Mindee\Pdf\PdfExtractor;
+use Mindee\V1\Image\ImageExtractor;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
-use Imagick;
-use stdClass;
 
 require_once(__DIR__ . "/../TestingUtilities.php");
 

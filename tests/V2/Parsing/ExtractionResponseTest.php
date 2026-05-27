@@ -6,13 +6,13 @@ namespace V2\Parsing;
 
 use Mindee\Geometry\Point;
 use Mindee\Input\LocalResponse;
-use Mindee\V2\Parsing\ErrorItem;
-use Mindee\V2\Parsing\ErrorResponse;
+use Mindee\V2\Parsing\Error\ErrorItem;
+use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\Field\FieldConfidence;
 use Mindee\V2\Parsing\Inference\Field\ListField;
 use Mindee\V2\Parsing\Inference\Field\ObjectField;
 use Mindee\V2\Parsing\Inference\Field\SimpleField;
-use Mindee\V2\Parsing\JobResponse;
+use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;

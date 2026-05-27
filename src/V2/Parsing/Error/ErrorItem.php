@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Parsing;
+namespace Mindee\V2\Parsing\Error;
 
 /**
  * Explicit details on a problem.

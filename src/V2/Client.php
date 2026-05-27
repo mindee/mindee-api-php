@@ -11,8 +11,7 @@ use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
-use Mindee\V2\Parsing\JobResponse;
-use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
+use Mindee\V2\Parsing\Job\JobResponse;
 
 /**
  * Mindee Client V2.
@@ -34,22 +33,6 @@ class Client
     public function __construct(?string $apiKey = null)
     {
         $this->mindeeApi = new MindeeApiV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
-    }
-
-    /**
-     * Send the document to an asynchronous endpoint and return its ID in the queue.
-     *
-     * @param InputSource $inputSource File to parse.
-     * @param ExtractionParameters $params Parameters relating to prediction options.
-     * @return JobResponse A JobResponse containing the job (queue) corresponding to a document.
-     * @throws MindeeException Throws if the input document is not provided.
-     * @category Asynchronous
-     */
-    public function enqueueInference(
-        InputSource $inputSource,
-        ExtractionParameters $params
-    ): JobResponse {
-        return $this->enqueue($inputSource, $params);
     }
 
     /**

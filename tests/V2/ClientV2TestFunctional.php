@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace V2;
 
-use Mindee\Error\MindeeV2HttpException;
+use Mindee\Error\V2\MindeeV2HttpException;
 use Mindee\Input\PathInput;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\Client;
@@ -103,7 +103,7 @@ class ClientV2TestFunctional extends TestCase
         $inferenceParams = new ExtractionParameters('INVALID MODEL ID');
 
         try {
-            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+            $this->mindeeClient->enqueue($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
             self::assertStringStartsWith('422-', $e->errorCode);
             self::assertNotEmpty($e->title);
@@ -118,7 +118,7 @@ class ClientV2TestFunctional extends TestCase
         $inferenceParams = new ExtractionParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21', textContext: 'this is invalid');
 
         try {
-            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+            $this->mindeeClient->enqueue($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
             self::assertStringStartsWith('404-', $e->errorCode);
             self::assertNotEmpty($e->title);
@@ -154,7 +154,7 @@ class ClientV2TestFunctional extends TestCase
         );
 
         try {
-            $this->mindeeClient->enqueueInference($source, $inferenceParams);
+            $this->mindeeClient->enqueue($source, $inferenceParams);
         } catch (MindeeV2HttpException $e) {
             self::assertStringStartsWith('422-', $e->errorCode);
             self::assertNotEmpty($e->title);

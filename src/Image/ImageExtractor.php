@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mindee\Extraction;
+namespace Mindee\Image;
 
 use Exception;
+use Imagick;
+use ImagickException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeGeometryException;
@@ -16,8 +18,6 @@ use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
 use Mindee\V1\Parsing\Standard\BaseField;
-use Imagick;
-use ImagickException;
 
 use function count;
 use function sprintf;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V2\FileOperations;
 
-use Mindee\Extraction\ExtractedImage;
-use Mindee\Extraction\ImageExtractor;
+use Mindee\Image\ExtractedImage;
+use Mindee\Image\ImageExtractor;
 use Mindee\Input\LocalInputSource;
 use Mindee\V2\Product\Crop\CropItem;
 
