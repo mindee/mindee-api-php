@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace V1\Input;
 
+use Mindee\Input\UrlInputSource;
 use Mindee\V1\Client;
 use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;

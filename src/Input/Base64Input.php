@@ -19,9 +19,8 @@ class Base64Input extends LocalInputSource
     /**
      * @param string $strBase64 Raw data as a base64-encoded string.
      * @param string $fileName File name of the input.
-     * @param boolean $fixPdf Whether to try to fix a broken PDF.
      */
-    public function __construct(string $strBase64, string $fileName, bool $fixPdf = false)
+    public function __construct(string $strBase64, string $fileName)
     {
         $this->tempFile = tempnam(sys_get_temp_dir(), 'b64_');
         $this->fileName = $fileName;
@@ -30,7 +29,7 @@ class Base64Input extends LocalInputSource
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $this->fileMimetype = finfo_buffer($finfo, base64_decode($strBase64, true));
         $this->fileObject = new CURLFile($this->tempFile, $this->fileMimetype, $this->fileName);
-        parent::__construct($fixPdf);
+        parent::__construct();
     }
 
 

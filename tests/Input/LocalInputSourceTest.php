@@ -217,14 +217,16 @@ class LocalInputSourceTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
 
-        new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_fixable.pdf', true);
+        $pathInput = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_fixable.pdf');
+        $pathInput->fixPdf();
     }
 
     public function testShouldRaiseErrorForBrokenUnfixablePdf(): void
     {
         $this->expectException(MindeeSourceException::class);
 
-        new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_unfixable.pdf', true);
+        $pathInput = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_unfixable.pdf');
+        $pathInput->fixPdf();
     }
 
     public function testShouldSendCorrectResultsForBrokenFixableInvoicePdf(): void
@@ -233,7 +235,8 @@ class LocalInputSourceTest extends TestCase
             TestingUtilities::getV1DataDir() . '/products/invoices/invoice.pdf'
         );
 
-        $sourceDocFixed = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_invoice.pdf', true);
+        $sourceDocFixed = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/broken_invoice.pdf');
+        $sourceDocFixed->fixPdf();
         self::assertSame($sourceDocFixed->readContents()[1], $sourceDocOriginal->readContents()[1]);
     }
 

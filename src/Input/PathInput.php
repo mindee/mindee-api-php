@@ -13,9 +13,8 @@ class PathInput extends LocalInputSource
 {
     /**
      * @param string $filePath Path to open.
-     * @param boolean $fixPdf Whether to try to fix a broken PDF.
      */
-    public function __construct(string $filePath, bool $fixPdf = false)
+    public function __construct(string $filePath)
     {
         $this->filePath = $filePath;
         $this->fileName = basename($filePath);
@@ -25,6 +24,6 @@ class PathInput extends LocalInputSource
         $this->fileMimetype = $mimeType;
         $this->fileObject = new CURLFile($this->filePath, $mimeType, $this->fileName);
         finfo_close($file);
-        parent::__construct($fixPdf);
+        parent::__construct();
     }
 }

@@ -97,13 +97,9 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Base constructor, mostly used for Mime type checking.
-     * @param boolean $fixPdf Whether to attempt to fix the PDF.
      */
-    public function __construct(bool $fixPdf = false)
+    public function __construct()
     {
-        if ($fixPdf) {
-            $this->fixPdf();
-        }
         $this->checkMimeType();
     }
 

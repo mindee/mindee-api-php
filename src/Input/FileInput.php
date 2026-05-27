@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
-use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeSourceException;
 use CURLFile;
 
 /**
@@ -20,16 +18,15 @@ class FileInput extends LocalInputSource
 
     /**
      * @param resource &$file File reference.
-     * @param boolean $fixPdf Whether to try to fix a broken PDF.
      */
-    public function __construct(&$file, bool $fixPdf = false)
+    public function __construct(&$file)
     {
         $this->file = &$file;
         $this->filePath = stream_get_meta_data($this->file)['uri'];
         $this->fileName = basename($this->filePath);
         $this->fileMimetype = mime_content_type($this->filePath);
         $this->fileObject = new CURLFile($this->filePath, $this->fileName, $this->fileMimetype);
-        parent::__construct($fixPdf);
+        parent::__construct();
     }
 
     /**
