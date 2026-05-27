@@ -8,7 +8,7 @@ use Mindee\Error\MindeeHttpException;
 use Mindee\Input\InputSource;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\Input\URLInputSource;
+use Mindee\Input\UrlInputSource;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\PredictOptions;
@@ -359,7 +359,7 @@ Available products:";
      * @param string $filePathOrUrl Path of the file, or URL if it's remote.
      * @param Client $client Mindee Client.
      * @param OutputInterface $output Output interface of the CLI.
-     * @return PathInput|URLInputSource|null A valid InputSource.
+     * @return PathInput|UrlInputSource|null A valid InputSource.
      */
     private function getFileSource(string $filePathOrUrl, Client $client, OutputInterface $output)
     {

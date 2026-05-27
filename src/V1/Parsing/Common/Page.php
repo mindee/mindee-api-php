@@ -8,6 +8,7 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeUnsetException;
 use Mindee\V1\Parsing\Common\Extras\Extras;
+use Stringable;
 
 use function array_key_exists;
 use function is_subclass_of;
@@ -15,7 +16,7 @@ use function is_subclass_of;
 /**
  * Base Page object for predictions.
  */
-class Page
+class Page implements Stringable
 {
     /**
      * @var integer ID of the current page.

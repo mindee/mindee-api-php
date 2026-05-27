@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Resume;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The list of the candidate's educational background.
  */
-class ResumeV1Education
+class ResumeV1Education implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -44,20 +45,15 @@ class ResumeV1Education
      * @var string|null The year when the education program or course began.
      */
     public ?string $startYear;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->pageId = $pageId;
         $this->degreeDomain = $rawPrediction["degree_domain"] ?? null;
         $this->degreeType = $rawPrediction["degree_type"] ?? null;
         $this->endMonth = $rawPrediction["end_month"] ?? null;

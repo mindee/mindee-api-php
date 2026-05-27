@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\NutritionFactsLabel;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The size of a single serving of the product.
  */
-class NutritionFactsLabelV1ServingSize
+class NutritionFactsLabelV1ServingSize implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -24,23 +25,18 @@ class NutritionFactsLabelV1ServingSize
      * @var string|null The unit for the amount of a single serving.
      */
     public ?string $unit;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->amount = isset($rawPrediction["amount"])
             ? (float) ($rawPrediction["amount"]) : null;
         $this->unit = $rawPrediction["unit"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

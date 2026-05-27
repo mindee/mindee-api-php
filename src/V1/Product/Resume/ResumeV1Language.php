@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Resume;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The list of languages that the candidate is proficient in.
  */
-class ResumeV1Language
+class ResumeV1Language implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -24,20 +25,15 @@ class ResumeV1Language
      * @var string|null The candidate's level for the language.
      */
     public ?string $level;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->pageId = $pageId;
         $this->language = $rawPrediction["language"] ?? null;
         $this->level = $rawPrediction["level"] ?? null;
     }

@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\BillOfLading;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The goods being shipped.
  * @extends ArrayObject<integer, BillOfLadingV1CarrierItem>
  */
-class BillOfLadingV1CarrierItems extends ArrayObject
+class BillOfLadingV1CarrierItems extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

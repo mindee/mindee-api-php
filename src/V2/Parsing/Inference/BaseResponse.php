@@ -10,17 +10,9 @@ namespace Mindee\V2\Parsing\Inference;
 abstract class BaseResponse
 {
     /**
-     * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Raw HTTP response from the server.
+     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawHttp Raw server response array.
      */
-    private array $rawHttp;
-
-    /**
-     * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
-     */
-    protected function __construct(array $rawResponse)
-    {
-        $this->rawHttp = $rawResponse;
-    }
+    protected function __construct(private readonly array $rawHttp) {}
 
     /**
      * @return string Raw dump of the JSON response.

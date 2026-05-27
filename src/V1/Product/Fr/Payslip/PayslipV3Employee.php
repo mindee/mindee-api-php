@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Information about the employee.
  */
-class PayslipV3Employee
+class PayslipV3Employee implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -44,16 +45,12 @@ class PayslipV3Employee
      * @var string|null The social security number of the employee.
      */
     public ?string $socialSecurityNumber;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -61,7 +58,6 @@ class PayslipV3Employee
         $this->dateOfBirth = $rawPrediction["date_of_birth"] ?? null;
         $this->firstName = $rawPrediction["first_name"] ?? null;
         $this->lastName = $rawPrediction["last_name"] ?? null;
-        $this->pageId = $pageId;
         $this->phoneNumber = $rawPrediction["phone_number"] ?? null;
         $this->registrationNumber = $rawPrediction["registration_number"] ?? null;
         $this->socialSecurityNumber = $rawPrediction["social_security_number"] ?? null;

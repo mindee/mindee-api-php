@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Fr\Payslip;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * Detailed information about the earnings.
  * @extends ArrayObject<integer, PayslipV3SalaryDetail>
  */
-class PayslipV3SalaryDetails extends ArrayObject
+class PayslipV3SalaryDetails extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Extraction;
 
 use Mindee\V2\Parsing\Inference\Field\InferenceFields;
-use Mindee\V2\Parsing\Inference\RAGMetadata;
+use Mindee\V2\Parsing\Inference\RagMetadata;
 use Mindee\V2\Parsing\Inference\RawText;
+use Stringable;
 
 /**
  * Inference result class.
  */
-class ExtractionResult
+class ExtractionResult implements Stringable
 {
     /**
      * @var InferenceFields Fields contained in the inference.
@@ -24,9 +25,9 @@ class ExtractionResult
     public ?RawText $rawText;
 
     /**
-     * @var RAGMetadata|null RAG metadata.
+     * @var RagMetadata|null RAG metadata.
      */
-    public ?RAGMetadata $rag;
+    public ?RagMetadata $rag;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
@@ -39,7 +40,7 @@ class ExtractionResult
             : null;
         $this->rag = isset(
             $rawResponse['rag']
-        ) ? new RAGMetadata($rawResponse['rag']) : null;
+        ) ? new RagMetadata($rawResponse['rag']) : null;
     }
 
     /**

@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\EnergyBill;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The subscription details fee for the energy service.
  */
-class EnergyBillV1Subscription
+class EnergyBillV1Subscription implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -40,16 +41,12 @@ class EnergyBillV1Subscription
      * @var float|null The price per unit of subscription.
      */
     public ?float $unitPrice;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -62,7 +59,6 @@ class EnergyBillV1Subscription
             ? (float) ($rawPrediction["total"]) : null;
         $this->unitPrice = isset($rawPrediction["unit_price"])
             ? (float) ($rawPrediction["unit_price"]) : null;
-        $this->pageId = $pageId;
     }
 
     /**

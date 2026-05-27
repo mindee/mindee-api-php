@@ -9,7 +9,7 @@ use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
 use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
-use Mindee\V2\HTTP\MindeeAPIV2;
+use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\JobResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
@@ -22,9 +22,9 @@ class Client
     use CustomSleepMixin;
 
     /**
-     * @var MindeeAPIV2 Mindee API V2.
+     * @var MindeeApiV2 Mindee API V2.
      */
-    protected MindeeAPIV2 $mindeeApi;
+    protected MindeeApiV2 $mindeeApi;
 
     /**
      * Mindee Client V2.
@@ -33,7 +33,7 @@ class Client
      */
     public function __construct(?string $apiKey = null)
     {
-        $this->mindeeApi = new MindeeAPIV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
+        $this->mindeeApi = new MindeeApiV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
     }
 
     /**

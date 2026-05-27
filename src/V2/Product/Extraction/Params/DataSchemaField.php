@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Extraction\Params;
 
+use Stringable;
+
 /**
  * Data Schema Field.
  */
-class DataSchemaField
+class DataSchemaField implements Stringable
 {
     /**
      * @var string Name of the field in the data schema.
@@ -103,7 +105,7 @@ class DataSchemaField
     public function __toString(): string
     {
 
-        return json_encode(
+        return (string) json_encode(
             $this->toJson(),
             JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
         );

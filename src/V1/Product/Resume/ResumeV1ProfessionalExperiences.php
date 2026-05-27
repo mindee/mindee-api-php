@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Resume;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The list of the candidate's professional experiences.
  * @extends ArrayObject<integer, ResumeV1ProfessionalExperience>
  */
-class ResumeV1ProfessionalExperiences extends ArrayObject
+class ResumeV1ProfessionalExperiences extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

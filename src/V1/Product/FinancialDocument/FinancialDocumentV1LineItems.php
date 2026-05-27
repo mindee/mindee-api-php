@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\FinancialDocument;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * List of line item present on the document.
  * @extends ArrayObject<integer, FinancialDocumentV1LineItem>
  */
-class FinancialDocumentV1LineItems extends ArrayObject
+class FinancialDocumentV1LineItems extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

@@ -86,7 +86,7 @@ class ImageExtractorTest extends TestCase
         }
     }
 
-    public function testGivenAPDFShouldExtractPositionFields(): void
+    public function testGivenAPdfShouldExtractPositionFields(): void
     {
         $imageInput = new PathInput(
             TestingUtilities::getV1DataDir() . "/products/multi_receipts_detector/multipage_sample.pdf"

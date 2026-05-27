@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Crop;
 
+use Stringable;
+
 /**
  * Result of a crop utility inference.
  */
-class CropResult
+class CropResult implements Stringable
 {
     /**
      * @var CropItem[] Crops extracted from the image.

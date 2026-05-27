@@ -40,7 +40,7 @@ class ExtrasIntegrationFunctional extends TestCase
         self::assertGreaterThan(0, count($response->document->inference->pages[0]->extras->cropper->croppings));
     }
 
-    public function testShouldSendFullTextOCRExtra(): void
+    public function testShouldSendFullTextOcrExtra(): void
     {
         $sample = $this->client->sourceFromPath(
             TestingUtilities::getV1DataDir() . "/products/international_id/default_sample.jpg"
@@ -52,6 +52,6 @@ class ExtrasIntegrationFunctional extends TestCase
         $response = $this->client->enqueueAndParse(InternationalIdV2::class, $sample, $predictMethodOptions);
 
         self::assertNotNull($response->document->extras->fullTextOcr);
-        self::assertGreaterThan(10, strlen($response->document->extras->fullTextOcr->content));
+        self::assertGreaterThan(10, strlen((string) $response->document->extras->fullTextOcr->content));
     }
 }

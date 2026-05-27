@@ -48,7 +48,7 @@ class DependencyChecker
             } else {
                 $commandWasExecuted = (bool) shell_exec('which gs');
             }
-        } catch (Exception $e) {
+        } catch (Exception) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need "
                 . "to enable Ghostscript on your PHP installation.",
@@ -96,7 +96,7 @@ class DependencyChecker
                 /** @phpstan-ignore-next-line */
                 TestingUtilities::getV1DataDir() . "/products/expense_receipts/default_sample.jpg"
             );
-        } catch (Exception $e) {
+        } catch (Exception) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need "
                 . "to enable ImageMagick on your PHP installation. Also, you "

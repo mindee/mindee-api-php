@@ -6,6 +6,7 @@ namespace Mindee\V2\Parsing\Inference;
 
 use Mindee\Parsing\SummaryHelper;
 use Mindee\V2\Product\Extraction\Params\DataSchemaActiveOption;
+use Stringable;
 
 /**
  * Options which were activated during the inference.
@@ -14,7 +15,7 @@ use Mindee\V2\Product\Extraction\Params\DataSchemaActiveOption;
  * - By setting their default values on the Platform UI
  * - By explicitly setting them in the inference request
  */
-class InferenceActiveOptions
+class InferenceActiveOptions implements Stringable
 {
     /**
      * @var boolean Whether the Retrieval-Augmented Generation feature was activated.

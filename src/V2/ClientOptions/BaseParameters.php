@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Mindee\V2\ClientOptions;
 
-use function count;
-
 /**
  * Base parameters for running an inference.
  */
@@ -17,14 +15,9 @@ abstract class BaseParameters
     public ?string $alias;
 
     /**
-     * @var string Model ID.
-     */
-    public string $modelId;
-
-    /**
      * @var array<string> Optional webhook IDs.
      */
-    public array $webhooksIds;
+    public array $webhookIds;
 
     /**
      * @var string Slug of the endpoint.
@@ -34,19 +27,17 @@ abstract class BaseParameters
     /**
      * @param string $modelId ID of the model.
      * @param string|null $alias Optional file alias.
-     * @param array<string>|null $webhooksIds List of webhook IDs.
+     * @param array<string>|null $webhookIds List of webhook IDs.
      */
-    public function __construct(string $modelId, ?string $alias, ?array $webhooksIds)
+    public function __construct(public string $modelId, ?string $alias, ?array $webhookIds)
     {
-        $this->modelId = $modelId;
-
         if (isset($alias)) {
             $this->alias = $alias;
         }
-        if (isset($webhooksIds)) {
-            $this->webhooksIds = $webhooksIds;
+        if (isset($webhookIds)) {
+            $this->webhookIds = $webhookIds;
         } else {
-            $this->webhooksIds = [];
+            $this->webhookIds = [];
         }
     }
 
@@ -61,8 +52,8 @@ abstract class BaseParameters
         }
 
 
-        if (!empty($this->webhooksIds)) {
-            $outHash['webhook_ids'] = implode(',', $this->webhooksIds);
+        if (!empty($this->webhookIds)) {
+            $outHash['webhook_ids'] = implode(',', $this->webhookIds);
         }
         return $outHash;
     }

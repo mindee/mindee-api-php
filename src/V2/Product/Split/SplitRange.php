@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Split;
 
 use Mindee\V2\Product\Extraction\ExtractionResponse;
+use Stringable;
 
 /**
  * A single document as identified when splitting a multi-document source file.
  */
-class SplitRange
+class SplitRange implements Stringable
 {
     /**
      * @var integer[] 0-based page indexes, where the first integer indicates the start page and the second integer

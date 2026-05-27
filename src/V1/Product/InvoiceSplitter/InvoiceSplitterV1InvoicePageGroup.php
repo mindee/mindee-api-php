@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\InvoiceSplitter;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * List of page groups. Each group represents a single invoice within a multi-invoice document.
  */
-class InvoiceSplitterV1InvoicePageGroup
+class InvoiceSplitterV1InvoicePageGroup implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -20,21 +21,16 @@ class InvoiceSplitterV1InvoicePageGroup
      * @var int[] List of page indexes that belong to the same invoice (group).
      */
     public array $pageIndexes;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->pageIndexes = $rawPrediction["page_indexes"] ?? [];
-        $this->pageId = $pageId;
     }
 
     /**

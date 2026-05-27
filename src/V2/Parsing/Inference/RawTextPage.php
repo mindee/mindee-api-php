@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference;
 
+use Stringable;
+
 /**
  * Raw text extracted from the page.
  */
-class RawTextPage
+class RawTextPage implements Stringable
 {
     /**
      * Page content as a single string.

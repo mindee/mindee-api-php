@@ -60,7 +60,7 @@ class SplitFunctional extends TestCase
         self::assertGreaterThan(0, $totalAmount->value);
     }
 
-    public function testExtractSplitsFromPDFCorrectly(): void
+    public function testExtractSplitsFromPdfCorrectly(): void
     {
         $inputSource = new PathInput(TestingUtilities::getV2ProductDir() . '/split/default_sample.pdf');
         $splitParams = new SplitParameters($this->splitModelId);

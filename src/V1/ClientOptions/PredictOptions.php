@@ -10,34 +10,20 @@ namespace Mindee\V1\ClientOptions;
 class PredictOptions extends CommonOptions
 {
     /**
-     * @var boolean Whether to include the full text for each page.
-     *              This performs a full OCR operation on the server and will increase response time.
-     */
-    public bool $includeWords;
-
-    /**
-     * @var boolean Whether to include cropper results for each page.
-     *              This performs a cropping operation on the server and may increase response time.
-     */
-    public bool $cropper;
-
-    /**
      * Prediction options.
-     * @param boolean $fullText Whether to include the full OCR text response in compatible APIs.
-     *                          This performs a full OCR operation on the server and will increase response time.
+     * @param boolean $fullText Whether to include the full Ocr text response in compatible APIs.
+     *                          This performs a full Ocr operation on the server and will increase response time.
      * @param boolean $includeWords Whether to include the full text for each page.
-     *                              This performs a full OCR operation on the server and will increase response time.
+     *                              This performs a full Ocr operation on the server and will increase response time.
      * @param boolean $cropper Whether to include cropper results for each page.
      *                         This performs a cropping operation on the server and may increase response time.
      */
     public function __construct(
         bool $fullText = false,
-        bool $includeWords = false,
-        bool $cropper = false
+        public bool $includeWords = false,
+        public bool $cropper = false
     ) {
         parent::__construct($fullText);
-        $this->includeWords = $includeWords;
-        $this->cropper = $cropper;
     }
 
     /**

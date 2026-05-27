@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Generated;
 
 use Mindee\V1\Parsing\Standard\StringField;
+use Stringable;
 
 use function is_float;
 use function is_int;
@@ -12,11 +13,8 @@ use function is_int;
 /**
  * A list of value or words for generated APIs.
  */
-class GeneratedListField
+class GeneratedListField implements Stringable
 {
-    /** @var integer|null ID of the page the object was found on */
-    public ?int $pageId;
-
     /** @var array<GeneratedObjectField|StringField> List of values */
     public array $values = [];
 
@@ -26,10 +24,8 @@ class GeneratedListField
      * @param list<array<string, integer|float|string|bool|null|array<mixed>>> $rawPrediction Array containing the list elements.
      * @param integer|null $pageId ID of the page.
      */
-    public function __construct(array $rawPrediction, ?int $pageId = null)
+    public function __construct(array $rawPrediction, public ?int $pageId = null)
     {
-        $this->pageId = $pageId;
-
         foreach ($rawPrediction as $value) {
             if (isset($value['page_id']) && is_int($value['page_id'])) {
                 $this->pageId = $value['page_id'];

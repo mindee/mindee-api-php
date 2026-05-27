@@ -17,17 +17,9 @@ use function sprintf;
 class Crop
 {
     /**
-     * @var LocalInputSource localInputSource object
-     */
-    private readonly LocalInputSource $localInput;
-
-    /**
      * @param LocalInputSource $localInput LocalInputSource object.
      */
-    public function __construct(LocalInputSource $localInput)
-    {
-        $this->localInput = $localInput;
-    }
+    public function __construct(private readonly LocalInputSource $localInput) {}
 
     /**
      * Extracts a crop zone from a file.

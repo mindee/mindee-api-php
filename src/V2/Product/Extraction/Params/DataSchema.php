@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Extraction\Params;
 
 use InvalidArgumentException;
+use Stringable;
 
 use function get_class;
 use function gettype;
@@ -12,7 +13,7 @@ use function gettype;
 /**
  * Modify the Data Schema.
  */
-class DataSchema
+class DataSchema implements Stringable
 {
     /**
      * @var DataSchemaReplace|null If set, completely replaces the data schema of the model.
@@ -30,7 +31,7 @@ class DataSchema
         } elseif (gettype($dataSchema) === 'array') {
             $jsonData = $dataSchema;
         } else {
-            if (get_class($dataSchema) === self::class) {
+            if ($dataSchema::class === self::class) {
                 $this->replace = $dataSchema->replace;
                 return;
             }
@@ -76,7 +77,7 @@ class DataSchema
     {
         $jsonStr = json_encode($this->toJson(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         $lines = explode("\n", $jsonStr);
-        return implode("\n", array_map(static fn($line) => self::fixLineSpaces($line), $lines)) . "\n";
+        return implode("\n", array_map(self::fixLineSpaces(...), $lines)) . "\n";
     }
 
     /**

@@ -12,9 +12,9 @@ use TypeError;
 
 class PolygonUtilsTest extends TestCase
 {
-    private Polygon $polygonWhichIsNotRectangle;
-    private Polygon $polygon1;
-    private Polygon $polygon2;
+    private readonly Polygon $polygonWhichIsNotRectangle;
+    private readonly Polygon $polygon1;
+    private readonly Polygon $polygon2;
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {

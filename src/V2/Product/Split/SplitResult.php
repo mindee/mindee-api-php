@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Split;
 
+use Stringable;
+
 /**
  * Result of a split utility inference.
  */
-class SplitResult
+class SplitResult implements Stringable
 {
     /**
      * @var SplitRange[] A single document as identified when splitting a multi-document source file.

@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\NutritionFactsLabel;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The amount of calories in the product.
  */
-class NutritionFactsLabelV1Calorie
+class NutritionFactsLabelV1Calorie implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -28,16 +29,12 @@ class NutritionFactsLabelV1Calorie
      * @var float|null The amount of calories per serving of the product.
      */
     public ?float $perServing;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -47,7 +44,6 @@ class NutritionFactsLabelV1Calorie
             ? (float) ($rawPrediction["per_100g"]) : null;
         $this->perServing = isset($rawPrediction["per_serving"])
             ? (float) ($rawPrediction["per_serving"]) : null;
-        $this->pageId = $pageId;
     }
 
     /**

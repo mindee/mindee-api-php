@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Extraction\Params;
 
 use InvalidArgumentException;
+use Stringable;
 
 use function count;
 use function is_array;
@@ -12,7 +13,7 @@ use function is_array;
 /**
  * The structure to completely replace the data schema of the model.
  */
-class DataSchemaReplace
+class DataSchemaReplace implements Stringable
 {
     /**
      * @var DataSchemaField[] Fields to replace in the data schema.
@@ -48,7 +49,7 @@ class DataSchemaReplace
      */
     public function __toString(): string
     {
-        return json_encode(
+        return (string) json_encode(
             $this->toJson(),
             JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
         );

@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\BillOfLading;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The party to be notified of the arrival of the goods.
  */
-class BillOfLadingV1NotifyParty
+class BillOfLadingV1NotifyParty implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -32,16 +33,12 @@ class BillOfLadingV1NotifyParty
      * @var string|null The phone number of the notify party.
      */
     public ?string $phone;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -49,7 +46,6 @@ class BillOfLadingV1NotifyParty
         $this->email = $rawPrediction["email"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
         $this->phone = $rawPrediction["phone"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

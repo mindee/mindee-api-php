@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Resume;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The list of certificates obtained by the candidate.
  */
-class ResumeV1Certificate
+class ResumeV1Certificate implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -32,20 +33,15 @@ class ResumeV1Certificate
      * @var string|null The year when a certificate was issued or received.
      */
     public ?string $year;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
-        $this->pageId = $pageId;
         $this->grade = $rawPrediction["grade"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
         $this->provider = $rawPrediction["provider"] ?? null;

@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\BillOfLading;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The goods being shipped.
  */
-class BillOfLadingV1CarrierItem
+class BillOfLadingV1CarrierItem implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -40,16 +41,12 @@ class BillOfLadingV1CarrierItem
      * @var string|null The unit of measurement for weights.
      */
     public ?string $weightUnit;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -62,7 +59,6 @@ class BillOfLadingV1CarrierItem
         $this->quantity = isset($rawPrediction["quantity"])
             ? (float) ($rawPrediction["quantity"]) : null;
         $this->weightUnit = $rawPrediction["weight_unit"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Classification;
 
+use Stringable;
+
 /**
  * Result of the document classifier inference.
  */
-class ClassificationResult
+class ClassificationResult implements Stringable
 {
     /**
      * @var ClassificationClassifier Classification of document type from the source file.

@@ -8,11 +8,12 @@ use Mindee\Parsing\SummaryHelper;
 use Mindee\V2\Parsing\Inference\InferenceFile;
 use Mindee\V2\Parsing\Inference\InferenceJob;
 use Mindee\V2\Parsing\Inference\InferenceModel;
+use Stringable;
 
 /**
  * Base for all inference-based V2 products.
  */
-abstract class BaseInference
+abstract class BaseInference implements Stringable
 {
     /**
      * @var string ID of the inference.
