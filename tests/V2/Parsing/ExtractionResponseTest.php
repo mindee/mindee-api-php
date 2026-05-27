@@ -222,12 +222,10 @@ class ExtractionResponseTest extends TestCase
         $fieldSimpleInt = $fields->get('field_simple_int');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleInt);
         self::assertIsFloat($fieldSimpleInt->getFloatValue());
-        self::assertIsInt($fieldSimpleInt->getIntValue());
 
         $fieldSimpleZero = $fields->get('field_simple_zero');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleZero);
         self::assertIsFloat($fieldSimpleZero->getFloatValue());
-        self::assertIsInt($fieldSimpleZero->getIntValue());
 
         $fieldSimpleBool = $fields->get('field_simple_bool');
         self::assertInstanceOf(SimpleField::class, $fieldSimpleBool);
@@ -237,7 +235,6 @@ class ExtractionResponseTest extends TestCase
         self::assertInstanceOf(SimpleField::class, $fieldSimpleNull);
         self::assertNull($fieldSimpleNull->value);
         self::assertNull($fieldSimpleNull->getStringValue());
-        self::assertNull($fieldSimpleNull->getIntValue());
         self::assertNull($fieldSimpleNull->getFloatValue());
         self::assertNull($fieldSimpleNull->getBoolValue());
 

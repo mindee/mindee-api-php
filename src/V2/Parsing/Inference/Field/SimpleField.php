@@ -62,14 +62,6 @@ class SimpleField extends BaseField
     }
 
     /**
-     * @return integer|null Integer representation of the field value.
-     */
-    public function getIntValue(): ?int
-    {
-        return null !== $this->value ? (int) $this->value : null;
-    }
-
-    /**
      * @return boolean|null Boolean representation of the field value.
      */
     public function getBoolValue(): ?bool
