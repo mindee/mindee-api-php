@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeException;
-use Mindee\Extraction\ExtractedPDF;
+use Mindee\Extraction\ExtractedPdf;
 use ArrayObject;
 use Exception;
 
@@ -16,16 +16,16 @@ use const DIRECTORY_SEPARATOR;
 /**
  * Split files collection wrapper.
  *
- * @extends ArrayObject<int, ExtractedPDF>
+ * @extends ArrayObject<int, ExtractedPdf>
  */
 class SplitFiles extends ArrayObject
 {
     /**
      * Builds a new SplitFiles collection.
      *
-     * @param ExtractedPDF ...$items Items.
+     * @param ExtractedPdf ...$items Items.
      */
-    public function __construct(ExtractedPDF ...$items)
+    public function __construct(ExtractedPdf ...$items)
     {
         parent::__construct($items);
     }

@@ -62,7 +62,7 @@ class MindeeCLICommandTestFunctional extends TestCase
         $cmdOutput = $this->runValidCall($productName, $async, $additionnalArgs);
         self::assertSame(0, $cmdOutput["code"], $productName . ($async ? " async" : " sync") . " test (code).");
         self::assertTrue(
-            str_contains($cmdOutput["output"][1], "Document"),
+            str_contains((string) $cmdOutput["output"][1], "Document"),
             $productName . ($async ? " async" : " sync") . " test (string return)."
         );
     }

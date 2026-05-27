@@ -27,14 +27,14 @@ use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\Input\URLInputSource;
+use Mindee\Input\UrlInputSource;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\WorkflowOptions;
-use Mindee\V1\HTTP\Endpoint;
-use Mindee\V1\HTTP\MindeeAPI;
-use Mindee\V1\HTTP\MindeeWorkflowAPI;
-use Mindee\V1\HTTP\ResponseValidation;
-use Mindee\V1\HTTP\WorkflowEndpoint;
+use Mindee\V1\Http\Endpoint;
+use Mindee\V1\Http\MindeeApi;
+use Mindee\V1\Http\MindeeWorkflowApi;
+use Mindee\V1\Http\ResponseValidation;
+use Mindee\V1\Http\WorkflowEndpoint;
 use Mindee\V1\Parsing\Common\AsyncPredictResponse;
 use Mindee\V1\Parsing\Common\PredictResponse;
 use Mindee\V1\Parsing\Common\WorkflowResponse;
@@ -77,13 +77,13 @@ class Client
      * Load a document from an absolute path, as a string.
      *
      * @param string $filePath Path of the file.
-     * @param boolean $fixPDF Whether the PDF should be fixed or not.
+     * @param boolean $fixPdf Whether the PDF should be fixed or not.
      */
-    public function sourceFromPath(string $filePath, bool $fixPDF = false): PathInput
+    public function sourceFromPath(string $filePath, bool $fixPdf = false): PathInput
     {
         $input = new PathInput($filePath);
-        if ($fixPDF) {
-            $input->fixPDF();
+        if ($fixPdf) {
+            $input->fixPdf();
         }
         return $input;
     }
@@ -92,13 +92,13 @@ class Client
      * Load a document from a normal PHP file object.
      *
      * @param SplFileObject|CURLFile|string|resource $file File object as created from the file() function.
-     * @param boolean $fixPDF Whether the PDF should be fixed or not.
+     * @param boolean $fixPdf Whether the PDF should be fixed or not.
      */
-    public function sourceFromFile(mixed $file, bool $fixPDF = false): FileInput
+    public function sourceFromFile(mixed $file, bool $fixPdf = false): FileInput
     {
         $input = new FileInput($file);
-        if ($fixPDF) {
-            $input->fixPDF();
+        if ($fixPdf) {
+            $input->fixPdf();
         }
         return $input;
     }
@@ -108,13 +108,13 @@ class Client
      *
      * @param string $fileBytes File object in raw bytes.
      * @param string $fileName File name, mandatory.
-     * @param boolean $fixPDF Whether the PDF should be fixed or not.
+     * @param boolean $fixPdf Whether the PDF should be fixed or not.
      */
-    public function sourceFromBytes(string $fileBytes, string $fileName, bool $fixPDF = false): BytesInput
+    public function sourceFromBytes(string $fileBytes, string $fileName, bool $fixPdf = false): BytesInput
     {
         $input = new BytesInput($fileBytes, $fileName);
-        if ($fixPDF) {
-            $input->fixPDF();
+        if ($fixPdf) {
+            $input->fixPdf();
         }
         return $input;
     }
@@ -124,13 +124,13 @@ class Client
      *
      * @param string $fileB64 File object in Base64.
      * @param string $fileName File name, mandatory.
-     * @param boolean $fixPDF Whether the PDF should be fixed or not.
+     * @param boolean $fixPdf Whether the PDF should be fixed or not.
      */
-    public function sourceFromB64String(string $fileB64, string $fileName, bool $fixPDF = false): Base64Input
+    public function sourceFromB64String(string $fileB64, string $fileName, bool $fixPdf = false): Base64Input
     {
         $input = new Base64Input($fileB64, $fileName);
-        if ($fixPDF) {
-            $input->fixPDF();
+        if ($fixPdf) {
+            $input->fixPdf();
         }
         return $input;
     }
@@ -140,9 +140,9 @@ class Client
      *
      * @param string $url File URL. Must start with "https://".
      */
-    public function sourceFromUrl(string $url): URLInputSource
+    public function sourceFromUrl(string $url): UrlInputSource
     {
-        return new URLInputSource($url);
+        return new UrlInputSource($url);
     }
 
     /**
@@ -159,7 +159,7 @@ class Client
     ): Endpoint {
         $endpointVersion = $endpointVersion !== '' ? $endpointVersion : '1';
 
-        $endpointSettings = new MindeeAPI($this->apiKey, $endpointName, $endpointOwner, $endpointVersion);
+        $endpointSettings = new MindeeApi($this->apiKey, $endpointName, $endpointOwner, $endpointVersion);
 
         return new Endpoint($endpointName, $endpointOwner, $endpointVersion, $endpointSettings);
     }
@@ -324,7 +324,7 @@ class Client
         string $workflowId,
         PredictMethodOptions $options
     ): WorkflowResponse {
-        $workflowRouterSettings = new MindeeWorkflowAPI($this->apiKey, $workflowId);
+        $workflowRouterSettings = new MindeeWorkflowApi($this->apiKey, $workflowId);
         $options->endpoint = new WorkflowEndpoint($workflowRouterSettings);
         if (!$options->pageOptions->isEmpty()) {
             if ($inputDoc instanceof LocalInputSource) {
@@ -412,7 +412,7 @@ class Client
         if (null === $options) {
             $options = new PredictMethodOptions();
         }
-        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
         $options->endpoint ??= $this->constructOTSEndpoint(
@@ -497,7 +497,7 @@ class Client
         if (null === $options) {
             $options = new PredictMethodOptions();
         }
-        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
         $options->endpoint ??= $this->constructOTSEndpoint(
@@ -566,7 +566,7 @@ class Client
         if (null === $options) {
             $options = new WorkflowOptions();
         }
-        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPDF()) {
+        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Standard;
 
 use Mindee\Geometry\Polygon;
+use Stringable;
 
 use function array_key_exists;
 
@@ -12,7 +13,7 @@ use function array_key_exists;
  * Base class for most fields.
  * @template T Generic typing for value type handling.
  */
-abstract class BaseField
+abstract class BaseField implements Stringable
 {
     use FieldConfidenceMixin;
 
@@ -20,10 +21,6 @@ abstract class BaseField
      * @var T|null Raw field value.
      */
     public mixed $value;
-    /**
-     * @var boolean Whether the field was reconstructed from other fields.
-     */
-    public bool $reconstructed;
     /**
      * @var integer|null The document page on which the information was found.
      */
@@ -38,7 +35,7 @@ abstract class BaseField
     public function __construct(
         array $rawPrediction,
         ?int $pageId = null,
-        bool $reconstructed = false,
+        public bool $reconstructed = false,
         string $valueKey = 'value'
     ) {
         if (!isset($pageId) && (array_key_exists('page_id', $rawPrediction) && isset($rawPrediction['page_id']))) {
@@ -46,7 +43,6 @@ abstract class BaseField
         } else {
             $this->pageId = $pageId;
         }
-        $this->reconstructed = $reconstructed;
         if (array_key_exists($valueKey, $rawPrediction) && $rawPrediction[$valueKey] !== 'N/A') {
             $this->value = $rawPrediction[$valueKey];
             $this->setConfidence($rawPrediction);

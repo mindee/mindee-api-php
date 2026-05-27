@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Information about the pay period.
  */
-class PayslipV3PayPeriod
+class PayslipV3PayPeriod implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -36,16 +37,12 @@ class PayslipV3PayPeriod
      * @var string|null The year of the pay period.
      */
     public ?string $year;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -54,7 +51,6 @@ class PayslipV3PayPeriod
         $this->paymentDate = $rawPrediction["payment_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
         $this->year = $rawPrediction["year"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

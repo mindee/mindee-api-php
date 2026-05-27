@@ -23,32 +23,11 @@ const REMOVE = 'REMOVE';
 class PageOptions
 {
     /**
-     * @var array<integer>|null Indexes of the page to apply the transformations to.
-     */
-    public ?array $pageIndexes;
-    /**
-     * @var string Operation to apply to the page.
-     */
-    public string $operation;
-    /**
-     * @var integer Apply the operation only if the document has at least this many pages.
-     */
-    public int $onMinPage;
-
-    /**
      * @param array<integer>|null $pageIndexes Indexes of the page.
      * @param string $operation Operation to apply.
      * @param integer $onMinPage Minimum page amount.
      */
-    public function __construct(
-        ?array $pageIndexes = null,
-        string $operation = KEEP_ONLY,
-        int $onMinPage = 0
-    ) {
-        $this->pageIndexes = $pageIndexes;
-        $this->operation = $operation;
-        $this->onMinPage = $onMinPage;
-    }
+    public function __construct(public ?array $pageIndexes = null, public string $operation = KEEP_ONLY, public int $onMinPage = 0) {}
 
 
     /**

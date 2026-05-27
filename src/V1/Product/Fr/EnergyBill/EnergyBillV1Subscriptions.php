@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Fr\EnergyBill;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The subscription details fee for the energy service.
  * @extends ArrayObject<integer, EnergyBillV1Subscription>
  */
-class EnergyBillV1Subscriptions extends ArrayObject
+class EnergyBillV1Subscriptions extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

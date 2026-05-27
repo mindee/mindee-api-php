@@ -10,39 +10,12 @@ namespace Mindee\Geometry;
 class BBox
 {
     /**
-     * @var float Minimum X coordinate.
-     */
-    private float $minX;
-    /**
-     * @var float Maximum X coordinate.
-     */
-    private float $maxX;
-    /**
-     * @var float Minimum Y coordinate.
-     */
-    private float $minY;
-    /**
-     * @var float Maximum Y coordinate.
-     */
-    private float $maxY;
-
-    /**
      * @param float $minX Input minimum X coordinate.
      * @param float $maxX Input maximum X coordinate.
      * @param float $minY Input minimum Y coordinate.
      * @param float $maxY Input maximum Y coordinate.
      */
-    public function __construct(
-        float $minX,
-        float $maxX,
-        float $minY,
-        float $maxY
-    ) {
-        $this->minX = $minX;
-        $this->maxX = $maxX;
-        $this->minY = $minY;
-        $this->maxY = $maxY;
-    }
+    public function __construct(private float $minX, private float $maxX, private float $minY, private float $maxY) {}
 
     /**
      * Retrieves the minimum x coordinate.

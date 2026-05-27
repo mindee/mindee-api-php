@@ -24,7 +24,7 @@ class MindeeCLICommandTest extends TestCase
     {
         $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", "invalid-file-path", "-k", $this->apiKey, "-D"]);
         self::assertSame(1, $cmdOutput["code"]);
-        self::assertTrue(str_contains($cmdOutput["output"][0], "Invalid path or url provided 'invalid-file-path'."));
+        self::assertTrue(str_contains((string) $cmdOutput["output"][0], "Invalid path or url provided 'invalid-file-path'."));
     }
 
     public function testInvalidKey(): void
@@ -38,6 +38,6 @@ class MindeeCLICommandTest extends TestCase
     {
         $cmdOutput = MindeeCLITestingUtilities::executeTest(["invalid-product", $this->filePath, "-k", "invalid-key", "-D"]);
         self::assertSame(1, $cmdOutput["code"]);
-        self::assertTrue(str_contains($cmdOutput["output"][0], "Invalid product: invalid-product"));
+        self::assertTrue(str_contains((string) $cmdOutput["output"][0], "Invalid product: invalid-product"));
     }
 }

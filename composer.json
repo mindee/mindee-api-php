@@ -17,7 +17,9 @@
     "friendsofphp/php-cs-fixer": "^3.38",
     "phpunit/phpunit": "^9.6",
     "madewithlove/license-checker": "^v1.0",
-    "phpstan/phpstan": "^2.1"
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-deprecation-rules": "^2.0",
+    "rector/rector": "^2.4"
   },
   "suggest": {
     "ext-imagick": "Required for PDF rasterization and image processing features",
@@ -35,6 +37,8 @@
   "scripts": {
     "lint": "php-cs-fixer fix --dry-run --diff",
     "phpstan": "phpstan analyse src --level 6",
-    "format": "php-cs-fixer fix"
+    "format": "php-cs-fixer fix",
+    "rector": "rector process src tests",
+    "rector:check": "rector process src tests --dry-run"
   }
 }

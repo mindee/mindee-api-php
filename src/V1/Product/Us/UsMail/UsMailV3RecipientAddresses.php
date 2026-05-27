@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Us\UsMail;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The addresses of the recipients.
  * @extends ArrayObject<integer, UsMailV3RecipientAddress>
  */
-class UsMailV3RecipientAddresses extends ArrayObject
+class UsMailV3RecipientAddresses extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Us\HealthcareCard;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * Copayments for covered services.
  * @extends ArrayObject<integer, HealthcareCardV1Copay>
  */
-class HealthcareCardV1Copays extends ArrayObject
+class HealthcareCardV1Copays extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

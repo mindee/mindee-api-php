@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference;
 
+use Stringable;
+
 use function array_key_exists;
 
 /**
  * Raw text as found in the document.
  */
-class RawText
+class RawText implements Stringable
 {
     /**
      * @var RawTextPage[] list of pages found in the document.

@@ -20,13 +20,13 @@ class ClassificationParameters extends BaseParameters
     /**
      * @param string $modelId ID of the model.
      * @param string|null $alias Optional file alias.
-     * @param array<string>|null $webhooksIds List of webhook IDs.
+     * @param array<string>|null $webhookIds List of webhook IDs.
      */
     public function __construct(
         string $modelId,
         ?string $alias = null,
-        ?array $webhooksIds = null
+        ?array $webhookIds = null
     ) {
-        parent::__construct($modelId, $alias, $webhooksIds);
+        parent::__construct($modelId, $alias, $webhookIds);
     }
 }

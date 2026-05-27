@@ -10,23 +10,10 @@ namespace Mindee\Geometry;
 class MinMax
 {
     /**
-     * @var float Minimum.
-     */
-    private float $min;
-    /**
-     * @var float Maximum.
-     */
-    private float $max;
-
-    /**
      * @param float $min Input minimum.
      * @param float $max Input maximum.
      */
-    public function __construct(float $min, float $max)
-    {
-        $this->min = $min;
-        $this->max = $max;
-    }
+    public function __construct(private readonly float $min, private readonly float $max) {}
 
     /**
      * @return float Retrieves the minimum.

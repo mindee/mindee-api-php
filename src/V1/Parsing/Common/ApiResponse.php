@@ -16,7 +16,7 @@ abstract class ApiResponse
     /**
      * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Raw http result. Used for debugging purposes.
      */
-    private array $rawHttp;
+    private readonly array $rawHttp;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.

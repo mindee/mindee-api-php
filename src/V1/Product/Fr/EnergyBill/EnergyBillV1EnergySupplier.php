@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\EnergyBill;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * The company that supplies the energy.
  */
-class EnergyBillV1EnergySupplier
+class EnergyBillV1EnergySupplier implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -24,22 +25,17 @@ class EnergyBillV1EnergySupplier
      * @var string|null The name of the energy supplier.
      */
     public ?string $name;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->address = $rawPrediction["address"] ?? null;
         $this->name = $rawPrediction["name"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

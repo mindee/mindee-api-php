@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\EnergyBill;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Details of energy consumption.
  */
-class EnergyBillV1EnergyUsage
+class EnergyBillV1EnergyUsage implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -48,16 +49,12 @@ class EnergyBillV1EnergyUsage
      * @var float|null The price per unit of energy consumed.
      */
     public ?float $unitPrice;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -66,7 +63,6 @@ class EnergyBillV1EnergyUsage
         $this->description = $rawPrediction["description"] ?? null;
         $this->endDate = $rawPrediction["end_date"] ?? null;
         $this->startDate = $rawPrediction["start_date"] ?? null;
-        $this->pageId = $pageId;
         $this->taxRate = isset($rawPrediction["tax_rate"])
             ? (float) ($rawPrediction["tax_rate"]) : null;
         $this->total = isset($rawPrediction["total"])

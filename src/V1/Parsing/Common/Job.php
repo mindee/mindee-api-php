@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Exception;
+use Stringable;
 
 use function array_key_exists;
 
@@ -16,7 +17,7 @@ use function array_key_exists;
  *
  * Will hold information on the queue a document has been submitted to.
  */
-class Job
+class Job implements Stringable
 {
     /**
      * @var string|null ID of the job sent by the API in response to an enqueue request.
@@ -41,7 +42,7 @@ class Job
     /**
      * @var array<string, integer|float|string|bool|null|array<mixed>>|null Information about an error that occurred during the job processing.
      */
-    public ?array $error;
+    public ?array $error = null;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw prediction array.
@@ -81,7 +82,7 @@ class Job
                         throw new Exception("Invalid date format");
                     }
                     $this->availableAt = new DateTimeImmutable('@' . $timestamp);
-                } catch (Exception $e2) {
+                } catch (Exception) {
                     throw new MindeeApiException(
                         "Could not create date from " . $rawResponse['available_at'],
                         ErrorCode::API_UNPROCESSABLE_ENTITY,
@@ -105,6 +106,6 @@ class Job
         $objAsJson = get_object_vars($this);
         ksort($objAsJson);
 
-        return json_encode($objAsJson, JSON_PRETTY_PRINT);
+        return (string) json_encode($objAsJson, JSON_PRETTY_PRINT);
     }
 }

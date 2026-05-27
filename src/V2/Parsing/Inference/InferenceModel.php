@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference;
 
+use Stringable;
+
 /**
  * Inference result model class.
  */
-class InferenceModel
+class InferenceModel implements Stringable
 {
     /**
      * @var string ID of the model.

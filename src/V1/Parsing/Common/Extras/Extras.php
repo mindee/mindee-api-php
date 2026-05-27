@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Common\Extras;
 
+use Stringable;
+
 use function is_scalar;
 
 /**
@@ -11,20 +13,20 @@ use function is_scalar;
  *
  * Is roughly equivalent to an array of Extras, with a bit more utility.
  */
-class Extras
+class Extras implements Stringable
 {
     /**
      * @var CropperExtra|null Cropper extra.
      */
     public ?CropperExtra $cropper;
     /**
-     * @var FullTextOCRExtra|null Full text OCR extra.
+     * @var FullTextOcrExtra|null Full text Ocr extra.
      */
-    public ?FullTextOCRExtra $fullTextOcr;
+    public ?FullTextOcrExtra $fullTextOcr;
     /**
-     * @var RAGExtra|null Rag Extra.
+     * @var RagExtra|null Rag Extra.
      */
-    public ?RAGExtra $rag;
+    public ?RagExtra $rag;
     /**
      * @var array<string, int|float|string|bool|null|array<array-key, mixed>> Other extras.
      */
@@ -50,9 +52,9 @@ class Extras
             if ($key === 'cropper' && isset($rawPrediction['cropper'])) {
                 $this->cropper = new CropperExtra($rawPrediction['cropper']);
             } elseif ($key === 'full_text_ocr' && isset($rawPrediction['full_text_ocr'])) {
-                $this->fullTextOcr = new FullTextOCRExtra($rawPrediction['full_text_ocr']);
+                $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
             } elseif ($key === 'rag' && isset($rawPrediction['rag'])) {
-                $this->rag = new RAGExtra($rawPrediction['rag']);
+                $this->rag = new RagExtra($rawPrediction['rag']);
             } else {
                 $this->__set($key, $extra);
             }
@@ -68,14 +70,13 @@ class Extras
     public function addArtificialExtra(array $rawPrediction): void
     {
         if (!empty($rawPrediction['full_text_ocr'])) {
-            $this->fullTextOcr = new FullTextOCRExtra($rawPrediction['full_text_ocr']);
+            $this->fullTextOcr = new FullTextOcrExtra($rawPrediction['full_text_ocr']);
         }
     }
 
     /**
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $resStr = '';
         foreach ($this->data as $key => $extra) {

@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Detailed information about the earnings.
  */
-class PayslipV3SalaryDetail
+class PayslipV3SalaryDetail implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -36,16 +37,12 @@ class PayslipV3SalaryDetail
      * @var float|null The rate of the earning.
      */
     public ?float $rate;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
@@ -58,7 +55,6 @@ class PayslipV3SalaryDetail
             ? (float) ($rawPrediction["number"]) : null;
         $this->rate = isset($rawPrediction["rate"])
             ? (float) ($rawPrediction["rate"]) : null;
-        $this->pageId = $pageId;
     }
 
     /**

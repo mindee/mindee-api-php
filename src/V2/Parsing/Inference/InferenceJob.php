@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Parsing\Inference;
 
+use Stringable;
+
 /**
  * Information on the Job associated to a given Inference.
  */
-class InferenceJob
+class InferenceJob implements Stringable
 {
     /**
      * @var string UUID of the job.

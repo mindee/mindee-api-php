@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\Resume;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The list of social network profiles of the candidate.
  * @extends ArrayObject<integer, ResumeV1SocialNetworksUrl>
  */
-class ResumeV1SocialNetworksUrls extends ArrayObject
+class ResumeV1SocialNetworksUrls extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

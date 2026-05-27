@@ -7,11 +7,12 @@ namespace Mindee\V1\Product\Fr\Payslip;
 use Mindee\V1\Parsing\Standard\FieldConfidenceMixin;
 use Mindee\V1\Parsing\Standard\FieldPositionMixin;
 use Mindee\V1\Parsing\SummaryHelperV1;
+use Stringable;
 
 /**
  * Information about the employee's bank account.
  */
-class PayslipV3BankAccountDetail
+class PayslipV3BankAccountDetail implements Stringable
 {
     use FieldConfidenceMixin;
     use FieldPositionMixin;
@@ -28,23 +29,18 @@ class PayslipV3BankAccountDetail
      * @var string|null The SWIFT code of the bank.
      */
     public ?string $swift;
-    /**
-     * @var integer|null Page ID.
-     */
-    public ?int $pageId;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Array containing the JSON document response.
      * @param integer|null $pageId Page number for multi pages document.
      */
-    public function __construct(array $rawPrediction, ?int $pageId)
+    public function __construct(array $rawPrediction, public ?int $pageId)
     {
         $this->setConfidence($rawPrediction);
         $this->setPosition($rawPrediction);
         $this->bankName = $rawPrediction["bank_name"] ?? null;
         $this->iban = $rawPrediction["iban"] ?? null;
         $this->swift = $rawPrediction["swift"] ?? null;
-        $this->pageId = $pageId;
     }
 
     /**

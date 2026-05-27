@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use Mindee\Error\MindeeApiException;
+use Stringable;
 
 use function array_key_exists;
 use function sprintf;
@@ -12,12 +13,8 @@ use function sprintf;
 /**
  * Base class for V2 fields.
  */
-abstract class BaseField
+abstract class BaseField implements Stringable
 {
-    /**
-     * @var integer Level of indentation for rst display.
-     */
-    protected int $indentLevel;
     /**
      * @var array<FieldLocation> List of possible locations for a field.
      */
@@ -32,9 +29,8 @@ abstract class BaseField
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.
      * @param integer $indentLevel Level of indentation for rst display.
      */
-    public function __construct(array $rawPrediction, int $indentLevel = 0)
+    public function __construct(array $rawPrediction, protected int $indentLevel = 0)
     {
-        $this->indentLevel = $indentLevel;
         if (array_key_exists("locations", $rawPrediction) && $rawPrediction["locations"]) {
             $this->locations = [];
             foreach ($rawPrediction["locations"] as $location) {

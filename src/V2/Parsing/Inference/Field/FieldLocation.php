@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Mindee\V2\Parsing\Inference\Field;
 
 use Mindee\Geometry\Polygon;
+use Stringable;
 
 use function is_int;
 
 /**
  * Location of a field.
  */
-class FieldLocation
+class FieldLocation implements Stringable
 {
     /**
      * Free polygon made up of points (can be null when not provided).

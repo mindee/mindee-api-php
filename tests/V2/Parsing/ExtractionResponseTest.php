@@ -252,7 +252,7 @@ class ExtractionResponseTest extends TestCase
         self::assertInstanceOf(ObjectField::class, $fieldObject);
         $fieldObjectFields = $fieldObject->fields;
         self::assertCount(2, $fieldObjectFields);
-        foreach ($fieldObjectFields as $fieldName => $subField) {
+        foreach ($fieldObjectFields as $subField) {
             self::assertInstanceOf(SimpleField::class, $subField);
         }
 

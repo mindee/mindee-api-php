@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Extraction\Params;
 
+use Stringable;
+
 /**
  * Data schema options activated during the inference.
  */
-class DataSchemaActiveOption
+class DataSchemaActiveOption implements Stringable
 {
     /**
      * @var boolean Whether the Data Schema has been replaced.

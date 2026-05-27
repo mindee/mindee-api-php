@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Common\Extras;
 
 use Mindee\V1\Parsing\Standard\PositionField;
+use Stringable;
 
 use function array_key_exists;
 
 /**
  * Contains information on the cropping of a prediction.
  */
-class CropperExtra
+class CropperExtra implements Stringable
 {
     /**
      * @var array<PositionField> List of all croppings coordiantes.

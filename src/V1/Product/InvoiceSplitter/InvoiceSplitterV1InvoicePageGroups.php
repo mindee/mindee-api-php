@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\InvoiceSplitter;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * List of page groups. Each group represents a single invoice within a multi-invoice document.
  * @extends ArrayObject<integer, InvoiceSplitterV1InvoicePageGroup>
  */
-class InvoiceSplitterV1InvoicePageGroups extends ArrayObject
+class InvoiceSplitterV1InvoicePageGroups extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

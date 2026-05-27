@@ -27,31 +27,31 @@ class MindeeHttpExceptionTest extends TestCase
         );
     }
 
-    public function testHTTPClientErrorShouldRaise(): void
+    public function testHttpClientErrorShouldRaise(): void
     {
         $this->expectException(MindeeHttpClientException::class);
         $this->dummyClient->parse(InvoiceV4::class, $this->dummyFile);
     }
 
-    public function testHTTPEnqueueClientException(): void
+    public function testHttpEnqueueClientException(): void
     {
         $this->expectException(MindeeHttpClientException::class);
         $this->dummyClient->enqueue(InvoiceV4::class, $this->dummyFile);
     }
 
-    public function testHTTPParseClientException(): void
+    public function testHttpParseClientException(): void
     {
         $this->expectException(MindeeHttpClientException::class);
         $this->dummyClient->enqueue(InvoiceV4::class, $this->dummyFile);
     }
 
-    public function testHTTPEnqueueAndParseClientException(): void
+    public function testHttpEnqueueAndParseClientException(): void
     {
         $this->expectException(MindeeHttpClientException::class);
         $this->dummyClient->enqueueAndParse(InvoiceV4::class, $this->dummyFile);
     }
 
-    public function testHTTP400Exception(): void
+    public function testHttp400Exception(): void
     {
         $json = file_get_contents($this->errorDir . "error_400_no_details.json");
         $errorObj = ["data" => json_decode($json, true), "code" => 400];
@@ -64,7 +64,7 @@ class MindeeHttpExceptionTest extends TestCase
         throw $error400;
     }
 
-    public function testHTTP401Exception(): void
+    public function testHttp401Exception(): void
     {
         $json = file_get_contents($this->errorDir . "error_401_invalid_token.json");
         $errorObj = ["data" => json_decode($json, true), "code" => 401];
@@ -77,7 +77,7 @@ class MindeeHttpExceptionTest extends TestCase
         throw $error401;
     }
 
-    public function testHTTP429Exception(): void
+    public function testHttp429Exception(): void
     {
         $json = file_get_contents($this->errorDir . "error_429_too_many_requests.json");
         $errorObj = ["data" => json_decode($json, true), "code" => 429];
@@ -90,7 +90,7 @@ class MindeeHttpExceptionTest extends TestCase
         throw $error429;
     }
 
-    public function testHTTP500Exception(): void
+    public function testHttp500Exception(): void
     {
         $json = file_get_contents($this->errorDir . "error_500_inference_fail.json");
         $errorObj = ["data" => json_decode($json, true), "code" => 500];
@@ -103,7 +103,7 @@ class MindeeHttpExceptionTest extends TestCase
         throw $error500;
     }
 
-    public function testHTTP500HTMLError(): void
+    public function testHttp500HTMLError(): void
     {
         $errorRefContents = file_get_contents($this->errorDir . "error_50x.html");
         $error500 = MindeeHttpException::handleError("dummy-url", ["data" => $errorRefContents, "code" => 500]);

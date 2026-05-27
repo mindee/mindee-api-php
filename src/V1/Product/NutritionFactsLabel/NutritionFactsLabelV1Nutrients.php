@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Mindee\V1\Product\NutritionFactsLabel;
 
 use ArrayObject;
+use Stringable;
 
 /**
  * The amount of nutrients in the product.
  * @extends ArrayObject<int, NutritionFactsLabelV1Nutrient>
  */
-class NutritionFactsLabelV1Nutrients extends ArrayObject
+class NutritionFactsLabelV1Nutrients extends ArrayObject implements Stringable
 {
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawPrediction Raw prediction array.

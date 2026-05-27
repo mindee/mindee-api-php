@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace V1\Parsing\Common;
 
-use Mindee\V1\HTTP\ResponseValidation;
+use Mindee\V1\Http\ResponseValidation;
 use Mindee\V1\Parsing\Common\AsyncPredictResponse;
 use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;

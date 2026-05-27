@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeInputException;
-use Mindee\Extraction\ExtractedPDF;
-use Mindee\Extraction\PDFExtractor;
+use Mindee\Extraction\ExtractedPdf;
+use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\LocalInputSource;
 
 /**
@@ -15,17 +15,9 @@ use Mindee\Input\LocalInputSource;
 class Split
 {
     /**
-     * @var LocalInputSource localInputSource object
+     * @param LocalInputSource $localInput LocalInputSource object.
      */
-    private readonly LocalInputSource $localInput;
-
-    /**
-     * @param LocalInputSource $inputSource LocalInputSource object.
-     */
-    public function __construct(LocalInputSource $inputSource)
-    {
-        $this->localInput = $inputSource;
-    }
+    public function __construct(private readonly LocalInputSource $localInput) {}
 
     /**
      * Expands a range to a list of integers.
@@ -51,9 +43,9 @@ class Split
      *
      * @param int[] $split Split range to extract.
      *
-     * @return ExtractedPDF 2D array of extracted pages
+     * @return ExtractedPdf 2D array of extracted pages
      */
-    public function extractSingleSplit(array $split): ExtractedPDF
+    public function extractSingleSplit(array $split): ExtractedPdf
     {
         return $this->extractSplits([$split])[0];
     }
@@ -67,7 +59,7 @@ class Split
      */
     public function extractSplits(array $splits): SplitFiles
     {
-        $pdfExtractor = new PDFExtractor($this->localInput);
+        $pdfExtractor = new PdfExtractor($this->localInput);
         $expandedPageIndexes = array_map(static fn(array $split) => self::expandRange($split[0], $split[1]), $splits);
 
         return new SplitFiles(...$pdfExtractor->extractSubDocuments($expandedPageIndexes));

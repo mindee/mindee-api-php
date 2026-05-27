@@ -16,7 +16,7 @@ $mindeeClient = new Client($apiKey);
 $inferenceParams = new ExtractionParameters(
     // ID of the model, required.
     $modelId,
-    webhooksIds: ["MY_WEBHOOK_ID"],
+    webhookIds: ["MY_WEBHOOK_ID"],
 
     // Options: set to `true` or `false` to override defaults
 

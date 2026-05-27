@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Parsing\Common;
 
 use Mindee\V1\Parsing\Common\Extras\Extras;
+use Stringable;
 
 use function array_key_exists;
 use function count;
@@ -12,7 +13,7 @@ use function count;
 /**
  * Base Inference class for all predictions.
  */
-abstract class Inference
+abstract class Inference implements Stringable
 {
     /**
      * @var Product Name and version of a given product, as sent back by the API.

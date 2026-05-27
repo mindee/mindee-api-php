@@ -21,10 +21,6 @@ use function is_string;
 class MindeeHttpException extends MindeeException
 {
     /**
-     * @var integer Status code as sent by the server.
-     */
-    public int $statusCode;
-    /**
      * @var string|null API code as sent by the server.
      */
     public ?string $apiCode;
@@ -40,11 +36,10 @@ class MindeeHttpException extends MindeeException
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $httpError Array containing the error data.
      * @param string $url Remote URL the error was found on.
-     * @param integer $code Error code.
+     * @param integer $statusCode Error code.
      */
-    public function __construct(array $httpError, string $url, int $code)
+    public function __construct(array $httpError, string $url, public int $statusCode)
     {
-        $this->statusCode = $code;
         if (array_key_exists('code', $httpError)) {
             $this->apiCode = $httpError['code'];
         } else {
