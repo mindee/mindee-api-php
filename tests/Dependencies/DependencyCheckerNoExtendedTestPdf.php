@@ -12,6 +12,8 @@ use Mindee\Extraction\PdfExtractor;
 use Mindee\Input\PathInput;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
+use Imagick;
+use stdClass;
 
 require_once(__DIR__ . "/../TestingUtilities.php");
 
@@ -32,7 +34,10 @@ class DependencyCheckerNoExtendedTestPdf extends TestCase
     public function testNoExtractedImage(): void
     {
         $this->expectException(MindeeUnhandledException::class);
-        $inputImage = "";
+        if (!class_exists('Imagick')) {
+            class_alias(stdClass::class, 'Imagick');
+        }
+        $inputImage = new Imagick();
         $filename = "dummy";
         $saveFormat = "pdf";
         new ExtractedImage($inputImage, $filename, $saveFormat, 0, 0);
