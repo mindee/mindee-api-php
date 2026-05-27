@@ -21,7 +21,7 @@ const BASE_URL_ENV_NAME = 'MINDEE_BASE_URL';
 /**
  * Default URL prefix for API calls.
  */
-const BASE_URL_DEFAULT = 'https://api.mindee.net/v1';
+const BASE_URL_DEFAULT = 'https://api.mindee.net';
 
 /**
  * Default key name for CURL request timeout in environment variables.

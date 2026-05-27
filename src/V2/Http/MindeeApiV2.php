@@ -50,7 +50,7 @@ const API_V2_BASE_URL_ENV_NAME = 'MINDEE_V2_BASE_URL';
 /**
  * Default URL prefix for API calls.
  */
-const API_V2_BASE_URL_DEFAULT = 'https://api-v2.mindee.net/v2';
+const API_V2_BASE_URL_DEFAULT = 'https://api-v2.mindee.net';
 
 /**
  * Default key name for CURL request timeout in environment variables.
@@ -241,7 +241,7 @@ class MindeeApiV2
      */
     public function reqGetJob(string $jobId): JobResponse
     {
-        $response = $this->sendGetRequest($this->baseUrl . "/jobs/$jobId");
+        $response = $this->sendGetRequest($this->baseUrl . "/v2/jobs/$jobId");
         return $this->processJobResponse($response);
     }
 
@@ -268,7 +268,7 @@ class MindeeApiV2
                 $e
             );
         }
-        $url = $this->baseUrl . "/products/{$slugProperty->getValue()}/results/$resultId";
+        $url = $this->baseUrl . "/v2/products/{$slugProperty->getValue()}/results/$resultId";
         $response = $this->sendGetRequest($url);
         return $this->processResponse($responseClass, $response);
     }
@@ -352,7 +352,7 @@ class MindeeApiV2
             $inputSource->checkNeedsFix();
             $postFields['file'] = $inputSource->fileObject;
         }
-        $url = $this->baseUrl . "/products/{$params::$slug}/enqueue";
+        $url = $this->baseUrl . "/v2/products/{$params::$slug}/enqueue";
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         $resp = [

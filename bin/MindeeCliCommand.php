@@ -33,7 +33,7 @@ const JSON_PRINT_RECURSION_DEPTH = 20;
 /**
  * Configuration Class for CLI.
  */
-class MindeeCLICommand extends Command
+class MindeeCliCommand extends Command
 {
     /**
      * @var array $documentList Array of document configurations.

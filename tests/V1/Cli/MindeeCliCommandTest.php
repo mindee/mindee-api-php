@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace V1\CLI;
+namespace V1\Cli;
 
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/MindeeCLITestingUtilities.php");
+require_once(__DIR__ . "/MindeeCliTestingUtilities.php");
 
-class MindeeCLICommandTest extends TestCase
+class MindeeCliCommandTest extends TestCase
 {
     private string $apiKey;
     private string $filePath;
@@ -22,21 +22,21 @@ class MindeeCLICommandTest extends TestCase
 
     public function testInvalidFilePath(): void
     {
-        $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", "invalid-file-path", "-k", $this->apiKey, "-D"]);
+        $cmdOutput = MindeeCliTestingUtilities::executeTest(["financial-document", "invalid-file-path", "-k", $this->apiKey, "-D"]);
         self::assertSame(1, $cmdOutput["code"]);
         self::assertTrue(str_contains((string) $cmdOutput["output"][0], "Invalid path or url provided 'invalid-file-path'."));
     }
 
     public function testInvalidKey(): void
     {
-        $cmdOutput = MindeeCLITestingUtilities::executeTest(["financial-document", $this->filePath, "-k", "invalid-key"]);
+        $cmdOutput = MindeeCliTestingUtilities::executeTest(["financial-document", $this->filePath, "-k", "invalid-key"]);
         self::assertSame(1, $cmdOutput["code"]);
         self::assertTrue(str_contains(implode(" ", $cmdOutput["output"]), "Invalid token provided"));
     }
 
     public function testInvalidProduct(): void
     {
-        $cmdOutput = MindeeCLITestingUtilities::executeTest(["invalid-product", $this->filePath, "-k", "invalid-key", "-D"]);
+        $cmdOutput = MindeeCliTestingUtilities::executeTest(["invalid-product", $this->filePath, "-k", "invalid-key", "-D"]);
         self::assertSame(1, $cmdOutput["code"]);
         self::assertTrue(str_contains((string) $cmdOutput["output"][0], "Invalid product: invalid-product"));
     }
