@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace V1\Extraction;
+namespace V1\Image;
 
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;

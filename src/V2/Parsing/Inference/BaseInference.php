@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Parsing;
+namespace Mindee\V2\Parsing\Inference;
 
 use Mindee\Parsing\SummaryHelper;
-use Mindee\V2\Parsing\Inference\InferenceFile;
-use Mindee\V2\Parsing\Inference\InferenceJob;
-use Mindee\V2\Parsing\Inference\InferenceModel;
 use Stringable;
 
 /**

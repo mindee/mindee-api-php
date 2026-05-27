@@ -10,24 +10,18 @@ declare(strict_types=1);
 
 namespace Mindee\V1;
 
-use CURLFile;
 use Exception;
 use Mindee\ClientOptions\PollingOptions;
 use Mindee\CustomSleepMixin;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
-use Mindee\Error\MindeeClientException;
 use Mindee\Error\MindeeException;
-use Mindee\Error\MindeeHttpException;
-use Mindee\Input\Base64Input;
-use Mindee\Input\BytesInput;
-use Mindee\Input\FileInput;
+use Mindee\Error\V1\MindeeV1ClientException;
+use Mindee\Error\V1\MindeeV1HttpException;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
-use Mindee\Input\PathInput;
-use Mindee\Input\UrlInputSource;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\WorkflowOptions;
 use Mindee\V1\Http\Endpoint;
@@ -41,9 +35,6 @@ use Mindee\V1\Parsing\Common\WorkflowResponse;
 use Mindee\V1\Product\Generated\GeneratedV1;
 use ReflectionClass;
 use ReflectionException;
-use SplFileObject;
-
-use function strlen;
 
 /**
  * Main entrypoint for Mindee operations.
@@ -71,78 +62,6 @@ class Client
     public function __construct(?string $apiKey = null)
     {
         $this->apiKey = $apiKey ?: getenv('MINDEE_API_KEY');
-    }
-
-    /**
-     * Load a document from an absolute path, as a string.
-     *
-     * @param string $filePath Path of the file.
-     * @param boolean $fixPdf Whether the PDF should be fixed or not.
-     */
-    public function sourceFromPath(string $filePath, bool $fixPdf = false): PathInput
-    {
-        $input = new PathInput($filePath);
-        if ($fixPdf) {
-            $input->fixPdf();
-        }
-        return $input;
-    }
-
-    /**
-     * Load a document from a normal PHP file object.
-     *
-     * @param SplFileObject|CURLFile|string|resource $file File object as created from the file() function.
-     * @param boolean $fixPdf Whether the PDF should be fixed or not.
-     */
-    public function sourceFromFile(mixed $file, bool $fixPdf = false): FileInput
-    {
-        $input = new FileInput($file);
-        if ($fixPdf) {
-            $input->fixPdf();
-        }
-        return $input;
-    }
-
-    /**
-     * Load a document from raw bytes.
-     *
-     * @param string $fileBytes File object in raw bytes.
-     * @param string $fileName File name, mandatory.
-     * @param boolean $fixPdf Whether the PDF should be fixed or not.
-     */
-    public function sourceFromBytes(string $fileBytes, string $fileName, bool $fixPdf = false): BytesInput
-    {
-        $input = new BytesInput($fileBytes, $fileName);
-        if ($fixPdf) {
-            $input->fixPdf();
-        }
-        return $input;
-    }
-
-    /**
-     * Load a document from a base64 encoded string.
-     *
-     * @param string $fileB64 File object in Base64.
-     * @param string $fileName File name, mandatory.
-     * @param boolean $fixPdf Whether the PDF should be fixed or not.
-     */
-    public function sourceFromB64String(string $fileB64, string $fileName, bool $fixPdf = false): Base64Input
-    {
-        $input = new Base64Input($fileB64, $fileName);
-        if ($fixPdf) {
-            $input->fixPdf();
-        }
-        return $input;
-    }
-
-    /**
-     * Load a document from an URL.
-     *
-     * @param string $url File URL. Must start with "https://".
-     */
-    public function sourceFromUrl(string $url): UrlInputSource
-    {
-        return new UrlInputSource($url);
     }
 
     /**
@@ -216,12 +135,12 @@ class Client
      * @param string $endpointName URL of the endpoint.
      * @param string $accountName Name of the endpoint's owner.
      * @param string|null $version Version of the endpoint.
-     * @throws MindeeClientException Throws if a custom endpoint name isn't provided.
+     * @throws MindeeV1ClientException Throws if a custom endpoint name isn't provided.
      */
     public function createEndpoint(string $endpointName, string $accountName, ?string $version = null): Endpoint
     {
         if (mb_strlen($endpointName, "UTF-8") === 0) {
-            throw new MindeeClientException(
+            throw new MindeeV1ClientException(
                 "Custom endpoint requires a valid 'endpoint_name'.",
                 ErrorCode::USER_INPUT_ERROR
             );
@@ -251,7 +170,7 @@ class Client
      * @param string $predictionType Name of the product's class.
      * @param string $queueId ID of the queue.
      * @param Endpoint $endpoint Endpoint to poll.
-     * @throws MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeV1HttpException Throws if the API sent an error.
      */
     private function makeParseQueuedRequest(
         string $predictionType,
@@ -260,7 +179,7 @@ class Client
     ): AsyncPredictResponse {
         $queuedResponse = ResponseValidation::cleanRequestData($endpoint->documentQueueReqGet($queueId));
         if (!ResponseValidation::isValidAsyncResponse($queuedResponse)) {
-            throw MindeeHttpException::handleError(
+            throw MindeeV1HttpException::handleError(
                 $endpoint->settings->endpointName,
                 $queuedResponse
             );
@@ -274,7 +193,7 @@ class Client
      * @param string $predictionType Name of the product's class.
      * @param InputSource $inputDoc Input file.
      * @param PredictMethodOptions $options Prediction Options.
-     * @throws MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeV1HttpException Throws if the API sent an error.
      * @throws MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeEnqueueRequest(
@@ -299,7 +218,7 @@ class Client
             )
         );
         if (!ResponseValidation::isValidAsyncResponse($response)) {
-            throw MindeeHttpException::handleError(
+            throw MindeeV1HttpException::handleError(
                 $options->endpoint->settings->endpointName,
                 $response
             );
@@ -314,7 +233,7 @@ class Client
      * @param InputSource $inputDoc Input file.
      * @param string $workflowId ID of the workflow.
      * @param PredictMethodOptions $options Prediction Options.
-     * @throws MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeV1HttpException Throws if the API sent an error.
      * @throws MindeeApiException Throws if the API sent an error,
      *                            or if the prediction type isn't recognized or if a field can't be deserialized.
      */
@@ -341,7 +260,7 @@ class Client
             $options->workflowOptions
         ));
         if (!ResponseValidation::isValidWorkflowResponse($response)) {
-            throw MindeeHttpException::handleError(
+            throw MindeeV1HttpException::handleError(
                 "workflows/$workflowId/executions",
                 $response
             );
@@ -363,7 +282,7 @@ class Client
      * @param string $predictionType Name of the product's class.
      * @param InputSource $inputDoc Input file.
      * @param PredictMethodOptions $options Prediction Options.
-     * @throws MindeeHttpException Throws if the API sent an error.
+     * @throws MindeeV1HttpException Throws if the API sent an error.
      * @throws MindeeApiException Throws if one attempts to edit remote resources.
      */
     private function makeParseRequest(
@@ -386,7 +305,7 @@ class Client
             $options,
         ));
         if (!ResponseValidation::isValidSyncResponse($response)) {
-            throw MindeeHttpException::handleError(
+            throw MindeeV1HttpException::handleError(
                 $options->endpoint->settings->endpointName,
                 $response
             );

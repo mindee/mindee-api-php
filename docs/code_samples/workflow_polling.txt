@@ -11,7 +11,7 @@ $workflowId = "workflow-id";
 $mindeeClient = new Client("my-api-key");
 
 // Load a file from disk
-$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+$inputSource = new PathInput("/path/to/the/file.ext");
 
 $customEndpoint = $mindeeClient->createEndpoint(
     "my-endpoint",

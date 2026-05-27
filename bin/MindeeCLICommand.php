@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Mindee\CLI;
+namespace Mindee\Cli;
 
-use Mindee\Error\MindeeHttpException;
+use Exception;
+use Mindee\Error\V1\MindeeV1HttpException;
 use Mindee\Input\InputSource;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
@@ -19,7 +20,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Exception;
 
 use function count;
 use function in_array;
@@ -253,7 +253,7 @@ Available products:";
         }
 
         $filePathOrUrl = $input->getArgument('file_path_or_url');
-        $file = $this->getFileSource($filePathOrUrl, $client, $output);
+        $file = $this->getFileSource($filePathOrUrl, $output);
         if (!$file) {
             return Command::FAILURE;
         }
@@ -347,7 +347,7 @@ Available products:";
         $pagesRemove = $input->getOption('pages_remove');
         $pagesKeep = $input->getOption('pages_keep');
         if ($pagesKeep && $pagesRemove) {
-            $output->writeln("<error>Page cut & page keep operations are mutually exclusive.</error>");
+            $output->writeln("<error>Page cut and page keep operations are mutually exclusive.</error>");
             return true;
         }
         return false;
@@ -357,21 +357,20 @@ Available products:";
      * Retrieves a source file from a URL or a path.
      *
      * @param string $filePathOrUrl Path of the file, or URL if it's remote.
-     * @param Client $client Mindee Client.
      * @param OutputInterface $output Output interface of the CLI.
      * @return PathInput|UrlInputSource|null A valid InputSource.
      */
-    private function getFileSource(string $filePathOrUrl, Client $client, OutputInterface $output)
+    private function getFileSource(string $filePathOrUrl, OutputInterface $output): PathInput|UrlInputSource|null
     {
-        if (substr($filePathOrUrl, 0, 8) !== 'https://') {
+        if (!str_starts_with($filePathOrUrl, 'https://')) {
             if (@file_exists($filePathOrUrl) || @file_get_contents($filePathOrUrl)) {
-                return $client->sourceFromPath($filePathOrUrl);
+                return new PathInput($filePathOrUrl);
             } else {
                 $output->writeln("<error>Invalid path or url provided '$filePathOrUrl'.</error>");
                 return null;
             }
         }
-        return $client->sourceFromUrl($filePathOrUrl);
+        return new UrlInputSource($filePathOrUrl);
     }
 
     /**
@@ -493,7 +492,7 @@ Available products:";
         $debug = $input->getOption('debug');
         try {
             $result = $this->runClientPrediction($client, $product, $file, $predictMethodOptions, $isAsync, $debug);
-        } catch (MindeeHttpException $e) {
+        } catch (MindeeV1HttpException $e) {
             $output->writeln($e->getMessage());
             return Command::FAILURE;
         } catch (Exception $e) {
@@ -524,7 +523,7 @@ Available products:";
         PredictMethodOptions $predictMethodOptions,
         bool $isAsync,
         bool $debug
-    ) {
+    ): AsyncPredictResponse|PredictResponse|string {
         if ($debug) {
             return "Command executed successfully.";
         }
@@ -544,7 +543,7 @@ Available products:";
      * @return integer Command execution code return.
      */
     private function outputResult(
-        $result,
+        PredictResponse|AsyncPredictResponse|string $result,
         ?string $outputType,
         OutputInterface $output
     ): int {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Ocr;
 
-use Mindee\V2\Parsing\BaseInference;
+use Mindee\V2\Parsing\Inference\BaseInference;
 
 /**
  * Response for an Ocr utility inference.

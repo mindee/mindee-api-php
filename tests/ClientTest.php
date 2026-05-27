@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 use Mindee\ClientOptions\PollingOptions;
 use Mindee\Error\MindeeApiException;
-use Mindee\Error\MindeeHttpClientException;
-use Mindee\Error\MindeeHttpException;
+use Mindee\Error\MindeeMimeTypeException;
+use Mindee\Error\V1\MindeeV1HttpException;
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PageOptions;
+use Mindee\Input\PathInput;
+use Mindee\Input\UrlInputSource;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\Product\Generated\GeneratedV1;
@@ -16,7 +18,6 @@ use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\V1\Product\Receipt\ReceiptV5;
 use PHPUnit\Framework\TestCase;
-use Mindee\Error\MindeeMimeTypeException;
 
 class ClientTest extends TestCase
 {
@@ -52,17 +53,17 @@ class ClientTest extends TestCase
 
     public function testParsePathWithoutToken(): void
     {
-        $this->expectException(MindeeHttpClientException::class);
+        $this->expectException(MindeeV1HttpException::class);
 
-        $inputDoc = $this->emptyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->emptyClient->parse(InvoiceV4::class, $inputDoc);
     }
 
     public function testParsePathWithEnvToken(): void
     {
-        $this->expectException(MindeeHttpException::class);
+        $this->expectException(MindeeV1HttpException::class);
 
-        $inputDoc = $this->envClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->envClient->parse(InvoiceV4::class, $inputDoc);
     }
 
@@ -70,25 +71,25 @@ class ClientTest extends TestCase
     {
         $this->expectException(MindeeMimeTypeException::class);
 
-        $inputDoc = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/receipt.txt");
+        new PathInput(TestingUtilities::getFileTypesDir() . "/receipt.txt");
     }
 
     public function testParsePathWithWrongToken(): void
     {
-        $this->expectException(MindeeHttpClientException::class);
+        $this->expectException(MindeeV1HttpException::class);
 
-        $inputDoc = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $this->dummyClient->parse(InvoiceV4::class, $inputDoc);
     }
 
     public function testInterfaceVersion(): void
     {
         $dummyEndpoint = $this->dummyClient->createEndpoint("dummy", "dummy", "1.1");
-        $inputDoc = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
         $predictOptions = new PredictMethodOptions();
         self::assertSame("1.1", $dummyEndpoint->settings->version);
 
-        $this->expectException(MindeeHttpClientException::class);
+        $this->expectException(MindeeV1HttpException::class);
         $this->dummyClient->parse(
             GeneratedV1::class,
             $inputDoc,
@@ -98,8 +99,8 @@ class ClientTest extends TestCase
 
     public function testCutOptions(): void
     {
-        $inputDoc = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
-        $this->expectException(MindeeHttpClientException::class);
+        $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
+        $this->expectException(MindeeV1HttpException::class);
         $pageOptions = new PageOptions(range(0, 4));
         $this->dummyClient->parse(ReceiptV5::class, $inputDoc, null, $pageOptions);
         self::assertSame(5, $inputDoc->getPageCount());
@@ -125,7 +126,7 @@ class ClientTest extends TestCase
         self::assertFalse($pageOptions->isEmpty());
         $predictOptions = new PredictMethodOptions();
         $predictOptions->setPageOptions($pageOptions);
-        $urlInputSource = $this->dummyClient->sourceFromUrl("https://dummy");
+        $urlInputSource = new UrlInputSource("https://dummy");
         $this->expectException(MindeeApiException::class);
         $this->dummyClient->parse(InvoiceV4::class, $urlInputSource, $predictOptions);
         $this->expectException(MindeeApiException::class);
@@ -136,10 +137,10 @@ class ClientTest extends TestCase
     {
         $predictOptions = new PredictMethodOptions();
         self::assertTrue($predictOptions->pageOptions->isEmpty());
-        $inputDoc = $this->dummyClient->sourceFromPath(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
-        $this->expectException(MindeeHttpClientException::class);
+        $inputDoc = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/blank.pdf");
+        $this->expectException(MindeeV1HttpException::class);
         $this->dummyClient->parse(InvoiceV4::class, $inputDoc, $predictOptions);
-        $this->expectException(MindeeHttpClientException::class);
+        $this->expectException(MindeeV1HttpException::class);
         $this->dummyClient->enqueue(InvoiceSplitterV1::class, $inputDoc, $predictOptions);
     }
 

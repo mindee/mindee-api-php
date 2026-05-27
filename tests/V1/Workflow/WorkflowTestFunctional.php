@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace V1\Workflow;
 
+use Mindee\Input\PathInput;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\WorkflowOptions;
@@ -25,7 +26,7 @@ class WorkflowTestFunctional extends TestCase
         $this->mindeeClient = new Client();
         $this->workflowId = getenv('WORKFLOW_ID') ?: '';
         $this->predictionType = FinancialDocumentV1::class;
-        $this->inputSource = $this->mindeeClient->sourceFromPath(
+        $this->inputSource = new PathInput(
             TestingUtilities::getV1DataDir() . "/products/financial_document/default_sample.jpg"
         );
     }

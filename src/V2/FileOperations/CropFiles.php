@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Mindee\V2\FileOperations;
 
-use Mindee\Error\MindeeException;
-use Mindee\Extraction\ExtractedImage;
 use ArrayObject;
 use ImagickException;
+use Mindee\Error\MindeeException;
+use Mindee\Image\ExtractedImage;
 
 use function sprintf;
 

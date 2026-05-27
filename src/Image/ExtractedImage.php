@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Mindee\Extraction;
+namespace Mindee\Image;
 
+use Imagick;
+use ImagickException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
-use Imagick;
-use ImagickException;
 
 use function in_array;
 
