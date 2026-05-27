@@ -19,7 +19,8 @@
     "madewithlove/license-checker": "^v1.0",
     "phpstan/phpstan": "^2.1",
     "phpstan/phpstan-deprecation-rules": "^2.0",
-    "rector/rector": "^2.4"
+    "rector/rector": "^2.4",
+    "projektgopher/whisky": "^0.7.4"
   },
   "suggest": {
     "ext-imagick": "Required for PDF rasterization and image processing features",
@@ -35,10 +36,23 @@
     "bin/cli.php"
   ],
   "scripts": {
-    "lint": "php-cs-fixer fix --dry-run --diff",
-    "phpstan": "phpstan analyse",
-    "format": "php-cs-fixer fix",
-    "rector": "rector process src tests",
-    "rector:check": "rector process src tests --dry-run"
+    "lint:cs-fixer": "php-cs-fixer fix --dry-run --diff",
+    "lint:rector": "rector process src tests --dry-run",
+    "lint:phpstan": "phpstan analyse",
+    "lint": [
+      "@lint:phpstan",
+      "@lint:cs-fixer",
+      "@lint:rector"
+    ],
+    "format:cs-fixer": "php-cs-fixer fix",
+    "format:rector": "rector process src tests",
+    "format": [
+      "@format:cs-fixer",
+      "@format:rector"
+    ],
+    "test:unit": "phpunit -c tests/phpunit.xml",
+    "test:functional": "phpunit -c tests/functional.xml",
+    "test:smoke:v1": "./tests/test_v1_code_samples.sh",
+    "test:smoke:v2": "./tests/test_v2_code_samples.sh"
   }
 }
