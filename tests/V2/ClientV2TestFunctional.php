@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace V2;
 
-use Mindee\Error\V2\MindeeV2HttpException;
 use Mindee\Input\PathInput;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\Client;
+use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use PHPUnit\Framework\TestCase;

@@ -6,7 +6,7 @@ namespace V1\Pdf;
 
 use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
-use Mindee\Pdf\PdfExtractor;
+use Mindee\V1\Pdf\PdfExtractor;
 use Mindee\V1\Client;
 use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;

@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Mindee Client Exceptions.
  */
 
-namespace Mindee\Error\V1;
+namespace Mindee\V1\Error;
 
 use Mindee\Error\MindeeException;
 

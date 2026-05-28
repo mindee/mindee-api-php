@@ -13,12 +13,12 @@ use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeException;
-use Mindee\Error\V2\MindeeV2HttpException;
-use Mindee\Error\V2\MindeeV2HttpUnknownException;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\Error\MindeeV2HttpException;
+use Mindee\V2\Error\MindeeV2HttpUnknownException;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
@@ -30,7 +30,6 @@ use ReflectionProperty;
 use function call_user_func;
 use function dirname;
 
-use const Mindee\V1\Http\API_KEY_ENV_NAME;
 use const Mindee\VERSION;
 
 // phpcs:disable
