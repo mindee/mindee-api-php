@@ -401,9 +401,14 @@ class MindeeApiV2
         if ($modelType) {
             $params['model_type'] = $modelType;
         }
+        if (!empty($params)) {
+            $url .= '?' . http_build_query($params);
+        }
+
         $ch = $this->initChannel();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+
         $resp = [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),

@@ -36,7 +36,10 @@ class SearchModel implements Stringable
         $this->id = $rawResponse['id'];
         $this->name = $rawResponse['name'];
         $this->modelType = $rawResponse['model_type'];
-        $this->webhooks = array_map(static fn($webhook) => new ModelWebhook($webhook), $rawResponse['webhooks']);
+        $this->webhooks = array_map(
+            static fn($webhook) => new ModelWebhook($webhook),
+            $rawResponse['webhooks'] ?? []
+        );
     }
 
     /**
