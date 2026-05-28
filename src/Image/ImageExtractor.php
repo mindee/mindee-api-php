@@ -9,7 +9,6 @@ use Imagick;
 use ImagickException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
-use Mindee\Error\MindeeGeometryException;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePdfException;
 use Mindee\Geometry\BBox;
@@ -17,7 +16,6 @@ use Mindee\Geometry\BBoxUtils;
 use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
-use Mindee\V1\Parsing\Standard\BaseField;
 
 use function count;
 use function sprintf;
@@ -128,20 +126,6 @@ class ImageExtractor
         return count($this->pageImages);
     }
 
-    /**
-     * Extract multiple images on a given page from a list of fields having position data.
-     *
-     * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
-     * @param integer $pageIndex The page index to extract, begins at 0.
-     * @param null|string $outputName The base output filename, must have an image extension.
-     *
-     * @return array<ExtractedImage> a list of extracted images
-     */
-    public function extractImagesFromPage(array $fields, int $pageIndex, ?string $outputName = null): array
-    {
-        $outputName ??= $this->filename;
-        return $this->extractFromPage($fields, $pageIndex, $outputName);
-    }
 
     /**
      * Extracts images from a page.
@@ -212,47 +196,6 @@ class ImageExtractor
         return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
     }
 
-    /**
-     * Extracts a single image from a Position field.
-     *
-     * @param BaseField<string|float|integer|boolean|Polygon> $field The field to extract.
-     * @param integer $pageIndex The page index to extract, begins at 0.
-     * @param integer $index The index to use for naming the extracted image.
-     * @param string $filename The output filename.
-     * @param string $format The output format.
-     *
-     * @return null|ExtractedImage The extracted image, or null if the field does not have valid position data.
-     *
-     * @throws MindeeGeometryException Throws if a field does not contain positional data.
-     */
-    public function extractImage(
-        BaseField $field,
-        int $pageIndex,
-        int $index,
-        string $filename,
-        string $format
-    ): ?ExtractedImage {
-        $polygon = null;
-
-        if (!empty($field->polygon)) {
-            $polygon = $field->polygon;
-        } elseif (!empty($field->boundingBox)) {
-            $polygon = $field->boundingBox;
-        } elseif (!empty($field->quadrangle)) {
-            $polygon = $field->quadrangle;
-        } elseif (!empty($field->rectangle)) {
-            $polygon = $field->rectangle;
-        }
-
-        if (null === $polygon) {
-            throw new MindeeGeometryException(
-                'Provided field has no valid position data.',
-                ErrorCode::GEOMETRIC_OPERATION_FAILED
-            );
-        }
-
-        return $this->extractPolygonFromPage($polygon, $pageIndex, $index, $filename, $format);
-    }
 
     /**
      * Getter for the local input source.
@@ -260,33 +203,6 @@ class ImageExtractor
     public function getInputSource(): LocalInputSource
     {
         return $this->inputSource;
-    }
-
-    /**
-     * Extracts images from a page.
-     *
-     * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
-     * @param integer $pageIndex The page index to extract, begins at 0.
-     * @param string $outputName Name of the created file.
-     * @param string $format The output format.
-     *
-     * @return array<ExtractedImage> An array of created images
-     */
-    protected function extractFromPage(array $fields, int $pageIndex, string $outputName, string $format = 'jpg'): array
-    {
-        $extractedImages = [];
-
-        $i = 0;
-        foreach ($fields as $field) {
-            $filename = sprintf('%s_page%d-%d.%s', $outputName, $pageIndex, $i, $format);
-            $extractedImage = $this->extractImage($field, $pageIndex, $i, $filename, $format);
-            if (null !== $extractedImage) {
-                $extractedImages[] = $extractedImage;
-            }
-            ++$i;
-        }
-
-        return $extractedImages;
     }
 
     /**

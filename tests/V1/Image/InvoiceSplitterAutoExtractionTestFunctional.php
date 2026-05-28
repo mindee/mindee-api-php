@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace V1\Image;
 
 use Mindee\Input\PathInput;
-use Mindee\Pdf\PdfExtractor;
+use Mindee\V1\Pdf\PdfExtractor;
 use Mindee\V1\Client;
 use Mindee\V1\Parsing\Common\Document;
 use Mindee\V1\Product\Invoice\InvoiceV4;

@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Mindee HTTP Exceptions.
  */
 
-namespace Mindee\Error\V1;
+namespace Mindee\V1\Error;
 
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
