@@ -64,7 +64,7 @@ abstract class BaseEndpoint
         ?string $workflowId = null
     ): array {
         if (isset($workflowId)) {
-            $url = $this->settings->baseUrl . "/workflows/" . $workflowId . $suffix;
+            $url = $this->settings->baseUrl . "/v1/workflows/" . $workflowId . $suffix;
         } else {
             $url = $this->settings->urlRoot . $suffix;
         }

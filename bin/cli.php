@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Mindee\Cli;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/MindeeCLIDocuments.php';
-require __DIR__ . '/MindeeCLICommand.php';
+require __DIR__ . '/MindeeCliDocuments.php';
+require __DIR__ . '/MindeeCliCommand.php';
 
 use Symfony\Component\Console\Application;
 use Exception;
 
 $cli = new Application();
-$mindeeCommand = new MindeeCLICommand(MindeeCLIDocuments::getSpecs());
+$mindeeCommand = new MindeeCliCommand(MindeeCliDocuments::getSpecs());
 $cli->add($mindeeCommand);
 try {
     $cli->add($mindeeCommand);

@@ -36,6 +36,6 @@ class MindeeWorkflowApi extends BaseApi
         $this->urlRoot = rtrim(
             $this->baseUrl,
             "/"
-        ) . "/workflows/$this->workflowId/executions";
+        ) . "/v1/workflows/$this->workflowId/executions";
     }
 }

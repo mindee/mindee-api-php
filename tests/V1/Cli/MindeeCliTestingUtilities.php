@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace V1\CLI;
+namespace V1\Cli;
 
-class MindeeCLITestingUtilities
+class MindeeCliTestingUtilities
 {
     public static function executeTest($args, $mute = false)
     {

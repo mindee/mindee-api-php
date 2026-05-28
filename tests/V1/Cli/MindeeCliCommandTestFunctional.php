@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace V1\CLI;
+namespace V1\Cli;
 
 require_once(__DIR__ . "/../../../vendor/autoload.php");
-require_once(__DIR__ . "/../../../bin/MindeeCLIDocuments.php");
+require_once(__DIR__ . "/../../../bin/MindeeCliDocuments.php");
 require_once(__DIR__ . "/../../TestingUtilities.php");
-require_once(__DIR__ . "/MindeeCLITestingUtilities.php");
+require_once(__DIR__ . "/MindeeCliTestingUtilities.php");
 
-use Mindee\Cli\MindeeCLIDocuments;
+use Mindee\Cli\MindeeCliDocuments;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-class MindeeCLICommandTestFunctional extends TestCase
+class MindeeCliCommandTestFunctional extends TestCase
 {
     private string $apiKey;
 
@@ -32,7 +32,7 @@ class MindeeCLICommandTestFunctional extends TestCase
         if ($async) {
             $args[] = "-A";
         }
-        return MindeeCLITestingUtilities::executeTest($args);
+        return MindeeCliTestingUtilities::executeTest($args);
     }
 
 
@@ -41,7 +41,7 @@ class MindeeCLICommandTestFunctional extends TestCase
         $data = [];
         $data[] = ["generated", true, ["-a", "mindee", "-e", "invoice_splitter", "-d", "1"]];
         /** @phpstan-ignore-next-line */
-        foreach (MindeeCLIDocuments::getSpecs() as $productName => $productSpecs) {
+        foreach (MindeeCliDocuments::getSpecs() as $productName => $productSpecs) {
             if ($productName !== "custom" && $productName !== "generated") {
                 if ($productSpecs->isSync) {
                     $data[] = [$productName, false];

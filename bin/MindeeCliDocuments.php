@@ -34,7 +34,7 @@ use Mindee\V1\Product\Us\UsMail\UsMailV3;
 /**
  * Document specifications for CLI usage.
  */
-class MindeeCLIDocuments
+class MindeeCliDocuments
 {
     /**
      * @return array Specifications for each Mindee Document, for CLI usage.
