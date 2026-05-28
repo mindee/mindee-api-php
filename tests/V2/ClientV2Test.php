@@ -139,6 +139,7 @@ class ClientV2Test extends TestCase
             'Supplier name mismatch'
         );
     }
+
     public function testInvalidBaseUrlRaisesMindeeException(): void
     {
         $this->expectException(MindeeException::class);
@@ -156,6 +157,23 @@ class ClientV2Test extends TestCase
                 putenv('MINDEE_V2_BASE_URL');
             } else {
                 putenv('MINDEE_V2_BASE_URL=' . $original);
+            }
+        }
+    }
+
+    public function testInvalidApiKeyRaisesMindeeException(): void
+    {
+        $original = getenv('MINDEE_V2_API_KEY') ?: null;
+        putenv('MINDEE_V2_API_KEY=');
+        $this->expectException(MindeeException::class);
+        $this->expectExceptionMessage('Missing API key for call, check your Client configuration.You can set this using the MINDEE_V2_API_KEY environment variable.');
+        try {
+            $client = new Client();
+        } finally {
+            if (null === $original) {
+                putenv('MINDEE_V2_API_KEY');
+            } else {
+                putenv('MINDEE_V2_API_KEY=' . $original);
             }
         }
     }
