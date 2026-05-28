@@ -58,6 +58,6 @@ class MindeeApi extends BaseApi
         $this->urlRoot = rtrim(
             $this->baseUrl,
             "/"
-        ) . "/products/$this->accountName/$this->endpointName/v$this->version";
+        ) . "/v1/products/$this->accountName/$this->endpointName/v$this->version";
     }
 }
