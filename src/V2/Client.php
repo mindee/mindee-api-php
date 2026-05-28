@@ -12,6 +12,7 @@ use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
+use Mindee\V2\Parsing\Search\SearchResponse;
 
 /**
  * Mindee Client V2.
@@ -32,7 +33,7 @@ class Client
      */
     public function __construct(?string $apiKey = null)
     {
-        $this->mindeeApi = new MindeeApiV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
+        $this->mindeeApi = new MindeeApiV2($apiKey ?: (getenv('MINDEE_V2_API_KEY') ?: null));
     }
 
     /**
@@ -158,5 +159,16 @@ class Client
             "Asynchronous parsing request timed out after "
             . ($pollingOptions->delaySec * $retryCounter) . " seconds"
         );
+    }
+
+    /**
+     * Searches for a list of available models for the given API key.
+     * @param string|null $modelName Optional model name to filter by.
+     * @param string|null $modelType Optional model type to filter by.
+     * @return SearchResponse The list of models matching the criteria.
+     */
+    public function searchModels(?string $modelName = null, ?string $modelType = null): SearchResponse
+    {
+        return $this->mindeeApi->searchModels($modelName, $modelType);
     }
 }
