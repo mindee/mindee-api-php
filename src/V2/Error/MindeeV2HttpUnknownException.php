@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mindee\Error\V2;
+namespace Mindee\V2\Error;
 
 use Mindee\V2\Parsing\Error\ErrorResponse;
 

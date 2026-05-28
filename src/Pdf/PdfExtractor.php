@@ -10,7 +10,6 @@ use InvalidArgumentException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\MindeePdfException;
 use Mindee\Input\LocalInputSource;
-use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1InvoicePageGroups;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
 use setasign\Fpdi\PdfParser\Filter\FilterException;
@@ -18,7 +17,6 @@ use setasign\Fpdi\PdfParser\PdfParserException;
 use setasign\Fpdi\PdfReader\PdfReaderException;
 
 use function count;
-use function is_array;
 use function sprintf;
 
 /**
@@ -39,8 +37,8 @@ class PdfExtractor
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      *
-     * @throws MindeePdfException Throws if PDF operations aren't supported, or if the file
-     *                            can't be read, respectively.
+     * @throws MindeePdfException|ImagickException Throws if PDF operations aren't supported, or if the file
+     *                                             can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
@@ -86,14 +84,14 @@ class PdfExtractor
     /**
      * Extracts sub-documents from the source document using list of page indexes.
      *
-     * @param array<array<integer>>|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param array<array<integer>> $pageIndexes List of sub-lists of pages to keep.
      *
      * @return ExtractedPdf[] list of extracted documents
      *
      * @throws MindeePdfException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
      * @throws InvalidArgumentException Throws if invalid indexes are provided.
      */
-    public function extractSubDocuments(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes): array
+    public function extractSubDocuments(array $pageIndexes): array
     {
         $extractedPdfs = [];
 
@@ -141,58 +139,17 @@ class PdfExtractor
     /**
      * Extracts invoices as complete PDFs from the document.
      *
-     * @param array<array<integer>>|InvoiceSplitterV1InvoicePageGroups $pageIndexes List of sub-lists of pages to keep.
+     * @param array<array<integer>> $pageIndexes List of sub-lists of pages to keep.
      * @param boolean $strict Whether to trust confidence scores or not.
      *
      * @return ExtractedPdf[] a list of extracted invoices
      */
-    public function extractInvoices(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes, bool $strict = false): array
+    public function extractInvoices(array $pageIndexes, bool $strict = false): array
     {
         if (empty($pageIndexes)) {
             return [];
         }
-        if (!$strict) {
-            $indexes = array_map(static fn($invoicePageIndexes) => $invoicePageIndexes->pageIndexes, (array) $pageIndexes);
-
-            return $this->extractSubDocuments($indexes);
-        }
-        if (is_array($pageIndexes[0])) {
-            return $this->extractSubDocuments($pageIndexes);
-        }
-
-        $correctPageIndexes = [];
-        $currentList = [];
-        $previousConfidence = null;
-
-        $i = 0;
-        foreach ($pageIndexes as $pageIndex) {
-            $confidence = $pageIndex->confidence;
-            $pageList = $pageIndex->pageIndexes;
-
-            if ($confidence >= 0.5 && null === $previousConfidence) {
-                $currentList = $pageList;
-            } elseif ($confidence >= 0.5 && $i !== count($pageIndexes) - 1) {
-                if (!empty($currentList)) {
-                    $correctPageIndexes[] = $currentList;
-                }
-                $currentList = $pageList;
-            } elseif ($confidence < 0.5 && $i === count($pageIndexes) - 1) {
-                $currentList = array_merge($currentList, $pageList);
-                if (!empty($currentList)) {
-                    $correctPageIndexes[] = $currentList;
-                }
-            } else {
-                if (!empty($currentList)) {
-                    $correctPageIndexes[] = $currentList;
-                }
-                $correctPageIndexes[] = $pageList;
-            }
-
-            $previousConfidence = $confidence;
-            ++$i;
-        }
-
-        return $this->extractSubDocuments($correctPageIndexes);
+        return $this->extractSubDocuments($pageIndexes);
     }
 
     /**

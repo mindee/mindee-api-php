@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Mindee\Cli;
 
 use Exception;
-use Mindee\Error\V1\MindeeV1HttpException;
 use Mindee\Input\InputSource;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
@@ -13,6 +12,7 @@ use Mindee\Input\UrlInputSource;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
 use Mindee\V1\ClientOptions\PredictOptions;
+use Mindee\V1\Error\MindeeV1HttpException;
 use Mindee\V1\Parsing\Common\AsyncPredictResponse;
 use Mindee\V1\Parsing\Common\PredictResponse;
 use Symfony\Component\Console\Command\Command;

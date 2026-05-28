@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace V1\Error;
 
-use Mindee\Error\V1\MindeeV1HttpException;
 use Mindee\Input\PathInput;
 use Mindee\V1\Client;
+use Mindee\V1\Error\MindeeV1HttpException;
 use Mindee\V1\Product\Invoice\InvoiceV4;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
