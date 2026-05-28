@@ -36,9 +36,9 @@ class SearchResponseTest extends TestCase
         self::assertCount(2, $response->models[0]->webhooks);
         self::assertEquals("https://failure.mindee.com", $response->models[0]->webhooks[0]->url);
 
-        self::assertEquals(50, $response->paginationMetadata->perPage);
-        self::assertEquals(1, $response->paginationMetadata->page);
-        self::assertGreaterThanOrEqual(5, $response->paginationMetadata->totalItems);
-        self::assertEquals(1, $response->paginationMetadata->totalPages);
+        self::assertEquals(50, $response->pagination->perPage);
+        self::assertEquals(1, $response->pagination->page);
+        self::assertGreaterThanOrEqual(5, $response->pagination->totalItems);
+        self::assertEquals(1, $response->pagination->totalPages);
     }
 }
