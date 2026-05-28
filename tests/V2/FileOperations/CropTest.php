@@ -28,7 +28,7 @@ class CropTest extends TestCase
         $doc = $localResponse->deserializeResponse(CropResponse::class);
 
         $cropOperation = new Crop($inputSample);
-        $extractedCrops = $cropOperation->extractCrops($doc->inference->result->crops);
+        $extractedCrops = $cropOperation->extractMultipleCrops($doc->inference->result->crops);
 
         self::assertCount(1, $extractedCrops);
 
@@ -49,7 +49,7 @@ class CropTest extends TestCase
         $doc = $localResponse->deserializeResponse(CropResponse::class);
 
         $cropOperation = new Crop($inputSample);
-        $extractedCrops = $cropOperation->extractCrops($doc->inference->result->crops);
+        $extractedCrops = $cropOperation->extractMultipleCrops($doc->inference->result->crops);
 
         self::assertCount(2, $extractedCrops);
 

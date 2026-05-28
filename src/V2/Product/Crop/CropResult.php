@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Crop;
 
+use Mindee\Input\LocalInputSource;
+use Mindee\V2\FileOperations\Crop;
+use Mindee\V2\FileOperations\CropFiles;
 use Stringable;
 
 /**
@@ -30,5 +33,15 @@ class CropResult implements Stringable
     public function __toString(): string
     {
         return "Crops\n=====\n" . implode("\n", $this->crops);
+    }
+
+    /**
+     * @param LocalInputSource $inputSource The input source from which to extract the pages.
+     * @return CropFiles The extracted PDFs.
+     */
+    public function extractFromInputSource(LocalInputSource $inputSource): CropFiles
+    {
+        $cropper = new Crop($inputSource);
+        return $cropper->extractMultipleCrops($this->crops);
     }
 }

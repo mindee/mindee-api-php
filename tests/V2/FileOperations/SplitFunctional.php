@@ -13,6 +13,7 @@ use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
+use ImagickException;
 
 use function count;
 use function sprintf;
@@ -60,6 +61,9 @@ class SplitFunctional extends TestCase
         self::assertGreaterThan(0, $totalAmount->value);
     }
 
+    /**
+     * @throws ImagickException
+     */
     public function testExtractSplitsFromPdfCorrectly(): void
     {
         $inputSource = new PathInput(TestingUtilities::getV2ProductDir() . '/split/default_sample.pdf');
@@ -70,10 +74,10 @@ class SplitFunctional extends TestCase
         self::assertNotNull($response);
         self::assertCount(2, $response->inference->result->splits);
 
-        $splitOperation = new Split($inputSource);
-        $extractedSplits = $splitOperation->extractSplits(
-            array_map(static fn($s) => $s->pageRange, $response->inference->result->splits)
-        );
+        self::assertInstanceof(SplitResponse::class, $response);
+        $extractedSplits = $response->inference->result->extractFromInputSource($inputSource);
+        $extractedSplit0 = $response->inference->result->splits[0]->extractFromInputSource($inputSource);
+        self::assertSame($extractedSplit0, $extractedSplits[0]);
 
         self::assertCount(2, $extractedSplits);
         self::assertSame('default_sample_001-001.pdf', $extractedSplits[0]->filename);
