@@ -107,7 +107,7 @@ class MindeeApiV2
             throw new MindeeException(
                 "Missing API key for call,"
                 . " check your Client configuration.You can set this using the "
-                . API_KEY_ENV_NAME . ' environment variable.',
+                . API_V2_KEY_ENV_NAME . ' environment variable.',
                 ErrorCode::USER_INPUT_ERROR
             );
         }

@@ -33,7 +33,7 @@ class Client
      */
     public function __construct(?string $apiKey = null)
     {
-        $this->mindeeApi = new MindeeApiV2($apiKey ?: getenv('MINDEE_V2_API_KEY'));
+        $this->mindeeApi = new MindeeApiV2($apiKey ?: (getenv('MINDEE_V2_API_KEY') ?: null));
     }
 
     /**
