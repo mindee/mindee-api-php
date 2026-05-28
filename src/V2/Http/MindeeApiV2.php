@@ -22,6 +22,7 @@ use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
+use Mindee\V2\Parsing\Search\SearchResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -385,5 +386,40 @@ class MindeeApiV2
             }
             throw new MindeeV2HttpUnknownException(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         }
+    }
+
+    /**
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
+     */
+    private function reqGetSearchModels(?string $modelName = null, ?string $modelType = null): array
+    {
+        $url = $this->baseUrl . "/v2/search/models";
+        $params = [];
+        if ($modelName) {
+            $params['name'] = $modelName;
+        }
+        if ($modelType) {
+            $params['model_type'] = $modelType;
+        }
+        $ch = $this->initChannel();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        $resp = [
+            'data' => curl_exec($ch),
+            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
+        ];
+        curl_close($ch);
+        return $resp;
+    }
+
+    /**
+     * Retrieves a list of models based on criteria.
+     * @param string|null $modelName Optional model name to filter by.
+     * @param string|null $modelType Optional model type to filter by.
+     * @return SearchResponse The list of models matching the criteria.
+     */
+    public function searchModels(?string $modelName = null, ?string $modelType = null): SearchResponse
+    {
+        return $this->processResponse(SearchResponse::class, $this->reqGetSearchModels($modelName, $modelType));
     }
 }
