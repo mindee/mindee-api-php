@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Crop;
 
+use Mindee\Image\ExtractedImage;
+use Mindee\Input\LocalInputSource;
+use Mindee\V2\FileOperations\Crop;
 use Mindee\V2\Parsing\Inference\Field\FieldLocation;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Stringable;
@@ -44,5 +47,15 @@ class CropItem implements Stringable
     public function __toString(): string
     {
         return "* :Location: $this->location\n  :Object Type: $this->objectType";
+    }
+
+    /**
+     * @param LocalInputSource $inputSource The input source from which to extract the crop.
+     * @return ExtractedImage The extracted image.
+     */
+    public function extractFromInputSource(LocalInputSource $inputSource): ExtractedImage
+    {
+        $cropper = new Crop($inputSource);
+        return $cropper->extractSingleCrop($this);
     }
 }

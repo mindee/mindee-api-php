@@ -8,6 +8,7 @@ use Mindee\Error\MindeeInputException;
 use Mindee\Input\LocalInputSource;
 use Mindee\Pdf\ExtractedPdf;
 use Mindee\Pdf\PdfExtractor;
+use ImagickException;
 
 /**
  * V2 Split operation.
@@ -44,10 +45,11 @@ class Split
      * @param int[] $split Split range to extract.
      *
      * @return ExtractedPdf 2D array of extracted pages
+     * @throws ImagickException Throws if the image can't be processed.
      */
     public function extractSingleSplit(array $split): ExtractedPdf
     {
-        return $this->extractSplits([$split])[0];
+        return $this->extractMultipleSplits([$split])[0];
     }
 
     /**
@@ -56,8 +58,9 @@ class Split
      * @param int[][] $splits List of split ranges to extract.
      *
      * @return SplitFiles list of extracted files
+     * @throws ImagickException Throws if the image can't be processed.
      */
-    public function extractSplits(array $splits): SplitFiles
+    public function extractMultipleSplits(array $splits): SplitFiles
     {
         $pdfExtractor = new PdfExtractor($this->localInput);
         $expandedPageIndexes = array_map(static fn(array $split) => self::expandRange($split[0], $split[1]), $splits);

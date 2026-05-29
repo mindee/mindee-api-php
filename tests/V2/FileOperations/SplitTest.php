@@ -31,7 +31,7 @@ class SplitTest extends TestCase
 
         $splitOperation = new Split($inputSample);
         $splits = $doc->inference->result->splits;
-        $extractedSplits = $splitOperation->extractSplits(array_map(static fn($s) => $s->pageRange, $splits));
+        $extractedSplits = $splitOperation->extractMultipleSplits(array_map(static fn($s) => $s->pageRange, $splits));
 
         self::assertCount(1, $extractedSplits);
 
@@ -47,7 +47,7 @@ class SplitTest extends TestCase
 
         $splitOperation = new Split($inputSample);
         $splits = $doc->inference->result->splits;
-        $extractedSplits = $splitOperation->extractSplits(array_map(static fn($s) => $s->pageRange, $splits));
+        $extractedSplits = $splitOperation->extractMultipleSplits(array_map(static fn($s) => $s->pageRange, $splits));
 
         self::assertCount(3, $extractedSplits);
 
