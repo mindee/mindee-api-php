@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Split;
 
+use Mindee\Input\LocalInputSource;
+use Mindee\Pdf\ExtractedPdf;
+use Mindee\V2\FileOperations\Split;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Stringable;
 
@@ -48,5 +51,17 @@ class SplitRange implements Stringable
         $pageRangeStr = implode(",", $this->pageRange);
 
         return "* :Page Range: $pageRangeStr\n  :Document Type: $this->documentType";
+    }
+
+    /**
+     * Extracts a single page from the input source based on the specified page range.
+     *
+     * @param LocalInputSource $inputSource The input source from which to extract the page.
+     * @return ExtractedPdf The extracted PDF.
+     */
+    public function extractFromInputSource(LocalInputSource $inputSource): ExtractedPdf
+    {
+        $splitter = new Split($inputSource);
+        return $splitter->extractSingleSplit($this->pageRange);
     }
 }

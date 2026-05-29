@@ -67,9 +67,10 @@ class CropFunctional extends TestCase
 
         self::assertNotNull($response);
         self::assertCount(2, $response->inference->result->crops);
-
-        $cropOperation = new Crop($inputSource);
-        $extractedImages = $cropOperation->extractCrops($response->inference->result->crops);
+        self::assertInstanceOf(CropResponse::class, $response);
+        $extractedImages = $response->inference->result->extractFromInputSource($inputSource);
+        $extractedImage0 = $response->inference->result->crops[0]->extractFromInputSource($inputSource);
+        self::assertEquals($extractedImage0, $extractedImages[0]);
 
         self::assertCount(2, $extractedImages);
         self::assertSame('default_sample.jpg_page0-0.jpg', $extractedImages[0]->filename);
@@ -100,7 +101,7 @@ class CropFunctional extends TestCase
 
         $response = $this->client->enqueueAndGetResult(CropResponse::class, $inputSource, $cropParams);
         $cropOperation = new Crop($inputSource);
-        $extractedImages = $cropOperation->extractCrops($response->inference->result->crops);
+        $extractedImages = $cropOperation->extractMultipleCrops($response->inference->result->crops);
 
         self::assertCount(5, $extractedImages);
         self::assertSame('multipage_sample.pdf_page0-0.jpg', $extractedImages[0]->filename);

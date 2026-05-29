@@ -28,9 +28,9 @@ class Crop
      *
      * @return ExtractedImage extracted image
      */
-    public function extractCrop(CropItem $crop): ExtractedImage
+    public function extractSingleCrop(CropItem $crop): ExtractedImage
     {
-        return $this->extractCrops([$crop])[0];
+        return $this->extractMultipleCrops([$crop])[0];
     }
 
     /**
@@ -39,7 +39,7 @@ class Crop
      * @param CropItem[] $crops List of crops to extract.
      * @return CropFiles list of extracted files
      */
-    public function extractCrops(array $crops): CropFiles
+    public function extractMultipleCrops(array $crops): CropFiles
     {
         $imageExtractor = new ImageExtractor($this->localInput);
         $extractedImages = [];
