@@ -6,7 +6,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"/>
     <link rel="icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -61,19 +64,19 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
+                <a href="namespaces/mindee-clientoptions.html" class="">ClientOptions</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/mindee-dependency.html" class="">Dependency</a>
+                
+            </li>
+                    <li>
                 <a href="namespaces/mindee-error.html" class="">Error</a>
                 
             </li>
                     <li>
-                <a href="namespaces/mindee-extraction.html" class="">Extraction</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/mindee-geometry.html" class="">Geometry</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/mindee-http.html" class="">Http</a>
                 
             </li>
                     <li>
@@ -89,11 +92,7 @@
                 
             </li>
                     <li>
-                <a href="namespaces/mindee-pdf.html" class="">PDF</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/mindee-product.html" class="">Product</a>
+                <a href="namespaces/mindee-pdf.html" class="">Pdf</a>
                 
             </li>
                     <li>
@@ -159,7 +158,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -219,18 +218,18 @@
 <dd>Expands a range to a list of integers.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-FileOperations-Split.html#method_extractSingleSplit">extractSingleSplit()</a>
-    <span>
-                                &nbsp;: <a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a>    </span>
-</dt>
-<dd>Extracts a single split from the input file.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-FileOperations-Split.html#method_extractSplits">extractSplits()</a>
+    <a class="" href="classes/Mindee-V2-FileOperations-Split.html#method_extractMultipleSplits">extractMultipleSplits()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-V2-FileOperations-SplitFiles.html"><abbr title="\Mindee\V2\FileOperations\SplitFiles">SplitFiles</abbr></a>    </span>
 </dt>
 <dd>Extracts the splits from the input file.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-FileOperations-Split.html#method_extractSingleSplit">extractSingleSplit()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Pdf-ExtractedPdf.html"><abbr title="\Mindee\Pdf\ExtractedPdf">ExtractedPdf</abbr></a>    </span>
+</dt>
+<dd>Extracts a single split from the input file.</dd>
 
     </dl>
 
@@ -262,7 +261,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -275,9 +274,7 @@
     </code>
 
     
-        <section class="phpdocumentor-description"><p>localInputSource object</p>
-</section>
-
+    
     
 
         
@@ -306,14 +303,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$localInput</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -322,7 +319,7 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$inputSource</span>
+                <span class="phpdocumentor-argument-list__argument__name">$localInput</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -352,7 +349,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
@@ -389,23 +386,22 @@
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_expandRange_tags">
         Tags
-        <a href="classes/Mindee-V2-FileOperations-Split.html#method_expandRange#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-FileOperations-Split.html#method_expandRange_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeInputException.html"><abbr title="\Mindee\Error\MindeeInputException">MindeeInputException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>If the start page is greater than the end page.</p>
+                                                                                        <section class="phpdocumentor-description"><p>If the start page is greater than the end page.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -421,70 +417,15 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_extractSingleSplit">
-        extractSingleSplit()
-        <a href="classes/Mindee-V2-FileOperations-Split.html#method_extractSingleSplit" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_extractMultipleSplits">
+        extractMultipleSplits()
+        <a href="classes/Mindee-V2-FileOperations-Split.html#method_extractMultipleSplits" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Extracts a single split from the input file.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">extractSingleSplit</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$split</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$split</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Split range to extract.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Extraction-ExtractedPdf.html"><abbr title="\Mindee\Extraction\ExtractedPdf">ExtractedPdf</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>2D array of extracted pages</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_extractSplits">
-        extractSplits()
-        <a href="classes/Mindee-V2-FileOperations-Split.html#method_extractSplits" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -492,7 +433,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">extractSplits</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, array&lt;string|int, int&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$splits</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-FileOperations-SplitFiles.html"><abbr title="\Mindee\V2\FileOperations\SplitFiles">SplitFiles</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">extractMultipleSplits</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, array&lt;string|int, int&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$splits</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-FileOperations-SplitFiles.html"><abbr title="\Mindee\V2\FileOperations\SplitFiles">SplitFiles</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -512,6 +453,22 @@
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_extractMultipleSplits_tags">
+        Tags
+        <a href="classes/Mindee-V2-FileOperations-Split.html#method_extractMultipleSplits_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\ImagickException">ImagickException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be processed.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     
@@ -525,102 +482,80 @@
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_extractSingleSplit">
+        extractSingleSplit()
+        <a href="classes/Mindee-V2-FileOperations-Split.html#method_extractSingleSplit" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Split.php"><a href="files/src-v2-fileoperations-split.html"><abbr title="src/V2/FileOperations/Split.php">Split.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Extracts a single split from the input file.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">extractSingleSplit</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$split</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Pdf-ExtractedPdf.html"><abbr title="\Mindee\Pdf\ExtractedPdf">ExtractedPdf</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$split</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, int&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Split range to extract.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_extractSingleSplit_tags">
+        Tags
+        <a href="classes/Mindee-V2-FileOperations-Split.html#method_extractSingleSplit_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\ImagickException">ImagickException</abbr></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be processed.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Pdf-ExtractedPdf.html"><abbr title="\Mindee\Pdf\ExtractedPdf">ExtractedPdf</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>2D array of extracted pages</p>
+</section>
+
             </section>
 
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/V2/FileOperations/Split.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
+</article>
+            </section>
 
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            d=document.getElementsByClassName("line-numbers");
-                            d[0].scrollTop = d[0].children[1].offsetTop;
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
-
+        
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
@@ -649,8 +584,8 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-V2-FileOperations-Split.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-FileOperations-Split.html#method_expandRange">expandRange()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-FileOperations-Split.html#method_extractMultipleSplits">extractMultipleSplits()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-FileOperations-Split.html#method_extractSingleSplit">extractSingleSplit()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-FileOperations-Split.html#method_extractSplits">extractSplits()</a></li>
                                     </ul>
             </li>
                     </ul>

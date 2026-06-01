@@ -1,7 +1,7 @@
 <?php
 
-use Mindee\ClientV2;
-use Mindee\Input\InferenceParameters;
+use Mindee\V2\Client;
+use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use Mindee\Input\PathInput;
 
 $apiKey = "MY_API_KEY";
@@ -9,14 +9,14 @@ $filePath = "/path/to/the/file.ext";
 $modelId = "MY_MODEL_ID";
 
 // Init a new client
-$mindeeClient = new ClientV2($apiKey);
+$mindeeClient = new Client($apiKey);
 
 // Set inference parameters
 // Note: modelId is mandatory.
-$inferenceParams = new InferenceParameters(
+$inferenceParams = new ExtractionParameters(
     // ID of the model, required.
     $modelId,
-    webhooksIds: ["MY_WEBHOOK_ID"],
+    webhookIds: ["MY_WEBHOOK_ID"],
 
     // Options: set to `true` or `false` to override defaults
 

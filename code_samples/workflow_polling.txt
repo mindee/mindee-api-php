@@ -1,9 +1,9 @@
 <?php
 
 
-use Mindee\Client;
-use Mindee\Input\PredictMethodOptions;
-use Mindee\Product\Generated\GeneratedV1;
+use Mindee\V1\Client;
+use Mindee\V1\ClientOptions\PredictMethodOptions;
+use Mindee\V1\Product\Generated\GeneratedV1;
 
 $workflowId = "workflow-id";
 
@@ -11,7 +11,7 @@ $workflowId = "workflow-id";
 $mindeeClient = new Client("my-api-key");
 
 // Load a file from disk
-$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+$inputSource = new PathInput("/path/to/the/file.ext");
 
 $customEndpoint = $mindeeClient->createEndpoint(
     "my-endpoint",

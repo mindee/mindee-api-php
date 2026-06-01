@@ -1,8 +1,8 @@
 <?php
 
 
-use Mindee\Client;
-use Mindee\Input\WorkflowOptions;
+use Mindee\V1\Client;
+use Mindee\V1\ClientOptions\WorkflowOptions;
 
 $workflowId = "workflow-id";
 
@@ -10,7 +10,7 @@ $workflowId = "workflow-id";
 $mindeeClient = new Client("my-api-key");
 
 // Load a file from disk
-$inputSource = $mindeeClient->sourceFromPath("/path/to/the/file.ext");
+$inputSource = new PathInput("/path/to/the/file.ext");
 
 
 // Send the file to the workflow
