@@ -1,20 +1,19 @@
 <?php
 
+use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\Product\Classification\Params\ClassificationParameters;
 use Mindee\V2\Product\Classification\ClassificationResponse;
-use Mindee\Input\PathInput;
 
 $apiKey = "MY_API_KEY";
-$filePath = "/path/to/the/file.ext";
 $modelId = "MY_MODEL_ID";
+$filePath = "/path/to/the/file.ext";
 
 // Init a new client
 $mindeeClient = new Client($apiKey);
 
 // Set classification parameters
-// Note: modelId is mandatory.
-$classificationParams = new ClassificationParameters(
+$modelParams = new ClassificationParameters(
     // ID of the model, required.
     $modelId,
 );
@@ -26,7 +25,7 @@ $inputSource = new PathInput($filePath);
 $response = $mindeeClient->enqueueAndGetResult(
     ClassificationResponse::class,
     $inputSource,
-    $classificationParams
+    $modelParams
 );
 
 // Print a summary of the response
