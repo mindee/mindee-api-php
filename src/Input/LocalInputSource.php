@@ -10,10 +10,12 @@ namespace Mindee\Input;
 
 use CURLFile;
 use Exception;
+use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeSourceException;
+use Mindee\Error\MindeeUnhandledException;
 use Mindee\Image\ImageCompressor;
 use Mindee\Pdf\PdfCompressor;
 use Mindee\Pdf\PdfUtils;
@@ -64,6 +66,11 @@ abstract class LocalInputSource extends InputSource
     public ?string $filePath = null;
 
     /**
+     * @var integer|null Page count.
+     */
+    public ?int $pageCount = null;
+
+    /**
      * Checks if the file needs fixing.
      */
     public function checkNeedsFix(): void
@@ -101,6 +108,16 @@ abstract class LocalInputSource extends InputSource
     public function __construct()
     {
         $this->checkMimeType();
+        try {
+            DependencyChecker::isGhostscriptAvailable();
+            if ($this->isPdf()) {
+                $this->pageCount = $this->getPageCount();
+            } else {
+                $this->pageCount = 1;
+            }
+        } catch (MindeeUnhandledException) {
+            error_log("PDF-handling features not available, page count set to null.");
+        }
     }
 
     /**
@@ -121,7 +138,7 @@ abstract class LocalInputSource extends InputSource
      * @throws MindeePdfException Throws if the source pdf can't be properly processed.
      * @throws MindeeSourceException Throws if the source isn't a pdf.
      */
-    public function getPageCount(): int
+    protected function getPageCount(): int
     {
         if (!$this->isPdf()) {
             throw new MindeeSourceException(
@@ -139,15 +156,6 @@ abstract class LocalInputSource extends InputSource
                 $e
             );
         }
-    }
-
-    /**
-     * @return integer
-     * @deprecated
-     */
-    public function countDocPages(): int
-    {
-        return $this->getPageCount();
     }
 
     /**
@@ -377,5 +385,6 @@ abstract class LocalInputSource extends InputSource
             );
         }
         $this->mergePdfPages($pagesToKeep);
+        $this->pageCount = $this->getPageCount();
     }
 }

@@ -72,14 +72,14 @@ class LocalInputSourceTest extends TestCase
     public function testPdfCountPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
-        self::assertSame(12, $inputObj->getPageCount());
+        self::assertSame(12, $inputObj->pageCount);
     }
 
     public function testPdfReconstructOK(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
-        self::assertSame(5, $inputObj->getPageCount());
+        self::assertSame(5, $inputObj->pageCount);
     }
 
     public function testPdfReadContents(): void
@@ -105,7 +105,7 @@ class LocalInputSourceTest extends TestCase
             $pageCountBasePdf = $basePdf->setSourceFile($inputObj->fileObject->getFilename());
             $basePdf->Close();
             $cutPdf->Close();
-            self::assertSame(count($indexes), $inputObj->getPageCount());
+            self::assertSame(count($indexes), $inputObj->pageCount);
             self::assertSame($pageCountCutPdf, $pageCountBasePdf);
 
             $basePdf = new Fpdi();
@@ -138,14 +138,14 @@ class LocalInputSourceTest extends TestCase
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], KEEP_ONLY, 2));
-        self::assertSame(5, $inputObj->getPageCount());
+        self::assertSame(5, $inputObj->pageCount);
     }
 
     public function testPdfKeepInvalidPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 17], KEEP_ONLY, 2));
-        self::assertSame(2, $inputObj->getPageCount());
+        self::assertSame(2, $inputObj->pageCount);
     }
 
     public function testPdfRemove5LastPages(): void
@@ -153,21 +153,21 @@ class LocalInputSourceTest extends TestCase
 
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([-5, -4, -3, -2, -1], REMOVE, 2));
-        self::assertSame(7, $inputObj->getPageCount());
+        self::assertSame(7, $inputObj->pageCount);
     }
 
     public function testPdfRemove5FirstPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([0, 1, 2, 3, 4], REMOVE, 2));
-        self::assertSame(7, $inputObj->getPageCount());
+        self::assertSame(7, $inputObj->pageCount);
     }
 
     public function testPdfRemoveInvalidPages(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputObj->applyPageOptions(new PageOptions([16], REMOVE, 2));
-        self::assertSame(12, $inputObj->getPageCount());
+        self::assertSame(12, $inputObj->pageCount);
     }
 
     public function testPdfKeepNoPages(): void
@@ -181,7 +181,7 @@ class LocalInputSourceTest extends TestCase
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $this->expectException(MindeePdfException::class);
-        $pageOptions = new PageOptions(range(0, $inputObj->getPageCount() - 1), REMOVE, 2);
+        $pageOptions = new PageOptions(range(0, $inputObj->pageCount - 1), REMOVE, 2);
         $inputObj->applyPageOptions(pageOptions: $pageOptions);
     }
 

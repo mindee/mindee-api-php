@@ -26,7 +26,7 @@ class PdfExtractorTest extends TestCase
         $localInput = new PathInput($jpg);
         self::assertFalse($localInput->isPdf());
         $extractor = new PdfExtractor($localInput);
-        self::assertSame(1, $extractor->getPageCount());
+        self::assertSame(1, $extractor->pageCount);
     }
 
     /**
@@ -39,16 +39,16 @@ class PdfExtractorTest extends TestCase
         self::assertNotNull($response);
         $inference = $response->document->inference;
         $extractor = new PdfExtractor($pdf);
-        self::assertSame(5, $extractor->getPageCount());
+        self::assertSame(5, $extractor->pageCount);
 
         $extractedPdfSNoStrict = $extractor->extractInvoices($inference->prediction->invoicePageGroups);
         self::assertCount(3, $extractedPdfSNoStrict);
         self::assertSame("invoice_5p_001-001.pdf", $extractedPdfSNoStrict[0]->getFileName());
-        self::assertSame(1, $extractedPdfSNoStrict[0]->getPageCount());
+        self::assertSame(1, $extractedPdfSNoStrict[0]->pageCount);
         self::assertSame("invoice_5p_002-004.pdf", $extractedPdfSNoStrict[1]->getFileName());
-        self::assertSame(3, $extractedPdfSNoStrict[1]->getPageCount());
+        self::assertSame(3, $extractedPdfSNoStrict[1]->pageCount);
         self::assertSame("invoice_5p_005-005.pdf", $extractedPdfSNoStrict[2]->getFileName());
-        self::assertSame(1, $extractedPdfSNoStrict[2]->getPageCount());
+        self::assertSame(1, $extractedPdfSNoStrict[2]->pageCount);
     }
 
     /**
@@ -62,14 +62,14 @@ class PdfExtractorTest extends TestCase
         $inference = $response->document->inference;
 
         $extractor = new PdfExtractor($pdf);
-        self::assertSame(5, $extractor->getPageCount());
+        self::assertSame(5, $extractor->pageCount);
 
         $extractedPdfStrict = $extractor->extractInvoices($inference->prediction->invoicePageGroups, true);
         self::assertCount(2, $extractedPdfStrict);
         self::assertSame("invoice_5p_001-001.pdf", $extractedPdfStrict[0]->getFileName());
-        self::assertSame(1, $extractedPdfStrict[0]->getPageCount());
+        self::assertSame(1, $extractedPdfStrict[0]->pageCount);
         self::assertSame("invoice_5p_002-005.pdf", $extractedPdfStrict[1]->getFileName());
-        self::assertSame(4, $extractedPdfStrict[1]->getPageCount());
+        self::assertSame(4, $extractedPdfStrict[1]->pageCount);
     }
 
     private function getPrediction()

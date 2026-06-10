@@ -41,7 +41,7 @@ class InvoiceSplitterAutoExtractionTestFunctional extends TestCase
         $response = $client->enqueueAndParse(InvoiceSplitterV1::class, $invoiceSplitterInput);
         $inference = $response->document->inference;
         $pdfExtractor = new PdfExtractor($invoiceSplitterInput);
-        self::assertSame(2, $pdfExtractor->getPageCount());
+        self::assertSame(2, $pdfExtractor->pageCount);
 
         $extractedPdfsStrict = $pdfExtractor->extractInvoices($inference->prediction->invoicePageGroups);
 

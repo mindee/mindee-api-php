@@ -18,7 +18,7 @@ class InvoiceSplitterV1InvoicePageGroup implements Stringable
     use FieldPositionMixin;
 
     /**
-     * @var int[] List of page indexes that belong to the same invoice (group).
+     * @var integer[] List of page indexes that belong to the same invoice (group).
      */
     public array $pageIndexes;
 
