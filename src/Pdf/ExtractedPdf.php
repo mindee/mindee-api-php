@@ -20,6 +20,11 @@ use const DIRECTORY_SEPARATOR;
 class ExtractedPdf
 {
     /**
+     * The number of pages in the file.
+     */
+    public int $pageCount;
+
+    /**
      * Initializes a new instance of the ExtractedPdf class.
      *
      * @param string $pdfBytes A binary string representation of the PDF.
@@ -31,6 +36,7 @@ class ExtractedPdf
     {
         DependencyChecker::isImageMagickAvailable();
         DependencyChecker::isGhostscriptAvailable();
+        $this->pageCount = $this->getPageCount();
     }
 
     /**
@@ -40,7 +46,7 @@ class ExtractedPdf
      *
      * @throws MindeePdfException Throws if FPDI is unable to process the file.
      */
-    public function getPageCount(): int
+    private function getPageCount(): int
     {
         try {
             $pdfHandle = new Fpdi();

@@ -35,7 +35,7 @@ class SplitTest extends TestCase
 
         self::assertCount(1, $extractedSplits);
 
-        self::assertSame(1, $extractedSplits[0]->getPageCount());
+        self::assertSame(1, $extractedSplits[0]->pageCount);
     }
 
     public function testProcessesMultiPageReceiptSplitCorrectly(): void
@@ -51,8 +51,8 @@ class SplitTest extends TestCase
 
         self::assertCount(3, $extractedSplits);
 
-        self::assertSame(1, $extractedSplits[0]->getPageCount());
-        self::assertSame(3, $extractedSplits[1]->getPageCount());
-        self::assertSame(1, $extractedSplits[2]->getPageCount());
+        self::assertSame(1, $extractedSplits[0]->pageCount);
+        self::assertSame(3, $extractedSplits[1]->pageCount);
+        self::assertSame(1, $extractedSplits[2]->pageCount);
     }
 }

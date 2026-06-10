@@ -33,6 +33,10 @@ class PdfExtractor
      * @var string name of the file
      */
     private readonly string $fileName;
+    /**
+     * @var integer number of pages in the file
+     */
+    public int $pageCount;
 
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
@@ -58,6 +62,7 @@ class PdfExtractor
             $image->setImageFormat('pdf');
             $this->pdfBytes = $image->getImageBlob();
         }
+        $this->pageCount = $this->getPageCount();
     }
 
     /**
@@ -67,7 +72,7 @@ class PdfExtractor
      *
      * @throws MindeePdfException Throws if FPDI is unable to process the file.
      */
-    public function getPageCount(): int
+    private function getPageCount(): int
     {
         try {
             $pdfHandle = new Fpdi();

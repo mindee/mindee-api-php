@@ -100,7 +100,7 @@ class SplitFunctional extends TestCase
             self::assertGreaterThan(0, filesize($filePath));
 
             $localInput = new PathInput($filePath);
-            self::assertSame($extractedSplits[$i]->getPageCount(), $localInput->getPageCount());
+            self::assertSame($extractedSplits[$i]->pageCount, $localInput->pageCount);
         }
     }
 }

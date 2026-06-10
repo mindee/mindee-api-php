@@ -33,7 +33,7 @@ class ImageExtractorTest extends TestCase
         $inference = $response->document->inference;
 
         $extractor = new ImageExtractor($image);
-        self::assertSame(1, $extractor->getPageCount());
+        self::assertSame(1, $extractor->pageCount);
 
         foreach ($inference->pages as $page) {
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
@@ -64,7 +64,7 @@ class ImageExtractorTest extends TestCase
         $inference = $response->document->inference;
 
         $extractor = new ImageExtractor($image);
-        self::assertSame(1, $extractor->getPageCount());
+        self::assertSame(1, $extractor->pageCount);
 
         foreach ($inference->pages as $page) {
             $codes1D = $extractor->extractImagesFromPage($page->prediction->codes1D, $page->id, "barcodes_1D.jpg");
@@ -96,7 +96,7 @@ class ImageExtractorTest extends TestCase
         self::assertNotEmpty($imageInput->readContents()[1]);
 
         $extractor = new ImageExtractor($imageInput);
-        self::assertSame(2, $extractor->getPageCount());
+        self::assertSame(2, $extractor->pageCount);
 
         foreach ($inference->pages as $page) {
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);

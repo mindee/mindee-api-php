@@ -44,6 +44,10 @@ class ImageExtractor
      * @var LocalInputSource Local input object used by the ImageExtractor.
      */
     protected LocalInputSource $inputSource;
+    /**
+     * @var integer Number of pages in the document.
+     */
+    public int $pageCount;
 
     /**
      * @param LocalInputSource $localInput Local input, accepts all compatible formats.
@@ -84,6 +88,7 @@ class ImageExtractor
             }
             $this->pageImages[] = $image;
         }
+        $this->pageCount = count($this->pageImages);
     }
 
     /**
@@ -115,15 +120,6 @@ class ImageExtractor
                 $e
             );
         }
-    }
-
-    /**
-     * Gets the number of pages in the file.
-     * @return integer Page count.
-     */
-    public function getPageCount(): int
-    {
-        return count($this->pageImages);
     }
 
 
