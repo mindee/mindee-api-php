@@ -1,20 +1,19 @@
 <?php
 
+use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
-use Mindee\Input\PathInput;
 
 $apiKey = "MY_API_KEY";
-$filePath = "/path/to/the/file.ext";
 $modelId = "MY_MODEL_ID";
+$filePath = "/path/to/the/file.ext";
 
 // Init a new client
 $mindeeClient = new Client($apiKey);
 
 // Set split parameters
-// Note: modelId is mandatory.
-$splitParams = new SplitParameters(
+$modelParams = new SplitParameters(
     // ID of the model, required.
     $modelId,
 );
@@ -26,7 +25,7 @@ $inputSource = new PathInput($filePath);
 $response = $mindeeClient->enqueueAndGetResult(
     SplitResponse::class,
     $inputSource,
-    $splitParams
+    $modelParams
 );
 
 // Print a summary of the response

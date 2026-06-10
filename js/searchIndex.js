@@ -606,11 +606,6 @@ Search.appendIndex(
             "summary": "Renders\u0020the\u0020input\u0020PDF\u0027s\u0020pages\u0020as\u0020individual\u0020images.",
             "url": "classes/Mindee-Image-ImageExtractor.html#method_pdfToImages"
         },                {
-            "fqsen": "\\Mindee\\Image\\ImageExtractor\u003A\u003AgetPageCount\u0028\u0029",
-            "name": "getPageCount",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020pages\u0020in\u0020the\u0020file.",
-            "url": "classes/Mindee-Image-ImageExtractor.html#method_getPageCount"
-        },                {
             "fqsen": "\\Mindee\\Image\\ImageExtractor\u003A\u003AextractPolygonsFromPage\u0028\u0029",
             "name": "extractPolygonsFromPage",
             "summary": "Extracts\u0020images\u0020from\u0020a\u0020page.",
@@ -655,6 +650,11 @@ Search.appendIndex(
             "name": "inputSource",
             "summary": "",
             "url": "classes/Mindee-Image-ImageExtractor.html#property_inputSource"
+        },                {
+            "fqsen": "\\Mindee\\Image\\ImageExtractor\u003A\u003A\u0024pageCount",
+            "name": "pageCount",
+            "summary": "",
+            "url": "classes/Mindee-Image-ImageExtractor.html#property_pageCount"
         },                {
             "fqsen": "\\Mindee\\Image\\ImageUtils",
             "name": "ImageUtils",
@@ -781,11 +781,6 @@ Search.appendIndex(
             "summary": "Counts\u0020the\u0020amount\u0020of\u0020pages\u0020in\u0020a\u0020PDF.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_getPageCount"
         },                {
-            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AcountDocPages\u0028\u0029",
-            "name": "countDocPages",
-            "summary": "",
-            "url": "classes/Mindee-Input-LocalInputSource.html#method_countDocPages"
-        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AsaveBytesAsFile\u0028\u0029",
             "name": "saveBytesAsFile",
             "summary": "",
@@ -845,6 +840,11 @@ Search.appendIndex(
             "name": "filePath",
             "summary": "",
             "url": "classes/Mindee-Input-LocalInputSource.html#property_filePath"
+        },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A\u0024pageCount",
+            "name": "pageCount",
+            "summary": "",
+            "url": "classes/Mindee-Input-LocalInputSource.html#property_pageCount"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalResponse",
             "name": "LocalResponse",
@@ -1061,6 +1061,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Pdf-ExtractedPdf.html#method_getFilename"
         },                {
+            "fqsen": "\\Mindee\\Pdf\\ExtractedPdf\u003A\u003A\u0024pageCount",
+            "name": "pageCount",
+            "summary": "The\u0020number\u0020of\u0020pages\u0020in\u0020the\u0020file.",
+            "url": "classes/Mindee-Pdf-ExtractedPdf.html#property_pageCount"
+        },                {
             "fqsen": "\\Mindee\\Pdf\\ExtractedPdf\u003A\u003A\u0024pdfBytes",
             "name": "pdfBytes",
             "summary": "",
@@ -1130,6 +1135,11 @@ Search.appendIndex(
             "name": "fileName",
             "summary": "",
             "url": "classes/Mindee-Pdf-PdfExtractor.html#property_fileName"
+        },                {
+            "fqsen": "\\Mindee\\Pdf\\PdfExtractor\u003A\u003A\u0024pageCount",
+            "name": "pageCount",
+            "summary": "",
+            "url": "classes/Mindee-Pdf-PdfExtractor.html#property_pageCount"
         },                {
             "fqsen": "\\Mindee\\Pdf\\PdfUtils",
             "name": "PdfUtils",
@@ -6711,40 +6721,40 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Search-ModelWebhook.html#property_url"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination",
-            "name": "Pagination",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata",
+            "name": "PaginationMetadata",
             "summary": "Pagination\u0020metadata.",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html#method___construct"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination\u003A\u003A__toString\u0028\u0029",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html#method___toString"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#method___toString"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination\u003A\u003A\u0024perPage",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata\u003A\u003A\u0024perPage",
             "name": "perPage",
             "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html#property_perPage"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#property_perPage"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination\u003A\u003A\u0024page",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata\u003A\u003A\u0024page",
             "name": "page",
             "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html#property_page"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#property_page"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination\u003A\u003A\u0024totalItems",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata\u003A\u003A\u0024totalItems",
             "name": "totalItems",
             "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html#property_totalItems"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#property_totalItems"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\Pagination\u003A\u003A\u0024totalPages",
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\PaginationMetadata\u003A\u003A\u0024totalPages",
             "name": "totalPages",
             "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-Pagination.html#property_totalPages"
+            "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#property_totalPages"
         },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Search\\SearchModel",
             "name": "SearchModel",

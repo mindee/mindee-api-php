@@ -1,20 +1,19 @@
 <?php
 
+use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
-use Mindee\Input\PathInput;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 
 $apiKey = "MY_API_KEY";
-$filePath = "/path/to/the/file.ext";
 $modelId = "MY_MODEL_ID";
+$filePath = "/path/to/the/file.ext";
 
 // Init a new client
 $mindeeClient = new Client($apiKey);
 
 // Set inference parameters
-// Note: modelId is mandatory.
-$inferenceParams = new ExtractionParameters(
+$modelParams = new ExtractionParameters(
     // ID of the model, required.
     $modelId,
 
@@ -38,7 +37,7 @@ $inputSource = new PathInput($filePath);
 $response = $mindeeClient->enqueueAndGetResult(
     ExtractionResponse::class,
     $inputSource,
-    $inferenceParams
+    $modelParams
 );
 
 // Print a summary of the response
