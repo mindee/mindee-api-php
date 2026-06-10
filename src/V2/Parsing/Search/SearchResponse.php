@@ -18,9 +18,9 @@ class SearchResponse extends BaseResponse implements Stringable
     public SearchModels $models;
 
     /**
-     * @var Pagination Pagination metadata for the search results.
+     * @var PaginationMetadata Pagination metadata for the search results.
      */
-    public Pagination $pagination;
+    public PaginationMetadata $pagination;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
@@ -29,7 +29,7 @@ class SearchResponse extends BaseResponse implements Stringable
     {
         parent::__construct($rawResponse);
         $this->models = new SearchModels($rawResponse['models']);
-        $this->pagination = new Pagination($rawResponse['pagination']);
+        $this->pagination = new PaginationMetadata($rawResponse['pagination']);
     }
 
     /**

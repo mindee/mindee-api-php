@@ -9,7 +9,7 @@ use Stringable;
 /**
  * Pagination metadata.
  */
-class Pagination implements Stringable
+class PaginationMetadata implements Stringable
 {
     /**
      * @var integer Number of items per page.
