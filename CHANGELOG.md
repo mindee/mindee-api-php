@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+## v3.0.0-rc1 - 2026-06-10
+### Changes
+* :recycle: move page count to attribute
+* :recycle: change Pagination class to PaginationMetadata
+
+
 ## v3.0.0-beta1 - 2026-05-29
 ### ¡Breaking Changes!
 * :boom: :recycle: update V1 & V2 syntaxes to match other SDKs
