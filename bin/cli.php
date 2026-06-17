@@ -8,15 +8,21 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/version.php';
 require __DIR__ . '/MindeeCliDocuments.php';
 require __DIR__ . '/MindeeCliCommand.php';
-require __DIR__ . '/V2/V2CliCommandConfig.php';
-require __DIR__ . '/V2/V2CliProducts.php';
-require __DIR__ . '/V2/InferenceCommand.php';
+require __DIR__ . '/V2/BaseInferenceCommand.php';
+require __DIR__ . '/V2/ClassificationCommand.php';
+require __DIR__ . '/V2/CropCommand.php';
+require __DIR__ . '/V2/ExtractionCommand.php';
+require __DIR__ . '/V2/OcrCommand.php';
+require __DIR__ . '/V2/SplitCommand.php';
 require __DIR__ . '/V2/SearchModelsCommand.php';
 
 use Exception;
-use Mindee\Cli\V2\InferenceCommand;
+use Mindee\Cli\V2\ClassificationCommand;
+use Mindee\Cli\V2\CropCommand;
+use Mindee\Cli\V2\ExtractionCommand;
+use Mindee\Cli\V2\OcrCommand;
 use Mindee\Cli\V2\SearchModelsCommand;
-use Mindee\Cli\V2\V2CliProducts;
+use Mindee\Cli\V2\SplitCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputOption;
@@ -122,14 +128,21 @@ $v1Specs = MindeeCliDocuments::getSpecs();
 $v1Command = new MindeeCliCommand($v1Specs);
 $cli->add($v1Command);
 
-foreach (V2CliProducts::getSpecs() as $spec) {
-    $cli->add(new InferenceCommand($spec));
+$v2InferenceCommands = [
+    new ClassificationCommand(),
+    new CropCommand(),
+    new ExtractionCommand(),
+    new OcrCommand(),
+    new SplitCommand(),
+];
+foreach ($v2InferenceCommands as $command) {
+    $cli->add($command);
 }
 $cli->add(new SearchModelsCommand());
 
 $knownTopLevelCommands = ['v1', 'search-models', 'list', 'help', 'completion'];
-foreach (V2CliProducts::getSpecs() as $spec) {
-    $knownTopLevelCommands[] = $spec->name;
+foreach ($v2InferenceCommands as $command) {
+    $knownTopLevelCommands[] = $command->getName();
 }
 
 $argv = mindeeRewriteArgvForV1Compat($_SERVER['argv'], $knownTopLevelCommands);
