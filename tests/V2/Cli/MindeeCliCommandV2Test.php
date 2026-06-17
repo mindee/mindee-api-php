@@ -231,8 +231,7 @@ class MindeeCliCommandV2Test extends TestCase
         self::assertSame(0, $cmdOutput['code']);
         self::assertStringContainsString(
             'PHP Warning',
-            implode("
-", $cmdOutput['output'])
+            implode("\n", $cmdOutput['output'])
         );
     }
 

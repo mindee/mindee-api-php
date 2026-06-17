@@ -24,6 +24,11 @@ run_test() {
   model_id="$1"
   model_type="$2"
 
+   if [ -z "$model_id" ]; then
+     echo "Error: missing model id for $model_type (environment variable not set)"
+     exit 1
+   fi
+
   echo "--- Test $model_type ID: $model_id"
   SUMMARY_OUTPUT=$(php "$CLI_PATH" "$model_type" -m "$model_id" "$TEST_FILE")
   if [ -z "$SUMMARY_OUTPUT" ]; then

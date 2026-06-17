@@ -1,15 +1,5 @@
 # Mindee PHP API Library Changelog
 
-## Unreleased
-### ¡Breaking Changes!
-* :boom: :recycle: restructure CLI to align with the canonical .NET shape:
-  V1 product invocations now live under a `v1` group (e.g. `mindee v1 invoice file.pdf`).
-  Legacy `mindee <v1product> ...` invocations remain supported via automatic dispatch.
-### Changes
-* :sparkles: add a working V2 CLI: `extraction`, `classification`, `crop`, `ocr`, `split` and `search-models` commands
-* :sparkles: V2 inference commands accept `--api-key/-k`, `--alias/-a`, `--model-id/-m`, `--output/-o` (`summary` / `full` / `raw`)
-* :sparkles: `extraction` additionally exposes `--rag/-g`, `--raw-text/-r`, `--confidence/-c`, `--polygon/-p`, `--text-context/-t`
-* :white_check_mark: add unit + functional CLI tests for V2 commands
 
 ## v3.0.0-rc1 - 2026-06-10
 ### Changes

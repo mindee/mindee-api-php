@@ -19,18 +19,30 @@ class MindeeCliV2TestingUtilities
         $resCode = 0;
         $output = [];
 
-        $envPrefix = '';
+        $previousEnv = [];
         foreach ($envOverrides as $key => $value) {
+            $previousEnv[$key] = getenv($key);
             if ($value === false) {
-                $envPrefix .= 'unset ' . escapeshellarg($key) . '; ';
+                putenv($key);
             } else {
-                $envPrefix .= escapeshellarg($key) . '=' . escapeshellarg((string) $value) . ' ';
+                putenv($key . '=' . (string) $value);
             }
         }
 
-        $escaped = array_map(escapeshellarg(...), $args);
-        $cmd = $envPrefix . 'php ./bin/cli.php ' . implode(' ', $escaped) . ' 2>&1';
-        exec($cmd, $output, $resCode);
+        try {
+            $escaped = array_map(escapeshellarg(...), $args);
+            $cliPath = escapeshellarg(__DIR__ . '/../../../bin/cli.php');
+            $cmd = PHP_BINARY . ' ' . $cliPath . ' ' . implode(' ', $escaped) . ' 2>&1';
+            exec($cmd, $output, $resCode);
+        } finally {
+            foreach ($previousEnv as $key => $prev) {
+                if ($prev === false) {
+                    putenv($key);
+                } else {
+                    putenv($key . '=' . $prev);
+                }
+            }
+        }
 
         return ['output' => $output, 'code' => $resCode];
     }
