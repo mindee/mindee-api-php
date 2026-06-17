@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up php ${{ matrix.php-version }}
+      - name: Set up php 8.3
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.3
@@ -30,7 +30,7 @@ jobs:
           cp -r ./docs/code_samples ./docs/_build/
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/_build
