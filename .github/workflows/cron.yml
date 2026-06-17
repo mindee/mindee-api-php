@@ -8,3 +8,6 @@ jobs:
   smoke-test:
     uses: mindee/mindee-api-php/.github/workflows/_test-smoke.yml@main
     secrets: inherit
+  test-cli:
+    uses: mindee/mindee-api-php/.github/workflows/_test-cli.yml@main
+    secrets: inherit

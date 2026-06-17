@@ -8,8 +8,11 @@ permissions:
   pull-requests: read
 
 jobs:
+  workflow-lint:
+    uses: ./.github/workflows/_workflow_lint.yml
   static-analysis:
     uses: ./.github/workflows/_static-analysis.yml
+    needs: workflow-lint
   static-dependency-checks:
     uses: ./.github/workflows/_static-dependency-checks.yml
     needs: static-analysis
@@ -23,5 +26,9 @@ jobs:
     secrets: inherit
   smoke-test:
     uses: ./.github/workflows/_test-smoke.yml
+    needs: test-units
+    secrets: inherit
+  test-cli:
+    uses: ./.github/workflows/_test-cli.yml
     needs: test-units
     secrets: inherit

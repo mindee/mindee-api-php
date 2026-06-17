@@ -53,6 +53,8 @@
     "test:unit": "phpunit -c tests/phpunit.xml",
     "test:functional": "phpunit -c tests/functional.xml",
     "test:smoke:v1": "./tests/test_v1_code_samples.sh",
-    "test:smoke:v2": "./tests/test_v2_code_samples.sh"
+    "test:smoke:v2": "./tests/test_v2_code_samples.sh",
+    "test:cli:v1": "./tests/test_v1_cli.sh",
+    "test:cli:v2": "./tests/test_v2_cli.sh"
   }
 }

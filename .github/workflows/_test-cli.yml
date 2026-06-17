@@ -1,0 +1,46 @@
+name: Test Command Line Interface
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+env:
+  MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
+  MINDEE_V2_API_KEY: ${{ secrets.MINDEE_V2_SE_TESTS_API_KEY }}
+  MINDEE_V2_SE_TESTS_FINDOC_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_FINDOC_MODEL_ID }}
+  MINDEE_V2_SE_TESTS_CLASSIFICATION_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_CLASSIFICATION_MODEL_ID }}
+  MINDEE_V2_SE_TESTS_CROP_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_CROP_MODEL_ID }}
+  MINDEE_V2_SE_TESTS_SPLIT_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_SPLIT_MODEL_ID }}
+  MINDEE_V2_SE_TESTS_OCR_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_OCR_MODEL_ID }}
+
+jobs:
+  test:
+    name: Run CLI Tests
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 2
+      matrix:
+        php-version:
+          - "8.1"
+          - "8.5"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+      - uses: ramsey/composer-install@v3
+
+      - name: Test V2 CLI
+        shell: sh
+        run: |
+          ./tests/test_v2_cli.sh ./tests/resources/file_types/pdf/blank_1.pdf
+
+      - name: Test V1 CLI
+        shell: sh
+        run: |
+          ./tests/test_v1_cli.sh ./tests/resources/file_types/pdf/blank_1.pdf

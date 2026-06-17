@@ -49,14 +49,14 @@ class MindeeCliCommand extends Command
      */
     public function __construct(array $documentList)
     {
-        require __DIR__ . '/../src/version.php';
+        require_once __DIR__ . '/../src/version.php';
         $this->documentList = $documentList;
 
         $this->acceptableDocuments = [];
         foreach ($this->documentList as $documentName => $document) {
             $this->acceptableDocuments[] = $documentName;
         }
-        parent::__construct('mindee');
+        parent::__construct('v1');
     }
 
     /**
@@ -66,9 +66,9 @@ class MindeeCliCommand extends Command
     {
         $helpCondensed = "";
         if (!$product) {
-            $helpCondensed = "Mindee Command-Line interface.
+            $helpCondensed = "Mindee V1 Command-Line interface.
 Usage:
-  mindee [options] [--] <product> <method> <file_path_or_url>
+  mindee v1 [options] [--] <product> <file_path_or_url>
 
 Available products:";
             foreach ($this->documentList as $documentName => $document) {
@@ -92,8 +92,8 @@ Available products:";
     protected function configure(): void
     {
         $this
-            ->setName('mindee')
-            ->setDescription('Mindee client.')
+            ->setName('v1')
+            ->setDescription('Mindee V1 product commands.')
             ->addArgument(
                 'product',
                 InputArgument::REQUIRED,
