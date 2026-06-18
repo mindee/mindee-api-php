@@ -1,5 +1,6 @@
 # Mindee PHP API Library Changelog
 
+
 ## v3.0.0-rc1 - 2026-06-10
 ### Changes
 * :recycle: move page count to attribute
