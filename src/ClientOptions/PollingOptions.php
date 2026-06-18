@@ -30,20 +30,25 @@ class PollingOptions
 
     /**
      * Polling Options.
+     *
+     * @param float $initialDelaySec Initial delay (in seconds) before attempting to poll a queue.
+     * @param float $delaySec Delay (in seconds) between successive attempts to poll a queue.
+     * @param integer $maxRetries Maximum number of retries for a queue.
+     * @throws MindeeApiException Throws if any delay value is below the allowed minimum.
      */
-    public function __construct()
+    public function __construct(float $initialDelaySec = 2.0, float $delaySec = 1.5, int $maxRetries = 80)
     {
-        $this->initialDelaySec = 2.0;
-        $this->delaySec = 1.5;
-        $this->maxRetries = 80;
+        $this->setInitialDelaySec($initialDelaySec);
+        $this->setDelaySec($delaySec);
+        $this->setMaxRetries($maxRetries);
     }
 
     /**
-     * @param integer $initialDelay Delay between polls.
+     * @param float $initialDelay Delay between polls.
      * @return $this
-     * @throws MindeeApiException Throws if the initial parsing delay is less than 4 seconds.
+     * @throws MindeeApiException Throws if the initial parsing delay is less than the minimum.
      */
-    public function setInitialDelaySec(int $initialDelay): self
+    public function setInitialDelaySec(float $initialDelay): self
     {
         if ($initialDelay < MINIMUM_INITIAL_DELAY_SECONDS) {
             throw new MindeeApiException(
@@ -56,11 +61,11 @@ class PollingOptions
     }
 
     /**
-     * @param integer $delay Delay between successive attempts to poll a queue.
+     * @param float $delay Delay between successive attempts to poll a queue.
      * @return $this
      * @throws MindeeApiException Throws if the delay is too low.
      */
-    public function setDelaySec(int $delay): self
+    public function setDelaySec(float $delay): self
     {
         if ($delay < MINIMUM_DELAY_SECONDS) {
             throw new MindeeApiException(
@@ -78,7 +83,7 @@ class PollingOptions
      */
     public function setMaxRetries(int $maxRetries): self
     {
-        if (!$maxRetries || $maxRetries < 0) {
+        if ($maxRetries <= 0) {
             $this->maxRetries = 80;
             error_log("Notice: setting the amount of retries for auto-parsing to 80.");
         } else {
