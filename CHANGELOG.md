@@ -1,5 +1,51 @@
 # Mindee PHP API Library Changelog
 
+## v3.0.0 - 2026-06-18
+### ¡Breaking Changes!
+* :boom: :recycle: update V1 & V2 syntaxes to match other SDKs
+  * :recycle: move V1 client to V1 module
+  * :recycle: move V2 client to V2 module
+  * :recycle: move legacy products to 'V1' module
+  * :recycle: add parsing and extraction to V1 module
+  * :recycle: move V1 Http to V1 namespace
+  * :recycle: move V2 Http to V2 namespace
+  * :recycle: move data schema to extraction parameters namespace
+* :boom: :recycle: remove `/v1` and `/v2` from base URLs to match other SDKs
+* :boom: :recycle: Remove V2 Inference in favor of extraction
+* :boom: :recycle: Change `webhooksIds` parameter to `webhookIds`
+* :boom: :recycle: Move PDF & Image operations to their respective namespaces and remove `Extraction` namespace
+* :boom: :recycle: Harmonize all acronyms as proper camelCase & PascalCase
+* :boom: :recycle: Add full support for strict typing
+* :boom: :recycle: remove sourceFrom initializers in favor of direct InputSource initialization
+* :boom: remove support for the following V1 products:
+  * :coffin: Bill of Lading
+  * :coffin: Delivery Note
+  * :coffin: (FR) Energy Bill
+  * :coffin: (FR) Healthcare Card
+  * :coffin: (IND) Passport
+  * :coffin: Nutrition Facts
+  * :coffin: (FR) Payslip
+  * :coffin: (US) Healthcare Card
+  * :coffin: (US) Mail
+* :boom: :recycle: move page count to attribute
+### Changes
+* :sparkles: add support for model search from the V2 client
+* :sparkles: add support for full types
+* :sparkles: add crop and split extractors from product classes
+* :sparkles: add support for V2 CLI
+* :recycle: change Pagination class to PaginationMetadata
+* :wrench: add support for better tooling
+  * :wrench: add PHPStan
+  * :wrench: add Whisky
+  * :wrench: add Rector
+  * :wrench: :coffin: remove support for PHP Code Sniffer
+* :wrench: enforce stricter rules for coding
+### Fixes
+* :bug: fix mismanagement of some input sources
+* :bug: fix many typing errors
+* :bug: fix PDF operations attempt to open files when not supported
+* :bug: fix missing API key error not being properly raised in some instances
+
 
 ## v3.0.0-rc1 - 2026-06-10
 ### Changes
