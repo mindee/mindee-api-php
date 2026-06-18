@@ -87,7 +87,7 @@ class PollingOptions
             $this->maxRetries = 80;
             error_log("Notice: setting the amount of retries for auto-parsing to 80.");
         } else {
-            $this->delaySec = $maxRetries;
+            $this->maxRetries = $maxRetries;
         }
         return $this;
     }
