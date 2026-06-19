@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v3.0.1 - 2026-06-18
+### Fixes
+* :bug: polling options constructor accepts values
+
+
 ## v3.0.0 - 2026-06-18
 ### ¡Breaking Changes!
 * :boom: :recycle: update V1 & V2 syntaxes to match other SDKs
