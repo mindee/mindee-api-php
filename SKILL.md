@@ -55,7 +55,7 @@ Use this skill for Mindee V2 integrations with the official PHP SDK.
 ### Classification
 - Use: https://docs.mindee.com/classification-models/sdk-integration/classification-result.md
 - Use this page for accessing `$response->inference->result->classification`.
-- Use this page for `documentType` and optional chained extraction results.
+- Use this page for `$documentType` and optional chained extraction results.
 
 ### OCR
 - Use: https://docs.mindee.com/raw-text-ocr-models/sdk-integration/ocr-result.md
