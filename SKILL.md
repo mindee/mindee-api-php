@@ -45,7 +45,7 @@ Use this skill for Mindee V2 integrations with the official PHP SDK.
 ### Split
 - Use: https://docs.mindee.com/split-models/sdk-integration/split-result.md
 - Use this page for iterating over `$response->inference->result->splits`.
-- Use this page for `documentType`, `pageRange`, and optional chained extraction results.
+- Use this page for `$documentType`, `$pageRange`, and optional chained extraction results.
 
 ### Crop
 - Use: https://docs.mindee.com/crop-models/sdk-integration/crop-result.md
@@ -123,9 +123,9 @@ Use:
 
 ### File preparation
 Use:
-- `$inputSource->pageCount` (property, PDF only — requires Ghostscript)
-- `$inputSource->compress(...)`
-- `$inputSource->applyPageOptions(...)`
+- `$inputSource->pageCount` — property, requires Ghostscript
+- `$inputSource->compress(...)` — compress before upload, requires Ghostscript
+- `$inputSource->applyPageOptions(...)` — trim or remove pages
 - `$inputSource->fixPdf()`
 
 ## Avoid
