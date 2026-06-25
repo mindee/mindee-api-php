@@ -50,7 +50,7 @@ Use this skill for Mindee V2 integrations with the official PHP SDK.
 ### Crop
 - Use: https://docs.mindee.com/crop-models/sdk-integration/crop-result.md
 - Use this page for iterating over `$response->inference->result->crops`.
-- Use this page for `objectType`, crop location, polygon data, and optional chained extraction results.
+- Use this page for `$objectType`, crop location, polygon data, and optional chained extraction results.
 
 ### Classification
 - Use: https://docs.mindee.com/classification-models/sdk-integration/classification-result.md
