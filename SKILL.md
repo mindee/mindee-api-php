@@ -67,7 +67,7 @@ Use this skill for Mindee V2 integrations with the official PHP SDK.
 When answering questions, follow this order:
 
 1. Initialize the SDK client.
-2. Configure `modelId` and other inference parameters.
+2. Configure `$modelId` and other inference parameters.
 3. Load the input source.
 4. Optionally adjust the file before upload.
 5. Send with polling or webhooks.
