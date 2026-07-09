@@ -75,6 +75,12 @@ class LocalInputSourceTest extends TestCase
         self::assertSame(12, $inputObj->pageCount);
     }
 
+    public function testPdfPageCountNullOnUnsupportedCompression(): void
+    {
+        $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/XfaForm.pdf");
+        self::assertNull($inputObj->pageCount);
+    }
+
     public function testPdfReconstructOK(): void
     {
         $inputObj = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
