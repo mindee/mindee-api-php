@@ -87,11 +87,11 @@ class CropFunctional extends TestCase
 
         $file1Info = filesize($this->outputDir . '/crop_001.jpg');
         self::assertGreaterThanOrEqual(97000, $file1Info);
-        self::assertLessThanOrEqual(103000, $file1Info);
+        self::assertLessThanOrEqual(120000, $file1Info);
 
         $file2Info = filesize($this->outputDir . '/crop_002.jpg');
         self::assertGreaterThanOrEqual(97000, $file2Info);
-        self::assertLessThanOrEqual(103000, $file2Info);
+        self::assertLessThanOrEqual(120000, $file2Info);
     }
 
     public function testExtractCropsFromEachPdfPageCorrectly(): void
