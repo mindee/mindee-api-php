@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v3.0.2 - 2026-07-09
+### Fixes
+* :bug: fix some uncaught exceptions preventing the creation of LocalInputSource
+
+
 ## v3.0.1 - 2026-06-18
 ### Fixes
 * :bug: polling options constructor accepts values
