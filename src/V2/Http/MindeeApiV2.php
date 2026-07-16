@@ -13,6 +13,7 @@ use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeException;
+use Mindee\Http\CurlSslConfig;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
@@ -306,7 +307,7 @@ class MindeeApiV2
         curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->requestTimeout);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        CurlSslConfig::apply($ch);
 
         curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
         return $ch;
