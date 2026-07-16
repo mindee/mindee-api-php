@@ -16,6 +16,7 @@ use Mindee\CustomSleepMixin;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeApiException;
 use Mindee\Error\MindeeException;
+use Mindee\Http\CancellationToken;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\LocalResponse;
@@ -349,6 +350,7 @@ class Client
      * @param PredictMethodOptions|null $options Prediction Options.
      * @param PollingOptions|null $asyncOptions Async Options. Manages timers.
      * @param PageOptions|null $pageOptions Options to apply to the PDF file.
+     * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
      * @throws MindeeApiException Throws if the document couldn't be retrieved in time.
      */
     public function enqueueAndParse(
@@ -356,7 +358,8 @@ class Client
         InputSource $inputDoc,
         ?PredictMethodOptions $options = null,
         ?PollingOptions $asyncOptions = null,
-        ?PageOptions $pageOptions = null
+        ?PageOptions $pageOptions = null,
+        ?CancellationToken $cancellationToken = null,
     ): AsyncPredictResponse {
         if (null === $options) {
             $options = new PredictMethodOptions();
@@ -377,7 +380,7 @@ class Client
         );
         error_log("Successfully enqueued document with job id: " . $enqueueResponse->job->id);
 
-        $this->customSleep($asyncOptions->initialDelaySec);
+        $this->customSleep($asyncOptions->initialDelaySec, $cancellationToken);
         $retryCounter = 1;
         $pollResults = $this->parseQueued($predictionType, $enqueueResponse->job->id, $options->endpoint);
 
