@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V1\Http;
 
 use CurlHandle;
+use Mindee\Http\CurlSslConfig;
 
 /**
  * Abstract class for endpoints.
@@ -38,7 +39,7 @@ abstract class BaseEndpoint
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->settings->requestTimeout);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        CurlSslConfig::apply($ch);
         curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
 
         $resp = [
@@ -72,7 +73,7 @@ abstract class BaseEndpoint
         if ($postFields !== null) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
         }
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        CurlSslConfig::apply($ch);
         curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
         $resp = [
             'data' => curl_exec($ch),
