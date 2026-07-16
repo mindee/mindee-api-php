@@ -7,6 +7,7 @@ namespace Mindee\V2;
 use Mindee\ClientOptions\PollingOptions;
 use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
+use Mindee\Http\CancellationToken;
 use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
 use Mindee\V2\Http\MindeeApiV2;
@@ -45,7 +46,7 @@ class Client
      * @category Asynchronous
      */
     public function enqueue(
-        InputSource $inputSource,
+        InputSource    $inputSource,
         BaseParameters $params
     ): JobResponse {
         return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
@@ -103,14 +104,16 @@ class Client
      * @param InputSource $inputDoc Input document to parse.
      * @param BaseParameters $params Parameters relating to prediction options.
      * @param PollingOptions|null $pollingOptions Options to apply to the polling.
+     * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
      * @return BaseResponse A response containing parsing results.
      * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
      */
     public function enqueueAndGetResult(
-        string $responseClass,
-        InputSource $inputDoc,
-        BaseParameters $params,
-        ?PollingOptions $pollingOptions = null
+        string             $responseClass,
+        InputSource        $inputDoc,
+        BaseParameters     $params,
+        ?PollingOptions    $pollingOptions = null,
+        ?CancellationToken $cancellationToken = null
     ): BaseResponse {
         if (!$pollingOptions) {
             $pollingOptions = new PollingOptions();
@@ -126,7 +129,7 @@ class Client
         $jobId = $enqueueResponse->job->id;
         error_log("Successfully enqueued document with job ID: " . $jobId);
 
-        $this->customSleep($pollingOptions->initialDelaySec);
+        $this->customSleep($pollingOptions->initialDelaySec, $cancellationToken);
         $retryCounter = 1;
         $pollResults = $this->getJob($jobId);
 
@@ -144,7 +147,7 @@ class Client
                 . ". Job status: " . $pollResults->job->status
             );
 
-            $this->customSleep($pollingOptions->delaySec);
+            $this->customSleep($pollingOptions->delaySec, $cancellationToken);
             $pollResults = $this->getJob($jobId);
             $retryCounter++;
         }
