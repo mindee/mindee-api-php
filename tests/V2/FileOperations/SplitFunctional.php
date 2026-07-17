@@ -77,7 +77,9 @@ class SplitFunctional extends TestCase
         self::assertInstanceof(SplitResponse::class, $response);
         $extractedSplits = $response->inference->result->extractFromInputSource($inputSource);
         $extractedSplit0 = $response->inference->result->splits[0]->extractFromInputSource($inputSource);
-        self::assertEquals($extractedSplit0, $extractedSplits[0]);
+        self::assertSame($extractedSplit0->filename, $extractedSplits[0]->filename);
+        self::assertSame($extractedSplit0->pageCount, $extractedSplits[0]->pageCount);
+        self::assertSame($extractedSplit0->getPdfBytes(), $extractedSplits[0]->getPdfBytes());
 
         self::assertCount(2, $extractedSplits);
         self::assertSame('default_sample_001-001.pdf', $extractedSplits[0]->filename);
