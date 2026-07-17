@@ -19,17 +19,88 @@ class UrlInputSource extends InputSource
 
     /**
      * @param string $url Input URL.
-     * @throws MindeeSourceException Throws if the URL isn't secure.
+     * @throws MindeeSourceException Throws if the URL isn't valid or safe.
      */
     public function __construct(string $url)
     {
-        if ((!str_starts_with($url, 'https://'))) {
+        $this->validateUrl($url);
+        $this->url = $url;
+    }
+
+    /**
+     * Validates that a URL is safe to fetch.
+     *
+     * Rejects URLs with:
+     * - non-HTTPS schemes,
+     * - embedded user credentials,
+     * - loopback hostnames (localhost, *.localhost),
+     * - literal loopback, link-local, or private-network IP addresses.
+     *
+     * Note: DNS resolution is not performed — a hostname that resolves to a
+     * private IP will not be caught here.
+     *
+     * @param string $url URL to validate.
+     * @throws MindeeSourceException Throws if the URL is invalid or unsafe.
+     */
+    private function validateUrl(string $url): void
+    {
+        $parsed = parse_url($url);
+        if ($parsed === false) {
+            throw new MindeeSourceException('Invalid URL', ErrorCode::USER_INPUT_ERROR);
+        }
+
+        if (!isset($parsed['scheme']) || strtolower($parsed['scheme']) !== 'https') {
+            throw new MindeeSourceException('URL must be HTTPS', ErrorCode::USER_INPUT_ERROR);
+        }
+
+        if (!empty($parsed['user']) || !empty($parsed['pass'])) {
             throw new MindeeSourceException(
-                'URL must be HTTPS',
+                'URL must not embed user credentials',
                 ErrorCode::USER_INPUT_ERROR
             );
         }
-        $this->url = $url;
+
+        $host = strtolower($parsed['host'] ?? '');
+        if ($host === '') {
+            throw new MindeeSourceException('URL is missing a host', ErrorCode::USER_INPUT_ERROR);
+        }
+
+        // Strip IPv6 brackets
+        $host = preg_replace('/^\[|]$/', '', $host);
+
+        if (
+            $host === 'localhost'
+            || str_ends_with((string) $host, '.localhost')
+            || $host === 'ip6-localhost'
+            || $host === 'ip6-loopback'
+        ) {
+            throw new MindeeSourceException(
+                'URL host is a loopback address',
+                ErrorCode::USER_INPUT_ERROR
+            );
+        }
+
+        if (
+            $host === '::1'
+            || preg_match('/^127\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', (string) $host)
+        ) {
+            throw new MindeeSourceException(
+                'URL host is a loopback or private address',
+                ErrorCode::USER_INPUT_ERROR
+            );
+        }
+
+        if (
+            preg_match('/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/', (string) $host)
+            || preg_match('/^172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}$/', (string) $host)
+            || preg_match('/^192\.168\.\d{1,3}\.\d{1,3}$/', (string) $host)
+            || preg_match('/^169\.254\.\d{1,3}\.\d{1,3}$/', (string) $host)
+        ) {
+            throw new MindeeSourceException(
+                'URL host is a loopback or private address',
+                ErrorCode::USER_INPUT_ERROR
+            );
+        }
     }
 
     /**

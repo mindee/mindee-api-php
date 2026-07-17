@@ -39,6 +39,69 @@ class UrlInputSourceTest extends TestCase
         new UrlInputSource(url: "http://example.com/invoice.pdf");
     }
 
+    public function testRejectsEmbeddedCredentials(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL must not embed user credentials');
+        new UrlInputSource('https://user:pass@example.com/invoice.pdf');
+    }
+
+    public function testRejectsLocalhostHostname(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback address');
+        new UrlInputSource('https://localhost/invoice.pdf');
+    }
+
+    public function testRejectsDotLocalhostHostname(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback address');
+        new UrlInputSource('https://foo.localhost/invoice.pdf');
+    }
+
+    public function testRejectsLoopbackIpv4(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback or private address');
+        new UrlInputSource('https://127.0.0.1/invoice.pdf');
+    }
+
+    public function testRejectsLoopbackIpv6(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback or private address');
+        new UrlInputSource('https://[::1]/invoice.pdf');
+    }
+
+    public function testRejectsPrivateRfc1918Class10(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback or private address');
+        new UrlInputSource('https://10.0.0.1/invoice.pdf');
+    }
+
+    public function testRejectsPrivateRfc1918Class172(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback or private address');
+        new UrlInputSource('https://172.16.0.1/invoice.pdf');
+    }
+
+    public function testRejectsPrivateRfc1918Class192(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback or private address');
+        new UrlInputSource('https://192.168.1.1/invoice.pdf');
+    }
+
+    public function testRejectsLinkLocalAddress(): void
+    {
+        $this->expectException(MindeeSourceException::class);
+        $this->expectExceptionMessage('URL host is a loopback or private address');
+        new UrlInputSource('https://169.254.0.1/invoice.pdf');
+    }
+
     public function testDownloadFileFails(): void
     {
         $dummyAddress = "addressthatdoesntworkforcipurposes";
