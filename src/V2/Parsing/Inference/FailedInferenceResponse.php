@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Parsing;
+namespace Mindee\V2\Parsing\Inference;
 
 use DateTimeImmutable;
 use Exception;
 use Mindee\V2\Parsing\Error\ErrorResponse;
-use Mindee\V2\Parsing\Inference\BaseResponse;
 
 /**
  * Webhook payload returned when an inference fails before producing a result.
