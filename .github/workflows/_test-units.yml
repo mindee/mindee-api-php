@@ -188,26 +188,29 @@ jobs:
           php-version: '${{ matrix.php-version }}'
           extensions: curl, fileinfo, json, imagick
 
-      - name: Install Ghostscript
+      - name: Install Ghostscript (Extraction Method)
         shell: powershell
         run: |
           $gsVersion = "10.03.1"
           $gsVersionCompact = $gsVersion.Replace('.', '')
           $installerUrl = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$gsVersionCompact/gs${gsVersionCompact}w64.exe"
-          $installerPath = "$env:TEMP\gs_installer.exe"
-          $installDir = "C:\gs"
+          $downloadPath = "$env:TEMP\gs_installer.exe"
+          $extractDir = "C:\gs"
           
           Write-Host "Downloading Ghostscript $gsVersion..."
-          Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
+          Invoke-WebRequest -Uri $installerUrl -OutFile $downloadPath
+          
+          Write-Host "Extracting binaries from installer without executing..."
+          7z x $downloadPath -o"$extractDir" -y | Out-Null
 
-          Unblock-File -Path $installerPath
+          $binDir = (Get-ChildItem -Path $extractDir -Recurse -Filter "gswin64c.exe").Directory.FullName
+          $libDir = (Get-ChildItem -Path $extractDir -Recurse -Filter "gs_init.ps").Directory.FullName
           
-          Write-Host "Running silent installation..."
-          cmd.exe /c "start /wait `"`" `"$installerPath`" /S /D=$installDir"
-          
+          Write-Host "Found bin at: $binDir"
           Write-Host "Adding Ghostscript to GITHUB_PATH..."
-          Add-Content -Path $env:GITHUB_PATH -Value "$installDir\bin"
-          Add-Content -Path $env:GITHUB_PATH -Value "$installDir\lib"
+          
+          Add-Content -Path $env:GITHUB_PATH -Value $binDir
+          Add-Content -Path $env:GITHUB_PATH -Value $libDir
       - uses: ramsey/composer-install@v3
       - name: Unit testing with phpunit
         env:
