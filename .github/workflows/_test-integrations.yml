@@ -120,18 +120,19 @@ jobs:
           $downloadPath = "$env:TEMP\gs_installer.exe"
           $extractDir = "C:\gs"
           
-          Write-Host "Downloading Ghostscript $gsVersion..."
           Invoke-WebRequest -Uri $installerUrl -OutFile $downloadPath
-          
-          Write-Host "Extracting binaries from installer without executing..."
           7z x $downloadPath -o"$extractDir" -y | Out-Null
-
+          
           $binDir = (Get-ChildItem -Path $extractDir -Recurse -Filter "gswin64c.exe").Directory.FullName
           $libDir = (Get-ChildItem -Path $extractDir -Recurse -Filter "gs_init.ps").Directory.FullName
           
-          Write-Host "Found bin at: $binDir"
-          Write-Host "Adding Ghostscript to GITHUB_PATH..."
+          Write-Host "Creating gs.exe so PHP can find it..."
+          Copy-Item -Path "$binDir\gswin64c.exe" -Destination "$binDir\gs.exe"
           
+          Write-Host "Setting GS_PROG for Imagick/PHP..."
+          Add-Content -Path $env:GITHUB_ENV -Value "GS_PROG=$binDir\gs.exe"
+          
+          Write-Host "Adding Ghostscript to GITHUB_PATH..."
           Add-Content -Path $env:GITHUB_PATH -Value $binDir
           Add-Content -Path $env:GITHUB_PATH -Value $libDir
       - uses: ramsey/composer-install@v2
