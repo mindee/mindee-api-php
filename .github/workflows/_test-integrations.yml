@@ -111,23 +111,25 @@ jobs:
           extensions: curl, fileinfo, json, imagick
 
       - name: Install Ghostscript
-        uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 5
-          max_attempts: 3
-          retry_wait_seconds: 30
-          command: choco install ghostscript -y --no-progress
-
-      - name: Locate Ghostscript
-        shell: pwsh
+        shell: powershell
         run: |
-          $gs = Get-ChildItem "C:\Program Files\gs\*\bin\gswin64c.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
-          if (-not $gs) {
-            Write-Error "Ghostscript not found after install."
-            exit 1
-          }
-          "$($gs.Directory)" | Out-File -FilePath $env:GITHUB_PATH -Append
-          Write-Host "Found Ghostscript at $($gs.FullName)"
+          $gsVersion = "10.07.1"
+          
+          $gsVersionCompact = $gsVersion.Replace('.', '')
+          $installerUrl = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$gsVersionCompact/gs${gsVersionCompact}w64.exe"
+          $installerPath = "$env:TEMP\gs_installer.exe"
+          
+          Write-Host "Downloading Ghostscript $gsVersion..."
+          Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
+          
+          Write-Host "Running silent installation..."
+          Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait -NoNewWindow
+          $binPath = "C:\Program Files\gs\gs$gsVersion\bin"
+          $libPath = "C:\Program Files\gs\gs$gsVersion\lib"
+          
+          Write-Host "Adding Ghostscript to GITHUB_PATH..."
+          Add-Content -Path $env:GITHUB_PATH -Value $binPath
+          Add-Content -Path $env:GITHUB_PATH -Value $libPath
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
