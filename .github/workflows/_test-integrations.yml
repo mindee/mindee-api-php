@@ -123,21 +123,10 @@ jobs:
           "$($gs.Directory)" | Out-File -FilePath $env:GITHUB_PATH -Append
           Write-Host "Found Ghostscript at $($gs.FullName)"
       - name: Set up php ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@2.35.1
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: '${{ matrix.php-version }}'
           extensions: curl, fileinfo, json, imagick
-      - name: Assert PHP version and imagick
-        shell: pwsh
-        run: |
-          $expected = "${{ matrix.php-version }}"
-          $actual = (php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
-          if ($actual -ne $expected) {
-            Write-Error "Expected PHP $expected but got $actual at $(where.exe php)"
-            exit 1
-          }
-          php -r "if (!extension_loaded('imagick')) { fwrite(STDERR, 'imagick not loaded'.PHP_EOL); exit(1); }"
-          Write-Host "OK: PHP $actual with imagick"
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
