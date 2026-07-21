@@ -113,23 +113,23 @@ jobs:
       - name: Install Ghostscript
         shell: powershell
         run: |
-          $gsVersion = "10.07.1"
-          
+          $gsVersion = "10.03.1"
           $gsVersionCompact = $gsVersion.Replace('.', '')
           $installerUrl = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$gsVersionCompact/gs${gsVersionCompact}w64.exe"
           $installerPath = "$env:TEMP\gs_installer.exe"
+          $installDir = "C:\gs"
           
           Write-Host "Downloading Ghostscript $gsVersion..."
           Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
+
+          Unblock-File -Path $installerPath
           
           Write-Host "Running silent installation..."
-          Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait -NoNewWindow
-          $binPath = "C:\Program Files\gs\gs$gsVersion\bin"
-          $libPath = "C:\Program Files\gs\gs$gsVersion\lib"
+          cmd.exe /c "start /wait `"`" `"$installerPath`" /S /D=$installDir"
           
           Write-Host "Adding Ghostscript to GITHUB_PATH..."
-          Add-Content -Path $env:GITHUB_PATH -Value $binPath
-          Add-Content -Path $env:GITHUB_PATH -Value $libPath
+          Add-Content -Path $env:GITHUB_PATH -Value "$installDir\bin"
+          Add-Content -Path $env:GITHUB_PATH -Value "$installDir\lib"
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
