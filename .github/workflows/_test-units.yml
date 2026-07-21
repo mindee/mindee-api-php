@@ -182,12 +182,23 @@ jobs:
         with:
           submodules: recursive
       - name: Install Ghostscript
-        run: choco install ghostscript --version 10.04.0 -y
-      - name: Create Ghostscript alias
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: choco install ghostscript -y --no-progress
+
+      - name: Locate Ghostscript
+        shell: pwsh
         run: |
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
-        shell: powershell
+          $gs = Get-ChildItem "C:\Program Files\gs\*\bin\gswin64c.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $gs) {
+            Write-Error "Ghostscript not found after install."
+            exit 1
+          }
+          "$($gs.Directory)" | Out-File -FilePath $env:GITHUB_PATH -Append
+          Write-Host "Found Ghostscript at $($gs.FullName)"
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:

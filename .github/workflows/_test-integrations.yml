@@ -105,7 +105,23 @@ jobs:
         with:
           submodules: recursive
       - name: Install Ghostscript
-        run: choco install ghostscript --version 10.03.1 -y
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: choco install ghostscript -y --no-progress
+
+      - name: Locate Ghostscript
+        shell: pwsh
+        run: |
+          $gs = Get-ChildItem "C:\Program Files\gs\*\bin\gswin64c.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $gs) {
+            Write-Error "Ghostscript not found after install."
+            exit 1
+          }
+          "$($gs.Directory)" | Out-File -FilePath $env:GITHUB_PATH -Append
+          Write-Host "Found Ghostscript at $($gs.FullName)"
       - name: Set up php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
@@ -113,8 +129,6 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json, imagick
-      - name: Install Ghostscript
-        run: choco install ghostscript -y
       - uses: ramsey/composer-install@v2
       - name: Unit testing with phpunit
         run: |
