@@ -1,5 +1,13 @@
 # Mindee PHP API Library Changelog
 
+## v3.1.0 - 2026-07-22
+### Changes
+* :sparkles: add support for failed webhooks
+* :sparkles: add support for cancellation tokens for polling
+### Fixes
+* :recycle: ensure more secure HTTP calls through CA bundle
+
+
 ## v3.0.2 - 2026-07-09
 ### Fixes
 * :bug: fix some uncaught exceptions preventing the creation of LocalInputSource
