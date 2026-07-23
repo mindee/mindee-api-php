@@ -10,10 +10,13 @@ use Mindee\Error\MindeeException;
 use Mindee\Http\CancellationToken;
 use Mindee\Input\InputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\ModelSearchParameters;
+use Mindee\V2\ClientOptions\RagDocumentSearchParameters;
 use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
-use Mindee\V2\Parsing\Search\SearchResponse;
+use Mindee\V2\Parsing\Search\ModelSearchResponse;
+use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
 
 /**
  * Mindee Client V2.
@@ -165,13 +168,22 @@ class Client
     }
 
     /**
-     * Searches for a list of available models for the given API key.
-     * @param string|null $modelName Optional model name to filter by.
-     * @param string|null $modelType Optional model type to filter by.
-     * @return SearchResponse The list of models matching the criteria.
+     * Searches for a list of available models matching the given criteria.
+     * @param ModelSearchParameters|null $params Search parameters (name, model type, pagination).
+     * @return ModelSearchResponse The list of models matching the criteria.
      */
-    public function searchModels(?string $modelName = null, ?string $modelType = null): SearchResponse
+    public function searchModels(?ModelSearchParameters $params = null): ModelSearchResponse
     {
-        return $this->mindeeApi->searchModels($modelName, $modelType);
+        return $this->mindeeApi->searchModels($params ?? new ModelSearchParameters());
+    }
+
+    /**
+     * Searches for a list of RAG documents matching the given criteria.
+     * @param RagDocumentSearchParameters $params Search parameters.
+     * @return RagDocumentSearchResponse The list of RAG documents matching the criteria.
+     */
+    public function searchRagDocuments(RagDocumentSearchParameters $params): RagDocumentSearchResponse
+    {
+        return $this->mindeeApi->searchRagDocuments($params);
     }
 }

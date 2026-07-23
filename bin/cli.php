@@ -15,6 +15,7 @@ require __DIR__ . '/V2/ExtractionCommand.php';
 require __DIR__ . '/V2/OcrCommand.php';
 require __DIR__ . '/V2/SplitCommand.php';
 require __DIR__ . '/V2/SearchModelsCommand.php';
+require __DIR__ . '/V2/SearchRagDocumentsCommand.php';
 
 use Exception;
 use Mindee\Cli\V2\ClassificationCommand;
@@ -22,6 +23,7 @@ use Mindee\Cli\V2\CropCommand;
 use Mindee\Cli\V2\ExtractionCommand;
 use Mindee\Cli\V2\OcrCommand;
 use Mindee\Cli\V2\SearchModelsCommand;
+use Mindee\Cli\V2\SearchRagDocumentsCommand;
 use Mindee\Cli\V2\SplitCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
@@ -139,8 +141,9 @@ foreach ($v2InferenceCommands as $command) {
     $cli->add($command);
 }
 $cli->add(new SearchModelsCommand());
+$cli->add(new SearchRagDocumentsCommand());
 
-$knownTopLevelCommands = ['v1', 'search-models', 'list', 'help', 'completion'];
+$knownTopLevelCommands = ['v1', 'search-models', 'search-rag-docs', 'list', 'help', 'completion'];
 foreach ($v2InferenceCommands as $command) {
     $knownTopLevelCommands[] = $command->getName();
 }

@@ -18,12 +18,15 @@ use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\ModelSearchParameters;
+use Mindee\V2\ClientOptions\RagDocumentSearchParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Error\MindeeV2HttpUnknownException;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
-use Mindee\V2\Parsing\Search\SearchResponse;
+use Mindee\V2\Parsing\Search\ModelSearchResponse;
+use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -389,20 +392,16 @@ class MindeeApiV2
     }
 
     /**
+     * Makes a GET call to a search endpoint.
+     * @param string $path Search endpoint path (e.g. `/v2/search/models`).
+     * @param array<string, string> $queryParams Query parameters to append.
      * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      */
-    private function reqGetSearchModels(?string $modelName = null, ?string $modelType = null): array
+    private function reqGetSearch(string $path, array $queryParams): array
     {
-        $url = $this->baseUrl . "/v2/search/models";
-        $params = [];
-        if ($modelName) {
-            $params['name'] = $modelName;
-        }
-        if ($modelType) {
-            $params['model_type'] = $modelType;
-        }
-        if (!empty($params)) {
-            $url .= '?' . http_build_query($params);
+        $url = $this->baseUrl . $path;
+        if (!empty($queryParams)) {
+            $url .= '?' . http_build_query($queryParams);
         }
 
         $ch = $this->initChannel();
@@ -418,13 +417,28 @@ class MindeeApiV2
     }
 
     /**
-     * Retrieves a list of models based on criteria.
-     * @param string|null $modelName Optional model name to filter by.
-     * @param string|null $modelType Optional model type to filter by.
-     * @return SearchResponse The list of models matching the criteria.
+     * Retrieves a list of models matching the given criteria.
+     * @param ModelSearchParameters $params Search parameters.
+     * @return ModelSearchResponse The list of models matching the criteria.
      */
-    public function searchModels(?string $modelName = null, ?string $modelType = null): SearchResponse
+    public function searchModels(ModelSearchParameters $params): ModelSearchResponse
     {
-        return $this->processResponse(SearchResponse::class, $this->reqGetSearchModels($modelName, $modelType));
+        return $this->processResponse(
+            ModelSearchResponse::class,
+            $this->reqGetSearch("/v2/search/models", $params->getQueryParams())
+        );
+    }
+
+    /**
+     * Retrieves a list of RAG documents matching the given criteria.
+     * @param RagDocumentSearchParameters $params Search parameters.
+     * @return RagDocumentSearchResponse The list of RAG documents matching the criteria.
+     */
+    public function searchRagDocuments(RagDocumentSearchParameters $params): RagDocumentSearchResponse
+    {
+        return $this->processResponse(
+            RagDocumentSearchResponse::class,
+            $this->reqGetSearch("/v2/search/rag-documents", $params->getQueryParams())
+        );
     }
 }

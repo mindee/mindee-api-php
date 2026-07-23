@@ -49,6 +49,7 @@ class MindeeCliCommandV2Test extends TestCase
         self::assertStringContainsString('ocr', $stdout);
         self::assertStringContainsString('split', $stdout);
         self::assertStringContainsString('search-models', $stdout);
+        self::assertStringContainsString('search-rag-docs', $stdout);
         self::assertStringContainsString('v1', $stdout);
     }
 
@@ -191,6 +192,42 @@ class MindeeCliCommandV2Test extends TestCase
         self::assertSame(1, $cmdOutput['code']);
         self::assertStringContainsString(
             'API key is missing',
+            implode("\n", $cmdOutput['output'])
+        );
+    }
+
+    public function testSearchRagDocsHelpExposesExpectedOptions(): void
+    {
+        $cmdOutput = MindeeCliV2TestingUtilities::executeTest(['search-rag-docs', '--help']);
+        self::assertSame(0, $cmdOutput['code']);
+        $stdout = implode("\n", $cmdOutput['output']);
+        self::assertStringContainsString('--api-key', $stdout);
+        self::assertStringContainsString('--model-id', $stdout);
+        self::assertStringContainsString('--filename', $stdout);
+        self::assertStringContainsString('--raw-json', $stdout);
+    }
+
+    public function testSearchRagDocsMissingApiKeyMustFail(): void
+    {
+        $cmdOutput = MindeeCliV2TestingUtilities::executeTest(
+            ['search-rag-docs', '--model-id', 'some-model-id'],
+            ['MINDEE_V2_API_KEY' => false]
+        );
+        self::assertSame(1, $cmdOutput['code']);
+        self::assertStringContainsString(
+            'API key is missing',
+            implode("\n", $cmdOutput['output'])
+        );
+    }
+
+    public function testSearchRagDocsMissingModelIdMustFail(): void
+    {
+        $cmdOutput = MindeeCliV2TestingUtilities::executeTest(
+            ['search-rag-docs', '-k', 'dummy-key']
+        );
+        self::assertSame(1, $cmdOutput['code']);
+        self::assertStringContainsString(
+            '--model-id',
             implode("\n", $cmdOutput['output'])
         );
     }
