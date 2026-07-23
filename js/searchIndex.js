@@ -531,6 +531,36 @@ Search.appendIndex(
             "summary": "Checks\u0020whether\u0020a\u0020point\u0020is\u0020located\u0020within\u0020a\u0020coordinate\u0020range\u0020on\u0020the\u0020y\u002Daxis.",
             "url": "classes/Mindee-Geometry-PolygonUtils.html#method_isPointInY"
         },                {
+            "fqsen": "\\Mindee\\Http\\CancellationToken",
+            "name": "CancellationToken",
+            "summary": "Custom\u0020Mindee\u0020HTTP\u0020cancellation\u0020token\u0020for\u0020polling.",
+            "url": "classes/Mindee-Http-CancellationToken.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\CancellationToken\u003A\u003Acancel\u0028\u0029",
+            "name": "cancel",
+            "summary": "Flags\u0020the\u0020token\u0020as\u0020canceled.",
+            "url": "classes/Mindee-Http-CancellationToken.html#method_cancel"
+        },                {
+            "fqsen": "\\Mindee\\Http\\CancellationToken\u003A\u003A\u0024isCanceled",
+            "name": "isCanceled",
+            "summary": "",
+            "url": "classes/Mindee-Http-CancellationToken.html#property_isCanceled"
+        },                {
+            "fqsen": "\\Mindee\\Http\\CancellationToken\u003A\u003AisCancelled\u0028\u0029",
+            "name": "isCancelled",
+            "summary": "Checks\u0020whether\u0020the\u0020token\u0020is\u0020canceled,\u0020but\u0020in\u0020British.",
+            "url": "classes/Mindee-Http-CancellationToken.html#method_isCancelled"
+        },                {
+            "fqsen": "\\Mindee\\Http\\CurlSslConfig",
+            "name": "CurlSslConfig",
+            "summary": "Configures\u0020TLS\u0020certificate\u0020verification\u0020for\u0020cURL\u0020handles.",
+            "url": "classes/Mindee-Http-CurlSslConfig.html"
+        },                {
+            "fqsen": "\\Mindee\\Http\\CurlSslConfig\u003A\u003Aapply\u0028\u0029",
+            "name": "apply",
+            "summary": "Enables\u0020peer\u0020verification\u0020and\u0020points\u0020cURL\u0020at\u0020a\u0020valid\u0020CA\u0020bundle.",
+            "url": "classes/Mindee-Http-CurlSslConfig.html#method_apply"
+        },                {
             "fqsen": "\\Mindee\\Image\\ExtractedImage",
             "name": "ExtractedImage",
             "summary": "An\u0020extracted\u0020sub\u002Dimage.",
@@ -940,6 +970,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/Mindee-Input-UrlInputSource.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\Input\\UrlInputSource\u003A\u003AvalidateUrl\u0028\u0029",
+            "name": "validateUrl",
+            "summary": "Validates\u0020that\u0020a\u0020URL\u0020is\u0020safe\u0020to\u0020fetch.",
+            "url": "classes/Mindee-Input-UrlInputSource.html#method_validateUrl"
         },                {
             "fqsen": "\\Mindee\\Input\\UrlInputSource\u003A\u003AasLocalInputSource\u0028\u0029",
             "name": "asLocalInputSource",
@@ -6126,6 +6161,46 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Inference-BaseResponse.html#property_rawHttp"
         },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse",
+            "name": "FailedInferenceResponse",
+            "summary": "Webhook\u0020payload\u0020returned\u0020when\u0020an\u0020inference\u0020fails\u0020before\u0020producing\u0020a\u0020result.",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A\u0024inferenceId",
+            "name": "inferenceId",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#property_inferenceId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A\u0024fileName",
+            "name": "fileName",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#property_fileName"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A\u0024fileAlias",
+            "name": "fileAlias",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#property_fileAlias"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A\u0024error",
+            "name": "error",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#property_error"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\FailedInferenceResponse\u003A\u003A\u0024createdAt",
+            "name": "createdAt",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-FailedInferenceResponse.html#property_createdAt"
+        },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\BaseField",
             "name": "BaseField",
             "summary": "Base\u0020class\u0020for\u0020V2\u0020fields.",
@@ -7590,6 +7665,11 @@ Search.appendIndex(
             "name": "Geometry",
             "summary": "",
             "url": "namespaces/mindee-geometry.html"
+        },                {
+            "fqsen": "\\Mindee\\Http",
+            "name": "Http",
+            "summary": "",
+            "url": "namespaces/mindee-http.html"
         },                {
             "fqsen": "\\Mindee\\Image",
             "name": "Image",
