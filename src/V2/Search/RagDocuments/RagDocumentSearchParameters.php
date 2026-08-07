@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\ClientOptions;
+namespace Mindee\V2\Search\RagDocuments;
 
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
+use Mindee\V2\ClientOptions\BaseSearchParameters;
 
 /**
  * Search parameters for RAG documents.

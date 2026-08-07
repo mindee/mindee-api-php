@@ -17,9 +17,7 @@ use Mindee\Http\CurlSslConfig;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
-use Mindee\V2\ClientOptions\BaseParameters;
-use Mindee\V2\ClientOptions\ModelSearchParameters;
-use Mindee\V2\ClientOptions\RagDocumentSearchParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Error\MindeeV2HttpUnknownException;
 use Mindee\V2\Parsing\Error\ErrorResponse;
@@ -27,6 +25,8 @@ use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Parsing\Search\ModelSearchResponse;
 use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
+use Mindee\V2\Search\Models\ModelSearchParameters;
+use Mindee\V2\Search\RagDocuments\RagDocumentSearchParameters;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -164,11 +164,11 @@ class MindeeApiV2
 
     /**
      * @param InputSource $inputDoc Input document.
-     * @param BaseParameters $params Parameters for the inference.
+     * @param BaseProductParameters $params Parameters for the inference.
      * @return JobResponse Server response wrapped in a JobResponse object.
      * @throws MindeeException Throws if the model ID is not provided.
      */
-    public function reqPostEnqueue(InputSource $inputDoc, BaseParameters $params): JobResponse
+    public function reqPostEnqueue(InputSource $inputDoc, BaseProductParameters $params): JobResponse
     {
         if (!isset($params->modelId)) {
             throw new MindeeException("Model ID must be provided.", ErrorCode::USER_INPUT_ERROR);
@@ -339,13 +339,13 @@ class MindeeApiV2
      * Starts a CURL session using POST.
      *
      * @param InputSource $inputSource File to upload.
-     * @param BaseParameters $params Parameters.
+     * @param BaseProductParameters $params Parameters.
      * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
-        BaseParameters $params
+        BaseProductParameters $params
     ): array {
         $ch = $this->initChannel();
         $postFields = $params->asHash();

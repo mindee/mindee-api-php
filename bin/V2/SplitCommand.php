@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\Cli\V2;
 
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,7 +37,7 @@ class SplitCommand extends BaseInferenceCommand
         InputInterface $input,
         string $modelId,
         ?string $alias
-    ): BaseParameters {
+    ): BaseProductParameters {
         return new SplitParameters($modelId, $alias);
     }
 }

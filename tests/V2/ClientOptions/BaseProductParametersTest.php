@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace V2\ClientOptions;
 
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 use PHPUnit\Framework\TestCase;
 
-class BaseParametersTest extends TestCase
+class BaseProductParametersTest extends TestCase
 {
     public function testAsHashShouldSerializeMultipleWebhookIdsAsIndexedFields(): void
     {
-        $params = new class ('model-id', null, ['first-id', 'second-id']) extends BaseParameters {
+        $params = new class ('model-id', null, ['first-id', 'second-id']) extends BaseProductParameters {
             public static string $slug = 'test';
         };
 

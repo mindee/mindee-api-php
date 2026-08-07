@@ -6,8 +6,8 @@ namespace Mindee\Cli\V2;
 
 use Exception;
 use Mindee\V2\Client;
-use Mindee\V2\ClientOptions\RagDocumentSearchParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
+use Mindee\V2\Search\RagDocuments\RagDocumentSearchParameters;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

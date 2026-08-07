@@ -7,7 +7,7 @@ namespace Mindee\V2\ClientOptions;
 /**
  * Base parameters for running an inference.
  */
-abstract class BaseParameters
+abstract class BaseProductParameters
 {
     /**
      * @var string|null Optional file alias.

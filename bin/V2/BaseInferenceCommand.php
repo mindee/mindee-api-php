@@ -8,7 +8,7 @@ use Exception;
 use Mindee\Input\PathInput;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\Client;
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Symfony\Component\Console\Command\Command;
@@ -177,13 +177,13 @@ abstract class BaseInferenceCommand extends Command
      * @param InputInterface $input CLI input, used to read product-specific options.
      * @param string $modelId Model identifier.
      * @param string|null $alias Optional alias.
-     * @return BaseParameters Parameters object for the V2 client.
+     * @return BaseProductParameters Parameters object for the V2 client.
      */
     abstract protected function buildParameters(
         InputInterface $input,
         string $modelId,
         ?string $alias
-    ): BaseParameters;
+    ): BaseProductParameters;
 
     /**
      * @return class-string<BaseResponse> Fully-qualified product response class.
