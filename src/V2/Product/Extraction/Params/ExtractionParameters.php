@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Extraction\Params;
 
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 
 /**
- * Parameters accepted by the asynchronous **inference** v2 endpoint.
+ * Parameters accepted by the asynchronous Extraction product endpoint.
  */
-class ExtractionParameters extends BaseParameters
+class ExtractionParameters extends BaseProductParameters
 {
     /**
      * @var string|null Additional text context used by the model during inference.
@@ -23,7 +23,7 @@ class ExtractionParameters extends BaseParameters
     public ?DataSchema $dataSchema;
 
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the product.
      */
     public static string $slug = "extraction";
 

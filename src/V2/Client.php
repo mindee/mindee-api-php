@@ -9,11 +9,14 @@ use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
 use Mindee\Http\CancellationToken;
 use Mindee\Input\InputSource;
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
-use Mindee\V2\Parsing\Search\SearchResponse;
+use Mindee\V2\ClientOptions\BaseSearchParameters;
+use Mindee\V2\Parsing\Search\BaseSearchResponse;
+use Mindee\V2\Parsing\Search\ModelSearchResponse;
+use Mindee\V2\Search\Models\ModelSearchParameters;
 
 /**
  * Mindee Client V2.
@@ -40,14 +43,14 @@ class Client
     /**
      * Send the document to an asynchronous endpoint and return its ID in the queue.
      * @param InputSource $inputSource File to parse.
-     * @param BaseParameters $params Parameters relating to prediction options.
+     * @param BaseProductParameters $params Parameters relating to prediction options.
      * @return JobResponse A JobResponse containing the job (queue) corresponding to a document.
      * @throws MindeeException Throws if the input document is not provided.
      * @category Asynchronous
      */
     public function enqueue(
         InputSource    $inputSource,
-        BaseParameters $params
+        BaseProductParameters $params
     ): JobResponse {
         return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
     }
@@ -102,18 +105,18 @@ class Client
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
      * @param InputSource $inputDoc Input document to parse.
-     * @param BaseParameters $params Parameters relating to prediction options.
+     * @param BaseProductParameters $params Parameters relating to prediction options.
      * @param PollingOptions|null $pollingOptions Options to apply to the polling.
      * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
      * @return BaseResponse A response containing parsing results.
      * @throws MindeeException Throws if enqueueing fails, job fails, or times out.
      */
     public function enqueueAndGetResult(
-        string             $responseClass,
-        InputSource        $inputDoc,
-        BaseParameters     $params,
-        ?PollingOptions    $pollingOptions = null,
-        ?CancellationToken $cancellationToken = null
+        string                $responseClass,
+        InputSource           $inputDoc,
+        BaseProductParameters $params,
+        ?PollingOptions       $pollingOptions = null,
+        ?CancellationToken    $cancellationToken = null
     ): BaseResponse {
         if (!$pollingOptions) {
             $pollingOptions = new PollingOptions();
@@ -165,13 +168,31 @@ class Client
     }
 
     /**
+     * Searches for resources matching the given criteria.
+     *
+     * @template T of BaseSearchResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseSearchParameters $params Search parameters.
+     * @return T
+     */
+    public function search(string $responseClass, BaseSearchParameters $params): BaseSearchResponse
+    {
+        return $this->mindeeApi->reqGetSearch($responseClass, $params);
+    }
+
+    /**
      * Searches for a list of available models for the given API key.
      * @param string|null $modelName Optional model name to filter by.
      * @param string|null $modelType Optional model type to filter by.
-     * @return SearchResponse The list of models matching the criteria.
+     * @return ModelSearchResponse The list of models matching the criteria.
+     * @deprecated Use search(ModelSearchResponse::class, new ModelSearchParameters(...)) instead.
      */
-    public function searchModels(?string $modelName = null, ?string $modelType = null): SearchResponse
+    public function searchModels(?string $modelName = null, ?string $modelType = null): ModelSearchResponse
     {
-        return $this->mindeeApi->searchModels($modelName, $modelType);
+        return $this->mindeeApi->reqGetSearch(
+            ModelSearchResponse::class,
+            new ModelSearchParameters($modelName, $modelType)
+        );
     }
 }

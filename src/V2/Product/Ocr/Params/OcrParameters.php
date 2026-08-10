@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Ocr\Params;
 
 use Mindee\ClientOptions\PollingOptions;
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 
 /**
- * Parameters for an ocr utility inference.
+ * Parameters accepted by the asynchronous OCR product endpoint.
  */
-class OcrParameters extends BaseParameters
+class OcrParameters extends BaseProductParameters
 {
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the product.
      */
     public static string $slug = "ocr";
 

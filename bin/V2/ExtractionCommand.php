@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\Cli\V2;
 
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
@@ -76,7 +76,7 @@ class ExtractionCommand extends BaseInferenceCommand
         InputInterface $input,
         string $modelId,
         ?string $alias
-    ): BaseParameters {
+    ): BaseProductParameters {
         $rag = (bool) $input->getOption('rag');
         $rawText = (bool) $input->getOption('raw-text');
         $confidence = (bool) $input->getOption('confidence');

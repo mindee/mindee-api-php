@@ -7,7 +7,7 @@ namespace Mindee\V2\ClientOptions;
 /**
  * Base parameters for running an inference.
  */
-abstract class BaseParameters
+abstract class BaseProductParameters
 {
     /**
      * @var string|null Optional file alias.
@@ -20,7 +20,7 @@ abstract class BaseParameters
     public array $webhookIds;
 
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the product.
      */
     public static string $slug;
 

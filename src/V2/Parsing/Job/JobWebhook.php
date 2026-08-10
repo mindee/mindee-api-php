@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Mindee\V2\Parsing\Job;
 
 use DateTime;
-use Exception;
+use Mindee\Parsing\DateHelper;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 
 /**
@@ -40,29 +40,11 @@ class JobWebhook
     {
         $this->id = $rawResponse['id'];
         $this->createdAt = isset($rawResponse['created_at'])
-            ? $this->parseDate($rawResponse['created_at'])
+            ? DateHelper::parseDate($rawResponse['created_at'])
             : null;
         $this->status = $rawResponse['status'];
         $this->error = isset($rawResponse['error'])
             ? new ErrorResponse($rawResponse['error'])
             : null;
-    }
-
-    /**
-     * Parse a date string into a DateTime object.
-     *
-     * @param string|null $dateString Date string to parse.
-     */
-    private function parseDate(?string $dateString): ?DateTime
-    {
-        if (empty($dateString)) {
-            return null;
-        }
-
-        try {
-            return new DateTime($dateString);
-        } catch (Exception) {
-            return null;
-        }
     }
 }

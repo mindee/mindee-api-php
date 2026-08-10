@@ -17,13 +17,14 @@ use Mindee\Http\CurlSslConfig;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
-use Mindee\V2\ClientOptions\BaseParameters;
+use Mindee\V2\ClientOptions\BaseProductParameters;
+use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Error\MindeeV2HttpUnknownException;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
-use Mindee\V2\Parsing\Search\SearchResponse;
+use Mindee\V2\Parsing\Search\BaseSearchResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -161,11 +162,11 @@ class MindeeApiV2
 
     /**
      * @param InputSource $inputDoc Input document.
-     * @param BaseParameters $params Parameters for the inference.
+     * @param BaseProductParameters $params Parameters for the inference.
      * @return JobResponse Server response wrapped in a JobResponse object.
      * @throws MindeeException Throws if the model ID is not provided.
      */
-    public function reqPostEnqueue(InputSource $inputDoc, BaseParameters $params): JobResponse
+    public function reqPostEnqueue(InputSource $inputDoc, BaseProductParameters $params): JobResponse
     {
         if (!isset($params->modelId)) {
             throw new MindeeException("Model ID must be provided.", ErrorCode::USER_INPUT_ERROR);
@@ -336,13 +337,13 @@ class MindeeApiV2
      * Starts a CURL session using POST.
      *
      * @param InputSource $inputSource File to upload.
-     * @param BaseParameters $params Parameters.
+     * @param BaseProductParameters $params Parameters.
      * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
      * @throws MindeeException Throws if the cURL operation doesn't go succeed.
      */
     private function documentEnqueuePost(
         InputSource $inputSource,
-        BaseParameters $params
+        BaseProductParameters $params
     ): array {
         $ch = $this->initChannel();
         $postFields = $params->asHash();
@@ -389,20 +390,20 @@ class MindeeApiV2
     }
 
     /**
-     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
+     * Makes a GET call to a search endpoint and returns the deserialized response.
+     *
+     * @template T of BaseSearchResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseSearchParameters $params Search parameters (slug and query params derived from this).
+     * @return T
      */
-    private function reqGetSearchModels(?string $modelName = null, ?string $modelType = null): array
+    public function reqGetSearch(string $responseClass, BaseSearchParameters $params): BaseResponse
     {
-        $url = $this->baseUrl . "/v2/search/models";
-        $params = [];
-        if ($modelName) {
-            $params['name'] = $modelName;
-        }
-        if ($modelType) {
-            $params['model_type'] = $modelType;
-        }
-        if (!empty($params)) {
-            $url .= '?' . http_build_query($params);
+        $queryParams = $params->getQueryParams();
+        $url = $this->baseUrl . "/v2/search/" . $params::$slug;
+        if (!empty($queryParams)) {
+            $url .= '?' . http_build_query($queryParams);
         }
 
         $ch = $this->initChannel();
@@ -414,17 +415,6 @@ class MindeeApiV2
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
         curl_close($ch);
-        return $resp;
-    }
-
-    /**
-     * Retrieves a list of models based on criteria.
-     * @param string|null $modelName Optional model name to filter by.
-     * @param string|null $modelType Optional model type to filter by.
-     * @return SearchResponse The list of models matching the criteria.
-     */
-    public function searchModels(?string $modelName = null, ?string $modelType = null): SearchResponse
-    {
-        return $this->processResponse(SearchResponse::class, $this->reqGetSearchModels($modelName, $modelType));
+        return $this->processResponse($responseClass, $resp);
     }
 }
