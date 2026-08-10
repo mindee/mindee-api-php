@@ -14,6 +14,11 @@ use Mindee\V2\ClientOptions\BaseSearchParameters;
 class RagDocumentSearchParameters extends BaseSearchParameters
 {
     /**
+     * @var string Slug of the resource.
+     */
+    public static string $slug = "rag-documents";
+
+    /**
      * @param string|null $modelId Model identifier to search in (required).
      * @param string|null $filename Case-insensitive substring search on filename.
      * @param integer|null $page 1-based page index.

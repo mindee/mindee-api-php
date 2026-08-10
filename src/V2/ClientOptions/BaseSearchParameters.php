@@ -10,6 +10,11 @@ namespace Mindee\V2\ClientOptions;
 abstract class BaseSearchParameters
 {
     /**
+     * @var string Slug of the resource.
+     */
+    public static string $slug;
+
+    /**
      * @param integer|null $page 1-based page index.
      * @param integer|null $perPage Number of items per page.
      */

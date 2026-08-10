@@ -8,12 +8,12 @@ use Mindee\ClientOptions\PollingOptions;
 use Mindee\V2\ClientOptions\BaseProductParameters;
 
 /**
- * Parameters for a crop utility inference.
+ * Parameters accepted by the asynchronous Crop product endpoint.
  */
 class CropParameters extends BaseProductParameters
 {
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the product.
      */
     public static string $slug = "crop";
 

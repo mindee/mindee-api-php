@@ -18,15 +18,13 @@ use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\ClientOptions\BaseProductParameters;
+use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Error\MindeeV2HttpUnknownException;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
-use Mindee\V2\Parsing\Search\ModelSearchResponse;
-use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
-use Mindee\V2\Search\Models\ModelSearchParameters;
-use Mindee\V2\Search\RagDocuments\RagDocumentSearchParameters;
+use Mindee\V2\Parsing\Search\BaseSearchResponse;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -392,14 +390,18 @@ class MindeeApiV2
     }
 
     /**
-     * Makes a GET call to a search endpoint.
-     * @param string $path Search endpoint path (e.g. `/v2/search/models`).
-     * @param array<string, string> $queryParams Query parameters to append.
-     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
+     * Makes a GET call to a search endpoint and returns the deserialized response.
+     *
+     * @template T of BaseSearchResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseSearchParameters $params Search parameters (slug and query params derived from this).
+     * @return T
      */
-    private function reqGetSearch(string $path, array $queryParams): array
+    public function reqGetSearch(string $responseClass, BaseSearchParameters $params): BaseResponse
     {
-        $url = $this->baseUrl . $path;
+        $queryParams = $params->getQueryParams();
+        $url = $this->baseUrl . "/v2/search/" . $params::$slug;
         if (!empty($queryParams)) {
             $url .= '?' . http_build_query($queryParams);
         }
@@ -413,32 +415,6 @@ class MindeeApiV2
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
         curl_close($ch);
-        return $resp;
-    }
-
-    /**
-     * Retrieves a list of models matching the given criteria.
-     * @param ModelSearchParameters $params Search parameters.
-     * @return ModelSearchResponse The list of models matching the criteria.
-     */
-    public function searchModels(ModelSearchParameters $params): ModelSearchResponse
-    {
-        return $this->processResponse(
-            ModelSearchResponse::class,
-            $this->reqGetSearch("/v2/search/models", $params->getQueryParams())
-        );
-    }
-
-    /**
-     * Retrieves a list of RAG documents matching the given criteria.
-     * @param RagDocumentSearchParameters $params Search parameters.
-     * @return RagDocumentSearchResponse The list of RAG documents matching the criteria.
-     */
-    public function searchRagDocuments(RagDocumentSearchParameters $params): RagDocumentSearchResponse
-    {
-        return $this->processResponse(
-            RagDocumentSearchResponse::class,
-            $this->reqGetSearch("/v2/search/rag-documents", $params->getQueryParams())
-        );
+        return $this->processResponse($responseClass, $resp);
     }
 }

@@ -7,6 +7,7 @@ namespace Mindee\Cli\V2;
 use Exception;
 use Mindee\V2\Client;
 use Mindee\V2\Error\MindeeV2HttpException;
+use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
 use Mindee\V2\Search\RagDocuments\RagDocumentSearchParameters;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -82,7 +83,8 @@ class SearchRagDocumentsCommand extends Command
         $client = new Client($apiKey ?: null);
 
         try {
-            $response = $client->searchRagDocuments(
+            $response = $client->search(
+                RagDocumentSearchResponse::class,
                 new RagDocumentSearchParameters($modelId, $filename ?: null)
             );
         } catch (MindeeV2HttpException $e) {

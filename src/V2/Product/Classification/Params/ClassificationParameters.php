@@ -8,12 +8,12 @@ use Mindee\ClientOptions\PollingOptions;
 use Mindee\V2\ClientOptions\BaseProductParameters;
 
 /**
- * Parameters for a classification utility inference.
+ * Parameters accepted by the asynchronous Classification product endpoint.
  */
 class ClassificationParameters extends BaseProductParameters
 {
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the prodcut.
      */
     public static string $slug = "classification";
 

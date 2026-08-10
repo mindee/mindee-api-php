@@ -7,6 +7,7 @@ namespace Mindee\Cli\V2;
 use Exception;
 use Mindee\V2\Client;
 use Mindee\V2\Error\MindeeV2HttpException;
+use Mindee\V2\Parsing\Search\ModelSearchResponse;
 use Mindee\V2\Search\Models\ModelSearchParameters;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -84,7 +85,8 @@ class SearchModelsCommand extends Command
         $client = new Client($apiKey ?: null);
 
         try {
-            $response = $client->searchModels(
+            $response = $client->search(
+                ModelSearchResponse::class,
                 new ModelSearchParameters($name ?: null, $modelType ?: null)
             );
         } catch (MindeeV2HttpException $e) {

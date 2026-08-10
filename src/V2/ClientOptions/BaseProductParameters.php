@@ -20,7 +20,7 @@ abstract class BaseProductParameters
     public array $webhookIds;
 
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the product.
      */
     public static string $slug;
 

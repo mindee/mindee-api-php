@@ -7,7 +7,7 @@ namespace Mindee\V2\Product\Extraction\Params;
 use Mindee\V2\ClientOptions\BaseProductParameters;
 
 /**
- * Parameters accepted by the asynchronous **inference** v2 endpoint.
+ * Parameters accepted by the asynchronous Extraction product endpoint.
  */
 class ExtractionParameters extends BaseProductParameters
 {
@@ -23,7 +23,7 @@ class ExtractionParameters extends BaseProductParameters
     public ?DataSchema $dataSchema;
 
     /**
-     * @var string Slug of the endpoint.
+     * @var string Slug of the product.
      */
     public static string $slug = "extraction";
 

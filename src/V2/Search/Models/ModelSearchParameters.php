@@ -12,6 +12,11 @@ use Mindee\V2\ClientOptions\BaseSearchParameters;
 class ModelSearchParameters extends BaseSearchParameters
 {
     /**
+     * @var string Slug of the resource.
+     */
+    public static string $slug = "models";
+
+    /**
      * @param string|null $name Case-insensitive search term for the model name.
      * @param string|null $modelType Case-insensitive search term for the model type.
      * @param integer|null $page 1-based page index.
