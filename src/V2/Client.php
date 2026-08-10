@@ -9,13 +9,18 @@ use Mindee\CustomSleepMixin;
 use Mindee\Error\MindeeException;
 use Mindee\Http\CancellationToken;
 use Mindee\Input\InputSource;
+use Mindee\Input\LocalInputSource;
+use Mindee\V2\ClientOptions\BaseAnnotationParameters;
 use Mindee\V2\ClientOptions\BaseProductParameters;
+use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Http\MindeeApiV2;
+use Mindee\V2\Parsing\BaseRagAnnotationResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
-use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Parsing\Search\BaseSearchResponse;
 use Mindee\V2\Parsing\Search\ModelSearchResponse;
+use Mindee\V2\Product\Extraction\RagDocuments\ExtractionRagAnnotationResponse;
+use Mindee\V2\Product\Extraction\RagDocuments\Params\RagDocumentUploadParameters;
 use Mindee\V2\Search\Models\ModelSearchParameters;
 
 /**
@@ -81,7 +86,7 @@ class Client
         string $responseClass,
         string $resultId
     ): BaseResponse {
-        return $this->mindeeApi->reqGetResult($responseClass, $resultId);
+        return $this->mindeeApi->reqGetResultById($responseClass, $resultId);
     }
 
     /**
@@ -94,7 +99,20 @@ class Client
      */
     public function getJob(string $jobId): JobResponse
     {
-        return $this->mindeeApi->reqGetJob($jobId);
+        return $this->mindeeApi->reqGetJobById($jobId);
+    }
+
+    /**
+     * Get the status of a job from its polling URL.
+     * Can be used for polling.
+     *
+     * @param string $pollingUrl URL to poll to retrieve the job.
+     * @return JobResponse A JobResponse containing a Job.
+     * @category Asynchronous
+     */
+    public function getJobFromUrl(string $pollingUrl): JobResponse
+    {
+        return $this->mindeeApi->reqGetJobFromUrl($pollingUrl);
     }
 
     /**
@@ -130,11 +148,12 @@ class Client
         }
 
         $jobId = $enqueueResponse->job->id;
+        $pollingUrl = $enqueueResponse->job->pollingUrl;
         error_log("Successfully enqueued document with job ID: " . $jobId);
 
         $this->customSleep($pollingOptions->initialDelaySec, $cancellationToken);
         $retryCounter = 1;
-        $pollResults = $this->getJob($jobId);
+        $pollResults = $this->getJobFromUrl($pollingUrl);
 
         while ($retryCounter < $pollingOptions->maxRetries) {
             if ($pollResults->job->status === "Failed") {
@@ -151,7 +170,7 @@ class Client
             );
 
             $this->customSleep($pollingOptions->delaySec, $cancellationToken);
-            $pollResults = $this->getJob($jobId);
+            $pollResults = $this->getJobFromUrl($pollingUrl);
             $retryCounter++;
         }
 
@@ -165,6 +184,71 @@ class Client
             "Asynchronous parsing request timed out after "
             . ($pollingOptions->delaySec * $retryCounter) . " seconds"
         );
+    }
+
+    /**
+     * Not recommended for general use, prefer uploadAndGetRagDocumentPoll().
+     * You will need to poll until the document is ready for use.
+     * Add a document to the RAG database.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param LocalInputSource $inputSource Local file to upload.
+     * @param RagDocumentUploadParameters $params Upload parameters.
+     * @return T
+     */
+    public function uploadRagDocument(
+        string $responseClass,
+        LocalInputSource $inputSource,
+        RagDocumentUploadParameters $params
+    ): BaseRagAnnotationResponse {
+        error_log("Adding a document to the RAG database");
+        return $this->mindeeApi->reqPostRagDocument($responseClass, $inputSource, $params);
+    }
+
+    /**
+     * Not recommended for general use, prefer getReadyRagDocumentPoll().
+     * You will need to poll until the document is ready for use.
+     * Get a document's info and annotations from the RAG database.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $documentId Unique identifier of the RAG document.
+     * @return T
+     */
+    public function getRagDocument(string $responseClass, string $documentId): BaseRagAnnotationResponse
+    {
+        return $this->mindeeApi->reqGetRagAnnotation($responseClass, $documentId);
+    }
+
+    /**
+     * Update a document's annotations in the RAG database.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @return T
+     */
+    public function updateRagAnnotation(
+        string $responseClass,
+        BaseAnnotationParameters $params
+    ): BaseRagAnnotationResponse {
+        return $this->mindeeApi->reqPatchRagAnnotation($responseClass, $params);
+    }
+
+    /**
+     * Delete a document from the RAG database.
+     * For extraction models only.
+     *
+     * @param string $documentId Unique identifier of the RAG document to delete.
+     * @return bool True if the deletion was successful, false otherwise.
+     */
+    public function deleteExtractionRagDocument(string $documentId): bool
+    {
+        return $this->mindeeApi->reqDeleteExtractionRagDocument($documentId);
     }
 
     /**
@@ -194,5 +278,127 @@ class Client
             ModelSearchResponse::class,
             new ModelSearchParameters($modelName, $modelType)
         );
+    }
+
+    /**
+     * Add a document to the RAG database and return the initial annotation.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param LocalInputSource $inputSource Local file to upload.
+     * @param RagDocumentUploadParameters $params Upload parameters.
+     * @param PollingOptions|null $pollingOptions Options to apply to the polling.
+     * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
+     * @return T
+     * @throws MindeeException Throws if upload fails or polling times out.
+     */
+    public function uploadAndGetRagDocumentPoll(
+        string $responseClass,
+        LocalInputSource $inputSource,
+        RagDocumentUploadParameters $params,
+        ?PollingOptions $pollingOptions = null,
+        ?CancellationToken $cancellationToken = null
+    ): BaseRagAnnotationResponse {
+        if (!$pollingOptions) {
+            $pollingOptions = new PollingOptions();
+        }
+        $initialResponse = $this->uploadRagDocument($responseClass, $inputSource, $params);
+        return $this->pollForRagDocument($responseClass, $initialResponse, $pollingOptions, $cancellationToken);
+    }
+
+    /**
+     * Get a document's info and annotations from the RAG database.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $documentId Unique identifier of the RAG document.
+     * @param PollingOptions|null $pollingOptions Options to apply to the polling.
+     * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
+     * @return T
+     * @throws MindeeException Throws if polling times out.
+     */
+    public function getReadyRagDocumentPoll(
+        string $responseClass,
+        string $documentId,
+        ?PollingOptions $pollingOptions = null,
+        ?CancellationToken $cancellationToken = null
+    ): BaseRagAnnotationResponse {
+        $initialResponse = $this->getRagDocument($responseClass, $documentId);
+        if ($initialResponse->status !== "Processing") {
+            return $initialResponse;
+        }
+        if (!$pollingOptions) {
+            $pollingOptions = new PollingOptions();
+        }
+        return $this->pollForRagDocument($responseClass, $initialResponse, $pollingOptions, $cancellationToken);
+    }
+
+    /**
+     * Update a document's annotations in the RAG database.
+     *
+     * @template T of ExtractionRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @param PollingOptions|null $pollingOptions Options to apply to the polling.
+     * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
+     * @throws MindeeException Throws if polling times out.
+     */
+    public function updateAndGetRagAnnotationPoll(
+        string $responseClass,
+        BaseAnnotationParameters $params,
+        ?PollingOptions $pollingOptions = null,
+        ?CancellationToken $cancellationToken = null
+    ): BaseRagAnnotationResponse {
+        error_log("Updating RAG document ID: " . $params->documentId);
+        $initialResponse = $this->updateRagAnnotation($responseClass, $params);
+        if ($initialResponse->status !== "Processing") {
+            return $initialResponse;
+        }
+        if (!$pollingOptions) {
+            $pollingOptions = new PollingOptions();
+        }
+        return $this->pollForRagDocument($responseClass, $initialResponse, $pollingOptions, $cancellationToken);
+    }
+
+    /**
+     * Poll until the RAG document is finished processing or the max number of attempts is reached.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseRagAnnotationResponse $initialResponse Initial annotation response.
+     * @param PollingOptions $pollingOptions Options to apply to the polling.
+     * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
+     * @return T
+     * @throws MindeeException Throws if the job fails or polling times out.
+     */
+    private function pollForRagDocument(
+        string $responseClass,
+        BaseRagAnnotationResponse $initialResponse,
+        PollingOptions $pollingOptions,
+        ?CancellationToken $cancellationToken = null
+    ): BaseRagAnnotationResponse {
+        $documentId = $initialResponse->id;
+        $maxRetries = $pollingOptions->maxRetries + 1;
+        $this->customSleep($pollingOptions->initialDelaySec, $cancellationToken);
+
+        $retryCounter = 1;
+        while ($retryCounter < $maxRetries) {
+            $this->customSleep($pollingOptions->delaySec, $cancellationToken);
+            $response = $this->getRagDocument($responseClass, $documentId);
+            $retryCounter++;
+            switch ($response->status) {
+                case "Processing":
+                    break;
+                case "Failed":
+                    throw new MindeeException("Job failed without an error payload.");
+                default:
+                    return $response;
+            }
+        }
+        throw new MindeeException("RAG polling not complete after $retryCounter attempts.");
     }
 }

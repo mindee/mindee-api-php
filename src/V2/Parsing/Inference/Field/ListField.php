@@ -16,9 +16,19 @@ use function sprintf;
 class ListField extends BaseField
 {
     /**
-     * @var array<BaseField|null> Items contained in the list.
+     * @var array<SimpleField|ObjectField|ListField> Items contained in the list, prefer getSimpleItems() or getObjectItems().
      */
     public array $items;
+
+    /**
+     * @var array<SimpleField>|null Cached list of simple field items.
+     */
+    private ?array $simpleItemsCache = null;
+
+    /**
+     * @var array<ObjectField>|null Cached list of object field items.
+     */
+    private ?array $objectItemsCache = null;
 
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
@@ -42,6 +52,48 @@ class ListField extends BaseField
     }
 
     /**
+     * List of simple fields.
+     *
+     * @return array<SimpleField>
+     */
+    public function getSimpleItems(): array
+    {
+        if ($this->simpleItemsCache !== null) {
+            return $this->simpleItemsCache;
+        }
+
+        $this->simpleItemsCache = [];
+        foreach ($this->items as $item) {
+            if ($item instanceof SimpleField) {
+                $this->simpleItemsCache[] = $item;
+            }
+        }
+
+        return $this->simpleItemsCache;
+    }
+
+    /**
+     * List of object fields.
+     *
+     * @return array<ObjectField>
+     */
+    public function getObjectItems(): array
+    {
+        if ($this->objectItemsCache !== null) {
+            return $this->objectItemsCache;
+        }
+
+        $this->objectItemsCache = [];
+        foreach ($this->items as $item) {
+            if ($item instanceof ObjectField) {
+                $this->objectItemsCache[] = $item;
+            }
+        }
+
+        return $this->objectItemsCache;
+    }
+
+    /**
      */
     public function __toString(): string
     {
@@ -51,10 +103,6 @@ class ListField extends BaseField
 
         $parts = [''];
         foreach ($this->items as $item) {
-            if (null === $item) {
-                continue;
-            }
-
             if ($item instanceof ObjectField) {
                 $parts[] = $item->toStringFromList();
             } else {

@@ -61,7 +61,7 @@ class ClientV2Test extends TestCase
         $processing = new JobResponse(json_decode($syntheticResponse, true));
 
         $predictable->expects(self::once())
-            ->method('reqGetJob')
+            ->method('reqGetJobById')
             ->with(self::equalTo('dummy-id'))
             ->willReturn($processing);
 
@@ -85,7 +85,7 @@ class ClientV2Test extends TestCase
         $processing = new ExtractionResponse($json);
 
         $predictable->expects(self::once())
-            ->method('reqGetResult')
+            ->method('reqGetResultById')
             ->with(
                 self::equalTo(ExtractionResponse::class),
                 self::equalTo('12345678-1234-1234-1234-123456789abc')
