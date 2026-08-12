@@ -17,14 +17,17 @@ use Mindee\Http\CurlSslConfig;
 use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
+use Mindee\V2\ClientOptions\BaseAnnotationParameters;
 use Mindee\V2\ClientOptions\BaseProductParameters;
 use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Error\MindeeV2HttpUnknownException;
 use Mindee\V2\Parsing\Error\ErrorResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
+use Mindee\V2\Parsing\BaseRagAnnotationResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Parsing\Search\BaseSearchResponse;
+use Mindee\V2\Product\Extraction\RagDocuments\Params\RagDocumentUploadParameters;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
@@ -172,9 +175,8 @@ class MindeeApiV2
             throw new MindeeException("Model ID must be provided.", ErrorCode::USER_INPUT_ERROR);
         }
         $response = $this->documentEnqueuePost($inputDoc, $params);
-        return $this->processJobResponse($response);
+        return $this->deserializeResponse(JobResponse::class, $response);
     }
-
 
     /**
      * Process the HTTP response and return the appropriate response object.
@@ -186,7 +188,7 @@ class MindeeApiV2
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
      */
-    private function processResponse(
+    private function deserializeResponse(
         string $responseClass,
         array $result
     ): BaseResponse {
@@ -204,60 +206,50 @@ class MindeeApiV2
             return $instance;
         } catch (Exception $e) {
             error_log("Raised '{$e->getMessage()}' Couldn't deserialize response object:\n" . $result['data']);
-            throw new MindeeException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
-        }
-    }
-
-    /**
-     * Process the HTTP response and return the appropriate response object.
-     *
-     * @param array<string, integer|float|string|bool|null|array<mixed>> $result Raw HTTP response array with 'data' and 'code' keys.
-     * @return JobResponse The processed response object.
-     * @throws MindeeException Throws if HTTP status indicates an error or deserialization fails.
-     * @throws MindeeApiException Throws if the response type is not recognized.
-     */
-    private function processJobResponse(array $result): JobResponse
-    {
-        $this->checkValidResponse($result);
-
-        try {
-            $responseData = json_decode($result['data'], true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new MindeeException('JSON decode error: ' . json_last_error_msg());
-            }
-
-            return new JobResponse($responseData);
-        } catch (Exception $e) {
-            error_log("Raised '{$e->getMessage()}' Couldn't deserialize job response:\n" . $result['data']);
-            throw new MindeeApiException("Couldn't deserialize response object.", ErrorCode::API_UNPROCESSABLE_ENTITY);
+            throw new MindeeException(
+                "Couldn't deserialize response object.",
+                ErrorCode::API_UNPROCESSABLE_ENTITY
+            );
         }
     }
 
     /**
      * Requests the job of a queued document from the API.
      * Throws an error if the server's response contains one.
-     * @param string $jobId ID of the inference.
+     * @param string $jobId UUID of the job.
      * @return JobResponse Server response wrapped in a JobResponse object.
      * @throws MindeeException Throws if the server's response contains an error.
      * @throws MindeeException Throws if the inference ID is not provided.
      */
-    public function reqGetJob(string $jobId): JobResponse
+    public function reqGetJobById(string $jobId): JobResponse
     {
-        $response = $this->sendGetRequest($this->baseUrl . "/v2/jobs/$jobId");
-        return $this->processJobResponse($response);
+        return $this->reqGetJobFromUrl($this->baseUrl . "/v2/jobs/$jobId");
     }
 
+    /**
+     * Requests the job of a queued document from the API.
+     * Throws an error if the server's response contains one.
+     * @param string $url URL of the job.
+     * @return JobResponse Server response wrapped in a JobResponse object.
+     * @throws MindeeException Throws if the server's response contains an error.
+     * @throws MindeeException Throws if the inference ID is not provided.
+     */
+    public function reqGetJobFromUrl(string $url): JobResponse
+    {
+        $response = $this->sendGetRequest($url);
+        return $this->deserializeResponse(JobResponse::class, $response);
+    }
 
     /**
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
      * @phpstan-param class-string<T> $responseClass
-     * @param string $resultId URL of the result.
+     * @param string $resultId UUID of the result.
      * @return T A response containing parsing results.
      * @throws MindeeException Throws if the server's response contains an error.
      * @throws MindeeApiException Throws if the response class is not valid.
      */
-    public function reqGetResult(
+    public function reqGetResultById(
         string $responseClass,
         string $resultId
     ): BaseResponse {
@@ -271,8 +263,7 @@ class MindeeApiV2
             );
         }
         $url = $this->baseUrl . "/v2/products/{$slugProperty->getValue()}/results/$resultId";
-        $response = $this->sendGetRequest($url);
-        return $this->processResponse($responseClass, $response);
+        return $this->reqGetResultFromUrl($responseClass, $url);
     }
 
     /**
@@ -288,7 +279,7 @@ class MindeeApiV2
         string $resultUrl
     ): BaseResponse {
         $response = $this->sendGetRequest($resultUrl);
-        return $this->processResponse($responseClass, $response);
+        return $this->deserializeResponse($responseClass, $response);
     }
 
     /**
@@ -390,6 +381,146 @@ class MindeeApiV2
     }
 
     /**
+     * Uploads a local document to the RAG database.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param LocalInputSource $inputSource Local file to upload.
+     * @param RagDocumentUploadParameters $params Upload parameters.
+     * @return T
+     * @throws MindeeException Throws if the cURL operation fails.
+     */
+    public function reqPostRagDocument(
+        string $responseClass,
+        LocalInputSource $inputSource,
+        RagDocumentUploadParameters $params
+    ): BaseRagAnnotationResponse {
+        $ch = $this->initChannel();
+        $postFields = $params->getRequestParameters();
+
+        $inputSource->checkNeedsFix();
+        $postFields['file'] = $inputSource->fileObject;
+
+        $url = $this->baseUrl . '/v2/products/extraction/rag-documents';
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+        $resp = [
+            'data' => curl_exec($ch),
+            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
+        ];
+        $curlError = curl_error($ch);
+        curl_close($ch);
+
+        if (!empty($curlError)) {
+            throw new MindeeException("cURL error:\n$curlError");
+        }
+
+        /** @var T $response */
+        $response = $this->deserializeResponse($responseClass, $resp);
+        return $response;
+    }
+
+    /**
+     * Makes a PATCH call with a JSON body.
+     *
+     * @param string $url URL to send the request to.
+     * @param array<string, mixed> $body Request body to encode as JSON.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
+     */
+    private function sendPatchRequest(string $url, array $body): array
+    {
+        $ch = $this->initChannel();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: ' . $this->apiKey,
+            'Content-Type: application/json',
+        ]);
+        $resp = [
+            'data' => curl_exec($ch),
+            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
+        ];
+        curl_close($ch);
+
+        return $resp;
+    }
+
+    /**
+     * Makes a DELETE call.
+     *
+     * @param string $url URL to send the request to.
+     * @return array<string, integer|float|string|bool|null|array<mixed>> Server response.
+     */
+    private function sendDeleteRequest(string $url): array
+    {
+        $ch = $this->initChannel();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+        $resp = [
+            'data' => curl_exec($ch),
+            'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
+        ];
+        curl_close($ch);
+
+        return $resp;
+    }
+
+    /**
+     * Retrieves a RAG document annotation by its ID.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param string $documentId Unique identifier of the RAG document.
+     * @return T
+     */
+    public function reqGetRagAnnotation(string $responseClass, string $documentId): BaseRagAnnotationResponse
+    {
+        $url = $this->baseUrl . "/v2/products/extraction/rag-documents/$documentId";
+        $response = $this->sendGetRequest($url);
+        /** @var T $result */
+        $result = $this->deserializeResponse($responseClass, $response);
+        return $result;
+    }
+
+    /**
+     * Updates a RAG document annotation using the provided parameters.
+     *
+     * @template T of BaseRagAnnotationResponse
+     * @param string $responseClass The response class to construct.
+     * @phpstan-param class-string<T> $responseClass
+     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @return T
+     */
+    public function reqPatchRagAnnotation(
+        string $responseClass,
+        BaseAnnotationParameters $params
+    ): BaseRagAnnotationResponse {
+        $url = $this->baseUrl . "/v2/products/extraction/rag-documents/{$params->documentId}";
+        $response = $this->sendPatchRequest($url, $params->getRequestParameters());
+        /** @var T $result */
+        $result = $this->deserializeResponse($responseClass, $response);
+        return $result;
+    }
+
+    /**
+     * Deletes a RAG document from the extraction database.
+     *
+     * @param string $documentId Unique identifier of the RAG document to delete.
+     * @return bool True if the deletion was successful (2xx response), false otherwise.
+     */
+    public function reqDeleteExtractionRagDocument(string $documentId): bool
+    {
+        $url = $this->baseUrl . "/v2/products/extraction/rag-documents/$documentId";
+        $response = $this->sendDeleteRequest($url);
+        $statusCode = $response['code'] ?? -1;
+        return $statusCode >= 200 && $statusCode < 300;
+    }
+
+    /**
      * Makes a GET call to a search endpoint and returns the deserialized response.
      *
      * @template T of BaseSearchResponse
@@ -415,6 +546,6 @@ class MindeeApiV2
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
         curl_close($ch);
-        return $this->processResponse($responseClass, $resp);
+        return $this->deserializeResponse($responseClass, $resp);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace V2\Parsing;
+namespace V2\Product\Extraction;
 
 use Mindee\Geometry\Point;
 use Mindee\Input\LocalResponse;
@@ -17,12 +17,12 @@ use Mindee\V2\Product\Extraction\ExtractionResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
+require_once(__DIR__ . "/../../../TestingUtilities.php");
 
 /**
  * InferenceV2 – field integrity checks
  */
-class ExtractionResponseTest extends TestCase
+class ExtractionTest extends TestCase
 {
     private function loadFromResource(string $resourcePath): ExtractionResponse
     {
@@ -118,39 +118,30 @@ class ExtractionResponseTest extends TestCase
         $fields = $inference->result->fields;
         self::assertCount(21, $fields, 'Expected 21 fields in the payload');
 
-        $date = $fields->get('date');
-        self::assertInstanceOf(SimpleField::class, $date);
+        $date = $fields->getSimpleField('date');
         self::assertSame('2019-11-02', $date->getStringValue(), "'date' value mismatch");
 
         $taxes = $fields->getListField('taxes');
         self::assertNotNull($taxes, "'taxes' field must exist");
-        self::assertInstanceOf(ListField::class, $taxes, "'taxes' must be a ListField");
-        self::assertCount(1, $taxes->items, "'taxes' list must contain exactly one item");
+        self::assertCount(1, $taxes->getObjectItems(), "'taxes' list must contain exactly one item");
 
-        $taxItemObj = $taxes->items[0];
-        self::assertInstanceOf(ObjectField::class, $taxItemObj, 'First item of "taxes" must be an ObjectField');
+        $taxItemObj = $taxes->getObjectItems()[0];
         self::assertCount(3, $taxItemObj->fields, 'Tax ObjectField must contain 3 sub-fields');
 
-        $baseTax = $taxItemObj->fields->get('base');
-        self::assertInstanceOf(SimpleField::class, $baseTax);
+        $baseTax = $taxItemObj->getSimpleField('base');
         self::assertSame(31.5, $baseTax->getFloatValue(), "'taxes.base' value mismatch");
         self::assertNotNull((string) $taxes, "'taxes'.__toString() must not be null");
 
         $supplierAddress = $fields->getObjectField('supplier_address');
         self::assertNotNull($supplierAddress, "'supplier_address' field must exist");
-        self::assertInstanceOf(ObjectField::class, $supplierAddress, "'supplier_address' must be an ObjectField");
 
-        $country = $supplierAddress->fields->get('country');
-        self::assertNotNull($country, "'supplier_address.country' must exist");
-        self::assertInstanceOf(SimpleField::class, $country);
+        $country = $supplierAddress->getSimpleField('country');
         self::assertSame('USA', $country->getStringValue(), 'Country mismatch');
         self::assertSame('USA', (string) $country, "'country'.__toString() mismatch");
         self::assertNotNull((string) $supplierAddress, "'supplier_address'.__toString() must not be null");
 
-        $customerAddr = $fields->get('customer_address');
-        self::assertInstanceOf(ObjectField::class, $customerAddr);
-        $city = $customerAddr->fields->get('city');
-        self::assertInstanceOf(SimpleField::class, $city);
+        $customerAddr = $fields->getObjectField('customer_address');
+        $city = $customerAddr->getSimpleField('city');
         self::assertSame('New York', $city->getStringValue(), 'City mismatch');
 
         self::assertNull($inference->result->options ?? null, 'Options must be null');
