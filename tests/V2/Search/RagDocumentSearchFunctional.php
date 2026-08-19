@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace V2\Search;
 
 use Mindee\V2\Client;
-use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
 use Mindee\V2\Search\RagDocuments\RagDocumentSearchParameters;
+use Mindee\V2\Search\RagDocuments\RagDocumentSearchResponse;
 use PHPUnit\Framework\TestCase;
 
 class RagDocumentSearchFunctional extends TestCase

@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Parsing\Search;
+namespace Mindee\V2\Search\RagDocuments;
+
+use Mindee\V2\Parsing\Search\BaseSearchResponse;
+use Mindee\V2\Parsing\Search\RagDocuments;
 
 /**
  * RAG documents search response.
