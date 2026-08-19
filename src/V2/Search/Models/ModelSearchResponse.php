@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Mindee\V2\Parsing\Search;
+namespace Mindee\V2\Search\Models;
+
+use Mindee\V2\Parsing\Search\BaseSearchResponse;
+use Mindee\V2\Parsing\Search\SearchModels;
 
 /**
  * Models search response.

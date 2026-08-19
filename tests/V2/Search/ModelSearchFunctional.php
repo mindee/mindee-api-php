@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace V2\Search;
 
 use Mindee\V2\Client;
-use Mindee\V2\Parsing\Search\ModelSearchResponse;
 use Mindee\V2\Search\Models\ModelSearchParameters;
+use Mindee\V2\Search\Models\ModelSearchResponse;
 use PHPUnit\Framework\TestCase;
 
 class ModelSearchFunctional extends TestCase

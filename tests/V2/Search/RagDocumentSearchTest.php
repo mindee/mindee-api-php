@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace V2\Search;
 
 use DateTimeImmutable;
-use Mindee\V2\Parsing\Search\RagDocumentSearchResponse;
+use Mindee\V2\Search\RagDocuments\RagDocumentSearchResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 

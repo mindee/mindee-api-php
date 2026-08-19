@@ -18,10 +18,10 @@ use Mindee\V2\Parsing\BaseRagAnnotationResponse;
 use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Parsing\Search\BaseSearchResponse;
-use Mindee\V2\Parsing\Search\ModelSearchResponse;
 use Mindee\V2\Product\Extraction\RagDocuments\ExtractionRagAnnotationResponse;
 use Mindee\V2\Product\Extraction\RagDocuments\Params\RagDocumentUploadParameters;
 use Mindee\V2\Search\Models\ModelSearchParameters;
+use Mindee\V2\Search\Models\ModelSearchResponse;
 
 /**
  * Mindee Client V2.
