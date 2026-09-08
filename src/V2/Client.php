@@ -226,16 +226,13 @@ class Client
      * Update a document's annotations in the RAG database.
      *
      * @template T of BaseRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @param BaseAnnotationParameters<T> $params Annotation parameters including the document ID and fields to update.
      * @return T
      */
     public function updateRagAnnotation(
-        string $responseClass,
         BaseAnnotationParameters $params
     ): BaseRagAnnotationResponse {
-        return $this->mindeeApi->reqPatchRagAnnotation($responseClass, $params);
+        return $this->mindeeApi->reqPatchRagAnnotation($params);
     }
 
     /**
@@ -335,28 +332,30 @@ class Client
      * Update a document's annotations in the RAG database.
      *
      * @template T of ExtractionRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @param BaseAnnotationParameters<T> $params Annotation parameters including the document ID and fields to update.
      * @param PollingOptions|null $pollingOptions Options to apply to the polling.
      * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
      * @throws MindeeException Throws if polling times out.
      */
     public function updateAndGetRagAnnotationPoll(
-        string $responseClass,
         BaseAnnotationParameters $params,
         ?PollingOptions $pollingOptions = null,
         ?CancellationToken $cancellationToken = null
     ): BaseRagAnnotationResponse {
         error_log("Updating RAG document ID: " . $params->documentId);
-        $initialResponse = $this->updateRagAnnotation($responseClass, $params);
+        $initialResponse = $this->updateRagAnnotation($params);
         if ($initialResponse->status !== "Processing") {
             return $initialResponse;
         }
         if (!$pollingOptions) {
             $pollingOptions = new PollingOptions();
         }
-        return $this->pollForRagDocument($responseClass, $initialResponse, $pollingOptions, $cancellationToken);
+        return $this->pollForRagDocument(
+            $params->getResponseClass(),
+            $initialResponse,
+            $pollingOptions,
+            $cancellationToken
+        );
     }
 
     /**

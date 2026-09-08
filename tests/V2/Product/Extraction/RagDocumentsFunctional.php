@@ -57,7 +57,6 @@ class RagDocumentsFunctional extends TestCase
         $postAnnotation->fields->getSimpleField('invoice_number')->guidelines = "koo koo katchoo!";
 
         $patchAnnotationResponse = $this->client->updateRagAnnotation(
-            ExtractionRagAnnotationResponse::class,
             new RagDocumentAnnotationParameters(
                 documentId: $documentId,
                 annotation: $postAnnotation
@@ -98,7 +97,6 @@ class RagDocumentsFunctional extends TestCase
         self::assertTrue($getAnnotation->fields->getSimpleField('invoice_number')->selected);
 
         $patchStatusResponse = $this->client->updateRagAnnotation(
-            ExtractionRagAnnotationResponse::class,
             new RagDocumentAnnotationParameters(
                 documentId: $documentId,
                 status: "Active"

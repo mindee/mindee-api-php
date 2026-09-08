@@ -490,19 +490,16 @@ class MindeeApiV2
      * Updates a RAG document annotation using the provided parameters.
      *
      * @template T of BaseRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @param BaseAnnotationParameters<T> $params Annotation parameters including the document ID and fields to update.
      * @return T
      */
     public function reqPatchRagAnnotation(
-        string $responseClass,
         BaseAnnotationParameters $params
     ): BaseRagAnnotationResponse {
         $url = $this->baseUrl . "/v2/products/extraction/rag-documents/{$params->documentId}";
         $response = $this->sendPatchRequest($url, $params->getRequestParameters());
         /** @var T $result */
-        $result = $this->deserializeResponse($responseClass, $response);
+        $result = $this->deserializeResponse($params->getResponseClass(), $response);
         return $result;
     }
 
