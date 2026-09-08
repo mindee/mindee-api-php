@@ -60,7 +60,6 @@ class Client
         return $this->mindeeApi->reqPostEnqueue($inputSource, $params);
     }
 
-
     /**
      * @template T of BaseResponse
      * @param string $responseClass The response class to construct.
@@ -255,14 +254,12 @@ class Client
      * Searches for resources matching the given criteria.
      *
      * @template T of BaseSearchResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseSearchParameters $params Search parameters.
+     * @param BaseSearchParameters<T> $params Search parameters.
      * @return T
      */
-    public function search(string $responseClass, BaseSearchParameters $params): BaseSearchResponse
+    public function search(BaseSearchParameters $params): BaseSearchResponse
     {
-        return $this->mindeeApi->reqGetSearch($responseClass, $params);
+        return $this->mindeeApi->reqGetSearch($params);
     }
 
     /**
@@ -270,12 +267,11 @@ class Client
      * @param string|null $modelName Optional model name to filter by.
      * @param string|null $modelType Optional model type to filter by.
      * @return ModelSearchResponse The list of models matching the criteria.
-     * @deprecated Use search(ModelSearchResponse::class, new ModelSearchParameters(...)) instead.
+     * @deprecated Use search(new ModelSearchParameters(...)) instead.
      */
     public function searchModels(?string $modelName = null, ?string $modelType = null): ModelSearchResponse
     {
         return $this->mindeeApi->reqGetSearch(
-            ModelSearchResponse::class,
             new ModelSearchParameters($modelName, $modelType)
         );
     }

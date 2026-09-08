@@ -524,14 +524,12 @@ class MindeeApiV2
      * Makes a GET call to a search endpoint and returns the deserialized response.
      *
      * @template T of BaseSearchResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseSearchParameters $params Search parameters (slug and query params derived from this).
+     * @param BaseSearchParameters<T> $params Search parameters (slug and query params derived from this).
      * @return T
      */
-    public function reqGetSearch(string $responseClass, BaseSearchParameters $params): BaseResponse
+    public function reqGetSearch(BaseSearchParameters $params): BaseResponse
     {
-        $queryParams = $params->getQueryParams();
+        $queryParams = $params->getRequestParameters();
         $url = $this->baseUrl . "/v2/search/" . $params::$slug;
         if (!empty($queryParams)) {
             $url .= '?' . http_build_query($queryParams);
@@ -546,6 +544,6 @@ class MindeeApiV2
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
         curl_close($ch);
-        return $this->deserializeResponse($responseClass, $resp);
+        return $this->deserializeResponse($params->getResponseClass(), $resp);
     }
 }

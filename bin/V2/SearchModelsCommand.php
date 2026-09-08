@@ -86,7 +86,6 @@ class SearchModelsCommand extends Command
 
         try {
             $response = $client->search(
-                ModelSearchResponse::class,
                 new ModelSearchParameters($name ?: null, $modelType ?: null)
             );
         } catch (MindeeV2HttpException $e) {
