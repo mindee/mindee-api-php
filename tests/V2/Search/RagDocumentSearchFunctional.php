@@ -6,7 +6,6 @@ namespace V2\Search;
 
 use Mindee\V2\Client;
 use Mindee\V2\Search\RagDocuments\RagDocumentSearchParameters;
-use Mindee\V2\Search\RagDocuments\RagDocumentSearchResponse;
 use PHPUnit\Framework\TestCase;
 
 class RagDocumentSearchFunctional extends TestCase
@@ -23,7 +22,6 @@ class RagDocumentSearchFunctional extends TestCase
     public function testRagDocumentSearch_mustHaveResults(): void
     {
         $response = $this->client->search(
-            RagDocumentSearchResponse::class,
             new RagDocumentSearchParameters(modelId: $this->findocModelId)
         );
 

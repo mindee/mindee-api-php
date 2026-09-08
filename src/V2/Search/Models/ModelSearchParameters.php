@@ -7,7 +7,14 @@ namespace Mindee\V2\Search\Models;
 use Mindee\V2\ClientOptions\BaseSearchParameters;
 
 /**
- * Search parameters for models.
+ * Search for models within the organization linked to the API key.
+ *
+ * All search filters are optional.
+ * If no search filters are given, all models belonging to the organization are returned.
+ *
+ * Results are paginated.
+ *
+ * @extends BaseSearchParameters<ModelSearchResponse>
  */
 class ModelSearchParameters extends BaseSearchParameters
 {
@@ -15,6 +22,11 @@ class ModelSearchParameters extends BaseSearchParameters
      * @var string Slug of the resource.
      */
     public static string $slug = "models";
+
+    /**
+     * @var class-string<ModelSearchResponse> Response class.
+     */
+    protected static string $responseClass = ModelSearchResponse::class;
 
     /**
      * @param string|null $name Case-insensitive search term for the model name.
@@ -34,9 +46,9 @@ class ModelSearchParameters extends BaseSearchParameters
     /**
      * @return array<string, string> Query parameters.
      */
-    public function getQueryParams(): array
+    public function getRequestParameters(): array
     {
-        $params = parent::getQueryParams();
+        $params = parent::getRequestParameters();
         if (!empty($this->name)) {
             $params['name'] = $this->name;
         }

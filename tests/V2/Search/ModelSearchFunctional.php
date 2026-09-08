@@ -6,7 +6,6 @@ namespace V2\Search;
 
 use Mindee\V2\Client;
 use Mindee\V2\Search\Models\ModelSearchParameters;
-use Mindee\V2\Search\Models\ModelSearchResponse;
 use PHPUnit\Framework\TestCase;
 
 class ModelSearchFunctional extends TestCase
@@ -20,7 +19,7 @@ class ModelSearchFunctional extends TestCase
 
     public function testModelSearch_mustHaveResults(): void
     {
-        $response = $this->client->search(ModelSearchResponse::class, new ModelSearchParameters());
+        $response = $this->client->search(new ModelSearchParameters());
 
         self::assertNotNull($response);
         self::assertNotNull($response->models);
@@ -33,7 +32,6 @@ class ModelSearchFunctional extends TestCase
     public function testModelSearch_mustReturnEmpty(): void
     {
         $response = $this->client->search(
-            ModelSearchResponse::class,
             new ModelSearchParameters(name: "je n'existe pas tralala")
         );
 

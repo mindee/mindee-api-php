@@ -84,7 +84,6 @@ class SearchRagDocumentsCommand extends Command
 
         try {
             $response = $client->search(
-                RagDocumentSearchResponse::class,
                 new RagDocumentSearchParameters($modelId, $filename ?: null)
             );
         } catch (MindeeV2HttpException $e) {

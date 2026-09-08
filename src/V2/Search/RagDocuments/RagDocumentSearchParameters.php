@@ -9,7 +9,14 @@ use Mindee\Error\MindeeException;
 use Mindee\V2\ClientOptions\BaseSearchParameters;
 
 /**
- * Search parameters for RAG documents.
+ * Search for RAG documents within the organization linked to the API key.
+ *
+ * The model ID is required, search filters are optional.
+ * If no search filters are given, all documents linked to the model are returned.
+ *
+ * Results are paginated.
+ *
+ * @extends BaseSearchParameters<RagDocumentSearchResponse>
  */
 class RagDocumentSearchParameters extends BaseSearchParameters
 {
@@ -19,10 +26,15 @@ class RagDocumentSearchParameters extends BaseSearchParameters
     public static string $slug = "rag-documents";
 
     /**
+     * @var class-string<RagDocumentSearchResponse> Response class.
+     */
+    protected static string $responseClass = RagDocumentSearchResponse::class;
+
+    /**
      * @param string|null $modelId Model identifier to search in (required).
      * @param string|null $filename Case-insensitive substring search on filename.
      * @param integer|null $page 1-based page index.
-     * @param integer|null $perPage Number of items per page.
+     * @param integer|null $perPage Number of result items per page.
      */
     public function __construct(
         public ?string $modelId = null,
@@ -37,9 +49,9 @@ class RagDocumentSearchParameters extends BaseSearchParameters
      * @return array<string, string> Query parameters.
      * @throws MindeeException Throws if the model ID is not provided.
      */
-    public function getQueryParams(): array
+    public function getRequestParameters(): array
     {
-        $params = parent::getQueryParams();
+        $params = parent::getRequestParameters();
         if (!empty($this->modelId)) {
             $params['model_id'] = $this->modelId;
         } else {

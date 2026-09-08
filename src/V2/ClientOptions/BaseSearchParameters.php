@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Mindee\V2\ClientOptions;
 
+use Mindee\V2\Parsing\Search\BaseSearchResponse;
+
 /**
  * Base parameters for searches.
+ * @template TSearchResponse of BaseSearchResponse
  */
 abstract class BaseSearchParameters
 {
@@ -13,6 +16,11 @@ abstract class BaseSearchParameters
      * @var string Slug of the resource.
      */
     public static string $slug;
+
+    /**
+     * @var class-string<TSearchResponse> $responseClass Response class.
+     */
+    protected static string $responseClass;
 
     /**
      * @param integer|null $page 1-based page index.
@@ -24,11 +32,21 @@ abstract class BaseSearchParameters
     ) {}
 
     /**
-     * Gets the query parameters for the search request.
+     * Gets the response class associated with the parameters.
+     *
+     * @return class-string<TSearchResponse> Response class.
+     */
+    public function getResponseClass(): string
+    {
+        return static::$responseClass;
+    }
+
+    /**
+     * Gets the request parameters for the search request.
      *
      * @return array<string, string> Query parameters.
      */
-    public function getQueryParams(): array
+    public function getRequestParameters(): array
     {
         $params = [];
         if ($this->page !== null && $this->page > 0) {
