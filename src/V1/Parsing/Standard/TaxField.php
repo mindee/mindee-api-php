@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Mindee\V1\Parsing\Standard;
 
+use Mindee\V1\Parsing\SummaryHelperV1;
+
 use function array_key_exists;
 use function is_scalar;
 
@@ -92,10 +94,12 @@ class TaxField extends BaseField
     {
         $printable = $this->printableValues();
 
-        return '| ' . mb_str_pad($printable['basis'], 13, ' ', STR_PAD_RIGHT, "UTF-8")
-            . ' | ' . mb_str_pad($printable['code'], 6, ' ', STR_PAD_RIGHT, "UTF-8")
-            . ' | ' . mb_str_pad($printable['rate'], 8, ' ', STR_PAD_RIGHT, "UTF-8")
-            . ' | ' . mb_str_pad($printable['value'], 13, ' ', STR_PAD_RIGHT, "UTF-8") . ' |';
+        $outStr = "| ";
+        $outStr .= SummaryHelperV1::padString($printable['basis'], 13);
+        $outStr .= SummaryHelperV1::padString($printable['code'], 6);
+        $outStr .= SummaryHelperV1::padString($printable['rate'], 8);
+        $outStr .= SummaryHelperV1::padString($printable['value'], 13);
+        return rtrim(SummaryHelperV1::cleanOutString($outStr));
     }
 
     /**

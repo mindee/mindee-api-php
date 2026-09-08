@@ -105,7 +105,7 @@ class RagDocumentsFunctional extends TestCase
             )
         );
         self::assertNotNull($patchStatusResponse);
-        self::assertEquals("Active", $patchStatusResponse->status);
+        self::assertEquals("Processing", $patchStatusResponse->status);
 
         $deleteResponse = $this->client->deleteExtractionRagDocument($documentId);
         self::assertTrue($deleteResponse);

@@ -6,6 +6,9 @@ namespace Mindee\V1\Parsing;
 
 use Mindee\Parsing\SummaryHelper;
 
+use function function_exists;
+use function strlen;
+
 /**
  * Utility class to handle information display.
  */
@@ -21,6 +24,11 @@ class SummaryHelperV1 extends SummaryHelper
      */
     public static function padString(string $inputString, int $colSize, string $separator = "|"): string
     {
-        return mb_str_pad($inputString, $colSize, " ", STR_PAD_RIGHT, "UTF-8") . " $separator ";
+        if (function_exists('mb_str_pad')) {
+            return mb_str_pad($inputString, $colSize, " ", STR_PAD_RIGHT, "UTF-8") . " $separator ";
+        }
+
+        $paddedLength = $colSize + (strlen($inputString) - mb_strlen($inputString, 'UTF-8'));
+        return str_pad($inputString, $paddedLength, ' ', STR_PAD_RIGHT) . " $separator ";
     }
 }

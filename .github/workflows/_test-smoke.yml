@@ -37,7 +37,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-      - uses: ramsey/composer-install@v2
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v3
 
       - name: Tests V2 code samples
         run: |
