@@ -21,7 +21,8 @@
     "phpstan/phpstan": "~2.2.8",
     "phpstan/phpstan-deprecation-rules": "~2.0.5",
     "rector/rector": "~2.5.9",
-    "projektgopher/whisky": "~0.7.4"
+    "projektgopher/whisky": "~0.7.4",
+    "icanhazstring/composer-unused": "~0.9.0"
   },
   "suggest": {
     "ext-imagick": "Required for PDF rasterization and image processing features",

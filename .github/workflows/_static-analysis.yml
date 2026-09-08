@@ -7,43 +7,27 @@ jobs:
   static-check:
     name: Run Static Analysis
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: ["8.1"]
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up PHP ${{ matrix.php-version }}
+    - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
+        php-version: "8.1"
         tools: composer
-    - uses: ramsey/composer-install@v3
-
-    - name: Cache dependencies
-      uses: actions/cache@v5
-      with:
-        path: ./vendor
-        key: ${{ runner.os }}-${{ hashFiles('composer.json') }}
-        restore-keys: |
-          ${{ runner.os }}
 
     - name: Install dependencies
-      run: |
-        composer install
+      uses: ramsey/composer-install@v3
 
     - name: Run lint
       run: |
         composer lint
 
-    - name: License check
+    - name: License Check
       run: |
-        vendor/bin/license-checker check
+        ./vendor/bin/license-checker check
 
-    - name: Download Composer Unused
-      run: curl -OL https://github.com/composer-unused/composer-unused/releases/latest/download/composer-unused.phar
-
-    - name: check unused dependencies
+    - name: Check Unused Dependencies
       # symfony/console is mistakenly flagged as unused since it is only used in the CLI, not the main app
       # Exclude it from checks.
-      run: php composer-unused.phar --excludePackage=symfony/console
+      run: ./vendor/bin/composer-unused --excludePackage=symfony/console
