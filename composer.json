@@ -15,13 +15,13 @@
     "composer/ca-bundle": "^1.5"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.38",
-    "phpunit/phpunit": "^9.6",
-    "madewithlove/license-checker": "^v1.0",
-    "phpstan/phpstan": "^2.1",
-    "phpstan/phpstan-deprecation-rules": "^2.0",
-    "rector/rector": "^2.4",
-    "projektgopher/whisky": "^0.7.4"
+    "friendsofphp/php-cs-fixer": "~v3.95.25",
+    "phpunit/phpunit": "~9.6.35",
+    "madewithlove/license-checker": "~v1.6",
+    "phpstan/phpstan": "~2.2.8",
+    "phpstan/phpstan-deprecation-rules": "~2.0.5",
+    "rector/rector": "~2.5.9",
+    "projektgopher/whisky": "~0.7.4"
   },
   "suggest": {
     "ext-imagick": "Required for PDF rasterization and image processing features",
