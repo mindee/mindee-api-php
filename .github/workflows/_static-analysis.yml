@@ -18,6 +18,7 @@ jobs:
       with:
         php-version: ${{ matrix.php-version }}
         tools: composer
+    - uses: ramsey/composer-install@v3
 
     - name: Cache dependencies
       uses: actions/cache@v5
@@ -34,3 +35,15 @@ jobs:
     - name: Run lint
       run: |
         composer lint
+
+    - name: License check
+      run: |
+        vendor/bin/license-checker check
+
+    - name: Download Composer Unused
+      run: curl -OL https://github.com/composer-unused/composer-unused/releases/latest/download/composer-unused.phar
+
+    - name: check unused dependencies
+      # symfony/console is mistakenly flagged as unused since it is only used in the CLI, not the main app
+      # Exclude it from checks.
+      run: php composer-unused.phar --excludePackage=symfony/console
