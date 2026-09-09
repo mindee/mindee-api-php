@@ -42,9 +42,10 @@ abstract class BaseProductParameters
     }
 
     /**
-     * @return array<string, string> Hash representation.
+     * Gets the request parameters for the enqueue request.
+     * @return array<string, string> Request parameters.
      */
-    public function asHash(): array
+    public function getRequestParameters(): array
     {
         $outHash = ['model_id' => $this->modelId];
         if (isset($this->alias)) {

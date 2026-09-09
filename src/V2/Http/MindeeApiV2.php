@@ -337,7 +337,7 @@ class MindeeApiV2
         BaseProductParameters $params
     ): array {
         $ch = $this->initChannel();
-        $postFields = $params->asHash();
+        $postFields = $params->getRequestParameters();
 
         if ($inputSource instanceof UrlInputSource) {
             $postFields['url'] = $inputSource->url;

@@ -33,6 +33,7 @@ abstract class BaseAnnotationParameters
     }
 
     /**
+     * Gets the request parameters for the upload request.
      * @return array<string, mixed> Request parameters.
      */
     abstract public function getRequestParameters(): array;

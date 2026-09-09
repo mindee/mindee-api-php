@@ -65,9 +65,9 @@ class ExtractionParameters extends BaseProductParameters
     /**
      * @return array<string, integer|float|string|bool|null|array<mixed>> Hash representation.
      */
-    public function asHash(): array
+    public function getRequestParameters(): array
     {
-        $outHash = parent::asHash();
+        $outHash = parent::getRequestParameters();
         if (isset($this->rag)) {
             $outHash['rag'] = $this->rag ? 'true' : 'false';
         }
