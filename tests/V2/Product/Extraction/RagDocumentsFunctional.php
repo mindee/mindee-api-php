@@ -37,7 +37,6 @@ class RagDocumentsFunctional extends TestCase
         $parameters = new RagDocumentUploadParameters(modelId: $this->extractionModelId);
 
         $postResponse = $this->client->uploadAndGetRagDocumentPoll(
-            ExtractionRagAnnotationResponse::class,
             $inputSource,
             $parameters
         );

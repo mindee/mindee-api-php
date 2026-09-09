@@ -19,6 +19,7 @@ use Mindee\Input\LocalInputSource;
 use Mindee\Input\UrlInputSource;
 use Mindee\V2\ClientOptions\BaseAnnotationParameters;
 use Mindee\V2\ClientOptions\BaseProductParameters;
+use Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters;
 use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Error\MindeeV2HttpException;
 use Mindee\V2\Error\MindeeV2HttpUnknownException;
@@ -384,17 +385,14 @@ class MindeeApiV2
      * Uploads a local document to the RAG database.
      *
      * @template T of BaseRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
      * @param LocalInputSource $inputSource Local file to upload.
-     * @param RagDocumentUploadParameters $params Upload parameters.
+     * @param BaseRagDocumentUploadParameters<T> $params Upload parameters.
      * @return T
      * @throws MindeeException Throws if the cURL operation fails.
      */
     public function reqPostRagDocument(
-        string $responseClass,
         LocalInputSource $inputSource,
-        RagDocumentUploadParameters $params
+        BaseRagDocumentUploadParameters $params
     ): BaseRagAnnotationResponse {
         $ch = $this->initChannel();
         $postFields = $params->getRequestParameters();
@@ -418,7 +416,7 @@ class MindeeApiV2
         }
 
         /** @var T $response */
-        $response = $this->deserializeResponse($responseClass, $resp);
+        $response = $this->deserializeResponse($params->getResponseClass(), $resp);
         return $response;
     }
 
