@@ -4,28 +4,17 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Extraction\RagDocuments\Params;
 
-use InvalidArgumentException;
+use Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters;
+use Mindee\V2\Product\Extraction\RagDocuments\ExtractionRagAnnotationResponse;
 
 /**
  * Upload parameters for RAG documents.
+ * @extends BaseRagDocumentUploadParameters<ExtractionRagAnnotationResponse>
  */
-class RagDocumentUploadParameters
+class RagDocumentUploadParameters extends BaseRagDocumentUploadParameters
 {
     /**
-     * @param string $modelId UUID of the extraction model that the uploaded RAG document is linked to.
+     * @var class-string<ExtractionRagAnnotationResponse> Response class.
      */
-    public function __construct(public readonly string $modelId) {}
-
-    /**
-     * @return array<string, string> Request parameters.
-     * @throws InvalidArgumentException Throws if the model ID is missing.
-     */
-    public function getRequestParameters(): array
-    {
-        if (empty($this->modelId)) {
-            throw new InvalidArgumentException("ModelId is required in RagDocumentsParameters");
-        }
-
-        return ['model_id' => $this->modelId];
-    }
+    protected static string $responseClass = ExtractionRagAnnotationResponse::class;
 }

@@ -7,6 +7,7 @@ namespace Mindee\V2\Product\Extraction\RagDocuments\Params;
 use InvalidArgumentException;
 use Mindee\Error\MindeeInputException;
 use Mindee\V2\ClientOptions\BaseAnnotationParameters;
+use Mindee\V2\Product\Extraction\RagDocuments\ExtractionRagAnnotationResponse;
 use Mindee\V2\Product\Extraction\RagDocuments\RagAnnotation;
 
 use function is_array;
@@ -14,6 +15,7 @@ use function is_string;
 
 /**
  * Annotation parameters for RAG documents.
+ * @extends BaseAnnotationParameters<ExtractionRagAnnotationResponse>
  */
 class RagDocumentAnnotationParameters extends BaseAnnotationParameters
 {
@@ -21,6 +23,11 @@ class RagDocumentAnnotationParameters extends BaseAnnotationParameters
      * @var RagAnnotation|null Field-level RAG annotation and guidelines configuration for the document.
      */
     public ?RagAnnotation $annotation;
+
+    /**
+     * @var class-string<ExtractionRagAnnotationResponse> Response class.
+     */
+    protected static string $responseClass = ExtractionRagAnnotationResponse::class;
 
     /**
      * @param string $documentId Unique identifier of the document.

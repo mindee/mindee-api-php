@@ -15,7 +15,7 @@ class BaseProductParametersTest extends TestCase
             public static string $slug = 'test';
         };
 
-        $hash = $params->asHash();
+        $hash = $params->getRequestParameters();
 
         self::assertArrayHasKey('model_id', $hash);
         self::assertArrayHasKey('webhook_ids', $hash);

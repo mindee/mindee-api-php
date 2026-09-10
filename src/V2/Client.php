@@ -12,6 +12,7 @@ use Mindee\Input\InputSource;
 use Mindee\Input\LocalInputSource;
 use Mindee\V2\ClientOptions\BaseAnnotationParameters;
 use Mindee\V2\ClientOptions\BaseProductParameters;
+use Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters;
 use Mindee\V2\ClientOptions\BaseSearchParameters;
 use Mindee\V2\Http\MindeeApiV2;
 use Mindee\V2\Parsing\BaseRagAnnotationResponse;
@@ -191,19 +192,16 @@ class Client
      * Add a document to the RAG database.
      *
      * @template T of BaseRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
      * @param LocalInputSource $inputSource Local file to upload.
-     * @param RagDocumentUploadParameters $params Upload parameters.
+     * @param BaseRagDocumentUploadParameters<T> $params Upload parameters.
      * @return T
      */
     public function uploadRagDocument(
-        string $responseClass,
         LocalInputSource $inputSource,
-        RagDocumentUploadParameters $params
+        BaseRagDocumentUploadParameters $params
     ): BaseRagAnnotationResponse {
         error_log("Adding a document to the RAG database");
-        return $this->mindeeApi->reqPostRagDocument($responseClass, $inputSource, $params);
+        return $this->mindeeApi->reqPostRagDocument($inputSource, $params);
     }
 
     /**
@@ -226,16 +224,13 @@ class Client
      * Update a document's annotations in the RAG database.
      *
      * @template T of BaseRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @param BaseAnnotationParameters<T> $params Annotation parameters including the document ID and fields to update.
      * @return T
      */
     public function updateRagAnnotation(
-        string $responseClass,
         BaseAnnotationParameters $params
     ): BaseRagAnnotationResponse {
-        return $this->mindeeApi->reqPatchRagAnnotation($responseClass, $params);
+        return $this->mindeeApi->reqPatchRagAnnotation($params);
     }
 
     /**
@@ -280,27 +275,29 @@ class Client
      * Add a document to the RAG database and return the initial annotation.
      *
      * @template T of BaseRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
      * @param LocalInputSource $inputSource Local file to upload.
-     * @param RagDocumentUploadParameters $params Upload parameters.
+     * @param BaseRagDocumentUploadParameters<T> $params Upload parameters.
      * @param PollingOptions|null $pollingOptions Options to apply to the polling.
      * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
      * @return T
      * @throws MindeeException Throws if upload fails or polling times out.
      */
     public function uploadAndGetRagDocumentPoll(
-        string $responseClass,
         LocalInputSource $inputSource,
-        RagDocumentUploadParameters $params,
+        BaseRagDocumentUploadParameters $params,
         ?PollingOptions $pollingOptions = null,
         ?CancellationToken $cancellationToken = null
     ): BaseRagAnnotationResponse {
         if (!$pollingOptions) {
             $pollingOptions = new PollingOptions();
         }
-        $initialResponse = $this->uploadRagDocument($responseClass, $inputSource, $params);
-        return $this->pollForRagDocument($responseClass, $initialResponse, $pollingOptions, $cancellationToken);
+        $initialResponse = $this->uploadRagDocument($inputSource, $params);
+        return $this->pollForRagDocument(
+            $params->getResponseClass(),
+            $initialResponse,
+            $pollingOptions,
+            $cancellationToken
+        );
     }
 
     /**
@@ -335,28 +332,30 @@ class Client
      * Update a document's annotations in the RAG database.
      *
      * @template T of ExtractionRagAnnotationResponse
-     * @param string $responseClass The response class to construct.
-     * @phpstan-param class-string<T> $responseClass
-     * @param BaseAnnotationParameters $params Annotation parameters including the document ID and fields to update.
+     * @param BaseAnnotationParameters<T> $params Annotation parameters including the document ID and fields to update.
      * @param PollingOptions|null $pollingOptions Options to apply to the polling.
      * @param CancellationToken|null $cancellationToken CancellationToken to check for cancellation.
      * @throws MindeeException Throws if polling times out.
      */
     public function updateAndGetRagAnnotationPoll(
-        string $responseClass,
         BaseAnnotationParameters $params,
         ?PollingOptions $pollingOptions = null,
         ?CancellationToken $cancellationToken = null
     ): BaseRagAnnotationResponse {
         error_log("Updating RAG document ID: " . $params->documentId);
-        $initialResponse = $this->updateRagAnnotation($responseClass, $params);
+        $initialResponse = $this->updateRagAnnotation($params);
         if ($initialResponse->status !== "Processing") {
             return $initialResponse;
         }
         if (!$pollingOptions) {
             $pollingOptions = new PollingOptions();
         }
-        return $this->pollForRagDocument($responseClass, $initialResponse, $pollingOptions, $cancellationToken);
+        return $this->pollForRagDocument(
+            $params->getResponseClass(),
+            $initialResponse,
+            $pollingOptions,
+            $cancellationToken
+        );
     }
 
     /**
