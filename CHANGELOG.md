@@ -1,5 +1,13 @@
 # Mindee PHP API Library Changelog
 
+## v3.2.0 - 2026-09-11
+### Changes
+* :sparkles: add RAG search API
+* :sparkles: Allow CRUD operations on RAG documents
+### Fixes
+* :bug: fix for mb_str_pad not existing in php 8.1
+
+
 ## v3.1.0 - 2026-07-22
 ### Changes
 * :sparkles: add support for failed webhooks
