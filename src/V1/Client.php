@@ -329,9 +329,7 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): PredictResponse {
-        if (null === $options) {
-            $options = new PredictMethodOptions();
-        }
+        $options ??= new PredictMethodOptions();
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
@@ -361,12 +359,8 @@ class Client
         ?PageOptions $pageOptions = null,
         ?CancellationToken $cancellationToken = null,
     ): AsyncPredictResponse {
-        if (null === $options) {
-            $options = new PredictMethodOptions();
-        }
-        if (null === $asyncOptions) {
-            $asyncOptions = new PollingOptions();
-        }
+        $options ??= new PredictMethodOptions();
+        $asyncOptions ??= new PollingOptions();
 
         $options->endpoint ??= $this->constructOTSEndpoint(
             $predictionType,
@@ -416,9 +410,7 @@ class Client
         ?PredictMethodOptions $options = null,
         ?PageOptions $pageOptions = null
     ): AsyncPredictResponse {
-        if (null === $options) {
-            $options = new PredictMethodOptions();
-        }
+        $options ??= new PredictMethodOptions();
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }
@@ -485,9 +477,7 @@ class Client
         ?WorkflowOptions $options = null,
         ?PageOptions $pageOptions = null
     ): WorkflowResponse {
-        if (null === $options) {
-            $options = new WorkflowOptions();
-        }
+        $options ??= new WorkflowOptions();
         if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
             $this->cutDocPages($inputDoc, $pageOptions);
         }

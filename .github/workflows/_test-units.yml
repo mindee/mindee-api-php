@@ -17,7 +17,7 @@ jobs:
           - 8.5
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -48,7 +48,7 @@ jobs:
           - 8.4
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
       - name: Install Ghostscript
@@ -89,7 +89,7 @@ jobs:
           - 8.4
     runs-on: "macos-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
       - name: Set up PHP ${{ matrix.php-version }}
@@ -118,7 +118,7 @@ jobs:
 #          - 8.4
 #    runs-on: "macos-latest"
 #    steps:
-#      - uses: actions/checkout@v4
+#      - uses: actions/checkout@v6
 #        with:
 #          submodules: recursive
 #      - name: Install Homebrew
@@ -159,7 +159,7 @@ jobs:
           - 8.4
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -193,7 +193,7 @@ jobs:
           - 8.4
     runs-on: "windows-latest"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
       - name: Install Ghostscript
