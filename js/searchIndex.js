@@ -1006,6 +1006,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-Input-UrlInputSource.html#property_url"
         },                {
+            "fqsen": "\\Mindee\\Parsing\\DateHelper",
+            "name": "DateHelper",
+            "summary": "Utility\u0020class\u0020to\u0020parse\u0020date\u0020strings\u0020returned\u0020by\u0020the\u0020API.",
+            "url": "classes/Mindee-Parsing-DateHelper.html"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\DateHelper\u003A\u003AparseDate\u0028\u0029",
+            "name": "parseDate",
+            "summary": "Parse\u0020a\u0020date\u0020string\u0020into\u0020a\u0020DateTime\u0020object.",
+            "url": "classes/Mindee-Parsing-DateHelper.html#method_parseDate"
+        },                {
+            "fqsen": "\\Mindee\\Parsing\\DateHelper\u003A\u003AparseDateImmutable\u0028\u0029",
+            "name": "parseDateImmutable",
+            "summary": "Parse\u0020a\u0020date\u0020string\u0020into\u0020a\u0020DateTimeImmutable\u0020object.",
+            "url": "classes/Mindee-Parsing-DateHelper.html#method_parseDateImmutable"
+        },                {
             "fqsen": "\\Mindee\\Parsing\\SummaryHelper",
             "name": "SummaryHelper",
             "summary": "Base\u0020utility\u0020class\u0020to\u0020handle\u0020information\u0020display.",
@@ -5741,55 +5756,205 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020status\u0020of\u0020an\u0020inference\u0020that\u0020was\u0020previously\u0020enqueued.",
             "url": "classes/Mindee-V2-Client.html#method_getJob"
         },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AgetJobFromUrl\u0028\u0029",
+            "name": "getJobFromUrl",
+            "summary": "Get\u0020the\u0020status\u0020of\u0020a\u0020job\u0020from\u0020its\u0020polling\u0020URL.",
+            "url": "classes/Mindee-V2-Client.html#method_getJobFromUrl"
+        },                {
             "fqsen": "\\Mindee\\V2\\Client\u003A\u003AenqueueAndGetResult\u0028\u0029",
             "name": "enqueueAndGetResult",
             "summary": "Send\u0020a\u0020document\u0020to\u0020an\u0020endpoint\u0020and\u0020poll\u0020the\u0020server\u0020until\u0020the\u0020result\u0020is\u0020sent\u0020or\nuntil\u0020the\u0020maximum\u0020number\u0020of\u0020tries\u0020is\u0020reached.",
             "url": "classes/Mindee-V2-Client.html#method_enqueueAndGetResult"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AuploadRagDocument\u0028\u0029",
+            "name": "uploadRagDocument",
+            "summary": "Not\u0020recommended\u0020for\u0020general\u0020use,\u0020prefer\u0020uploadAndGetRagDocumentPoll\u0028\u0029.",
+            "url": "classes/Mindee-V2-Client.html#method_uploadRagDocument"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AgetRagDocument\u0028\u0029",
+            "name": "getRagDocument",
+            "summary": "Not\u0020recommended\u0020for\u0020general\u0020use,\u0020prefer\u0020getReadyRagDocumentPoll\u0028\u0029.",
+            "url": "classes/Mindee-V2-Client.html#method_getRagDocument"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AupdateRagAnnotation\u0028\u0029",
+            "name": "updateRagAnnotation",
+            "summary": "Update\u0020a\u0020document\u0027s\u0020annotations\u0020in\u0020the\u0020RAG\u0020database.",
+            "url": "classes/Mindee-V2-Client.html#method_updateRagAnnotation"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AdeleteExtractionRagDocument\u0028\u0029",
+            "name": "deleteExtractionRagDocument",
+            "summary": "Delete\u0020a\u0020document\u0020from\u0020the\u0020RAG\u0020database.",
+            "url": "classes/Mindee-V2-Client.html#method_deleteExtractionRagDocument"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003Asearch\u0028\u0029",
+            "name": "search",
+            "summary": "Searches\u0020for\u0020resources\u0020matching\u0020the\u0020given\u0020criteria.",
+            "url": "classes/Mindee-V2-Client.html#method_search"
         },                {
             "fqsen": "\\Mindee\\V2\\Client\u003A\u003AsearchModels\u0028\u0029",
             "name": "searchModels",
             "summary": "Searches\u0020for\u0020a\u0020list\u0020of\u0020available\u0020models\u0020for\u0020the\u0020given\u0020API\u0020key.",
             "url": "classes/Mindee-V2-Client.html#method_searchModels"
         },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AuploadAndGetRagDocumentPoll\u0028\u0029",
+            "name": "uploadAndGetRagDocumentPoll",
+            "summary": "Add\u0020a\u0020document\u0020to\u0020the\u0020RAG\u0020database\u0020and\u0020return\u0020the\u0020initial\u0020annotation.",
+            "url": "classes/Mindee-V2-Client.html#method_uploadAndGetRagDocumentPoll"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AgetReadyRagDocumentPoll\u0028\u0029",
+            "name": "getReadyRagDocumentPoll",
+            "summary": "Get\u0020a\u0020document\u0027s\u0020info\u0020and\u0020annotations\u0020from\u0020the\u0020RAG\u0020database.",
+            "url": "classes/Mindee-V2-Client.html#method_getReadyRagDocumentPoll"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003AupdateAndGetRagAnnotationPoll\u0028\u0029",
+            "name": "updateAndGetRagAnnotationPoll",
+            "summary": "Update\u0020a\u0020document\u0027s\u0020annotations\u0020in\u0020the\u0020RAG\u0020database.",
+            "url": "classes/Mindee-V2-Client.html#method_updateAndGetRagAnnotationPoll"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Client\u003A\u003ApollForRagDocument\u0028\u0029",
+            "name": "pollForRagDocument",
+            "summary": "Poll\u0020until\u0020the\u0020RAG\u0020document\u0020is\u0020finished\u0020processing\u0020or\u0020the\u0020max\u0020number\u0020of\u0020attempts\u0020is\u0020reached.",
+            "url": "classes/Mindee-V2-Client.html#method_pollForRagDocument"
+        },                {
             "fqsen": "\\Mindee\\V2\\Client\u003A\u003A\u0024mindeeApi",
             "name": "mindeeApi",
             "summary": "",
             "url": "classes/Mindee-V2-Client.html#property_mindeeApi"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters",
-            "name": "BaseParameters",
-            "summary": "Base\u0020parameters\u0020for\u0020running\u0020an\u0020inference.",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html"
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseAnnotationParameters",
+            "name": "BaseAnnotationParameters",
+            "summary": "Base\u0020parameters\u0020for\u0020annotation\u0020operations.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseAnnotationParameters\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html#method___construct"
+            "url": "classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters\u003A\u003AasHash\u0028\u0029",
-            "name": "asHash",
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseAnnotationParameters\u003A\u003AgetResponseClass\u0028\u0029",
+            "name": "getResponseClass",
+            "summary": "Gets\u0020the\u0020response\u0020class\u0020associated\u0020with\u0020the\u0020parameters.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html#method_getResponseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseAnnotationParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020upload\u0020request.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseAnnotationParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
             "summary": "",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html#method_asHash"
+            "url": "classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html#property_responseClass"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters\u003A\u003A\u0024alias",
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseAnnotationParameters\u003A\u003A\u0024documentId",
+            "name": "documentId",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html#property_documentId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters",
+            "name": "BaseProductParameters",
+            "summary": "Base\u0020parameters\u0020for\u0020running\u0020an\u0020inference.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020enqueue\u0020request.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters\u003A\u003A\u0024alias",
             "name": "alias",
             "summary": "",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias"
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html#property_alias"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters\u003A\u003A\u0024webhookIds",
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters\u003A\u003A\u0024webhookIds",
             "name": "webhookIds",
             "summary": "",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhookIds"
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html#property_webhookIds"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters\u003A\u003A\u0024slug",
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters\u003A\u003A\u0024slug",
             "name": "slug",
             "summary": "",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html#property_slug"
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html#property_slug"
         },                {
-            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseParameters\u003A\u003A\u0024modelId",
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseProductParameters\u003A\u003A\u0024modelId",
             "name": "modelId",
             "summary": "",
-            "url": "classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId"
+            "url": "classes/Mindee-V2-ClientOptions-BaseProductParameters.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseRagDocumentUploadParameters",
+            "name": "BaseRagDocumentUploadParameters",
+            "summary": "Base\u0020parameters\u0020for\u0020annotation\u0020operations.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseRagDocumentUploadParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseRagDocumentUploadParameters\u003A\u003AgetResponseClass\u0028\u0029",
+            "name": "getResponseClass",
+            "summary": "Gets\u0020the\u0020response\u0020class\u0020associated\u0020with\u0020the\u0020parameters.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html#method_getResponseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseRagDocumentUploadParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020upload\u0020request.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseRagDocumentUploadParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html#property_responseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseRagDocumentUploadParameters\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters",
+            "name": "BaseSearchParameters",
+            "summary": "Base\u0020parameters\u0020for\u0020searches.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003AgetResponseClass\u0028\u0029",
+            "name": "getResponseClass",
+            "summary": "Gets\u0020the\u0020response\u0020class\u0020associated\u0020with\u0020the\u0020parameters.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#method_getResponseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020search\u0020request.",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003A\u0024slug",
+            "name": "slug",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#property_slug"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#property_responseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003A\u0024page",
+            "name": "page",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#property_page"
+        },                {
+            "fqsen": "\\Mindee\\V2\\ClientOptions\\BaseSearchParameters\u003A\u003A\u0024perPage",
+            "name": "perPage",
+            "summary": "",
+            "url": "classes/Mindee-V2-ClientOptions-BaseSearchParameters.html#property_perPage"
         },                {
             "fqsen": "\\Mindee\\V2\\Error\\MindeeV2HttpException",
             "name": "MindeeV2HttpException",
@@ -5981,25 +6146,25 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostEnqueue"
         },                {
-            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AprocessResponse\u0028\u0029",
-            "name": "processResponse",
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AdeserializeResponse\u0028\u0029",
+            "name": "deserializeResponse",
             "summary": "Process\u0020the\u0020HTTP\u0020response\u0020and\u0020return\u0020the\u0020appropriate\u0020response\u0020object.",
-            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_processResponse"
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_deserializeResponse"
         },                {
-            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AprocessJobResponse\u0028\u0029",
-            "name": "processJobResponse",
-            "summary": "Process\u0020the\u0020HTTP\u0020response\u0020and\u0020return\u0020the\u0020appropriate\u0020response\u0020object.",
-            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_processJobResponse"
-        },                {
-            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetJob\u0028\u0029",
-            "name": "reqGetJob",
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetJobById\u0028\u0029",
+            "name": "reqGetJobById",
             "summary": "Requests\u0020the\u0020job\u0020of\u0020a\u0020queued\u0020document\u0020from\u0020the\u0020API.",
-            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJob"
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobById"
         },                {
-            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetResult\u0028\u0029",
-            "name": "reqGetResult",
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetJobFromUrl\u0028\u0029",
+            "name": "reqGetJobFromUrl",
+            "summary": "Requests\u0020the\u0020job\u0020of\u0020a\u0020queued\u0020document\u0020from\u0020the\u0020API.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobFromUrl"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetResultById\u0028\u0029",
+            "name": "reqGetResultById",
             "summary": "",
-            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResult"
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResultById"
         },                {
             "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetResultFromUrl\u0028\u0029",
             "name": "reqGetResultFromUrl",
@@ -6026,15 +6191,40 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_checkValidResponse"
         },                {
-            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetSearchModels\u0028\u0029",
-            "name": "reqGetSearchModels",
-            "summary": "",
-            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearchModels"
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqPostRagDocument\u0028\u0029",
+            "name": "reqPostRagDocument",
+            "summary": "Uploads\u0020a\u0020local\u0020document\u0020to\u0020the\u0020RAG\u0020database.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostRagDocument"
         },                {
-            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AsearchModels\u0028\u0029",
-            "name": "searchModels",
-            "summary": "Retrieves\u0020a\u0020list\u0020of\u0020models\u0020based\u0020on\u0020criteria.",
-            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_searchModels"
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AsendPatchRequest\u0028\u0029",
+            "name": "sendPatchRequest",
+            "summary": "Makes\u0020a\u0020PATCH\u0020call\u0020with\u0020a\u0020JSON\u0020body.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_sendPatchRequest"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AsendDeleteRequest\u0028\u0029",
+            "name": "sendDeleteRequest",
+            "summary": "Makes\u0020a\u0020DELETE\u0020call.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_sendDeleteRequest"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetRagAnnotation\u0028\u0029",
+            "name": "reqGetRagAnnotation",
+            "summary": "Retrieves\u0020a\u0020RAG\u0020document\u0020annotation\u0020by\u0020its\u0020ID.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetRagAnnotation"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqPatchRagAnnotation\u0028\u0029",
+            "name": "reqPatchRagAnnotation",
+            "summary": "Updates\u0020a\u0020RAG\u0020document\u0020annotation\u0020using\u0020the\u0020provided\u0020parameters.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPatchRagAnnotation"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqDeleteExtractionRagDocument\u0028\u0029",
+            "name": "reqDeleteExtractionRagDocument",
+            "summary": "Deletes\u0020a\u0020RAG\u0020document\u0020from\u0020the\u0020extraction\u0020database.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqDeleteExtractionRagDocument"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003AreqGetSearch\u0028\u0029",
+            "name": "reqGetSearch",
+            "summary": "Makes\u0020a\u0020GET\u0020call\u0020to\u0020a\u0020search\u0020endpoint\u0020and\u0020returns\u0020the\u0020deserialized\u0020response.",
+            "url": "classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearch"
         },                {
             "fqsen": "\\Mindee\\V2\\Http\\MindeeApiV2\u003A\u003A\u0024apiKey",
             "name": "apiKey",
@@ -6050,6 +6240,36 @@ Search.appendIndex(
             "name": "baseUrl",
             "summary": "",
             "url": "classes/Mindee-V2-Http-MindeeApiV2.html#property_baseUrl"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\BaseRagAnnotationResponse",
+            "name": "BaseRagAnnotationResponse",
+            "summary": "Base\u0020class\u0020for\u0020all\u0020RAG\u0020document\u0020responses\u0020from\u0020the\u0020V2\u0020API.",
+            "url": "classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\BaseRagAnnotationResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\BaseRagAnnotationResponse\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\BaseRagAnnotationResponse\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\BaseRagAnnotationResponse\u003A\u003A\u0024createdAt",
+            "name": "createdAt",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_createdAt"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\BaseRagAnnotationResponse\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_status"
         },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Error\\ErrorItem",
             "name": "ErrorItem",
@@ -6371,6 +6591,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Inference-Field-ListField.html#method___construct"
         },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\ListField\u003A\u003AgetSimpleItems\u0028\u0029",
+            "name": "getSimpleItems",
+            "summary": "List\u0020of\u0020simple\u0020fields.",
+            "url": "classes/Mindee-V2-Parsing-Inference-Field-ListField.html#method_getSimpleItems"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\ListField\u003A\u003AgetObjectItems\u0028\u0029",
+            "name": "getObjectItems",
+            "summary": "List\u0020of\u0020object\u0020fields.",
+            "url": "classes/Mindee-V2-Parsing-Inference-Field-ListField.html#method_getObjectItems"
+        },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\ListField\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "Base\u0020str\u002Drep.\u0020Do\u0020not\u0020use.",
@@ -6380,6 +6610,16 @@ Search.appendIndex(
             "name": "items",
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Inference-Field-ListField.html#property_items"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\ListField\u003A\u003A\u0024simpleItemsCache",
+            "name": "simpleItemsCache",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-Field-ListField.html#property_simpleItemsCache"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\ListField\u003A\u003A\u0024objectItemsCache",
+            "name": "objectItemsCache",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Inference-Field-ListField.html#property_objectItemsCache"
         },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Inference\\Field\\ObjectField",
             "name": "ObjectField",
@@ -6656,11 +6896,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Job-Job.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Job\\Job\u003A\u003AparseDate\u0028\u0029",
-            "name": "parseDate",
-            "summary": "Parse\u0020a\u0020date\u0020string\u0020into\u0020a\u0020DateTime\u0020object.",
-            "url": "classes/Mindee-V2-Parsing-Job-Job.html#method_parseDate"
-        },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Job\\Job\u003A\u003A\u0024id",
             "name": "id",
             "summary": "",
@@ -6741,11 +6976,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Job-JobWebhook.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Job\\JobWebhook\u003A\u003AparseDate\u0028\u0029",
-            "name": "parseDate",
-            "summary": "Parse\u0020a\u0020date\u0020string\u0020into\u0020a\u0020DateTime\u0020object.",
-            "url": "classes/Mindee-V2-Parsing-Job-JobWebhook.html#method_parseDate"
-        },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Job\\JobWebhook\u003A\u003A\u0024id",
             "name": "id",
             "summary": "",
@@ -6765,6 +6995,31 @@ Search.appendIndex(
             "name": "error",
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Job-JobWebhook.html#property_error"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\BaseSearchResponse",
+            "name": "BaseSearchResponse",
+            "summary": "Base\u0020class\u0020for\u0020search\u0020responses.",
+            "url": "classes/Mindee-V2-Parsing-Search-BaseSearchResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\BaseSearchResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-BaseSearchResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\BaseSearchResponse\u003A\u003AbodyLines\u0028\u0029",
+            "name": "bodyLines",
+            "summary": "Lines\u0020composing\u0020the\u0020response\u002Dspecific\u0020body\u0020\u0028header\u0020\u002B\u0020items\u0029.",
+            "url": "classes/Mindee-V2-Parsing-Search-BaseSearchResponse.html#method_bodyLines"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\BaseSearchResponse\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-BaseSearchResponse.html#method___toString"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\BaseSearchResponse\u003A\u003A\u0024pagination",
+            "name": "pagination",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-BaseSearchResponse.html#property_pagination"
         },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Search\\ModelWebhook",
             "name": "ModelWebhook",
@@ -6831,6 +7086,66 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Parsing-Search-PaginationMetadata.html#property_totalPages"
         },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument",
+            "name": "RagDocument",
+            "summary": "Individual\u0020RAG\u0020document\u0020information.",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_id"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024createdAt",
+            "name": "createdAt",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_createdAt"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024totalMatches",
+            "name": "totalMatches",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_totalMatches"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024lastMatchAt",
+            "name": "lastMatchAt",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_lastMatchAt"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocument\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocument.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocuments",
+            "name": "RagDocuments",
+            "summary": "Array\u0020of\u0020RAG\u0020documents.",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocuments.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocuments\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocuments.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\RagDocuments\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Default\u0020string\u0020representation.",
+            "url": "classes/Mindee-V2-Parsing-Search-RagDocuments.html#method___toString"
+        },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Search\\SearchModel",
             "name": "SearchModel",
             "summary": "Individual\u0020model\u0020information.",
@@ -6885,26 +7200,6 @@ Search.appendIndex(
             "name": "SearchResponse",
             "summary": "Models\u0020search\u0020response.",
             "url": "classes/Mindee-V2-Parsing-Search-SearchResponse.html"
-        },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\SearchResponse\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-SearchResponse.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\SearchResponse\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-SearchResponse.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\SearchResponse\u003A\u003A\u0024models",
-            "name": "models",
-            "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-SearchResponse.html#property_models"
-        },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Search\\SearchResponse\u003A\u003A\u0024pagination",
-            "name": "pagination",
-            "summary": "",
-            "url": "classes/Mindee-V2-Parsing-Search-SearchResponse.html#property_pagination"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Classification\\ClassificationClassifier",
             "name": "ClassificationClassifier",
@@ -6993,7 +7288,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Classification\\Params\\ClassificationParameters",
             "name": "ClassificationParameters",
-            "summary": "Parameters\u0020for\u0020a\u0020classification\u0020utility\u0020inference.",
+            "summary": "Parameters\u0020accepted\u0020by\u0020the\u0020asynchronous\u0020Classification\u0020product\u0020endpoint.",
             "url": "classes/Mindee-V2-Product-Classification-Params-ClassificationParameters.html"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Classification\\Params\\ClassificationParameters\u003A\u003A__construct\u0028\u0029",
@@ -7108,7 +7403,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Crop\\Params\\CropParameters",
             "name": "CropParameters",
-            "summary": "Parameters\u0020for\u0020a\u0020crop\u0020utility\u0020inference.",
+            "summary": "Parameters\u0020accepted\u0020by\u0020the\u0020asynchronous\u0020Crop\u0020product\u0020endpoint.",
             "url": "classes/Mindee-V2-Product-Crop-Params-CropParameters.html"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Crop\\Params\\CropParameters\u003A\u003A__construct\u0028\u0029",
@@ -7343,7 +7638,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Extraction\\Params\\ExtractionParameters",
             "name": "ExtractionParameters",
-            "summary": "Parameters\u0020accepted\u0020by\u0020the\u0020asynchronous\u0020\u002A\u002Ainference\u002A\u002A\u0020v2\u0020endpoint.",
+            "summary": "Parameters\u0020accepted\u0020by\u0020the\u0020asynchronous\u0020Extraction\u0020product\u0020endpoint.",
             "url": "classes/Mindee-V2-Product-Extraction-Params-ExtractionParameters.html"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Extraction\\Params\\ExtractionParameters\u003A\u003A__construct\u0028\u0029",
@@ -7351,10 +7646,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Mindee-V2-Product-Extraction-Params-ExtractionParameters.html#method___construct"
         },                {
-            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\Params\\ExtractionParameters\u003A\u003AasHash\u0028\u0029",
-            "name": "asHash",
-            "summary": "",
-            "url": "classes/Mindee-V2-Product-Extraction-Params-ExtractionParameters.html#method_asHash"
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\Params\\ExtractionParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020enqueue\u0020request.",
+            "url": "classes/Mindee-V2-Product-Extraction-Params-ExtractionParameters.html#method_getRequestParameters"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Extraction\\Params\\ExtractionParameters\u003A\u003A\u0024textContext",
             "name": "textContext",
@@ -7390,6 +7685,291 @@ Search.appendIndex(
             "name": "confidence",
             "summary": "",
             "url": "classes/Mindee-V2-Product-Extraction-Params-ExtractionParameters.html#property_confidence"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedBaseField",
+            "name": "AnnotatedBaseField",
+            "summary": "Base\u0020class\u0020for\u0020annotated\u0020fields.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedBaseField.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedBaseField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedBaseField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedBaseField\u003A\u003AcreateField\u0028\u0029",
+            "name": "createField",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedBaseField.html#method_createField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedBaseField\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedBaseField.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedBaseField\u003A\u003A\u0024selected",
+            "name": "selected",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedBaseField.html#property_selected"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedBaseField\u003A\u003A\u0024guidelines",
+            "name": "guidelines",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedBaseField.html#property_guidelines"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields",
+            "name": "AnnotatedFields",
+            "summary": "A\u0020dictionary\u0020of\u0020field\u0020names\u0020and\u0020their\u0020corresponding\u0020annotation.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Get\u0020a\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#method_get"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003AgetSimpleField\u0028\u0029",
+            "name": "getSimpleField",
+            "summary": "Get\u0020a\u0020simple\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#method_getSimpleField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003AgetListField\u0028\u0029",
+            "name": "getListField",
+            "summary": "Get\u0020a\u0020list\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#method_getListField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003AgetObjectField\u0028\u0029",
+            "name": "getObjectField",
+            "summary": "Get\u0020an\u0020object\u0020field\u0020by\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#method_getObjectField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedFields\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedFields.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField",
+            "name": "AnnotatedListField",
+            "summary": "A\u0020ListField\u0020with\u0020additional\u0020configuration\u0020for\u0020annotation.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#method_fromArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003AgetSimpleItems\u0028\u0029",
+            "name": "getSimpleItems",
+            "summary": "List\u0020of\u0020simple\u0020fields.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#method_getSimpleItems"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003AgetObjectItems\u0028\u0029",
+            "name": "getObjectItems",
+            "summary": "List\u0020of\u0020object\u0020fields.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#method_getObjectItems"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003A\u0024items",
+            "name": "items",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#property_items"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003A\u0024simpleItemsCache",
+            "name": "simpleItemsCache",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#property_simpleItemsCache"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedListField\u003A\u003A\u0024objectItemsCache",
+            "name": "objectItemsCache",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedListField.html#property_objectItemsCache"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField",
+            "name": "AnnotatedObjectField",
+            "summary": "An\u0020ObjectField\u0020with\u0020additional\u0020configuration\u0020for\u0020annotation.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_fromArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AgetSimpleField\u0028\u0029",
+            "name": "getSimpleField",
+            "summary": "Returns\u0020an\u0020AnnotatedSimpleField\u0020instance\u0020for\u0020the\u0020specified\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_getSimpleField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AgetListField\u0028\u0029",
+            "name": "getListField",
+            "summary": "Returns\u0020an\u0020AnnotatedListField\u0020instance\u0020for\u0020the\u0020specified\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_getListField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AgetObjectField\u0028\u0029",
+            "name": "getObjectField",
+            "summary": "Returns\u0020an\u0020AnnotatedObjectField\u0020instance\u0020for\u0020the\u0020specified\u0020key.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_getObjectField"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AgetSimpleFields\u0028\u0029",
+            "name": "getSimpleFields",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020all\u0020AnnotatedSimpleField\u0020instances\u0020in\u0020this\u0020object\u0027s\u0020fields.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_getSimpleFields"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AgetListFields\u0028\u0029",
+            "name": "getListFields",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020all\u0020AnnotatedListField\u0020instances\u0020in\u0020this\u0020object\u0027s\u0020fields.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_getListFields"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AgetObjectFields\u0028\u0029",
+            "name": "getObjectFields",
+            "summary": "Returns\u0020an\u0020array\u0020of\u0020all\u0020AnnotatedObjectField\u0020instances\u0020in\u0020this\u0020object\u0027s\u0020fields.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_getObjectFields"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedObjectField\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedObjectField.html#property_fields"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedSimpleField",
+            "name": "AnnotatedSimpleField",
+            "summary": "A\u0020SimpleField\u0020with\u0020additional\u0020configuration\u0020for\u0020annotation.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedSimpleField.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedSimpleField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedSimpleField.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedSimpleField\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedSimpleField.html#method_fromArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedSimpleField\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedSimpleField.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\AnnotatedSimpleField\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-AnnotatedSimpleField.html#property_value"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\ExtractionRagAnnotationResponse",
+            "name": "ExtractionRagAnnotationResponse",
+            "summary": "Response\u0020for\u0020a\u0020RAG\u0020document\u0020annotation.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-ExtractionRagAnnotationResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\ExtractionRagAnnotationResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-ExtractionRagAnnotationResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\ExtractionRagAnnotationResponse\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-ExtractionRagAnnotationResponse.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\ExtractionRagAnnotationResponse\u003A\u003A\u0024totalMatches",
+            "name": "totalMatches",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-ExtractionRagAnnotationResponse.html#property_totalMatches"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\ExtractionRagAnnotationResponse\u003A\u003A\u0024lastMatchAt",
+            "name": "lastMatchAt",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-ExtractionRagAnnotationResponse.html#property_lastMatchAt"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\ExtractionRagAnnotationResponse\u003A\u003A\u0024annotation",
+            "name": "annotation",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-ExtractionRagAnnotationResponse.html#property_annotation"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentAnnotationParameters",
+            "name": "RagDocumentAnnotationParameters",
+            "summary": "Annotation\u0020parameters\u0020for\u0020RAG\u0020documents.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentAnnotationParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentAnnotationParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentAnnotationParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentAnnotationParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020upload\u0020request.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentAnnotationParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentAnnotationParameters\u003A\u003A\u0024annotation",
+            "name": "annotation",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentAnnotationParameters.html#property_annotation"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentAnnotationParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentAnnotationParameters.html#property_responseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentAnnotationParameters\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentAnnotationParameters.html#property_status"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentUploadParameters",
+            "name": "RagDocumentUploadParameters",
+            "summary": "Upload\u0020parameters\u0020for\u0020RAG\u0020documents.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentUploadParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params\\RagDocumentUploadParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-Params-RagDocumentUploadParameters.html#property_responseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\RagAnnotation",
+            "name": "RagAnnotation",
+            "summary": "A\u0020RAG\u0020annotation\u0020enriched\u0020with\u0020field\u002Dlevel\u0020configuration.",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-RagAnnotation.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\RagAnnotation\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-RagAnnotation.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\RagAnnotation\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-RagAnnotation.html#method_toArray"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\RagAnnotation\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/Mindee-V2-Product-Extraction-RagDocuments-RagAnnotation.html#property_fields"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Ocr\\OcrInference",
             "name": "OcrInference",
@@ -7503,7 +8083,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Ocr\\Params\\OcrParameters",
             "name": "OcrParameters",
-            "summary": "Parameters\u0020for\u0020an\u0020ocr\u0020utility\u0020inference.",
+            "summary": "Parameters\u0020accepted\u0020by\u0020the\u0020asynchronous\u0020OCR\u0020product\u0020endpoint.",
             "url": "classes/Mindee-V2-Product-Ocr-Params-OcrParameters.html"
         },                {
             "fqsen": "\\Mindee\\V2\\Product\\Ocr\\Params\\OcrParameters\u003A\u003A__construct\u0028\u0029",
@@ -7630,6 +8210,116 @@ Search.appendIndex(
             "name": "splits",
             "summary": "",
             "url": "classes/Mindee-V2-Product-Split-SplitResult.html#property_splits"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters",
+            "name": "ModelSearchParameters",
+            "summary": "Search\u0020for\u0020models\u0020within\u0020the\u0020organization\u0020linked\u0020to\u0020the\u0020API\u0020key.",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020search\u0020request.",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters\u003A\u003A\u0024slug",
+            "name": "slug",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html#property_slug"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html#property_responseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html#property_name"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchParameters\u003A\u003A\u0024modelType",
+            "name": "modelType",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchParameters.html#property_modelType"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchResponse",
+            "name": "ModelSearchResponse",
+            "summary": "Models\u0020search\u0020response.",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchResponse\u003A\u003AbodyLines\u0028\u0029",
+            "name": "bodyLines",
+            "summary": "Lines\u0020composing\u0020the\u0020response\u002Dspecific\u0020body\u0020\u0028header\u0020\u002B\u0020items\u0029.",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchResponse.html#method_bodyLines"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models\\ModelSearchResponse\u003A\u003A\u0024models",
+            "name": "models",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-Models-ModelSearchResponse.html#property_models"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters",
+            "name": "RagDocumentSearchParameters",
+            "summary": "Search\u0020for\u0020RAG\u0020documents\u0020within\u0020the\u0020organization\u0020linked\u0020to\u0020the\u0020API\u0020key.",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters\u003A\u003AgetRequestParameters\u0028\u0029",
+            "name": "getRequestParameters",
+            "summary": "Gets\u0020the\u0020request\u0020parameters\u0020for\u0020the\u0020search\u0020request.",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html#method_getRequestParameters"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters\u003A\u003A\u0024slug",
+            "name": "slug",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html#property_slug"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters\u003A\u003A\u0024responseClass",
+            "name": "responseClass",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html#property_responseClass"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters\u003A\u003A\u0024modelId",
+            "name": "modelId",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html#property_modelId"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchParameters\u003A\u003A\u0024filename",
+            "name": "filename",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchParameters.html#property_filename"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchResponse",
+            "name": "RagDocumentSearchResponse",
+            "summary": "RAG\u0020documents\u0020search\u0020response.",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchResponse.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchResponse\u003A\u003AbodyLines\u0028\u0029",
+            "name": "bodyLines",
+            "summary": "Lines\u0020composing\u0020the\u0020response\u002Dspecific\u0020body\u0020\u0028header\u0020\u002B\u0020items\u0029.",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchResponse.html#method_bodyLines"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments\\RagDocumentSearchResponse\u003A\u003A\u0024ragDocuments",
+            "name": "ragDocuments",
+            "summary": "",
+            "url": "classes/Mindee-V2-Search-RagDocuments-RagDocumentSearchResponse.html#property_ragDocuments"
         },                {
             "fqsen": "\\Mindee\\VERSION",
             "name": "VERSION",
@@ -7876,15 +8566,15 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-v2-http.html"
         },                {
-            "fqsen": "\\Mindee\\V2\\Parsing\\Error",
-            "name": "Error",
-            "summary": "",
-            "url": "namespaces/mindee-v2-parsing-error.html"
-        },                {
             "fqsen": "\\Mindee\\V2\\Parsing",
             "name": "Parsing",
             "summary": "",
             "url": "namespaces/mindee-v2-parsing.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Parsing\\Error",
+            "name": "Error",
+            "summary": "",
+            "url": "namespaces/mindee-v2-parsing-error.html"
         },                {
             "fqsen": "\\Mindee\\V2\\Parsing\\Inference",
             "name": "Inference",
@@ -7941,6 +8631,16 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-v2-product-extraction-params.html"
         },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments",
+            "name": "RagDocuments",
+            "summary": "",
+            "url": "namespaces/mindee-v2-product-extraction-ragdocuments.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Product\\Extraction\\RagDocuments\\Params",
+            "name": "Params",
+            "summary": "",
+            "url": "namespaces/mindee-v2-product-extraction-ragdocuments-params.html"
+        },                {
             "fqsen": "\\Mindee\\V2\\Product\\Ocr",
             "name": "Ocr",
             "summary": "",
@@ -7960,5 +8660,20 @@ Search.appendIndex(
             "name": "Split",
             "summary": "",
             "url": "namespaces/mindee-v2-product-split.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\Models",
+            "name": "Models",
+            "summary": "",
+            "url": "namespaces/mindee-v2-search-models.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search",
+            "name": "Search",
+            "summary": "",
+            "url": "namespaces/mindee-v2-search.html"
+        },                {
+            "fqsen": "\\Mindee\\V2\\Search\\RagDocuments",
+            "name": "RagDocuments",
+            "summary": "",
+            "url": "namespaces/mindee-v2-search-ragdocuments.html"
         }            ]
 );

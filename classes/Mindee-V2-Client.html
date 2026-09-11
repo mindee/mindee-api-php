@@ -164,7 +164,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
@@ -218,6 +218,13 @@
 <dd>Mindee Client V2.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_deleteExtractionRagDocument">deleteExtractionRagDocument()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Delete a document from the RAG database.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-V2-Client.html#method_enqueue">enqueue()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a>    </span>
@@ -240,6 +247,27 @@ until the maximum number of tries is reached.</dd>
 <dd>Get the status of an inference that was previously enqueued.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_getJobFromUrl">getJobFromUrl()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a>    </span>
+</dt>
+<dd>Get the status of a job from its polling URL.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_getRagDocument">getRagDocument()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Not recommended for general use, prefer getReadyRagDocumentPoll().</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_getReadyRagDocumentPoll">getReadyRagDocumentPoll()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Get a document&#039;s info and annotations from the RAG database.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-V2-Client.html#method_getResult">getResult()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html"><abbr title="\Mindee\V2\Parsing\Inference\BaseResponse">BaseResponse</abbr></a>    </span>
@@ -252,11 +280,46 @@ until the maximum number of tries is reached.</dd>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-Client.html#method_searchModels">searchModels()</a>
+    <a class="" href="classes/Mindee-V2-Client.html#method_search">search()</a>
     <span>
-                                &nbsp;: <a href="classes/Mindee-V2-Parsing-Search-SearchResponse.html"><abbr title="\Mindee\V2\Parsing\Search\SearchResponse">SearchResponse</abbr></a>    </span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Searches for resources matching the given criteria.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="-deprecated" href="classes/Mindee-V2-Client.html#method_searchModels">searchModels()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-V2-Search-Models-ModelSearchResponse.html"><abbr title="\Mindee\V2\Search\Models\ModelSearchResponse">ModelSearchResponse</abbr></a>    </span>
 </dt>
 <dd>Searches for a list of available models for the given API key.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_updateAndGetRagAnnotationPoll">updateAndGetRagAnnotationPoll()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html"><abbr title="\Mindee\V2\Parsing\BaseRagAnnotationResponse">BaseRagAnnotationResponse</abbr></a>    </span>
+</dt>
+<dd>Update a document&#039;s annotations in the RAG database.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_updateRagAnnotation">updateRagAnnotation()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Update a document&#039;s annotations in the RAG database.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_uploadAndGetRagDocumentPoll">uploadAndGetRagDocumentPoll()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Add a document to the RAG database and return the initial annotation.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Client.html#method_uploadRagDocument">uploadRagDocument()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Not recommended for general use, prefer uploadAndGetRagDocumentPoll().</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/Mindee-CustomSleepMixin.html#method_customSleep">customSleep()</a>
@@ -264,6 +327,13 @@ until the maximum number of tries is reached.</dd>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Waits for a custom amount of time from either a float or an integer.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Mindee-V2-Client.html#method_pollForRagDocument">pollForRagDocument()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\T">T</abbr>    </span>
+</dt>
+<dd>Poll until the RAG document is finished processing or the max number of attempts is reached.</dd>
 
     </dl>
 
@@ -295,7 +365,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -339,7 +409,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">35</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
@@ -378,6 +448,63 @@ until the maximum number of tries is reached.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_deleteExtractionRagDocument">
+        deleteExtractionRagDocument()
+        <a href="classes/Mindee-V2-Client.html#method_deleteExtractionRagDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">243</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Delete a document from the RAG database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">deleteExtractionRagDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>For extraction models only.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$documentId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Unique identifier of the RAG document to delete.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if the deletion was successful, false otherwise.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_enqueue">
         enqueue()
         <a href="classes/Mindee-V2-Client.html#method_enqueue" class="headerlink"><i class="fas fa-link"></i></a>
@@ -386,7 +513,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -394,7 +521,7 @@ until the maximum number of tries is reached.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">enqueue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">enqueue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -413,7 +540,7 @@ until the maximum number of tries is reached.</dd>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$params</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Parameters relating to prediction options.</p>
@@ -474,7 +601,7 @@ until the maximum number of tries is reached.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">132</span>
 
     </aside>
 
@@ -483,7 +610,7 @@ until the maximum number of tries is reached.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">enqueueAndGetResult</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cancellationToken</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html"><abbr title="\Mindee\V2\Parsing\Inference\BaseResponse">BaseResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">enqueueAndGetResult</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cancellationToken</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html"><abbr title="\Mindee\V2\Parsing\Inference\BaseResponse">BaseResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -511,7 +638,7 @@ until the maximum number of tries is reached.</p>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$params</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Parameters relating to prediction options.</p>
@@ -596,7 +723,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -660,6 +787,270 @@ until the maximum number of tries is reached.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getJobFromUrl">
+        getJobFromUrl()
+        <a href="classes/Mindee-V2-Client.html#method_getJobFromUrl" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">113</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get the status of a job from its polling URL.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getJobFromUrl</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingUrl</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Can be used for polling.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pollingUrl</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>URL to poll to retrieve the job.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_getJobFromUrl_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_getJobFromUrl_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">category</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p>Asynchronous</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A JobResponse containing a Job.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getRagDocument">
+        getRagDocument()
+        <a href="classes/Mindee-V2-Client.html#method_getRagDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">218</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Not recommended for general use, prefer getReadyRagDocumentPoll().</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getRagDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>You will need to poll until the document is ready for use.
+Get a document's info and annotations from the RAG database.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$documentId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Unique identifier of the RAG document.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_getRagDocument_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_getRagDocument_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">phpstan-param</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getReadyRagDocumentPoll">
+        getReadyRagDocumentPoll()
+        <a href="classes/Mindee-V2-Client.html#method_getReadyRagDocumentPoll" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">315</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get a document&#039;s info and annotations from the RAG database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getReadyRagDocumentPoll</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentId</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cancellationToken</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$documentId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Unique identifier of the RAG document.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pollingOptions</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Options to apply to the polling.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cancellationToken</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>CancellationToken to check for cancellation.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_getReadyRagDocumentPoll_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_getReadyRagDocumentPoll_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">phpstan-param</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if polling times out.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getResult">
         getResult()
         <a href="classes/Mindee-V2-Client.html#method_getResult" class="headerlink"><i class="fas fa-link"></i></a>
@@ -668,7 +1059,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -752,7 +1143,7 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
@@ -828,6 +1219,70 @@ until the maximum number of tries is reached.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_search">
+        search()
+        <a href="classes/Mindee-V2-Client.html#method_search" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">255</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Searches for resources matching the given criteria.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">search</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseSearchParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseSearchParameters">BaseSearchParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseSearchParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseSearchParameters">BaseSearchParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Search parameters.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_search_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_search_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+            -deprecated                                            "
+>
     <h4 class="phpdocumentor-element__name" id="method_searchModels">
         searchModels()
         <a href="classes/Mindee-V2-Client.html#method_searchModels" class="headerlink"><i class="fas fa-link"></i></a>
@@ -836,17 +1291,24 @@ until the maximum number of tries is reached.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">173</span>
+    <span class="phpdocumentor-element-found-in__line">267</span>
 
     </aside>
 
         <p class="phpdocumentor-summary">Searches for a list of available models for the given API key.</p>
 
-    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <code class="phpdocumentor-code phpdocumentor-signature -deprecated">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">searchModels</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Search-SearchResponse.html"><abbr title="\Mindee\V2\Parsing\Search\SearchResponse">SearchResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">searchModels</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Search-Models-ModelSearchResponse.html"><abbr title="\Mindee\V2\Search\Models\ModelSearchResponse">ModelSearchResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
+        </div>
+                <div class="phpdocumentor-admonition">
+        <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <article>
+                <p>Use search(new ModelSearchParameters(...)) instead.</p>
+
+            </article>
         </div>
     
     
@@ -878,11 +1340,342 @@ until the maximum number of tries is reached.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Search-SearchResponse.html"><abbr title="\Mindee\V2\Parsing\Search\SearchResponse">SearchResponse</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Search-Models-ModelSearchResponse.html"><abbr title="\Mindee\V2\Search\Models\ModelSearchResponse">ModelSearchResponse</abbr></a></span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The list of models matching the criteria.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updateAndGetRagAnnotationPoll">
+        updateAndGetRagAnnotationPoll()
+        <a href="classes/Mindee-V2-Client.html#method_updateAndGetRagAnnotationPoll" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">340</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Update a document&#039;s annotations in the RAG database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">updateAndGetRagAnnotationPoll</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseAnnotationParameters">BaseAnnotationParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cancellationToken</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html"><abbr title="\Mindee\V2\Parsing\BaseRagAnnotationResponse">BaseRagAnnotationResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseAnnotationParameters">BaseAnnotationParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Annotation parameters including the document ID and fields to update.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pollingOptions</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Options to apply to the polling.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cancellationToken</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>CancellationToken to check for cancellation.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_updateAndGetRagAnnotationPoll_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_updateAndGetRagAnnotationPoll_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if polling times out.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html"><abbr title="\Mindee\V2\Parsing\BaseRagAnnotationResponse">BaseRagAnnotationResponse</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updateRagAnnotation">
+        updateRagAnnotation()
+        <a href="classes/Mindee-V2-Client.html#method_updateRagAnnotation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">230</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Update a document&#039;s annotations in the RAG database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">updateRagAnnotation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseAnnotationParameters">BaseAnnotationParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseAnnotationParameters">BaseAnnotationParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Annotation parameters including the document ID and fields to update.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_updateRagAnnotation_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_updateRagAnnotation_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_uploadAndGetRagDocumentPoll">
+        uploadAndGetRagDocumentPoll()
+        <a href="classes/Mindee-V2-Client.html#method_uploadAndGetRagDocumentPoll" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">285</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Add a document to the RAG database and return the initial annotation.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">uploadAndGetRagDocumentPoll</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters">BaseRagDocumentUploadParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cancellationToken</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$inputSource</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Local file to upload.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters">BaseRagDocumentUploadParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Upload parameters.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pollingOptions</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Options to apply to the polling.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cancellationToken</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>CancellationToken to check for cancellation.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_uploadAndGetRagDocumentPoll_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_uploadAndGetRagDocumentPoll_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if upload fails or polling times out.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_uploadRagDocument">
+        uploadRagDocument()
+        <a href="classes/Mindee-V2-Client.html#method_uploadRagDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">199</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Not recommended for general use, prefer uploadAndGetRagDocumentPoll().</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">uploadRagDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters">BaseRagDocumentUploadParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>You will need to poll until the document is ready for use.
+Add a document to the RAG database.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$inputSource</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Local file to upload.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters">BaseRagDocumentUploadParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Upload parameters.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_uploadRagDocument_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_uploadRagDocument_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
             </section>
 
 </article>
@@ -944,6 +1737,114 @@ until the maximum number of tries is reached.</p>
     
     
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_pollForRagDocument">
+        pollForRagDocument()
+        <a href="classes/Mindee-V2-Client.html#method_pollForRagDocument" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Client.php"><a href="files/src-v2-client.html"><abbr title="src/V2/Client.php">Client.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">373</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Poll until the RAG document is finished processing or the max number of attempts is reached.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">pollForRagDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html"><abbr title="\Mindee\V2\Parsing\BaseRagAnnotationResponse">BaseRagAnnotationResponse</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$initialResponse</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pollingOptions</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cancellationToken</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$initialResponse</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html"><abbr title="\Mindee\V2\Parsing\BaseRagAnnotationResponse">BaseRagAnnotationResponse</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Initial annotation response.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pollingOptions</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-ClientOptions-PollingOptions.html"><abbr title="\Mindee\ClientOptions\PollingOptions">PollingOptions</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Options to apply to the polling.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$cancellationToken</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Http-CancellationToken.html"><abbr title="\Mindee\Http\CancellationToken">CancellationToken</abbr></a>|null</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>CancellationToken to check for cancellation.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_pollForRagDocument_tags">
+        Tags
+        <a href="classes/Mindee-V2-Client.html#method_pollForRagDocument_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">phpstan-param</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the job fails or polling times out.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\T">T</abbr></span>
+            </section>
+
+</article>
             </section>
 
         
@@ -974,13 +1875,23 @@ until the maximum number of tries is reached.</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-V2-Client.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_deleteExtractionRagDocument">deleteExtractionRagDocument()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Client.html#method_enqueue">enqueue()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Client.html#method_enqueueAndGetResult">enqueueAndGetResult()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Client.html#method_getJob">getJob()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_getJobFromUrl">getJobFromUrl()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_getRagDocument">getRagDocument()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_getReadyRagDocumentPoll">getReadyRagDocumentPoll()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Client.html#method_getResult">getResult()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Client.html#method_getResultFromUrl">getResultFromUrl()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_searchModels">searchModels()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_search">search()</a></li>
+                                            <li class="-deprecated"><a href="classes/Mindee-V2-Client.html#method_searchModels">searchModels()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_updateAndGetRagAnnotationPoll">updateAndGetRagAnnotationPoll()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_updateRagAnnotation">updateRagAnnotation()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_uploadAndGetRagDocumentPoll">uploadAndGetRagDocumentPoll()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_uploadRagDocument">uploadRagDocument()</a></li>
                                             <li class=""><a href="classes/Mindee-CustomSleepMixin.html#method_customSleep">customSleep()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Client.html#method_pollForRagDocument">pollForRagDocument()</a></li>
                                     </ul>
             </li>
                     </ul>

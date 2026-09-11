@@ -162,7 +162,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -227,14 +227,35 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJob">reqGetJob()</a>
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqDeleteExtractionRagDocument">reqDeleteExtractionRagDocument()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Deletes a RAG document from the extraction database.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobById">reqGetJobById()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a>    </span>
 </dt>
 <dd>Requests the job of a queued document from the API.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResult">reqGetResult()</a>
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobFromUrl">reqGetJobFromUrl()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a>    </span>
+</dt>
+<dd>Requests the job of a queued document from the API.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetRagAnnotation">reqGetRagAnnotation()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
+</dt>
+<dd>Retrieves a RAG document annotation by its ID.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResultById">reqGetResultById()</a>
     <span>
                                 &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
 </dt>
@@ -246,17 +267,31 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearch">reqGetSearch()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
+</dt>
+<dd>Makes a GET call to a search endpoint and returns the deserialized response.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPatchRagAnnotation">reqPatchRagAnnotation()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
+</dt>
+<dd>Updates a RAG document annotation using the provided parameters.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostEnqueue">reqPostEnqueue()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_searchModels">searchModels()</a>
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostRagDocument">reqPostRagDocument()</a>
     <span>
-                                &nbsp;: <a href="classes/Mindee-V2-Parsing-Search-SearchResponse.html"><abbr title="\Mindee\V2\Parsing\Search\SearchResponse">SearchResponse</abbr></a>    </span>
+                                &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
 </dt>
-<dd>Retrieves a list of models based on criteria.</dd>
+<dd>Uploads a local document to the RAG database.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_setAPIKey">setAPIKey()</a>
@@ -277,6 +312,13 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_deserializeResponse">deserializeResponse()</a>
+    <span>
+                                &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
+</dt>
+<dd>Process the HTTP response and return the appropriate response object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_documentEnqueuePost">documentEnqueuePost()</a>
@@ -300,24 +342,11 @@
 <dd>Init a CURL channel with common params.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processJobResponse">processJobResponse()</a>
-    <span>
-                                &nbsp;: <a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a>    </span>
-</dt>
-<dd>Process the HTTP response and return the appropriate response object.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processResponse">processResponse()</a>
-    <span>
-                                &nbsp;: <abbr title="\Mindee\V2\Http\T">T</abbr>    </span>
-</dt>
-<dd>Process the HTTP response and return the appropriate response object.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearchModels">reqGetSearchModels()</a>
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendDeleteRequest">sendDeleteRequest()</a>
     <span>
                                 &nbsp;: array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;    </span>
 </dt>
+<dd>Makes a DELETE call.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendGetRequest">sendGetRequest()</a>
@@ -325,6 +354,13 @@
                                 &nbsp;: array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;    </span>
 </dt>
 <dd>Makes a GET call to retrieve a job.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendPatchRequest">sendPatchRequest()</a>
+    <span>
+                                &nbsp;: array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;    </span>
+</dt>
+<dd>Makes a PATCH call with a JSON body.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/Mindee-V2-Http-MindeeApiV2.html#method_setFromEnv">setFromEnv()</a>
@@ -363,7 +399,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -402,7 +438,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -441,7 +477,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -485,7 +521,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -539,15 +575,70 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_reqGetJob">
-        reqGetJob()
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJob" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_reqDeleteExtractionRagDocument">
+        reqDeleteExtractionRagDocument()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqDeleteExtractionRagDocument" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">243</span>
+    <span class="phpdocumentor-element-found-in__line">510</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Deletes a RAG document from the extraction database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">reqDeleteExtractionRagDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$documentId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Unique identifier of the RAG document to delete.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if the deletion was successful (2xx response), false otherwise.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_reqGetJobById">
+        reqGetJobById()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobById" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
     </aside>
 
@@ -555,7 +646,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">reqGetJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">reqGetJobById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -570,16 +661,16 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID of the inference.</p>
+                    <section class="phpdocumentor-description"><p>UUID of the job.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetJob_tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetJobById_tags">
         Tags
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJob_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobById_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -618,22 +709,182 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_reqGetResult">
-        reqGetResult()
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResult" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_reqGetJobFromUrl">
+        reqGetJobFromUrl()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobFromUrl" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">259</span>
+    <span class="phpdocumentor-element-found-in__line">238</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Requests the job of a queued document from the API.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">reqGetJobFromUrl</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Throws an error if the server's response contains one.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$url</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>URL of the job.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetJobFromUrl_tags">
+        Tags
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobFromUrl_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the server's response contains an error.</p>
+</section>
+
+                                    </dd>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the inference ID is not provided.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Server response wrapped in a JobResponse object.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_reqGetRagAnnotation">
+        reqGetRagAnnotation()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetRagAnnotation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">478</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Retrieves a RAG document annotation by its ID.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">reqGetRagAnnotation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$documentId</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Unique identifier of the RAG document.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetRagAnnotation_tags">
+        Tags
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetRagAnnotation_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">phpstan-param</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_reqGetResultById">
+        reqGetResultById()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResultById" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">253</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">reqGetResult</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$resultId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">reqGetResultById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$resultId</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -655,16 +906,16 @@
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>URL of the result.</p>
+                    <section class="phpdocumentor-description"><p>UUID of the result.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetResult_tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetResultById_tags">
         Tags
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResult_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResultById_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -725,7 +976,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">285</span>
+    <span class="phpdocumentor-element-found-in__line">278</span>
 
     </aside>
 
@@ -810,6 +1061,134 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_reqGetSearch">
+        reqGetSearch()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearch" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">525</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes a GET call to a search endpoint and returns the deserialized response.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">reqGetSearch</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseSearchParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseSearchParameters">BaseSearchParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\Http\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseSearchParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseSearchParameters">BaseSearchParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\Http\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Search parameters (slug and query params derived from this).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqGetSearch_tags">
+        Tags
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearch_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_reqPatchRagAnnotation">
+        reqPatchRagAnnotation()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPatchRagAnnotation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">494</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Updates a RAG document annotation using the provided parameters.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">reqPatchRagAnnotation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseAnnotationParameters">BaseAnnotationParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\Http\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseAnnotationParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseAnnotationParameters">BaseAnnotationParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\Http\T">T</abbr>&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Annotation parameters including the document ID and fields to update.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqPatchRagAnnotation_tags">
+        Tags
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPatchRagAnnotation_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_reqPostEnqueue">
         reqPostEnqueue()
         <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostEnqueue" class="headerlink"><i class="fas fa-link"></i></a>
@@ -818,14 +1197,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">173</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">reqPostEnqueue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">reqPostEnqueue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -844,7 +1223,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$params</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Parameters for the inference.</p>
@@ -889,23 +1268,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_searchModels">
-        searchModels()
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_searchModels" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_reqPostRagDocument">
+        reqPostRagDocument()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostRagDocument" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">426</span>
+    <span class="phpdocumentor-element-found-in__line">393</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Retrieves a list of models based on criteria.</p>
+        <p class="phpdocumentor-summary">Uploads a local document to the RAG database.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">searchModels</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Search-SearchResponse.html"><abbr title="\Mindee\V2\Parsing\Search\SearchResponse">SearchResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">reqPostRagDocument</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters">BaseRagDocumentUploadParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\Http\T">T</abbr>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -914,36 +1293,54 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$modelName</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$inputSource</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a></span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Optional model name to filter by.</p>
+                    <section class="phpdocumentor-description"><p>Local file to upload.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$modelType</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-argument-list__argument__name">$params</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseRagDocumentUploadParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseRagDocumentUploadParameters">BaseRagDocumentUploadParameters</abbr></a>&lt;string|int, <abbr title="\Mindee\V2\Http\T">T</abbr>&gt;</span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Optional model type to filter by.</p>
+                    <section class="phpdocumentor-description"><p>Upload parameters.</p>
 </section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="method_reqPostRagDocument_tags">
+        Tags
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostRagDocument_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the cURL operation fails.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Search-SearchResponse.html"><abbr title="\Mindee\V2\Parsing\Search\SearchResponse">SearchResponse</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>The list of models matching the criteria.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span>
             </section>
 
 </article>
@@ -961,7 +1358,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">151</span>
+    <span class="phpdocumentor-element-found-in__line">156</span>
 
     </aside>
 
@@ -1008,7 +1405,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">126</span>
 
     </aside>
 
@@ -1055,7 +1452,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">377</span>
+    <span class="phpdocumentor-element-found-in__line">370</span>
 
     </aside>
 
@@ -1115,6 +1512,100 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_deserializeResponse">
+        deserializeResponse()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_deserializeResponse" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">192</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Process the HTTP response and return the appropriate response object.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">deserializeResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$result</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$result</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Raw HTTP response array with 'data' and 'code' keys.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_deserializeResponse_tags">
+        Tags
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_deserializeResponse_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">template</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                        
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">phpstan-param</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
+</section>
+
+                                    </dd>
+                                <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if HTTP status indicates an error or deserialization fails.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A response containing parsing results.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_documentEnqueuePost">
         documentEnqueuePost()
         <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_documentEnqueuePost" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1123,7 +1614,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">343</span>
+    <span class="phpdocumentor-element-found-in__line">336</span>
 
     </aside>
 
@@ -1131,7 +1622,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">documentEnqueuePost</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">documentEnqueuePost</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputSource</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$params</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1150,7 +1641,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$params</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseParameters">BaseParameters</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V2-ClientOptions-BaseProductParameters.html"><abbr title="\Mindee\V2\ClientOptions\BaseProductParameters">BaseProductParameters</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Parameters.</p>
@@ -1203,7 +1694,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -1242,7 +1733,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">297</span>
+    <span class="phpdocumentor-element-found-in__line">290</span>
 
     </aside>
 
@@ -1277,23 +1768,23 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_processJobResponse">
-        processJobResponse()
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processJobResponse" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_sendDeleteRequest">
+        sendDeleteRequest()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendDeleteRequest" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">455</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Process the HTTP response and return the appropriate response object.</p>
+        <p class="phpdocumentor-summary">Makes a DELETE call.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processJobResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$result</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">sendDeleteRequest</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1302,188 +1793,13 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$result</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw HTTP response array with 'data' and 'code' keys.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_processJobResponse_tags">
-        Tags
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processJobResponse_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if HTTP status indicates an error or deserialization fails.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeApiException.html"><abbr title="\Mindee\Error\MindeeApiException">MindeeApiException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the response type is not recognized.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-Parsing-Job-JobResponse.html"><abbr title="\Mindee\V2\Parsing\Job\JobResponse">JobResponse</abbr></a></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>The processed response object.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_processResponse">
-        processResponse()
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processResponse" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">188</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Process the HTTP response and return the appropriate response object.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseClass</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$result</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$responseClass</span>
+                <span class="phpdocumentor-argument-list__argument__name">$url</span>
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The response class to construct.</p>
+                    <section class="phpdocumentor-description"><p>URL to send the request to.</p>
 </section>
 
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$result</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Raw HTTP response array with 'data' and 'code' keys.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_processResponse_tags">
-        Tags
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processResponse_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">template</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                                                        
-                                    </dd>
-                                <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">phpstan-param</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                                                            <section class="phpdocumentor-description"><p>class-string&lt;T&gt; $responseClass</p>
-</section>
-
-                                    </dd>
-                                <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeException.html"><abbr title="\Mindee\Error\MindeeException">MindeeException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if HTTP status indicates an error or deserialization fails.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\V2\Http\T">T</abbr></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>A response containing parsing results.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_reqGetSearchModels">
-        reqGetSearchModels()
-        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearchModels" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">394</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">reqGetSearchModels</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$modelName</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$modelType</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
             </dd>
             </dl>
 
@@ -1515,7 +1831,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">321</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -1562,6 +1878,70 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_sendPatchRequest">
+        sendPatchRequest()
+        <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendPatchRequest" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">430</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Makes a PATCH call with a JSON body.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">sendPatchRequest</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$body</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$url</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>URL to send the request to.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$body</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Request body to encode as JSON.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string, int|float|string|bool|null|array&lt;string|int, mixed&gt;&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Server response.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setFromEnv">
         setFromEnv()
         <a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_setFromEnv" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1570,7 +1950,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Http/MindeeApiV2.php"><a href="files/src-v2-http-mindeeapiv2.html"><abbr title="src/V2/Http/MindeeApiV2.php">MindeeApiV2.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">130</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -1623,21 +2003,26 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJob">reqGetJob()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResult">reqGetResult()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqDeleteExtractionRagDocument">reqDeleteExtractionRagDocument()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobById">reqGetJobById()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetJobFromUrl">reqGetJobFromUrl()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetRagAnnotation">reqGetRagAnnotation()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResultById">reqGetResultById()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetResultFromUrl">reqGetResultFromUrl()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearch">reqGetSearch()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPatchRagAnnotation">reqPatchRagAnnotation()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostEnqueue">reqPostEnqueue()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_searchModels">searchModels()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqPostRagDocument">reqPostRagDocument()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_setAPIKey">setAPIKey()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_setBaseUrl">setBaseUrl()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_checkValidResponse">checkValidResponse()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_deserializeResponse">deserializeResponse()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_documentEnqueuePost">documentEnqueuePost()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_getUserAgent">getUserAgent()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_initChannel">initChannel()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processJobResponse">processJobResponse()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_processResponse">processResponse()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_reqGetSearchModels">reqGetSearchModels()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendDeleteRequest">sendDeleteRequest()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendGetRequest">sendGetRequest()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_sendPatchRequest">sendPatchRequest()</a></li>
                                             <li class=""><a href="classes/Mindee-V2-Http-MindeeApiV2.html#method_setFromEnv">setFromEnv()</a></li>
                                     </ul>
             </li>

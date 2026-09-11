@@ -136,13 +136,16 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee.html">Mindee</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-v2.html">V2</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-v2-clientoptions.html">ClientOptions</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/mindee-v2-parsing.html">Parsing</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    BaseParameters
+    BaseRagAnnotationResponse
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html"><abbr title="\Mindee\V2\Parsing\Inference\BaseResponse">BaseResponse</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -157,18 +160,16 @@
 <div class="phpdocumentor-label-line">
 
 
-    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
-
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/BaseRagAnnotationResponse.php"><a href="files/src-v2-parsing-baseragannotationresponse.html"><abbr title="src/V2/Parsing/BaseRagAnnotationResponse.php">BaseRagAnnotationResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Base parameters for running an inference.</p>
+            <p class="phpdocumentor-summary">Base class for all RAG document responses from the V2 API.</p>
 
 
 
@@ -178,7 +179,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -192,52 +193,52 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias">$alias</a>
+    <a class="" href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_createdAt">$createdAt</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: <abbr title="\DateTimeImmutable">DateTimeImmutable</abbr>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId">$modelId</a>
+    <a class="" href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_filename">$filename</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_slug">$slug</a>
+    <a class="" href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_id">$id</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhookIds">$webhookIds</a>
+    <a class="" href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_status">$status</a>
     <span>
-                        &nbsp;: array&lt;string|int, string&gt;            </span>
+                        &nbsp;: string            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#method___construct">__construct()</a>
+    <a class="" href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V2-ClientOptions-BaseParameters.html#method_asHash">asHash()</a>
+    <a class="" href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html#method_getRawHttp">getRawHttp()</a>
     <span>
-                                &nbsp;: array&lt;string, string&gt;    </span>
+                                &nbsp;: string    </span>
 </dt>
 
     </dl>
@@ -250,7 +251,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -260,17 +261,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_alias">
-        $alias
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_createdAt">
+        $createdAt
+        <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_createdAt" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/BaseRagAnnotationResponse.php"><a href="files/src-v2-parsing-baseragannotationresponse.html"><abbr title="src/V2/Parsing/BaseRagAnnotationResponse.php">BaseRagAnnotationResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -278,12 +279,12 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$alias</span>
+            <span class="phpdocumentor-signature__type"><abbr title="\DateTimeImmutable">DateTimeImmutable</abbr></span>
+    <span class="phpdocumentor-signature__name">$createdAt</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Optional file alias.</p>
+        <section class="phpdocumentor-description"><p>Date and time of the document creation.</p>
 </section>
 
     
@@ -299,17 +300,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_modelId">
-        $modelId
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_filename">
+        $filename
+        <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_filename" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/BaseRagAnnotationResponse.php"><a href="files/src-v2-parsing-baseragannotationresponse.html"><abbr title="src/V2/Parsing/BaseRagAnnotationResponse.php">BaseRagAnnotationResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -318,48 +319,11 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$modelId</span>
+    <span class="phpdocumentor-signature__name">$filename</span>
     </code>
 
     
-    
-    
-
-        
-        
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-            -static                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_slug">
-        $slug
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_slug" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                            </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">25</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-        <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$slug</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>Slug of the endpoint.</p>
+        <section class="phpdocumentor-description"><p>Original filename of the uploaded document.</p>
 </section>
 
     
@@ -375,17 +339,17 @@
             -public
                                                                     "
 >
-    <h4 class="phpdocumentor-element__name" id="property_webhookIds">
-        $webhookIds
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhookIds" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_id">
+        $id
+        <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_id" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                             </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/BaseRagAnnotationResponse.php"><a href="files/src-v2-parsing-baseragannotationresponse.html"><abbr title="src/V2/Parsing/BaseRagAnnotationResponse.php">BaseRagAnnotationResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -393,12 +357,51 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
-    <span class="phpdocumentor-signature__name">$webhookIds</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$id</span>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>Optional webhook IDs.</p>
+        <section class="phpdocumentor-description"><p>Unique identifier of the RAG document.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_status">
+        $status
+        <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_status" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/BaseRagAnnotationResponse.php"><a href="files/src-v2-parsing-baseragannotationresponse.html"><abbr title="src/V2/Parsing/BaseRagAnnotationResponse.php">BaseRagAnnotationResponse.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">33</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$status</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Current status of the RAG document.</p>
 </section>
 
     
@@ -412,7 +415,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -423,20 +426,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/BaseRagAnnotationResponse.php"><a href="files/src-v2-parsing-baseragannotationresponse.html"><abbr title="src/V2/Parsing/BaseRagAnnotationResponse.php">BaseRagAnnotationResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelId</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alias</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string|int, string&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$webhookIds</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rawResponse</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -445,29 +448,11 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$modelId</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                <span class="phpdocumentor-argument-list__argument__name">$rawResponse</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID of the model.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$alias</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Optional file alias.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$webhookIds</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, string&gt;|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>List of webhook IDs.</p>
+                    <section class="phpdocumentor-description"><p>Raw server response array.</p>
 </section>
 
             </dd>
@@ -485,22 +470,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_asHash">
-        asHash()
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#method_asHash" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getRawHttp">
+        getRawHttp()
+        <a href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html#method_getRawHttp" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/ClientOptions/BaseParameters.php"><a href="files/src-v2-clientoptions-baseparameters.html"><abbr title="src/V2/ClientOptions/BaseParameters.php">BaseParameters.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V2/Parsing/Inference/BaseResponse.php"><a href="files/src-v2-parsing-inference-baseresponse.html"><abbr title="src/V2/Parsing/Inference/BaseResponse.php">BaseResponse.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">asHash</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, string&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getRawHttp</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -513,9 +498,9 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string, string&gt;</span>
+        <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Hash representation.</p>
+                <section class="phpdocumentor-description"><p>Raw dump of the JSON response.</p>
 </section>
 
             </section>
@@ -535,26 +520,26 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_alias">$alias</a></li>
-                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_modelId">$modelId</a></li>
-                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_slug">$slug</a></li>
-                                                    <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#property_webhookIds">$webhookIds</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_createdAt">$createdAt</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_filename">$filename</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_id">$id</a></li>
+                                                    <li class=""><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#property_status">$status</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#method_asHash">asHash()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Mindee-V2-Parsing-Inference-BaseResponse.html#method_getRawHttp">getRawHttp()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -574,7 +559,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Mindee-V2-ClientOptions-BaseParameters.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Mindee-V2-Parsing-BaseRagAnnotationResponse.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
