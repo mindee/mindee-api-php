@@ -68,7 +68,6 @@ class LocalInputSourceTest extends TestCase
         }
     }
 
-
     public function testPdfCountPages(): void
     {
         $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");

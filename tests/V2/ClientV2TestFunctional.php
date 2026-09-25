@@ -133,7 +133,6 @@ class ClientV2TestFunctional extends TestCase
         }
     }
 
-
     public function testInvalidJobMustThrowError(): void
     {
         try {

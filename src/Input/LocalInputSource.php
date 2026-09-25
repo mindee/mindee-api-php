@@ -87,7 +87,7 @@ abstract class LocalInputSource extends InputSource
         } catch (MindeeUnhandledException) {
             error_log("PDF-handling features not available, page count set to null.");
         } catch (Throwable $e) {
-            error_log("Could not open PDF due to exception" . $e->getMessage() . ", setting page count to null.");
+            error_log("Could not open PDF due to exception '" . $e->getMessage() . "', setting page count to null.");
         }
     }
 
@@ -154,7 +154,7 @@ abstract class LocalInputSource extends InputSource
             return $pdf->setSourceFile($this->fileObject->getFilename());
         } catch (PdfParserException $e) {
             throw new MindeePdfException(
-                "Failed to read PDF file.",
+                $e->getMessage(),
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
             );
@@ -190,7 +190,7 @@ abstract class LocalInputSource extends InputSource
             $pdf->Close();
         } catch (PdfParserException|PdfReaderException $e) {
             throw new MindeePdfException(
-                "Failed to read PDF file.",
+                $e->getMessage(),
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
             );
@@ -223,7 +223,7 @@ abstract class LocalInputSource extends InputSource
             }
         } catch (PdfParserException|PdfReaderException $e) {
             throw new MindeePdfException(
-                "Failed to read PDF file.",
+                $e->getMessage(),
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
             );
