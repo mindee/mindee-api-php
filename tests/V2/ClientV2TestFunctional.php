@@ -29,7 +29,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
-        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/object_streams.pdf');
         $modelParams = new ExtractionParameters($this->modelId, rag: false, rawText: true);
         $pollingOptions = new PollingOptions(maxRetries: 100);
 
@@ -45,7 +45,7 @@ class ClientV2TestFunctional extends TestCase
 
         $file = $inference->file;
         self::assertNotNull($file);
-        self::assertSame('multipage_cut-2.pdf', $file->name);
+        self::assertSame('object_streams.pdf', $file->name);
         self::assertSame(2, $file->pageCount);
 
         self::assertNotNull($inference->model);
@@ -104,7 +104,6 @@ class ClientV2TestFunctional extends TestCase
 
     public function testInvalidUUIDMustThrowError(): void
     {
-
         $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
 
         $modelParams = new ExtractionParameters('INVALID MODEL ID');
