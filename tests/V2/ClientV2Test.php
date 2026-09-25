@@ -149,9 +149,9 @@ class ClientV2Test extends TestCase
 
         try {
             $client = new Client('dummy-key');
-            $input = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+            $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
             $params = new ExtractionParameters('dummy-model-id');
-            $client->enqueueAndGetResult(ExtractionResponse::class, $input, $params);
+            $client->enqueueAndGetResult(ExtractionResponse::class, $inputSource, $params);
         } finally {
             if (null === $original) {
                 putenv('MINDEE_V2_BASE_URL');

@@ -29,13 +29,13 @@ class ClientV2TestFunctional extends TestCase
 
     public function testParseFileEmptyMultiPageMustSucceed(): void
     {
-        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
         $modelParams = new ExtractionParameters($this->modelId, rag: false, rawText: true);
         $pollingOptions = new PollingOptions(maxRetries: 100);
 
         $response = $this->mindeeClient->enqueueAndGetResult(
             ExtractionResponse::class,
-            $source,
+            $inputSource,
             $modelParams,
             $pollingOptions
         );
@@ -70,13 +70,13 @@ class ClientV2TestFunctional extends TestCase
      */
     public function testParseFileFilledSinglePageMustSucceed(): void
     {
-        $source = new PathInput(
+        $inputSource = new PathInput(
             TestingUtilities::getV1DataDir() . '/products/financial_document/default_sample.jpg'
         );
 
         $modelParams = new ExtractionParameters($this->modelId, rag: false, textContext: 'this is an invoice');
 
-        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $modelParams);
+        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $inputSource, $modelParams);
         self::assertNotNull($response);
         $inference = $response->inference;
         self::assertNotNull($inference);
@@ -105,12 +105,12 @@ class ClientV2TestFunctional extends TestCase
     public function testInvalidUUIDMustThrowError(): void
     {
 
-        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
+        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf');
 
         $modelParams = new ExtractionParameters('INVALID MODEL ID');
 
         try {
-            $this->mindeeClient->enqueue($source, $modelParams);
+            $this->mindeeClient->enqueue($inputSource, $modelParams);
         } catch (MindeeV2HttpException $e) {
             self::assertStringStartsWith('422-', $e->errorCode);
             self::assertNotEmpty($e->title);
@@ -120,12 +120,12 @@ class ClientV2TestFunctional extends TestCase
 
     public function testUnknownModelMustThrowError(): void
     {
-        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
         $modelParams = new ExtractionParameters('fc405e37-4ba4-4d03-aeba-533a8d1f0f21', textContext: 'this is invalid');
 
         try {
-            $this->mindeeClient->enqueue($source, $modelParams);
+            $this->mindeeClient->enqueue($inputSource, $modelParams);
         } catch (MindeeV2HttpException $e) {
             self::assertStringStartsWith('404-', $e->errorCode);
             self::assertNotEmpty($e->title);
@@ -147,7 +147,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testInvalidWebhookIDsMustThrowError(): void
     {
-        $source = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
+        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/pdf/multipage_cut-2.pdf');
 
         $modelParams = new ExtractionParameters(
             $this->modelId,
@@ -161,7 +161,7 @@ class ClientV2TestFunctional extends TestCase
         );
 
         try {
-            $this->mindeeClient->enqueue($source, $modelParams);
+            $this->mindeeClient->enqueue($inputSource, $modelParams);
         } catch (MindeeV2HttpException $e) {
             self::assertStringStartsWith('422-', $e->errorCode);
             self::assertNotEmpty($e->title);
@@ -190,7 +190,7 @@ class ClientV2TestFunctional extends TestCase
     public function testDataSchemaMustSucceed(): void
     {
 
-        $source = new PathInput(
+        $inputSource = new PathInput(
             TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
         );
         $dataSchemaReplace = file_get_contents(
@@ -199,7 +199,7 @@ class ClientV2TestFunctional extends TestCase
 
         $modelParams = new ExtractionParameters($this->modelId, dataSchema: $dataSchemaReplace);
 
-        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $source, $modelParams);
+        $response = $this->mindeeClient->enqueueAndGetResult(ExtractionResponse::class, $inputSource, $modelParams);
         self::assertNotNull($response);
         $inference = $response->inference;
         self::assertNotNull($inference);
@@ -228,7 +228,7 @@ class ClientV2TestFunctional extends TestCase
 
     public function testMultipleWebhooksMustSucceed(): void
     {
-        $source = new PathInput(
+        $inputSource = new PathInput(
             TestingUtilities::getFileTypesDir() . '/pdf/blank_1.pdf'
         );
 
@@ -238,7 +238,7 @@ class ClientV2TestFunctional extends TestCase
                 getenv('MINDEE_V2_FAILURE_WEBHOOK_ID'),
                 getenv('MINDEE_V2_SE_TESTS_FAILURE_WEBHOOK_ID')]
         );
-        $response = $this->mindeeClient->enqueue($source, $modelParams);
+        $response = $this->mindeeClient->enqueue($inputSource, $modelParams);
         self::assertCount(2, $response->job->webhooks);
     }
 }
