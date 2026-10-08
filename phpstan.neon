@@ -2,3 +2,5 @@ parameters:
     level: 6
     paths:
         - src
+    scanFiles:
+        - bernard-ledit/bindings/php/bernard_ledit.stubs.php

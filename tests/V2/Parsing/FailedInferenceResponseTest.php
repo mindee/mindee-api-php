@@ -10,7 +10,6 @@ use Mindee\V2\Parsing\Inference\FailedInferenceResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
 
 /**
  * Failed Inference Response test

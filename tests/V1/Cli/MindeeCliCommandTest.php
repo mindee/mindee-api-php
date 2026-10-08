@@ -7,7 +7,6 @@ namespace V1\Cli;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/MindeeCliTestingUtilities.php");
 
 class MindeeCliCommandTest extends TestCase
 {
@@ -17,7 +16,7 @@ class MindeeCliCommandTest extends TestCase
     protected function setUp(): void
     {
         $this->filePath = TestingUtilities::getFileTypesDir() . "/pdf/blank_1.pdf";
-        $this->apiKey = getenv('MINDEE_API_KEY');
+        $this->apiKey = getenv('MINDEE_API_KEY') ?: 'dummy-key';
     }
 
     public function testInvalidFilePath(): void

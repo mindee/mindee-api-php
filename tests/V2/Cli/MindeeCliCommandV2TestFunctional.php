@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace V2\Cli;
 
 require_once(__DIR__ . '/../../../vendor/autoload.php');
-require_once(__DIR__ . '/MindeeCliV2TestingUtilities.php');
-require_once(__DIR__ . '/../../TestingUtilities.php');
 
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;

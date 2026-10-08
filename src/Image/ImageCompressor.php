@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Mindee\Image;
 
-use Imagick;
+use BernardLedit\Image\ImageException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
-use CURLFile;
-use Exception;
-use SplFileObject;
+use ValueError;
+
+use function BernardLedit\Image\compress as compressImage;
 
 /**
  * Image compressor class to handle image compression.
@@ -19,40 +19,27 @@ use SplFileObject;
 class ImageCompressor
 {
     /**
-     * @param Imagick|SplFileObject|CURLFile|string|resource $inputImage Input image. Accepts SplFileObject, CURLFile, Imagick & resources.
-     * @param integer|null $quality Quality to apply to the image.
+     * @param string $inputImage Raw bytes of the input image.
+     * @param integer $quality Quality to apply to the image (JPEG compression).
      * @param integer|null $maxWidth Maximum width to constrain the image to.
      *                               Defaults to the image's size if unset.
      * @param integer|null $maxHeight Maximum Height to constrain the image to.
      *                                Defaults to the image's size if unset.
-     * @return CURLFile Curlfile handle for the image.
+     * @return string Raw bytes of the compressed JPEG image.
      * @throws MindeeImageException Throws if image processing fails.
-     *                              //phpcs:disable
-     * @throws MindeeUnhandledException Throws if one of the dependencies isn't installed.
+     * @throws MindeeUnhandledException Throws if the bernard_ledit extension isn't loaded.
      */
     public static function compress(
-        mixed $inputImage,
-        ?int $quality = 85,
+        string $inputImage,
+        int $quality = 85,
         ?int $maxWidth = null,
         ?int $maxHeight = null
-    ): CURLFile {
-        //phpcs: enable
-        DependencyChecker::isImageMagickAvailable();
-        DependencyChecker::isGhostscriptAvailable();
+    ): string {
+        DependencyChecker::requireBernardLedit();
         try {
-            $image = ImageUtils::toMagickImage($inputImage);
-            $initialImage = $image->clone();
-            $initialFileSize = $image->getImageLength();
-            ImageUtils::resizeImage($image, $maxWidth, $maxHeight);
-            ImageUtils::compressImageQuality($image, $quality);
-
-            $finalImageSize = $image->getImageLength();
-            if ($initialFileSize < $finalImageSize) {
-                error_log("\033[33m[WARNING] Output image would be larger than input. Aborting operation.\033[0m\n");
-                return ImageUtils::toCURLFile($initialImage);
-            }
-            return ImageUtils::toCURLFile($image);
-        } catch (Exception $e) {
+            [$bytes] = compressImage($inputImage, $quality, $maxWidth, $maxHeight);
+            return $bytes;
+        } catch (ImageException|ValueError $e) {
             throw new MindeeImageException("Image compression failed.", ErrorCode::FILE_OPERATION_ABORTED, $e);
         }
     }

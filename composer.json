@@ -9,9 +9,6 @@
     "ext-fileinfo": "*",
     "ext-json": "*",
     "symfony/console": ">=6.0",
-    "setasign/fpdf": "^1.8",
-    "setasign/fpdi": "^2.6.4",
-    "smalot/pdfparser": "^2.12",
     "composer/ca-bundle": "^1.5"
   },
   "require-dev": {
@@ -25,13 +22,23 @@
     "icanhazstring/composer-unused": "~0.9.0"
   },
   "suggest": {
-    "ext-imagick": "Required for PDF rasterization and image processing features",
-    "ghostscript/ghostscript": "Required for PDF rasterization features"
+    "ext-bernard_ledit": "Enables PDF & image features (page cut/merge, compression, extraction)."
   },
   "autoload": {
     "psr-4": {
       "Mindee\\": "src"
     }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/TestingUtilities.php",
+      "tests/V1/Cli/MindeeCliTestingUtilities.php",
+      "tests/V2/Cli/MindeeCliV2TestingUtilities.php"
+    ],
+    "files": [
+      "src/Input/PageOptions.php",
+      "src/V1/Http/BaseApi.php"
+    ]
   },
   "bin": [
     "mindee",
@@ -54,6 +61,7 @@
     ],
     "test:unit": "phpunit -c tests/phpunit.xml",
     "test:functional": "phpunit -c tests/functional.xml",
+    "test:pdf-features": "phpunit -c tests/pdffeatures.xml",
     "test:smoke:v1": "./tests/test_v1_code_samples.sh",
     "test:smoke:v2": "./tests/test_v2_code_samples.sh",
     "test:cli:v1": "./tests/test_v1_cli.sh",

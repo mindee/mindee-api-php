@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Mindee\Image;
 
+use BernardLedit\Image\Image;
+use BernardLedit\Image\ImageException;
+use BernardLedit\Pdf\PdfDocument;
+use BernardLedit\Pdf\PdfiumException;
 use Exception;
-use Imagick;
-use ImagickException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
@@ -16,7 +18,9 @@ use Mindee\Geometry\BBoxUtils;
 use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
+use ValueError;
 
+use function BernardLedit\Image\decode;
 use function count;
 use function sprintf;
 
@@ -26,7 +30,12 @@ use function sprintf;
 class ImageExtractor
 {
     /**
-     * @var Imagick[] Array of extracted page images.
+     * JPEG quality used for extracted crops, same as the Python SDK (sufficient for OCR).
+     */
+    private const CROP_QUALITY = 70;
+
+    /**
+     * @var Image[] Array of extracted page images.
      */
     protected array $pageImages = [];
 
@@ -57,8 +66,7 @@ class ImageExtractor
      */
     public function __construct(LocalInputSource $localInput, ?string $saveFormat = null)
     {
-        DependencyChecker::isImageMagickAvailable();
-        DependencyChecker::isGhostscriptAvailable();
+        DependencyChecker::requireBernardLedit();
         $this->filename = $localInput->fileName;
         $this->inputSource = $localInput;
 
@@ -77,9 +85,8 @@ class ImageExtractor
             $this->pageImages = static::pdfToImages($this->inputSource->readContents()[1]);
         } else {
             try {
-                $image = new Imagick();
-                $image->readImageBlob($this->inputSource->readContents()[1]);
-            } catch (ImagickException $e) {
+                $image = decode($this->inputSource->readContents()[1]);
+            } catch (ImageException $e) {
                 throw new MindeePdfException(
                     "Image couldn't be processed.",
                     ErrorCode::IMAGE_CANT_PROCESS,
@@ -96,7 +103,7 @@ class ImageExtractor
      *
      * @param string $fileBytes Input pdf.
      *
-     * @return Imagick[] A list of pages.
+     * @return Image[] A list of pages.
      *
      * @throws MindeeImageException Throws if the image can't be handled.
      */
@@ -104,16 +111,17 @@ class ImageExtractor
     {
         try {
             $images = [];
-            $imagick = new Imagick();
-            $imagick->readImageBlob($fileBytes);
-
-            foreach ($imagick as $page) {
-                $page->setImageFormat('jpg');
-                $images[] = $page;
+            $pdf = new PdfDocument($fileBytes);
+            try {
+                for ($i = 0; $i < $pdf->pageCount(); $i++) {
+                    $images[] = decode($pdf->rasterizePage($i, 100));
+                }
+            } finally {
+                $pdf->close();
             }
 
             return $images;
-        } catch (ImagickException $e) {
+        } catch (PdfiumException|ImageException|ValueError $e) {
             throw new MindeeImageException(
                 "Couldn't convert PDF to images.",
                 ErrorCode::FILE_OPERATION_ABORTED,
@@ -183,11 +191,12 @@ class ImageExtractor
     ): ExtractedImage {
         $bbox = BBoxUtils::generateBBoxFromPolygon($polygon);
         try {
-            $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex);
-        } catch (ImagickException $e) {
+            $format ??= $this->saveFormat;
+            $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex)
+                ->encode(ExtractedImage::getEncodedImageFormat($format), self::CROP_QUALITY);
+        } catch (ImageException|ValueError $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
-        $format ??= $this->saveFormat;
         $filename ??= sprintf('%s_page%d-%d.%s', $this->filename, $pageIndex, $index, $format);
         return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
     }
@@ -206,22 +215,20 @@ class ImageExtractor
      *
      * @param BBox $bbox BBox coordinates.
      * @param integer|float $pageIndex The page index to extract, begins at 0.
-     * @throws ImagickException Throws if the image can't be processed.
+     * @throws ImageException|ValueError Throws if the image can't be cropped.
      */
-    protected function extractImageFromBbox(BBox $bbox, int|float $pageIndex): Imagick
+    protected function extractImageFromBbox(BBox $bbox, int|float $pageIndex): Image
     {
-        $image = $this->pageImages[$pageIndex]->clone();
-        $width = $image->getImageWidth();
-        $height = $image->getImageHeight();
+        $image = $this->pageImages[$pageIndex];
+        [$width, $height] = $image->size();
 
-        $minX = round($bbox->getMinX() * $width);
-        $maxX = round($bbox->getMaxX() * $width);
-        $minY = round($bbox->getMinY() * $height);
-        $maxY = round($bbox->getMaxY() * $height);
-
-        $image->cropImage((int) ($maxX - $minX), (int) ($maxY - $minY), (int) $minX, (int) $minY);
-
-        return $image;
+        // crop() returns a new image and takes the right/bottom edges, not a width/height.
+        return $image->crop(
+            (int) round($bbox->getMinX() * $width),
+            (int) round($bbox->getMinY() * $height),
+            (int) round($bbox->getMaxX() * $width),
+            (int) round($bbox->getMaxY() * $height)
+        );
     }
 
     /**

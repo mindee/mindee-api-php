@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Mindee\Pdf;
 
-use Imagick;
-use ImagickException;
+use BernardLedit\Pdf\PdfDocument;
+use Exception;
 use InvalidArgumentException;
 use Mindee\Dependency\DependencyChecker;
+use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePdfException;
 use Mindee\Input\LocalInputSource;
-use setasign\Fpdi\Fpdi;
-use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
-use setasign\Fpdi\PdfParser\Filter\FilterException;
-use setasign\Fpdi\PdfParser\PdfParserException;
-use setasign\Fpdi\PdfReader\PdfReaderException;
 
+use function BernardLedit\Image\decode;
 use function count;
 use function sprintf;
 
@@ -41,28 +38,24 @@ class PdfExtractor
     /**
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      *
-     * @throws MindeePdfException|ImagickException Throws if PDF operations aren't supported, or if the file
+     * @throws MindeePdfException Throws if PDF operations aren't supported, or if the file
      *                                             can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
-        DependencyChecker::isImageMagickAvailable();
-        DependencyChecker::isGhostscriptAvailable();
+        DependencyChecker::requireBernardLedit();
         $this->fileName = $localInput->fileName;
+        try {
+            if ($localInput->isPdf()) {
+                $this->pdfBytes = $localInput->readContents()[1];
+            } else {
+                $this->pdfBytes = decode($localInput->readContents()[1])->encode('PDF');
 
-        if ($localInput->isPdf()) {
-            $this->pdfBytes = $localInput->readContents()[1];
-        } else {
-            try {
-                $image = new Imagick();
-            } catch (ImagickException $e) {
-                throw new MindeePdfException("Imagick could not process this file.\n", 0, $e);
             }
-            $image->readImageBlob($localInput->readContents()[1]);
-            $image->setImageFormat('pdf');
-            $this->pdfBytes = $image->getImageBlob();
+            $this->pageCount = $this->getPageCount();
+        } catch (Exception $e) {
+            throw new MindeePdfException("Couldn't open PDF file. Bernard L'Édit sent the following: ", 0, $e);
         }
-        $this->pageCount = $this->getPageCount();
     }
 
     /**
@@ -70,19 +63,19 @@ class PdfExtractor
      *
      * @return integer The number of pages in the file.
      *
-     * @throws MindeePdfException Throws if FPDI is unable to process the file.
+     * @throws MindeePdfException Throws if Bernard L'Édit is unable to process the file.
      */
     private function getPageCount(): int
     {
         try {
-            $pdfHandle = new Fpdi();
-
-            $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
-            file_put_contents($tempFilename, $this->pdfBytes);
-
-            return $pdfHandle->setSourceFile($tempFilename);
-        } catch (PdfParserException $e) {
-            throw new MindeePdfException("Couldn't open PDF file. FPDI sent the following: ", 0, $e);
+            $pdf = new PdfDocument($this->pdfBytes);
+            return $pdf->pageCount();
+        } catch (Exception $e) {
+            throw new MindeePdfException(
+                "Couldn't open PDF file.",
+                ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
         }
     }
 
@@ -93,49 +86,49 @@ class PdfExtractor
      *
      * @return ExtractedPdf[] list of extracted documents
      *
-     * @throws MindeePdfException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
-     * @throws InvalidArgumentException Throws if invalid indexes are provided.
+     * @throws MindeePdfException Throws if bernard_ledit wasn't able to handle the pdf during the extraction.
      */
     public function extractSubDocuments(array $pageIndexes): array
     {
         $extractedPdfs = [];
+        $extension = pathinfo($this->fileName, PATHINFO_EXTENSION);
+        $prefix = pathinfo($this->fileName, PATHINFO_FILENAME);
 
-        foreach ($pageIndexes as $pageIndexElem) {
-            if (empty($pageIndexElem)) {
-                throw new InvalidArgumentException('Empty indexes not allowed for extraction.');
-            }
-
-            $extension = pathinfo($this->fileName, PATHINFO_EXTENSION);
-            $prefix = pathinfo($this->fileName, PATHINFO_FILENAME);
-            $fieldFilename = sprintf(
-                '%s_%03d-%03d.%s',
-                $prefix,
-                $pageIndexElem[0] + 1,
-                $pageIndexElem[count($pageIndexElem) - 1] + 1,
-                $extension
-            );
-
-            try {
-                $pdf = new Fpdi();
-                $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
-                file_put_contents($tempFilename, $this->pdfBytes);
-                $pdf->setSourceFile($tempFilename);
-
-                foreach ($pageIndexElem as $pageIndex) {
-                    $pdf->AddPage();
-                    $pdf->useTemplate($pdf->importPage($pageIndex + 1));
+        try {
+            $sourcePdf = new PdfDocument($this->pdfBytes);
+        } catch (Exception $e) {
+            throw new MindeePdfException("PDF file couldn't be processed during extraction.", 0, $e);
+        }
+        try {
+            foreach ($pageIndexes as $pageIndexElem) {
+                if (empty($pageIndexElem)) {
+                    throw new InvalidArgumentException('Empty indexes not allowed for extraction.');
                 }
 
-                $mergedPdfBytes = $pdf->Output('S');
-            } catch (
-                CrossReferenceException|
-                FilterException|
-                PdfParserException|
-                PdfReaderException $e
-            ) {
-                throw new MindeePdfException("PDF file couldn't be processed during extraction.", 0, $e);
+                $fieldFilename = sprintf(
+                    '%s_%03d-%03d.%s',
+                    $prefix,
+                    $pageIndexElem[0] + 1,
+                    $pageIndexElem[count($pageIndexElem) - 1] + 1,
+                    $extension
+                );
+
+                try {
+                    $subPdf = PdfDocument::create();
+                    $subPdf->importPages($sourcePdf, $pageIndexElem);
+                    $mergedPdfBytes = $subPdf->save();
+                    $subPdf->close();
+                } catch (Exception $e) {
+                    throw new MindeePdfException("PDF file couldn't be processed during extraction.", 0, $e);
+                }
+                $extractedPdfs[] = new ExtractedPdf($mergedPdfBytes, $fieldFilename);
             }
-            $extractedPdfs[] = new ExtractedPdf($mergedPdfBytes, $fieldFilename);
+        } finally {
+            try {
+                $sourcePdf->close();
+            } catch (Exception) {
+                throw new MindeePdfException("PDF file couldn't be closed properly.", 0, $e);
+            }
         }
 
         return $extractedPdfs;
@@ -148,6 +141,7 @@ class PdfExtractor
      * @param boolean $strict Whether to trust confidence scores or not.
      *
      * @return ExtractedPdf[] a list of extracted invoices
+     * @throws Exception
      */
     public function extractInvoices(array $pageIndexes, bool $strict = false): array
     {

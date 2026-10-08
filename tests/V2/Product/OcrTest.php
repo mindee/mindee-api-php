@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 use Mindee\V2\Product\Ocr\OcrResponse;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
 
 /**
  * Ocr unit tests.

@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Mindee\V2\FileOperations;
 
 use ArrayObject;
-use ImagickException;
+use BernardLedit\Image\ImageException;
 use Mindee\Error\MindeeException;
 use Mindee\Image\ExtractedImage;
+use ValueError;
 
 use function sprintf;
 
@@ -52,7 +53,7 @@ class CropFiles extends ArrayObject
 
             try {
                 $crop->writeToFile($path, $fileFormat, $quality);
-            } catch (ImagickException $e) {
+            } catch (ImageException|ValueError $e) {
                 throw new MindeeException('Failed to save crop to disk.', 0, $e);
             }
 

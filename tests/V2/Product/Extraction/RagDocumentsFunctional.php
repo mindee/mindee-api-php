@@ -13,7 +13,6 @@ use Mindee\V2\Product\Extraction\RagDocuments\Params\RagDocumentUploadParameters
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../../TestingUtilities.php");
 
 /**
  * RAG Documents functional tests.
