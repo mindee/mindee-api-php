@@ -11,7 +11,6 @@ use Mindee\V2\Product\Crop\Params\CropParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class CropFunctional extends TestCase
 {
     private Client $client;

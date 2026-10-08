@@ -9,7 +9,6 @@ use Mindee\V2\Search\RagDocuments\RagDocumentSearchResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class RagDocumentSearchTest extends TestCase
 {
     public function testRagDocumentSearchResponse_LoadsLocally(): void

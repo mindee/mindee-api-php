@@ -8,7 +8,6 @@ use Mindee\V2\Search\Models\ModelSearchResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class ModelSearchTest extends TestCase
 {
     public function testModelSearchResponse_LoadsLocally(): void

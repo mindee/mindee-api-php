@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 use Mindee\V2\Product\Split\SplitResponse;
 
-
 /**
  * Split unit tests.
  */

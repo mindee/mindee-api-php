@@ -121,7 +121,7 @@ class ImageExtractor
             }
 
             return $images;
-        } catch (PdfiumException|ImageException|ValueError $e) {
+        } catch (Exception $e) {
             throw new MindeeImageException(
                 "Couldn't convert PDF to images.",
                 ErrorCode::FILE_OPERATION_ABORTED,

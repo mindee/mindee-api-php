@@ -13,7 +13,6 @@ use Mindee\V1\Image\ImageExtractor;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class DependencyCheckerNoExtendedTestPdf extends TestCase
 {
     public function testNoImageExtractor(): void
