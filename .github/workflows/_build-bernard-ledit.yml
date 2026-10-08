@@ -50,11 +50,15 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
 
+      # The runner ships several LLVMs: clang-sys loads the newest libclang, while bindgen adds the
+      # include paths of the default `clang` (14). Mixing them breaks parsing of Clang 14's SSE headers,
+      # so pin libclang to the same version as the default clang.
       - name: Install libclang
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libclang-dev
+          sudo apt-get install -y libclang-14-dev
+          echo "LIBCLANG_PATH=/usr/lib/llvm-14/lib" >> "$GITHUB_ENV"
 
       - name: Set up Rust toolchain
         if: steps.cache.outputs.cache-hit != 'true'
