@@ -12,6 +12,8 @@ jobs:
         php-version: [ "8.1", "8.5" ] # Deprecation warnings only show starting PHP 8.5
     steps:
     - uses: actions/checkout@v6
+      with:
+        submodules: recursive
 
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
