@@ -11,7 +11,6 @@ use Mindee\V2\Parsing\Job\JobResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
 
 class JobResponseTest extends TestCase
 {

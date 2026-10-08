@@ -11,6 +11,8 @@ use Mindee\V2\Product\Crop\CropResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
+use function BernardLedit\Image\decode;
+
 class CropTest extends TestCase
 {
     private string $cropDataDir;
@@ -35,10 +37,7 @@ class CropTest extends TestCase
         self::assertSame(0, $extractedCrops[0]->pageId);
         self::assertSame(0, $extractedCrops[0]->elementId);
 
-        $bitmap0 = $extractedCrops[0]->image;
-
-        self::assertSame(2822, $bitmap0->width ?? clone $bitmap0->getWidth());
-        self::assertSame(1572, $bitmap0->height ?? clone $bitmap0->getHeight());
+        self::assertSame([2822, 1572], decode($extractedCrops[0]->buffer)->size());
     }
 
     public function testProcessesMultiPageReceiptSplitCorrectly(): void
@@ -56,15 +55,11 @@ class CropTest extends TestCase
         self::assertSame(0, $extractedCrops[0]->pageId);
         self::assertSame(0, $extractedCrops[0]->elementId);
 
-        $bitmap0 = $extractedCrops[0]->image;
-        self::assertSame(156, $bitmap0->width ?? $bitmap0->getWidth());
-        self::assertSame(757, $bitmap0->height ?? $bitmap0->getHeight());
+        self::assertSame([156, 757], decode($extractedCrops[0]->buffer)->size());
 
         self::assertSame(0, $extractedCrops[1]->pageId);
         self::assertSame(1, $extractedCrops[1]->elementId);
 
-        $bitmap1 = $extractedCrops[1]->image;
-        self::assertSame(188, $bitmap1->width ?? $bitmap1->getWidth());
-        self::assertSame(691, $bitmap1->height ?? $bitmap1->getHeight());
+        self::assertSame([188, 691], decode($extractedCrops[1]->buffer)->size());
     }
 }
