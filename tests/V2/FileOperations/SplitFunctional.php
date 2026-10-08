@@ -19,6 +19,9 @@ use function count;
 use function sprintf;
 use function strlen;
 
+/**
+ * @group bernard-ledit
+ */
 class SplitFunctional extends TestCase
 {
     private Client $client;
