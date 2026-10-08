@@ -97,8 +97,8 @@ jobs:
       - name: Check the extension loads
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          php -d extension=$PWD/.github/artifacts/bernard-ledit/bernard_ledit.so \
-              -d bernard_ledit.pdfium_path=$PWD/.github/artifacts/bernard-ledit/libpdfium.so \
+          php -d extension="$PWD/.github/artifacts/bernard-ledit/bernard_ledit.so" \
+              -d bernard_ledit.pdfium_path="$PWD/.github/artifacts/bernard-ledit/libpdfium.so" \
               -r 'exit(extension_loaded("bernard_ledit") && 0 === BernardLedit\Pdf\PdfDocument::create()->pageCount() ? 0 : 1);'
 
       - name: Upload bernard-ledit build
