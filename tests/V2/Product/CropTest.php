@@ -9,7 +9,6 @@ use TestingUtilities;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\Geometry\Point;
 
-
 /**
  * Crop unit tests.
  */

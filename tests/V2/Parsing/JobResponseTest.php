@@ -11,7 +11,6 @@ use Mindee\V2\Parsing\Job\JobResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class JobResponseTest extends TestCase
 {
     /**

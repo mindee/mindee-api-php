@@ -7,7 +7,6 @@ namespace V2\Cli;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 /**
  * Unit-level CLI tests for the V2 commands. They never reach the
  * Mindee V2 API: every assertion is on argument validation, error

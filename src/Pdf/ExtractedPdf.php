@@ -52,7 +52,7 @@ class ExtractedPdf
             return $pdf->pageCount();
         } catch (Exception $e) {
             throw new MindeePdfException(
-                "Couldn't open PDF file.",
+                "PDF couldn't be opened.",
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
             );
