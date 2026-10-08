@@ -13,13 +13,16 @@ jobs:
   static-analysis:
     uses: ./.github/workflows/_static-analysis.yml
     needs: workflow-lint
+  build-bernard-ledit:
+    uses: ./.github/workflows/_build-bernard-ledit.yml
+    needs: workflow-lint
   test-units:
     uses: ./.github/workflows/_test-units.yml
-    needs: static-analysis
+    needs: [static-analysis, build-bernard-ledit]
     secrets: inherit
   test-integrations:
     uses: ./.github/workflows/_test-integrations.yml
-    needs: test-units
+    needs: [test-units, build-bernard-ledit]
     secrets: inherit
   smoke-test:
     uses: ./.github/workflows/_test-smoke.yml
