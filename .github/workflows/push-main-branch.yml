@@ -8,9 +8,11 @@ on:
 jobs:
   static-analysis:
     uses: mindee/mindee-api-php/.github/workflows/_static-analysis.yml@main
+  build-bernard-ledit:
+    uses: mindee/mindee-api-php/.github/workflows/_build-bernard-ledit.yml@main
   test-units:
     uses: mindee/mindee-api-php/.github/workflows/_test-units.yml@main
-    needs: static-analysis
+    needs: [static-analysis, build-bernard-ledit]
     secrets: inherit
   tag:
     uses: mindee/client-lib-actions/.github/workflows/tag-version.yml@main

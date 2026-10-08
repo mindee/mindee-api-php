@@ -11,8 +11,6 @@ use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
-
 class SplitFunctional extends TestCase
 {
     private Client $client;

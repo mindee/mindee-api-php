@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
+use BernardLedit\Pdf\PdfDocument;
+use BernardLedit\Pdf\PdfiumException;
 use CURLFile;
 use Exception;
 use Mindee\Dependency\DependencyChecker;
@@ -19,9 +21,6 @@ use Mindee\Error\MindeeUnhandledException;
 use Mindee\Image\ImageCompressor;
 use Mindee\Pdf\PdfCompressor;
 use Mindee\Pdf\PdfUtils;
-use setasign\Fpdi\Fpdi;
-use setasign\Fpdi\PdfParser\PdfParserException;
-use setasign\Fpdi\PdfReader\PdfReaderException;
 use Throwable;
 
 use function count;
@@ -78,7 +77,7 @@ abstract class LocalInputSource extends InputSource
     {
         $this->checkMimeType();
         try {
-            DependencyChecker::isGhostscriptAvailable();
+            DependencyChecker::requireBernardLedit();
             if ($this->isPdf()) {
                 $this->pageCount = $this->getPageCount();
             } else {
@@ -140,6 +139,7 @@ abstract class LocalInputSource extends InputSource
      * @return integer
      * @throws MindeePdfException Throws if the source pdf can't be properly processed.
      * @throws MindeeSourceException Throws if the source isn't a pdf.
+     * @throws MindeeUnhandledException Throws if the bernard_ledit extension isn't loaded.
      */
     protected function getPageCount(): int
     {
@@ -149,13 +149,20 @@ abstract class LocalInputSource extends InputSource
                 ErrorCode::USER_OPERATION_ERROR
             );
         }
-        $pdf = new Fpdi();
+        DependencyChecker::requireBernardLedit();
         try {
-            return $pdf->setSourceFile($this->fileObject->getFilename());
-        } catch (PdfParserException $e) {
+            $pdf = new PdfDocument(file_get_contents($this->fileObject->getFilename()));
+            return $pdf->pageCount();
+        } catch (PdfiumException $e) {
             throw new MindeePdfException(
                 $e->getMessage(),
                 ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
+        } catch (Exception $e) {
+            throw new MindeePdfException(
+                $e->getMessage(),
+                ErrorCode::PDF_CANT_CREATE,
                 $e
             );
         }
@@ -176,22 +183,26 @@ abstract class LocalInputSource extends InputSource
      * Create a new PDF from pages and set it as the main file object.
      * @param array<integer> $pageNumbers Array of page numbers to add to the newly created PDF.
      * @throws MindeePdfException Throws if the pdf file can't be processed.
+     * @throws MindeeUnhandledException Throws if the bernard_ledit extension isn't loaded.
      */
     public function mergePdfPages(array $pageNumbers): void
     {
+        DependencyChecker::requireBernardLedit();
         try {
-            $pdf = new Fpdi();
-            $pdf->setSourceFile($this->filePath);
-            foreach ($pageNumbers as $pageNumber) {
-                $pdf->AddPage();
-                $pdf->useTemplate($pdf->importPage($pageNumber + 1));
-            }
-            $this->saveBytesAsFile($pdf->Output($this->fileName, 'S'));
-            $pdf->Close();
-        } catch (PdfParserException|PdfReaderException $e) {
+            $originalPdf = new PdfDocument(file_get_contents($this->filePath));
+            $newPdf = PdfDocument::create();
+            $newPdf->importPages($originalPdf, $pageNumbers);
+            $this->saveBytesAsFile($newPdf->save());
+        } catch (PdfiumException $e) {
             throw new MindeePdfException(
                 $e->getMessage(),
                 ErrorCode::PDF_CANT_PROCESS,
+                $e
+            );
+        } catch (Exception $e) {
+            throw new MindeePdfException(
+                $e->getMessage(),
+                ErrorCode::PDF_CANT_CREATE,
                 $e
             );
         }
@@ -199,36 +210,24 @@ abstract class LocalInputSource extends InputSource
 
     /**
      * Checks whether the contents of a PDF are empty.
-     * @param integer $threshold Semi-arbitrary threshold of minimum bytes on the page for it to be considered empty.
      *
      * @return boolean
      * @throws MindeePdfException Throws if the pdf file can't be processed.
+     * @throws MindeeUnhandledException Throws if the bernard_ledit extension isn't loaded.
      */
-    public function isPdfEmpty(int $threshold = 1024): bool
+    public function isPdfEmpty(): bool
     {
+        DependencyChecker::requireBernardLedit();
         try {
-            $pdf = new Fpdi();
-            $pageCount = $pdf->setSourceFile($this->fileObject->getFilename());
-            $pdf->Close();
-            for ($pageNumber = 0; $pageNumber < $pageCount; $pageNumber++) {
-                $pdfPage = new Fpdi();
-                $pdfPage->setSourceFile($this->fileObject->getFilename());
-                $pdfPage->AddPage();
-                $pdfPage->useTemplate($pdfPage->importPage($pageNumber + 1));
-                if (strlen((string) $pdfPage->Output('', 'S')) > $threshold) {
-                    $pdfPage->Close();
-                    return false;
-                }
-                $pdfPage->Close();
-            }
-        } catch (PdfParserException|PdfReaderException $e) {
+            $pdf = new PdfDocument(file_get_contents($this->filePath));
+            return $pdf->hasNoContent();
+        } catch (Exception $e) {
             throw new MindeePdfException(
                 $e->getMessage(),
-                ErrorCode::PDF_CANT_PROCESS,
+                ErrorCode::PDF_CANT_CREATE,
                 $e
             );
         }
-        return true;
     }
 
     /**
@@ -294,27 +293,28 @@ abstract class LocalInputSource extends InputSource
         bool $forceSourceTextCompression = false,
         bool $disableSourceText = true
     ): void {
+        $bytes = file_get_contents($this->fileObject->getFilename());
         if ($this->isPdf()) {
-            $this->fileObject = PdfCompressor::compress(
-                $this->fileObject,
+            $bytes = PdfCompressor::compress(
+                $bytes,
                 $quality,
                 $forceSourceTextCompression,
                 $disableSourceText
             );
             $this->fileMimetype = 'application/pdf';
-            $pathInfo = pathinfo((string) $this->filePath);
-            $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.pdf';
+            $extension = 'pdf';
         } else {
-            $this->fileObject = ImageCompressor::compress(
-                $this->fileObject,
+            $bytes = ImageCompressor::compress(
+                $bytes,
                 $quality,
                 $maxWidth,
                 $maxHeight
             );
             $this->fileMimetype = 'image/jpeg';
-            $pathInfo = pathinfo((string) $this->filePath);
-            $this->filePath = $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.jpg';
+            $extension = 'jpg';
         }
+        $this->fileName = pathinfo($this->fileName, PATHINFO_FILENAME) . '.' . $extension;
+        $this->saveBytesAsFile($bytes);
     }
 
     /**
@@ -328,7 +328,7 @@ abstract class LocalInputSource extends InputSource
         if (!$this->isPdf()) {
             return false;
         }
-        return PdfUtils::hasSourceText($this->filePath);
+        return PdfUtils::hasSourceText(file_get_contents($this->filePath));
     }
 
 

@@ -9,8 +9,6 @@ use TestingUtilities;
 use Mindee\V2\Product\Crop\CropResponse;
 use Mindee\Geometry\Point;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
-
 /**
  * Crop unit tests.
  */

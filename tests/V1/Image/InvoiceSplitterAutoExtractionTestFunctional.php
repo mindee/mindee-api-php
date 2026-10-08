@@ -13,8 +13,9 @@ use Mindee\V1\Product\InvoiceSplitter\InvoiceSplitterV1;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
-
+/**
+ * @group bernard-ledit
+ */
 class InvoiceSplitterAutoExtractionTestFunctional extends TestCase
 {
     private const PRODUCT_DATA_DIR = '/tests/resources/products';

@@ -17,7 +17,7 @@ class MindeeApiTest extends TestCase
     private string $keyEnvName;
     protected function setUp(): void
     {
-        $this->keyEnvName = getenv(API_KEY_ENV_NAME);
+        $this->keyEnvName = (string) getenv(API_KEY_ENV_NAME);
     }
 
     protected function tearDown(): void

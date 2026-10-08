@@ -12,18 +12,6 @@ class DependencyCheckerPdfTest extends TestCase
     public function testGhostScriptDependency(): void
     {
         $this->expectNotToPerformAssertions();
-        DependencyChecker::isGhostscriptAvailable();
-    }
-
-    public function testImageMagickDependency(): void
-    {
-        $this->expectNotToPerformAssertions();
-        DependencyChecker::isImageMagickAvailable();
-    }
-
-    public function testImageMagickPolicy(): void
-    {
-        $this->expectNotToPerformAssertions();
-        DependencyChecker::isImageMagickPolicyAllowed();
+        DependencyChecker::requireBernardLedit();
     }
 }

@@ -38,7 +38,7 @@ class ImageExtractorTest extends TestCase
         foreach ($inference->pages as $page) {
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
             foreach ($subImages as $i => $extractedImage) {
-                self::assertNotNull($extractedImage->image);
+                self::assertNotEmpty($extractedImage->buffer);
                 $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
 
                 $source = $extractedImage->asInputSource();
@@ -69,7 +69,7 @@ class ImageExtractorTest extends TestCase
         foreach ($inference->pages as $page) {
             $codes1D = $extractor->extractImagesFromPage($page->prediction->codes1D, $page->id, "barcodes_1D.jpg");
             foreach ($codes1D as $i => $extractedImage) {
-                self::assertNotNull($extractedImage->image);
+                self::assertNotEmpty($extractedImage->buffer);
                 $source = $extractedImage->asInputSource();
                 self::assertSame(
                     sprintf("barcodes_1D.jpg_page0-%d.jpg", $i),
@@ -80,7 +80,7 @@ class ImageExtractorTest extends TestCase
 
             $codes2D = $extractor->extractImagesFromPage($page->prediction->codes2D, $page->id, "barcodes_2D.jpg");
             foreach ($codes2D as $extractedImage) {
-                self::assertNotNull($extractedImage->image);
+                self::assertNotEmpty($extractedImage->buffer);
                 $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
             }
         }
@@ -102,7 +102,7 @@ class ImageExtractorTest extends TestCase
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
 
             foreach ($subImages as $i => $extractedImage) {
-                self::assertNotNull($extractedImage->image);
+                self::assertNotEmpty($extractedImage->buffer);
                 $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
 
                 $source = $extractedImage->asInputSource();

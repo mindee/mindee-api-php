@@ -22,7 +22,7 @@ class PdfExtractor extends BasePdfExtractor
      *
      * @return ExtractedPdf[] list of extracted documents
      *
-     * @throws MindeePdfException Throws if FDPF/FPDI wasn't able to handle the pdf during the extraction.
+     * @throws MindeePdfException Throws if Bernard L'Édit wasn't able to handle the pdf during the extraction.
      * @throws InvalidArgumentException Throws if invalid indexes are provided.
      */
     public function extractSubDocuments(array|InvoiceSplitterV1InvoicePageGroups $pageIndexes): array
