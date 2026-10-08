@@ -11,7 +11,6 @@ use Mindee\V2\Product\Classification\Params\ClassificationParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class ClassificationFunctional extends TestCase
 {
     private Client $client;

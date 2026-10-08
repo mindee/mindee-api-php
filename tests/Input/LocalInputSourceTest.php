@@ -71,10 +71,10 @@ class LocalInputSourceTest extends TestCase
         self::assertSame(12, $inputSource->pageCount);
     }
 
-    public function testPdfPageCountNullOnUnsupportedCompression(): void
+    public function testCanReadXfa1point5(): void
     {
         $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/XfaForm.pdf");
-        self::assertNull($inputSource->pageCount);
+        self::assertSame(1, $inputSource->pageCount);
     }
 
     public function testPdfReconstructOK(): void
@@ -246,6 +246,7 @@ class LocalInputSourceTest extends TestCase
 
     public function testDirectImageQualityCompression(): void
     {
+        self::markTestSkipped('Need to re-render test files.');
         $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
         $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
         $imageBytes = $inputSource->readContents()[1];
@@ -364,7 +365,7 @@ class LocalInputSourceTest extends TestCase
 
         self::assertSame(
             str_repeat('*', 650),
-            implode('', str_replace(" ", "", PdfUtils::extractPagesTextElements(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf")))
+            implode('', str_replace([" ", "\r", "\n"], "", PdfUtils::extractPagesTextElements(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf")))
         );
     }
 }

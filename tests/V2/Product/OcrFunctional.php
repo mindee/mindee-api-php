@@ -11,7 +11,6 @@ use Mindee\V2\Product\Ocr\Params\OcrParameters;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class OcrFunctional extends TestCase
 {
     private Client $client;

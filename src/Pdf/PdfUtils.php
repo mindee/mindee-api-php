@@ -33,7 +33,7 @@ class PdfUtils
             return $pdf->hasText();
         } catch (Exception $e) {
             throw new MindeePdfException(
-                "Couldn't open PDF file.",
+                "PDF couldn't be opened.",
                 ErrorCode::PDF_CANT_CREATE,
                 $e
             );
@@ -54,7 +54,7 @@ class PdfUtils
             $pdf = new PdfDocument(file_get_contents($pdfPath));
             $allPagesTextElements = [];
             $pageCount = $pdf->pageCount();
-            for ($i = 0; $i < $pageCount; $i++){
+            for ($i = 0; $i < $pageCount; $i++) {
                 $page = $pdf->getPage($i);
                 $allPagesTextElements[$i] = $page->text();
             }

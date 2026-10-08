@@ -11,7 +11,6 @@ use Mindee\V2\Product\Extraction\RagDocuments\RagAnnotation;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 /**
  * RAG Documents unit tests.
  */

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Mindee\Pdf;
 
-use function BernardLedit\Image\compress as compressImage;
 use BernardLedit\Pdf\PdfDocument;
 use Mindee\Dependency\DependencyChecker;
 use Exception;
+
+use function BernardLedit\Image\compress as compressImage;
+use function strlen;
 
 /**
  * PDF compression class.
@@ -23,7 +25,6 @@ class PdfCompressor
      * @param int $imageQuality Quality of the compressed images.
      * @param boolean $forceSourceTextCompression If true, attempts to re-write detected text.
      * @param boolean $disableSourceText If true, doesn't re-apply source text to the original PDF.
-     * @return string
      * @throws Exception Throws if an error occurs during the compression process.
      */
     public static function compress(
@@ -31,8 +32,7 @@ class PdfCompressor
         int    $imageQuality = 85,
         bool   $forceSourceTextCompression = false,
         bool   $disableSourceText = true
-    ): string
-    {
+    ): string {
         DependencyChecker::requireBernardLedit();
 
         if (PdfUtils::hasSourceText($pdfData)) {
@@ -91,7 +91,7 @@ class PdfCompressor
             if (self::isCompressionSuccessful($total, $originalSize, $imageQuality)) {
                 return $pages;
             }
-            $q -= (int)round(PdfUtils::lerp(1, 10, $q / 100));   // Python: round(lerp(1,10,q/100)), NOT a flat -10
+            $q -= (int) round(PdfUtils::lerp(1, 10, $q / 100));   // Python: round(lerp(1,10,q/100)), NOT a flat -10
         }
         return null;
     }

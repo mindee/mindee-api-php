@@ -221,8 +221,7 @@ abstract class LocalInputSource extends InputSource
         try {
             $pdf = new PdfDocument(file_get_contents($this->filePath));
             return $pdf->hasNoContent();
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             throw new MindeePdfException(
                 $e->getMessage(),
                 ErrorCode::PDF_CANT_CREATE,
@@ -329,7 +328,7 @@ abstract class LocalInputSource extends InputSource
         if (!$this->isPdf()) {
             return false;
         }
-        return PdfUtils::hasSourceText($this->filePath);
+        return PdfUtils::hasSourceText(file_get_contents($this->filePath));
     }
 
 

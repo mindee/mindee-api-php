@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mindee\Image;
 
 use BernardLedit\Image\ImageException;
+use Exception;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
@@ -39,7 +40,7 @@ class ImageCompressor
         try {
             [$bytes] = compressImage($inputImage, $quality, $maxWidth, $maxHeight);
             return $bytes;
-        } catch (ImageException|ValueError $e) {
+        } catch (Exception $e) {
             throw new MindeeImageException("Image compression failed.", ErrorCode::FILE_OPERATION_ABORTED, $e);
         }
     }

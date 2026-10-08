@@ -7,7 +7,6 @@ namespace V1\Cli;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-
 class MindeeCliCommandTest extends TestCase
 {
     private string $apiKey;

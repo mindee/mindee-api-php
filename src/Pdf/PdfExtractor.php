@@ -39,7 +39,7 @@ class PdfExtractor
      * @param LocalInputSource $localInput Local Input, accepts all compatible formats.
      *
      * @throws MindeePdfException Throws if PDF operations aren't supported, or if the file
-     *                                             can't be read, respectively.
+     *                            can't be read, respectively.
      */
     public function __construct(LocalInputSource $localInput)
     {
@@ -54,7 +54,7 @@ class PdfExtractor
             }
             $this->pageCount = $this->getPageCount();
         } catch (Exception $e) {
-            throw new MindeePdfException("Couldn't open PDF file. Bernard L'Édit sent the following: ", 0, $e);
+            throw new MindeePdfException("PDF couldn't be opened. Bernard L'Édit sent the following: ", 0, $e);
         }
     }
 
@@ -72,7 +72,7 @@ class PdfExtractor
             return $pdf->pageCount();
         } catch (Exception $e) {
             throw new MindeePdfException(
-                "Couldn't open PDF file.",
+                "PDF couldn't be opened.",
                 ErrorCode::PDF_CANT_PROCESS,
                 $e
             );
@@ -126,7 +126,7 @@ class PdfExtractor
         } finally {
             try {
                 $sourcePdf->close();
-            } catch (Exception) {
+            } catch (Exception $e) {
                 throw new MindeePdfException("PDF file couldn't be closed properly.", 0, $e);
             }
         }
