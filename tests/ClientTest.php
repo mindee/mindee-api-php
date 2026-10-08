@@ -31,7 +31,7 @@ class ClientTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->oldKey = getenv('MINDEE_API_KEY');
+        $this->oldKey = (string) getenv('MINDEE_API_KEY');
         $this->dummyClient = new Client("dummy-key");
         putenv('MINDEE_API_KEY=');
         $this->emptyClient = new Client();

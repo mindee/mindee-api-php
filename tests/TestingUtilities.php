@@ -12,7 +12,7 @@ class TestingUtilities
      */
     public static function getRootDataDir(): string
     {
-        return (getenv('GITHUB_WORKSPACE') ?: ".") . "/tests/resources";
+        return __DIR__ . "/resources";
     }
 
     /**
