@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Mindee\Cli;
 
-use Mindee\V1\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\V1\Product\BusinessCard\BusinessCardV1;
 use Mindee\V1\Product\Cropper\CropperV1;
 use Mindee\V1\Product\DriverLicense\DriverLicenseV1;
@@ -20,7 +19,6 @@ use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use Mindee\V1\Product\Passport\PassportV1;
 use Mindee\V1\Product\Receipt\ReceiptV5;
 use Mindee\V1\Product\Resume\ResumeV1;
-use Mindee\V1\Product\Us\BankCheck\BankCheckV1;
 
 /**
  * Document specifications for CLI usage.
@@ -39,12 +37,6 @@ class MindeeCliDocuments
                 GeneratedV1::class,
                 false,
                 true
-            ),
-            "barcode-reader" => new DocumentCommandConfig(
-                "Barcode Reader",
-                BarcodeReaderV1::class,
-                true,
-                false
             ),
             "business-card" => new DocumentCommandConfig(
                 "Business Card",
@@ -129,12 +121,6 @@ class MindeeCliDocuments
                 ResumeV1::class,
                 false,
                 true
-            ),
-            "us-bank-check" => new DocumentCommandConfig(
-                "US Bank Check",
-                BankCheckV1::class,
-                true,
-                false
             ),
         ];
     }

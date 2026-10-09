@@ -8,7 +8,6 @@ use Mindee\Input\LocalResponse;
 use Mindee\Input\PathInput;
 use Mindee\V1\Client;
 use Mindee\V1\Image\ImageExtractor;
-use Mindee\V1\Product\BarcodeReader\BarcodeReaderV1;
 use Mindee\V1\Product\MultiReceiptsDetector\MultiReceiptsDetectorV1;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
@@ -57,35 +56,6 @@ class ImageExtractorTest extends TestCase
         return $this->dummyClient->loadPrediction(MultiReceiptsDetectorV1::class, $localResponse);
     }
 
-    public function testGivenAnImageShouldExtractValueFields(): void
-    {
-        $image = new PathInput(TestingUtilities::getV1DataDir() . "/products/barcode_reader/default_sample.jpg");
-        $response = $this->getBarcodeReaderPrediction("complete");
-        $inference = $response->document->inference;
-
-        $extractor = new ImageExtractor($image);
-        self::assertSame(1, $extractor->pageCount);
-
-        foreach ($inference->pages as $page) {
-            $codes1D = $extractor->extractImagesFromPage($page->prediction->codes1D, $page->id, "barcodes_1D.jpg");
-            foreach ($codes1D as $i => $extractedImage) {
-                self::assertNotNull($extractedImage->image);
-                $source = $extractedImage->asInputSource();
-                self::assertSame(
-                    sprintf("barcodes_1D.jpg_page0-%d.jpg", $i),
-                    $source->fileName
-                );
-                $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
-            }
-
-            $codes2D = $extractor->extractImagesFromPage($page->prediction->codes2D, $page->id, "barcodes_2D.jpg");
-            foreach ($codes2D as $extractedImage) {
-                self::assertNotNull($extractedImage->image);
-                $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
-            }
-        }
-    }
-
     public function testGivenAPdfShouldExtractPositionFields(): void
     {
         $imageInput = new PathInput(
@@ -114,12 +84,6 @@ class ImageExtractorTest extends TestCase
         }
     }
 
-    private function getBarcodeReaderPrediction($name)
-    {
-        $fileName = TestingUtilities::getV1DataDir() . "/products/barcode_reader/response_v1/{$name}.json";
-        $localResponse = new LocalResponse($fileName);
-        return $this->dummyClient->loadPrediction(BarcodeReaderV1::class, $localResponse);
-    }
 
     protected function tearDown(): void
     {

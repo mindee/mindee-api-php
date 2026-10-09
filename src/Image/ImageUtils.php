@@ -76,7 +76,7 @@ class ImageUtils
      * @param integer|null $height Height to comply with.
      * @throws ImagickException Throws if resizing fails.
      */
-    public static function resizeImage(Imagick $image, ?int $width = null, int $height = null): void
+    public static function resizeImage(Imagick $image, ?int $width = null, ?int $height = null): void
     {
         $width ??= $image->getImageWidth();
         $height ??= $image->getImageHeight();
