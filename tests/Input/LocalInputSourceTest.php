@@ -354,7 +354,7 @@ class LocalInputSourceTest extends TestCase
 
         self::assertTrue($inputSource->hasSourceText());
 
-        $inputSource->compress(5, null, null, true, false);
+        $inputSource->compress(5, null, null, true);
         file_put_contents(
             TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf",
             file_get_contents($inputSource->fileObject->getFilename())

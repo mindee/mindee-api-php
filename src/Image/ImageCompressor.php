@@ -10,7 +10,6 @@ use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
-use ValueError;
 
 use function BernardLedit\Image\compress as compressImage;
 
