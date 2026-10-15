@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class DependencyCheckerPdfTest extends TestCase
 {
-    public function testGhostScriptDependency(): void
+    public function testBernardLeditDependency(): void
     {
         $this->expectNotToPerformAssertions();
         DependencyChecker::requireBernardLedit();

@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
+
+use BernardLedit\Pdf\ImageException;
 use BernardLedit\Pdf\PdfDocument;
 use BernardLedit\Pdf\PdfiumException;
 use CURLFile;
@@ -18,16 +20,14 @@ use Mindee\Error\MindeeMimeTypeException;
 use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeSourceException;
 use Mindee\Error\MindeeUnhandledException;
-use Mindee\Image\ImageCompressor;
-use Mindee\Pdf\PdfCompressor;
 use Mindee\Pdf\PdfUtils;
 use Throwable;
 
 use function count;
 use function in_array;
-use function strlen;
 
-use const DIRECTORY_SEPARATOR;
+use function BernardLedit\Image\compress as compressImage;
+use function BernardLedit\Pdf\compress as compressPdf;
 
 /**
  * List of allowed mime types for document parsing.
@@ -290,31 +290,15 @@ abstract class LocalInputSource extends InputSource
         int  $quality = 85,
         ?int $maxWidth = null,
         ?int $maxHeight = null,
-        bool $forceSourceTextCompression = false,
-        bool $disableSourceText = true
+        ?bool $optimize = false
     ): void {
         $bytes = file_get_contents($this->fileObject->getFilename());
         if ($this->isPdf()) {
-            $bytes = PdfCompressor::compress(
-                $bytes,
-                $quality,
-                $forceSourceTextCompression,
-                $disableSourceText
-            );
-            $this->fileMimetype = 'application/pdf';
-            $extension = 'pdf';
+            $compressed = compressPdf($bytes, $quality, $optimize);
         } else {
-            $bytes = ImageCompressor::compress(
-                $bytes,
-                $quality,
-                $maxWidth,
-                $maxHeight
-            );
-            $this->fileMimetype = 'image/jpeg';
-            $extension = 'jpg';
+            [$compressed] = compressImage($bytes, $quality, $maxWidth, $maxHeight, $optimize);
         }
-        $this->fileName = pathinfo($this->fileName, PATHINFO_FILENAME) . '.' . $extension;
-        $this->saveBytesAsFile($bytes);
+        $this->saveBytesAsFile($compressed);
     }
 
     /**
