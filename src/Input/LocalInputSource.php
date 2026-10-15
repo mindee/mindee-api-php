@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
-
 use BernardLedit\Pdf\ImageException;
 use BernardLedit\Pdf\PdfDocument;
 use BernardLedit\Pdf\PdfiumException;
@@ -25,9 +24,9 @@ use Throwable;
 
 use function count;
 use function in_array;
-
 use function BernardLedit\Image\compress as compressImage;
 use function BernardLedit\Pdf\compress as compressPdf;
+use function strlen;
 
 /**
  * List of allowed mime types for document parsing.
@@ -275,26 +274,25 @@ abstract class LocalInputSource extends InputSource
     }
 
     /**
+     * Compress a file and update the file object (does not alter the original file).
+     *
      * @param integer $quality Quality of the output file.
      * @param integer|null $maxWidth Maximum width (Ignored for PDFs).
      * @param integer|null $maxHeight Maximum height (Ignored for PDFs).
-     * @param boolean $forceSourceTextCompression Whether to force the operation on PDFs with source text.
-     *                                            This will attempt to re-render PDF text over the rasterized original.
-     *                                            The script will attempt to re-write text, but might not support all fonts & encoding.
-     *                                            If disabled, ignored the operation.
-     *                                            WARNING: this operation is strongly discouraged.
-     * @param boolean $disableSourceText If the PDF has source text, whether to re-apply it to the
-     *                                   original or not. Needs force_source_text to work.
+     * @param boolean $optimize Whether to optimize the output file.
+     *                          Disabling this may result in a larger file, which will revert to the original.
+     * @param float|null $dpi DPI of the output file.
      */
     public function compress(
-        int  $quality = 85,
-        ?int $maxWidth = null,
-        ?int $maxHeight = null,
-        ?bool $optimize = false
+        int    $quality = 85,
+        ?int   $maxWidth = null,
+        ?int   $maxHeight = null,
+        ?bool  $optimize = true,
+        ?float $dpi = 72,
     ): void {
         $bytes = file_get_contents($this->fileObject->getFilename());
         if ($this->isPdf()) {
-            $compressed = compressPdf($bytes, $quality, $optimize);
+            $compressed = compressPdf($bytes, $quality, $optimize, $dpi);
         } else {
             [$compressed] = compressImage($bytes, $quality, $maxWidth, $maxHeight, $optimize);
         }
@@ -373,5 +371,15 @@ abstract class LocalInputSource extends InputSource
         }
         $this->mergePdfPages($pagesToKeep);
         $this->pageCount = $this->getPageCount();
+    }
+
+    /**
+     * Returns the file size of the current file.
+     * @return integer The file size in bytes.
+     */
+    public function getFileSize(): int
+    {
+        $bytes = file_get_contents($this->fileObject->getFilename());
+        return strlen($bytes);
     }
 }

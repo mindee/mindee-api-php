@@ -13,7 +13,6 @@ use Mindee\Input\BytesInput;
 use Mindee\Input\FileInput;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\Pdf\PdfCompressor;
 use Mindee\Pdf\PdfUtils;
 use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
@@ -303,7 +302,7 @@ class LocalInputSourceTest extends TestCase
         $sizeIgnored = filesize(TestingUtilities::getRootDataDir() . "/output/not_compressed.pdf");
         self::assertSame($sizeIgnored, $sizeOriginal);
 
-        $inputSource->compress(90, null, null, true, false);
+        $inputSource->compress(90);
         file_put_contents(
             TestingUtilities::getRootDataDir() . "/output/compress_indirect.pdf",
             file_get_contents($inputSource->fileObject->getFilename())
@@ -314,31 +313,36 @@ class LocalInputSourceTest extends TestCase
 
     public function testCompressPdfFromCompressor(): void
     {
+        $testFilePath = TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf';
+
+        $sizeOriginal = filesize($testFilePath);
         $inputSource = new PathInput(
-            TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf'
+            $testFilePath
         );
-        $sizeOriginal = filesize(TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf');
+        $inputSource85 = new PathInput(
+            $testFilePath
+        );
+        $inputSource85->compress(85);
+        $inputSource75 = new PathInput(
+            $testFilePath
+        );
+        $inputSource75->compress(75);
+        $inputSource50 = new PathInput(
+            $testFilePath
+        );
+        $inputSource50->compress(50);
+        $inputSource10 = new PathInput(
+            $testFilePath
+        );
+        $inputSource10->compress(10);
 
         self::assertFalse($inputSource->hasSourceText());
-        $pdfBytes = $inputSource->readContents()[1];
-        $pdfCompresses = [
-            85 => PdfCompressor::compress($pdfBytes),
-            75 => PdfCompressor::compress($pdfBytes, 75),
-            50 => PdfCompressor::compress($pdfBytes, 50),
-            10 => PdfCompressor::compress($pdfBytes, 10),
+        $compressSize = [
+            85 => $inputSource85->getFileSize(),
+            75 => $inputSource75->getFileSize(),
+            50 => $inputSource50->getFileSize(),
+            10 => $inputSource10->getFileSize(),
         ];
-        $outputFiles = [
-            85 => TestingUtilities::getRootDataDir() . "/output/compress_direct_85.pdf",
-            75 => TestingUtilities::getRootDataDir() . "/output/compress_direct_75.pdf",
-            50 => TestingUtilities::getRootDataDir() . "/output/compress_direct_50.pdf",
-            10 => TestingUtilities::getRootDataDir() . "/output/compress_direct_10.pdf",
-        ];
-
-        $compressSize = [];
-        foreach ($pdfCompresses as $key => $value) {
-            file_put_contents($outputFiles[$key], $value);
-            $compressSize[$key] = filesize($outputFiles[$key]);
-        }
         self::assertGreaterThan($compressSize[85], $sizeOriginal);
         self::assertGreaterThan($compressSize[75], $compressSize[85]);
         self::assertGreaterThan($compressSize[50], $compressSize[75]);
