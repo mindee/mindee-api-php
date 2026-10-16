@@ -13,7 +13,6 @@ use Mindee\Input\BytesInput;
 use Mindee\Input\FileInput;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\Pdf\PdfUtils;
 use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
@@ -99,17 +98,16 @@ class LocalInputSourceTest extends TestCase
         $inputSource->applyPageOptions(new PageOptions($indexes, KEEP_ONLY, 2));
         self::assertSame(count($indexes), $inputSource->pageCount);
 
-        // Pages are compared by rasterizing them and comparing the raw bytes, same as the Python SDK.
         $basePdf = new PdfDocument(file_get_contents($inputSource->fileObject->getFilename()));
-        $cutPdf = PdfDocument::fromFile(
-            TestingUtilities::getFileTypesDir() . "/pdf/multipage_cut-" . count($indexes) . ".pdf"
+        $cutPdf = new PdfDocument(
+            file_get_contents(TestingUtilities::getFileTypesDir() . "/pdf/multipage_cut-" . count($indexes) . ".pdf")
         );
         try {
-            self::assertSame($cutPdf->pageCount(), $basePdf->pageCount());
-            for ($pageNumber = 0; $pageNumber < $cutPdf->pageCount(); $pageNumber++) {
+            self::assertSame($cutPdf->getPageCount(), $basePdf->getPageCount());
+            for ($pageNumber = 0; $pageNumber < $cutPdf->getPageCount(); $pageNumber++) {
                 self::assertSame(
-                    $cutPdf->rasterizePage($pageNumber, 100),
-                    $basePdf->rasterizePage($pageNumber, 100),
+                    $cutPdf->rasterizePageToJpegBytes($pageNumber, 100),
+                    $basePdf->rasterizePageToJpegBytes($pageNumber, 100),
                     "Page $pageNumber differs from the reference cut PDF."
                 );
             }
@@ -358,7 +356,7 @@ class LocalInputSourceTest extends TestCase
 
         self::assertTrue($inputSource->hasSourceText());
 
-        $inputSource->compress(5, null, null, true);
+        $inputSource->compress(5);
         file_put_contents(
             TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf",
             file_get_contents($inputSource->fileObject->getFilename())
@@ -366,10 +364,10 @@ class LocalInputSourceTest extends TestCase
         $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $sizeTextCompressed = filesize(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf");
         self::assertSame($sizeTextCompressed, $sizeOriginal);
-
+        $outputDoc = new PdfDocument(file_get_contents(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf"));
         self::assertSame(
             str_repeat('*', 650),
-            implode('', str_replace([" ", "\r", "\n"], "", PdfUtils::extractPagesTextElements(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf")))
+            str_replace([" ", "\r", "\n"], "", $outputDoc->getText())
         );
     }
 }

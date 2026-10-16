@@ -6,23 +6,24 @@ namespace Mindee\Image;
 
 use BernardLedit\Image\Image;
 use BernardLedit\Image\ImageException;
-use BernardLedit\Pdf\PdfDocument;
+use BernardLedit\Image\ImageExtractException;
+use BernardLedit\Pdf\PdfExtractException;
 use BernardLedit\Pdf\PdfiumException;
 use Exception;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePdfException;
-use Mindee\Geometry\BBox;
-use Mindee\Geometry\BBoxUtils;
 use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
 use ValueError;
 
 use function BernardLedit\Image\decode;
-use function count;
+use function BernardLedit\Image\guessFormat;
+use function BernardLedit\Image\extractFromPolygons;
 use function sprintf;
+use function is_array;
 
 /**
  * Extract sub-images from an image.
@@ -53,6 +54,8 @@ class ImageExtractor
      * @var LocalInputSource Local input object used by the ImageExtractor.
      */
     protected LocalInputSource $inputSource;
+
+
     /**
      * @var integer Number of pages in the document.
      */
@@ -81,21 +84,20 @@ class ImageExtractor
             $this->saveFormat = $saveFormat;
         }
 
-        if ($this->inputSource->isPdf()) {
-            $this->pageImages = static::pdfToImages($this->inputSource->readContents()[1]);
+        if ($localInput->isPdf()) {
+            $this->pageCount = $localInput->pageCount ?? 1;
         } else {
             try {
-                $image = decode($this->inputSource->readContents()[1]);
+                guessFormat($localInput->readContents()[1]);
             } catch (ImageException $e) {
-                throw new MindeePdfException(
+                throw new MindeeImageException(
                     "Image couldn't be processed.",
                     ErrorCode::IMAGE_CANT_PROCESS,
                     $e
                 );
             }
-            $this->pageImages[] = $image;
+            $this->pageCount = 1;
         }
-        $this->pageCount = count($this->pageImages);
     }
 
     /**
@@ -142,29 +144,20 @@ class ImageExtractor
      * @return array<ExtractedImage> An array of created images
      * @throws MindeeImageException Throws if the image can't be processed.
      */
-    public function extractPolygonsFromPage(
+    public function extractMultipleImagesFromSource(
         array $polygons,
         int $pageIndex,
         ?string $filenamePrefix = null,
         ?string $format = null
     ): array {
         $saveFormat = $format ?? $this->saveFormat;
-        $extractedImages = [];
+        $filenamePrefix ??= $this->filename;
+        $crops = $this->cropPolygons(array_values($polygons), $pageIndex);
 
-        try {
-            foreach ($polygons as $i => $polygon) {
-                $filenamePrefix ??= $this->filename;
-                $outputFilename = sprintf('%s-%d.%s', $filenamePrefix, $i, $saveFormat);
-                $extractedImages[] = $this->extractPolygonFromPage(
-                    $polygon,
-                    $pageIndex,
-                    $i,
-                    $outputFilename,
-                    $saveFormat
-                );
-            }
-        } catch (Exception $e) {
-            throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
+        $extractedImages = [];
+        foreach ($crops as $i => $crop) {
+            $outputFilename = sprintf('%s-%d.%s', $filenamePrefix, $i, $saveFormat);
+            $extractedImages[] = $this->encodeCrop($crop, $pageIndex, $i, $outputFilename, $saveFormat);
         }
 
         return $extractedImages;
@@ -173,7 +166,7 @@ class ImageExtractor
     /**
      * Extracts a cropped portion from an image.
      *
-     * @param Polygon $polygon Polygon to extract.
+     * @param Polygon|array<Point> $polygon Polygon to extract.
      * @param integer $pageIndex Page index to extract from.
      * @param integer $index Index to use for naming the extracted image.
      * @param null|string $filename Output filename.
@@ -183,22 +176,17 @@ class ImageExtractor
      * @throws MindeeImageException Throws if the image can't be processed.
      */
     public function extractPolygonFromPage(
-        Polygon $polygon,
+        Polygon|array $polygon,
         int $pageIndex,
         int $index,
         ?string $filename = null,
         ?string $format = null
     ): ExtractedImage {
-        $bbox = BBoxUtils::generateBBoxFromPolygon($polygon);
-        try {
-            $format ??= $this->saveFormat;
-            $extractedImageData = $this->extractImageFromBbox($bbox, $pageIndex)
-                ->encode(ExtractedImage::getEncodedImageFormat($format), self::CROP_QUALITY);
-        } catch (ImageException|ValueError $e) {
-            throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
-        }
+        $format ??= $this->saveFormat;
+        [$crop] = $this->cropPolygons([$polygon], $pageIndex);
         $filename ??= sprintf('%s_page%d-%d.%s', $this->filename, $pageIndex, $index, $format);
-        return new ExtractedImage($extractedImageData, $filename, $format, $pageIndex, $index);
+
+        return $this->encodeCrop($crop, $pageIndex, $index, $filename, $format);
     }
 
 
@@ -209,39 +197,58 @@ class ImageExtractor
     {
         return $this->inputSource;
     }
-
     /**
-     * Extracts an image from a set of coordinates.
+     * Crops every polygon's bounding box from a page, in a single native call.
      *
-     * @param BBox $bbox BBox coordinates.
-     * @param integer|float $pageIndex The page index to extract, begins at 0.
-     * @throws ImageException|ValueError Throws if the image can't be cropped.
+     * @param array<Polygon|array<Point>> $polygons Polygons to crop.
+     * @param integer $pageIndex Page index, begins at 0.
+     * @return Image[] One image per polygon, in the same order.
+     * @throws MindeeImageException Throws if the page or polygons can't be processed.
      */
-    protected function extractImageFromBbox(BBox $bbox, int|float $pageIndex): Image
+    protected function cropPolygons(array $polygons, int $pageIndex): array
     {
-        $image = $this->pageImages[$pageIndex];
-        [$width, $height] = $image->size();
-
-        // crop() returns a new image and takes the right/bottom edges, not a width/height.
-        return $image->crop(
-            (int) round($bbox->getMinX() * $width),
-            (int) round($bbox->getMinY() * $height),
-            (int) round($bbox->getMaxX() * $width),
-            (int) round($bbox->getMaxY() * $height)
-        );
+        $pairs = array_map(static::polygonToPairs(...), $polygons);
+        try {
+            return extractFromPolygons($this->inputSource->readContents()[1], $pageIndex, $pairs);
+        } catch (ImageException|ImageExtractException|PdfExtractException|PdfiumException|ValueError $e) {
+            throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     /**
-     * Splits the filename into name and extension.
+     * Encodes a cropped image and wraps it.
      *
-     * @param string $filename Name of the file.
-     * @return array{0: string, 1: string} An array containing the name and extension of the file.
+     * @throws MindeeImageException Throws if encoding fails.
      */
-    protected static function splitNameStrict(string $filename): array
+    protected function encodeCrop(
+        Image $crop,
+        int $pageIndex,
+        int $index,
+        string $filename,
+        string $format
+    ): ExtractedImage {
+        try {
+            $data = $crop->encode(ExtractedImage::getEncodedImageFormat($format), self::CROP_QUALITY);
+        } catch (ImageException|ValueError $e) {
+            throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
+        }
+
+        return new ExtractedImage($data, $filename, $format, $pageIndex, $index);
+    }
+
+    /**
+     * Converts a polygon to the `[[x, y], ...]` shape the native extension expects.
+     *
+     * @param Polygon|array<Point> $polygon Polygon or list of points.
+     * @return array<array{0: float, 1: float}>
+     */
+    protected static function polygonToPairs(Polygon|array $polygon): array
     {
-        return [
-            pathinfo($filename, PATHINFO_FILENAME),
-            pathinfo($filename, PATHINFO_EXTENSION),
-        ];
+        $points = is_array($polygon) ? $polygon : $polygon->getCoordinates();
+
+        return array_map(
+            static fn(Point $p): array => [$p->getX(), $p->getY()],
+            array_values($points)
+        );
     }
 }

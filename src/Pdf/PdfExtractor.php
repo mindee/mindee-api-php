@@ -69,7 +69,7 @@ class PdfExtractor
     {
         try {
             $pdf = new PdfDocument($this->pdfBytes);
-            return $pdf->pageCount();
+            return $pdf->getPageCount();
         } catch (Exception $e) {
             throw new MindeePdfException(
                 "PDF couldn't be opened.",
@@ -116,7 +116,7 @@ class PdfExtractor
                 try {
                     $subPdf = PdfDocument::create();
                     $subPdf->importPages($sourcePdf, $pageIndexElem);
-                    $mergedPdfBytes = $subPdf->save();
+                    $mergedPdfBytes = $subPdf->asBytes();
                     $subPdf->close();
                 } catch (Exception $e) {
                     throw new MindeePdfException("PDF file couldn't be processed during extraction.", 0, $e);

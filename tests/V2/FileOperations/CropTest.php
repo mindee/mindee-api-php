@@ -37,7 +37,7 @@ class CropTest extends TestCase
         self::assertSame(0, $extractedCrops[0]->pageId);
         self::assertSame(0, $extractedCrops[0]->elementId);
 
-        self::assertSame([2822, 1572], decode($extractedCrops[0]->buffer)->size());
+        self::assertSame([2822, 1572], decode($extractedCrops[0]->buffer)->getSize());
     }
 
     public function testProcessesMultiPageReceiptSplitCorrectly(): void
@@ -55,11 +55,11 @@ class CropTest extends TestCase
         self::assertSame(0, $extractedCrops[0]->pageId);
         self::assertSame(0, $extractedCrops[0]->elementId);
 
-        self::assertSame([156, 757], decode($extractedCrops[0]->buffer)->size());
+        self::assertSame([156, 757], decode($extractedCrops[0]->buffer)->getSize());
 
         self::assertSame(0, $extractedCrops[1]->pageId);
         self::assertSame(1, $extractedCrops[1]->elementId);
 
-        self::assertSame([188, 691], decode($extractedCrops[1]->buffer)->size());
+        self::assertSame([188, 691], decode($extractedCrops[1]->buffer)->getSize());
     }
 }
