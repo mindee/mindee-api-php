@@ -21,8 +21,10 @@ use Mindee\Error\MindeeSourceException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Pdf\PdfUtils;
 use Throwable;
+use ValueError;
 
-use function count;
+use function BernardLedit\Pdf\applyPageOptions as nativeApplyPageOptions;
+use function BernardLedit\Pdf\fixPdf as nativeFixPdf;
 use function in_array;
 use function BernardLedit\Image\compress as compressImage;
 use function BernardLedit\Pdf\compress as compressPdf;
@@ -135,7 +137,7 @@ abstract class LocalInputSource extends InputSource
     /**
      * Counts the amount of pages in a PDF.
      *
-     * @return integer
+     * @return integer Page count.
      * @throws MindeePdfException Throws if the source pdf can't be properly processed.
      * @throws MindeeSourceException Throws if the source isn't a pdf.
      * @throws MindeeUnhandledException Throws if the bernard_ledit extension isn't loaded.
@@ -151,7 +153,7 @@ abstract class LocalInputSource extends InputSource
         DependencyChecker::requireBernardLedit();
         try {
             $pdf = new PdfDocument(file_get_contents($this->fileObject->getFilename()));
-            return $pdf->pageCount();
+            return $pdf->getPageCount();
         } catch (PdfiumException $e) {
             throw new MindeePdfException(
                 $e->getMessage(),
@@ -179,35 +181,6 @@ abstract class LocalInputSource extends InputSource
     }
 
     /**
-     * Create a new PDF from pages and set it as the main file object.
-     * @param array<integer> $pageNumbers Array of page numbers to add to the newly created PDF.
-     * @throws MindeePdfException Throws if the pdf file can't be processed.
-     * @throws MindeeUnhandledException Throws if the bernard_ledit extension isn't loaded.
-     */
-    public function mergePdfPages(array $pageNumbers): void
-    {
-        DependencyChecker::requireBernardLedit();
-        try {
-            $originalPdf = new PdfDocument(file_get_contents($this->filePath));
-            $newPdf = PdfDocument::create();
-            $newPdf->importPages($originalPdf, $pageNumbers);
-            $this->saveBytesAsFile($newPdf->save());
-        } catch (PdfiumException $e) {
-            throw new MindeePdfException(
-                $e->getMessage(),
-                ErrorCode::PDF_CANT_PROCESS,
-                $e
-            );
-        } catch (Exception $e) {
-            throw new MindeePdfException(
-                $e->getMessage(),
-                ErrorCode::PDF_CANT_CREATE,
-                $e
-            );
-        }
-    }
-
-    /**
      * Checks whether the contents of a PDF are empty.
      *
      * @return boolean
@@ -218,16 +191,17 @@ abstract class LocalInputSource extends InputSource
     {
         DependencyChecker::requireBernardLedit();
         try {
-            $pdf = new PdfDocument(file_get_contents($this->filePath));
-            return $pdf->hasNoContent();
+            $pdf = new PdfDocument(file_get_contents($this->fileObject->getFilename()));
+            try {
+                return $pdf->hasNoContent();
+            } finally {
+                $pdf->close();
+            }
         } catch (Exception $e) {
-            throw new MindeePdfException(
-                $e->getMessage(),
-                ErrorCode::PDF_CANT_CREATE,
-                $e
-            );
+            throw new MindeePdfException($e->getMessage(), ErrorCode::PDF_CANT_CREATE, $e);
         }
     }
+
 
     /**
      * Reads the contents of the file.
@@ -246,31 +220,20 @@ abstract class LocalInputSource extends InputSource
      *
      * @throws MindeeSourceException Throws if the file couldn't be fixed.
      */
-    public function fixPdf(): void
+    public function fixPdf(int $maximumOffset = 500): void
     {
         if (str_starts_with($this->fileMimetype, "image/")) {
             error_log("Input file is an image, skipping PDF fix.");
             return;
         }
-        $bytesContent = file_get_contents($this->fileObject->getFilename());
-
-        $pdfMarkerPosition = strrpos(strtoupper($bytesContent), '%PDF');
-
-        if ($pdfMarkerPosition !== false) {
-            $tempFile = tempnam(sys_get_temp_dir(), 'pdf_fix_');
-            rename($tempFile, $tempFile .= "." . pathinfo($this->fileName, PATHINFO_EXTENSION));
-            file_put_contents($tempFile, substr($bytesContent, $pdfMarkerPosition));
-
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $this->fileMimetype = finfo_file($finfo, $tempFile);
-            finfo_close($finfo);
-            $this->fileObject = new CURLFile($tempFile, $this->fileMimetype, $this->fileName);
-            return;
+        DependencyChecker::requireBernardLedit();
+        try {
+            $fixed = nativeFixPdf(file_get_contents($this->fileObject->getFilename()), $maximumOffset);
+        } catch (ValueError $e) {
+            throw new MindeeSourceException($e->getMessage(), ErrorCode::FILE_OPERATION_ERROR, $e);
         }
-        throw new MindeeSourceException(
-            "PDF file could not be fixed.",
-            ErrorCode::FILE_OPERATION_ERROR
-        );
+        $this->fileMimetype = 'application/pdf';
+        $this->saveBytesAsFile($fixed);
     }
 
     /**
@@ -310,7 +273,7 @@ abstract class LocalInputSource extends InputSource
         if (!$this->isPdf()) {
             return false;
         }
-        return PdfUtils::hasSourceText(file_get_contents($this->filePath));
+        return PdfUtils::hasSourceText(file_get_contents($this->fileObject->getFilename()));
     }
 
 
@@ -322,55 +285,40 @@ abstract class LocalInputSource extends InputSource
      */
     public function applyPageOptions(?PageOptions $pageOptions): void
     {
-        if ($this->isPdfEmpty()) {
-            throw new MindeePdfException(
-                "Pages are empty in PDF file.",
-                ErrorCode::USER_INPUT_ERROR
-            );
-        }
-        if ($this->getPageCount() < $pageOptions->onMinPage) {
+        if ($pageOptions === null) {
             return;
         }
-        $allPages = range(0, $this->getPageCount() - 1);
-        $pagesToKeep = [];
-        if ($pageOptions->operation === KEEP_ONLY) {
-            foreach ($pageOptions->pageIndexes as $pageId) {
-                if ($pageId < 0) {
-                    $pageId = $this->getPageCount() + $pageId;
-                }
-                if (!in_array($pageId, $allPages, true)) {
-                    error_log("Page index '" . $pageId . "' is not present in source document");
-                } else {
-                    $pagesToKeep[] = $pageId;
-                }
-            }
-        } elseif ($pageOptions->operation === REMOVE) {
-            $pagesToRemove = [];
-            foreach ($pageOptions->pageIndexes as $pageId) {
-                if ($pageId < 0) {
-                    $pageId = $this->getPageCount() + $pageId;
-                }
-                if (!in_array($pageId, $allPages, true)) {
-                    error_log("Page index '" . $pageId . "' is not present in source document");
-                } else {
-                    $pagesToRemove[] = $pageId;
-                }
-            }
-            $pagesToKeep = array_diff($allPages, $pagesToRemove);
-        } else {
-            throw new MindeePdfException(
-                "Unknown operation '" . $pageOptions->operation . "'.",
+        if (!$this->isPdf()) {
+            throw new MindeeSourceException(
+                "File is not a PDF: " . $this->fileName,
                 ErrorCode::USER_OPERATION_ERROR
             );
         }
-        if (count($pagesToKeep) < 1) {
-            throw new MindeePdfException(
-                "Resulting PDF would have no pages left.",
-                ErrorCode::USER_OPERATION_ERROR
+        DependencyChecker::requireBernardLedit();
+        try {
+            [$document, $skipped] = nativeApplyPageOptions(
+                file_get_contents($this->fileObject->getFilename()),
+                $pageOptions->operation,
+                $pageOptions->onMinPage,
+                array_values($pageOptions->pageIndexes)
             );
+        } catch (PdfiumException $e) {
+            throw new MindeePdfException($e->getMessage(), ErrorCode::PDF_CANT_PROCESS, $e);
+        } catch (ValueError $e) {
+            throw new MindeePdfException($e->getMessage(), ErrorCode::USER_OPERATION_ERROR, $e);
         }
-        $this->mergePdfPages($pagesToKeep);
-        $this->pageCount = $this->getPageCount();
+        foreach ($skipped as $pageId) {
+            error_log("Page index '" . $pageId . "' is not present in source document");
+        }
+        if ($document === null) {
+            return;
+        }
+        try {
+            $this->saveBytesAsFile($document->asBytes());
+            $this->pageCount = $document->getPageCount();
+        } finally {
+            $document->close();
+        }
     }
 
     /**

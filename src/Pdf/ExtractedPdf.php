@@ -49,7 +49,7 @@ class ExtractedPdf
     {
         try {
             $pdf = new PdfDocument($this->pdfBytes);
-            return $pdf->pageCount();
+            return $pdf->getPageCount();
         } catch (Exception $e) {
             throw new MindeePdfException(
                 "PDF couldn't be opened.",
