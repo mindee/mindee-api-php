@@ -16,6 +16,9 @@ use TestingUtilities;
 
 use function strlen;
 
+/**
+ * @group bernard-ledit
+ */
 class CropFunctional extends TestCase
 {
     private Client $client;

@@ -53,7 +53,7 @@ class Crop
             $polygons = array_map(static fn($c) => $c->location->polygon, $pageCrops);
             $filenamePrefix = sprintf('%s_page%d', $this->localInput->fileName, $page);
 
-            $images = $imageExtractor->extractPolygonsFromPage(
+            $images = $imageExtractor->extractMultipleImagesFromSource(
                 $polygons,
                 $page,
                 $filenamePrefix

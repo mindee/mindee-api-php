@@ -12,8 +12,6 @@ use Mindee\V1\Product\FinancialDocument\FinancialDocumentV1;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../TestingUtilities.php");
-
 class WorkflowTestFunctional extends TestCase
 {
     private $workflowId;

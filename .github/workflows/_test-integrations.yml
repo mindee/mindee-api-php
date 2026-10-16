@@ -38,32 +38,35 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ghostscript
+
+      # Built by _build-bernard-ledit.yml, which the calling workflow must run first.
+      - name: Download bernard-ledit PHP extension
+        uses: actions/download-artifact@v4
+        with:
+          name: bernard-ledit-php-${{ matrix.php-version }}
+          path: ${{ github.workspace }}/.github/artifacts/bernard-ledit
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
+          extensions: curl, fileinfo, json
+          ini-values: >-
+            extension=${{ github.workspace }}/.github/artifacts/bernard-ledit/bernard_ledit.so,
+            bernard_ledit.pdfium_path=${{ github.workspace }}/.github/artifacts/bernard-ledit/libpdfium.so
+
+      - name: Check bernard-ledit is loaded
+        run: |
+          php -r 'exit(extension_loaded("bernard_ledit") ? 0 : 1);'
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
-
-      - name: Change ImageMagick security policy on Ubuntu
-        run: |
-          DQT='"'
-          SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
-          RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
 
       - name: Unit testing with phpunit
         run: |
           ./vendor/bin/phpunit -c tests/functional.xml
 
-# MacOS testing disabled because of capricious GS/ImageMagick/Homebrew behaviors
+# MacOS testing disabled until bernard-ledit is built for macOS.
 #  integration-tests-macos:
 #    name: Run Integration Tests on MacOS
 #    timeout-minutes: 30
@@ -109,23 +112,18 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: choco install ghostscript --version 10.03.1 -y
-
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:
           phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
-
-      - name: Install Ghostscript
-        run: choco install ghostscript -y
+          extensions: curl, fileinfo, json
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
 
+      # bernard-ledit isn't built for Windows yet: skip the tests that need it.
       - name: Unit testing with phpunit
         run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
+          ./vendor/bin/phpunit -c tests/functional.xml --exclude-group bernard-ledit

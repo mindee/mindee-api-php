@@ -1,0 +1,115 @@
+#
+# Build the bernard_ledit PHP extension from the submodule.
+#
+name: Build bernard-ledit PHP extension
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-extension:
+    name: Build bernard-ledit for PHP ${{ matrix.php-version }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - 8.1
+          - 8.2
+          - 8.3
+          - 8.4
+          - 8.5
+    # Built on the oldest supported glibc, runs on ubuntu-latest.
+    runs-on: "ubuntu-22.04"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Resolve bernard-ledit submodule commit
+        id: bernard
+        run: echo "sha=$(git -C bernard-ledit rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      # Skip the whole Rust build when the submodule pointer is unchanged.
+      # The extension is tied to the PHP minor version it was built against, hence the PHP version in the key.
+      - name: Restore cached bernard-ledit build
+        id: cache
+        uses: actions/cache@v5
+        with:
+          path: ./.github/artifacts/bernard-ledit
+          key: bernard-ledit-php-${{ matrix.php-version }}-${{ runner.os }}-${{ steps.bernard.outputs.sha }}
+
+      # Must run before cargo: ext-php-rs builds against the php-config found in PATH.
+      - name: Set up PHP ${{ matrix.php-version }}
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      # The runner ships several LLVMs: clang-sys loads the newest libclang, while bindgen adds the
+      # include paths of the default `clang` (14). Mixing them breaks parsing of Clang 14's SSE headers,
+      # so pin libclang to the same version as the default clang.
+      - name: Install libclang
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libclang-14-dev
+          echo "LIBCLANG_PATH=/usr/lib/llvm-14/lib" >> "$GITHUB_ENV"
+
+      - name: Set up Rust toolchain
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache downloaded PDFium binary
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v5
+        with:
+          path: bernard-ledit/core/.pdfium_cache
+          key: pdfium-${{ runner.os }}-${{ hashFiles('bernard-ledit/core/build.rs') }}
+          restore-keys: |
+            pdfium-${{ runner.os }}-
+
+      - name: Cache Rust build
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: bernard-ledit
+          key: php-${{ matrix.php-version }}-${{ steps.bernard.outputs.sha }}
+
+      - name: Build bernard-ledit PHP extension
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          cargo build -p bernard-ledit-php --release --manifest-path bernard-ledit/Cargo.toml
+          mkdir -p ./.github/artifacts/bernard-ledit
+          cp bernard-ledit/target/release/libbernard_ledit_php.so ./.github/artifacts/bernard-ledit/bernard_ledit.so
+
+      # The extension is linked dynamically against PDFium; ship the library so consumers can set bernard_ledit.pdfium_path.
+      - name: Collect bundled PDFium library
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          lib=$(find bernard-ledit/core/.pdfium_cache -name 'libpdfium.so' -print | head -n 1)
+          if [ -z "$lib" ]; then
+            echo "::error::PDFium library not found under bernard-ledit/core/.pdfium_cache after build"
+            exit 1
+          fi
+          cp "$lib" ./.github/artifacts/bernard-ledit/
+
+      - name: Check the extension loads
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          php -d extension="$PWD/.github/artifacts/bernard-ledit/bernard_ledit.so" \
+              -d bernard_ledit.pdfium_path="$PWD/.github/artifacts/bernard-ledit/libpdfium.so" \
+              -r 'exit(extension_loaded("bernard_ledit") && 0 === BernardLedit\Pdf\PdfDocument::create()->pageCount() ? 0 : 1);'
+
+      - name: Upload bernard-ledit build
+        uses: actions/upload-artifact@v4
+        with:
+          name: bernard-ledit-php-${{ matrix.php-version }}
+          path: |
+            ./.github/artifacts/bernard-ledit/bernard_ledit.so
+            ./.github/artifacts/bernard-ledit/libpdfium.so
+          if-no-files-found: error
