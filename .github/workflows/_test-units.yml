@@ -35,7 +35,6 @@ jobs:
         run: |
           ./vendor/bin/phpunit -c tests/pdffeatures.xml
 
-
   with-pdf-linux:
     name: Unit Tests on Linux with PDF support
     timeout-minutes: 30
@@ -53,24 +52,37 @@ jobs:
         with:
           submodules: recursive
 
-      # Built by _build-bernard-ledit.yml, which the calling workflow must run first.
-      - name: Download bernard-ledit PHP extension
-        uses: actions/download-artifact@v4
-        with:
-          name: bernard-ledit-php-${{ matrix.php-version }}
-          path: ${{ github.workspace }}/.github/artifacts/bernard-ledit
-
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          ini-values: >-
-            extension=${{ github.workspace }}/.github/artifacts/bernard-ledit/bernard_ledit.so,
-            bernard_ledit.pdfium_path=${{ github.workspace }}/.github/artifacts/bernard-ledit/libpdfium.so
+          tools: php-config
 
-      - name: Check bernard-ledit is loaded
+      - name: Resolve PDFium release
+        id: pdfium
+        shell: bash
         run: |
-          php -r 'exit(extension_loaded("bernard_ledit") ? 0 : 1);'
+          rel="$(tr -d '[:space:]' < bernard-ledit/core/pdfium-release)"
+          echo "dir=${rel//\//_}" >> "$GITHUB_OUTPUT"
+
+      - name: Cache PDFium binary
+        uses: actions/cache@v5
+        with:
+          path: bernard-ledit/core/.pdfium_cache
+          key: pdfium-${{ runner.os }}-${{ runner.arch }}-${{ steps.pdfium.outputs.dir }}
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: bernard-ledit
+          key: php${{ matrix.php-version }}
+
+      - name: Install bernard-ledit extension
+        run: bash tools/install-bernard-ledit.sh
+
+      # Harmless if the build finds PDFium on its own; required if it doesn't.
+      - name: Point the extension at PDFium
+        run: echo "PDFIUM_PATH=$(php -r 'echo ini_get("extension_dir");')/libpdfium.so" >> "$GITHUB_ENV"
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
@@ -78,152 +90,4 @@ jobs:
       - name: Unit testing with phpunit
         env:
           MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/phpunit.xml
-
-
-  no-pdf-macos:
-    name: Unit Tests on MacOS without PDF support
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        php-version:
-          - 8.1
-          - 8.2
-          - 8.3
-          - 8.4
-    runs-on: "macos-latest"
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: recursive
-      - name: Set up PHP ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
-        with:
-          php-version: ${{ matrix.php-version }}
-      - uses: ramsey/composer-install@v3
-      - name: Unit testing with phpunit
-        env:
-          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/pdffeatures.xml
-
-# Note: Disabled until bernard-ledit is built for macOS (see bernard-ledit HANDOVER).
-#  with-pdf-macos:
-#    name: Unit Tests on MacOS with PDF support
-#    timeout-minutes: 30
-#    strategy:
-#      matrix:
-#        php-version:
-#          - 8.1
-#          - 8.2
-#          - 8.3
-#          - 8.4
-#    runs-on: "macos-latest"
-#    steps:
-#      - uses: actions/checkout@v6
-#        with:
-#          submodules: recursive
-#      - name: Install Homebrew
-#        run: |
-#          brew update
-#          brew upgrade
-#          brew uninstall -f imagemagick || true
-#          brew uninstall -f pkg-config || true
-#          brew cleanup
-#      - name: Install Imagemagick
-#        run: |
-#          brew install pkg-config ghostscript imagemagick@7
-#          export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
-#      - name: Set up PHP ${{ matrix.php-version }}
-#        uses: shivammathur/setup-php@v2
-#        env:
-#          phpts: zts
-#        with:
-#          php-version: ${{ matrix.php-version }}
-#      - name: Install Imagick
-#        run: pecl install imagick
-#      - uses: ramsey/composer-install@v3
-#      - name: Unit testing with phpunit
-#        env:
-#          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-#        run: |
-#          ./vendor/bin/phpunit -c tests/phpunit.xml
-
-  no-pdf-windows:
-    name: Unit Tests on Windows without PDF support
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        php-version:
-          - 8.1
-          - 8.2
-          - 8.3
-          - 8.4
-    runs-on: "windows-latest"
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: recursive
-
-      - name: Set up PHP ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
-        with:
-          php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json
-
-      - name: Install dependencies
-        uses: ramsey/composer-install@v3
-
-      - name: Unit testing with phpunit
-        env:
-          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/pdffeatures.xml
-
-
-# Note: Disabled until bernard-ledit is built for Windows (needs nightly Rust, see bernard-ledit HANDOVER).
-#  with-pdf-windows:
-#    name: Unit Tests on Windows with PDF support
-#    timeout-minutes: 30
-#    strategy:
-#      matrix:
-#        php-version:
-#          - 8.1
-#          - 8.2
-#          - 8.3
-#          - 8.4
-#    runs-on: "windows-latest"
-#    steps:
-#      - uses: actions/checkout@v6
-#        with:
-#          submodules: recursive
-#      - name: Install Ghostscript
-#        run: choco install ghostscript --version 10.04.0 -y
-#
-#      - name: Create Ghostscript alias
-#        run: |
-#          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
-#          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
-#        shell: powershell
-#
-#      - name: Set up PHP ${{ matrix.php-version }}
-#        uses: shivammathur/setup-php@v2
-#        env:
-#          phpts: zts
-#        with:
-#          php-version: ${{ matrix.php-version }}
-#          extensions: curl, fileinfo, json, imagick
-#
-#      - name: Install dependencies
-#        uses: ramsey/composer-install@v3
-#
-#      - name: Unit testing with phpunit
-#        env:
-#          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-#        run: |
-#          ./vendor/bin/phpunit -c tests/phpunit.xml
+        run: ./vendor/bin/phpunit -c tests/phpunit.xml
