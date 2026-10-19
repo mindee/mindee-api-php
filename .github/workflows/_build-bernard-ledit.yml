@@ -103,7 +103,7 @@ jobs:
         run: |
           php -d extension="$PWD/.github/artifacts/bernard-ledit/bernard_ledit.so" \
               -d bernard_ledit.pdfium_path="$PWD/.github/artifacts/bernard-ledit/libpdfium.so" \
-              -r 'exit(extension_loaded("bernard_ledit") && 0 === BernardLedit\Pdf\PdfDocument::create()->pageCount() ? 0 : 1);'
+              -r 'exit(extension_loaded("bernard_ledit") && 0 === BernardLedit\Pdf\PdfDocument::create()->getPageCount() ? 0 : 1);'
 
       - name: Upload bernard-ledit build
         uses: actions/upload-artifact@v4
