@@ -65,6 +65,7 @@
     "test:smoke:v1": "./tests/test_v1_code_samples.sh",
     "test:smoke:v2": "./tests/test_v2_code_samples.sh",
     "test:cli:v1": "./tests/test_v1_cli.sh",
-    "test:cli:v2": "./tests/test_v2_cli.sh"
+    "test:cli:v2": "./tests/test_v2_cli.sh",
+    "setup:bernard-ledit": "bash tools/install-bernard-ledit.sh"
   }
 }

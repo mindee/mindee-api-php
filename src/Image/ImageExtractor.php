@@ -7,6 +7,7 @@ namespace Mindee\Image;
 use BernardLedit\Image\Image;
 use BernardLedit\Image\ImageException;
 use BernardLedit\Image\ImageExtractException;
+use BernardLedit\Pdf\PdfDocument;
 use BernardLedit\Pdf\PdfExtractException;
 use BernardLedit\Pdf\PdfiumException;
 use Exception;
@@ -115,8 +116,8 @@ class ImageExtractor
             $images = [];
             $pdf = new PdfDocument($fileBytes);
             try {
-                for ($i = 0; $i < $pdf->pageCount(); $i++) {
-                    $images[] = decode($pdf->rasterizePage($i, 100));
+                for ($i = 0; $i < $pdf->getPageCount(); $i++) {
+                    $images[] = decode($pdf->rasterizePageToJpegBytes($i, 100));
                 }
             } finally {
                 $pdf->close();
