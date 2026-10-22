@@ -31,26 +31,6 @@ class WorkflowTestFunctional extends TestCase
         );
     }
 
-    public function testWorkflow(): void
-    {
-        $currentDateTime = date('Y-m-d-H:i:s');
-        $options = new WorkflowOptions(
-            "php-" . $currentDateTime,
-            "low",
-            false,
-            null,
-            true
-        );
-        $response = $this->mindeeClient->executeWorkflow(
-            $this->inputSource,
-            $this->workflowId,
-            $options
-        );
-        self::assertSame(202, $response->apiRequest->statusCode);
-        self::assertSame("php-$currentDateTime", $response->execution->file->alias);
-        self::assertSame("low", $response->execution->priority);
-    }
-
     public function testWorkflowPollingWithRAG(): void
     {
         $options = new PredictMethodOptions();

@@ -228,56 +228,6 @@ class Client
     }
 
     /**
-     * Makes the request to send a document to a workflow.
-     *
-     * @param string $predictionType Name of the product's class.
-     * @param InputSource $inputDoc Input file.
-     * @param string $workflowId ID of the workflow.
-     * @param PredictMethodOptions $options Prediction Options.
-     * @throws MindeeV1HttpException Throws if the API sent an error.
-     * @throws MindeeApiException Throws if the API sent an error,
-     *                            or if the prediction type isn't recognized or if a field can't be deserialized.
-     */
-    private function makeWorkflowExecutionRequest(
-        string $predictionType,
-        InputSource $inputDoc,
-        string $workflowId,
-        PredictMethodOptions $options
-    ): WorkflowResponse {
-        $workflowRouterSettings = new MindeeWorkflowApi($this->apiKey, $workflowId);
-        $options->endpoint = new WorkflowEndpoint($workflowRouterSettings);
-        if (!$options->pageOptions->isEmpty()) {
-            if ($inputDoc instanceof LocalInputSource) {
-                $this->cutDocPages($inputDoc, $options->pageOptions);
-            } else {
-                throw new MindeeApiException(
-                    "Cannot edit non-local input sources.",
-                    ErrorCode::USER_OPERATION_ERROR
-                );
-            }
-        }
-        $response = ResponseValidation::cleanRequestData($options->endpoint->executeWorkflowRequestPost(
-            $inputDoc,
-            $options->workflowOptions
-        ));
-        if (!ResponseValidation::isValidWorkflowResponse($response)) {
-            throw MindeeV1HttpException::handleError(
-                "workflows/$workflowId/executions",
-                $response
-            );
-        }
-        try {
-            return new WorkflowResponse($predictionType, $response['data']);
-        } catch (Exception $e) {
-            throw new MindeeApiException(
-                "Unable to create workflow response for $predictionType",
-                ErrorCode::API_UNPROCESSABLE_ENTITY,
-                previous: $e
-            );
-        }
-    }
-
-    /**
      * Makes the request to send a document to a synchronous endpoint.
      *
      * @param string $predictionType Name of the product's class.
@@ -461,34 +411,5 @@ class Client
                 previous: $e
             );
         }
-    }
-
-    /**
-     * Sends a document to a workflow.
-     *
-     * @param InputSource $inputDoc Input File.
-     * @param string $workflowId ID of the workflow.
-     * @param WorkflowOptions|null $options Prediction Options.
-     * @param PageOptions|null $pageOptions Options to apply to the PDF file.
-     */
-    public function executeWorkflow(
-        InputSource $inputDoc,
-        string $workflowId,
-        ?WorkflowOptions $options = null,
-        ?PageOptions $pageOptions = null
-    ): WorkflowResponse {
-        $options ??= new WorkflowOptions();
-        if ($pageOptions !== null && $inputDoc instanceof LocalInputSource && $inputDoc->isPdf()) {
-            $this->cutDocPages($inputDoc, $pageOptions);
-        }
-
-        $predictMethodOptions = new PredictMethodOptions();
-        $predictMethodOptions->setWorkflowOptions($options);
-        return $this->makeWorkflowExecutionRequest(
-            GeneratedV1::class,
-            $inputDoc,
-            $workflowId,
-            $predictMethodOptions
-        );
     }
 }
