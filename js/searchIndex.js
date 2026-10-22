@@ -786,6 +786,11 @@ Search.appendIndex(
             "summary": "Base\u0020class\u0020for\u0020all\u0020input\u0020sources\u0020coming\u0020from\u0020the\u0020local\u0020machine.",
             "url": "classes/Mindee-Input-LocalInputSource.html"
         },                {
+            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Base\u0020constructor,\u0020mostly\u0020used\u0020for\u0020Mime\u0020type\u0020checking.",
+            "url": "classes/Mindee-Input-LocalInputSource.html#method___construct"
+        },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AcheckNeedsFix\u0028\u0029",
             "name": "checkNeedsFix",
             "summary": "Checks\u0020if\u0020the\u0020file\u0020needs\u0020fixing.",
@@ -795,11 +800,6 @@ Search.appendIndex(
             "name": "checkMimeType",
             "summary": "Checks\u0020the\u0020mimetype\u0020integrity\u0020of\u0020a\u0020file.",
             "url": "classes/Mindee-Input-LocalInputSource.html#method_checkMimeType"
-        },                {
-            "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Base\u0020constructor,\u0020mostly\u0020used\u0020for\u0020Mime\u0020type\u0020checking.",
-            "url": "classes/Mindee-Input-LocalInputSource.html#method___construct"
         },                {
             "fqsen": "\\Mindee\\Input\\LocalInputSource\u003A\u003AisPdf\u0028\u0029",
             "name": "isPdf",
@@ -1281,11 +1281,6 @@ Search.appendIndex(
             "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020an\u0020asynchronous\u0020endpoint.",
             "url": "classes/Mindee-V1-Client.html#method_makeEnqueueRequest"
         },                {
-            "fqsen": "\\Mindee\\V1\\Client\u003A\u003AmakeWorkflowExecutionRequest\u0028\u0029",
-            "name": "makeWorkflowExecutionRequest",
-            "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020a\u0020workflow.",
-            "url": "classes/Mindee-V1-Client.html#method_makeWorkflowExecutionRequest"
-        },                {
             "fqsen": "\\Mindee\\V1\\Client\u003A\u003AmakeParseRequest\u0028\u0029",
             "name": "makeParseRequest",
             "summary": "Makes\u0020the\u0020request\u0020to\u0020send\u0020a\u0020document\u0020to\u0020a\u0020synchronous\u0020endpoint.",
@@ -1315,11 +1310,6 @@ Search.appendIndex(
             "name": "loadPrediction",
             "summary": "",
             "url": "classes/Mindee-V1-Client.html#method_loadPrediction"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Client\u003A\u003AexecuteWorkflow\u0028\u0029",
-            "name": "executeWorkflow",
-            "summary": "Sends\u0020a\u0020document\u0020to\u0020a\u0020workflow.",
-            "url": "classes/Mindee-V1-Client.html#method_executeWorkflow"
         },                {
             "fqsen": "\\Mindee\\V1\\Client\u003A\u003ADEFAULT_OWNER",
             "name": "DEFAULT_OWNER",
@@ -3036,51 +3026,6 @@ Search.appendIndex(
             "summary": "Extracts\u0020invoices\u0020as\u0020complete\u0020PDFs\u0020from\u0020the\u0020document.",
             "url": "classes/Mindee-V1-Pdf-PdfExtractor.html#method_extractInvoices"
         },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1",
-            "name": "BarcodeReaderV1",
-            "summary": "Barcode\u0020Reader\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1Document",
-            "name": "BarcodeReaderV1Document",
-            "summary": "Barcode\u0020Reader\u0020API\u0020version\u00201.0\u0020document\u0020data.",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1Document\u003A\u003A\u0024codes1D",
-            "name": "codes1D",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1Document.html#property_codes1D"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader\\BarcodeReaderV1Document\u003A\u003A\u0024codes2D",
-            "name": "codes2D",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-BarcodeReader-BarcodeReaderV1Document.html#property_codes2D"
-        },                {
             "fqsen": "\\Mindee\\V1\\Product\\BusinessCard\\BusinessCardV1",
             "name": "BusinessCardV1",
             "summary": "Business\u0020Card\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
@@ -3616,56 +3561,6 @@ Search.appendIndex(
             "summary": "String\u0020representation.",
             "url": "classes/Mindee-V1-Product-FinancialDocument-FinancialDocumentV1LineItems.html#method___toString"
         },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1",
-            "name": "BankAccountDetailsV1",
-            "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document",
-            "name": "BankAccountDetailsV1Document",
-            "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00201.0\u0020document\u0020data.",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document\u003A\u003A\u0024accountHolderName",
-            "name": "accountHolderName",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#property_accountHolderName"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document\u003A\u003A\u0024iban",
-            "name": "iban",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#property_iban"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV1Document\u003A\u003A\u0024swift",
-            "name": "swift",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-BankAccountDetails-BankAccountDetailsV1Document.html#property_swift"
-        },                {
             "fqsen": "\\Mindee\\V1\\Product\\Fr\\BankAccountDetails\\BankAccountDetailsV2",
             "name": "BankAccountDetailsV2",
             "summary": "Bank\u0020Account\u0020Details\u0020API\u0020version\u00202\u0020inference\u0020prediction.",
@@ -4010,111 +3905,6 @@ Search.appendIndex(
             "name": "y6",
             "summary": "",
             "url": "classes/Mindee-V1-Product-Fr-CarteGrise-CarteGriseV1Document.html#property_y6"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1",
-            "name": "IdCardV1",
-            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document",
-            "name": "IdCardV1Document",
-            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201.1\u0020document\u0020data.",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024authority",
-            "name": "authority",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_authority"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024birthDate",
-            "name": "birthDate",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_birthDate"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024birthPlace",
-            "name": "birthPlace",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_birthPlace"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024expiryDate",
-            "name": "expiryDate",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_expiryDate"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024gender",
-            "name": "gender",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_gender"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024givenNames",
-            "name": "givenNames",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_givenNames"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024idNumber",
-            "name": "idNumber",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_idNumber"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024mrz1",
-            "name": "mrz1",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_mrz1"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024mrz2",
-            "name": "mrz2",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_mrz2"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Document\u003A\u003A\u0024surname",
-            "name": "surname",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Document.html#property_surname"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Page",
-            "name": "IdCardV1Page",
-            "summary": "Carte\u0020Nationale\u0020d\u0027Identit\u00E9\u0020API\u0020version\u00201.1\u0020page\u0020data.",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Page.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Page\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Page.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Page\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Page.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV1Page\u003A\u003A\u0024documentSide",
-            "name": "documentSide",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Fr-IdCard-IdCardV1Page.html#property_documentSide"
         },                {
             "fqsen": "\\Mindee\\V1\\Product\\Fr\\IdCard\\IdCardV2",
             "name": "IdCardV2",
@@ -5635,96 +5425,6 @@ Search.appendIndex(
             "name": "__toString",
             "summary": "String\u0020representation.",
             "url": "classes/Mindee-V1-Product-Resume-ResumeV1SocialNetworksUrls.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1",
-            "name": "BankCheckV1",
-            "summary": "Bank\u0020Check\u0020API\u0020version\u00201\u0020inference\u0020prediction.",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1\u003A\u003A\u0024endpointName",
-            "name": "endpointName",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1.html#property_endpointName"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1\u003A\u003A\u0024endpointVersion",
-            "name": "endpointVersion",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1.html#property_endpointVersion"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document",
-            "name": "BankCheckV1Document",
-            "summary": "Bank\u0020Check\u0020API\u0020version\u00201.1\u0020document\u0020data.",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A\u0024accountNumber",
-            "name": "accountNumber",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#property_accountNumber"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A\u0024amount",
-            "name": "amount",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#property_amount"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A\u0024checkNumber",
-            "name": "checkNumber",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#property_checkNumber"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A\u0024date",
-            "name": "date",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#property_date"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A\u0024payees",
-            "name": "payees",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#property_payees"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Document\u003A\u003A\u0024routingNumber",
-            "name": "routingNumber",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Document.html#property_routingNumber"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Page",
-            "name": "BankCheckV1Page",
-            "summary": "Bank\u0020Check\u0020API\u0020version\u00201.1\u0020page\u0020data.",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Page.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Page\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Page.html#method___construct"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Page\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Page.html#method___toString"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Page\u003A\u003A\u0024checkPosition",
-            "name": "checkPosition",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Page.html#property_checkPosition"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck\\BankCheckV1Page\u003A\u003A\u0024signaturesPositions",
-            "name": "signaturesPositions",
-            "summary": "",
-            "url": "classes/Mindee-V1-Product-Us-BankCheck-BankCheckV1Page.html#property_signaturesPositions"
         },                {
             "fqsen": "\\Mindee\\V2\\Client",
             "name": "Client",
@@ -8441,20 +8141,15 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/mindee-v1-pdf.html"
         },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BarcodeReader",
-            "name": "BarcodeReader",
+            "fqsen": "\\Mindee\\V1\\Product\\BusinessCard",
+            "name": "BusinessCard",
             "summary": "",
-            "url": "namespaces/mindee-v1-product-barcodereader.html"
+            "url": "namespaces/mindee-v1-product-businesscard.html"
         },                {
             "fqsen": "\\Mindee\\V1\\Product",
             "name": "Product",
             "summary": "",
             "url": "namespaces/mindee-v1-product.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\BusinessCard",
-            "name": "BusinessCard",
-            "summary": "",
-            "url": "namespaces/mindee-v1-product-businesscard.html"
         },                {
             "fqsen": "\\Mindee\\V1\\Product\\Cropper",
             "name": "Cropper",
@@ -8530,16 +8225,6 @@ Search.appendIndex(
             "name": "Resume",
             "summary": "",
             "url": "namespaces/mindee-v1-product-resume.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us\\BankCheck",
-            "name": "BankCheck",
-            "summary": "",
-            "url": "namespaces/mindee-v1-product-us-bankcheck.html"
-        },                {
-            "fqsen": "\\Mindee\\V1\\Product\\Us",
-            "name": "Us",
-            "summary": "",
-            "url": "namespaces/mindee-v1-product-us.html"
         },                {
             "fqsen": "\\Mindee\\V2",
             "name": "V2",

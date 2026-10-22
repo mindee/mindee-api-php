@@ -253,13 +253,6 @@
 <dd>Enqueues a document and automatically polls the response. Asynchronous calls only.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-V1-Client.html#method_executeWorkflow">executeWorkflow()</a>
-    <span>
-                                &nbsp;: <a href="classes/Mindee-V1-Parsing-Common-WorkflowResponse.html"><abbr title="\Mindee\V1\Parsing\Common\WorkflowResponse">WorkflowResponse</abbr></a>    </span>
-</dt>
-<dd>Sends a document to a workflow.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-V1-Client.html#method_loadPrediction">loadPrediction()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-V1-Parsing-Common-AsyncPredictResponse.html"><abbr title="\Mindee\V1\Parsing\Common\AsyncPredictResponse">AsyncPredictResponse</abbr></a>|<a href="classes/Mindee-V1-Parsing-Common-PredictResponse.html"><abbr title="\Mindee\V1\Parsing\Common\PredictResponse">PredictResponse</abbr></a>    </span>
@@ -334,13 +327,6 @@
                                 &nbsp;: <a href="classes/Mindee-V1-Parsing-Common-PredictResponse.html"><abbr title="\Mindee\V1\Parsing\Common\PredictResponse">PredictResponse</abbr></a>    </span>
 </dt>
 <dd>Makes the request to send a document to a synchronous endpoint.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Mindee-V1-Client.html#method_makeWorkflowExecutionRequest">makeWorkflowExecutionRequest()</a>
-    <span>
-                                &nbsp;: <a href="classes/Mindee-V1-Parsing-Common-WorkflowResponse.html"><abbr title="\Mindee\V1\Parsing\Common\WorkflowResponse">WorkflowResponse</abbr></a>    </span>
-</dt>
-<dd>Makes the request to send a document to a workflow.</dd>
 
     </dl>
 
@@ -588,7 +574,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">407</span>
+    <span class="phpdocumentor-element-found-in__line">357</span>
 
     </aside>
 
@@ -666,7 +652,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">354</span>
+    <span class="phpdocumentor-element-found-in__line">304</span>
 
     </aside>
 
@@ -770,84 +756,6 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_executeWorkflow">
-        executeWorkflow()
-        <a href="classes/Mindee-V1-Client.html#method_executeWorkflow" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">474</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Sends a document to a workflow.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">executeWorkflow</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$workflowId</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V1-ClientOptions-WorkflowOptions.html"><abbr title="\Mindee\V1\ClientOptions\WorkflowOptions">WorkflowOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-PageOptions.html"><abbr title="\Mindee\Input\PageOptions">PageOptions</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageOptions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V1-Parsing-Common-WorkflowResponse.html"><abbr title="\Mindee\V1\Parsing\Common\WorkflowResponse">WorkflowResponse</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$inputDoc</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Input File.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$workflowId</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID of the workflow.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$options</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V1-ClientOptions-WorkflowOptions.html"><abbr title="\Mindee\V1\ClientOptions\WorkflowOptions">WorkflowOptions</abbr></a>|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Prediction Options.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$pageOptions</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-PageOptions.html"><abbr title="\Mindee\Input\PageOptions">PageOptions</abbr></a>|null</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Options to apply to the PDF file.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V1-Parsing-Common-WorkflowResponse.html"><abbr title="\Mindee\V1\Parsing\Common\WorkflowResponse">WorkflowResponse</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_loadPrediction">
         loadPrediction()
         <a href="classes/Mindee-V1-Client.html#method_loadPrediction" class="headerlink"><i class="fas fa-link"></i></a>
@@ -856,7 +764,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">447</span>
+    <span class="phpdocumentor-element-found-in__line">397</span>
 
     </aside>
 
@@ -935,7 +843,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">326</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 
     </aside>
 
@@ -1013,7 +921,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">430</span>
+    <span class="phpdocumentor-element-found-in__line">380</span>
 
     </aside>
 
@@ -1559,7 +1467,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">289</span>
+    <span class="phpdocumentor-element-found-in__line">239</span>
 
     </aside>
 
@@ -1636,107 +1544,6 @@
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_makeWorkflowExecutionRequest">
-        makeWorkflowExecutionRequest()
-        <a href="classes/Mindee-V1-Client.html#method_makeWorkflowExecutionRequest" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Client.php"><a href="files/src-v1-client.html"><abbr title="src/V1/Client.php">Client.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">241</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Makes the request to send a document to a workflow.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">makeWorkflowExecutionRequest</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$predictionType</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputDoc</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$workflowId</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V1-ClientOptions-PredictMethodOptions.html"><abbr title="\Mindee\V1\ClientOptions\PredictMethodOptions">PredictMethodOptions</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V1-Parsing-Common-WorkflowResponse.html"><abbr title="\Mindee\V1\Parsing\Common\WorkflowResponse">WorkflowResponse</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$predictionType</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Name of the product's class.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$inputDoc</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Input-InputSource.html"><abbr title="\Mindee\Input\InputSource">InputSource</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Input file.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$workflowId</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>ID of the workflow.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$options</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V1-ClientOptions-PredictMethodOptions.html"><abbr title="\Mindee\V1\ClientOptions\PredictMethodOptions">PredictMethodOptions</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Prediction Options.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_makeWorkflowExecutionRequest_tags">
-        Tags
-        <a href="classes/Mindee-V1-Client.html#method_makeWorkflowExecutionRequest_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-V1-Error-MindeeV1HttpException.html"><abbr title="\Mindee\V1\Error\MindeeV1HttpException">MindeeV1HttpException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the API sent an error.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeApiException.html"><abbr title="\Mindee\Error\MindeeApiException">MindeeApiException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the API sent an error,
-or if the prediction type isn't recognized or if a field can't be deserialized.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V1-Parsing-Common-WorkflowResponse.html"><abbr title="\Mindee\V1\Parsing\Common\WorkflowResponse">WorkflowResponse</abbr></a></span>
-            </section>
-
-</article>
             </section>
 
         
@@ -1777,7 +1584,6 @@ or if the prediction type isn't recognized or if a field can't be deserialized.<
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_createEndpoint">createEndpoint()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_enqueue">enqueue()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_enqueueAndParse">enqueueAndParse()</a></li>
-                                            <li class=""><a href="classes/Mindee-V1-Client.html#method_executeWorkflow">executeWorkflow()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_loadPrediction">loadPrediction()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_parse">parse()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_parseQueued">parseQueued()</a></li>
@@ -1789,7 +1595,6 @@ or if the prediction type isn't recognized or if a field can't be deserialized.<
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_makeEnqueueRequest">makeEnqueueRequest()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_makeParseQueuedRequest">makeParseQueuedRequest()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Client.html#method_makeParseRequest">makeParseRequest()</a></li>
-                                            <li class=""><a href="classes/Mindee-V1-Client.html#method_makeWorkflowExecutionRequest">makeWorkflowExecutionRequest()</a></li>
                                     </ul>
             </li>
                     </ul>
