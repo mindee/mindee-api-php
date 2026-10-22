@@ -1,5 +1,11 @@
 # Mindee PHP API Library Changelog
 
+## v3.3.0 - 2026-10-22
+### Changes
+* :white_check_mark: ensure PDF 1.5 files work
+* :coffin: remove dead v1 products and workflows
+
+
 ## v3.2.0 - 2026-09-11
 ### Changes
 * :sparkles: add RAG search API
