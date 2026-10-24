@@ -17,8 +17,6 @@ use Mindee\V2\Product\Extraction\ExtractionResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
-require_once(__DIR__ . "/../../../TestingUtilities.php");
-
 /**
  * InferenceV2 – field integrity checks
  */

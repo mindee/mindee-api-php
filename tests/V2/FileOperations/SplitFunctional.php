@@ -19,6 +19,9 @@ use function count;
 use function sprintf;
 use function strlen;
 
+/**
+ * @group bernard-ledit
+ */
 class SplitFunctional extends TestCase
 {
     private Client $client;
@@ -60,6 +63,20 @@ class SplitFunctional extends TestCase
         self::assertNotNull($totalAmount);
         self::assertGreaterThan(0, $totalAmount->value);
     }
+    private const VOLATILE_PDF_PATTERN
+        = '#/ID\s*\[<[0-9A-Fa-f]*>\s*<[0-9A-Fa-f]*>\]|/CreationDate\s*\([^)]*\)|/ModDate\s*\([^)]*\)#';
+
+    /**
+     * Strips volatile metadata (document ID, creation/modification dates) so that
+     * two PDFs generated from the same pages can be compared deterministically.
+     */
+    private static function pdfFingerprint(string $pdfBytes): string
+    {
+        $fingerprint = preg_replace(self::VOLATILE_PDF_PATTERN, '', $pdfBytes);
+        self::assertNotNull($fingerprint, 'Failed to compute PDF fingerprint: ' . preg_last_error_msg());
+
+        return $fingerprint;
+    }
 
     /**
      * @throws ImagickException
@@ -72,16 +89,23 @@ class SplitFunctional extends TestCase
         $response = $this->client->enqueueAndGetResult(SplitResponse::class, $inputSource, $splitParams);
 
         self::assertNotNull($response);
+        self::assertInstanceOf(SplitResponse::class, $response);
         self::assertCount(2, $response->inference->result->splits);
+        self::assertSame(2, $inputSource->pageCount);
 
-        self::assertInstanceof(SplitResponse::class, $response);
         $extractedSplits = $response->inference->result->extractFromInputSource($inputSource);
-        $extractedSplit0 = $response->inference->result->splits[0]->extractFromInputSource($inputSource);
-        self::assertSame($extractedSplit0->filename, $extractedSplits[0]->filename);
-        self::assertSame($extractedSplit0->pageCount, $extractedSplits[0]->pageCount);
-        self::assertSame($extractedSplit0->getPdfBytes(), $extractedSplits[0]->getPdfBytes());
-
         self::assertCount(2, $extractedSplits);
+
+        foreach ($response->inference->result->splits as $i => $split) {
+            $extractedSingle = $split->extractFromInputSource($inputSource);
+            self::assertSame($extractedSingle->filename, $extractedSplits[$i]->filename);
+            self::assertSame($extractedSingle->pageCount, $extractedSplits[$i]->pageCount);
+            self::assertSame(
+                self::pdfFingerprint($extractedSingle->getPdfBytes()),
+                self::pdfFingerprint($extractedSplits[$i]->getPdfBytes())
+            );
+        }
+
         self::assertSame('default_sample_001-001.pdf', $extractedSplits[0]->filename);
         self::assertSame('default_sample_002-002.pdf', $extractedSplits[1]->filename);
 

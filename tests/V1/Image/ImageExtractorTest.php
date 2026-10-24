@@ -37,7 +37,7 @@ class ImageExtractorTest extends TestCase
         foreach ($inference->pages as $page) {
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
             foreach ($subImages as $i => $extractedImage) {
-                self::assertNotNull($extractedImage->image);
+                self::assertNotEmpty($extractedImage->buffer);
                 $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
 
                 $source = $extractedImage->asInputSource();
@@ -72,7 +72,7 @@ class ImageExtractorTest extends TestCase
             $subImages = $extractor->extractImagesFromPage($page->prediction->receipts, $page->id);
 
             foreach ($subImages as $i => $extractedImage) {
-                self::assertNotNull($extractedImage->image);
+                self::assertNotEmpty($extractedImage->buffer);
                 $extractedImage->writeToFile(TestingUtilities::getRootDataDir() . "/output");
 
                 $source = $extractedImage->asInputSource();

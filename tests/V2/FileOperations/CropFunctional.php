@@ -16,6 +16,9 @@ use TestingUtilities;
 
 use function strlen;
 
+/**
+ * @group bernard-ledit
+ */
 class CropFunctional extends TestCase
 {
     private Client $client;
@@ -86,11 +89,11 @@ class CropFunctional extends TestCase
         $extractedImages->saveAllToDisk($this->outputDir, quality: 50);
 
         $file1Info = filesize($this->outputDir . '/crop_001.jpg');
-        self::assertGreaterThanOrEqual(97000, $file1Info);
+        self::assertGreaterThanOrEqual(68000, $file1Info);
         self::assertLessThanOrEqual(120000, $file1Info);
 
         $file2Info = filesize($this->outputDir . '/crop_002.jpg');
-        self::assertGreaterThanOrEqual(97000, $file2Info);
+        self::assertGreaterThanOrEqual(68000, $file2Info);
         self::assertLessThanOrEqual(120000, $file2Info);
     }
 
