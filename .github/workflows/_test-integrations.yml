@@ -70,23 +70,22 @@ jobs:
     runs-on: "macos-latest"
     steps:
       - uses: actions/checkout@v6
-        with:
-          submodules: recursive
-      - name: Set up php ${{ matrix.php-version }}
+
+      - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
-      - name: Install ImageMagick
-        run: |
-          brew update
-          brew install imagemagick
-      - uses: ramsey/composer-install@v2
-      - name: Unit testing with phpunit
-        run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
+          extensions: curl, fileinfo, json
+          tools: pie
+
+      - name: Install bernard-ledit extension
+        run: bash tools/install-bernard-ledit.sh "$BERNARD_LEDIT_VERSION"
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Integration testing with phpunit
+        run: ./vendor/bin/phpunit -c tests/functional.xml
 
 
   integration-tests-windows:
