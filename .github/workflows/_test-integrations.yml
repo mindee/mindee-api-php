@@ -22,6 +22,8 @@ env:
   MINDEE_V2_SE_TESTS_CROP_EXTRACTION_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_CROP_EXTRACTION_MODEL_ID }}
   MINDEE_V2_OCR_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_OCR_MODEL_ID }}
   MINDEE_V2_SPLIT_MODEL_ID: ${{ secrets.MINDEE_V2_SE_TESTS_SPLIT_MODEL_ID }}
+  # The bernard-ledit release the tests install with PIE.
+  BERNARD_LEDIT_VERSION: "0.1.0-alpha2"
 
 jobs:
   integration-tests-ubuntu:
@@ -39,37 +41,16 @@ jobs:
         with:
           submodules: recursive
 
+
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json
-          tools: php-config
-
-      - name: Resolve PDFium release
-        id: pdfium
-        shell: bash
-        run: |
-          rel="$(tr -d '[:space:]' < bernard-ledit/core/pdfium-release)"
-          echo "dir=${rel//\//_}" >> "$GITHUB_OUTPUT"
-
-      - name: Cache PDFium binary
-        uses: actions/cache@v5
-        with:
-          path: bernard-ledit/core/.pdfium_cache
-          key: pdfium-${{ runner.os }}-${{ runner.arch }}-${{ steps.pdfium.outputs.dir }}
-
-      - name: Cache Rust build
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: bernard-ledit
-          key: php${{ matrix.php-version }}
+          tools: pie
 
       - name: Install bernard-ledit extension
-        run: bash tools/install-bernard-ledit.sh
-
-      - name: Point the extension at PDFium
-        run: echo "PDFIUM_PATH=$(php -r 'echo ini_get("extension_dir");')/libpdfium.so" >> "$GITHUB_ENV"
+        run: bash tools/install-bernard-ledit.sh "$BERNARD_LEDIT_VERSION"
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
@@ -77,37 +58,36 @@ jobs:
       - name: Integration testing with phpunit
         run: ./vendor/bin/phpunit -c tests/functional.xml
 
-# MacOS testing disabled until bernard-ledit is built for macOS.
-#  integration-tests-macos:
-#    name: Run Integration Tests on MacOS
-#    timeout-minutes: 30
-#    strategy:
-#      max-parallel: 2
-#      matrix:
-#        php-version:
-#          - 8.1
-#          - 8.5
-#    runs-on: "macos-latest"
-#    steps:
-#      - uses: actions/checkout@v4
-#        with:
-#          submodules: recursive
-#      - name: Set up php ${{ matrix.php-version }}
-#        uses: shivammathur/setup-php@v2
-#        env:
-#          phpts: zts
-#        with:
-#          php-version: ${{ matrix.php-version }}
-#          extensions: curl, fileinfo, json, imagick
-#      - name: Install ImageMagick
-#        run: |
-#          brew update
-#          brew install imagemagick
-#      - uses: ramsey/composer-install@v2
-#      - name: Unit testing with phpunit
-#        run: |
-#          ./vendor/bin/phpunit -c tests/functional.xml
-#
+  integration-tests-macos:
+    name: Run Integration Tests on MacOS
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 2
+      matrix:
+        php-version:
+          - 8.1
+          - 8.5
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - name: Set up php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        env:
+          phpts: zts
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: curl, fileinfo, json, imagick
+      - name: Install ImageMagick
+        run: |
+          brew update
+          brew install imagemagick
+      - uses: ramsey/composer-install@v2
+      - name: Unit testing with phpunit
+        run: |
+          ./vendor/bin/phpunit -c tests/functional.xml
+
 
   integration-tests-windows:
     name: Run Integration Tests on Windows
@@ -121,8 +101,6 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v6
-        with:
-          submodules: recursive
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         env:

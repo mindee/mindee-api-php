@@ -3,6 +3,10 @@ name: Unit Tests without PDF support
 on:
   workflow_call:
 
+env:
+  # The bernard-ledit release the tests install with PIE.
+  BERNARD_LEDIT_VERSION: "0.1.0-alpha2"
+
 jobs:
   no-pdf-linux:
     name: Unit Tests on Linux without PDF support
@@ -56,33 +60,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          tools: php-config
-
-      - name: Resolve PDFium release
-        id: pdfium
-        shell: bash
-        run: |
-          rel="$(tr -d '[:space:]' < bernard-ledit/core/pdfium-release)"
-          echo "dir=${rel//\//_}" >> "$GITHUB_OUTPUT"
-
-      - name: Cache PDFium binary
-        uses: actions/cache@v5
-        with:
-          path: bernard-ledit/core/.pdfium_cache
-          key: pdfium-${{ runner.os }}-${{ runner.arch }}-${{ steps.pdfium.outputs.dir }}
-
-      - name: Cache Rust build
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: bernard-ledit
-          key: php${{ matrix.php-version }}
+          tools: pie
 
       - name: Install bernard-ledit extension
-        run: bash tools/install-bernard-ledit.sh
-
-      # Harmless if the build finds PDFium on its own; required if it doesn't.
-      - name: Point the extension at PDFium
-        run: echo "PDFIUM_PATH=$(php -r 'echo ini_get("extension_dir");')/libpdfium.so" >> "$GITHUB_ENV"
+        run: bash tools/install-bernard-ledit.sh "$BERNARD_LEDIT_VERSION"
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
