@@ -100,7 +100,9 @@ run_pie() {
 
 # Fails unless PHP loads the extension and it can open a PDF engine.
 verify() {
-  "$PHP" -m | grep -qx 'bernard_ledit' ||
+  # grep reads all of php's output: with -q it would stop early, and pipefail would count php's
+  # resulting SIGPIPE as a failure.
+  "$PHP" -m | grep -x 'bernard_ledit' > /dev/null ||
     die "the extension did not load; check: $PHP -d display_startup_errors=1 -m"
   [ "$("$PHP" -r 'BernardLedit\Pdf\PdfDocument::create(); echo "ok";' 2>/dev/null)" = ok ] ||
     die "the extension loads, but can't create a PDF; run: $PHP -r 'BernardLedit\\Pdf\\PdfDocument::create();'"
