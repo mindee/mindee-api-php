@@ -5,7 +5,7 @@
 #   bash tools/install-bernard-ledit.sh --uninstall
 #
 # Env (optional):
-#   PHP  PHP binary to install for (default: php on PATH)
+#   PHP  PHP binary to install for (default: php on PATH, which is also PIE's default)
 #
 # Also removes what the former build-from-source installer left behind: a libpdfium next to the
 # extension (released builds link PDFium in) and its 99-bernard_ledit.ini.
@@ -69,6 +69,20 @@ remove_ini() {
   fi
 }
 
+# Prints PIE's option for targeting $PHP, when it isn't the php on PATH that PIE targets anyway.
+# PIE takes the PHP binary on Windows, but php-config elsewhere.
+pie_target() {
+  [ -n "${PHP_FROM_ENV:-}" ] || return 0
+  if [ "${OS:-}" = Windows_NT ]; then
+    printf '%s\n' "--with-php-path=$PHP"
+  else
+    local php_config
+    php_config="$(dirname "$PHP")/php-config"
+    [ -x "$php_config" ] || die "no php-config next to $PHP; install its development package"
+    printf '%s\n' "--with-php-config=$php_config"
+  fi
+}
+
 # Fails unless PHP loads the extension and it can open a PDF engine.
 verify() {
   "$PHP" -m | grep -qx 'bernard_ledit' ||
@@ -79,6 +93,7 @@ verify() {
 }
 
 main() {
+  PHP_FROM_ENV="${PHP:-}"
   PHP="${PHP:-$(command -v php || true)}"
   [ -n "$PHP" ] || die "php not found on PATH"
   command -v pie >/dev/null ||
@@ -87,8 +102,12 @@ main() {
     echo "Warning: PHP_INI_SCAN_DIR is set ($PHP_INI_SCAN_DIR); if it holds another bernard_ledit ini, PHP loads the extension twice." >&2
   fi
 
+  local option target=()
+  option="$(pie_target)" || exit 1
+  [ -z "$option" ] || target=("$option")
+
   if [ "${1:-}" = "--uninstall" ]; then
-    pie uninstall --with-php-path="$PHP" "$PACKAGE"
+    pie uninstall ${target[@]+"${target[@]}"} "$PACKAGE"
     remove_ini
     remove_legacy_files
     echo "bernard_ledit uninstalled."
@@ -96,7 +115,7 @@ main() {
   fi
 
   remove_legacy_files
-  pie install --with-php-path="$PHP" "$PACKAGE${1:+:$1}"
+  pie install ${target[@]+"${target[@]}"} "$PACKAGE${1:+:$1}"
   verify
 }
 
