@@ -3,4 +3,4 @@ parameters:
     paths:
         - src
     scanFiles:
-        - bernard-ledit/bindings/php/bernard_ledit.stubs.php
+        - stubs/bernard_ledit.stubs.php

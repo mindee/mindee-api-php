@@ -1,7 +1,3 @@
 [submodule "tests/resources"]
 	path = tests/resources
 	url = git@github.com:mindee/client-lib-test-data.git
-[submodule "bernard-ledit"]
-	path = bernard-ledit
-	url = https://github.com/mindee/bernard-ledit.git
-	branch = dev
