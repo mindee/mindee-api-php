@@ -83,6 +83,21 @@ pie_target() {
   fi
 }
 
+# Runs PIE. Without a terminal, as in CI, PIE refuses to use sudo itself, even passwordless: when
+# the extension directory isn't writable, PIE then runs entirely under sudo, with the same PATH so
+# it finds the same php.
+run_pie() {
+  local ext_dir
+  ext_dir="$("$PHP" -r 'echo ini_get("extension_dir");')"
+  if [ -t 0 ] || [ -w "$ext_dir" ] || [ "${OS:-}" = Windows_NT ]; then
+    pie "$@"
+  elif sudo -n true 2>/dev/null; then
+    sudo env "PATH=$PATH" pie "$@"
+  else
+    die "$ext_dir isn't writable, and sudo needs a password; run this from a terminal"
+  fi
+}
+
 # Fails unless PHP loads the extension and it can open a PDF engine.
 verify() {
   "$PHP" -m | grep -qx 'bernard_ledit' ||
@@ -107,7 +122,7 @@ main() {
   [ -z "$option" ] || target=("$option")
 
   if [ "${1:-}" = "--uninstall" ]; then
-    pie uninstall ${target[@]+"${target[@]}"} "$PACKAGE"
+    run_pie uninstall ${target[@]+"${target[@]}"} "$PACKAGE"
     remove_ini
     remove_legacy_files
     echo "bernard_ledit uninstalled."
@@ -115,7 +130,7 @@ main() {
   fi
 
   remove_legacy_files
-  pie install ${target[@]+"${target[@]}"} "$PACKAGE${1:+:$1}"
+  run_pie install ${target[@]+"${target[@]}"} "$PACKAGE${1:+:$1}"
   verify
 }
 
