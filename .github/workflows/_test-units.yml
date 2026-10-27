@@ -3,10 +3,6 @@ name: Unit Tests without PDF support
 on:
   workflow_call:
 
-env:
-  # The bernard-ledit release the tests install with PIE.
-  BERNARD_LEDIT_VERSION: "0.1.0-alpha2"
-
 defaults:
   run:
     shell: bash
@@ -46,7 +42,7 @@ jobs:
       - name: Unit testing with phpunit
         env:
           MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: php vendor/bin/phpunit -c tests/pdffeatures.xml
+        run: php vendor/bin/phpunit -c tests/bernardleditfeatures.xml
 
   with-pdf:
     name: Unit Tests on ${{ matrix.os }} with PDF support (PHP ${{ matrix.php-version }})
@@ -79,13 +75,13 @@ jobs:
 
       - name: Install bernard-ledit extension
         if: runner.os != 'Windows'
-        run: bash tools/install-bernard-ledit.sh "$BERNARD_LEDIT_VERSION"
+        run: bash tools/install-bernard-ledit.sh
 
       - name: Install bernard-ledit extension (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          pie install "mindee/bernard-ledit:$env:BERNARD_LEDIT_VERSION"
+          pie install "mindee/bernard-ledit"
           if (-not (php -m | Select-String -Pattern '^bernard_ledit$' -Quiet)) {
             Write-Error "bernard_ledit did not load"
             exit 1
