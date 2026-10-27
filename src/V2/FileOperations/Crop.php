@@ -22,50 +22,45 @@ class Crop
     public function __construct(private readonly LocalInputSource $localInput) {}
 
     /**
-     * Extracts a crop zone from a file.
+     * Extracts a crop zone from a file, named "<file>_page<page>-<index of the crop on its page>".
      *
      * @param CropItem $crop Crop to extract.
-     * @param integer $index Position of the crop among the inference's crops: its file name is
-     *                       "<file>_page<page>-<index>", so crops extracted one by one need
-     *                       different indexes not to overwrite each other.
      *
      * @return ExtractedImage extracted image
      */
-    public function extractSingleCrop(CropItem $crop, int $index = 0): ExtractedImage
+    public function extractSingleCrop(CropItem $crop): ExtractedImage
     {
-        return $this->extractCrops([$index => $crop])[0];
+        return $this->extractMultipleCrops([$crop])[0];
     }
 
     /**
-     * Extracts multiple crop zones from a file.
+     * Extracts multiple crop zones from a file, rendering each page once.
+     *
+     * Each image is named "<file>_page<page>-<index of the crop on its page>". Crops parsed from an inference
+     * know that index; for the others, crops are numbered per page in the order given.
      *
      * @param CropItem[] $crops List of crops to extract.
-     * @return CropFiles list of extracted files, in the same order as the crops; each is named
-     *                   "<file>_page<page>-<position in the list>".
+     * @return CropFiles list of extracted files, in the same order as the crops
      */
     public function extractMultipleCrops(array $crops): CropFiles
     {
-        return new CropFiles(...$this->extractCrops(array_values($crops)));
-    }
-
-    /**
-     * Extracts crops, rendering each page once.
-     *
-     * @param array<int, CropItem> $crops Crops to extract, keyed by the index their file is named after.
-     * @return list<ExtractedImage> extracted images, in the same order as the crops
-     */
-    private function extractCrops(array $crops): array
-    {
+        $crops = array_values($crops);
         $imageExtractor = new ImageExtractor($this->localInput);
 
         $cropsPerPage = [];
-        foreach ($crops as $index => $crop) {
-            $cropsPerPage[$crop->location->page][$index] = $crop;
+        foreach ($crops as $position => $crop) {
+            $cropsPerPage[$crop->location->page][$position] = $crop;
         }
 
+        /** @var array<int, ExtractedImage> $extractedImages keyed by position in $crops */
         $extractedImages = [];
         foreach ($cropsPerPage as $page => $pageCrops) {
-            $indexes = array_keys($pageCrops);
+            $nextIndex = 0;
+            $indexes = [];
+            foreach ($pageCrops as $crop) {
+                $indexes[] = $crop->indexOnPage ?? $nextIndex;
+                ++$nextIndex;
+            }
             $images = $imageExtractor->extractMultipleImagesFromSource(
                 array_map(static fn(CropItem $c) => $c->location->polygon, array_values($pageCrops)),
                 $page,
@@ -73,16 +68,12 @@ class Crop
                 null,
                 $indexes
             );
-            foreach ($indexes as $i => $index) {
-                $extractedImages[$index] = $images[$i];
+            foreach (array_keys($pageCrops) as $i => $position) {
+                $extractedImages[$position] = $images[$i];
             }
         }
+        ksort($extractedImages);
 
-        $ordered = [];
-        foreach (array_keys($crops) as $index) {
-            $ordered[] = $extractedImages[$index];
-        }
-
-        return $ordered;
+        return new CropFiles(...array_values($extractedImages));
     }
 }

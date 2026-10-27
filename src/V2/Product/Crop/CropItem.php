@@ -30,10 +30,12 @@ class CropItem implements Stringable
      * @var ExtractionResponse|null $extractionResponse The extraction response associated with the crop.
      */
     public ?ExtractionResponse $extractionResponse;
+
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
+     * @param integer|null $indexOnPage Position of this crop among the crops of its page.
      */
-    public function __construct(array $rawResponse)
+    public function __construct(array $rawResponse, public ?int $indexOnPage = null)
     {
         $this->location = new FieldLocation($rawResponse['location']);
         $this->objectType = $rawResponse['object_type'];
@@ -51,14 +53,11 @@ class CropItem implements Stringable
 
     /**
      * @param LocalInputSource $inputSource The input source from which to extract the crop.
-     * @param integer $index Position of this crop among the inference's crops, used in the file name
-     *                       ("<file>_page<page>-<index>"): pass it when extracting crops one by one, so
-     *                       their files don't overwrite each other.
      * @return ExtractedImage The extracted image.
      */
-    public function extractFromInputSource(LocalInputSource $inputSource, int $index = 0): ExtractedImage
+    public function extractFromInputSource(LocalInputSource $inputSource): ExtractedImage
     {
         $cropper = new Crop($inputSource);
-        return $cropper->extractSingleCrop($this, $index);
+        return $cropper->extractSingleCrop($this);
     }
 }
