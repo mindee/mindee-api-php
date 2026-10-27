@@ -194,7 +194,7 @@ class ImageExtractor
         $pairs = array_map(static::polygonToPairs(...), $polygons);
         try {
             return extractFromPolygons($this->sourceData, $pageIndex, $pairs);
-        } catch (ImageException|ImageExtractException|PdfExtractException|PdfiumException|ValueError $e) {
+        } catch (ImageException|ImageExtractException|PdfExtractException|PdfiumException $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
     }
