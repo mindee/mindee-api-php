@@ -90,12 +90,12 @@ class DependencyChecker
     {
         self::isImageMagickAvailable();
 
-        $imagick = new Imagick();
         try {
-            $imagick->readImage(
-                /** @phpstan-ignore-next-line */
-                TestingUtilities::getV1DataDir() . "/products/expense_receipts/default_sample.jpg"
-            );
+            $writer = new Imagick();
+            $writer->newImage(1, 1, 'white');
+            $writer->setImageFormat('pdf');
+            $reader = new Imagick();
+            $reader->readImageBlob($writer->getImageBlob());
         } catch (Exception) {
             throw new MindeeUnhandledException(
                 "To enable full support of PDF features, you need "

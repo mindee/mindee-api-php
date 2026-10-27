@@ -316,13 +316,10 @@ class MindeeApiV2
         /** @var CurlHandle $ch */
         $ch = $this->initChannel();
         curl_setopt($ch, CURLOPT_URL, $url);
-        $resp = [
+        return [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
-        curl_close($ch);
-
-        return $resp;
     }
 
     /**
@@ -357,7 +354,6 @@ class MindeeApiV2
         if (!empty($curlError)) {
             throw new MindeeException("cURL error:\n$curlError");
         }
-        curl_close($ch);
 
         return $resp;
     }
@@ -409,7 +405,6 @@ class MindeeApiV2
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
         $curlError = curl_error($ch);
-        curl_close($ch);
 
         if (!empty($curlError)) {
             throw new MindeeException("cURL error:\n$curlError");
@@ -437,13 +432,10 @@ class MindeeApiV2
             'Authorization: ' . $this->apiKey,
             'Content-Type: application/json',
         ]);
-        $resp = [
+        return [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
-        curl_close($ch);
-
-        return $resp;
     }
 
     /**
@@ -457,13 +449,10 @@ class MindeeApiV2
         $ch = $this->initChannel();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-        $resp = [
+        return [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
-        curl_close($ch);
-
-        return $resp;
     }
 
     /**
@@ -538,7 +527,6 @@ class MindeeApiV2
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
-        curl_close($ch);
         return $this->deserializeResponse($params->getResponseClass(), $resp);
     }
 }
