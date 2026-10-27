@@ -38,6 +38,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+          extensions: curl, fileinfo, json
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
@@ -73,6 +74,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+          extensions: curl, fileinfo, json
           tools: pie
 
       - name: Install bernard-ledit extension
