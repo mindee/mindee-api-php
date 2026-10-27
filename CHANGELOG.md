@@ -1,5 +1,10 @@
 # Mindee PHP API Library Changelog
 
+## v3.3.1 - 2026-10-27
+### Fixes
+* :recycle: update deprecated syntaxes + add checks (addresses #225)
+
+
 ## v3.3.0 - 2026-10-22
 ### Changes
 * :white_check_mark: ensure PDF 1.5 files work
