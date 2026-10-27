@@ -42,13 +42,10 @@ abstract class BaseEndpoint
         CurlSslConfig::apply($ch);
         curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
 
-        $resp = [
+        return [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
-        curl_close($ch);
-
-        return $resp;
     }
 
     /**
@@ -75,12 +72,9 @@ abstract class BaseEndpoint
         }
         CurlSslConfig::apply($ch);
         curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent());
-        $resp = [
+        return [
             'data' => curl_exec($ch),
             'code' => curl_getinfo($ch, CURLINFO_HTTP_CODE),
         ];
-        curl_close($ch);
-
-        return $resp;
     }
 }

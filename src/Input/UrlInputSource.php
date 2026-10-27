@@ -166,14 +166,11 @@ class UrlInputSource extends InputSource
 
         if ($response === false) {
             $error = curl_error($ch);
-            curl_close($ch);
             throw new MindeeSourceException(
                 'Failed to download file: ' . $error,
                 ErrorCode::NETWORK_ERROR
             );
         }
-
-        curl_close($ch);
 
         if ($httpCode >= 200 && $httpCode < 300) {
             return $response;
