@@ -6,11 +6,16 @@ namespace Mindee\Image;
 
 use BernardLedit\Image\ImageException;
 use Mindee\Dependency\DependencyChecker;
+use Mindee\Error\ErrorCode;
+use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
 use ValueError;
+use Exception;
 
 use function BernardLedit\Image\decode;
+use function sprintf;
+use function strlen;
 
 use const DIRECTORY_SEPARATOR;
 
@@ -44,18 +49,18 @@ class ExtractedImage
      * @param null|string $format The image format to use. Defaults to the save format if not provided.
      * @param integer|null $quality Quality of the saved image (JPEG only). Re-encodes the image if set.
      *
-     * @throws ImageException|ValueError Throws if the image can't be re-encoded.
+     * @throws Exception Throws if the image can't be re-encoded.
      */
     public function writeToFile(string $outputPath, ?string $format = null, ?int $quality = null): void
     {
         $imagePath = $outputPath . DIRECTORY_SEPARATOR . $this->filename;
         $encodedFormat = self::getEncodedImageFormat($format ?? $this->saveFormat);
         if (null === $quality && $encodedFormat === self::getEncodedImageFormat($this->saveFormat)) {
-            file_put_contents($imagePath, $this->buffer);
+            self::writeBytes($imagePath, $this->buffer);
             return;
         }
         $quality = min(100, max(0, $quality ?? 100));
-        file_put_contents($imagePath, decode($this->buffer)->encode($encodedFormat, $quality));
+        self::writeBytes($imagePath, decode($this->buffer)->encode($encodedFormat, $quality));
     }
 
     /**
@@ -83,5 +88,22 @@ class ExtractedImage
             'webp' => 'webp',
             default => 'jpeg',
         };
+    }
+
+    /**
+     * Writes bytes to a file, and fails if they weren't all written.
+     *
+     * @throws MindeeImageException Throws if the file can't be written completely.
+     */
+    private static function writeBytes(string $path, string $bytes): void
+    {
+        $written = @file_put_contents($path, $bytes);
+        if ($written !== strlen($bytes)) {
+            $reason = false === $written ? (error_get_last()['message'] ?? 'write failed') : 'incomplete write';
+            throw new MindeeImageException(
+                sprintf("Couldn't save %s: %s", $path, $reason),
+                ErrorCode::FILE_CANT_SAVE
+            );
+        }
     }
 }

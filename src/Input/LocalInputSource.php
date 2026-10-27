@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
-use BernardLedit\Pdf\ImageException;
 use BernardLedit\Pdf\PdfDocument;
 use BernardLedit\Pdf\PdfiumException;
 use CURLFile;
@@ -28,7 +27,6 @@ use function BernardLedit\Pdf\fixPdf as nativeFixPdf;
 use function in_array;
 use function BernardLedit\Image\compress as compressImage;
 use function BernardLedit\Pdf\compress as compressPdf;
-use function strlen;
 
 /**
  * List of allowed mime types for document parsing.
@@ -245,6 +243,7 @@ abstract class LocalInputSource extends InputSource
      * @param boolean $optimize Whether to optimize the output file.
      *                          Disabling this may result in a larger file, which will revert to the original.
      * @param float|null $dpi DPI of the output file.
+     * @throws Exception Throws if the file can't be compressed.
      */
     public function compress(
         int    $quality = 85,
@@ -253,11 +252,19 @@ abstract class LocalInputSource extends InputSource
         ?bool  $optimize = true,
         ?float $dpi = 72,
     ): void {
+        DependencyChecker::requireBernardLedit();
         $bytes = file_get_contents($this->fileObject->getFilename());
         if ($this->isPdf()) {
             $compressed = compressPdf($bytes, $quality, $optimize, $dpi);
         } else {
             [$compressed] = compressImage($bytes, $quality, $maxWidth, $maxHeight, $optimize);
+            if ($compressed !== $bytes) {
+                $this->fileMimetype = 'image/jpeg';
+                $extension = strtolower(pathinfo($this->fileName, PATHINFO_EXTENSION));
+                if (!in_array($extension, ['jpg', 'jpeg'], true)) {
+                    $this->fileName = pathinfo($this->fileName, PATHINFO_FILENAME) . '.jpg';
+                }
+            }
         }
         $this->saveBytesAsFile($compressed);
     }
@@ -270,6 +277,7 @@ abstract class LocalInputSource extends InputSource
      */
     public function hasSourceText(): bool
     {
+        DependencyChecker::requireBernardLedit();
         if (!$this->isPdf()) {
             return false;
         }
@@ -300,7 +308,7 @@ abstract class LocalInputSource extends InputSource
                 file_get_contents($this->fileObject->getFilename()),
                 $pageOptions->operation,
                 $pageOptions->onMinPage,
-                array_values($pageOptions->pageIndexes)
+                array_values($pageOptions->pageIndexes ?? [])
             );
         } catch (PdfiumException $e) {
             throw new MindeePdfException($e->getMessage(), ErrorCode::PDF_CANT_PROCESS, $e);
@@ -327,7 +335,10 @@ abstract class LocalInputSource extends InputSource
      */
     public function getFileSize(): int
     {
-        $bytes = file_get_contents($this->fileObject->getFilename());
-        return strlen($bytes);
+        $size = filesize($this->fileObject->getFilename());
+        if ($size === false) {
+            throw new MindeeSourceException('Could not determine file size.', ErrorCode::FILE_OPERATION_ERROR);
+        }
+        return $size;
     }
 }

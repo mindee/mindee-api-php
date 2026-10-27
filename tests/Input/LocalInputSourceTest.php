@@ -18,6 +18,7 @@ use PHPUnit\Framework\TestCase;
 use TestingUtilities;
 
 use function count;
+use function strlen;
 
 use const Mindee\V1\Http\API_KEY_ENV_NAME;
 use const Mindee\Input\KEEP_ONLY;
@@ -240,39 +241,27 @@ class LocalInputSourceTest extends TestCase
         $sizeCompressed = filesize(TestingUtilities::getRootDataDir() . "/output/compress_indirect.jpg");
         self::assertGreaterThan($sizeCompressed, $sizeOriginal);
     }
-
     public function testDirectImageQualityCompression(): void
     {
         self::markTestSkipped('Need to re-render test files.');
-        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
-        $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
-        $imageBytes = $inputSource->readContents()[1];
-        $compresses = [
-            100 => ImageCompressor::compress($imageBytes, 100),
-            85 => ImageCompressor::compress($imageBytes),
-            50 => ImageCompressor::compress($imageBytes, 50),
-            10 => ImageCompressor::compress($imageBytes, 10),
-            1 => ImageCompressor::compress($imageBytes, 1),
-        ];
-
-        $outputFiles = [
-            100 => TestingUtilities::getRootDataDir() . "/output/compress100.jpg",
-            85 => TestingUtilities::getRootDataDir() . "/output/compress85.jpg",
-            50 => TestingUtilities::getRootDataDir() . "/output/compress50.jpg",
-            10 => TestingUtilities::getRootDataDir() . "/output/compress10.jpg",
-            1 => TestingUtilities::getRootDataDir() . "/output/compress1.jpg",
-        ];
+        $imageBytes = (new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg'))->readContents()[1];
+        $sizeOriginal = strlen($imageBytes);
+        [$originalWidth, $originalHeight] = getimagesizefromstring($imageBytes);
 
         $compressSize = [];
-        foreach ($compresses as $key => $value) {
-            file_put_contents($outputFiles[$key], $value);
-            $compressSize[$key] = filesize($outputFiles[$key]);
+        foreach ([100, 85, 50, 10, 5] as $quality) {
+            [$compressed, $width, $height] = compressImage($imageBytes, $quality, null, null, false);
+            self::assertSame([$originalWidth, $originalHeight], [$width, $height], "Quality $quality resized the image.");
+            self::assertLessThanOrEqual($sizeOriginal, strlen($compressed), "Quality $quality grew the image.");
+            $compressSize[$quality] = strlen($compressed);
         }
-        self::assertGreaterThan($compressSize[85], $compressSize[100]);
-        self::assertGreaterThan($sizeOriginal, $compressSize[85]);
-        self::assertGreaterThan($compressSize[50], $sizeOriginal);
+        self::assertGreaterThanOrEqual($compressSize[85], $compressSize[100]);
+        self::assertGreaterThan($compressSize[50], $compressSize[85]);
         self::assertGreaterThan($compressSize[10], $compressSize[50]);
-        self::assertGreaterThan($compressSize[1], $compressSize[10]);
+        self::assertGreaterThan($compressSize[5], $compressSize[10]);
+
+        $this->expectException(Exception::class);
+        compressImage($imageBytes, 1);
     }
 
     public function testPdfSourceText(): void

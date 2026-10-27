@@ -53,7 +53,7 @@ class CropFiles extends ArrayObject
 
             try {
                 $crop->writeToFile($path, $fileFormat, $quality);
-            } catch (ImageException|ValueError $e) {
+            } catch (ImageException $e) {
                 throw new MindeeException('Failed to save crop to disk.', 0, $e);
             }
 

@@ -7,6 +7,7 @@ namespace Mindee\Pdf;
 use BernardLedit\Pdf\PdfDocument;
 use CURLFile;
 use Exception;
+use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeePdfException;
@@ -28,6 +29,7 @@ class PdfUtils
      */
     public static function hasSourceText(string $pdfData): bool
     {
+        DependencyChecker::requireBernardLedit();
         try {
             $pdf = new PdfDocument($pdfData);
             return $pdf->hasText();

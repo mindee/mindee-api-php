@@ -10,6 +10,7 @@ use Mindee\Input\LocalInputSource;
 use Mindee\V2\Product\Crop\CropItem;
 
 use function sprintf;
+use function in_array;
 
 /**
  * V2 Crop operation.

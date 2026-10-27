@@ -55,6 +55,10 @@ class ImageExtractor
      */
     protected LocalInputSource $inputSource;
 
+    /**
+     * @var string Contents of the input source, read once: some sources can only be read once.
+     */
+    protected string $sourceData;
 
     /**
      * @var integer Number of pages in the document.
@@ -72,6 +76,7 @@ class ImageExtractor
         DependencyChecker::requireBernardLedit();
         $this->filename = $localInput->fileName;
         $this->inputSource = $localInput;
+        $this->sourceData = $localInput->readContents()[1];
 
         $extension = pathinfo($localInput->fileName, PATHINFO_EXTENSION);
         if (null === $saveFormat) {
@@ -88,7 +93,7 @@ class ImageExtractor
             $this->pageCount = $localInput->pageCount ?? 1;
         } else {
             try {
-                guessFormat($localInput->readContents()[1]);
+                guessFormat($this->sourceData);
             } catch (ImageException $e) {
                 throw new MindeeImageException(
                     "Image couldn't be processed.",
@@ -188,7 +193,7 @@ class ImageExtractor
     {
         $pairs = array_map(static::polygonToPairs(...), $polygons);
         try {
-            return extractFromPolygons($this->inputSource->readContents()[1], $pageIndex, $pairs);
+            return extractFromPolygons($this->sourceData, $pageIndex, $pairs);
         } catch (ImageException|ImageExtractException|PdfExtractException|PdfiumException|ValueError $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
