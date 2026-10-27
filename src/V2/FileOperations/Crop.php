@@ -55,11 +55,19 @@ class Crop
         /** @var array<int, ExtractedImage> $extractedImages keyed by position in $crops */
         $extractedImages = [];
         foreach ($cropsPerPage as $page => $pageCrops) {
+            $usedIndexes = array_map(static fn(CropItem $crop): ?int => $crop->indexOnPage, $pageCrops);
             $nextIndex = 0;
             $indexes = [];
             foreach ($pageCrops as $crop) {
-                $indexes[] = $crop->indexOnPage ?? $nextIndex;
-                ++$nextIndex;
+                if ($crop->indexOnPage !== null) {
+                    $indexes[] = $crop->indexOnPage;
+                    continue;
+                }
+                while (in_array($nextIndex, $usedIndexes, true)) {
+                    ++$nextIndex;
+                }
+                $indexes[] = $nextIndex;
+                $usedIndexes[] = $nextIndex++;
             }
             $images = $imageExtractor->extractMultipleImagesFromSource(
                 array_map(static fn(CropItem $c) => $c->location->polygon, array_values($pageCrops)),
