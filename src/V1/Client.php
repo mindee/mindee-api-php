@@ -62,7 +62,7 @@ class Client
      */
     public function __construct(?string $apiKey = null)
     {
-        $this->apiKey = $apiKey ?: getenv('MINDEE_API_KEY');
+        $this->apiKey = $apiKey ?: (getenv('MINDEE_API_KEY') ?: '');
     }
 
     /**
