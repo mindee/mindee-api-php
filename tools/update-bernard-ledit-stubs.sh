@@ -1,14 +1,28 @@
 #!/usr/bin/env bash
-# Downloads the PHPStan stubs of bernard-ledit's latest release (pre-releases excluded) to
-# stubs/bernard_ledit.stubs.php. Usage: update-bernard-ledit-stubs.sh [tag], e.g. v1.2.0 to pick one.
+# Downloads the PHPStan stubs of the bernard-ledit version composer.json pins to
+# stubs/bernard_ledit.stubs.php. Usage: update-bernard-ledit-stubs.sh [tag], e.g. v0.2.0 for another
+# release, or "latest" for the latest one (pre-releases excluded).
 set -euo pipefail
 
 readonly REPO="mindee/bernard-ledit"
 readonly OUT="stubs/bernard_ledit.stubs.php"
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+readonly repo_root
 
 die() {
   echo "error: $*" >&2
   exit 1
+}
+
+# Prints the tag of the version composer.json pins, from its "conflict": {"ext-bernard_ledit": "!=X.Y.Z"}.
+pinned_tag() {
+  local constraint
+  # shellcheck disable=SC2016 # $argv is PHP's, not the shell's
+  constraint="$(php -r 'echo json_decode(file_get_contents($argv[1]), true)["conflict"]["ext-bernard_ledit"] ?? "";' \
+    "$repo_root/composer.json")"
+  [[ "$constraint" =~ ^!=[[:space:]]*([0-9]+\.[0-9]+\.[0-9]+[^[:space:]]*)$ ]] ||
+    die "composer.json should pin the extension as \"conflict\": {\"ext-bernard_ledit\": \"!=X.Y.Z\"}; found '$constraint'"
+  printf 'v%s\n' "${BASH_REMATCH[1]}"
 }
 
 # GitHub redirects /releases/latest to the newest release that is neither a draft nor a pre-release.
@@ -22,7 +36,11 @@ latest_tag() {
 
 main() {
   local tag="${1:-}"
-  [ -n "$tag" ] || tag="$(latest_tag)"
+  if [ -z "$tag" ]; then
+    tag="$(pinned_tag)" || exit 1
+  elif [ "$tag" = latest ]; then
+    tag="$(latest_tag)" || exit 1
+  fi
   mkdir -p "$(dirname "$OUT")"
   curl -fsSL -o "$OUT.tmp" "https://raw.githubusercontent.com/$REPO/$tag/bindings/php/bernard_ledit.stubs.php" ||
     { rm -f "$OUT.tmp"; die "no stubs found for $tag"; }
