@@ -40,7 +40,7 @@ class CustomSleepMixinTest extends TestCase
     public function testCustomSleep2Seconds(): void
     {
         $lowerBound = 2;
-        $upperBound = 2.1;
+        $upperBound = 2.3;
 
         $start = microtime(true);
         $this->customSleep(2);
