@@ -7,10 +7,9 @@ namespace Mindee\Image;
 use BernardLedit\Image\Image;
 use BernardLedit\Image\ImageException;
 use BernardLedit\Image\ImageExtractException;
-use BernardLedit\Pdf\PdfDocument;
 use BernardLedit\Pdf\PdfExtractException;
 use BernardLedit\Pdf\PdfiumException;
-use Exception;
+use InvalidArgumentException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
@@ -20,9 +19,9 @@ use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
 use ValueError;
 
-use function BernardLedit\Image\decode;
 use function BernardLedit\Image\guessFormat;
 use function BernardLedit\Image\extractFromPolygons;
+use function count;
 use function sprintf;
 use function is_array;
 
@@ -101,38 +100,6 @@ class ImageExtractor
         }
     }
 
-    /**
-     * Renders the input PDF's pages as individual images.
-     *
-     * @param string $fileBytes Input pdf.
-     *
-     * @return Image[] A list of pages.
-     *
-     * @throws MindeeImageException Throws if the image can't be handled.
-     */
-    public static function pdfToImages(string $fileBytes): array
-    {
-        try {
-            $images = [];
-            $pdf = new PdfDocument($fileBytes);
-            try {
-                for ($i = 0; $i < $pdf->getPageCount(); $i++) {
-                    $images[] = decode($pdf->rasterizePageToJpegBytes($i, 100));
-                }
-            } finally {
-                $pdf->close();
-            }
-
-            return $images;
-        } catch (Exception $e) {
-            throw new MindeeImageException(
-                "Couldn't convert PDF to images.",
-                ErrorCode::FILE_OPERATION_ABORTED,
-                $e
-            );
-        }
-    }
-
 
     /**
      * Extracts images from a page.
@@ -141,6 +108,8 @@ class ImageExtractor
      * @param integer $pageIndex The page index to extract, begins at 0.
      * @param null|string $filenamePrefix Output filename prefix.
      * @param null|string $format Save format for extracted images. Defaults to the original format.
+     * @param null|array<int> $indexes Index of each polygon, used in its image's file name and index, in the
+     *                                 same order as the polygons. Defaults to 0, 1, 2...
      *
      * @return array<ExtractedImage> An array of created images
      * @throws MindeeImageException Throws if the image can't be processed.
@@ -149,16 +118,25 @@ class ImageExtractor
         array $polygons,
         int $pageIndex,
         ?string $filenamePrefix = null,
-        ?string $format = null
+        ?string $format = null,
+        ?array $indexes = null
     ): array {
         $saveFormat = $format ?? $this->saveFormat;
         $filenamePrefix ??= $this->filename;
-        $crops = $this->cropPolygons(array_values($polygons), $pageIndex);
+        $polygons = array_values($polygons);
+        $indexes = null === $indexes ? array_keys($polygons) : array_values($indexes);
+        if (count($indexes) !== count($polygons)) {
+            throw new InvalidArgumentException(
+                sprintf('Got %d indexes for %d polygons.', count($indexes), count($polygons))
+            );
+        }
+        $crops = $this->cropPolygons($polygons, $pageIndex);
 
         $extractedImages = [];
         foreach ($crops as $i => $crop) {
-            $outputFilename = sprintf('%s-%d.%s', $filenamePrefix, $i, $saveFormat);
-            $extractedImages[] = $this->encodeCrop($crop, $pageIndex, $i, $outputFilename, $saveFormat);
+            $index = $indexes[$i];
+            $outputFilename = sprintf('%s-%d.%s', $filenamePrefix, $index, $saveFormat);
+            $extractedImages[] = $this->encodeCrop($crop, $pageIndex, $index, $outputFilename, $saveFormat);
         }
 
         return $extractedImages;

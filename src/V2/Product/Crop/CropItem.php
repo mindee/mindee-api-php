@@ -23,7 +23,7 @@ class CropItem implements Stringable
     public FieldLocation $location;
     /**
      * @var string Type or classification of the detected object.
-    */
+     */
     public string $objectType;
 
     /**
@@ -51,11 +51,14 @@ class CropItem implements Stringable
 
     /**
      * @param LocalInputSource $inputSource The input source from which to extract the crop.
+     * @param integer $index Position of this crop among the inference's crops, used in the file name
+     *                       ("<file>_page<page>-<index>"): pass it when extracting crops one by one, so
+     *                       their files don't overwrite each other.
      * @return ExtractedImage The extracted image.
      */
-    public function extractFromInputSource(LocalInputSource $inputSource): ExtractedImage
+    public function extractFromInputSource(LocalInputSource $inputSource, int $index = 0): ExtractedImage
     {
         $cropper = new Crop($inputSource);
-        return $cropper->extractSingleCrop($this);
+        return $cropper->extractSingleCrop($this, $index);
     }
 }
