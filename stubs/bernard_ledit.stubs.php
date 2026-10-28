@@ -1,4 +1,5 @@
 <?php
+// Generated from mindee/bernard-ledit v0.1.0 by tools/update-bernard-ledit-stubs.sh: don't edit by hand.
 
 // Stubs for bernard_ledit
 

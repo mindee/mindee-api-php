@@ -20,7 +20,7 @@ pinned_tag() {
   # shellcheck disable=SC2016 # $argv is PHP's, not the shell's
   constraint="$(php -r 'echo json_decode(file_get_contents($argv[1]), true)["conflict"]["ext-bernard_ledit"] ?? "";' \
     "$repo_root/composer.json")"
-  [[ "$constraint" =~ ^<[[:space:]]*([0-9]+\.[0-9]+\.[0-9]+[^[:space:]]*)$ ]] ||
+  [[ "$constraint" =~ ^\<[[:space:]]*([0-9]+\.[0-9]+\.[0-9]+[^[:space:]]*)$ ]] ||
     die "composer.json should pin the extension as \"conflict\": {\"ext-bernard_ledit\": \"<X.Y.Z\"}; found '$constraint'"
   printf 'v%s\n' "${BASH_REMATCH[1]}"
 }

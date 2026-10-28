@@ -245,7 +245,7 @@ abstract class LocalInputSource extends InputSource
         DependencyChecker::requireBernardLedit();
         try {
             $fixed = nativeFixPdf($this->currentBytes(), $maximumOffset);
-        } catch (Exception|ValueError $e) { // @phpstan-ignore catch.neverThrown (the generated stubs only declare \Exception)
+        } catch (Exception|ValueError $e) {
             throw new MindeeSourceException($e->getMessage(), ErrorCode::FILE_OPERATION_ERROR, $e);
         }
         $this->fileMimetype = 'application/pdf';

@@ -4,3 +4,14 @@ parameters:
         - src
     scanFiles:
         - stubs/bernard_ledit.stubs.php
+    ignoreErrors:
+        # bernard-ledit 0.1.0 throws \ValueError, but its generated stubs only declare \Exception.
+        # Whether PHPStan reports these catches as dead depends on the environment, so a missing match
+        # isn't an error. Remove once the stubs declare \ValueError.
+        -
+            identifier: catch.neverThrown
+            message: '#^Dead catch - ValueError is never thrown in the try block\.$#'
+            paths:
+                - src/Image/ImageExtractor.php
+                - src/Input/LocalInputSource.php
+            reportUnmatched: false
