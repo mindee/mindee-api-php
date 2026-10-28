@@ -76,6 +76,39 @@ class ImageExtractor extends BaseImageExtractor
     }
 
     /**
+     * Returns a field's position data: its polygon, bounding box, quadrangle or rectangle, whichever
+     * comes first.
+     *
+     * @param BaseField<string|float|integer|boolean|Polygon> $field The field.
+     *
+     * @throws MindeeGeometryException Throws if the field does not contain positional data.
+     */
+    protected static function fieldPolygon(BaseField $field): Polygon
+    {
+        $polygon = null;
+
+        if (!empty($field->polygon)) {
+            $polygon = $field->polygon;
+        } elseif (!empty($field->boundingBox)) {
+            $polygon = $field->boundingBox;
+        } elseif (!empty($field->quadrangle)) {
+            $polygon = $field->quadrangle;
+        } elseif (!empty($field->rectangle)) {
+            $polygon = $field->rectangle;
+        }
+
+        if (null === $polygon) {
+            throw new MindeeGeometryException(
+                'Provided field has no valid position data.',
+                ErrorCode::GEOMETRIC_OPERATION_FAILED
+            );
+        }
+
+        return $polygon;
+    }
+
+
+    /**
      * Extracts images from a page.
      *
      * @param array<BaseField<string|float|integer|boolean|Polygon>> $fields List of Fields to extract.
@@ -87,19 +120,11 @@ class ImageExtractor extends BaseImageExtractor
      */
     protected function extractFromPage(array $fields, int $pageIndex, string $outputName, string $format = 'jpg'): array
     {
-        $extractedImages = [];
-
-        $i = 0;
-        foreach ($fields as $field) {
-            $filename = sprintf('%s_page%d-%d.%s', $outputName, $pageIndex, $i, $format);
-            $extractedImage = $this->extractImage($field, $pageIndex, $i, $filename, $format);
-            if (null !== $extractedImage) {
-                $extractedImages[] = $extractedImage;
-            }
-            ++$i;
-        }
-
-        return $extractedImages;
+        return $this->extractMultipleImagesFromSource(
+            array_map(static::fieldPolygon(...), array_values($fields)),
+            $pageIndex,
+            sprintf('%s_page%d', $outputName, $pageIndex),
+            $format
+        );
     }
-
 }

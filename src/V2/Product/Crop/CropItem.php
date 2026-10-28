@@ -23,17 +23,19 @@ class CropItem implements Stringable
     public FieldLocation $location;
     /**
      * @var string Type or classification of the detected object.
-    */
+     */
     public string $objectType;
 
     /**
      * @var ExtractionResponse|null $extractionResponse The extraction response associated with the crop.
      */
     public ?ExtractionResponse $extractionResponse;
+
     /**
      * @param array<string, int|float|string|bool|null|array<array-key, mixed>> $rawResponse Raw server response array.
+     * @param integer|null $indexOnPage Position of this crop among the crops of its page.
      */
-    public function __construct(array $rawResponse)
+    public function __construct(array $rawResponse, public ?int $indexOnPage = null)
     {
         $this->location = new FieldLocation($rawResponse['location']);
         $this->objectType = $rawResponse['object_type'];

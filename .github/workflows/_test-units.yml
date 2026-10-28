@@ -3,19 +3,32 @@ name: Unit Tests without PDF support
 on:
   workflow_call:
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  no-pdf-linux:
-    name: Unit Tests on Linux without PDF support
+  no-pdf:
+    name: Unit Tests on ${{ matrix.os }} without PDF support (PHP ${{ matrix.php-version }})
     timeout-minutes: 30
     strategy:
+      fail-fast: false
+      # Every PHP version on Linux; only the oldest and newest on macOS and Windows.
       matrix:
+        os:
+          - ubuntu-latest
         php-version:
           - 8.1
           - 8.2
           - 8.3
           - 8.4
           - 8.5
-    runs-on: "ubuntu-latest"
+        include:
+          - { os: macos-latest, php-version: 8.1 }
+          - { os: macos-latest, php-version: 8.5 }
+          - { os: windows-latest, php-version: 8.1 }
+          - { os: windows-latest, php-version: 8.5 }
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -23,150 +36,6 @@ jobs:
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-version }}
-
-      - name: Install dependencies
-        uses: ramsey/composer-install@v3
-
-      - name: Unit testing with phpunit
-        env:
-          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/pdffeatures.xml
-
-
-  with-pdf-linux:
-    name: Unit Tests on Linux with PDF support
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        php-version:
-          - 8.1
-          - 8.2
-          - 8.3
-          - 8.4
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: recursive
-      - name: Install Ghostscript
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ghostscript
-      - name: Set up PHP ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-version }}
-
-      - name: Install dependencies
-        uses: ramsey/composer-install@v3
-
-      - name: Change ImageMagick security policy on Ubuntu
-        run: |
-          DQT='"'
-          SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
-          RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-
-      - name: Unit testing with phpunit
-        env:
-          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/phpunit.xml
-
-
-  no-pdf-macos:
-    name: Unit Tests on MacOS without PDF support
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        php-version:
-          - 8.1
-          - 8.2
-          - 8.3
-          - 8.4
-    runs-on: "macos-latest"
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: recursive
-      - name: Set up PHP ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
-        with:
-          php-version: ${{ matrix.php-version }}
-      - uses: ramsey/composer-install@v3
-      - name: Unit testing with phpunit
-        env:
-          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/pdffeatures.xml
-
-# Note: Disabled because brew formula for imagemagick keeps breaking
-#  with-pdf-macos:
-#    name: Unit Tests on MacOS with PDF support
-#    timeout-minutes: 30
-#    strategy:
-#      matrix:
-#        php-version:
-#          - 8.1
-#          - 8.2
-#          - 8.3
-#          - 8.4
-#    runs-on: "macos-latest"
-#    steps:
-#      - uses: actions/checkout@v6
-#        with:
-#          submodules: recursive
-#      - name: Install Homebrew
-#        run: |
-#          brew update
-#          brew upgrade
-#          brew uninstall -f imagemagick || true
-#          brew uninstall -f pkg-config || true
-#          brew cleanup
-#      - name: Install Imagemagick
-#        run: |
-#          brew install pkg-config ghostscript imagemagick@7
-#          export PKG_CONFIG_PATH="/usr/local/opt/imagemagick/lib/pkgconfig"
-#      - name: Set up PHP ${{ matrix.php-version }}
-#        uses: shivammathur/setup-php@v2
-#        env:
-#          phpts: zts
-#        with:
-#          php-version: ${{ matrix.php-version }}
-#      - name: Install Imagick
-#        run: pecl install imagick
-#      - uses: ramsey/composer-install@v3
-#      - name: Unit testing with phpunit
-#        env:
-#          MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-#        run: |
-#          ./vendor/bin/phpunit -c tests/phpunit.xml
-
-  no-pdf-windows:
-    name: Unit Tests on Windows without PDF support
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        php-version:
-          - 8.1
-          - 8.2
-          - 8.3
-          - 8.4
-    runs-on: "windows-latest"
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: recursive
-
-      - name: Set up PHP ${{ matrix.php-version }}
-        uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json
@@ -177,41 +46,55 @@ jobs:
       - name: Unit testing with phpunit
         env:
           MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/pdffeatures.xml
+        run: php vendor/bin/phpunit -c tests/bernardleditfeatures.xml
 
-
-  with-pdf-windows:
-    name: Unit Tests on Windows with PDF support
+  with-pdf:
+    name: Unit Tests on ${{ matrix.os }} with PDF support (PHP ${{ matrix.php-version }})
     timeout-minutes: 30
     strategy:
+      fail-fast: false
+      # Every PHP version on Linux; only the oldest and newest on macOS and Windows.
       matrix:
+        os:
+          - ubuntu-latest
         php-version:
           - 8.1
           - 8.2
           - 8.3
           - 8.4
-    runs-on: "windows-latest"
+          - 8.5
+        include:
+          - { os: macos-latest, php-version: 8.1 }
+          - { os: macos-latest, php-version: 8.5 }
+          - { os: windows-latest, php-version: 8.1 }
+          - { os: windows-latest, php-version: 8.5 }
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: choco install ghostscript --version 10.04.0 -y
-
-      - name: Create Ghostscript alias
-        run: |
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs.exe" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
-          New-Item -ItemType SymbolicLink -Path "C:\Windows\gs" -Target "C:\Program Files\gs\gs10.04.0\bin\gswin64c.exe"
-        shell: powershell
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
+          extensions: curl, fileinfo, json
+          tools: pie
+
+      - name: Install bernard-ledit extension
+        if: runner.os != 'Windows'
+        run: bash tools/install-bernard-ledit.sh
+
+      - name: Install bernard-ledit extension (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          pie install "mindee/bernard-ledit"
+          if (-not (php -m | Select-String -Pattern '^bernard_ledit$' -Quiet)) {
+            Write-Error "bernard_ledit did not load"
+            exit 1
+          }
+          php -r 'echo "bernard_ledit ", phpversion("bernard_ledit"), PHP_EOL;'
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
@@ -219,5 +102,4 @@ jobs:
       - name: Unit testing with phpunit
         env:
           MINDEE_API_KEY: ${{ secrets.MINDEE_API_KEY_SE_TESTS }}
-        run: |
-          ./vendor/bin/phpunit -c tests/phpunit.xml
+        run: php vendor/bin/phpunit -c tests/phpunit.xml

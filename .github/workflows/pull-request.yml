@@ -19,7 +19,7 @@ jobs:
     secrets: inherit
   test-integrations:
     uses: ./.github/workflows/_test-integrations.yml
-    needs: test-units
+    needs: [test-units]
     secrets: inherit
   smoke-test:
     uses: ./.github/workflows/_test-smoke.yml

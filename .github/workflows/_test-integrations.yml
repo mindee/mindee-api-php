@@ -33,67 +33,60 @@ jobs:
         php-version:
           - 8.1
           - 8.5
+
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ghostscript
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
+          extensions: curl, fileinfo, json
+          tools: pie
+
+      - name: Install bernard-ledit extension
+        run: bash tools/install-bernard-ledit.sh
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
 
-      - name: Change ImageMagick security policy on Ubuntu
-        run: |
-          DQT='"'
-          SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
-          RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
+      - name: Integration testing with phpunit
+        run: ./vendor/bin/phpunit -c tests/functional.xml
 
-      - name: Unit testing with phpunit
-        run: |
-          ./vendor/bin/phpunit -c tests/functional.xml
+  integration-tests-macos:
+    name: Run Integration Tests on MacOS
+    timeout-minutes: 30
+    strategy:
+      max-parallel: 2
+      matrix:
+        php-version:
+          - 8.1
+          - 8.5
+    runs-on: "macos-latest"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
 
-# MacOS testing disabled because of capricious GS/ImageMagick/Homebrew behaviors
-#  integration-tests-macos:
-#    name: Run Integration Tests on MacOS
-#    timeout-minutes: 30
-#    strategy:
-#      max-parallel: 2
-#      matrix:
-#        php-version:
-#          - 8.1
-#          - 8.5
-#    runs-on: "macos-latest"
-#    steps:
-#      - uses: actions/checkout@v4
-#        with:
-#          submodules: recursive
-#      - name: Set up php ${{ matrix.php-version }}
-#        uses: shivammathur/setup-php@v2
-#        env:
-#          phpts: zts
-#        with:
-#          php-version: ${{ matrix.php-version }}
-#          extensions: curl, fileinfo, json, imagick
-#      - name: Install ImageMagick
-#        run: |
-#          brew update
-#          brew install imagemagick
-#      - uses: ramsey/composer-install@v2
-#      - name: Unit testing with phpunit
-#        run: |
-#          ./vendor/bin/phpunit -c tests/functional.xml
-#
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: curl, fileinfo, json
+          tools: pie
+
+      - name: Install bernard-ledit extension
+        run: bash tools/install-bernard-ledit.sh
+
+      - name: Install dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Integration testing with phpunit
+        run: ./vendor/bin/phpunit -c tests/functional.xml
+
 
   integration-tests-windows:
     name: Run Integration Tests on Windows
@@ -104,28 +97,32 @@ jobs:
         php-version:
           - 8.1
           - 8.5
+
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
-      - name: Install Ghostscript
-        run: choco install ghostscript --version 10.03.1 -y
-
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: curl, fileinfo, json, imagick
+          extensions: curl, fileinfo, json
+          tools: pie
 
-      - name: Install Ghostscript
-        run: choco install ghostscript -y
+      - name: Install bernard-ledit extension (Windows)
+        shell: pwsh
+        run: |
+          pie install "mindee/bernard-ledit"
+          if (-not (php -m | Select-String -Pattern '^bernard_ledit$' -Quiet)) {
+            Write-Error "bernard_ledit did not load"
+            exit 1
+          }
+          php -r 'echo "bernard_ledit ", phpversion("bernard_ledit"), PHP_EOL;'
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
 
-      - name: Unit testing with phpunit
+      - name: Integration testing with phpunit
         run: |
           ./vendor/bin/phpunit -c tests/functional.xml

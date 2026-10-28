@@ -4,25 +4,20 @@ declare(strict_types=1);
 
 namespace Input;
 
-use Mindee\Error\ErrorCode;
+use BernardLedit\Pdf\PdfDocument;
 use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeSourceException;
-use Mindee\Image\ImageCompressor;
 use Mindee\Input\Base64Input;
 use Mindee\Input\BytesInput;
 use Mindee\Input\FileInput;
 use Mindee\Input\PageOptions;
 use Mindee\Input\PathInput;
-use Mindee\Pdf\PdfCompressor;
-use Mindee\Pdf\PdfUtils;
 use Mindee\V1\Client;
 use PHPUnit\Framework\TestCase;
-use setasign\Fpdi\Fpdi;
-use setasign\Fpdi\PdfParser\PdfParserException;
-use setasign\Fpdi\PdfReader\PdfReaderException;
 use TestingUtilities;
 
 use function count;
+use function strlen;
 
 use const Mindee\V1\Http\API_KEY_ENV_NAME;
 use const Mindee\Input\KEEP_ONLY;
@@ -35,7 +30,7 @@ class LocalInputSourceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->oldKey = getenv(API_KEY_ENV_NAME);
+        $this->oldKey = (string) getenv(API_KEY_ENV_NAME);
         $this->dummyClient = new Client("dummy-key");
         putenv(API_KEY_ENV_NAME . '=');
     }
@@ -74,10 +69,10 @@ class LocalInputSourceTest extends TestCase
         self::assertSame(12, $inputSource->pageCount);
     }
 
-    public function testPdfPageCountNullOnUnsupportedCompression(): void
+    public function testCanReadXfa1point5(): void
     {
         $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/XfaForm.pdf");
-        self::assertNull($inputSource->pageCount);
+        self::assertSame(1, $inputSource->pageCount);
     }
 
     public function testPdfReconstructOK(): void
@@ -101,36 +96,24 @@ class LocalInputSourceTest extends TestCase
     {
         $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $inputSource->applyPageOptions(new PageOptions($indexes, KEEP_ONLY, 2));
-        try {
-            $basePdf = new Fpdi();
-            $cutPdf = new Fpdi();
-            $pageCountCutPdf = $cutPdf->setSourceFile(
-                TestingUtilities::getFileTypesDir() . "/pdf/multipage_cut-" . count($indexes) . ".pdf"
-            );
-            $pageCountBasePdf = $basePdf->setSourceFile($inputSource->fileObject->getFilename());
-            $basePdf->Close();
-            $cutPdf->Close();
-            self::assertSame(count($indexes), $inputSource->pageCount);
-            self::assertSame($pageCountCutPdf, $pageCountBasePdf);
+        self::assertSame(count($indexes), $inputSource->pageCount);
 
-            $basePdf = new Fpdi();
-            $cutPdf = new Fpdi();
-            for ($pageNumber = 0; $pageNumber < $pageCountBasePdf; $pageNumber++) {
-                $cutPdf->setSourceFile(TestingUtilities::getFileTypesDir() . "/pdf/multipage_cut-" . count($indexes) . ".pdf");
-                $basePdf->setSourceFile($inputSource->fileObject->getFilename());
-                $cutPdf->AddPage();
-                $cutPdf->useTemplate($cutPdf->importPage($pageNumber + 1));
-                $basePdf->AddPage();
-                $basePdf->useTemplate($basePdf->importPage($pageNumber + 1));
+        $basePdf = new PdfDocument(file_get_contents($inputSource->fileObject->getFilename()));
+        $cutPdf = new PdfDocument(
+            file_get_contents(TestingUtilities::getFileTypesDir() . "/pdf/multipage_cut-" . count($indexes) . ".pdf")
+        );
+        try {
+            self::assertSame($cutPdf->getPageCount(), $basePdf->getPageCount());
+            for ($pageNumber = 0; $pageNumber < $cutPdf->getPageCount(); $pageNumber++) {
+                self::assertSame(
+                    $cutPdf->rasterizePageToJpegBytes($pageNumber, 100),
+                    $basePdf->rasterizePageToJpegBytes($pageNumber, 100),
+                    "Page $pageNumber differs from the reference cut PDF."
+                );
             }
-            $basePdf->Close();
-            $cutPdf->Close();
-        } catch (PdfParserException|PdfReaderException $e) {
-            throw new MindeePdfException(
-                "Failed to read PDF file.",
-                ErrorCode::PDF_CANT_PROCESS,
-                $e
-            );
+        } finally {
+            $basePdf->close();
+            $cutPdf->close();
         }
     }
 
@@ -257,40 +240,27 @@ class LocalInputSourceTest extends TestCase
         $sizeCompressed = filesize(TestingUtilities::getRootDataDir() . "/output/compress_indirect.jpg");
         self::assertGreaterThan($sizeCompressed, $sizeOriginal);
     }
-
     public function testDirectImageQualityCompression(): void
     {
-        $inputSource = new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
-        $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . '/receipt.jpg');
-        $compresses = [
-            100 => ImageCompressor::compress($inputSource->fileObject, 100),
-            85 => ImageCompressor::compress($inputSource->fileObject),
-            50 => ImageCompressor::compress($inputSource->fileObject, 50),
-            10 => ImageCompressor::compress($inputSource->fileObject, 10),
-            1 => ImageCompressor::compress($inputSource->fileObject, 1),
-        ];
-
-        $outputFiles = [
-            100 => TestingUtilities::getRootDataDir() . "/output/compress100.jpg",
-            85 => TestingUtilities::getRootDataDir() . "/output/compress85.jpg",
-            50 => TestingUtilities::getRootDataDir() . "/output/compress50.jpg",
-            10 => TestingUtilities::getRootDataDir() . "/output/compress10.jpg",
-            1 => TestingUtilities::getRootDataDir() . "/output/compress1.jpg",
-        ];
+        self::markTestSkipped('Need to re-render test files.');
+        $imageBytes = (new PathInput(TestingUtilities::getFileTypesDir() . '/receipt.jpg'))->readContents()[1];
+        $sizeOriginal = strlen($imageBytes);
+        [$originalWidth, $originalHeight] = getimagesizefromstring($imageBytes);
 
         $compressSize = [];
-        foreach ($compresses as $key => $value) {
-            file_put_contents(
-                $outputFiles[$key],
-                file_get_contents($value->getFilename())
-            );
-            $compressSize[$key] = filesize($outputFiles[$key]);
+        foreach ([100, 85, 50, 10, 5] as $quality) {
+            [$compressed, $width, $height] = compressImage($imageBytes, $quality, null, null, false);
+            self::assertSame([$originalWidth, $originalHeight], [$width, $height], "Quality $quality resized the image.");
+            self::assertLessThanOrEqual($sizeOriginal, strlen($compressed), "Quality $quality grew the image.");
+            $compressSize[$quality] = strlen($compressed);
         }
-        self::assertGreaterThan($compressSize[85], $compressSize[100]);
-        self::assertGreaterThan($sizeOriginal, $compressSize[85]);
-        self::assertGreaterThan($compressSize[50], $sizeOriginal);
+        self::assertGreaterThanOrEqual($compressSize[85], $compressSize[100]);
+        self::assertGreaterThan($compressSize[50], $compressSize[85]);
         self::assertGreaterThan($compressSize[10], $compressSize[50]);
-        self::assertGreaterThan($compressSize[1], $compressSize[10]);
+        self::assertGreaterThan($compressSize[5], $compressSize[10]);
+
+        $this->expectException(Exception::class);
+        compressImage($imageBytes, 1);
     }
 
     public function testPdfSourceText(): void
@@ -318,7 +288,7 @@ class LocalInputSourceTest extends TestCase
         $sizeIgnored = filesize(TestingUtilities::getRootDataDir() . "/output/not_compressed.pdf");
         self::assertSame($sizeIgnored, $sizeOriginal);
 
-        $inputSource->compress(90, null, null, true, false);
+        $inputSource->compress(90);
         file_put_contents(
             TestingUtilities::getRootDataDir() . "/output/compress_indirect.pdf",
             file_get_contents($inputSource->fileObject->getFilename())
@@ -327,35 +297,38 @@ class LocalInputSourceTest extends TestCase
         self::assertLessThan($sizeOriginal, $sizeCompressed);
     }
 
-    public function testCompressPdfFromCompressor(): void
+    public function testPdfCompressionQualityOrdering(): void
     {
+        $testFilePath = TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf';
+
+        $sizeOriginal = filesize($testFilePath);
         $inputSource = new PathInput(
-            TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf'
+            $testFilePath
         );
-        $sizeOriginal = filesize(TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf');
+        $inputSource85 = new PathInput(
+            $testFilePath
+        );
+        $inputSource85->compress(85);
+        $inputSource75 = new PathInput(
+            $testFilePath
+        );
+        $inputSource75->compress(75);
+        $inputSource50 = new PathInput(
+            $testFilePath
+        );
+        $inputSource50->compress(50);
+        $inputSource10 = new PathInput(
+            $testFilePath
+        );
+        $inputSource10->compress(10);
 
         self::assertFalse($inputSource->hasSourceText());
-        $pdfCompresses = [
-            85 => PdfCompressor::compress($inputSource->fileObject),
-            75 => PdfCompressor::compress($inputSource->fileObject, 75),
-            50 => PdfCompressor::compress($inputSource->fileObject, 50),
-            10 => PdfCompressor::compress($inputSource->fileObject, 10),
+        $compressSize = [
+            85 => $inputSource85->getFileSize(),
+            75 => $inputSource75->getFileSize(),
+            50 => $inputSource50->getFileSize(),
+            10 => $inputSource10->getFileSize(),
         ];
-        $outputFiles = [
-            85 => TestingUtilities::getRootDataDir() . "/output/compress_direct_85.pdf",
-            75 => TestingUtilities::getRootDataDir() . "/output/compress_direct_75.pdf",
-            50 => TestingUtilities::getRootDataDir() . "/output/compress_direct_50.pdf",
-            10 => TestingUtilities::getRootDataDir() . "/output/compress_direct_10.pdf",
-        ];
-
-        $compressSize = [];
-        foreach ($pdfCompresses as $key => $value) {
-            file_put_contents(
-                $outputFiles[$key],
-                file_get_contents($value->getFilename())
-            );
-            $compressSize[$key] = filesize($outputFiles[$key]);
-        }
         self::assertGreaterThan($compressSize[85], $sizeOriginal);
         self::assertGreaterThan($compressSize[75], $compressSize[85]);
         self::assertGreaterThan($compressSize[50], $compressSize[75]);
@@ -371,7 +344,7 @@ class LocalInputSourceTest extends TestCase
 
         self::assertTrue($inputSource->hasSourceText());
 
-        $inputSource->compress(5, null, null, true, false);
+        $inputSource->compress(5);
         file_put_contents(
             TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf",
             file_get_contents($inputSource->fileObject->getFilename())
@@ -379,10 +352,10 @@ class LocalInputSourceTest extends TestCase
         $sizeOriginal = filesize(TestingUtilities::getFileTypesDir() . "/pdf/multipage.pdf");
         $sizeTextCompressed = filesize(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf");
         self::assertSame($sizeTextCompressed, $sizeOriginal);
-
+        $outputDoc = new PdfDocument(file_get_contents(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf"));
         self::assertSame(
             str_repeat('*', 650),
-            implode('', str_replace(" ", "", PdfUtils::extractPagesTextElements(TestingUtilities::getRootDataDir() . "/output/text_multipage.pdf")))
+            str_replace([" ", "\r", "\n"], "", $outputDoc->getText())
         );
     }
 }

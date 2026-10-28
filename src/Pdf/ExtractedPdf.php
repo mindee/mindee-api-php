@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Mindee\Pdf;
 
+use BernardLedit\Pdf\PdfDocument;
+use Exception;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
-use setasign\Fpdi\Fpdi;
-use setasign\Fpdi\PdfParser\PdfParserException;
 
 use const DIRECTORY_SEPARATOR;
 
@@ -34,8 +34,7 @@ class ExtractedPdf
      */
     public function __construct(protected string $pdfBytes, public string $filename)
     {
-        DependencyChecker::isImageMagickAvailable();
-        DependencyChecker::isGhostscriptAvailable();
+        DependencyChecker::requireBernardLedit();
         $this->pageCount = $this->getPageCount();
     }
 
@@ -44,21 +43,16 @@ class ExtractedPdf
      *
      * @return integer the number of pages in the file
      *
-     * @throws MindeePdfException Throws if FPDI is unable to process the file.
+     * @throws MindeePdfException Throws if `bernard_ledit` is unable to process the file.
      */
     private function getPageCount(): int
     {
         try {
-            $pdfHandle = new Fpdi();
-
-            $tempFilename = tempnam(sys_get_temp_dir(), 'extracted_pdf_');
-            file_put_contents($tempFilename, $this->pdfBytes);
-
-            return $pdfHandle->setSourceFile($tempFilename);
-        } catch (PdfParserException $e) {
+            return PdfUtils::withPdf($this->pdfBytes, static fn(PdfDocument $pdf): int => $pdf->getPageCount());
+        } catch (Exception $e) {
             throw new MindeePdfException(
-                "Couldn't open PDF file.",
-                ErrorCode::PDF_CANT_CREATE,
+                "PDF couldn't be opened.",
+                ErrorCode::PDF_CANT_PROCESS,
                 $e
             );
         }

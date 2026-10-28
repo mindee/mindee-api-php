@@ -24,7 +24,17 @@ class CropResult implements Stringable
      */
     public function __construct(array $rawResponse)
     {
-        $this->crops = array_map(static fn($crop) => new CropItem($crop), $rawResponse['crops']);
+        $cropsOnPage = [];
+        $this->crops = array_map(
+            static function (array $crop) use (&$cropsOnPage): CropItem {
+                $page = $crop['location']['page'];
+                $indexOnPage = $cropsOnPage[$page] ?? 0;
+                $cropsOnPage[$page] = $indexOnPage + 1;
+
+                return new CropItem($crop, $indexOnPage);
+            },
+            $rawResponse['crops']
+        );
     }
 
     /**
