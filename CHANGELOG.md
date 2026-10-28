@@ -1,5 +1,14 @@
 # Mindee PHP API Library Changelog
 
+## v3.4.0 - 2026-10-28
+### Changes
+* :sparkles: swap out all PDF/Image handling features with Bernard L'Édit
+* :coffin: drop pdfparser, FPDF/FPDI, ImageMagick, ghostscript
+### Fixes
+* :memo: fix changelog inconsistencies, and update to account for Bernard L'Édit
+* :bug: fix faulty tests
+
+
 ## v3.3.1 - 2026-10-27
 ### Fixes
 * :recycle: update deprecated syntaxes + add checks (addresses #225)
