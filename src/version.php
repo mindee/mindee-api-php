@@ -4,4 +4,4 @@ declare(strict_types=1);
 
 namespace Mindee;
 
-const VERSION = '3.3.1';
+const VERSION = '3.4.0';
