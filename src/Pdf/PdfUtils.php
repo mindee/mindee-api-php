@@ -24,7 +24,7 @@ class PdfUtils
     {
         DependencyChecker::requireBernardLedit();
         try {
-            return self::withPdf($pdfData, static fn(PdfDocument $pdf): bool => $pdf->hasText()); // see #14
+            return self::withPdf($pdfData, static fn(PdfDocument $pdf): bool => $pdf->hasText());
         } catch (Exception $e) {
             throw new MindeePdfException("PDF couldn't be opened.", ErrorCode::PDF_CANT_PROCESS, $e);
         }
@@ -54,6 +54,7 @@ class PdfUtils
             error_log("Couldn't close PDF document: " . $e->getMessage());
         }
     }
+
     /**
      * Opens a PDF, runs $fn on it, and always closes it.
      *

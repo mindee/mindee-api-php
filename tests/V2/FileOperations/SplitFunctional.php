@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace V2\FileOperations;
 
+use Mindee\Error\MindeePdfException;
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
@@ -12,7 +13,6 @@ use Mindee\V2\Product\Split\Params\SplitParameters;
 use Mindee\V2\Product\Split\SplitResponse;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;
-use ImagickException;
 
 use function count;
 use function sprintf;
@@ -78,7 +78,7 @@ class SplitFunctional extends TestCase
     }
 
     /**
-     * @throws ImagickException
+     * @throws MindeePdfException
      */
     public function testExtractSplitsFromPdfCorrectly(): void
     {

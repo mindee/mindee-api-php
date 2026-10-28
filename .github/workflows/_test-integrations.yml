@@ -111,7 +111,6 @@ jobs:
           tools: pie
 
       - name: Install bernard-ledit extension (Windows)
-        if: runner.os == 'Windows'
         shell: pwsh
         run: |
           pie install "mindee/bernard-ledit"

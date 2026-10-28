@@ -151,8 +151,7 @@ abstract class LocalInputSource extends InputSource
         DependencyChecker::requireBernardLedit();
         $bytes = $this->currentBytes();
         try {
-            $pdf = new PdfDocument($bytes);
-            return $pdf->getPageCount();
+            return $this->pageCount = PdfUtils::withPdf($bytes, static fn(PdfDocument $pdf): int => $pdf->getPageCount());
         } catch (PdfiumException $e) {
             throw new MindeePdfException(
                 $e->getMessage(),
@@ -271,7 +270,7 @@ abstract class LocalInputSource extends InputSource
         bool   $forceSourceTextCompression = false,
         bool   $disableSourceText = true,
         ?bool  $optimize = true,
-        ?float $dpi = 129,
+        ?float $dpi = 100,
     ): void {
         if ($forceSourceTextCompression || !$disableSourceText) {
             @trigger_error(
@@ -302,7 +301,7 @@ abstract class LocalInputSource extends InputSource
      *
      * @return boolean Returns false if none is found, or if the file isn't a PDF.
      * @throws MindeeSourceException Throws if the file can't be read.
-     * @throws Exception Throws if an instance of pdf-parser can't be created.
+     * @throws Exception Throws if PDF can't be processed.
      */
     public function hasSourceText(): bool
     {
@@ -356,7 +355,7 @@ abstract class LocalInputSource extends InputSource
         try {
             $documentBytes = $document->asBytes();
             $this->saveBytesAsFile($documentBytes);
-            $this->pageCount = PdfUtils::withPdf($documentBytes, static fn(PdfDocument $pdf): int => $pdf->getPageCount());
+            $this->pageCount = $document->getPageCount();
         } catch (Exception $e) {
             throw new MindeePdfException(
                 "PDF couldn't be opened.",

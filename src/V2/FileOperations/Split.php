@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Mindee\V2\FileOperations;
 
 use Mindee\Error\MindeeInputException;
+use Mindee\Error\MindeePdfException;
 use Mindee\Input\LocalInputSource;
 use Mindee\Pdf\ExtractedPdf;
 use Mindee\Pdf\PdfExtractor;
-use ImagickException;
 
 /**
  * V2 Split operation.
@@ -45,7 +45,7 @@ class Split
      * @param int[] $split Split range to extract.
      *
      * @return ExtractedPdf 2D array of extracted pages
-     * @throws ImagickException Throws if the image can't be processed.
+     * @throws MindeePdfException Throws if the image can't be processed.
      */
     public function extractSingleSplit(array $split): ExtractedPdf
     {
@@ -58,7 +58,7 @@ class Split
      * @param int[][] $splits List of split ranges to extract.
      *
      * @return SplitFiles list of extracted files
-     * @throws ImagickException Throws if the image can't be processed.
+     * @throws MindeePdfException Throws if the image can't be processed.
      */
     public function extractMultipleSplits(array $splits): SplitFiles
     {
