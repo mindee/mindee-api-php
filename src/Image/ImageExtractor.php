@@ -80,8 +80,8 @@ class ImageExtractor
      */
     public function __construct(
         LocalInputSource $localInput,
-        ?string $saveFormat = null,
-        protected float $pdfDpi = self::DEFAULT_PDF_DPI
+        ?string          $saveFormat = null,
+        protected float  $pdfDpi = self::DEFAULT_PDF_DPI
     ) {
         DependencyChecker::requireBernardLedit();
         $this->filename = $localInput->fileName;
@@ -130,11 +130,11 @@ class ImageExtractor
      * @throws MindeeImageException Throws if the image can't be processed.
      */
     public function extractMultipleImagesFromSource(
-        array $polygons,
-        int $pageIndex,
+        array   $polygons,
+        int     $pageIndex,
         ?string $filenamePrefix = null,
         ?string $format = null,
-        ?array $indexes = null
+        ?array  $indexes = null
     ): array {
         $saveFormat = $format ?? $this->saveFormat;
         $filenamePrefix ??= $this->filename;
@@ -171,10 +171,10 @@ class ImageExtractor
      */
     public function extractPolygonFromPage(
         Polygon|array $polygon,
-        int $pageIndex,
-        int $index,
-        ?string $filename = null,
-        ?string $format = null
+        int           $pageIndex,
+        int           $index,
+        ?string       $filename = null,
+        ?string       $format = null
     ): ExtractedImage {
         $format ??= $this->saveFormat;
         [$crop] = $this->cropPolygons([$polygon], $pageIndex);
@@ -191,6 +191,7 @@ class ImageExtractor
     {
         return $this->inputSource;
     }
+
     /**
      * Crops every polygon's bounding box from a page, in a single native call.
      *
@@ -215,9 +216,9 @@ class ImageExtractor
      * @throws MindeeImageException Throws if encoding fails.
      */
     protected function encodeCrop(
-        Image $crop,
-        int $pageIndex,
-        int $index,
+        Image  $crop,
+        int    $pageIndex,
+        int    $index,
         string $filename,
         string $format
     ): ExtractedImage {

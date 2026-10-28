@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Split;
 
-use BernardLedit\Image\ImageException;
+use Mindee\Error\MindeePdfException;
 use Mindee\Input\LocalInputSource;
 use Mindee\V2\FileOperations\Split;
 use Mindee\V2\FileOperations\SplitFiles;
@@ -41,7 +41,7 @@ class SplitResult implements Stringable
     /**
      * @param LocalInputSource $inputSource The input source from which to extract the pages.
      * @return SplitFiles The extracted PDFs.
-     * @throws ImageException Throws if the image can't be processed.
+     * @throws MindeePdfException Throws if the file can't be processed.
      */
     public function extractFromInputSource(LocalInputSource $inputSource): SplitFiles
     {

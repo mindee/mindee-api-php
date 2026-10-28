@@ -78,7 +78,7 @@ Please follow these steps to have your contribution considered by the maintainer
 2. Follow the [styleguides](#styleguides)
 3. Make sure the linters and the unit tests pass (see [Development](#development))
 
-While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer (s) may ask you
+While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you
 to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
 ## Development
@@ -155,7 +155,7 @@ full list.
 
 A function deprecated in a recent PHP release only warns on that release, so also run the tests on the newest PHP
 version. CI runs the unit tests on every supported PHP version, on Linux, macOS and Windows. In
-tests/bernardleditfeatures.xml, PHP deprecations fail the tests (convertDeprecationsToExceptions).
+`tests/bernardleditfeatures.xml`, PHP deprecations fail the tests (`convertDeprecationsToExceptions`).
 
 ### Linting and formatting
 
@@ -184,6 +184,5 @@ Examples:
 ### PHP Styleguide
 
 We keep our code base consistent: PHP code follows the rules in [`.php-cs-fixer.dist.php`](.php-cs-fixer.dist.php),
-which build on [PER Coding Style](https://www.php-fig.org/per/coding-style/), the successor of PSR-12. PHPStan ([
-`phpstan.neon`](phpstan.neon)) and Rector ([`rector.php`](rector.php)) also run on every commit. `composer format` fixes
+which build on [PER Coding Style](https://www.php-fig.org/per/coding-style/), the successor of PSR-12. PHPStan ([`phpstan.neon`](phpstan.neon)) and Rector ([`rector.php`](rector.php)) also run on every commit. `composer format` fixes
 most style issues for you.

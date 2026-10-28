@@ -58,7 +58,7 @@ class Split
      * @param int[][] $splits List of split ranges to extract.
      *
      * @return SplitFiles list of extracted files
-     * @throws MindeePdfException Throws if the image can't be processed.
+     * @throws MindeePdfException Throws if the file can't be processed.
      */
     public function extractMultipleSplits(array $splits): SplitFiles
     {
