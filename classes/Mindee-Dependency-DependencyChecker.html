@@ -161,7 +161,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dependency/DependencyChecker.php"><a href="files/src-dependency-dependencychecker.html"><abbr title="src/Dependency/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -185,6 +185,21 @@
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/Mindee-Dependency-DependencyChecker.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/Mindee-Dependency-DependencyChecker.html#constant_BERNARD_LEDIT_VERSION">BERNARD_LEDIT_VERSION</a>
+    <span>
+        &nbsp;: mixed&nbsp;= &#039;0.1.0&#039;                            </span>
+</dt>
+<dd>The bernard_ledit version this SDK release is built and tested against. composer.json&#039;s &quot;conflict&quot;
+pins the same version; DependencyCheckerTest checks that both agree.</dd>
+
+    </dl>
 
 
 
@@ -195,31 +210,62 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Dependency-DependencyChecker.html#method_isGhostscriptAvailable">isGhostscriptAvailable()</a>
+    <a class="" href="classes/Mindee-Dependency-DependencyChecker.html#method_isBernardLeditAvailable">isBernardLeditAvailable()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: bool    </span>
 </dt>
-<dd>Throws if GhostScript isn&#039;t available on the system.</dd>
+<dd>Whether the bernard_ledit extension is loaded.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickAvailable">isImageMagickAvailable()</a>
+    <a class="" href="classes/Mindee-Dependency-DependencyChecker.html#method_requireBernardLedit">requireBernardLedit()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Throws if ImageMagick isn&#039;t available on the system.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickPolicyAllowed">isImageMagickPolicyAllowed()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Checks whether Imagick is blocked by restrictive policy.</dd>
 
     </dl>
 
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/Mindee-Dependency-DependencyChecker.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_BERNARD_LEDIT_VERSION">
+        BERNARD_LEDIT_VERSION
+        <a href="classes/Mindee-Dependency-DependencyChecker.html#constant_BERNARD_LEDIT_VERSION" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Dependency/DependencyChecker.php"><a href="files/src-dependency-dependencychecker.html"><abbr title="src/Dependency/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">22</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The bernard_ledit version this SDK release is built and tested against. composer.json&#039;s &quot;conflict&quot;
+pins the same version; DependencyCheckerTest checks that both agree.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">BERNARD_LEDIT_VERSION</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;0.1.0&#039;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+            </section>
 
         
 
@@ -235,23 +281,23 @@
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_isGhostscriptAvailable">
-        isGhostscriptAvailable()
-        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isGhostscriptAvailable" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_isBernardLeditAvailable">
+        isBernardLeditAvailable()
+        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isBernardLeditAvailable" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dependency/DependencyChecker.php"><a href="files/src-dependency-dependencychecker.html"><abbr title="src/Dependency/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Throws if GhostScript isn&#039;t available on the system.</p>
+        <p class="phpdocumentor-summary">Whether the bernard_ledit extension is loaded.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">isGhostscriptAvailable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">isBernardLeditAvailable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -259,26 +305,14 @@
     
     
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_isGhostscriptAvailable_tags">
-        Tags
-        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isGhostscriptAvailable_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeUnhandledException.html"><abbr title="\Mindee\Error\MindeeUnhandledException">MindeeUnhandledException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the GhostScript command cannot be found on the system.</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
         
     
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -286,23 +320,22 @@
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_isImageMagickAvailable">
-        isImageMagickAvailable()
-        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickAvailable" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_requireBernardLedit">
+        requireBernardLedit()
+        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_requireBernardLedit" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dependency/DependencyChecker.php"><a href="files/src-dependency-dependencychecker.html"><abbr title="src/Dependency/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Throws if ImageMagick isn&#039;t available on the system.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">isImageMagickAvailable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">requireBernardLedit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -310,9 +343,9 @@
     
     
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_isImageMagickAvailable_tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_requireBernardLedit_tags">
         Tags
-        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickAvailable_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_requireBernardLedit_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -321,58 +354,7 @@
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeUnhandledException.html"><abbr title="\Mindee\Error\MindeeUnhandledException">MindeeUnhandledException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if ImageMagick isn't loaded.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_isImageMagickPolicyAllowed">
-        isImageMagickPolicyAllowed()
-        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickPolicyAllowed" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Dependency/DependencyChecker.php"><a href="files/src-dependency-dependencychecker.html"><abbr title="src/Dependency/DependencyChecker.php">DependencyChecker.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">89</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Checks whether Imagick is blocked by restrictive policy.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">isImageMagickPolicyAllowed</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_isImageMagickPolicyAllowed_tags">
-        Tags
-        <a href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickPolicyAllowed_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeUnhandledException.html"><abbr title="\Mindee\Error\MindeeUnhandledException">MindeeUnhandledException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the local ImageMagick policy does not allow for PDF manipulations.</p>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if bernard_ledit isn't loaded, or isn't the supported version.</p>
 </section>
 
                                     </dd>
@@ -396,17 +378,23 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/Mindee-Dependency-DependencyChecker.html#toc-constants">Constants</a></li>
                                                                                 <li><a href="classes/Mindee-Dependency-DependencyChecker.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Mindee-Dependency-DependencyChecker.html#constant_BERNARD_LEDIT_VERSION">BERNARD_LEDIT_VERSION</a></li>
+                                            </ul>
+                </li>
             
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-Dependency-DependencyChecker.html#method_isGhostscriptAvailable">isGhostscriptAvailable()</a></li>
-                                            <li class=""><a href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickAvailable">isImageMagickAvailable()</a></li>
-                                            <li class=""><a href="classes/Mindee-Dependency-DependencyChecker.html#method_isImageMagickPolicyAllowed">isImageMagickPolicyAllowed()</a></li>
+                                            <li class=""><a href="classes/Mindee-Dependency-DependencyChecker.html#method_isBernardLeditAvailable">isBernardLeditAvailable()</a></li>
+                                            <li class=""><a href="classes/Mindee-Dependency-DependencyChecker.html#method_requireBernardLedit">requireBernardLedit()</a></li>
                                     </ul>
             </li>
                     </ul>

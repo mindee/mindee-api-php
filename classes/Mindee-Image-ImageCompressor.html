@@ -161,7 +161,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageCompressor.php"><a href="files/src-image-imagecompressor.html"><abbr title="src/Image/ImageCompressor.php">ImageCompressor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -197,7 +197,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Image-ImageCompressor.html#method_compress">compress()</a>
     <span>
-                                &nbsp;: <abbr title="\CURLFile">CURLFile</abbr>    </span>
+                                &nbsp;: string    </span>
 </dt>
 
     </dl>
@@ -228,14 +228,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageCompressor.php"><a href="files/src-image-imagecompressor.html"><abbr title="src/Image/ImageCompressor.php">ImageCompressor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">compress</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Imagick">Imagick</abbr>|<abbr title="\SplFileObject">SplFileObject</abbr>|<abbr title="\CURLFile">CURLFile</abbr>|string|resource&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputImage</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$quality</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">85</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxWidth</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxHeight</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\CURLFile">CURLFile</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">compress</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputImage</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$quality</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">85</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxWidth</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxHeight</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -245,19 +245,19 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$inputImage</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Imagick">Imagick</abbr>|<abbr title="\SplFileObject">SplFileObject</abbr>|<abbr title="\CURLFile">CURLFile</abbr>|string|resource</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Input image. Accepts SplFileObject, CURLFile, Imagick &amp; resources.</p>
+                    <section class="phpdocumentor-description"><p>Raw bytes of the input image.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$quality</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">85</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Quality to apply to the image.</p>
+                    <section class="phpdocumentor-description"><p>Quality to apply to the image (JPEG compression).</p>
 </section>
 
             </dd>
@@ -295,14 +295,13 @@ Defaults to the image's size if unset.</p>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeImageException.html"><abbr title="\Mindee\Error\MindeeImageException">MindeeImageException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if image processing fails.
-//phpcs:disable</p>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if image processing fails.</p>
 </section>
 
                                     </dd>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeUnhandledException.html"><abbr title="\Mindee\Error\MindeeUnhandledException">MindeeUnhandledException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if one of the dependencies isn't installed.</p>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the bernard_ledit extension isn't loaded.</p>
 </section>
 
                                     </dd>
@@ -312,9 +311,9 @@ Defaults to the image's size if unset.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\CURLFile">CURLFile</abbr></span>
+        <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Curlfile handle for the image.</p>
+                <section class="phpdocumentor-description"><p>Raw bytes of the compressed JPEG image.</p>
 </section>
 
             </section>

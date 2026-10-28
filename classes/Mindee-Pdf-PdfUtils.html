@@ -161,7 +161,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -195,58 +195,31 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_addTextElement">addTextElement()</a>
+    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_closeQuietly">closeQuietly()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Adds a text element to the output PDF.</dd>
+<dd>Closes a document, logging instead of throwing: never mask the error being handled.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_downgradePdfVersion">downgradePdfVersion()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>Downgrades PDF files unsupported by FPDI to a compatible version.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_extractFilePath">extractFilePath()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_extractPagesTextElements">extractPagesTextElements()</a>
-    <span>
-                                &nbsp;: array&lt;int, string&gt;    </span>
-</dt>
-<dd>Extracts text elements with their properties from all pages in a PDF.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_extractTextElements">extractTextElements()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, array&lt;string, string|float|<abbr title="\Smalot\PdfParser\Font">Font</abbr>|null&gt;&gt;    </span>
-</dt>
-<dd>Extracts text elements with their properties from a PDF page.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceText">hasSourceText()</a>
+    <a class="-deprecated" href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceText">hasSourceText()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Checks whether the file has source text. Returns false if the file isn&#039;t a PDF.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_toCURLFile">toCURLFile()</a>
+    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceTextFromBytes">hasSourceTextFromBytes()</a>
     <span>
-                                &nbsp;: <abbr title="\CURLFile">CURLFile</abbr>    </span>
+                                &nbsp;: bool    </span>
 </dt>
-<dd>Loads a pdf handle into a valid CURLFile handle.</dd>
+<dd>Checks whether the file has source text.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_standardizeFontName">standardizeFontName()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Pdf-PdfUtils.html#method_withPdf">withPdf()</a>
     <span>
-                                &nbsp;: array{family: string, style: string}    </span>
+                                &nbsp;: <abbr title="\Mindee\Pdf\T">T</abbr>    </span>
 </dt>
+<dd>Opens a PDF, runs $fn on it, and always closes it.</dd>
 
     </dl>
 
@@ -268,23 +241,23 @@
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_addTextElement">
-        addTextElement()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_addTextElement" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_closeQuietly">
+        closeQuietly()
+        <a href="classes/Mindee-Pdf-PdfUtils.html#method_closeQuietly" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">223</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Adds a text element to the output PDF.</p>
+        <p class="phpdocumentor-summary">Closes a document, logging instead of throwing: never mask the error being handled.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">addTextElement</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Pdf-CustomFpdi.html"><abbr title="\Mindee\Pdf\CustomFpdi">CustomFpdi</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pdf</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, float|null|<abbr title="\Smalot\PdfParser\Font">Font</abbr>|string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$element</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">closeQuietly</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\BernardLedit\Pdf\PdfDocument">PdfDocument</abbr>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pdf</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -294,21 +267,10 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$pdf</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Pdf-CustomFpdi.html"><abbr title="\Mindee\Pdf\CustomFpdi">CustomFpdi</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\BernardLedit\Pdf\PdfDocument">PdfDocument</abbr>|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The output PDF object.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$element</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string, float|null|<abbr title="\Smalot\PdfParser\Font">Font</abbr>|string&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Text element array containing text, position, font, size, and color.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -322,298 +284,7 @@
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_downgradePdfVersion">
-        downgradePdfVersion()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_downgradePdfVersion" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">126</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Downgrades PDF files unsupported by FPDI to a compatible version.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">downgradePdfVersion</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$inputPath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$inputPath</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Input PDF path.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_downgradePdfVersion_tags">
-        Tags
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_downgradePdfVersion_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeePdfException.html"><abbr title="\Mindee\Error\MindeePdfException">MindeePdfException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the file can't be handled through ghostscript.</p>
-</section>
-
-                                    </dd>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
-                                                                                        <section class="phpdocumentor-description"><p>Will be thrown as MindeePdfException, this is just for PHPCS linting purposes.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Output path.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_extractFilePath">
-        extractFilePath()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_extractFilePath" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">33</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">extractFilePath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\SplFileObject">SplFileObject</abbr>|<abbr title="\Imagick">Imagick</abbr>|<abbr title="\CURLFile">CURLFile</abbr>|string|resource&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$input</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\SplFileObject">SplFileObject</abbr>|<abbr title="\Imagick">Imagick</abbr>|<abbr title="\CURLFile">CURLFile</abbr>|string|resource</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Input file. Accepts SplFileObject, Imagick, Curl, resources &amp; paths.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_extractFilePath_tags">
-        Tags
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_extractFilePath_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeePdfException.html"><abbr title="\Mindee\Error\MindeePdfException">MindeePdfException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if a path can't be extracted from the input.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Path of the file.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_extractPagesTextElements">
-        extractPagesTextElements()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_extractPagesTextElements" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">92</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Extracts text elements with their properties from all pages in a PDF.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">extractPagesTextElements</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pdfPath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;int, string&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$pdfPath</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Path to the PDF file.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_extractPagesTextElements_tags">
-        Tags
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_extractPagesTextElements_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeePdfException.html"><abbr title="\Mindee\Error\MindeePdfException">MindeePdfException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the PDF can't be parsed or text elements can't be extracted.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;int, string&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>A page-indexed array of text elements.
-Each text element includes text content, position, font, size, and color.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_extractTextElements">
-        extractTextElements()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_extractTextElements" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">159</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Extracts text elements with their properties from a PDF page.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">extractTextElements</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Smalot\PdfParser\Page">Page</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string, string|float|<abbr title="\Smalot\PdfParser\Font">Font</abbr>|null&gt;&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$page</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Smalot\PdfParser\Page">Page</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Page object.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_extractTextElements_tags">
-        Tags
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_extractTextElements_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeePdfException.html"><abbr title="\Mindee\Error\MindeePdfException">MindeePdfException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the text elements can't be extracted.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string, string|float|<abbr title="\Smalot\PdfParser\Font">Font</abbr>|null&gt;&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>An array of text elements, each containing text content,
-position, font, size, and color.</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
+            -deprecated                        -static                    "
 >
     <h4 class="phpdocumentor-element__name" id="method_hasSourceText">
         hasSourceText()
@@ -623,17 +294,23 @@ position, font, size, and color.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Checks whether the file has source text. Returns false if the file isn&#039;t a PDF.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
+    
+    <code class="phpdocumentor-code phpdocumentor-signature -deprecated">
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">hasSourceText</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pdfPath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
+        </div>
+                <div class="phpdocumentor-admonition">
+        <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <article>
+                <p>since 3.4.0: use hasSourceTextFromBytes().</p>
+
+            </article>
         </div>
     
     
@@ -644,29 +321,62 @@ position, font, size, and color.</p>
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Path to the PDF file.</p>
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_hasSourceTextFromBytes">
+        hasSourceTextFromBytes()
+        <a href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceTextFromBytes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Checks whether the file has source text.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">hasSourceTextFromBytes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pdfData</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pdfData</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Raw byte string of the PDF file.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_hasSourceText_tags">
-        Tags
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceText_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if an instance of pdf-parser can't be created.</p>
-</section>
-
-                                    </dd>
-                        </dl>
 
         
     
@@ -674,7 +384,7 @@ position, font, size, and color.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>True if the PDF has source text, false otherwise.</p>
+                <section class="phpdocumentor-description"><p>Returns true if the PDF has source text, false otherwise.</p>
 </section>
 
             </section>
@@ -686,23 +396,23 @@ position, font, size, and color.</p>
             -public
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_toCURLFile">
-        toCURLFile()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_toCURLFile" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_withPdf">
+        withPdf()
+        <a href="classes/Mindee-Pdf-PdfUtils.html#method_withPdf" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">247</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Loads a pdf handle into a valid CURLFile handle.</p>
+        <p class="phpdocumentor-summary">Opens a PDF, runs $fn on it, and always closes it.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">toCURLFile</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\CURLFile">CURLFile</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">withPdf</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bytes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">callable(<abbr title="\BernardLedit\Pdf\PdfDocument">PdfDocument</abbr>): <abbr title="\Mindee\Pdf\T">T</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fn</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\Pdf\T">T</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -711,31 +421,33 @@ position, font, size, and color.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$path</span>
+                <span class="phpdocumentor-argument-list__argument__name">$bytes</span>
                 : <span class="phpdocumentor-argument-list__argument__type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Imagick image handle.</p>
-</section>
-
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$fn</span>
+                : <span class="phpdocumentor-argument-list__argument__type">callable(<abbr title="\BernardLedit\Pdf\PdfDocument">PdfDocument</abbr>): <abbr title="\Mindee\Pdf\T">T</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_toCURLFile_tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_withPdf_tags">
         Tags
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_toCURLFile_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Pdf-PdfUtils.html#method_withPdf_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
                     <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
+                <span class="phpdocumentor-tag__name">template</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeImageException.html"><abbr title="\Mindee\Error\MindeeImageException">MindeeImageException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be converted back into a CURLFile.</p>
-</section>
-
+                                                                                                        
                                     </dd>
                         </dl>
 
@@ -743,61 +455,7 @@ position, font, size, and color.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\CURLFile">CURLFile</abbr></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_standardizeFontName">
-        standardizeFontName()
-        <a href="classes/Mindee-Pdf-PdfUtils.html#method_standardizeFontName" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Pdf/PdfUtils.php"><a href="files/src-pdf-pdfutils.html"><abbr title="src/Pdf/PdfUtils.php">PdfUtils.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">195</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">standardizeFontName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fontName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{family: string, style: string}</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$fontName</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Name of the font/subfont.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array{family: string, style: string}</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>The standard font &amp; possible style.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Mindee\Pdf\T">T</abbr></span>
             </section>
 
 </article>
@@ -823,14 +481,10 @@ position, font, size, and color.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_addTextElement">addTextElement()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_downgradePdfVersion">downgradePdfVersion()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_extractFilePath">extractFilePath()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_extractPagesTextElements">extractPagesTextElements()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_extractTextElements">extractTextElements()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceText">hasSourceText()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_toCURLFile">toCURLFile()</a></li>
-                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_standardizeFontName">standardizeFontName()</a></li>
+                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_closeQuietly">closeQuietly()</a></li>
+                                            <li class="-deprecated"><a href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceText">hasSourceText()</a></li>
+                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_hasSourceTextFromBytes">hasSourceTextFromBytes()</a></li>
+                                            <li class=""><a href="classes/Mindee-Pdf-PdfUtils.html#method_withPdf">withPdf()</a></li>
                                     </ul>
             </li>
                     </ul>

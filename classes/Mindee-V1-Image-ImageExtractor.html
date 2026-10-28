@@ -189,6 +189,21 @@
 
 
 
+<h4 id="toc-constants">
+    Constants
+    <a href="classes/Mindee-V1-Image-ImageExtractor.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#constant_DEFAULT_PDF_DPI">DEFAULT_PDF_DPI</a>
+    <span>
+        &nbsp;: mixed&nbsp;= 300.0                            </span>
+</dt>
+<dd>Resolution PDF pages are rendered at before cropping, in dots per inch. Images are cropped at their own
+resolution.</dd>
+
+    </dl>
 
 
 <h4 id="toc-properties">
@@ -218,11 +233,23 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Mindee-Image-ImageExtractor.html#property_pageImages">$pageImages</a>
     <span>
-                        &nbsp;: array&lt;string|int, <abbr title="\Imagick">Imagick</abbr>&gt;            </span>
+                        &nbsp;: array&lt;string|int, <abbr title="\BernardLedit\Image\Image">Image</abbr>&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#property_pdfDpi">$pdfDpi</a>
+    <span>
+                        &nbsp;: float            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Mindee-Image-ImageExtractor.html#property_saveFormat">$saveFormat</a>
+    <span>
+                        &nbsp;: string            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#property_sourceData">$sourceData</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
@@ -256,18 +283,18 @@
 <dd>Extract multiple images on a given page from a list of fields having position data.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_extractMultipleImagesFromSource">extractMultipleImagesFromSource()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>&gt;    </span>
+</dt>
+<dd>Extracts images from a page.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonFromPage">extractPolygonFromPage()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>    </span>
 </dt>
 <dd>Extracts a cropped portion from an image.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonsFromPage">extractPolygonsFromPage()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>&gt;    </span>
-</dt>
-<dd>Extracts images from a page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_getInputSource">getInputSource()</a>
@@ -276,12 +303,19 @@
 </dt>
 <dd>Getter for the local input source.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_pdfToImages">pdfToImages()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_cropPolygons">cropPolygons()</a>
     <span>
-                                &nbsp;: array&lt;string|int, <abbr title="\Imagick">Imagick</abbr>&gt;    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\BernardLedit\Image\Image">Image</abbr>&gt;    </span>
 </dt>
-<dd>Renders the input PDF&#039;s pages as individual images.</dd>
+<dd>Crops every polygon&#039;s bounding box from a page, in a single native call.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_encodeCrop">encodeCrop()</a>
+    <span>
+                                &nbsp;: <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>    </span>
+</dt>
+<dd>Encodes a cropped image and wraps it.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/Mindee-V1-Image-ImageExtractor.html#method_extractFromPage">extractFromPage()</a>
@@ -291,24 +325,64 @@
 <dd>Extracts images from a page.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_extractImageFromBbox">extractImageFromBbox()</a>
+    <a class="" href="classes/Mindee-V1-Image-ImageExtractor.html#method_fieldPolygon">fieldPolygon()</a>
     <span>
-                                &nbsp;: <abbr title="\Imagick">Imagick</abbr>    </span>
+                                &nbsp;: <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>    </span>
 </dt>
-<dd>Extracts an image from a set of coordinates.</dd>
+<dd>Returns a field&#039;s position data: its polygon, bounding box, quadrangle or rectangle, whichever
+comes first.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_splitNameStrict">splitNameStrict()</a>
+    <a class="" href="classes/Mindee-Image-ImageExtractor.html#method_polygonToPairs">polygonToPairs()</a>
     <span>
-                                &nbsp;: array{0: string, 1: string}    </span>
+                                &nbsp;: array&lt;string|int, array{0: float, 1: float}&gt;    </span>
 </dt>
-<dd>Splits the filename into name and extension.</dd>
+<dd>Converts a polygon to the `[[x, y], ...]` shape the native extension expects.</dd>
 
     </dl>
 
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/Mindee-V1-Image-ImageExtractor.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_DEFAULT_PDF_DPI">
+        DEFAULT_PDF_DPI
+        <a href="classes/Mindee-Image-ImageExtractor.html#constant_DEFAULT_PDF_DPI" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resolution PDF pages are rendered at before cropping, in dots per inch. Images are cropped at their own
+resolution.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">DEFAULT_PDF_DPI</span>
+    = <span class="phpdocumentor-signature__default-value">300.0</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+            </section>
 
         
     <section class="phpdocumentor-properties">
@@ -334,7 +408,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -373,7 +447,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -412,7 +486,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -451,7 +525,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -459,7 +533,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">array&lt;string|int, <abbr title="\Imagick">Imagick</abbr>&gt;</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, <abbr title="\BernardLedit\Image\Image">Image</abbr>&gt;</span>
     <span class="phpdocumentor-signature__name">$pageImages</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
@@ -467,6 +541,43 @@
         <section class="phpdocumentor-description"><p>Array of extracted page images.</p>
 </section>
 
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_pdfDpi">
+        $pdfDpi
+        <a href="classes/Mindee-Image-ImageExtractor.html#property_pdfDpi" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">84</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">float</span>
+    <span class="phpdocumentor-signature__name">$pdfDpi</span>
+     = <span class="phpdocumentor-signature__default-value">self::DEFAULT_PDF_DPI</span></code>
+
+    
+    
     
 
         
@@ -490,7 +601,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
@@ -504,6 +615,45 @@
 
     
         <section class="phpdocumentor-description"><p>Format to save the image as.</p>
+</section>
+
+    
+
+        
+        
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_sourceData">
+        $sourceData
+        <a href="classes/Mindee-Image-ImageExtractor.html#property_sourceData" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">67</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$sourceData</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Contents of the input source, read once: some sources can only be read once.</p>
 </section>
 
     
@@ -534,14 +684,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$localInput</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$saveFormat</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Input-LocalInputSource.html"><abbr title="\Mindee\Input\LocalInputSource">LocalInputSource</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$localInput</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$saveFormat</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pdfDpi</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\self::DEFAULT_PDF_DPI">self::DEFAULT_PDF_DPI</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -564,6 +714,15 @@
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Save format, will be coerced to jpg by default.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pdfDpi</span>
+                : <span class="phpdocumentor-argument-list__argument__type">float</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\self::DEFAULT_PDF_DPI">self::DEFAULT_PDF_DPI</abbr></span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Resolution PDF pages are rendered at before cropping; ignored for images.</p>
 </section>
 
             </dd>
@@ -777,6 +936,114 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_extractMultipleImagesFromSource">
+        extractMultipleImagesFromSource()
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_extractMultipleImagesFromSource" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">132</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Extracts images from a page.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">extractMultipleImagesFromSource</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$polygons</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filenamePrefix</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|array&lt;string|int, int&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$indexes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$polygons</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>List of polygons to extract.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pageIndex</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The page index to extract, begins at 0.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$filenamePrefix</span>
+                : <span class="phpdocumentor-argument-list__argument__type">null|string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Output filename prefix.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$format</span>
+                : <span class="phpdocumentor-argument-list__argument__type">null|string</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Save format for extracted images. Defaults to the original format.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$indexes</span>
+                : <span class="phpdocumentor-argument-list__argument__type">null|array&lt;string|int, int&gt;</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Index of each polygon, used in its image's file name and index, in the
+same order as the polygons. Defaults to 0, 1, 2...</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_extractMultipleImagesFromSource_tags">
+        Tags
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_extractMultipleImagesFromSource_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeImageException.html"><abbr title="\Mindee\Error\MindeeImageException">MindeeImageException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be processed.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>An array of created images</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_extractPolygonFromPage">
         extractPolygonFromPage()
         <a href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonFromPage" class="headerlink"><i class="fas fa-link"></i></a>
@@ -785,7 +1052,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 
     </aside>
 
@@ -793,7 +1060,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">extractPolygonFromPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$polygon</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filename</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">extractPolygonFromPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$polygon</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filename</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -803,7 +1070,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$polygon</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Polygon to extract.</p>
@@ -884,104 +1151,6 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_extractPolygonsFromPage">
-        extractPolygonsFromPage()
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonsFromPage" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">137</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Extracts images from a page.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">extractPolygonsFromPage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$polygons</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filenamePrefix</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$polygons</span>
-                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>List of polygons to extract.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$pageIndex</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The page index to extract, begins at 0.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$filenamePrefix</span>
-                : <span class="phpdocumentor-argument-list__argument__type">null|string</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Output filename prefix.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$format</span>
-                : <span class="phpdocumentor-argument-list__argument__type">null|string</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Save format for extracted images. Defaults to the original format.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="method_extractPolygonsFromPage_tags">
-        Tags
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonsFromPage_tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                    <dt class="phpdocumentor-tag-list__entry">
-                <span class="phpdocumentor-tag__name">throws</span>
-            </dt>
-                            <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeImageException.html"><abbr title="\Mindee\Error\MindeeImageException">MindeeImageException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be processed.</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>&gt;</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>An array of created images</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_getInputSource">
         getInputSource()
         <a href="classes/Mindee-Image-ImageExtractor.html#method_getInputSource" class="headerlink"><i class="fas fa-link"></i></a>
@@ -990,7 +1159,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">199</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
@@ -1018,26 +1187,26 @@
                     <article
         class="phpdocumentor-element
             -method
-            -public
-                                    -static                    "
+            -protected
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_pdfToImages">
-        pdfToImages()
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_pdfToImages" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_cropPolygons">
+        cropPolygons()
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_cropPolygons" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">103</span>
+    <span class="phpdocumentor-element-found-in__line">203</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Renders the input PDF&#039;s pages as individual images.</p>
+        <p class="phpdocumentor-summary">Crops every polygon&#039;s bounding box from a page, in a single native call.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">pdfToImages</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fileBytes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Imagick">Imagick</abbr>&gt;</span></code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">cropPolygons</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$polygons</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\BernardLedit\Image\Image">Image</abbr>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1046,20 +1215,29 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$fileBytes</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                <span class="phpdocumentor-argument-list__argument__name">$polygons</span>
+                : <span class="phpdocumentor-argument-list__argument__type">array&lt;string|int, <a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Input pdf.</p>
+                    <section class="phpdocumentor-description"><p>Polygons to crop.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pageIndex</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Page index, begins at 0.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_pdfToImages_tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_cropPolygons_tags">
         Tags
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_pdfToImages_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_cropPolygons_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -1068,7 +1246,7 @@
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeImageException.html"><abbr title="\Mindee\Error\MindeeImageException">MindeeImageException</abbr></a></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be handled.</p>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the page or polygons can't be processed.</p>
 </section>
 
                                     </dd>
@@ -1078,11 +1256,104 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Imagick">Imagick</abbr>&gt;</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\BernardLedit\Image\Image">Image</abbr>&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>A list of pages.</p>
+                <section class="phpdocumentor-description"><p>One image per polygon, in the same order.</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_encodeCrop">
+        encodeCrop()
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_encodeCrop" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">218</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Encodes a cropped image and wraps it.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">encodeCrop</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\BernardLedit\Image\Image">Image</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$crop</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$index</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filename</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$format</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$crop</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\BernardLedit\Image\Image">Image</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$pageIndex</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$index</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$filename</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$format</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="method_encodeCrop_tags">
+        Tags
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_encodeCrop_tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeImageException.html"><abbr title="\Mindee\Error\MindeeImageException">MindeeImageException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if encoding fails.</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a></span>
             </section>
 
 </article>
@@ -1100,7 +1371,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Image/ImageExtractor.php"><a href="files/src-v1-image-imageextractor.html"><abbr title="src/V1/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">121</span>
 
     </aside>
 
@@ -1172,25 +1443,26 @@
         class="phpdocumentor-element
             -method
             -protected
-                                                        "
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_extractImageFromBbox">
-        extractImageFromBbox()
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_extractImageFromBbox" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_fieldPolygon">
+        fieldPolygon()
+        <a href="classes/Mindee-V1-Image-ImageExtractor.html#method_fieldPolygon" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/V1/Image/ImageExtractor.php"><a href="files/src-v1-image-imageextractor.html"><abbr title="src/V1/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">211</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Extracts an image from a set of coordinates.</p>
+        <p class="phpdocumentor-summary">Returns a field&#039;s position data: its polygon, bounding box, quadrangle or rectangle, whichever
+comes first.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">extractImageFromBbox</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Geometry-BBox.html"><abbr title="\Mindee\Geometry\BBox">BBox</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bbox</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int|float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pageIndex</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Imagick">Imagick</abbr></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fieldPolygon</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-V1-Parsing-Standard-BaseField.html"><abbr title="\Mindee\V1\Parsing\Standard\BaseField">BaseField</abbr></a>&lt;string|int, string|float|int|bool|<a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$field</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1199,29 +1471,20 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$bbox</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Geometry-BBox.html"><abbr title="\Mindee\Geometry\BBox">BBox</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$field</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-V1-Parsing-Standard-BaseField.html"><abbr title="\Mindee\V1\Parsing\Standard\BaseField">BaseField</abbr></a>&lt;string|int, string|float|int|bool|<a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>BBox coordinates.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$pageIndex</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int|float</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The page index to extract, begins at 0.</p>
+                    <section class="phpdocumentor-description"><p>The field.</p>
 </section>
 
             </dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="method_extractImageFromBbox_tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_fieldPolygon_tags">
         Tags
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_extractImageFromBbox_tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Mindee-V1-Image-ImageExtractor.html#method_fieldPolygon_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
@@ -1229,8 +1492,8 @@
                 <span class="phpdocumentor-tag__name">throws</span>
             </dt>
                             <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\ImagickException">ImagickException</abbr></span>
-                                                                                        <section class="phpdocumentor-description"><p>Throws if the image can't be processed.</p>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Mindee-Error-MindeeGeometryException.html"><abbr title="\Mindee\Error\MindeeGeometryException">MindeeGeometryException</abbr></a></span>
+                                                                                        <section class="phpdocumentor-description"><p>Throws if the field does not contain positional data.</p>
 </section>
 
                                     </dd>
@@ -1240,7 +1503,7 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\Imagick">Imagick</abbr></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a></span>
             </section>
 
 </article>
@@ -1250,23 +1513,23 @@
             -protected
                                     -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_splitNameStrict">
-        splitNameStrict()
-        <a href="classes/Mindee-Image-ImageExtractor.html#method_splitNameStrict" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_polygonToPairs">
+        polygonToPairs()
+        <a href="classes/Mindee-Image-ImageExtractor.html#method_polygonToPairs" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Image/ImageExtractor.php"><a href="files/src-image-imageextractor.html"><abbr title="src/Image/ImageExtractor.php">ImageExtractor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">233</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Splits the filename into name and extension.</p>
+        <p class="phpdocumentor-summary">Converts a polygon to the `[[x, y], ...]` shape the native extension expects.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">splitNameStrict</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filename</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{0: string, 1: string}</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">polygonToPairs</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$polygon</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array{0: float, 1: float}&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1275,11 +1538,11 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$filename</span>
-                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                <span class="phpdocumentor-argument-list__argument__name">$polygon</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Mindee-Geometry-Polygon.html"><abbr title="\Mindee\Geometry\Polygon">Polygon</abbr></a>|array&lt;string|int, <a href="classes/Mindee-Geometry-Point.html"><abbr title="\Mindee\Geometry\Point">Point</abbr></a>&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Name of the file.</p>
+                    <section class="phpdocumentor-description"><p>Polygon or list of points.</p>
 </section>
 
             </dd>
@@ -1291,11 +1554,7 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array{0: string, 1: string}</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>An array containing the name and extension of the file.</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, array{0: float, 1: float}&gt;</span>
             </section>
 
 </article>
@@ -1313,10 +1572,17 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                        <li><a href="classes/Mindee-V1-Image-ImageExtractor.html#toc-constants">Constants</a></li>
                                                             <li><a href="classes/Mindee-V1-Image-ImageExtractor.html#toc-properties">Properties</a></li>
                                                             <li><a href="classes/Mindee-V1-Image-ImageExtractor.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#constant_DEFAULT_PDF_DPI">DEFAULT_PDF_DPI</a></li>
+                                            </ul>
+                </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
@@ -1325,7 +1591,9 @@
                                                     <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#property_filename">$filename</a></li>
                                                     <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#property_inputSource">$inputSource</a></li>
                                                     <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#property_pageImages">$pageImages</a></li>
+                                                    <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#property_pdfDpi">$pdfDpi</a></li>
                                                     <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#property_saveFormat">$saveFormat</a></li>
+                                                    <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#property_sourceData">$sourceData</a></li>
                                             </ul>
                 </li>
             
@@ -1335,13 +1603,14 @@
                                             <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Image-ImageExtractor.html#method_extractImage">extractImage()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Image-ImageExtractor.html#method_extractImagesFromPage">extractImagesFromPage()</a></li>
+                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_extractMultipleImagesFromSource">extractMultipleImagesFromSource()</a></li>
                                             <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonFromPage">extractPolygonFromPage()</a></li>
-                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_extractPolygonsFromPage">extractPolygonsFromPage()</a></li>
                                             <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_getInputSource">getInputSource()</a></li>
-                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_pdfToImages">pdfToImages()</a></li>
+                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_cropPolygons">cropPolygons()</a></li>
+                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_encodeCrop">encodeCrop()</a></li>
                                             <li class=""><a href="classes/Mindee-V1-Image-ImageExtractor.html#method_extractFromPage">extractFromPage()</a></li>
-                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_extractImageFromBbox">extractImageFromBbox()</a></li>
-                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_splitNameStrict">splitNameStrict()</a></li>
+                                            <li class=""><a href="classes/Mindee-V1-Image-ImageExtractor.html#method_fieldPolygon">fieldPolygon()</a></li>
+                                            <li class=""><a href="classes/Mindee-Image-ImageExtractor.html#method_polygonToPairs">polygonToPairs()</a></li>
                                     </ul>
             </li>
                     </ul>

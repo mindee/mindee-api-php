@@ -162,7 +162,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Crop.php"><a href="files/src-v2-fileoperations-crop.html"><abbr title="src/V2/FileOperations/Crop.php">Crop.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -219,14 +219,14 @@
     <span>
                                 &nbsp;: <a href="classes/Mindee-V2-FileOperations-CropFiles.html"><abbr title="\Mindee\V2\FileOperations\CropFiles">CropFiles</abbr></a>    </span>
 </dt>
-<dd>Extracts multiple crop zones from a file.</dd>
+<dd>Extracts multiple crop zones from a file, rendering each page once.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Mindee-V2-FileOperations-Crop.html#method_extractSingleCrop">extractSingleCrop()</a>
     <span>
                                 &nbsp;: <a href="classes/Mindee-Image-ExtractedImage.html"><abbr title="\Mindee\Image\ExtractedImage">ExtractedImage</abbr></a>    </span>
 </dt>
-<dd>Extracts a crop zone from a file.</dd>
+<dd>Extracts a crop zone from a file, named &quot;&lt;file&gt;_page&lt;page&gt;-&lt;index of the crop on its page&gt;&quot;.</dd>
 
     </dl>
 
@@ -258,7 +258,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Crop.php"><a href="files/src-v2-fileoperations-crop.html"><abbr title="src/V2/FileOperations/Crop.php">Crop.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -300,7 +300,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Crop.php"><a href="files/src-v2-fileoperations-crop.html"><abbr title="src/V2/FileOperations/Crop.php">Crop.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -346,11 +346,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Crop.php"><a href="files/src-v2-fileoperations-crop.html"><abbr title="src/V2/FileOperations/Crop.php">Crop.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Extracts multiple crop zones from a file.</p>
+        <p class="phpdocumentor-summary">Extracts multiple crop zones from a file, rendering each page once.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -359,7 +359,10 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Each image is named &quot;<file>_page<page>-<index of the crop on its page>&quot;. Crops parsed from an inference
+know that index; for the others, crops are numbered per page in the order given.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -381,7 +384,7 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Mindee-V2-FileOperations-CropFiles.html"><abbr title="\Mindee\V2\FileOperations\CropFiles">CropFiles</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>list of extracted files</p>
+                <section class="phpdocumentor-description"><p>list of extracted files, in the same order as the crops</p>
 </section>
 
             </section>
@@ -401,11 +404,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/V2/FileOperations/Crop.php"><a href="files/src-v2-fileoperations-crop.html"><abbr title="src/V2/FileOperations/Crop.php">Crop.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Extracts a crop zone from a file.</p>
+        <p class="phpdocumentor-summary">Extracts a crop zone from a file, named &quot;&lt;file&gt;_page&lt;page&gt;-&lt;index of the crop on its page&gt;&quot;.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
