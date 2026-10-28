@@ -14,4 +14,13 @@ class DependencyCheckerPdfTest extends TestCase
         $this->expectNotToPerformAssertions();
         DependencyChecker::requireBernardLedit();
     }
+
+    public function testBernardLeditVersionMatchesComposerConflict(): void
+    {
+        $composer = json_decode(file_get_contents(__DIR__ . '/../../composer.json'), true);
+        self::assertSame(
+            '<' . DependencyChecker::BERNARD_LEDIT_VERSION,
+            $composer['conflict']['ext-bernard_ledit']
+        );
+    }
 }

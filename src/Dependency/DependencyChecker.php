@@ -15,7 +15,38 @@ use function sprintf;
  */
 class DependencyChecker
 {
-    private const SUPPORTED_BERNARD_LEDIT = '0.1';
+    /**
+     * The bernard_ledit version this SDK release is built and tested against. composer.json's "conflict"
+     * pins the same version; DependencyCheckerTest checks that both agree.
+     */
+    public const BERNARD_LEDIT_VERSION = '0.1.0';
+
+    /**
+     * @throws MindeeUnhandledException Throws if bernard_ledit isn't loaded, or isn't the supported version.
+     */
+    public static function requireBernardLedit(): void
+    {
+        $install = sprintf('pie install mindee/bernard-ledit:%s', self::BERNARD_LEDIT_VERSION);
+        if (!extension_loaded('bernard_ledit')) {
+            throw new MindeeUnhandledException(
+                "To enable PDF and image features, install the 'bernard_ledit' PHP extension: $install "
+                . '(see https://github.com/mindee/bernard-ledit#php-binding)',
+                ErrorCode::USER_MISSING_DEPENDENCY
+            );
+        }
+        $installed = phpversion('bernard_ledit');
+        if ($installed !== self::BERNARD_LEDIT_VERSION) {
+            throw new MindeeUnhandledException(
+                sprintf(
+                    'This version of the Mindee SDK needs bernard_ledit %s, but %s is installed: %s',
+                    self::BERNARD_LEDIT_VERSION,
+                    $installed,
+                    $install
+                ),
+                ErrorCode::USER_MISSING_DEPENDENCY
+            );
+        }
+    }
 
     /**
      * Whether the bernard_ledit extension is loaded.
@@ -23,32 +54,5 @@ class DependencyChecker
     public static function isBernardLeditAvailable(): bool
     {
         return extension_loaded('bernard_ledit');
-    }
-
-    /**
-     * @throws MindeeUnhandledException Throws if the extension is missing or has an unsupported version.
-     */
-    public static function requireBernardLedit(): void
-    {
-        if (!self::isBernardLeditAvailable()) {
-            throw new MindeeUnhandledException(
-                "To enable PDF and image features, install the 'bernard_ledit' PHP extension: "
-                . "pie install mindee/bernard-ledit:^" . self::SUPPORTED_BERNARD_LEDIT
-                . " (see https://github.com/mindee/bernard-ledit#php-binding)",
-                ErrorCode::USER_MISSING_DEPENDENCY
-            );
-        }
-        $version = phpversion('bernard_ledit') ?: '0';
-        if (!str_starts_with($version, self::SUPPORTED_BERNARD_LEDIT . '.')) {
-            throw new MindeeUnhandledException(
-                sprintf(
-                    "bernard_ledit %s is installed, but this SDK supports %s.x: pie install mindee/bernard-ledit:^%s",
-                    $version,
-                    self::SUPPORTED_BERNARD_LEDIT,
-                    self::SUPPORTED_BERNARD_LEDIT
-                ),
-                ErrorCode::USER_MISSING_DEPENDENCY
-            );
-        }
     }
 }
