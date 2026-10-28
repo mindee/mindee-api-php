@@ -9,6 +9,7 @@ use BernardLedit\Image\ImageException;
 use BernardLedit\Image\ImageExtractException;
 use BernardLedit\Pdf\PdfExtractException;
 use BernardLedit\Pdf\PdfiumException;
+use Exception;
 use InvalidArgumentException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
@@ -148,6 +149,19 @@ class ImageExtractor
     }
 
     /**
+     * @deprecated since X.0: use extractMultipleImagesFromSource().
+     * @param array<Polygon|array<Point>> $polygons List of polygons to extract.
+     * @param integer $pageIndex The page index to extract, begins at 0.
+     * @param null|string $filenamePrefix Output filename prefix.
+     * @param null|string $format Save format for extracted images. Defaults to the original format.
+     * @return array<ExtractedImage> An array of created images
+     */
+    public function extractPolygonsFromPage(array $polygons, int $pageIndex, ?string $filenamePrefix = null, ?string $format = null): array
+    {
+        return $this->extractMultipleImagesFromSource($polygons, $pageIndex, $filenamePrefix, $format);
+    }
+
+    /**
      * Extracts a cropped portion from an image.
      *
      * @param Polygon|array<Point> $polygon Polygon to extract.
@@ -181,13 +195,14 @@ class ImageExtractor
     {
         return $this->inputSource;
     }
+
     /**
      * Crops every polygon's bounding box from a page, in a single native call.
      *
      * @param array<Polygon|array<Point>> $polygons Polygons to crop.
      * @param integer $pageIndex Page index, begins at 0.
      * @return Image[] One image per polygon, in the same order.
-     * @throws MindeeImageException Throws if the page or polygons can't be processed.
+     * @throws MindeeImageException|Exception Throws if the page or polygons can't be processed.
      */
     protected function cropPolygons(array $polygons, int $pageIndex): array
     {

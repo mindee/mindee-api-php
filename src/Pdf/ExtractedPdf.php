@@ -43,13 +43,12 @@ class ExtractedPdf
      *
      * @return integer the number of pages in the file
      *
-     * @throws MindeePdfException Throws if Bernard L'Édit is unable to process the file.
+     * @throws MindeePdfException Throws if `bernard_ledit` is unable to process the file.
      */
     private function getPageCount(): int
     {
         try {
-            $pdf = new PdfDocument($this->pdfBytes);
-            return $pdf->getPageCount();
+            return PdfUtils::withPdf($this->pdfBytes, static fn(PdfDocument $pdf): int => $pdf->getPageCount());
         } catch (Exception $e) {
             throw new MindeePdfException(
                 "PDF couldn't be opened.",

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Mindee\Image;
 
-use BernardLedit\Image\ImageException;
 use Exception;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;

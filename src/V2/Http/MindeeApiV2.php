@@ -28,7 +28,6 @@ use Mindee\V2\Parsing\Inference\BaseResponse;
 use Mindee\V2\Parsing\BaseRagAnnotationResponse;
 use Mindee\V2\Parsing\Job\JobResponse;
 use Mindee\V2\Parsing\Search\BaseSearchResponse;
-use Mindee\V2\Product\Extraction\RagDocuments\Params\RagDocumentUploadParameters;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;

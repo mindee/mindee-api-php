@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Mindee\Image;
 
-use BernardLedit\Image\ImageException;
 use Mindee\Dependency\DependencyChecker;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
-use ValueError;
 use Exception;
 
 use function BernardLedit\Image\decode;
@@ -59,7 +57,7 @@ class ExtractedImage
             self::writeBytes($imagePath, $this->buffer);
             return;
         }
-        $quality = min(100, max(0, $quality ?? 100));
+        $quality = min(100, max(1, $quality ?? 100));
         self::writeBytes($imagePath, decode($this->buffer)->encode($encodedFormat, $quality));
     }
 

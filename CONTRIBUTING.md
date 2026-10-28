@@ -86,14 +86,16 @@ In an existing clone, run `git submodule update --init --recursive` instead.
 
 PDF and image operations (page cutting and merging, compression, crop and split extraction) rely on [bernard-ledit](https://github.com/mindee/bernard-ledit), a native PHP extension. It is optional for users, but you need it to run the full unit test suite.
 
-Install it with [PIE](https://github.com/php/pie):
+Refer to the version constraint in `composer.json`:
+
+Install the pinned version with [PIE](https://github.com/php/pie):
 
 ```bash
-composer setup:bernard-ledit                  # latest stable release
-composer setup:bernard-ledit -- 1.0.0         # a given version
+composer setup:bernard-ledit                  # the version composer.json pins
+composer setup:bernard-ledit -- 0.2.0         # another version, e.g. to try it before pinning it
 ```
 
-This runs `tools/install-bernard-ledit.sh`, which installs the extension for the `php` on your PATH (set `PHP` to target another one), enables it, and checks that it works. On Windows, run `pie install mindee/bernard-ledit` directly. PIE may ask for your password to write to PHP's extension directory.
+This runs `tools/install-bernard-ledit.sh`, which installs the extension for the `php` on your PATH (set `PHP` to target another one), enables it, and checks that PHP loads the right version. PIE may ask for your password to write to PHP's extension directory. On Windows, run PIE directly with the pinned version, e.g. `pie install mindee/bernard-ledit:0.1.0`.
 
 Check that it loaded:
 
@@ -101,24 +103,32 @@ Check that it loaded:
 php -r 'echo phpversion("bernard_ledit"), PHP_EOL;'
 ```
 
-PHPStan reads the extension's classes from `stubs/bernard_ledit.stubs.php`. When you change the bernard-ledit version the SDK supports, also update the stubs, and the `conflict` range in `composer.json`:
+PHPStan reads the extension's classes from `stubs/bernard_ledit.stubs.php`, which matches the pinned version:
 
 ```bash
-composer update:bernard-ledit-stubs           # stubs of the latest stable release
-composer update:bernard-ledit-stubs v1.0.0    # stubs of a given release
+composer update:bernard-ledit-stubs           # stubs of the version composer.json pins
+composer update:bernard-ledit-stubs v0.2.0    # stubs of another release
 ```
+
+To move the SDK to a new bernard-ledit version:
+
+1. Change the version in the `conflict` line of `composer.json`.
+2. Run `composer setup:bernard-ledit` and `composer update:bernard-ledit-stubs`, then commit the updated stubs.
+3. Run the tests: CI installs the new version on its own.
 
 ### Running the tests
 
-| Command                        | What it runs                                                                    |
-|--------------------------------|---------------------------------------------------------------------------------|
-| `composer test:unit`           | Unit tests (`*Test.php`); needs bernard-ledit                                   |
-| `composer test:pdf-features`   | Tests of the SDK's behavior when bernard-ledit is missing (`*TestPdf.php`); run them without the extension |
-| `composer test:functional`     | Tests against the Mindee API (`*Functional.php`); needs API keys, see below     |
-| `composer test:smoke:v1`, `composer test:smoke:v2` | The code samples                                            |
-| `composer test:cli:v1`, `composer test:cli:v2`     | The command-line interface                                   |
+| Command                                            | What it runs                                                                                                                  |
+|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| `composer test:unit`                               | Unit tests (`*Test.php`); needs bernard-ledit                                                                                 |
+| `composer test:bernard-ledit-features`             | Tests of the SDK's behavior when bernard-ledit is missing (`tests/bernardleditfeatures.xml`); run them without the extension |
+| `composer test:functional`                         | Tests against the Mindee API (`*Functional.php`); needs API keys, see below                                                   |
+| `composer test:smoke:v1`, `composer test:smoke:v2` | The code samples                                                                                                              |
+| `composer test:cli:v1`, `composer test:cli:v2`     | The command-line interface                                                                                                    |
 
 Functional tests read their API keys and model IDs from environment variables, mainly `MINDEE_API_KEY`, `MINDEE_V2_API_KEY` and the `MINDEE_V2_*_MODEL_ID` variables. See `.github/workflows/_test-integrations.yml` for the full list.
+
+PHP deprecations fail the tests (`convertDeprecationsToExceptions` in the PHPUnit configurations), so run them on the newest PHP version too: a function deprecated in a recent PHP release only warns on that release. CI tests the oldest and newest supported versions on Linux, macOS and Windows, and every version in between on Linux.
 
 ### Linting and formatting
 

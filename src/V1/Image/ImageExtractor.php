@@ -121,7 +121,7 @@ class ImageExtractor extends BaseImageExtractor
     protected function extractFromPage(array $fields, int $pageIndex, string $outputName, string $format = 'jpg'): array
     {
         return $this->extractMultipleImagesFromSource(
-            array_map(self::fieldPolygon(...), array_values($fields)),
+            array_map(static::fieldPolygon(...), array_values($fields)),
             $pageIndex,
             sprintf('%s_page%d', $outputName, $pageIndex),
             $format

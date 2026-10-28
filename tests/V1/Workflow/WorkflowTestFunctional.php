@@ -7,7 +7,6 @@ namespace V1\Workflow;
 use Mindee\Input\PathInput;
 use Mindee\V1\Client;
 use Mindee\V1\ClientOptions\PredictMethodOptions;
-use Mindee\V1\ClientOptions\WorkflowOptions;
 use Mindee\V1\Product\FinancialDocument\FinancialDocumentV1;
 use PHPUnit\Framework\TestCase;
 use TestingUtilities;

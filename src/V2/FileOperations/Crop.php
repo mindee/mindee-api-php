@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Mindee\V2\FileOperations;
 
+use InvalidArgumentException;
 use Mindee\Image\ExtractedImage;
 use Mindee\Image\ImageExtractor;
 use Mindee\Input\LocalInputSource;
 use Mindee\V2\Product\Crop\CropItem;
 
-use function sprintf;
+use function array_unique;
+use function count;
 use function in_array;
+use function sprintf;
 
 /**
  * V2 Crop operation.
@@ -56,11 +59,12 @@ class Crop
         /** @var array<int, ExtractedImage> $extractedImages keyed by position in $crops */
         $extractedImages = [];
         foreach ($cropsPerPage as $page => $pageCrops) {
+            // Crops parsed from an inference keep their index; the others get the lowest free ones.
             $usedIndexes = array_map(static fn(CropItem $crop): ?int => $crop->indexOnPage, $pageCrops);
             $nextIndex = 0;
             $indexes = [];
             foreach ($pageCrops as $crop) {
-                if ($crop->indexOnPage !== null) {
+                if (null !== $crop->indexOnPage) {
                     $indexes[] = $crop->indexOnPage;
                     continue;
                 }
@@ -69,6 +73,12 @@ class Crop
                 }
                 $indexes[] = $nextIndex;
                 $usedIndexes[] = $nextIndex++;
+            }
+            if (count(array_unique($indexes)) !== count($indexes)) {
+                throw new InvalidArgumentException(sprintf(
+                    'Two crops on page %d have the same indexOnPage, so their images would have the same name.',
+                    $page
+                ));
             }
             $images = $imageExtractor->extractMultipleImagesFromSource(
                 array_map(static fn(CropItem $c) => $c->location->polygon, array_values($pageCrops)),

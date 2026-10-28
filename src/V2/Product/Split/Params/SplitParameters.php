@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Mindee\V2\Product\Split\Params;
 
-use Mindee\ClientOptions\PollingOptions;
 use Mindee\V2\ClientOptions\BaseProductParameters;
 
 /**

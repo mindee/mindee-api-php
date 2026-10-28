@@ -6,7 +6,6 @@ namespace V2\FileOperations;
 
 use Mindee\Input\PathInput;
 use Mindee\V2\Client;
-use Mindee\V2\FileOperations\Split;
 use Mindee\V2\Product\Extraction\ExtractionResponse;
 use Mindee\V2\Product\Extraction\Params\ExtractionParameters;
 use Mindee\V2\Product\Split\Params\SplitParameters;

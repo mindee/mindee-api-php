@@ -15,7 +15,7 @@ jobs:
     needs: workflow-lint
   test-units:
     uses: ./.github/workflows/_test-units.yml
-    needs: [static-analysis]
+    needs: static-analysis
     secrets: inherit
   test-integrations:
     uses: ./.github/workflows/_test-integrations.yml

@@ -7,7 +7,6 @@ namespace Input;
 use BernardLedit\Pdf\PdfDocument;
 use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeSourceException;
-use Mindee\Image\ImageCompressor;
 use Mindee\Input\Base64Input;
 use Mindee\Input\BytesInput;
 use Mindee\Input\FileInput;
@@ -298,7 +297,7 @@ class LocalInputSourceTest extends TestCase
         self::assertLessThan($sizeOriginal, $sizeCompressed);
     }
 
-    public function testCompressPdfFromCompressor(): void
+    public function testPdfCompressionQualityOrdering(): void
     {
         $testFilePath = TestingUtilities::getV1DataDir() . '/products/invoice_splitter/default_sample.pdf';
 

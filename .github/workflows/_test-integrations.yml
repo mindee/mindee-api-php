@@ -33,12 +33,12 @@ jobs:
         php-version:
           - 8.1
           - 8.5
+
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
-
 
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
@@ -97,6 +97,7 @@ jobs:
         php-version:
           - 8.1
           - 8.5
+
     runs-on: "windows-latest"
     steps:
       - uses: actions/checkout@v6
@@ -104,16 +105,25 @@ jobs:
           submodules: recursive
       - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
-        env:
-          phpts: zts
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json
+          tools: pie
+
+      - name: Install bernard-ledit extension (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          pie install "mindee/bernard-ledit"
+          if (-not (php -m | Select-String -Pattern '^bernard_ledit$' -Quiet)) {
+            Write-Error "bernard_ledit did not load"
+            exit 1
+          }
+          php -r 'echo "bernard_ledit ", phpversion("bernard_ledit"), PHP_EOL;'
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
 
-      # bernard-ledit isn't built for Windows yet: skip the tests that need it.
-      - name: Unit testing with phpunit
+      - name: Integration testing with phpunit
         run: |
-          ./vendor/bin/phpunit -c tests/functional.xml --exclude-group bernard-ledit
+          ./vendor/bin/phpunit -c tests/functional.xml

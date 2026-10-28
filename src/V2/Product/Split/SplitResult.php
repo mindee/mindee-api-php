@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Mindee\V2\Product\Split;
 
 use Mindee\Input\LocalInputSource;
-use Mindee\Pdf\ExtractedPdf;
 use Mindee\V2\FileOperations\Split;
 use Mindee\V2\FileOperations\SplitFiles;
 use Stringable;

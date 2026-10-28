@@ -25,12 +25,16 @@
     "ext-bernard_ledit": "Enables PDF & image features (page cut/merge, compression, extraction)."
   },
   "conflict": {
-    "ext-bernard_ledit": "!=0.1.0"
+    "ext-bernard_ledit": "<0.1.0"
   },
   "autoload": {
     "psr-4": {
       "Mindee\\": "src"
-    }
+    },
+    "files": [
+      "src/Input/PageOptions.php",
+      "src/V1/Http/BaseApi.php"
+    ]
   },
   "autoload-dev": {
     "classmap": [

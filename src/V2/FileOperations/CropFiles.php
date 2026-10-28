@@ -8,7 +8,6 @@ use ArrayObject;
 use BernardLedit\Image\ImageException;
 use Mindee\Error\MindeeException;
 use Mindee\Image\ExtractedImage;
-use ValueError;
 
 use function sprintf;
 

@@ -21,6 +21,7 @@ return (new Config())
         '@auto' => true,
         '@auto:risky' => true,
         '@PhpCsFixer:risky' => true,
+        'no_unused_imports' => true,
 
         'fully_qualified_strict_types' => [
             'import_symbols' => true,

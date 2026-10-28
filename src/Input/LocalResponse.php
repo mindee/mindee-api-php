@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Mindee\Input;
 
-use CURLFile;
 use Exception;
 use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeException;
-use SplFileObject;
 
 use function is_array;
 use function is_resource;

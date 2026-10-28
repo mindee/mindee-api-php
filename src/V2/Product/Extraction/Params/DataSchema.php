@@ -7,7 +7,6 @@ namespace Mindee\V2\Product\Extraction\Params;
 use InvalidArgumentException;
 use Stringable;
 
-use function get_class;
 use function gettype;
 
 /**
