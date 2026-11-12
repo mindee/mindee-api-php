@@ -6,8 +6,7 @@ namespace Mindee\Image;
 
 use BernardLedit\Image\Image;
 use BernardLedit\Image\ImageException;
-use BernardLedit\Image\ImageExtractException;
-use BernardLedit\Pdf\PdfExtractException;
+use BernardLedit\Pdf\PdfDocument;
 use BernardLedit\Pdf\PdfiumException;
 use InvalidArgumentException;
 use Mindee\Dependency\DependencyChecker;
@@ -17,10 +16,10 @@ use Mindee\Error\MindeePdfException;
 use Mindee\Geometry\Point;
 use Mindee\Geometry\Polygon;
 use Mindee\Input\LocalInputSource;
+use Mindee\Pdf\PdfUtils;
 use ValueError;
 
 use function BernardLedit\Image\guessFormat;
-use function BernardLedit\Image\extractFromPolygons;
 use function count;
 use function sprintf;
 use function is_array;
@@ -204,8 +203,23 @@ class ImageExtractor
     {
         $pairs = array_map(static::polygonToPairs(...), $polygons);
         try {
-            return extractFromPolygons($this->sourceData, $pageIndex, $pairs, $this->pdfDpi);
-        } catch (ImageException|ImageExtractException|PdfExtractException|PdfiumException|ValueError $e) {
+            if ($this->inputSource->isPdf()) {
+                $pdf = new PdfDocument($this->sourceData);
+                try {
+                    $bitmap = $pdf->getPage($pageIndex)->renderToBitmap($this->pdfDpi / 72.0);
+                    $sourceImage = new Image($bitmap->toPngBytes());
+                } finally {
+                    PdfUtils::closeQuietly($pdf);
+                }
+            } else {
+                $sourceImage = new Image($this->sourceData);
+            }
+
+            return array_map(
+                static fn(array $polygon): Image => $sourceImage->cropPolygon($polygon),
+                $pairs
+            );
+        } catch (ImageException|PdfiumException|ValueError $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }
     }
