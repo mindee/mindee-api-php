@@ -313,15 +313,6 @@ namespace BernardLedit\Pdf {
         public function __construct() {}
 
         /**
-         * Returns the characters on the page.
-         *
-         * @return list<\BernardLedit\Pdf\TextChar>
-         * @throws \BernardLedit\Pdf\PdfiumException if `PDFium` can't read the page's characters.
-         * @throws \Exception if the document is closed.
-         */
-        public function getChars(): array {}
-
-        /**
          * Index of the page.
          *
          * @return int
