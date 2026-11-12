@@ -329,15 +329,6 @@ namespace BernardLedit\Pdf {
         public function getIndex(): int {}
 
         /**
-         * Dimensions in points.
-         *
-         * @return array{0: float, 1: float} `[$width, $height]`.
-         * @throws \BernardLedit\Pdf\PdfiumException if `PDFium` can't load the page.
-         * @throws \Exception if the document is closed.
-         */
-        public function getSize(): array {}
-
-        /**
          * Returns the text of the page.
          *
          * @return string
