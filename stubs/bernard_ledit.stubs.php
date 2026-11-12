@@ -338,15 +338,6 @@ namespace BernardLedit\Pdf {
         public function getText(): string {}
 
         /**
-         * Checks whether the page is empty.
-         *
-         * @return bool
-         * @throws \BernardLedit\Pdf\PdfiumException if `PDFium` can't read the page.
-         * @throws \Exception if the document is closed.
-         */
-        public function isEmpty(): bool {}
-
-        /**
          * Renders the page, at 72 DPI per unit of `$scale`.
          *
          * @param float $scale A finite number between 0.01 and 16.
