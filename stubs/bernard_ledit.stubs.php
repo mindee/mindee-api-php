@@ -178,28 +178,6 @@ namespace BernardLedit\Pdf {
         public function __construct(string $data) {}
 
         /**
-         * Appends a JPEG as a page of the document.
-         *
-         * @param string $jpeg
-         * @return void
-         * @throws \BernardLedit\Image\ImageException if `$jpeg` is invalid, truncated or in an unsupported color space.
-         * @throws \BernardLedit\Pdf\PdfiumException if `PDFium` can't append the page.
-         * @throws \Exception if the document is closed.
-         */
-        public function appendJpegPage(string $jpeg): void {}
-
-        /**
-         * Append multiple JPEG pages to the document.
-         *
-         * @param list<string> $jpegs
-         * @return void
-         * @throws \BernardLedit\Image\ImageException if one of `$jpegs` is invalid, truncated or in an unsupported color space.
-         * @throws \BernardLedit\Pdf\PdfiumException if `PDFium` can't append a page.
-         * @throws \Exception if the document is closed.
-         */
-        public function appendMultipleJpegPages(array $jpegs): void {}
-
-        /**
          * Returns the PDF bytes (PHP writes files itself and keeps I/O out of Rust).
          *
          * @return string
