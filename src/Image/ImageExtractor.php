@@ -19,6 +19,7 @@ use Mindee\Input\LocalInputSource;
 use Mindee\Pdf\PdfUtils;
 use ValueError;
 
+use function BernardLedit\Common\formatFromExtension;
 use function BernardLedit\Image\guessFormat;
 use function count;
 use function sprintf;
@@ -206,8 +207,7 @@ class ImageExtractor
             if ($this->inputSource->isPdf()) {
                 $pdf = new PdfDocument($this->sourceData);
                 try {
-                    $bitmap = $pdf->getPage($pageIndex)->renderToBitmap($this->pdfDpi / 72.0);
-                    $sourceImage = new Image($bitmap->toPngBytes());
+                    $sourceImage = $pdf->getPage($pageIndex)->render($this->pdfDpi / 72.0);
                 } finally {
                     PdfUtils::closeQuietly($pdf);
                 }
@@ -237,7 +237,7 @@ class ImageExtractor
         string $format
     ): ExtractedImage {
         try {
-            $data = $crop->encode(ExtractedImage::getEncodedImageFormat($format), self::CROP_QUALITY);
+            $data = $crop->encode(formatFromExtension($format), self::CROP_QUALITY);
         } catch (ImageException|ValueError $e) {
             throw new MindeeImageException($e->getMessage(), $e->getCode(), $e);
         }

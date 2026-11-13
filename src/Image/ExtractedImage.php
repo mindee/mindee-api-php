@@ -12,6 +12,7 @@ use Mindee\Input\BytesInput;
 use Exception;
 
 use function BernardLedit\Image\decode;
+use function BernardLedit\Common\formatFromExtension;
 use function sprintf;
 use function strlen;
 
@@ -52,8 +53,10 @@ class ExtractedImage
     public function writeToFile(string $outputPath, ?string $format = null, ?int $quality = null): void
     {
         $imagePath = $outputPath . DIRECTORY_SEPARATOR . $this->filename;
-        $encodedFormat = self::getEncodedImageFormat($format ?? $this->saveFormat);
-        if (null === $quality && $encodedFormat === self::getEncodedImageFormat($this->saveFormat)) {
+        $extension = pathinfo($this->filename, PATHINFO_EXTENSION);
+        $formatToEncode = $format ?? ('' !== $extension ? $extension : $this->saveFormat);
+        $encodedFormat = formatFromExtension($formatToEncode);
+        if (null === $quality && $encodedFormat === formatFromExtension($this->saveFormat)) {
             self::writeBytes($imagePath, $this->buffer);
             return;
         }
@@ -69,23 +72,6 @@ class ExtractedImage
     public function asInputSource(): BytesInput
     {
         return new BytesInput($this->buffer, $this->filename);
-    }
-
-    /**
-     * Get the encoded image format, as understood by bernard_ledit.
-     *
-     * @param string $saveFormat Format to save the file as.
-     * @return string Encoded image format.
-     */
-    public static function getEncodedImageFormat(string $saveFormat): string
-    {
-        return match (strtolower($saveFormat)) {
-            'png' => 'png',
-            'bmp', => 'bmp',
-            'gif' => 'gif',
-            'webp' => 'webp',
-            default => 'jpeg',
-        };
     }
 
     /**
