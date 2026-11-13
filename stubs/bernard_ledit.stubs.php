@@ -239,16 +239,6 @@ namespace BernardLedit\Pdf {
          */
         public function importPages(\BernardLedit\Pdf\PdfDocument $src, array $indexes): void {}
 
-        /**
-         * Rasterizes a page from a given index into an image, at 72 DPI.
-         *
-         * @param int<0, 65535> $index
-         * @return \BernardLedit\Image\Image
-         * @throws \ValueError if `$index` is out of range, or there's no page `$index`.
-         * @throws \BernardLedit\Pdf\PdfiumException if `PDFium` can't render the page.
-         * @throws \Exception if the document is closed.
-         */
-        public function rasterizePage(int $index): \BernardLedit\Image\Image {}
     }
 
     class PdfPage {

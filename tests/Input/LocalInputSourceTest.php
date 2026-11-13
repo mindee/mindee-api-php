@@ -106,8 +106,8 @@ class LocalInputSourceTest extends TestCase
             self::assertSame($cutPdf->getPageCount(), $basePdf->getPageCount());
             for ($pageNumber = 0; $pageNumber < $cutPdf->getPageCount(); $pageNumber++) {
                 self::assertSame(
-                    $cutPdf->rasterizePage($pageNumber)->encode('JPEG', 100),
-                    $basePdf->rasterizePage($pageNumber)->encode('JPEG', 100),
+                    $cutPdf->getPage($pageNumber)->render()->encode('JPEG', 100),
+                    $basePdf->getPage($pageNumber)->render()->encode('JPEG', 100),
                     "Page $pageNumber differs from the reference cut PDF."
                 );
             }
