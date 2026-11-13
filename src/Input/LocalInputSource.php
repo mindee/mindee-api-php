@@ -353,7 +353,7 @@ abstract class LocalInputSource extends InputSource
             return;
         }
         try {
-            $documentBytes = $document->asBytes();
+            $documentBytes = $document->toBytes();
             $this->saveBytesAsFile($documentBytes);
             $this->pageCount = $document->getPageCount();
         } catch (Exception $e) {

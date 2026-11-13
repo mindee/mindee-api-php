@@ -123,7 +123,7 @@ class PdfExtractor
         try {
             $subPdf = PdfDocument::create();
             $subPdf->importPages($source, array_values($pageIndexes));
-            return $subPdf->asBytes();
+            return $subPdf->toBytes();
         } catch (Exception $e) {
             throw new MindeePdfException(
                 "PDF file couldn't be processed during extraction.",
