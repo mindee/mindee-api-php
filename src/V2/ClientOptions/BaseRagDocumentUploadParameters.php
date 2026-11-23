@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use Mindee\V2\Parsing\BaseRagAnnotationResponse;
 
 /**
- *  Base parameters for annotation operations.
+ *  Base parameters for document upload operations.
  * @template TAnnotationResponse of BaseRagAnnotationResponse
  */
 abstract class BaseRagDocumentUploadParameters

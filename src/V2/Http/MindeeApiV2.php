@@ -146,7 +146,6 @@ class MindeeApiV2
         }
     }
 
-
     /**
      * Sets the API key.
      *
