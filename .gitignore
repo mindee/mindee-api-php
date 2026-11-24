@@ -10,6 +10,7 @@ composer.lock
 # IDE
 .vscode/
 .idea
+.junie
 
 # Mac OS
 .DS_Store
