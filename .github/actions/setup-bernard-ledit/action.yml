@@ -50,7 +50,7 @@ runs:
       shell: pwsh
       working-directory: bernard-ledit
       run: |
-        cargo build -p bernard-ledit-php
+        cargo +nightly build -p bernard-ledit-php
         if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
     - name: Configure the PHP extension
