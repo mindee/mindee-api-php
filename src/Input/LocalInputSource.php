@@ -25,8 +25,8 @@ use ValueError;
 use function BernardLedit\Pdf\applyPageOptions as nativeApplyPageOptions;
 use function BernardLedit\Pdf\fixPdf as nativeFixPdf;
 use function in_array;
-use function BernardLedit\Image\compress as compressImage;
-use function BernardLedit\Pdf\compress as compressPdf;
+use function BernardLedit\Image\compressToJpeg as compressImage;
+use function BernardLedit\Pdf\compressToJpeg as compressPdf;
 
 /**
  * List of allowed mime types for document parsing.
@@ -284,7 +284,7 @@ abstract class LocalInputSource extends InputSource
         if ($this->isPdf()) {
             $compressed = compressPdf($bytes, $quality, $optimize, $dpi);
         } else {
-            [$compressed] = compressImage($bytes, $quality, $maxWidth, $maxHeight, $optimize);
+            [$compressed] = compressImage($bytes, $quality, $optimize, $maxWidth, $maxHeight);
             if ($compressed !== $bytes) {
                 $this->fileMimetype = 'image/jpeg';
                 $extension = strtolower(pathinfo($this->fileName, PATHINFO_EXTENSION));
@@ -353,7 +353,7 @@ abstract class LocalInputSource extends InputSource
             return;
         }
         try {
-            $documentBytes = $document->asBytes();
+            $documentBytes = $document->toBytes();
             $this->saveBytesAsFile($documentBytes);
             $this->pageCount = $document->getPageCount();
         } catch (Exception $e) {

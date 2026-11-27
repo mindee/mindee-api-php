@@ -106,7 +106,21 @@ PDF and image operations (page cutting and merging, compression, crop and split 
 on [bernard-ledit](https://github.com/mindee/bernard-ledit), a native PHP extension. It is optional for users, but you
 need it to run the full unit test suite.
 
-Refer to the version constraint in `composer.json`.
+CI builds the extension from the `bernard-ledit` submodule. To use the same build locally, follow
+the [Bernard build prerequisites](bernard-ledit/README.md#development), then run:
+
+```bash
+cd bernard-ledit
+cargo build -p bernard-ledit-php
+cd ..
+```
+
+Load the built extension in `php.ini` before you run the SDK tests. See the
+[PHP binding instructions](bernard-ledit/bindings/php/README.md#installation) for the
+extension filename. To use a newer commit from `refacto`, update the submodule and commit its
+new revision.
+
+For a released extension, refer to the version constraint in `composer.json`.
 
 Install the pinned version with [PIE](https://github.com/php/pie):
 
@@ -137,7 +151,7 @@ To move the SDK to a new bernard-ledit version:
 
 1. Change the version in the `conflict` line of `composer.json`.
 2. Run `composer setup:bernard-ledit` and `composer update:bernard-ledit-stubs`, then commit the updated stubs.
-3. Run the tests: CI installs the new version on its own.
+3. Run the tests. CI builds the extension from the pinned submodule commit.
 
 ### Running the tests
 

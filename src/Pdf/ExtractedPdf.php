@@ -12,6 +12,8 @@ use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
 
+use function BernardLedit\Common\formatFromExtension;
+
 use const DIRECTORY_SEPARATOR;
 
 /**
@@ -71,7 +73,7 @@ class ExtractedPdf
                 $pdfPath = $outputPath;
             }
         }
-        if (!str_ends_with(strtolower($pdfPath), 'pdf')) {
+        if ('PDF' !== formatFromExtension(pathinfo($pdfPath, PATHINFO_EXTENSION))) {
             $pdfPath .= '.pdf';
         }
         file_put_contents($pdfPath, $this->pdfBytes);

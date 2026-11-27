@@ -34,6 +34,10 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
 
+      - uses: ./.github/actions/setup-bernard-ledit
+        with:
+          php-version: ${{ matrix.php-version }}
+
       - name: Install dependencies
         uses: ramsey/composer-install@v3
 

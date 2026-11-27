@@ -10,7 +10,7 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeeImageException;
 use Mindee\Error\MindeeUnhandledException;
 
-use function BernardLedit\Image\compress as compressImage;
+use function BernardLedit\Image\compressToJpeg as compressImage;
 
 /**
  * Image compressor class to handle image compression.
@@ -36,7 +36,7 @@ class ImageCompressor
     ): string {
         DependencyChecker::requireBernardLedit();
         try {
-            [$bytes] = compressImage($inputImage, $quality, $maxWidth, $maxHeight);
+            [$bytes] = compressImage($inputImage, $quality, null, $maxWidth, $maxHeight);
             return $bytes;
         } catch (Exception $e) {
             throw new MindeeImageException("Image compression failed.", ErrorCode::FILE_OPERATION_ABORTED, $e);
