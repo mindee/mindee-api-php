@@ -11,6 +11,7 @@ use Mindee\Error\ErrorCode;
 use Mindee\Error\MindeePdfException;
 use Mindee\Error\MindeeUnhandledException;
 use Mindee\Input\BytesInput;
+
 use function BernardLedit\Common\formatFromExtension;
 
 use const DIRECTORY_SEPARATOR;
