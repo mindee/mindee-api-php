@@ -1,0 +1,85 @@
+name: Build bernard-ledit
+description: Build and load the PHP extension from the refacto branch
+inputs:
+  php-version:
+    description: PHP version used by the runner
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: ./bernard-ledit/.github/actions/php-windows-toolchain
+      if: runner.os == 'Windows'
+      id: windows-toolchain
+      with:
+        php-version: ${{ inputs.php-version }}
+
+    - uses: ilammy/msvc-dev-cmd@v1
+      if: runner.os == 'Windows'
+      with:
+        arch: x64
+        toolset: ${{ steps.windows-toolchain.outputs.msvc }}
+
+    - uses: ./bernard-ledit/.github/actions/setup-libheif
+
+    - uses: ./bernard-ledit/.github/actions/setup-clang
+      if: runner.os == 'Linux'
+
+    - uses: ./bernard-ledit/.github/actions/setup-pdfium
+      with:
+        target: ${{ runner.os == 'Windows' && steps.windows-toolchain.outputs.pdfium-target || '' }}
+
+    - uses: dtolnay/rust-toolchain@1.99.0
+      if: runner.os != 'Windows'
+
+    - uses: dtolnay/rust-toolchain@nightly
+      if: runner.os == 'Windows'
+
+    - uses: Swatinem/rust-cache@v2
+      with:
+        workspaces: bernard-ledit
+        key: php-${{ inputs.php-version }}
+
+    - name: Build the PHP extension
+      if: runner.os != 'Windows'
+      shell: bash
+      working-directory: bernard-ledit
+      run: cargo build -p bernard-ledit-php
+
+    - name: Build the PHP extension (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      working-directory: bernard-ledit
+      run: |
+        cargo build -p bernard-ledit-php
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+    - name: Configure the PHP extension
+      shell: bash
+      run: |
+        php -r '
+          $name = match (PHP_OS_FAMILY) {
+            "Windows" => "bernard_ledit_php.dll",
+            "Darwin" => "libbernard_ledit_php.dylib",
+            default => "libbernard_ledit_php.so",
+          };
+          $extension = realpath("bernard-ledit/target/debug/" . $name);
+          if ($extension === false) {
+            throw new RuntimeException("Built Bernard extension not found");
+          }
+          $dir = getenv("RUNNER_TEMP") . DIRECTORY_SEPARATOR . "bernard-php-ini";
+          if (!is_dir($dir) && !mkdir($dir, 0777, true)) {
+            throw new RuntimeException("Cannot create PHP configuration directory");
+          }
+          if (file_put_contents($dir . "/bernard.ini", "log_errors=On\nextension=\"" . str_replace("\\", "/", $extension) . "\"\n") === false) {
+            throw new RuntimeException("Cannot write Bernard PHP configuration");
+          }
+          $scan = getenv("PHP_INI_SCAN_DIR");
+          if (file_put_contents(getenv("GITHUB_ENV"), "PHP_INI_SCAN_DIR=" . ($scan === false ? "" : $scan) . PATH_SEPARATOR . $dir . PHP_EOL, FILE_APPEND) === false) {
+            throw new RuntimeException("Cannot set PHP_INI_SCAN_DIR");
+          }
+        '
+
+    - name: Verify the PHP extension
+      shell: bash
+      run: |
+        php -r 'if (!extension_loaded("bernard_ledit")) { throw new RuntimeException("Bernard extension did not load"); } BernardLedit\Pdf\PdfDocument::create(); echo "bernard_ledit ", phpversion("bernard_ledit"), PHP_EOL;'

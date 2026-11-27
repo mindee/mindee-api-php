@@ -79,22 +79,10 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           extensions: curl, fileinfo, json
-          tools: pie
 
-      - name: Install bernard-ledit extension
-        if: runner.os != 'Windows'
-        run: bash tools/install-bernard-ledit.sh
-
-      - name: Install bernard-ledit extension (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          pie install "mindee/bernard-ledit"
-          if (-not (php -m | Select-String -Pattern '^bernard_ledit$' -Quiet)) {
-            Write-Error "bernard_ledit did not load"
-            exit 1
-          }
-          php -r 'echo "bernard_ledit ", phpversion("bernard_ledit"), PHP_EOL;'
+      - uses: ./.github/actions/setup-bernard-ledit
+        with:
+          php-version: ${{ matrix.php-version }}
 
       - name: Install dependencies
         uses: ramsey/composer-install@v3
